@@ -4,21 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const CTASection = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !name) {
-      toast({ title: "Veuillez remplir tous les champs", variant: "destructive" });
+      toast({ title: t("cta.errorFill"), variant: "destructive" });
       return;
     }
     setSubmitted(true);
-    toast({ title: "Candidature envoyée !", description: "Nous reviendrons vers vous sous 48h." });
+    toast({ title: t("cta.successTitle"), description: t("cta.successDesc") });
   };
 
   return (
@@ -34,12 +36,10 @@ const CTASection = () => {
           className="max-w-2xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Prêt à faire partie de{" "}
-            <span className="text-gradient-gold">l'élite</span> ?
+            {t("cta.title")}{" "}
+            <span className="text-gradient-gold">{t("cta.titleHighlight")}</span> ?
           </h2>
-          <p className="text-muted-foreground text-lg mb-12">
-            Les places sont limitées. Postulez maintenant et recevez une réponse sous 48h.
-          </p>
+          <p className="text-muted-foreground text-lg mb-12">{t("cta.description")}</p>
 
           {!submitted ? (
             <motion.form
@@ -51,25 +51,23 @@ const CTASection = () => {
               className="glass-card rounded-2xl p-8 space-y-4"
             >
               <Input
-                placeholder="Votre nom complet"
+                placeholder={t("cta.namePlaceholder")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
               />
               <Input
                 type="email"
-                placeholder="Votre email professionnel"
+                placeholder={t("cta.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
               />
               <Button variant="hero" size="lg" className="w-full text-base py-6 rounded-xl">
-                Soumettre ma candidature
+                {t("cta.submit")}
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Button>
-              <p className="text-xs text-muted-foreground">
-                En soumettant ce formulaire, vous acceptez nos conditions générales.
-              </p>
+              <p className="text-xs text-muted-foreground">{t("cta.terms")}</p>
             </motion.form>
           ) : (
             <motion.div
@@ -80,12 +78,8 @@ const CTASection = () => {
               <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
                 <Check className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-display text-2xl font-semibold mb-2 text-foreground">
-                Candidature reçue !
-              </h3>
-              <p className="text-muted-foreground">
-                Nous reviendrons vers vous dans les 48 prochaines heures.
-              </p>
+              <h3 className="font-display text-2xl font-semibold mb-2 text-foreground">{t("cta.successHeading")}</h3>
+              <p className="text-muted-foreground">{t("cta.successMessage")}</p>
             </motion.div>
           )}
         </motion.div>
