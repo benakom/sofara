@@ -5,17 +5,29 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const CTASection = () => {
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [profile, setProfile] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
 
+  const profileOptions = [
+    { value: "influencer", label: t("cta.profileInfluencer") },
+    { value: "agent", label: t("cta.profileAgent") },
+    { value: "consultant", label: t("cta.profileConsultant") },
+    { value: "entrepreneur", label: t("cta.profileEntrepreneur") },
+    { value: "investor", label: t("cta.profileInvestor") },
+    { value: "other", label: t("cta.profileOther") },
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) {
+    if (!email || !name || !phone || !profile) {
       toast({ title: t("cta.errorFill"), variant: "destructive" });
       return;
     }
@@ -57,12 +69,29 @@ const CTASection = () => {
                 className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
               />
               <Input
+                type="tel"
+                placeholder={t("cta.phonePlaceholder")}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
+              />
+              <Input
                 type="email"
                 placeholder={t("cta.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
               />
+              <Select value={profile} onValueChange={setProfile}>
+                <SelectTrigger className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground text-base">
+                  <SelectValue placeholder={t("cta.profilePlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {profileOptions.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Button variant="hero" size="lg" className="w-full text-base py-6 rounded-xl">
                 {t("cta.submit")}
                 <ArrowRight className="w-5 h-5 ml-1" />
