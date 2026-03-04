@@ -36,19 +36,6 @@ const PlatformSection = () => {
           </p>
         </motion.div>
 
-        {/* Dashboard preview */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mb-20 group"
-        >
-          <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl shadow-primary/5">
-            <img src={platformDashboard} alt="Sofara Dashboard" className="w-full object-cover" />
-          </div>
-          {/* Glow under image */}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-primary/10 blur-[60px] rounded-full" />
-        </motion.div>
 
         {/* Bento grid features */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
