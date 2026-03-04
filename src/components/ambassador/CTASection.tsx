@@ -37,53 +37,53 @@ const CTASection = () => {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-hero" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[100px]" />
+      <div className="absolute inset-0 bg-gradient-mesh" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center"
         >
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             {t("cta.title")}{" "}
-            <span className="text-gradient-gold">{t("cta.titleHighlight")}</span> ?
+            <span className="text-gradient-primary">{t("cta.titleHighlight")}</span> ?
           </h2>
-          <p className="text-muted-foreground text-lg mb-12">{t("cta.description")}</p>
+          <p className="text-muted-foreground text-base mb-12">{t("cta.description")}</p>
 
           {!submitted ? (
             <motion.form
               onSubmit={handleSubmit}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass-card rounded-2xl p-8 space-y-4"
+              className="rounded-2xl p-8 bg-secondary/30 border border-border/30 space-y-4"
             >
               <Input
                 placeholder={t("cta.namePlaceholder")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
+                className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm"
               />
               <Input
                 type="tel"
                 placeholder={t("cta.phonePlaceholder")}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
+                className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm"
               />
               <Input
                 type="email"
                 placeholder={t("cta.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base"
+                className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm"
               />
               <Select value={profile} onValueChange={setProfile}>
-                <SelectTrigger className="h-14 rounded-xl bg-background/50 border-border/50 text-foreground text-base">
+                <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
                   <SelectValue placeholder={t("cta.profilePlaceholder")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -92,23 +92,23 @@ const CTASection = () => {
                   ))}
                 </SelectContent>
               </Select>
-              <Button variant="hero" size="lg" className="w-full text-base py-6 rounded-xl">
+              <Button variant="hero" size="lg" className="w-full text-base py-6 rounded-full group">
                 {t("cta.submit")}
-                <ArrowRight className="w-5 h-5 ml-1" />
+                <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className="text-xs text-muted-foreground">{t("cta.terms")}</p>
+              <p className="text-[11px] text-muted-foreground/60">{t("cta.terms")}</p>
             </motion.form>
           ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass-card rounded-2xl p-12 flex flex-col items-center"
+              className="rounded-2xl p-12 bg-secondary/30 border border-border/30 flex flex-col items-center"
             >
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                <Check className="w-8 h-8 text-primary" />
+              <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center mb-6">
+                <Check className="w-7 h-7 text-primary-foreground" />
               </div>
               <h3 className="font-display text-2xl font-semibold mb-2 text-foreground">{t("cta.successHeading")}</h3>
-              <p className="text-muted-foreground">{t("cta.successMessage")}</p>
+              <p className="text-muted-foreground text-sm">{t("cta.successMessage")}</p>
             </motion.div>
           )}
         </motion.div>

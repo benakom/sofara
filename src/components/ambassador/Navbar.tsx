@@ -26,53 +26,62 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-border/30 bg-background/90 backdrop-blur-xl" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-2xl border-b border-border/40 shadow-lg shadow-background/50"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="font-display text-2xl font-bold text-foreground tracking-tight">
+        <a href="#" className="font-display text-xl font-bold text-foreground tracking-tight flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-gradient-primary flex items-center justify-center text-xs font-black text-primary-foreground">S</div>
           Sofara
-        </div>
+        </a>
 
-        <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#platform" className="hover:text-foreground transition-colors">{t("nav.platform")}</a>
-          <a href="#dubai" className="hover:text-foreground transition-colors">{t("nav.whyDubai")}</a>
-          <a href="#avantages" className="hover:text-foreground transition-colors">{t("nav.benefits")}</a>
-          <a href="#comment" className="hover:text-foreground transition-colors">{t("nav.howItWorks")}</a>
+        <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-1 py-1">
+          {[
+            { href: "#platform", label: t("nav.platform") },
+            { href: "#dubai", label: t("nav.whyDubai") },
+            { href: "#avantages", label: t("nav.benefits") },
+            { href: "#comment", label: t("nav.howItWorks") },
+          ].map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm text-muted-foreground hover:text-foreground hover:bg-secondary px-4 py-1.5 rounded-full transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center border border-border/50 rounded-lg overflow-hidden mr-2">
+          <div className="flex items-center gap-0.5 mr-1">
             {languages.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`flex items-center gap-1 px-3 py-1.5 text-sm transition-colors ${
+                className={`px-2 py-1 rounded-md text-sm transition-all duration-200 ${
                   lang === l.code
-                    ? "bg-primary/15 text-foreground"
+                    ? "bg-secondary text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <span className="text-base">{l.flag}</span>
-                <span className="text-xs font-medium">{l.label}</span>
+                <span className="text-sm">{l.flag}</span>
               </button>
             ))}
           </div>
 
-          <Button variant="ghost" size="sm" className="text-foreground">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
             {t("nav.signIn")}
           </Button>
-          <Button variant="hero" size="sm" className="rounded-lg">
+          <Button variant="hero" size="sm" className="rounded-full px-5">
             {t("nav.signUp")}
           </Button>
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground">
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
@@ -82,32 +91,42 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-xl"
+            className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl"
           >
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              <a href="#platform" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.platform")}</a>
-              <a href="#dubai" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.whyDubai")}</a>
-              <a href="#avantages" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.benefits")}</a>
-              <a href="#comment" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.howItWorks")}</a>
-              <div className="flex items-center gap-2 py-2">
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-1">
+              {[
+                { href: "#platform", label: t("nav.platform") },
+                { href: "#dubai", label: t("nav.whyDubai") },
+                { href: "#avantages", label: t("nav.benefits") },
+                { href: "#comment", label: t("nav.howItWorks") },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 px-4 py-3 rounded-xl transition-all text-sm"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="flex items-center gap-2 px-4 py-3">
                 {languages.map((l) => (
                   <button
                     key={l.code}
                     onClick={() => setLang(l.code)}
-                    className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm border transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
                       lang === l.code
-                        ? "border-primary/30 bg-primary/10 text-foreground"
-                        : "border-border/50 text-muted-foreground"
+                        ? "bg-secondary text-foreground"
+                        : "text-muted-foreground"
                     }`}
                   >
-                    <span>{l.flag}</span>
-                    <span className="text-xs font-medium">{l.label}</span>
+                    {l.flag}
                   </button>
                 ))}
               </div>
-              <div className="flex gap-2 pt-2">
-                <Button variant="ghost" size="sm" className="text-foreground flex-1">{t("nav.signIn")}</Button>
-                <Button variant="hero" size="sm" className="rounded-lg flex-1">{t("nav.signUp")}</Button>
+              <div className="flex gap-2 pt-3 px-4">
+                <Button variant="ghost" size="sm" className="flex-1">{t("nav.signIn")}</Button>
+                <Button variant="hero" size="sm" className="rounded-full flex-1">{t("nav.signUp")}</Button>
               </div>
             </div>
           </motion.div>
