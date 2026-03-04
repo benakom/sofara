@@ -1,7 +1,5 @@
 import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
-import LogoBar from "@/components/ambassador/LogoBar";
-import StatsSection from "@/components/ambassador/StatsSection";
 import MarketDataSection from "@/components/ambassador/MarketDataSection";
 import PlatformSection from "@/components/ambassador/PlatformSection";
 import WhyDubaiSection from "@/components/ambassador/WhyDubaiSection";
@@ -19,8 +17,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <LogoBar />
-      <StatsSection />
       <div id="dubai">
         <MarketDataSection />
         <WhyDubaiSection />
