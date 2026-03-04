@@ -28,9 +28,9 @@ const FooterSection = () => {
           <div>
             <h4 className="font-display text-sm font-semibold text-foreground mb-4">{t("footer.legal")}</h4>
             <div className="space-y-2.5">
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.privacy")}</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.terms")}</a>
-              <a href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.cookies")}</a>
+              <a href="/legal/privacy" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.privacy")}</a>
+              <a href="/legal/terms" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.terms")}</a>
+              <a href="/legal/cookies" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">{t("footer.cookies")}</a>
             </div>
           </div>
         </div>
