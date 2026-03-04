@@ -27,11 +27,11 @@ const StorytellingSection = () => {
             <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
               {t("story.label")}
             </span>
-            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("story.title")}{" "}
               <span className="text-gradient-primary">{t("story.titleHighlight")}</span>
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-base mb-6 sm:mb-8 leading-relaxed">
               {t("story.description")}
             </p>
 
@@ -46,7 +46,7 @@ const StorytellingSection = () => {
                   className="flex items-start gap-3 p-3 rounded-xl bg-secondary/20 border border-border/20"
                 >
                   <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/90 text-[13px] sm:text-sm leading-relaxed">{point}</span>
+                  <span className="text-foreground/90 text-sm sm:text-sm leading-relaxed">{point}</span>
                 </motion.div>
               ))}
             </div>

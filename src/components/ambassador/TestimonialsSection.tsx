@@ -24,11 +24,11 @@ const TestimonialsSection = () => {
           <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("testimonials.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4">
             {t("testimonials.title")}{" "}
             <span className="text-gradient-primary">{t("testimonials.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
+          <p className="text-muted-foreground text-base sm:text-base max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
                   <Star key={j} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 flex-1">"{te.text}"</p>
+              <p className="text-muted-foreground text-sm sm:text-sm leading-relaxed mb-5 sm:mb-6 flex-1">"{te.text}"</p>
               <div className="border-t border-border/30 pt-3 sm:pt-4">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-xs sm:text-sm">

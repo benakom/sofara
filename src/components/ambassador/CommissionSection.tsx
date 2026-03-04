@@ -43,11 +43,11 @@ const CommissionSection = () => {
           <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("commission.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("commission.title")}{" "}
             <span className="text-gradient-primary">{t("commission.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("commission.description")}
           </p>
         </motion.div>
@@ -76,10 +76,10 @@ const CommissionSection = () => {
               }`}>
                 <tier.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1">
+              <h3 className="font-display text-lg sm:text-lg font-semibold text-foreground mb-1">
                 {t(tier.nameKey)}
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6">{t(tier.rangeKey)}</p>
+              <p className="text-sm sm:text-sm text-muted-foreground mb-4 sm:mb-6">{t(tier.rangeKey)}</p>
               <div className="text-4xl sm:text-5xl font-display font-bold text-gradient-primary mb-2">
                 {tier.rate}
               </div>

@@ -24,7 +24,7 @@ const HowItWorksSection = () => {
           <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("how.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("how.title")}{" "}
             <span className="text-gradient-primary">{t("how.titleHighlight")}</span>
           </h2>
@@ -41,8 +41,8 @@ const HowItWorksSection = () => {
               className="relative rounded-2xl p-5 sm:p-7 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 group"
             >
               <span className="font-display text-3xl sm:text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors block mb-3 sm:mb-4">{step.number}</span>
-              <h3 className="font-display text-sm sm:text-xl font-semibold mb-2 sm:mb-3 text-foreground leading-snug">{step.title}</h3>
-              <p className="text-[11px] sm:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              <h3 className="font-display text-base sm:text-xl font-semibold mb-2 sm:mb-3 text-foreground leading-snug">{step.title}</h3>
+              <p className="text-sm sm:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-12 -right-2 w-4 h-px bg-primary/20" />

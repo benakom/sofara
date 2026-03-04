@@ -27,11 +27,11 @@ const MarketDataSection = () => {
           <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("market.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("market.title")}{" "}
             <span className="text-gradient-primary">{t("market.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("market.description")}
           </p>
         </motion.div>
@@ -47,11 +47,11 @@ const MarketDataSection = () => {
               className="group rounded-2xl p-4 sm:p-6 lg:p-8 bg-secondary/30 border border-border/30 hover:border-primary/20 transition-all duration-500"
             >
               <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary mb-3 sm:mb-4 opacity-60 group-hover:opacity-100 transition-opacity" />
-              <div className="font-display text-xl sm:text-3xl lg:text-4xl font-bold text-gradient-primary mb-1 sm:mb-2">
+              <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient-primary mb-1 sm:mb-2">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm font-medium text-foreground mb-0.5 sm:mb-1">{stat.label}</div>
-              <div className="text-[10px] sm:text-xs text-muted-foreground leading-snug">{stat.sub}</div>
+              <div className="text-sm sm:text-sm font-medium text-foreground mb-0.5 sm:mb-1">{stat.label}</div>
+              <div className="text-xs sm:text-xs text-muted-foreground leading-snug">{stat.sub}</div>
             </motion.div>
           ))}
         </div>

@@ -53,12 +53,12 @@ const WhyDubaiSection = () => {
               <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
                 {t("dubai.label")}
               </span>
-              <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
                 {t("dubai.title")}{" "}
                 <span className="text-gradient-primary">{t("dubai.titleHighlight")}</span>{" "}
                 {t("dubai.titleEnd")}
               </h2>
-              <p className="text-muted-foreground text-sm sm:text-base mb-8 sm:mb-10 leading-relaxed">
+              <p className="text-muted-foreground text-base sm:text-base mb-8 sm:mb-10 leading-relaxed">
                 {t("dubai.description")}
               </p>
             </motion.div>
@@ -77,8 +77,8 @@ const WhyDubaiSection = () => {
                     <a.icon className="w-4 h-4 text-primary" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-sm font-semibold text-foreground">{a.title}</div>
-                    <div className="text-xs text-muted-foreground leading-relaxed">{a.desc}</div>
+                    <div className="text-base font-semibold text-foreground">{a.title}</div>
+                    <div className="text-sm text-muted-foreground leading-relaxed">{a.desc}</div>
                   </div>
                 </motion.div>
               ))}
