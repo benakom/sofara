@@ -244,6 +244,69 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.popular": "Le plus courant",
     "commission.note": "Les commissions sont calculées sur la valeur totale du bien vendu et versées automatiquement après la clôture de la transaction.",
 
+    // Legal pages
+    "legal.back": "Retour",
+    "legal.lastUpdated": "Dernière mise à jour : mars 2025",
+    "legal.privacy.title": "Politique de confidentialité",
+    "legal.privacy.content": `<p>Sofara (www.sofara.ae) est une marque exploitée par Cevitas Real Estate LLC, société basée à Dubaï (Émirats Arabes Unis) (« nous »).</p>
+<h2>Données collectées</h2>
+<p>Nous pouvons collecter :</p>
+<ul>
+<li>Identité (nom, prénom)</li>
+<li>Coordonnées (email, téléphone/WhatsApp)</li>
+<li>Informations liées à votre projet immobilier (budget, préférences, localisation)</li>
+<li>Données de navigation (cookies, adresse IP, logs)</li>
+<li>Tout contenu que vous nous envoyez via formulaires, WhatsApp ou email</li>
+</ul>
+<h2>Finalités</h2>
+<p>Vos données sont utilisées pour : vous contacter, qualifier votre demande, vous proposer des opportunités immobilières, améliorer nos services et notre site, gérer la sécurité, respecter nos obligations légales et lutter contre la fraude.</p>
+<h2>Base légale</h2>
+<p>Selon les cas : votre consentement, l'exécution de mesures précontractuelles/contractuelles, notre intérêt légitime (service, sécurité, amélioration), et/ou une obligation légale.</p>
+<h2>Partage</h2>
+<p>Nous pouvons partager certaines données avec : équipes internes, partenaires (brokers, agents, promoteurs) strictement pour traiter votre demande, prestataires techniques (hébergement, CRM, messagerie), et autorités si requis par la loi. <strong>Nous ne vendons pas vos données.</strong></p>
+<h2>Conservation</h2>
+<p>Nous conservons les données uniquement le temps nécessaire aux finalités ci-dessus et selon les délais légaux applicables.</p>
+<h2>Transferts internationaux</h2>
+<p>Vos données peuvent être traitées aux Émirats Arabes Unis et/ou dans d'autres pays via nos prestataires. Nous mettons en place des mesures de protection appropriées.</p>
+<h2>Vos droits</h2>
+<p>Vous pouvez demander l'accès, la rectification, la suppression, l'opposition, ou le retrait du consentement (quand applicable).</p>
+<p>Contact : <strong>privacy@sofara.ae</strong> (ou via le formulaire de contact).</p>
+<h2>Sécurité</h2>
+<p>Nous appliquons des mesures techniques et organisationnelles pour protéger vos données (accès restreint, journalisation, chiffrement lorsque pertinent).</p>`,
+
+    "legal.terms.title": "Conditions générales d'utilisation",
+    "legal.terms.content": `<p>En accédant à www.sofara.ae, vous acceptez les présentes CGU.</p>
+<h2>1. Objet</h2>
+<p>Le site Sofara fournit des informations et services liés à l'immobilier (qualification de demande, mise en relation, contenu informatif).</p>
+<h2>2. Éligibilité et exactitude</h2>
+<p>Vous vous engagez à fournir des informations exactes et à ne pas utiliser le site à des fins illégales, frauduleuses ou abusives.</p>
+<h2>3. Absence de conseil garanti</h2>
+<p>Les contenus sont fournis à titre informatif. Les performances, rendements, disponibilités, prix et délais peuvent évoluer. <strong>Aucune garantie de résultat n'est donnée.</strong></p>
+<h2>4. Propriété intellectuelle</h2>
+<p>Tous les éléments du site (textes, design, logos, contenus) sont la propriété de Cevitas Real Estate LLC ou de ses concédants. Toute reproduction non autorisée est interdite.</p>
+<h2>5. Liens et services tiers</h2>
+<p>Le site peut contenir des liens vers des services tiers (ex : messageries, formulaires, plateformes). Nous ne contrôlons pas leurs contenus.</p>
+<h2>6. Responsabilité</h2>
+<p>Nous ne saurions être tenus responsables des dommages indirects, pertes de données, ou indisponibilités temporaires du service.</p>
+<h2>7. Modification</h2>
+<p>Nous pouvons modifier les CGU à tout moment. La version publiée sur le site prévaut.</p>
+<h2>8. Droit applicable</h2>
+<p>Ces CGU sont régies par les lois applicables à Dubaï, Émirats Arabes Unis.</p>`,
+
+    "legal.cookies.title": "Politique Cookies",
+    "legal.cookies.content": `<h2>Qu'est-ce qu'un cookie ?</h2>
+<p>Un cookie est un petit fichier stocké sur votre appareil qui aide à faire fonctionner le site et à améliorer votre expérience.</p>
+<h2>Cookies utilisés</h2>
+<ul>
+<li><strong>Essentiels :</strong> fonctionnement, sécurité, préférences de base</li>
+<li><strong>Mesure d'audience :</strong> statistiques de fréquentation et performance</li>
+<li><strong>Marketing (si activé) :</strong> suivi de campagnes et optimisation publicitaire</li>
+</ul>
+<h2>Gestion de vos choix</h2>
+<p>Vous pouvez accepter/refuser certains cookies via le bandeau cookies (si disponible) et/ou via les réglages de votre navigateur. Les cookies essentiels ne peuvent pas être désactivés sans affecter le fonctionnement du site.</p>
+<h2>Durée</h2>
+<p>Les cookies peuvent être supprimés automatiquement à la fin de session ou rester pour une durée limitée selon leur finalité.</p>`,
+
     // Footer
     "footer.description": "La première plateforme d'ambassadeurs pour l'immobilier à Dubai et aux Émirats.",
     "footer.platform": "Plateforme",
@@ -496,6 +559,69 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.ofValue": "of property value",
     "commission.popular": "Most common",
     "commission.note": "Commissions are calculated on the total property value and paid automatically after transaction closing.",
+
+    // Legal pages
+    "legal.back": "Back",
+    "legal.lastUpdated": "Last updated: March 2025",
+    "legal.privacy.title": "Privacy Policy",
+    "legal.privacy.content": `<p>Sofara (www.sofara.ae) is a brand operated by Cevitas Real Estate LLC, a company based in Dubai (United Arab Emirates) ("we").</p>
+<h2>Data collected</h2>
+<p>We may collect:</p>
+<ul>
+<li>Identity (first name, last name)</li>
+<li>Contact details (email, phone/WhatsApp)</li>
+<li>Information related to your real estate project (budget, preferences, location)</li>
+<li>Browsing data (cookies, IP address, logs)</li>
+<li>Any content you send us via forms, WhatsApp or email</li>
+</ul>
+<h2>Purposes</h2>
+<p>Your data is used to: contact you, qualify your request, offer you real estate opportunities, improve our services and website, manage security, comply with legal obligations and prevent fraud.</p>
+<h2>Legal basis</h2>
+<p>Depending on the case: your consent, pre-contractual/contractual measures, our legitimate interest (service, security, improvement), and/or a legal obligation.</p>
+<h2>Sharing</h2>
+<p>We may share certain data with: internal teams, partners (brokers, agents, developers) strictly to process your request, technical providers (hosting, CRM, messaging), and authorities if required by law. <strong>We do not sell your data.</strong></p>
+<h2>Retention</h2>
+<p>We retain data only for as long as necessary for the purposes above and in accordance with applicable legal deadlines.</p>
+<h2>International transfers</h2>
+<p>Your data may be processed in the United Arab Emirates and/or other countries through our providers. We implement appropriate protective measures.</p>
+<h2>Your rights</h2>
+<p>You may request access, rectification, deletion, objection, or withdrawal of consent (where applicable).</p>
+<p>Contact: <strong>privacy@sofara.ae</strong> (or via the contact form).</p>
+<h2>Security</h2>
+<p>We apply technical and organizational measures to protect your data (restricted access, logging, encryption where relevant).</p>`,
+
+    "legal.terms.title": "Terms & Conditions",
+    "legal.terms.content": `<p>By accessing www.sofara.ae, you agree to these Terms & Conditions.</p>
+<h2>1. Purpose</h2>
+<p>The Sofara website provides information and services related to real estate (request qualification, matchmaking, informational content).</p>
+<h2>2. Eligibility and accuracy</h2>
+<p>You agree to provide accurate information and not to use the site for illegal, fraudulent or abusive purposes.</p>
+<h2>3. No guaranteed advice</h2>
+<p>Content is provided for informational purposes only. Performance, returns, availability, prices and timelines may change. <strong>No guarantee of results is given.</strong></p>
+<h2>4. Intellectual property</h2>
+<p>All elements of the site (texts, design, logos, content) are the property of Cevitas Real Estate LLC or its licensors. Unauthorized reproduction is prohibited.</p>
+<h2>5. Third-party links and services</h2>
+<p>The site may contain links to third-party services (e.g., messaging, forms, platforms). We do not control their content.</p>
+<h2>6. Liability</h2>
+<p>We shall not be held liable for indirect damages, data loss, or temporary service unavailability.</p>
+<h2>7. Modifications</h2>
+<p>We may modify these Terms at any time. The version published on the site prevails.</p>
+<h2>8. Applicable law</h2>
+<p>These Terms are governed by the laws applicable in Dubai, United Arab Emirates.</p>`,
+
+    "legal.cookies.title": "Cookie Policy",
+    "legal.cookies.content": `<h2>What is a cookie?</h2>
+<p>A cookie is a small file stored on your device that helps the site function and improve your experience.</p>
+<h2>Cookies used</h2>
+<ul>
+<li><strong>Essential:</strong> functionality, security, basic preferences</li>
+<li><strong>Analytics:</strong> traffic statistics and performance</li>
+<li><strong>Marketing (if enabled):</strong> campaign tracking and advertising optimization</li>
+</ul>
+<h2>Managing your choices</h2>
+<p>You can accept/refuse certain cookies via the cookie banner (if available) and/or via your browser settings. Essential cookies cannot be disabled without affecting site functionality.</p>
+<h2>Duration</h2>
+<p>Cookies may be automatically deleted at the end of a session or remain for a limited period depending on their purpose.</p>`,
 
     // Footer
     "footer.description": "The first ambassador platform for real estate in Dubai and the UAE.",
