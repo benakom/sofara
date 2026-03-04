@@ -65,8 +65,8 @@ const DashboardLayout = () => {
     <>
       {/* Logo */}
       <div className="p-6 pb-2">
-        <a href="/" className="font-display text-xl font-bold text-white tracking-tight uppercase">
-          SOFARA
+        <a href="/" className="font-display text-3xl font-bold text-foreground tracking-tight">
+          sofara
         </a>
         <p className="text-xs text-muted-foreground mt-0.5">Plateforme Ambassadeurs</p>
       </div>
