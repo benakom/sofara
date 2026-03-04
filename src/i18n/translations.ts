@@ -132,8 +132,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "how.step1Desc": "Remplissez le formulaire en 2 minutes. Nous sélectionnons soigneusement chaque ambassadeur.",
     "how.step2": "Onboarding",
     "how.step2Desc": "Formation complète, accès au dashboard et kit marketing personnalisé en 24h.",
-    "how.step3": "Partagez",
-    "how.step3Desc": "Votre lien unique protège vos leads. Partagez-le en toute discrétion à votre réseau.",
+    "how.step3": "Uploadez vos leads",
+    "how.step3Desc": "Ajoutez vos contacts directement sur la plateforme. Chaque lead est protégé et rattaché à votre compte ambassadeur.",
     "how.step4": "Récoltez",
     "how.step4Desc": "Commissions versées automatiquement. Suivi transparent en temps réel.",
 
@@ -361,8 +361,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "how.step1Desc": "Fill out the form in 2 minutes. We carefully select every ambassador.",
     "how.step2": "Onboarding",
     "how.step2Desc": "Full training, dashboard access and personalized marketing kit within 24h.",
-    "how.step3": "Share",
-    "how.step3Desc": "Your unique link protects your leads. Share it discreetly with your network.",
+    "how.step3": "Upload your leads",
+    "how.step3Desc": "Add your contacts directly on the platform. Each lead is protected and linked to your ambassador account.",
     "how.step4": "Earn",
     "how.step4Desc": "Commissions paid automatically. Transparent real-time tracking.",
 
