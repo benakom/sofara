@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -13,13 +13,22 @@ const languages: { code: Lang; label: string; flag: string }[] = [
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.nav
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-xl"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "border-b border-border/30 bg-background/90 backdrop-blur-xl" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <div className="font-display text-2xl font-bold text-foreground tracking-tight">
@@ -27,10 +36,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#avantages" className="hover:text-foreground transition-colors">{t("nav.benefits")}</a>
+          <a href="#platform" className="hover:text-foreground transition-colors">{t("nav.platform")}</a>
           <a href="#dubai" className="hover:text-foreground transition-colors">{t("nav.whyDubai")}</a>
+          <a href="#avantages" className="hover:text-foreground transition-colors">{t("nav.benefits")}</a>
           <a href="#comment" className="hover:text-foreground transition-colors">{t("nav.howItWorks")}</a>
-          <a href="#postuler" className="hover:text-foreground transition-colors">{t("nav.apply")}</a>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -76,10 +85,10 @@ const Navbar = () => {
             className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-xl"
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              <a href="#avantages" className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.benefits")}</a>
-              <a href="#dubai" className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.whyDubai")}</a>
-              <a href="#comment" className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.howItWorks")}</a>
-              <a href="#postuler" className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.apply")}</a>
+              <a href="#platform" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.platform")}</a>
+              <a href="#dubai" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.whyDubai")}</a>
+              <a href="#avantages" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.benefits")}</a>
+              <a href="#comment" onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors py-2">{t("nav.howItWorks")}</a>
               <div className="flex items-center gap-2 py-2">
                 {languages.map((l) => (
                   <button
