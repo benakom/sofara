@@ -63,14 +63,14 @@
     --sidebar-border: 228 8% 14%;
     --sidebar-ring: 252 87% 67%;
 
-    /* Dashboard content area - softer, warmer */
-    --dash-bg: 220 14% 96%;
-    --dash-fg: 220 20% 14%;
+    /* Dashboard content area - clean, light, modern */
+    --dash-bg: 220 16% 96%;
+    --dash-fg: 220 20% 12%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 220 20% 14%;
-    --dash-border: 220 10% 90%;
-    --dash-muted: 220 10% 94%;
-    --dash-muted-fg: 220 10% 46%;
+    --dash-card-fg: 220 20% 12%;
+    --dash-border: 220 13% 91%;
+    --dash-muted: 220 14% 95%;
+    --dash-muted-fg: 220 8% 52%;
   }
 }
 
@@ -237,6 +237,7 @@
   background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
 }
 
 .dash-border-color {
