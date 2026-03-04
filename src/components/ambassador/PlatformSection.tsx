@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Shield, Eye, Lock, Fingerprint, BarChart3, Zap } from "lucide-react";
-import platformDashboard from "@/assets/platform-dashboard.jpg";
+
 
 const PlatformSection = () => {
   const { t } = useLanguage();
