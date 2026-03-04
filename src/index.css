@@ -22,7 +22,7 @@
     --secondary-foreground: 0 0% 75%;
 
     --muted: 228 6% 14%;
-    --muted-foreground: 228 8% 50%;
+    --muted-foreground: 228 8% 55%;
 
     --accent: 180 70% 50%;
     --accent-foreground: 228 12% 4%;
@@ -70,9 +70,19 @@
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -200,6 +210,11 @@
   .animate-shimmer {
     animation: shimmer 3s linear infinite;
     background-size: 200% 100%;
+  }
+
+  /* Mobile app-like section spacing */
+  .section-mobile {
+    @apply py-16 sm:py-24 lg:py-32;
   }
 }
 

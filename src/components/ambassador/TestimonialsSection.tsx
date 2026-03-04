@@ -13,25 +13,25 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-32">
-      <div className="container mx-auto px-6">
+    <section className="section-mobile">
+      <div className="mx-auto px-5 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">
+          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("testimonials.label")}
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4">
             {t("testimonials.title")}{" "}
             <span className="text-gradient-primary">{t("testimonials.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-base max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
+          <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {testimonials.map((te, i) => (
             <motion.div
               key={te.name}
@@ -39,25 +39,25 @@ const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-2xl p-6 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 flex flex-col"
+              className="rounded-2xl p-5 sm:p-6 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 flex flex-col"
             >
-              <div className="flex gap-0.5 mb-4">
+              <div className="flex gap-0.5 mb-3 sm:mb-4">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-primary text-primary" />
+                  <Star key={j} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">"{te.text}"</p>
-              <div className="border-t border-border/30 pt-4">
+              <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 flex-1">"{te.text}"</p>
+              <div className="border-t border-border/30 pt-3 sm:pt-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-sm">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-xs sm:text-sm">
                     {te.avatar}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-foreground">{te.name}</div>
-                    <div className="text-xs text-muted-foreground">{te.role}</div>
+                    <div className="text-xs sm:text-sm font-semibold text-foreground">{te.name}</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">{te.role}</div>
                   </div>
                 </div>
-                <div className="mt-3 inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold">
+                <div className="mt-2.5 sm:mt-3 inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] sm:text-[10px] font-semibold">
                   {te.amount} {t("testimonials.earned")}
                 </div>
               </div>

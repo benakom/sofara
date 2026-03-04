@@ -15,27 +15,27 @@ const StorytellingSection = () => {
   ];
 
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="section-mobile relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-aurora opacity-40" />
-      <div className="container relative mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">
+            <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
               {t("story.label")}
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight mb-6 text-foreground leading-tight">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("story.title")}{" "}
               <span className="text-gradient-primary">{t("story.titleHighlight")}</span>
             </h2>
-            <p className="text-muted-foreground text-base mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
               {t("story.description")}
             </p>
 
-            <div className="space-y-3 mb-10">
+            <div className="space-y-2 sm:space-y-3 mb-8 sm:mb-10">
               {points.map((point, i) => (
                 <motion.div
                   key={i}
@@ -45,13 +45,13 @@ const StorytellingSection = () => {
                   transition={{ delay: i * 0.08 }}
                   className="flex items-start gap-3 p-3 rounded-xl bg-secondary/20 border border-border/20"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/90 text-sm leading-relaxed">{point}</span>
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground/90 text-[13px] sm:text-sm leading-relaxed">{point}</span>
                 </motion.div>
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="text-base px-8 py-6 rounded-full group">
+            <Button variant="hero" size="lg" className="text-[15px] sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
               {t("story.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -65,17 +65,17 @@ const StorytellingSection = () => {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden border border-border/30">
-              <img src={dubaiNetwork} alt="Sofara network" className="w-full h-[500px] object-cover" />
+              <img src={dubaiNetwork} alt="Sofara network" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="absolute -bottom-6 -left-6 rounded-xl bg-secondary/90 backdrop-blur-xl border border-border/40 p-5 shadow-2xl"
+              className="absolute -bottom-4 sm:-bottom-6 left-4 sm:-left-6 rounded-xl bg-secondary/90 backdrop-blur-xl border border-border/40 p-4 sm:p-5 shadow-2xl"
             >
-              <div className="text-2xl font-display font-bold text-gradient-primary">€7 500+</div>
-              <div className="text-xs text-muted-foreground">{t("story.statLabel")}</div>
+              <div className="text-xl sm:text-2xl font-display font-bold text-gradient-primary">€7 500+</div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground">{t("story.statLabel")}</div>
             </motion.div>
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-primary/8 blur-[40px] rounded-full" />
           </motion.div>
