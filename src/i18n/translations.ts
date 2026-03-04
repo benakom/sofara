@@ -226,6 +226,24 @@ export const translations: Record<Lang, Record<string, string>> = {
     "cta.successHeading": "Candidature reçue !",
     "cta.successMessage": "Notre équipe analyse votre profil. Vous recevrez une réponse dans les 48 prochaines heures.",
 
+    // Commissions
+    "commission.label": "Commissions",
+    "commission.title": "Des commissions à la hauteur de",
+    "commission.titleHighlight": "votre ambition",
+    "commission.description": "Un barème progressif et transparent. Plus la transaction est importante, plus votre commission augmente.",
+    "commission.tier1Name": "Essentiel",
+    "commission.tier1Range": "Transactions < €250 000",
+    "commission.tier1Desc": "Idéal pour les premiers investissements ou les biens résidentiels accessibles à Dubai.",
+    "commission.tier2Name": "Premium",
+    "commission.tier2Range": "€250 000 – €500 000",
+    "commission.tier2Desc": "Le segment le plus actif : appartements haut de gamme, villas en communauté fermée.",
+    "commission.tier3Name": "Elite",
+    "commission.tier3Range": "Transactions > €500 000",
+    "commission.tier3Desc": "Propriétés de prestige, penthouses et villas sur Palm. Les commissions les plus généreuses.",
+    "commission.ofValue": "de la valeur du bien",
+    "commission.popular": "Le plus courant",
+    "commission.note": "Les commissions sont calculées sur la valeur totale du bien vendu et versées automatiquement après la clôture de la transaction.",
+
     // Footer
     "footer.description": "La première plateforme d'ambassadeurs pour l'immobilier à Dubai et aux Émirats.",
     "footer.platform": "Plateforme",
@@ -460,6 +478,24 @@ export const translations: Record<Lang, Record<string, string>> = {
     "cta.successDesc": "We'll get back to you within 48 hours.",
     "cta.successHeading": "Application received!",
     "cta.successMessage": "Our team is reviewing your profile. You'll receive a response within the next 48 hours.",
+
+    // Commissions
+    "commission.label": "Commissions",
+    "commission.title": "Commissions that match",
+    "commission.titleHighlight": "your ambition",
+    "commission.description": "A progressive and transparent commission structure. The bigger the deal, the higher your reward.",
+    "commission.tier1Name": "Essential",
+    "commission.tier1Range": "Transactions < €250,000",
+    "commission.tier1Desc": "Perfect for first investments or accessible residential properties in Dubai.",
+    "commission.tier2Name": "Premium",
+    "commission.tier2Range": "€250,000 – €500,000",
+    "commission.tier2Desc": "The most active segment: upscale apartments, gated community villas.",
+    "commission.tier3Name": "Elite",
+    "commission.tier3Range": "Transactions > €500,000",
+    "commission.tier3Desc": "Prestige properties, penthouses and Palm villas. The most generous commissions.",
+    "commission.ofValue": "of property value",
+    "commission.popular": "Most common",
+    "commission.note": "Commissions are calculated on the total property value and paid automatically after transaction closing.",
 
     // Footer
     "footer.description": "The first ambassador platform for real estate in Dubai and the UAE.",

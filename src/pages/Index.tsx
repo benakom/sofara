@@ -5,6 +5,7 @@ import PlatformSection from "@/components/ambassador/PlatformSection";
 import WhyDubaiSection from "@/components/ambassador/WhyDubaiSection";
 import StorytellingSection from "@/components/ambassador/StorytellingSection";
 import BenefitsSection from "@/components/ambassador/BenefitsSection";
+import CommissionSection from "@/components/ambassador/CommissionSection";
 import HowItWorksSection from "@/components/ambassador/HowItWorksSection";
 import InvestorMetrics from "@/components/ambassador/InvestorMetrics";
 import TestimonialsSection from "@/components/ambassador/TestimonialsSection";
@@ -28,6 +29,7 @@ const Index = () => {
       <div id="avantages">
         <BenefitsSection />
       </div>
+      <CommissionSection />
       <div id="comment">
         <HowItWorksSection />
       </div>
