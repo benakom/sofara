@@ -7,17 +7,16 @@ const PlatformSection = () => {
   const { t } = useLanguage();
 
   const features = [
-    { icon: Eye, title: t("platform.anonymity"), desc: t("platform.anonymityDesc"), color: "text-primary" },
-    { icon: Lock, title: t("platform.leadProtection"), desc: t("platform.leadProtectionDesc"), color: "text-primary" },
-    { icon: Fingerprint, title: t("platform.discretion"), desc: t("platform.discretionDesc"), color: "text-primary" },
-    { icon: BarChart3, title: t("platform.dashboard"), desc: t("platform.dashboardDesc"), color: "text-primary" },
-    { icon: Shield, title: t("platform.compliance"), desc: t("platform.complianceDesc"), color: "text-primary" },
-    { icon: Zap, title: t("platform.instant"), desc: t("platform.instantDesc"), color: "text-primary" },
+    { icon: Eye, title: t("platform.anonymity"), desc: t("platform.anonymityDesc") },
+    { icon: Lock, title: t("platform.leadProtection"), desc: t("platform.leadProtectionDesc") },
+    { icon: Fingerprint, title: t("platform.discretion"), desc: t("platform.discretionDesc") },
+    { icon: BarChart3, title: t("platform.dashboard"), desc: t("platform.dashboardDesc") },
+    { icon: Shield, title: t("platform.compliance"), desc: t("platform.complianceDesc") },
+    { icon: Zap, title: t("platform.instant"), desc: t("platform.instantDesc") },
   ];
 
   return (
     <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-gold-soft opacity-20" />
       <div className="container relative mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,53 +24,50 @@ const PlatformSection = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-4 block">
+          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">
             {t("platform.label")}
           </span>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             {t("platform.title")}{" "}
-            <span className="text-gradient-gold">{t("platform.titleHighlight")}</span>
+            <span className="text-gradient-primary">{t("platform.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             {t("platform.description")}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Dashboard image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative group"
-          >
-            <div className="rounded-2xl overflow-hidden shadow-card-dark border border-border/30">
-              <img src={platformDashboard} alt="Sofara Dashboard" className="w-full object-cover" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border border-primary/10 -z-10" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full bg-primary/10 blur-[80px] -z-10" />
-          </motion.div>
-
-          {/* Features grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {features.map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="glass-card rounded-xl p-5 hover:border-primary/30 transition-all duration-500 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                  <f.icon className={`w-4 h-4 ${f.color}`} />
-                </div>
-                <h3 className="font-display text-sm font-semibold text-foreground mb-1">{f.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
-              </motion.div>
-            ))}
+        {/* Dashboard preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative mb-20 group"
+        >
+          <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl shadow-primary/5">
+            <img src={platformDashboard} alt="Sofara Dashboard" className="w-full object-cover" />
           </div>
+          {/* Glow under image */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-primary/10 blur-[60px] rounded-full" />
+        </motion.div>
+
+        {/* Bento grid features */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="group rounded-2xl p-6 bg-secondary/20 border border-border/30 hover:border-primary/20 hover:bg-secondary/40 transition-all duration-500"
+            >
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
+                <f.icon className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-display text-base font-semibold text-foreground mb-2">{f.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
