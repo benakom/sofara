@@ -71,12 +71,11 @@ const Navbar = () => {
             ))}
           </div>
 
-          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-            {t("nav.signIn")}
-          </Button>
-          <Button variant="hero" size="sm" className="rounded-full px-5">
-            {t("nav.signUp")}
-          </Button>
+          <a href="#postuler">
+            <Button variant="hero" size="sm" className="rounded-full px-5">
+              {t("nav.join")}
+            </Button>
+          </a>
         </div>
 
         <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground">
@@ -124,8 +123,9 @@ const Navbar = () => {
                 ))}
               </div>
               <div className="flex gap-2 pt-3 px-4">
-                <Button variant="ghost" size="sm" className="flex-1">{t("nav.signIn")}</Button>
-                <Button variant="hero" size="sm" className="rounded-full flex-1">{t("nav.signUp")}</Button>
+                <a href="#postuler" onClick={() => setMobileOpen(false)} className="flex-1">
+                  <Button variant="hero" size="sm" className="rounded-full w-full">{t("nav.join")}</Button>
+                </a>
               </div>
             </div>
           </motion.div>
