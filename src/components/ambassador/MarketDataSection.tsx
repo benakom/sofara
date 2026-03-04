@@ -56,14 +56,6 @@ const MarketDataSection = () => {
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-[10px] sm:text-[11px] text-muted-foreground/60 mt-8 sm:mt-10"
-        >
-          {t("market.source")}
-        </motion.p>
       </div>
     </section>
   );
