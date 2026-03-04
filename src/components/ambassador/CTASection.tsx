@@ -31,10 +31,8 @@ const CTASection = () => {
   ];
 
   const networkOptions = [
-    { value: "small", label: t("cta.networkSmall") },
-    { value: "medium", label: t("cta.networkMedium") },
-    { value: "large", label: t("cta.networkLarge") },
-    { value: "xlarge", label: t("cta.networkXLarge") },
+    { value: "yes", label: t("cta.networkYes") },
+    { value: "no", label: t("cta.networkNo") },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {

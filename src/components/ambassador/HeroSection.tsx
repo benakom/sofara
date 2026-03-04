@@ -76,14 +76,13 @@ const HeroSection = () => {
                 {t(`hero.${slideKeys[current]}.sub`)}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                <Button variant="hero" size="lg" className="text-base px-8 py-6 rounded-full group">
-                  {t("hero.cta")}
-                  <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="heroOutline" size="lg" className="text-base px-8 py-6 rounded-full">
-                  {t("hero.ctaSecondary")}
-                </Button>
+              <div className="flex justify-center mb-16">
+                <a href="#postuler">
+                  <Button variant="hero" size="lg" className="text-base px-8 py-6 rounded-full group">
+                    {t("hero.cta")}
+                    <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </AnimatePresence>
