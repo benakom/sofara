@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
 import { ArrowRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -62,8 +62,6 @@ const CTASection = () => {
   const [email, setEmail] = useState("");
   const [profile, setProfile] = useState("");
   const [country, setCountry] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [motivation, setMotivation] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
@@ -95,9 +93,6 @@ const CTASection = () => {
     </span>
   );
 
-  const OptionalLabel = ({ children }: { children: React.ReactNode }) => (
-    <span className="text-xs text-muted-foreground mb-1 block">{children}</span>
-  );
 
   return (
     <section className="section-mobile relative overflow-hidden">
@@ -212,25 +207,6 @@ const CTASection = () => {
                 </div>
               </div>
 
-              <div>
-                <OptionalLabel>{t("cta.linkedinLabel")}</OptionalLabel>
-                <Input
-                  placeholder={t("cta.linkedinPlaceholder")}
-                  value={linkedin}
-                  onChange={(e) => setLinkedin(e.target.value)}
-                  className={inputClass}
-                />
-              </div>
-
-              <div>
-                <RequiredLabel>{t("cta.motivationLabel")}</RequiredLabel>
-                <Textarea
-                  placeholder={t("cta.motivationPlaceholder")}
-                  value={motivation}
-                  onChange={(e) => setMotivation(e.target.value)}
-                  className="rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm min-h-[100px]"
-                />
-              </div>
 
               <Button variant="hero" size="lg" className="w-full text-[15px] sm:text-base py-5 sm:py-6 rounded-full group">
                 {t("cta.submit")}
