@@ -15,28 +15,28 @@ const MarketDataSection = () => {
   ];
 
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="section-mobile relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-mesh" />
-      <div className="container relative mx-auto px-6">
+      <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">
+          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("market.label")}
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("market.title")}{" "}
             <span className="text-gradient-primary">{t("market.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("market.description")}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -44,14 +44,14 @@ const MarketDataSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="group rounded-2xl p-6 sm:p-8 bg-secondary/30 border border-border/30 hover:border-primary/20 transition-all duration-500"
+              className="group rounded-2xl p-4 sm:p-6 lg:p-8 bg-secondary/30 border border-border/30 hover:border-primary/20 transition-all duration-500"
             >
-              <stat.icon className="w-5 h-5 text-primary mb-4 opacity-60 group-hover:opacity-100 transition-opacity" />
-              <div className="font-display text-3xl sm:text-4xl font-bold text-gradient-primary mb-2">
+              <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary mb-3 sm:mb-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="font-display text-xl sm:text-3xl lg:text-4xl font-bold text-gradient-primary mb-1 sm:mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm font-medium text-foreground mb-1">{stat.label}</div>
-              <div className="text-xs text-muted-foreground">{stat.sub}</div>
+              <div className="text-xs sm:text-sm font-medium text-foreground mb-0.5 sm:mb-1">{stat.label}</div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground leading-snug">{stat.sub}</div>
             </motion.div>
           ))}
         </div>
@@ -60,7 +60,7 @@ const MarketDataSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-[11px] text-muted-foreground/60 mt-10"
+          className="text-center text-[10px] sm:text-[11px] text-muted-foreground/60 mt-8 sm:mt-10"
         >
           {t("market.source")}
         </motion.p>

@@ -32,8 +32,8 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-display text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+      <div className="mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between max-w-7xl">
+        <a href="#" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
           sofara
         </a>
 
@@ -78,9 +78,27 @@ const Navbar = () => {
           </a>
         </div>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground">
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile: language + hamburger */}
+        <div className="flex md:hidden items-center gap-2">
+          <div className="flex items-center gap-0.5">
+            {languages.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLang(l.code)}
+                className={`px-1.5 py-1 rounded-md text-xs transition-all duration-200 ${
+                  lang === l.code
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {l.flag}
+              </button>
+            ))}
+          </div>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground p-1">
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -91,7 +109,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-1">
+            <div className="px-5 py-4 flex flex-col gap-0.5">
               {[
                 { href: "#platform", label: t("nav.platform") },
                 { href: "#dubai", label: t("nav.whyDubai") },
@@ -102,29 +120,14 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 px-4 py-3 rounded-xl transition-all text-sm"
+                  className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 px-4 py-3 rounded-xl transition-all text-[15px] font-medium"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex items-center gap-2 px-4 py-3">
-                {languages.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => setLang(l.code)}
-                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
-                      lang === l.code
-                        ? "bg-secondary text-foreground"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    {l.flag}
-                  </button>
-                ))}
-              </div>
-              <div className="flex gap-2 pt-3 px-4">
-                <a href="#postuler" onClick={() => setMobileOpen(false)} className="flex-1">
-                  <Button variant="hero" size="sm" className="rounded-full w-full">{t("nav.join")}</Button>
+              <div className="pt-3 px-4">
+                <a href="#postuler" onClick={() => setMobileOpen(false)} className="block">
+                  <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5">{t("nav.join")}</Button>
                 </a>
               </div>
             </div>
