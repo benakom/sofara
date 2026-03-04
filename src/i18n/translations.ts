@@ -314,7 +314,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.privacy": "Politique de confidentialité",
     "footer.terms": "Conditions générales",
     "footer.cookies": "Cookies",
-    "footer.rights": "© 2025 Sofara. Tous droits réservés.",
+    "footer.rights": "© 2026 Sofara. Tous droits réservés.",
     "footer.regulated": "Sofara est une plateforme appartenant à Cevitas Real Estate LLC. Les transactions immobilières sont gérées par des agents agréés RERA.",
   },
   en: {
@@ -630,7 +630,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.privacy": "Privacy Policy",
     "footer.terms": "Terms & Conditions",
     "footer.cookies": "Cookies",
-    "footer.rights": "© 2025 Sofara. All rights reserved.",
+    "footer.rights": "© 2026 Sofara. All rights reserved.",
     "footer.regulated": "Sofara is a platform owned by Cevitas Real Estate LLC. Real estate transactions are handled by RERA-licensed agents.",
   },
 };

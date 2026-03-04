@@ -79,7 +79,7 @@ const CTASection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !lastName || !firstName || !phoneCode || !phoneNumber || !profile || !country || !motivation) {
+    if (!email || !lastName || !firstName || !phoneCode || !phoneNumber || !profile || !country) {
       toast({ title: t("cta.errorFill"), variant: "destructive" });
       return;
     }
@@ -111,11 +111,11 @@ const CTASection = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("cta.title")}{" "}
             <span className="text-gradient-primary">{t("cta.titleHighlight")}</span> ?
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base mb-8 sm:mb-12">{t("cta.description")}</p>
+          <p className="text-muted-foreground text-base sm:text-base mb-8 sm:mb-12">{t("cta.description")}</p>
 
           {!submitted ? (
             <motion.form

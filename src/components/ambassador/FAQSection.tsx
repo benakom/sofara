@@ -31,7 +31,7 @@ const FAQSection = () => {
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-3 block">
             {t("faq.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("faq.title")}{" "}
             <span className="text-gradient-gold">{t("faq.titleHighlight")}</span>
           </h2>
@@ -50,10 +50,10 @@ const FAQSection = () => {
                 value={`faq-${i}`}
                 className="glass-card rounded-xl px-4 sm:px-6 border border-border/50 data-[state=open]:border-primary/30 transition-colors"
               >
-                <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline py-4 sm:py-5 text-[13px] sm:text-base">
+                <AccordionTrigger className="text-left font-display font-semibold text-foreground hover:no-underline py-4 sm:py-5 text-base sm:text-base">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-4 sm:pb-5 text-xs sm:text-sm">
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-4 sm:pb-5 text-sm sm:text-sm">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

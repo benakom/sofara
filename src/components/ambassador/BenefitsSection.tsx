@@ -36,11 +36,11 @@ const BenefitsSection = () => {
           <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("benefits.label")}
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
             {t("benefits.title")}{" "}
             <span className="text-gradient-primary">{t("benefits.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("benefits.description")}
           </p>
         </motion.div>
@@ -61,8 +61,8 @@ const BenefitsSection = () => {
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-primary/15 transition-colors">
                 <benefit.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="font-display text-[15px] sm:text-lg font-semibold mb-1.5 sm:mb-2 text-foreground">{benefit.title}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
+              <h3 className="font-display text-lg sm:text-lg font-semibold mb-1.5 sm:mb-2 text-foreground">{benefit.title}</h3>
+              <p className="text-sm sm:text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
             </motion.div>
           ))}
         </motion.div>
