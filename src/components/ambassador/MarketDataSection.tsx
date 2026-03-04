@@ -7,7 +7,7 @@ const MarketDataSection = () => {
 
   const stats = [
     { icon: TrendingUp, value: "+32%", label: t("market.transactions"), sub: t("market.transactionsSub") },
-    { icon: DollarSign, value: "$82B", label: t("market.volume"), sub: t("market.volumeSub") },
+    { icon: DollarSign, value: "€76Mds", label: t("market.volume"), sub: t("market.volumeSub") },
     { icon: Home, value: "168,000+", label: t("market.units"), sub: t("market.unitsSub") },
     { icon: Users, value: "+41%", label: t("market.foreign"), sub: t("market.foreignSub") },
     { icon: Building2, value: "€3,200", label: t("market.pricePerSqm"), sub: t("market.pricePerSqmSub") },
