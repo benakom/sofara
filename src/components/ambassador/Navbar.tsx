@@ -33,9 +33,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-display text-xl font-bold text-foreground tracking-tight flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-primary flex items-center justify-center text-xs font-black text-primary-foreground">S</div>
-          Sofara
+        <a href="#" className="font-display text-xl font-bold text-foreground tracking-tight">
+          sofara
         </a>
 
         <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-1 py-1">
