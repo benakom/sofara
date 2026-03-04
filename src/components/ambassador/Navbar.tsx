@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LayoutDashboard } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
+import { useAuth } from "@/hooks/useAuth";
 
 const languages: { code: Lang; label: string; flag: string }[] = [
   { code: "fr", label: "FR", flag: "🇫🇷" },
@@ -12,6 +13,7 @@ const languages: { code: Lang; label: string; flag: string }[] = [
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
+  const { user, loading } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -33,7 +35,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between max-w-7xl">
-        <a href="#" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+        <a href="/" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
           sofara
         </a>
 
@@ -71,11 +73,23 @@ const Navbar = () => {
             ))}
           </div>
 
-          <a href="#postuler">
-            <Button variant="hero" size="sm" className="rounded-full px-5">
-              {t("nav.join")}
-            </Button>
-          </a>
+          {!loading && (
+            user ? (
+              <a href="/dashboard">
+                <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Button>
+              </a>
+            ) : (
+              <a href="/auth">
+                <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
+                  <LogIn className="w-4 h-4" />
+                  {lang === "fr" ? "Se connecter" : "Sign In"}
+                </Button>
+              </a>
+            )
+          )}
         </div>
 
         {/* Mobile: language + hamburger */}
@@ -126,9 +140,23 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-3 px-4">
-                <a href="#postuler" onClick={() => setMobileOpen(false)} className="block">
-                  <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5">{t("nav.join")}</Button>
-                </a>
+                {!loading && (
+                  user ? (
+                    <a href="/dashboard" onClick={() => setMobileOpen(false)} className="block">
+                      <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
+                        <LayoutDashboard className="w-4 h-4" />
+                        Dashboard
+                      </Button>
+                    </a>
+                  ) : (
+                    <a href="/auth" onClick={() => setMobileOpen(false)} className="block">
+                      <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
+                        <LogIn className="w-4 h-4" />
+                        {lang === "fr" ? "Se connecter" : "Sign In"}
+                      </Button>
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </motion.div>
