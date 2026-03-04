@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import dubaiHero1 from "@/assets/dubai-hero-1.jpg";
 import dubaiHero2 from "@/assets/dubai-hero-2.jpg";
@@ -58,15 +58,6 @@ const HeroSection = () => {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-8 text-sm"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-primary" />
-                <span className="text-primary font-medium">{t("hero.badge")}</span>
-              </motion.div>
 
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-8">
                 <span className="text-foreground">{t(`hero.${slideKeys[current]}.headline`).split('.')[0]}.</span>
