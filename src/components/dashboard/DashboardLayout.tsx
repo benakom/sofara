@@ -134,8 +134,8 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background flex">
-      {/* Desktop sidebar */}
+    <div className="min-h-screen flex">
+      {/* Desktop sidebar - stays dark */}
       <aside className="hidden lg:flex flex-col w-[280px] bg-card border-r border-border/40 fixed inset-y-0 left-0 z-40">
         <SidebarContent />
       </aside>
@@ -164,13 +164,13 @@ const DashboardLayout = () => {
         )}
       </AnimatePresence>
 
-      {/* Main content */}
-      <div className="flex-1 lg:ml-[280px] flex flex-col min-h-screen">
+      {/* Main content - light theme */}
+      <div className="flex-1 lg:ml-[280px] flex flex-col min-h-screen dash-content">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 h-14 border-b border-border/40 bg-background/80 backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
+        <header className="sticky top-0 z-30 h-14 border-b dash-border-color bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden text-foreground p-1"
+            className="lg:hidden dash-text p-1"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -179,9 +179,9 @@ const DashboardLayout = () => {
 
           <div className="flex items-center gap-3">
             {/* Bonus badge */}
-            <div className="hidden sm:flex items-center gap-1.5 bg-card border border-border/50 rounded-full px-3 py-1.5 text-sm">
+            <div className="hidden sm:flex items-center gap-1.5 bg-white border dash-border-color rounded-full px-3 py-1.5 text-sm">
               <Trophy className="w-4 h-4 text-primary" />
-              <span className="font-semibold text-foreground">AED 0</span>
+              <span className="font-semibold dash-text">AED 0</span>
             </div>
 
             {/* Language */}
@@ -199,10 +199,10 @@ const DashboardLayout = () => {
               ))}
             </div>
 
-            <button className="text-muted-foreground hover:text-foreground transition-colors">
+            <button className="dash-muted-text hover:dash-text transition-colors">
               <HelpCircle className="w-5 h-5" />
             </button>
-            <button className="text-muted-foreground hover:text-foreground transition-colors relative">
+            <button className="dash-muted-text hover:dash-text transition-colors relative">
               <Bell className="w-5 h-5" />
             </button>
           </div>
