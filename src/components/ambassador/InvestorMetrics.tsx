@@ -35,7 +35,7 @@ const InvestorMetrics = () => {
             <p className="text-muted-foreground text-base mb-8 leading-relaxed">
               {t("investor.description")}
             </p>
-            <Button variant="hero" size="lg" className="text-base px-8 py-6 rounded-full group">
+            <Button variant="hero" size="lg" className="text-base px-8 py-6 rounded-full group" onClick={() => document.getElementById('postuler')?.scrollIntoView({ behavior: 'smooth' })}>
               {t("investor.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
             </Button>

@@ -88,25 +88,6 @@ const HeroSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Metrics row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-          >
-            {[
-              { value: "€2.5M+", label: t("hero.metric1") },
-              { value: "500+", label: t("hero.metric2") },
-              { value: "8-12%", label: t("hero.metric3") },
-            ].map((m, i) => (
-              <div key={i} className="text-center p-4 rounded-2xl bg-secondary/30 border border-border/30">
-                <div className="font-display text-xl sm:text-2xl font-bold text-gradient-primary mb-1">{m.value}</div>
-                <div className="text-xs text-muted-foreground">{m.label}</div>
-              </div>
-            ))}
-          </motion.div>
-
           {/* Slide dots */}
           <div className="flex gap-1.5 justify-center mt-12">
             {images.map((_, i) => (
