@@ -8,13 +8,60 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+const COUNTRY_CODES = [
+  { code: "+971", country: "🇦🇪 UAE" },
+  { code: "+33", country: "🇫🇷 France" },
+  { code: "+44", country: "🇬🇧 UK" },
+  { code: "+1", country: "🇺🇸 USA" },
+  { code: "+212", country: "🇲🇦 Maroc" },
+  { code: "+216", country: "🇹🇳 Tunisie" },
+  { code: "+213", country: "🇩🇿 Algérie" },
+  { code: "+966", country: "🇸🇦 Arabie S." },
+  { code: "+961", country: "🇱🇧 Liban" },
+  { code: "+41", country: "🇨🇭 Suisse" },
+  { code: "+32", country: "🇧🇪 Belgique" },
+  { code: "+49", country: "🇩🇪 Allemagne" },
+  { code: "+39", country: "🇮🇹 Italie" },
+  { code: "+34", country: "🇪🇸 Espagne" },
+  { code: "+351", country: "🇵🇹 Portugal" },
+  { code: "+31", country: "🇳🇱 Pays-Bas" },
+  { code: "+91", country: "🇮🇳 Inde" },
+  { code: "+86", country: "🇨🇳 Chine" },
+  { code: "+7", country: "🇷🇺 Russie" },
+  { code: "+55", country: "🇧🇷 Brésil" },
+  { code: "+234", country: "🇳🇬 Nigeria" },
+  { code: "+27", country: "🇿🇦 Afr. du Sud" },
+  { code: "+254", country: "🇰🇪 Kenya" },
+  { code: "+225", country: "🇨🇮 Côte d'Iv." },
+  { code: "+221", country: "🇸🇳 Sénégal" },
+  { code: "+237", country: "🇨🇲 Cameroun" },
+  { code: "+974", country: "🇶🇦 Qatar" },
+  { code: "+965", country: "🇰🇼 Koweït" },
+  { code: "+973", country: "🇧🇭 Bahreïn" },
+  { code: "+968", country: "🇴🇲 Oman" },
+  { code: "+20", country: "🇪🇬 Égypte" },
+  { code: "+962", country: "🇯🇴 Jordanie" },
+  { code: "+90", country: "🇹🇷 Turquie" },
+];
+
+const COUNTRIES = [
+  "Émirats Arabes Unis", "France", "Royaume-Uni", "États-Unis", "Canada",
+  "Maroc", "Tunisie", "Algérie", "Arabie Saoudite", "Liban",
+  "Suisse", "Belgique", "Allemagne", "Italie", "Espagne",
+  "Portugal", "Pays-Bas", "Inde", "Chine", "Russie",
+  "Brésil", "Nigeria", "Afrique du Sud", "Kenya", "Côte d'Ivoire",
+  "Sénégal", "Cameroun", "Qatar", "Koweït", "Bahreïn",
+  "Oman", "Égypte", "Jordanie", "Turquie", "Autre",
+];
+
 const CTASection = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [phoneCode, setPhoneCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [profile, setProfile] = useState("");
   const [country, setCountry] = useState("");
-  const [networkSize, setNetworkSize] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [motivation, setMotivation] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -30,14 +77,9 @@ const CTASection = () => {
     { value: "other", label: t("cta.profileOther") },
   ];
 
-  const networkOptions = [
-    { value: "yes", label: t("cta.networkYes") },
-    { value: "no", label: t("cta.networkNo") },
-  ];
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name || !phone || !profile || !country || !networkSize) {
+    if (!email || !lastName || !firstName || !phoneCode || !phoneNumber || !profile || !country || !motivation) {
       toast({ title: t("cta.errorFill"), variant: "destructive" });
       return;
     }
@@ -46,6 +88,16 @@ const CTASection = () => {
   };
 
   const inputClass = "h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm";
+
+  const RequiredLabel = ({ children }: { children: React.ReactNode }) => (
+    <span className="text-xs text-muted-foreground mb-1 block">
+      {children} <span className="text-destructive">*</span>
+    </span>
+  );
+
+  const OptionalLabel = ({ children }: { children: React.ReactNode }) => (
+    <span className="text-xs text-muted-foreground mb-1 block">{children}</span>
+  );
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -72,15 +124,31 @@ const CTASection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="rounded-2xl p-8 bg-secondary/30 border border-border/30 space-y-4"
+              className="rounded-2xl p-8 bg-secondary/30 border border-border/30 space-y-4 text-left"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Input
-                  placeholder={t("cta.namePlaceholder")}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={inputClass}
-                />
+                <div>
+                  <RequiredLabel>{t("cta.lastNameLabel")}</RequiredLabel>
+                  <Input
+                    placeholder={t("cta.lastNamePlaceholder")}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <RequiredLabel>{t("cta.firstNameLabel")}</RequiredLabel>
+                  <Input
+                    placeholder={t("cta.firstNamePlaceholder")}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <RequiredLabel>{t("cta.emailLabel")}</RequiredLabel>
                 <Input
                   type="email"
                   placeholder={t("cta.emailPlaceholder")}
@@ -89,60 +157,86 @@ const CTASection = () => {
                   className={inputClass}
                 />
               </div>
+
+              <div>
+                <RequiredLabel>{t("cta.phoneLabel")}</RequiredLabel>
+                <div className="grid grid-cols-[140px_1fr] gap-2">
+                  <Select value={phoneCode} onValueChange={setPhoneCode}>
+                    <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
+                      <SelectValue placeholder="+..." />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-60">
+                      {COUNTRY_CODES.map((c) => (
+                        <SelectItem key={c.code} value={c.code}>
+                          {c.country} {c.code}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Input
+                    type="tel"
+                    placeholder={t("cta.phonePlaceholder")}
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <RequiredLabel>{t("cta.countryLabel")}</RequiredLabel>
+                  <Select value={country} onValueChange={setCountry}>
+                    <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
+                      <SelectValue placeholder={t("cta.countryPlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-60">
+                      {COUNTRIES.map((c) => (
+                        <SelectItem key={c} value={c}>{c}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <RequiredLabel>{t("cta.profileLabel")}</RequiredLabel>
+                  <Select value={profile} onValueChange={setProfile}>
+                    <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
+                      <SelectValue placeholder={t("cta.profilePlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {profileOptions.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div>
+                <OptionalLabel>{t("cta.linkedinLabel")}</OptionalLabel>
                 <Input
-                  type="tel"
-                  placeholder={t("cta.phonePlaceholder")}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className={inputClass}
-                />
-                <Input
-                  placeholder={t("cta.countryPlaceholder")}
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
+                  placeholder={t("cta.linkedinPlaceholder")}
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
                   className={inputClass}
                 />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Select value={profile} onValueChange={setProfile}>
-                  <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
-                    <SelectValue placeholder={t("cta.profilePlaceholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {profileOptions.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Select value={networkSize} onValueChange={setNetworkSize}>
-                  <SelectTrigger className="h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
-                    <SelectValue placeholder={t("cta.networkPlaceholder")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {networkOptions.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+
+              <div>
+                <RequiredLabel>{t("cta.motivationLabel")}</RequiredLabel>
+                <Textarea
+                  placeholder={t("cta.motivationPlaceholder")}
+                  value={motivation}
+                  onChange={(e) => setMotivation(e.target.value)}
+                  className="rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm min-h-[100px]"
+                />
               </div>
-              <Input
-                placeholder={t("cta.linkedinPlaceholder")}
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
-                className={inputClass}
-              />
-              <Textarea
-                placeholder={t("cta.motivationPlaceholder")}
-                value={motivation}
-                onChange={(e) => setMotivation(e.target.value)}
-                className="rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm min-h-[100px]"
-              />
+
               <Button variant="hero" size="lg" className="w-full text-base py-6 rounded-full group">
                 {t("cta.submit")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className="text-[11px] text-muted-foreground/60">{t("cta.terms")}</p>
+              <p className="text-[11px] text-muted-foreground/60 text-center">{t("cta.terms")}</p>
             </motion.form>
           ) : (
             <motion.div
