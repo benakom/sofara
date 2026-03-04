@@ -62,6 +62,15 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 228 8% 14%;
     --sidebar-ring: 252 87% 67%;
+
+    /* Dashboard content area - softer, warmer */
+    --dash-bg: 220 14% 96%;
+    --dash-fg: 220 20% 14%;
+    --dash-card: 0 0% 100%;
+    --dash-card-fg: 220 20% 14%;
+    --dash-border: 220 10% 90%;
+    --dash-muted: 220 10% 94%;
+    --dash-muted-fg: 220 10% 46%;
   }
 }
 
@@ -216,6 +225,34 @@
   .section-mobile {
     @apply py-16 sm:py-24 lg:py-32;
   }
+}
+
+/* Dashboard light content area */
+.dash-content {
+  background: hsl(var(--dash-bg));
+  color: hsl(var(--dash-fg));
+}
+
+.dash-card {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+}
+
+.dash-border-color {
+  border-color: hsl(var(--dash-border));
+}
+
+.dash-text {
+  color: hsl(var(--dash-fg));
+}
+
+.dash-muted-text {
+  color: hsl(var(--dash-muted-fg));
+}
+
+.dash-muted-bg {
+  background: hsl(var(--dash-muted));
 }
 
 @keyframes aurora-rotate {

@@ -10,13 +10,13 @@ const Community = () => {
       <div className="p-4 rounded-2xl bg-primary/10 mb-6">
         <MessageCircle className="w-10 h-10 text-primary" />
       </div>
-      <h1 className="text-2xl font-display font-bold text-foreground mb-2">Community</h1>
-      <p className="text-muted-foreground text-sm text-center max-w-md">
+      <h1 className="text-2xl font-display font-bold dash-text mb-2">Community</h1>
+      <p className="dash-muted-text text-sm text-center max-w-md">
         {lang === "fr"
           ? "L'espace communautaire sera bientôt disponible. Échangez avec d'autres ambassadeurs, partagez vos expériences et vos succès."
           : "The community space will be available soon. Connect with other ambassadors, share your experiences and successes."}
       </p>
-      <div className="flex items-center gap-2 mt-6 text-muted-foreground text-sm">
+      <div className="flex items-center gap-2 mt-6 dash-muted-text text-sm">
         <Users className="w-4 h-4" />
         <span>{lang === "fr" ? "Bientôt disponible" : "Coming soon"}</span>
       </div>

@@ -14,7 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      commissions: {
+        Row: {
+          amount: number
+          created_at: string
+          date: string
+          deal_name: string
+          id: string
+          lead_id: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          date?: string
+          deal_name: string
+          id?: string
+          lead_id?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          date?: string
+          deal_name?: string
+          id?: string
+          lead_id?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commissions_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          first_name: string
+          id: string
+          kyc_status: string | null
+          last_name: string
+          next_action: string | null
+          notes: string | null
+          phone: string | null
+          score: string | null
+          source: string | null
+          stage: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          first_name: string
+          id?: string
+          kyc_status?: string | null
+          last_name: string
+          next_action?: string | null
+          notes?: string | null
+          phone?: string | null
+          score?: string | null
+          source?: string | null
+          stage?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          kyc_status?: string | null
+          last_name?: string
+          next_action?: string | null
+          notes?: string | null
+          phone?: string | null
+          score?: string | null
+          source?: string | null
+          stage?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          date: string
+          deal_name: string | null
+          id: string
+          reference: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          date?: string
+          deal_name?: string | null
+          id?: string
+          reference: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          date?: string
+          deal_name?: string | null
+          id?: string
+          reference?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          country: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

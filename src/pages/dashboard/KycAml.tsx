@@ -25,24 +25,21 @@ const KycAml = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl font-display font-bold text-foreground mb-1">KYC & AML</h1>
-      <p className="text-muted-foreground text-sm mb-6">{lang === "fr" ? "Conformité et vérification de vos leads" : "Compliance and verification of your leads"}</p>
+      <h1 className="text-2xl font-display font-bold dash-text mb-1">KYC & AML</h1>
+      <p className="dash-muted-text text-sm mb-6">{lang === "fr" ? "Conformité et vérification de vos leads" : "Compliance and verification of your leads"}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* KYC Checklist */}
-        <div className="bg-card/50 border border-border/50 rounded-2xl p-6">
-          <h2 className="text-lg font-display font-semibold text-foreground flex items-center gap-2 mb-2">
-            <ShieldCheck className="w-5 h-5" /> Checklist KYC
-          </h2>
-          <p className="text-sm text-muted-foreground mb-5">{lang === "fr" ? "Documents requis pour chaque lead avant le closing" : "Required documents for each lead before closing"}</p>
+        <div className="dash-card rounded-2xl p-6">
+          <h2 className="text-lg font-display font-semibold dash-text flex items-center gap-2 mb-2"><ShieldCheck className="w-5 h-5" /> Checklist KYC</h2>
+          <p className="text-sm dash-muted-text mb-5">{lang === "fr" ? "Documents requis pour chaque lead avant le closing" : "Required documents for each lead before closing"}</p>
           <div className="space-y-3">
             {kycDocs.map((doc, i) => (
-              <div key={i} className="flex items-center justify-between py-3 border-b border-border/20 last:border-0">
+              <div key={i} className="flex items-center justify-between py-3 border-b dash-border-color last:border-0">
                 <div className="flex items-center gap-3">
                   <AlertTriangle className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm text-foreground">{lang === "fr" ? doc.titleFr : doc.titleEn}</span>
+                  <span className="text-sm dash-text">{lang === "fr" ? doc.titleFr : doc.titleEn}</span>
                 </div>
-                <span className={`text-xs px-2.5 py-1 rounded-full ${doc.required ? "bg-destructive/10 text-destructive" : "bg-secondary text-muted-foreground"}`}>
+                <span className={`text-xs px-2.5 py-1 rounded-full ${doc.required ? "bg-red-50 text-red-600" : "bg-gray-100 text-gray-500"}`}>
                   {doc.required ? (lang === "fr" ? "Obligatoire" : "Required") : "Optional"}
                 </span>
               </div>
@@ -50,27 +47,24 @@ const KycAml = () => {
           </div>
         </div>
 
-        {/* AML Briefing */}
-        <div className="bg-card/50 border border-primary/20 rounded-2xl p-6">
-          <h2 className="text-lg font-display font-semibold text-foreground flex items-center gap-2 mb-2">
-            <ShieldCheck className="w-5 h-5 text-primary" /> Briefing AML
-          </h2>
-          <p className="text-sm text-muted-foreground mb-3">{lang === "fr" ? "Complétez les modules AML pour débloquer votre certification" : "Complete AML modules to unlock your certification"}</p>
-          <div className="h-2 bg-secondary rounded-full overflow-hidden mb-2">
+        <div className="dash-card rounded-2xl p-6" style={{ borderColor: "hsl(var(--primary) / 0.2)" }}>
+          <h2 className="text-lg font-display font-semibold dash-text flex items-center gap-2 mb-2"><ShieldCheck className="w-5 h-5 text-primary" /> Briefing AML</h2>
+          <p className="text-sm dash-muted-text mb-3">{lang === "fr" ? "Complétez les modules AML pour débloquer votre certification" : "Complete AML modules to unlock your certification"}</p>
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-2">
             <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${(earnedPts / totalPts) * 100}%` }} />
           </div>
-          <p className="text-xs text-muted-foreground mb-5">{earnedPts}/{totalPts} pts</p>
+          <p className="text-xs dash-muted-text mb-5">{earnedPts}/{totalPts} pts</p>
           <div className="space-y-3">
             {amlModules.map((mod, i) => (
-              <div key={i} className={`rounded-xl p-4 border transition-all ${mod.completed ? "bg-green-500/5 border-green-500/30" : "bg-secondary/30 border-border/30"}`}>
+              <div key={i} className={`rounded-xl p-4 border transition-all ${mod.completed ? "bg-green-50 border-green-200" : "bg-gray-50 border-gray-200"}`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    {mod.completed ? <CheckCircle className="w-4 h-4 text-green-500" /> : <Lock className="w-4 h-4 text-muted-foreground" />}
-                    <span className="text-sm font-medium text-foreground">{lang === "fr" ? mod.titleFr : mod.titleEn}</span>
+                    {mod.completed ? <CheckCircle className="w-4 h-4 text-green-500" /> : <Lock className="w-4 h-4 text-gray-400" />}
+                    <span className="text-sm font-medium dash-text">{lang === "fr" ? mod.titleFr : mod.titleEn}</span>
                   </div>
                   <Star className="w-4 h-4 text-yellow-500" />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1 ml-6">+{mod.pts} pts</p>
+                <p className="text-xs dash-muted-text mt-1 ml-6">+{mod.pts} pts</p>
               </div>
             ))}
           </div>
