@@ -184,7 +184,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "faq.q2": "Mon identité est-elle visible par les acheteurs ?",
     "faq.a2": "Non. Votre identité est 100% protégée. Les acheteurs ne voient jamais votre nom ni ne savent que vous touchez une commission. La discrétion est au cœur de notre plateforme.",
     "faq.q3": "Combien puis-je gagner concrètement ?",
-    "faq.a3": "Les commissions varient de 0.5% à 2% du prix de vente selon le projet. Sur un bien à €500,000, cela représente entre €2,500 et €10,000. Nos top ambassadeurs dépassent €5,000/mois.",
+    "faq.a3": "Les commissions varient de €6 000 à €30 000 par transaction selon le bien et le projet. Nos top ambassadeurs dépassent €5 000/mois.",
     "faq.q4": "Faut-il une licence immobilière ?",
     "faq.a4": "Non. Vous n'êtes pas agent immobilier, vous êtes un apporteur d'affaires. La structure juridique de Sofara est conçue pour que vous exerciez cette activité en toute légalité dans votre pays.",
     "faq.q5": "Comment sont versées les commissions ?",
@@ -315,7 +315,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.terms": "Conditions générales",
     "footer.cookies": "Cookies",
     "footer.rights": "© 2025 Sofara. Tous droits réservés.",
-    "footer.regulated": "Sofara est une plateforme technologique. Les transactions immobilières sont gérées par des agents agréés RERA.",
+    "footer.regulated": "Sofara est une plateforme appartenant à Cevitas Real Estate LLC. Les transactions immobilières sont gérées par des agents agréés RERA.",
   },
   en: {
     // Navbar
@@ -500,7 +500,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "faq.q2": "Is my identity visible to buyers?",
     "faq.a2": "No. Your identity is 100% protected. Buyers never see your name or know that you earn a commission. Discretion is at the core of our platform.",
     "faq.q3": "How much can I realistically earn?",
-    "faq.a3": "Commissions range from 0.5% to 2% of the sale price depending on the project. On a €500,000 property, that's between €2,500 and €10,000. Our top ambassadors exceed €5,000/month.",
+    "faq.a3": "Commissions range from €6,000 to €30,000 per transaction depending on the property and project. Our top ambassadors exceed €5,000/month.",
     "faq.q4": "Do I need a real estate license?",
     "faq.a4": "No. You're not a real estate agent, you're a business introducer. Sofara's legal structure is designed so you can exercise this activity legally in your country.",
     "faq.q5": "How are commissions paid?",
@@ -631,6 +631,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.terms": "Terms & Conditions",
     "footer.cookies": "Cookies",
     "footer.rights": "© 2025 Sofara. All rights reserved.",
-    "footer.regulated": "Sofara is a technology platform. Real estate transactions are handled by RERA-licensed agents.",
+    "footer.regulated": "Sofara is a platform owned by Cevitas Real Estate LLC. Real estate transactions are handled by RERA-licensed agents.",
   },
 };
