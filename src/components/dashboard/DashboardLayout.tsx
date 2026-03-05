@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdmin } from "@/hooks/useAdmin";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Bot, Trophy, MessageCircle, LogOut,
-  Menu, Bell, HelpCircle, Loader2, Calculator
+  Menu, Bell, HelpCircle, Loader2, Calculator, Shield
 } from "lucide-react";
 import { useEffect } from "react";
 
@@ -31,6 +32,7 @@ const langs: { code: "fr" | "en"; flag: string }[] = [
 
 const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
+  const { isSuperAdmin } = useAdmin();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useLanguage();
@@ -111,6 +113,15 @@ const DashboardLayout = () => {
             <p className="text-xs text-[hsl(var(--dash-sidebar-fg)/.5)] truncate">{user.email}</p>
           </div>
         </div>
+        {isSuperAdmin && (
+          <button
+            onClick={() => navigate("/admin")}
+            className="flex items-center gap-2 text-sm text-[hsl(var(--destructive))] hover:text-[hsl(var(--destructive))] transition-colors w-full px-1 mb-2 font-semibold"
+          >
+            <Shield className="w-4 h-4" />
+            Super Admin
+          </button>
+        )}
         <button
           onClick={handleSignOut}
           className="flex items-center gap-2 text-sm text-[hsl(var(--dash-sidebar-fg)/.5)] hover:text-white transition-colors w-full px-1"

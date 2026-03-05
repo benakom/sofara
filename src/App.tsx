@@ -11,8 +11,13 @@ import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
+import AdminLayout from "./components/admin/AdminLayout";
 import DashboardHome from "./pages/dashboard/DashboardHome";
 import Academy from "./pages/dashboard/Academy";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminAmbassadors from "./pages/admin/AdminAmbassadors";
+import AdminLeads from "./pages/admin/AdminLeads";
+import AdminPayments from "./pages/admin/AdminPayments";
 import Pipeline from "./pages/dashboard/Pipeline";
 import ImportLeads from "./pages/dashboard/ImportLeads";
 import Commissions from "./pages/dashboard/Commissions";
@@ -50,6 +55,12 @@ const App = () => (
                 <Route path="simulator" element={<Simulator />} />
                 <Route path="bonus" element={<BonusRewards />} />
                 <Route path="community" element={<Community />} />
+              </Route>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="ambassadors" element={<AdminAmbassadors />} />
+                <Route path="leads" element={<AdminLeads />} />
+                <Route path="payments" element={<AdminPayments />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
