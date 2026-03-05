@@ -21,6 +21,7 @@ import KycAml from "./pages/dashboard/KycAml";
 import SofarAI from "./pages/dashboard/SofarAI";
 import BonusRewards from "./pages/dashboard/BonusRewards";
 import Community from "./pages/dashboard/Community";
+import Simulator from "./pages/dashboard/Simulator";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
                 <Route path="payments" element={<Payments />} />
                 <Route path="kyc" element={<KycAml />} />
                 <Route path="sofar-ai" element={<SofarAI />} />
+                <Route path="simulator" element={<Simulator />} />
                 <Route path="bonus" element={<BonusRewards />} />
                 <Route path="community" element={<Community />} />
               </Route>
