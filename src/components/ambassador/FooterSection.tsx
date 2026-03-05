@@ -10,7 +10,7 @@ const FooterSection = () => {
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
           <div className="sm:col-span-2">
             <div className="mb-3 sm:mb-4">
-              <span className="font-display text-lg font-bold text-foreground">sofara</span>
+              <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">sofara</span>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-sm leading-relaxed">
               {t("footer.description")}
