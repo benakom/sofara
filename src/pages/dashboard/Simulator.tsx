@@ -25,12 +25,22 @@ const Simulator = () => {
       </div>
 
       <Tabs defaultValue="dld" className="w-full">
-        <TabsList className="bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] h-10 p-1 rounded-xl">
-          <TabsTrigger value="dld" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm text-sm gap-2">
+        <TabsList className="bg-transparent border-none h-auto p-0 gap-3 flex">
+          <TabsTrigger
+            value="dld"
+            className="rounded-xl px-5 py-2.5 text-sm font-semibold gap-2 border-0 transition-all duration-200
+              data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(252,87%,67%)] data-[state=active]:to-[hsl(200,95%,60%)] data-[state=active]:text-white data-[state=active]:shadow-[0_0_24px_-4px_hsl(252,87%,67%,0.5)]
+              data-[state=inactive]:bg-[hsl(var(--dash-muted))] data-[state=inactive]:text-[hsl(var(--dash-muted-fg))] data-[state=inactive]:hover:bg-[hsl(var(--dash-border))]"
+          >
             <Calculator className="w-4 h-4" />
             DLD + Service Charges
           </TabsTrigger>
-          <TabsTrigger value="payment" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm text-sm gap-2">
+          <TabsTrigger
+            value="payment"
+            className="rounded-xl px-5 py-2.5 text-sm font-semibold gap-2 border-0 transition-all duration-200
+              data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(252,87%,67%)] data-[state=active]:to-[hsl(200,95%,60%)] data-[state=active]:text-white data-[state=active]:shadow-[0_0_24px_-4px_hsl(252,87%,67%,0.5)]
+              data-[state=inactive]:bg-[hsl(var(--dash-muted))] data-[state=inactive]:text-[hsl(var(--dash-muted-fg))] data-[state=inactive]:hover:bg-[hsl(var(--dash-border))]"
+          >
             <FileText className="w-4 h-4" />
             Payment Plan
           </TabsTrigger>
