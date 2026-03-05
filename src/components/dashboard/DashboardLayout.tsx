@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Bot, Trophy, MessageCircle, LogOut,
-  Menu, X, Bell, HelpCircle, Loader2, ChevronRight
+  Menu, Bell, HelpCircle, Loader2
 } from "lucide-react";
 import { useEffect } from "react";
 
@@ -62,10 +62,10 @@ const DashboardLayout = () => {
   const userInitials = user.email?.substring(0, 2).toUpperCase() || "AB";
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
       {/* Logo */}
       <div className="px-5 pt-6 pb-4">
-        <a href="/" className="font-display text-2xl font-bold text-[hsl(var(--dash-fg))] tracking-tight">
+        <a href="/" className="font-display text-2xl font-bold text-white tracking-tight">
           sofara
         </a>
       </div>
@@ -83,14 +83,14 @@ const DashboardLayout = () => {
               }}
               className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 ${
                 active
-                  ? "bg-[hsl(var(--primary)/.08)] text-[hsl(var(--primary))]"
-                  : "text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-muted))]"
+                  ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-white"
+                  : "text-[hsl(var(--dash-sidebar-fg)/.7)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))]"
               }`}
             >
-              <item.icon className="w-4 h-4 shrink-0" />
+              <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
               <span>{lang === "fr" ? item.labelFr : item.labelEn}</span>
               {item.badge && (
-                <span className="ml-auto text-[10px] font-bold bg-[hsl(var(--primary)/.1)] text-[hsl(var(--primary))] px-1.5 py-0.5 rounded-md">
+                <span className="ml-auto text-[10px] font-bold bg-[hsl(var(--primary)/.2)] text-[hsl(var(--primary))] px-1.5 py-0.5 rounded-md">
                   {item.badge}
                 </span>
               )}
@@ -100,19 +100,19 @@ const DashboardLayout = () => {
       </nav>
 
       {/* User footer */}
-      <div className="p-4 border-t border-[hsl(var(--dash-border))] mt-auto">
+      <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-[hsl(var(--primary)/.1)] flex items-center justify-center text-xs font-semibold text-[hsl(var(--primary))]">
+          <div className="w-8 h-8 rounded-full bg-[hsl(var(--primary)/.2)] flex items-center justify-center text-xs font-semibold text-[hsl(var(--primary))]">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-[hsl(var(--dash-fg))] truncate">{user.email?.split("@")[0]}</p>
-            <p className="text-xs text-[hsl(var(--dash-muted-fg))] truncate">{user.email}</p>
+            <p className="text-sm font-medium text-white truncate">{user.email?.split("@")[0]}</p>
+            <p className="text-xs text-[hsl(var(--dash-sidebar-fg)/.5)] truncate">{user.email}</p>
           </div>
         </div>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-sm text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors w-full px-1"
+          className="flex items-center gap-2 text-sm text-[hsl(var(--dash-sidebar-fg)/.5)] hover:text-white transition-colors w-full px-1"
         >
           <LogOut className="w-4 h-4" />
           {lang === "fr" ? "Déconnexion" : "Sign Out"}
@@ -124,7 +124,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen flex bg-[hsl(var(--dash-bg))]">
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[240px] bg-white border-r border-[hsl(var(--dash-border))] fixed inset-y-0 left-0 z-40">
+      <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40">
         <SidebarContent />
       </aside>
 
@@ -136,7 +136,7 @@ const DashboardLayout = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setSidebarOpen(false)}
             />
             <motion.aside
@@ -144,7 +144,7 @@ const DashboardLayout = () => {
               animate={{ x: 0 }}
               exit={{ x: -240 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 left-0 w-[240px] bg-white border-r border-[hsl(var(--dash-border))] z-50 flex flex-col lg:hidden"
+              className="fixed inset-y-0 left-0 w-[240px] z-50 flex flex-col lg:hidden"
             >
               <SidebarContent />
             </motion.aside>
@@ -155,7 +155,7 @@ const DashboardLayout = () => {
       {/* Main content */}
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
+        <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
             onClick={() => setSidebarOpen(true)}
             className="lg:hidden text-[hsl(var(--dash-muted-fg))] p-1"
@@ -166,7 +166,6 @@ const DashboardLayout = () => {
           <div className="flex-1" />
 
           <div className="flex items-center gap-2">
-            {/* Language */}
             <div className="flex items-center gap-0.5">
               {langs.map((l) => (
                 <button

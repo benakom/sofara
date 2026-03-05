@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Search, SlidersHorizontal, Upload, Link } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,15 +11,15 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-const stageLabels: Record<string, { fr: string; en: string; color: string }> = {
-  nouveau: { fr: "Nouveau", en: "New", color: "bg-gray-200 text-gray-700" },
-  prequalifie: { fr: "Préqualifié", en: "Prequalified", color: "bg-green-100 text-green-700" },
-  qualifie: { fr: "Qualifié", en: "Qualified", color: "bg-gray-700 text-white" },
-  injoignable: { fr: "Injoignable", en: "Unreachable", color: "bg-red-100 text-red-700" },
-  offre_envoyee: { fr: "Offre envoyée", en: "Offer Sent", color: "bg-purple-100 text-purple-700" },
-  offre_acceptee: { fr: "Offre acceptée", en: "Offer Accepted", color: "bg-green-100 text-green-700" },
-  booking: { fr: "Booking payé", en: "Booking Paid", color: "bg-green-200 text-green-800" },
-  dp_paye: { fr: "DP payé", en: "DP Paid", color: "bg-green-300 text-green-900" },
+const stageLabels: Record<string, { fr: string; en: string; color: string; barColor: string }> = {
+  nouveau: { fr: "Nouveau", en: "New", color: "bg-slate-100 text-slate-700", barColor: "bg-slate-400" },
+  prequalifie: { fr: "Préqualifié", en: "Prequalified", color: "bg-sky-100 text-sky-700", barColor: "bg-sky-500" },
+  qualifie: { fr: "Qualifié", en: "Qualified", color: "bg-violet-100 text-violet-700", barColor: "bg-violet-500" },
+  injoignable: { fr: "Injoignable", en: "Unreachable", color: "bg-red-100 text-red-600", barColor: "bg-red-500" },
+  offre_envoyee: { fr: "Offre envoyée", en: "Offer Sent", color: "bg-amber-100 text-amber-700", barColor: "bg-amber-500" },
+  offre_acceptee: { fr: "Offre acceptée", en: "Offer Accepted", color: "bg-emerald-100 text-emerald-700", barColor: "bg-emerald-500" },
+  booking: { fr: "Booking payé", en: "Booking Paid", color: "bg-green-100 text-green-700", barColor: "bg-green-500" },
+  dp_paye: { fr: "DP payé", en: "DP Paid", color: "bg-teal-100 text-teal-700", barColor: "bg-teal-600" },
 };
 
 const Pipeline = () => {
@@ -28,7 +27,6 @@ const Pipeline = () => {
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [search, setSearch] = useState("");
   const [newLeadOpen, setNewLeadOpen] = useState(false);
   const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", source: "manual" });
 
@@ -44,12 +42,8 @@ const Pipeline = () => {
   const addLead = useMutation({
     mutationFn: async () => {
       const { error } = await supabase.from("leads").insert({
-        user_id: user!.id,
-        first_name: form.first_name,
-        last_name: form.last_name,
-        email: form.email || null,
-        phone: form.phone || null,
-        source: form.source,
+        user_id: user!.id, first_name: form.first_name, last_name: form.last_name,
+        email: form.email || null, phone: form.phone || null, source: form.source,
       });
       if (error) throw error;
     },
@@ -70,114 +64,110 @@ const Pipeline = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["leads"] }),
   });
 
-  const filtered = leads.filter((l: any) =>
-    `${l.first_name} ${l.last_name}`.toLowerCase().includes(search.toLowerCase())
-  );
-
   const totalLeads = leads.length;
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-display font-bold dash-text">Pipeline</h1>
-          <p className="dash-muted-text text-sm">{lang === "fr" ? "Suivez la progression de vos leads" : "Track your leads progression"}</p>
+          <h1 className="text-xl font-display font-bold dash-text">Pipeline</h1>
+          <p className="dash-muted-text text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
-            <DialogTrigger asChild>
-              <Button size="sm" className="gap-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800">
-                + {lang === "fr" ? "Nouveau lead" : "New lead"}
+        <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
+          <DialogTrigger asChild>
+            <Button size="sm" className="gap-1.5 rounded-lg bg-[hsl(var(--primary))] text-white hover:opacity-90">
+              + {lang === "fr" ? "Nouveau lead" : "New lead"}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="dash-form-bg border-[hsl(var(--dash-border))]">
+            <DialogHeader>
+              <DialogTitle className="dash-text">{lang === "fr" ? "Ajouter un lead" : "Add a lead"}</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={(e) => { e.preventDefault(); addLead.mutate(); }} className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div><Label className="dash-text text-xs">{lang === "fr" ? "Prénom" : "First Name"}</Label><Input required value={form.first_name} onChange={e => setForm(p => ({ ...p, first_name: e.target.value }))} className="mt-1 dash-input" /></div>
+                <div><Label className="dash-text text-xs">{lang === "fr" ? "Nom" : "Last Name"}</Label><Input required value={form.last_name} onChange={e => setForm(p => ({ ...p, last_name: e.target.value }))} className="mt-1 dash-input" /></div>
+              </div>
+              <div><Label className="dash-text text-xs">Email</Label><Input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} className="mt-1 dash-input" /></div>
+              <div><Label className="dash-text text-xs">{lang === "fr" ? "Téléphone" : "Phone"}</Label><Input value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} className="mt-1 dash-input" /></div>
+              <div><Label className="dash-text text-xs">Source</Label>
+                <Select value={form.source} onValueChange={v => setForm(p => ({ ...p, source: v }))}>
+                  <SelectTrigger className="mt-1 dash-input"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="manual">{lang === "fr" ? "Manuel" : "Manual"}</SelectItem>
+                    <SelectItem value="meta_ads">Meta Ads</SelectItem>
+                    <SelectItem value="google_sheet">Google Sheet</SelectItem>
+                    <SelectItem value="referral">{lang === "fr" ? "Parrainage" : "Referral"}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button type="submit" className="w-full bg-[hsl(var(--primary))] text-white" disabled={addLead.isPending}>
+                {addLead.isPending ? "..." : lang === "fr" ? "Ajouter" : "Add"}
               </Button>
-            </DialogTrigger>
-            <DialogContent className="dash-card">
-              <DialogHeader>
-                <DialogTitle className="dash-text">{lang === "fr" ? "Ajouter un lead" : "Add a lead"}</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={(e) => { e.preventDefault(); addLead.mutate(); }} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <div><Label className="dash-text">{lang === "fr" ? "Prénom" : "First Name"}</Label><Input required value={form.first_name} onChange={e => setForm(p => ({ ...p, first_name: e.target.value }))} className="mt-1" /></div>
-                  <div><Label className="dash-text">{lang === "fr" ? "Nom" : "Last Name"}</Label><Input required value={form.last_name} onChange={e => setForm(p => ({ ...p, last_name: e.target.value }))} className="mt-1" /></div>
-                </div>
-                <div><Label className="dash-text">Email</Label><Input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} className="mt-1" /></div>
-                <div><Label className="dash-text">{lang === "fr" ? "Téléphone" : "Phone"}</Label><Input value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} className="mt-1" /></div>
-                <div><Label className="dash-text">Source</Label>
-                  <Select value={form.source} onValueChange={v => setForm(p => ({ ...p, source: v }))}>
-                    <SelectTrigger className="mt-1"><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="manual">{lang === "fr" ? "Manuel" : "Manual"}</SelectItem>
-                      <SelectItem value="meta_ads">Meta Ads</SelectItem>
-                      <SelectItem value="google_sheet">Google Sheet</SelectItem>
-                      <SelectItem value="referral">{lang === "fr" ? "Parrainage" : "Referral"}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <Button type="submit" className="w-full bg-primary text-white" disabled={addLead.isPending}>
-                  {addLead.isPending ? "..." : lang === "fr" ? "Ajouter" : "Add"}
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
 
-      {/* Pipeline bar */}
+      {/* Vivid pipeline progress bar */}
       {totalLeads > 0 && (
-        <div className="dash-card rounded-2xl p-5 mb-6">
-          <div className="h-10 rounded-full overflow-hidden flex">
+        <div className="dash-card rounded-xl p-4 mb-5">
+          <p className="text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
+          <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
             {Object.entries(stageLabels).map(([key, label]) => {
               const count = leads.filter((l: any) => l.stage === key).length;
               if (count === 0) return null;
-              const w = (count / totalLeads) * 100;
               return (
-                <div key={key} className={`h-full ${label.color} flex items-center justify-center text-xs font-bold`} style={{ width: `${w}%`, minWidth: 32 }}>
-                  {count}
+                <div key={key} className={`h-full ${label.barColor} rounded-full transition-all relative group`}
+                  style={{ width: `${(count / totalLeads) * 100}%`, minWidth: 8 }}>
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    {lang === "fr" ? label.fr : label.en}: {count}
+                  </div>
                 </div>
               );
             })}
           </div>
-          <div className="flex flex-wrap gap-3 mt-3">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2.5">
             {Object.entries(stageLabels).map(([key, label]) => {
               const count = leads.filter((l: any) => l.stage === key).length;
               if (count === 0) return null;
-              return <span key={key} className="text-xs dash-muted-text">● {lang === "fr" ? label.fr : label.en}: {count}</span>;
+              return (
+                <div key={key} className="flex items-center gap-1.5 text-[11px] dash-muted-text">
+                  <div className={`w-2 h-2 rounded-full ${label.barColor}`} />
+                  {lang === "fr" ? label.fr : label.en}: {count}
+                </div>
+              );
             })}
           </div>
         </div>
       )}
 
-      <div className="flex gap-3 mb-6">
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 dash-muted-text" />
-          <Input placeholder={lang === "fr" ? "Rechercher un lead..." : "Search a lead..."} value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
-        </div>
-      </div>
-
-      <div className="dash-card rounded-2xl overflow-hidden">
+      {/* Table */}
+      <div className="dash-card rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b dash-border-color">
-                {["LEAD", "SOURCE", "STAGE", "SCORE", lang === "fr" ? "ACTION" : "ACTION", "KYC"].map((h) => (
-                  <th key={h} className="text-left text-xs font-semibold dash-muted-text uppercase tracking-wider px-5 py-4">{h}</th>
+                {["LEAD", "SOURCE", "STAGE", "SCORE", "ACTION", "KYC"].map((h) => (
+                  <th key={h} className="text-left text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (
-                <tr><td colSpan={6} className="text-center py-16 dash-muted-text text-sm">
+              {leads.length === 0 ? (
+                <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-sm">
                   {lang === "fr" ? "Aucun lead. Ajoutez votre premier lead !" : "No leads. Add your first lead!"}
                 </td></tr>
               ) : (
-                filtered.map((lead: any) => {
+                leads.map((lead: any) => {
                   const stage = stageLabels[lead.stage] || stageLabels.nouveau;
                   return (
-                    <tr key={lead.id} className="border-b dash-border-color last:border-0 hover:bg-gray-50 transition-colors">
-                      <td className="px-5 py-4 text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
-                      <td className="px-5 py-4 text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
-                      <td className="px-5 py-4">
+                    <tr key={lead.id} className="border-b dash-border-color last:border-0 hover:bg-[hsl(var(--dash-muted)/.5)] transition-colors">
+                      <td className="px-4 py-3 text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
+                      <td className="px-4 py-3 text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
+                      <td className="px-4 py-3">
                         <Select value={lead.stage} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
-                          <SelectTrigger className={`text-xs h-7 w-auto rounded-full border-0 ${stage.color}`}>
+                          <SelectTrigger className={`text-[11px] h-6 w-auto rounded-full border-0 px-2.5 ${stage.color}`}>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -187,9 +177,9 @@ const Pipeline = () => {
                           </SelectContent>
                         </Select>
                       </td>
-                      <td className="px-5 py-4"><span className="text-xs font-medium dash-card rounded-full px-2 py-1 dash-text">{lead.score}</span></td>
-                      <td className="px-5 py-4 text-sm dash-muted-text">{lead.next_action || "—"}</td>
-                      <td className="px-5 py-4"><span className="text-xs dash-muted-text capitalize">{lead.kyc_status?.replace(/_/g, " ")}</span></td>
+                      <td className="px-4 py-3"><span className="text-xs font-medium bg-gray-50 border border-gray-200 rounded-full px-2 py-0.5 dash-text">{lead.score}</span></td>
+                      <td className="px-4 py-3 text-sm dash-muted-text">{lead.next_action || "—"}</td>
+                      <td className="px-4 py-3"><span className="text-xs dash-muted-text capitalize">{lead.kyc_status?.replace(/_/g, " ")}</span></td>
                     </tr>
                   );
                 })
