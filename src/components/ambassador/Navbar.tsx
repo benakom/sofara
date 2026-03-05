@@ -35,7 +35,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between max-w-7xl">
-        <a href="/" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+        <a href="/" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
           sofara
         </a>
 
