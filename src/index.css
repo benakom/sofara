@@ -63,14 +63,25 @@
     --sidebar-border: 228 8% 14%;
     --sidebar-ring: 252 87% 67%;
 
+    /* Dashboard sidebar - dark */
+    --dash-sidebar-bg: 225 15% 12%;
+    --dash-sidebar-fg: 220 10% 85%;
+    --dash-sidebar-active: 252 87% 67%;
+    --dash-sidebar-hover: 225 12% 18%;
+    --dash-sidebar-border: 225 10% 18%;
+
     /* Dashboard content area - clean, light, modern */
-    --dash-bg: 220 16% 96%;
+    --dash-bg: 220 20% 97%;
     --dash-fg: 220 20% 12%;
     --dash-card: 0 0% 100%;
     --dash-card-fg: 220 20% 12%;
     --dash-border: 220 13% 91%;
     --dash-muted: 220 14% 95%;
     --dash-muted-fg: 220 8% 52%;
+
+    /* Dashboard form inputs - off-white */
+    --dash-input-bg: 220 20% 97%;
+    --dash-input-border: 220 13% 88%;
   }
 }
 
@@ -114,7 +125,6 @@
     background-clip: text;
   }
 
-  /* Legacy alias */
   .text-gradient-gold {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -170,7 +180,6 @@
     @apply bg-card/80 backdrop-blur-2xl border border-border/80;
   }
 
-  /* Aurora background effect */
   .aurora-bg {
     position: relative;
     overflow: hidden;
@@ -194,7 +203,6 @@
     filter: blur(80px);
   }
 
-  /* Grid pattern overlay */
   .grid-pattern {
     background-image: 
       linear-gradient(hsl(228, 8%, 14%, 0.5) 1px, transparent 1px),
@@ -202,7 +210,6 @@
     background-size: 60px 60px;
   }
 
-  /* Dot pattern */
   .dot-pattern {
     background-image: radial-gradient(hsl(228, 8%, 20%) 1px, transparent 1px);
     background-size: 24px 24px;
@@ -221,7 +228,6 @@
     background-size: 200% 100%;
   }
 
-  /* Mobile app-like section spacing */
   .section-mobile {
     @apply py-16 sm:py-24 lg:py-32;
   }
@@ -254,6 +260,17 @@
 
 .dash-muted-bg {
   background: hsl(var(--dash-muted));
+}
+
+/* Off-white form inputs in dashboard */
+.dash-input {
+  background: hsl(var(--dash-input-bg)) !important;
+  border-color: hsl(var(--dash-input-border)) !important;
+}
+
+/* Dashboard dialog/form backgrounds */
+.dash-form-bg {
+  background: hsl(220, 20%, 98%);
 }
 
 @keyframes aurora-rotate {

@@ -1,81 +1,113 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Trophy, DollarSign, TrendingUp, Target } from "lucide-react";
+import { Trophy, DollarSign, TrendingUp, Target, Star, Gift, Zap, ChevronRight, Crown, Medal } from "lucide-react";
 
 const tiers = [
-  { level: 1, conditionFr: "Valeur du deal ≥ 1M AED", conditionEn: "Deal value ≥ 1M AED", bonus: "AED 1,000" },
-  { level: 2, conditionFr: "Valeur du deal ≥ 3M AED", conditionEn: "Deal value ≥ 3M AED", bonus: "AED 3,000" },
-  { level: 3, conditionFr: "Valeur du deal ≥ 5M AED", conditionEn: "Deal value ≥ 5M AED", bonus: "AED 6,000" },
-  { level: 4, conditionFr: "Valeur du deal ≥ 10M AED", conditionEn: "Deal value ≥ 10M AED", bonus: "AED 15,000" },
+  { level: 1, name: "Bronze", emoji: "🥉", conditionFr: "≥ 1M AED", conditionEn: "≥ 1M AED", bonus: 1000, color: "from-amber-100 to-orange-50 border-amber-200" },
+  { level: 2, name: "Silver", emoji: "🥈", conditionFr: "≥ 3M AED", conditionEn: "≥ 3M AED", bonus: 3000, color: "from-slate-100 to-gray-50 border-slate-200" },
+  { level: 3, name: "Gold", emoji: "🥇", conditionFr: "≥ 5M AED", conditionEn: "≥ 5M AED", bonus: 6000, color: "from-yellow-100 to-amber-50 border-yellow-200" },
+  { level: 4, name: "Platinum", emoji: "💎", conditionFr: "≥ 10M AED", conditionEn: "≥ 10M AED", bonus: 15000, color: "from-violet-100 to-purple-50 border-violet-200" },
 ];
 
-const howItWorks = [
-  { fr: "Vous closez un deal immobilier via la plateforme Sofara.", en: "You close a real estate deal via the Sofara platform." },
-  { fr: "Le bonus est automatiquement calculé selon la valeur du deal.", en: "The bonus is automatically calculated based on the deal value." },
-  { fr: "Vos coins s'accumulent — 1 coin = 1 AED.", en: "Your coins accumulate — 1 coin = 1 AED." },
-  { fr: "Demandez le versement quand vous voulez.", en: "Request payout whenever you want." },
+const perks = [
+  { icon: "🎓", titleFr: "Academy Premium", titleEn: "Premium Academy", descFr: "Accès aux cours avancés", descEn: "Access to advanced courses", tier: 1 },
+  { icon: "🎟️", titleFr: "Events VIP", titleEn: "VIP Events", descFr: "Invitations aux événements exclusifs", descEn: "Invitations to exclusive events", tier: 2 },
+  { icon: "✈️", titleFr: "Trip Dubai", titleEn: "Dubai Trip", descFr: "Voyage offert à Dubai", descEn: "Free trip to Dubai", tier: 3 },
+  { icon: "👑", titleFr: "Commission boost", titleEn: "Commission Boost", descFr: "+2% sur toutes vos commissions", descEn: "+2% on all your commissions", tier: 4 },
+];
+
+const challenges = [
+  { titleFr: "Closez 3 deals ce mois", titleEn: "Close 3 deals this month", reward: "AED 2,000", progress: 0, target: 3, icon: Target },
+  { titleFr: "Ajoutez 10 leads qualifiés", titleEn: "Add 10 qualified leads", reward: "500 XP", progress: 0, target: 10, icon: Zap },
+  { titleFr: "Complétez l'Academy AML", titleEn: "Complete AML Academy", reward: "Badge 🛡️", progress: 0, target: 1, icon: Star },
 ];
 
 const BonusRewards = () => {
   const { lang } = useLanguage();
+  const currentTier = 0; // 0 = not yet
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <div className="bg-gradient-to-r from-green-50 to-primary/5 border border-green-200 rounded-2xl p-6 mb-6">
-        <h1 className="text-2xl font-display font-bold dash-text flex items-center gap-2">🏆 Bonus Performance</h1>
-        <p className="dash-muted-text text-sm mt-1">{lang === "fr" ? "Gagnez des bonus AED sur chaque deal closé selon sa valeur" : "Earn AED bonuses on each closed deal based on its value"}</p>
-      </div>
+      <h1 className="text-xl font-display font-bold dash-text mb-0.5">🏆 Bonus & Rewards</h1>
+      <p className="dash-muted-text text-sm mb-5">{lang === "fr" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      {/* Stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
-          { labelFr: "Total bonus gagnés", labelEn: "Total bonuses earned", value: "AED 0", icon: DollarSign, color: "text-green-500", bg: "bg-green-100" },
-          { labelFr: "Solde disponible", labelEn: "Available balance", value: "AED 0", icon: Trophy, color: "text-orange-400", bg: "bg-orange-100" },
-          { labelFr: "Volume de ventes", labelEn: "Sales Volume", value: "AED 0", icon: TrendingUp, color: "text-gray-500", bg: "bg-gray-100" },
-          { labelFr: "Deals closés", labelEn: "Closed Deals", value: "0", icon: Target, color: "text-primary", bg: "bg-primary/10" },
+          { labelFr: "Bonus gagnés", labelEn: "Bonuses Earned", value: "AED 0", icon: DollarSign, accent: "bg-emerald-50 text-emerald-600" },
+          { labelFr: "Solde coins", labelEn: "Coin Balance", value: "0", icon: Gift, accent: "bg-amber-50 text-amber-600" },
+          { labelFr: "Tier actuel", labelEn: "Current Tier", value: "—", icon: Crown, accent: "bg-violet-50 text-violet-600" },
+          { labelFr: "Deals closés", labelEn: "Closed Deals", value: "0", icon: Target, accent: "bg-blue-50 text-blue-600" },
         ].map((s, i) => (
-          <div key={i} className="dash-card rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm dash-muted-text">{lang === "fr" ? s.labelFr : s.labelEn}</span>
-              <div className={`p-2 rounded-xl ${s.bg} ${s.color}`}><s.icon className="w-4 h-4" /></div>
+          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
+            className="dash-card rounded-xl p-3.5">
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
+              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
             </div>
-            <p className="text-2xl font-display font-bold dash-text">{s.value}</p>
-          </div>
+            <p className="text-lg font-display font-bold dash-text">{s.value}</p>
+          </motion.div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 dash-card rounded-2xl p-6">
-          <h2 className="text-lg font-display font-semibold dash-text flex items-center gap-2 mb-2">📊 {lang === "fr" ? "Paliers de bonus" : "Bonus Tiers"}</h2>
-          <p className="text-sm dash-muted-text mb-5">{lang === "fr" ? "Chaque deal closé vous rapporte un bonus AED selon la valeur du bien vendu." : "Each closed deal earns you an AED bonus based on the property value sold."}</p>
-          <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+        {/* Tier progression */}
+        <div className="lg:col-span-2 dash-card rounded-xl p-4">
+          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Medal className="w-4 h-4" /> {lang === "fr" ? "Niveaux de fidélité" : "Loyalty Tiers"}</h2>
+          <div className="space-y-2.5">
             {tiers.map((tier) => (
-              <div key={tier.level} className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-sm font-bold text-green-600">{tier.level}</div>
-                  <div>
-                    <p className="text-sm font-medium dash-text">{lang === "fr" ? tier.conditionFr : tier.conditionEn}</p>
-                    <p className="text-xs dash-muted-text">{lang === "fr" ? "Par deal individuel" : "Per individual deal"}</p>
+              <div key={tier.level} className={`flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r ${tier.color} border`}>
+                <span className="text-2xl">{tier.emoji}</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold dash-text">{tier.name}</span>
+                    <span className="text-[11px] dash-muted-text">{lang === "fr" ? tier.conditionFr : tier.conditionEn}</span>
+                  </div>
+                  <div className="h-1 bg-white/60 rounded-full mt-1.5 overflow-hidden">
+                    <div className="h-full bg-current rounded-full opacity-30" style={{ width: "0%" }} />
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-lg font-bold text-green-600">{tier.bonus}</p>
-                  <p className="text-[10px] uppercase tracking-wider dash-muted-text">BONUS</p>
-                </div>
+                <span className="text-sm font-bold text-emerald-600">AED {tier.bonus.toLocaleString()}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="dash-card rounded-2xl p-6">
-          <h2 className="text-lg font-display font-semibold dash-text flex items-center gap-2 mb-4">💡 {lang === "fr" ? "Comment ça marche" : "How it works"}</h2>
-          <div className="space-y-4">
-            {howItWorks.map((step, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-sm font-bold text-primary">{i + 1}.</span>
-                <p className="text-sm dash-muted-text">{lang === "fr" ? step.fr : step.en}</p>
+        {/* Challenges */}
+        <div className="dash-card rounded-xl p-4">
+          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /> {lang === "fr" ? "Challenges actifs" : "Active Challenges"}</h2>
+          <div className="space-y-3">
+            {challenges.map((ch, i) => (
+              <div key={i} className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.3)] border border-[hsl(var(--dash-border))]">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <ch.icon className="w-3.5 h-3.5 text-amber-500" />
+                  <span className="text-xs font-medium dash-text">{lang === "fr" ? ch.titleFr : ch.titleEn}</span>
+                </div>
+                <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-1">
+                  <div className="h-full bg-amber-400 rounded-full" style={{ width: `${(ch.progress / ch.target) * 100}%` }} />
+                </div>
+                <div className="flex justify-between text-[10px]">
+                  <span className="dash-muted-text">{ch.progress}/{ch.target}</span>
+                  <span className="font-medium text-amber-600">{ch.reward}</span>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Perks */}
+      <div className="dash-card rounded-xl p-4">
+        <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Gift className="w-4 h-4" /> {lang === "fr" ? "Avantages par niveau" : "Perks by Tier"}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {perks.map((perk, i) => (
+            <div key={i} className={`p-3 rounded-xl border transition-all ${currentTier >= perk.tier ? "bg-emerald-50 border-emerald-200" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))] opacity-60"}`}>
+              <span className="text-2xl">{perk.icon}</span>
+              <p className="text-sm font-medium dash-text mt-2">{lang === "fr" ? perk.titleFr : perk.titleEn}</p>
+              <p className="text-[11px] dash-muted-text mt-0.5">{lang === "fr" ? perk.descFr : perk.descEn}</p>
+              <p className="text-[10px] font-medium mt-2 text-amber-600">Tier {perk.tier}+</p>
+            </div>
+          ))}
         </div>
       </div>
     </motion.div>

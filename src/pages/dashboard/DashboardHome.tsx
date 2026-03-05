@@ -1,21 +1,10 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight } from "lucide-react";
+import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight, TrendingUp, Zap, Target, BarChart3 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-
-const pipelineStages = [
-  { key: "nouveau", labelFr: "Nouveau", labelEn: "New", color: "bg-gray-400" },
-  { key: "prequalifie", labelFr: "Préqualifié", labelEn: "Prequalified", color: "bg-green-500" },
-  { key: "qualifie", labelFr: "Qualifié", labelEn: "Qualified", color: "bg-gray-700" },
-  { key: "injoignable", labelFr: "Injoignable", labelEn: "Unreachable", color: "bg-red-500" },
-  { key: "offre_envoyee", labelFr: "Offre envoyée", labelEn: "Offer Sent", color: "bg-purple-500" },
-  { key: "offre_acceptee", labelFr: "Offre acceptée", labelEn: "Offer Accepted", color: "bg-green-500" },
-  { key: "booking", labelFr: "Booking payé", labelEn: "Booking Paid", color: "bg-green-600" },
-  { key: "dp_paye", labelFr: "DP payé", labelEn: "DP Paid", color: "bg-green-700" },
-];
 
 const DashboardHome = () => {
   const { lang } = useLanguage();
@@ -45,141 +34,129 @@ const DashboardHome = () => {
   const accepted = leads.filter((l: any) => ["offre_acceptee", "booking", "dp_paye"].includes(l.stage)).length;
   const booked = leads.filter((l: any) => ["booking", "dp_paye"].includes(l.stage)).length;
 
-  const estCommissions = commissions.filter((c: any) => c.status === "estimated").reduce((a: number, c: any) => a + Number(c.amount), 0);
-  const validatedCommissions = commissions.filter((c: any) => c.status === "validated").reduce((a: number, c: any) => a + Number(c.amount), 0);
-  const paidCommissions = commissions.filter((c: any) => c.status === "paid").reduce((a: number, c: any) => a + Number(c.amount), 0);
-  const totalCommissions = estCommissions + validatedCommissions + paidCommissions;
-  const paidPct = totalCommissions > 0 ? Math.round((paidCommissions / totalCommissions) * 100) : 0;
+  const estComm = commissions.filter((c: any) => c.status === "estimated").reduce((a: number, c: any) => a + Number(c.amount), 0);
+  const valComm = commissions.filter((c: any) => c.status === "validated").reduce((a: number, c: any) => a + Number(c.amount), 0);
+  const paidComm = commissions.filter((c: any) => c.status === "paid").reduce((a: number, c: any) => a + Number(c.amount), 0);
+  const totalComm = estComm + valComm + paidComm;
+  const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
-  const stageCounts = pipelineStages.map(s => ({
-    ...s,
-    count: leads.filter((l: any) => l.stage === s.key).length,
-  }));
-  const pct = (count: number) => totalLeads > 0 ? Math.round((count / totalLeads) * 100) : 0;
-
-  const stats = [
-    { labelFr: "Leads total", labelEn: "Total Leads", value: String(totalLeads), icon: Users, color: "text-gray-500" },
-    { labelFr: "Qualifiés", labelEn: "Qualified", value: String(qualified), icon: GitBranch, color: "text-primary" },
-    { labelFr: "Offres acceptées", labelEn: "Accepted Offers", value: String(accepted), icon: CheckCircle, color: "text-green-500" },
-    { labelFr: "Booking / DP payé", labelEn: "Booking / DP paid", value: String(booked), icon: DollarSign, color: "text-green-600" },
+  const kpis = [
+    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, accent: "bg-blue-50 text-blue-600" },
+    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, accent: "bg-violet-50 text-violet-600" },
+    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, accent: "bg-emerald-50 text-emerald-600" },
+    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, accent: "bg-amber-50 text-amber-600" },
+    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, accent: "bg-rose-50 text-rose-600" },
+    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, accent: "bg-green-50 text-green-600", prefix: "AED " },
   ];
+
+  const recentLeads = leads.slice(0, 4);
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-      {/* Welcome banner */}
-      <div className="dash-card rounded-2xl p-6 mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-display font-bold dash-text flex items-center gap-2">
-            👋 {lang === "fr" ? "Tableau de bord" : "Dashboard"}
-          </h1>
-          <p className="dash-muted-text text-sm mt-1">
-            {lang === "fr" ? "Bienvenue ! Voici le résumé de votre activité" : "Welcome! Here's your activity summary"}
-          </p>
-        </div>
-        <div className="hidden sm:flex items-center gap-1.5 dash-card rounded-full px-4 py-2">
-          <Trophy className="w-4 h-4 text-primary" />
-          <span className="font-semibold dash-text text-sm">AED 0</span>
-        </div>
+      {/* Greeting */}
+      <div className="mb-6">
+        <h1 className="text-xl font-display font-bold dash-text">
+          👋 {lang === "fr" ? "Bienvenue" : "Welcome"}, {user?.email?.split("@")[0]}
+        </h1>
+        <p className="dash-muted-text text-sm mt-0.5">
+          {lang === "fr" ? "Voici le résumé de votre activité." : "Here's your activity summary."}
+        </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {stats.map((s, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-            className="dash-card rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm dash-muted-text">{lang === "fr" ? s.labelFr : s.labelEn}</span>
-              <div className={`p-2 rounded-xl bg-gray-100 ${s.color}`}><s.icon className="w-4 h-4" /></div>
+      {/* KPI Grid - compact */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+        {kpis.map((kpi, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
+            className="dash-card rounded-xl p-3.5">
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`p-1.5 rounded-lg ${kpi.accent}`}><kpi.icon className="w-3.5 h-3.5" /></div>
+              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
             </div>
-            <p className="text-3xl font-display font-bold dash-text">{s.value}</p>
+            <p className="text-lg font-display font-bold dash-text">{kpi.prefix || ""}{kpi.value}</p>
           </motion.div>
         ))}
       </div>
 
-      {/* Pipeline + Commissions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-        <div className="lg:col-span-2 dash-card rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-display font-semibold dash-text">Pipeline snapshot</h2>
-            <button onClick={() => navigate("/dashboard/pipeline")} className="text-sm dash-muted-text hover:text-primary flex items-center gap-1 transition-colors">
-              {lang === "fr" ? "Voir tout" : "View all"} <ArrowUpRight className="w-3 h-3" />
+      {/* Two columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4">
+        {/* Commission breakdown */}
+        <div className="lg:col-span-2 dash-card rounded-xl p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Commissions</h2>
+            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+              {lang === "fr" ? "Détails" : "Details"} <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
-          <div className="space-y-3">
-            {stageCounts.map((stage, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <span className="text-sm dash-muted-text w-28 shrink-0">{lang === "fr" ? stage.labelFr : stage.labelEn}</span>
-                <div className="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex items-center">
-                  {stage.count > 0 && (
-                    <div className={`h-full ${stage.color} rounded-full flex items-center justify-center min-w-[28px]`} style={{ width: `${Math.max(pct(stage.count), 8)}%` }}>
-                      <span className="text-xs font-bold text-white px-2">{stage.count}</span>
-                    </div>
-                  )}
+          <div className="space-y-2.5">
+            {[
+              { label: lang === "fr" ? "Estimées" : "Estimated", value: estComm, color: "bg-violet-500" },
+              { label: lang === "fr" ? "Validées" : "Validated", value: valComm, color: "bg-blue-500" },
+              { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "bg-emerald-500" },
+            ].map((item, i) => (
+              <div key={i}>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="dash-muted-text">{item.label}</span>
+                  <span className="font-medium dash-text">AED {item.value.toLocaleString()}</span>
                 </div>
-                <span className="text-xs dash-muted-text w-8 text-right">{pct(stage.count)}%</span>
+                <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className={`h-full ${item.color} rounded-full transition-all`} style={{ width: `${totalComm > 0 ? (item.value / totalComm) * 100 : 0}%` }} />
+                </div>
               </div>
             ))}
           </div>
+          <div className="mt-3 pt-3 border-t dash-border-color flex items-center justify-between">
+            <span className="text-xs dash-muted-text">Total</span>
+            <span className="text-sm font-bold dash-text">AED {totalComm.toLocaleString()}</span>
+          </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="dash-card rounded-2xl p-5">
-            <h3 className="text-sm font-semibold dash-text flex items-center gap-2 mb-4"><DollarSign className="w-4 h-4" /> Commissions</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="dash-muted-text">{lang === "fr" ? "Estimées" : "Estimated"}</span><span className="dash-text font-medium">AED {estCommissions.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span className="dash-muted-text">{lang === "fr" ? "Validées" : "Validated"}</span><span className="text-green-500 font-medium">AED {validatedCommissions.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span className="dash-muted-text">{lang === "fr" ? "Payées" : "Paid"}</span><span className="text-green-600 font-bold">AED {paidCommissions.toLocaleString()}</span></div>
-            </div>
-            <div className="mt-3 h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div className="h-full bg-green-500 rounded-full transition-all" style={{ width: `${paidPct}%` }} />
-            </div>
-            <p className="text-xs dash-muted-text mt-1.5">{paidPct}% collected</p>
+        {/* Recent leads */}
+        <div className="lg:col-span-3 dash-card rounded-xl p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-display font-semibold dash-text">{lang === "fr" ? "Leads récents" : "Recent Leads"}</h2>
+            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+              Pipeline <ArrowUpRight className="w-3 h-3" />
+            </button>
           </div>
-          <div className="dash-card rounded-2xl p-5" style={{ borderColor: "hsl(var(--primary) / 0.2)" }}>
-            <h3 className="text-sm font-semibold dash-text flex items-center gap-2 mb-2"><Trophy className="w-4 h-4 text-primary" /> Bonus Performance</h3>
-            <p className="text-2xl font-display font-bold dash-text">AED 0</p>
-            <p className="text-xs dash-muted-text mt-1">Total gagné: AED 0</p>
-            <p className="text-xs dash-muted-text mt-0.5">0 deals • 1 coin = 1 AED</p>
-          </div>
+          {recentLeads.length === 0 ? (
+            <div className="text-center py-8 dash-muted-text text-sm">
+              {lang === "fr" ? "Aucun lead. Importez vos premiers leads !" : "No leads. Import your first leads!"}
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {recentLeads.map((lead: any) => (
+                <div key={lead.id} className="flex items-center justify-between py-2 border-b dash-border-color last:border-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-full bg-[hsl(var(--primary)/.08)] flex items-center justify-center text-[10px] font-bold text-[hsl(var(--primary))]">
+                      {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</p>
+                      <p className="text-[11px] dash-muted-text">{lead.source}</p>
+                    </div>
+                  </div>
+                  <span className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Recent leads */}
-      <div className="dash-card rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-display font-semibold dash-text">{lang === "fr" ? "Leads récents" : "Recent Leads"}</h2>
-          <button onClick={() => navigate("/dashboard/import-leads")} className="text-sm bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity">
-            + {lang === "fr" ? "Nouveau lead" : "New lead"}
+      {/* Quick actions */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", accent: "bg-blue-50 text-blue-600" },
+          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", accent: "bg-amber-50 text-amber-600" },
+          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/sofar-ai", accent: "bg-violet-50 text-violet-600" },
+          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", accent: "bg-green-50 text-green-600" },
+        ].map((action, i) => (
+          <button key={i} onClick={() => navigate(action.path)}
+            className="dash-card rounded-xl p-3 flex items-center gap-3 hover:shadow-sm transition-shadow text-left group">
+            <div className={`p-2 rounded-lg ${action.accent}`}><action.icon className="w-4 h-4" /></div>
+            <span className="text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? action.labelFr : action.labelEn}</span>
           </button>
-        </div>
-        {leads.length === 0 ? (
-          <div className="text-center py-10 dash-muted-text text-sm">
-            {lang === "fr" ? "Aucun lead pour le moment. Importez vos premiers leads !" : "No leads yet. Import your first leads!"}
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b dash-border-color">
-                  <th className="text-left text-xs font-semibold dash-muted-text uppercase px-3 py-3">Lead</th>
-                  <th className="text-left text-xs font-semibold dash-muted-text uppercase px-3 py-3">Source</th>
-                  <th className="text-left text-xs font-semibold dash-muted-text uppercase px-3 py-3">Stage</th>
-                  <th className="text-left text-xs font-semibold dash-muted-text uppercase px-3 py-3">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leads.slice(0, 5).map((lead: any) => (
-                  <tr key={lead.id} className="border-b dash-border-color last:border-0">
-                    <td className="px-3 py-3 text-sm dash-text font-medium">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
-                    <td className="px-3 py-3 text-sm dash-muted-text">{lead.source}</td>
-                    <td className="px-3 py-3"><span className="text-xs px-2 py-1 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span></td>
-                    <td className="px-3 py-3 text-sm dash-muted-text">{new Date(lead.created_at).toLocaleDateString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+        ))}
       </div>
     </motion.div>
   );
