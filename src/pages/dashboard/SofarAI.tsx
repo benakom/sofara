@@ -1,26 +1,25 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Bot, Building, HelpCircle, TrendingUp, Sparkles, Send, Loader2, BookOpen, Target, Lightbulb } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { Bot, Send } from "lucide-react";
+import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import LeadSelector from "@/components/sofar-ai/LeadSelector";
+import AgentToolsSidebar, { type AgentMode } from "@/components/sofar-ai/AgentToolsSidebar";
+import ChatArea, { type Msg } from "@/components/sofar-ai/ChatArea";
 
-type Msg = { role: "user" | "assistant"; content: string };
+const QUALIFY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-qualify`;
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-chat`;
-
-const suggestions = [
-  { icon: Building, textFr: "Avantages fiscaux à Dubai ?", textEn: "Tax advantages in Dubai?" },
-  { icon: HelpCircle, textFr: "Comment gérer un lead hésitant ?", textEn: "How to manage a hesitant lead?" },
-  { icon: TrendingUp, textFr: "Zones avec le meilleur ROI ?", textEn: "Areas with the best ROI?" },
-  { icon: Sparkles, textFr: "Comment closer un deal off-plan ?", textEn: "How to close an off-plan deal?" },
-];
-
-const aiTools = [
-  { icon: BookOpen, labelFr: "Générateur d'email", labelEn: "Email generator", descFr: "Rédigez un email professionnel pour vos leads.", descEn: "Draft a professional email for your leads." },
-  { icon: Target, labelFr: "Script d'appel", labelEn: "Call script", descFr: "Générez un script de suivi ou de closing.", descEn: "Generate a follow-up or closing script." },
-  { icon: Lightbulb, labelFr: "Analyse de marché", labelEn: "Market analysis", descFr: "Obtenez une analyse rapide d'une zone.", descEn: "Get a quick analysis of an area." },
-];
+interface Lead {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string | null;
+  phone: string | null;
+  score: string | null;
+  stage: string | null;
+  source: string | null;
+}
 
 const SofarAI = () => {
   const { lang } = useLanguage();
@@ -28,17 +27,12 @@ const SofarAI = () => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showTools, setShowTools] = useState(true);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [activeMode, setActiveMode] = useState<AgentMode | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  const sendMessage = async (text: string) => {
+  const sendMessage = async (text: string, mode?: AgentMode) => {
     if (!text.trim() || isLoading) return;
-    setShowTools(false);
 
     const userMsg: Msg = { role: "user", content: text.trim() };
     const updatedMessages = [...messages, userMsg];
@@ -61,18 +55,22 @@ const SofarAI = () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: "Vous devez être connecté pour utiliser SofarAI." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Vous devez être connecté." : "You must be logged in." });
         setIsLoading(false);
         return;
       }
 
-      const resp = await fetch(CHAT_URL, {
+      const resp = await fetch(QUALIFY_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ messages: updatedMessages }),
+        body: JSON.stringify({
+          messages: updatedMessages,
+          mode: mode || activeMode || undefined,
+          leadId: selectedLead?.id || undefined,
+        }),
       });
 
       if (!resp.ok) {
@@ -121,84 +119,63 @@ const SofarAI = () => {
     setIsLoading(false);
   };
 
+  const handleToolSelect = (mode: AgentMode, prompt: string) => {
+    setActiveMode(mode);
+    sendMessage(prompt, mode);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendMessage(input);
   };
 
+  const handleNewConversation = () => {
+    setMessages([]);
+    setActiveMode(null);
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-7rem)]">
-      {/* Chat area - WhatsApp style */}
+      {/* Chat area */}
       <div className="flex-1 flex flex-col min-w-0">
+        {/* Header */}
         <div className="flex items-center gap-3 mb-3 px-1">
-          <div className="w-9 h-9 rounded-full bg-[hsl(var(--primary)/.1)] flex items-center justify-center">
-            <Bot className="w-5 h-5 text-[hsl(var(--primary))]" />
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center">
+            <Bot className="w-5 h-5 text-white" />
           </div>
-          <div>
-            <h1 className="text-base font-display font-bold dash-text">SofarAI</h1>
-            <p className="text-[11px] dash-muted-text">{lang === "fr" ? "En ligne • Assistant immobilier" : "Online • Real estate assistant"}</p>
+          <div className="flex-1">
+            <h1 className="text-base font-display font-bold dash-text">SofarAI Qualifier</h1>
+            <p className="text-[11px] dash-muted-text">
+              {lang === "fr" ? "Agent de qualification de leads" : "Lead qualification agent"}
+            </p>
           </div>
+          {messages.length > 0 && (
+            <button
+              onClick={handleNewConversation}
+              className="text-[11px] px-3 py-1.5 rounded-lg border border-[hsl(var(--dash-border))] dash-muted-text hover:bg-[hsl(var(--dash-muted))] transition-colors"
+            >
+              {lang === "fr" ? "Nouvelle conversation" : "New conversation"}
+            </button>
+          )}
+        </div>
+
+        {/* Lead selector */}
+        <div className="mb-3">
+          <LeadSelector selectedLead={selectedLead} onSelectLead={setSelectedLead} />
         </div>
 
         {/* Messages */}
         <div className="flex-1 rounded-xl bg-[hsl(var(--dash-muted)/.4)] border border-[hsl(var(--dash-border))] p-3 overflow-y-auto flex flex-col">
-          {messages.length === 0 ? (
-            <div className="flex-1 flex flex-col items-center justify-center">
-              <div className="p-3 rounded-2xl bg-[hsl(var(--primary)/.08)] mb-4">
-                <Sparkles className="w-6 h-6 text-[hsl(var(--primary))]" />
-              </div>
-              <p className="text-sm font-medium dash-text mb-1">
-                {lang === "fr" ? "Comment puis-je vous aider ?" : "How can I help you?"}
-              </p>
-              <p className="text-xs dash-muted-text text-center max-w-xs mb-5">
-                {lang === "fr" ? "Posez une question sur Dubai, vos leads ou les techniques de vente." : "Ask about Dubai, your leads or sales techniques."}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-md">
-                {suggestions.map((s, i) => (
-                  <button key={i} onClick={() => sendMessage(lang === "fr" ? s.textFr : s.textEn)}
-                    className="flex items-center gap-2 bg-white border border-[hsl(var(--dash-border))] rounded-lg px-3 py-2 text-left hover:shadow-sm transition-shadow text-xs">
-                    <s.icon className="w-3.5 h-3.5 text-[hsl(var(--primary))] shrink-0" />
-                    <span className="dash-text">{lang === "fr" ? s.textFr : s.textEn}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="flex-1 space-y-3">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm whitespace-pre-wrap ${
-                    msg.role === "user"
-                      ? "bg-[hsl(var(--primary))] text-white rounded-br-md"
-                      : "bg-white border border-[hsl(var(--dash-border))] dash-text rounded-bl-md"
-                  }`}>
-                    {msg.content}
-                  </div>
-                </div>
-              ))}
-              {isLoading && messages[messages.length - 1]?.role === "user" && (
-                <div className="flex justify-start">
-                  <div className="bg-white border border-[hsl(var(--dash-border))] rounded-2xl rounded-bl-md px-3.5 py-2.5">
-                    <div className="flex gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
+          <ChatArea messages={messages} isLoading={isLoading} />
         </div>
 
-        {/* Input - WhatsApp style */}
+        {/* Input */}
         <form onSubmit={handleSubmit} className="mt-2 flex gap-2">
           <input
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={lang === "fr" ? "Écrivez votre message..." : "Type your message..."}
+            placeholder={lang === "fr" ? "Posez une question sur ce lead…" : "Ask about this lead…"}
             className="flex-1 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
             disabled={isLoading}
           />
@@ -209,24 +186,12 @@ const SofarAI = () => {
         </form>
       </div>
 
-      {/* AI Tools sidebar */}
-      {showTools && (
-        <div className="lg:w-60 shrink-0 space-y-3">
-          <h3 className="text-xs font-semibold dash-text uppercase tracking-wider px-1">{lang === "fr" ? "Outils IA" : "AI Tools"}</h3>
-          {aiTools.map((tool, i) => (
-            <button key={i} onClick={() => sendMessage(lang === "fr" ? tool.descFr : tool.descEn)}
-              className="w-full dash-card rounded-xl p-3.5 text-left hover:shadow-sm transition-shadow group">
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="p-1.5 rounded-lg bg-[hsl(var(--primary)/.08)]">
-                  <tool.icon className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
-                </div>
-                <span className="text-xs font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
-              </div>
-              <p className="text-[11px] dash-muted-text">{lang === "fr" ? tool.descFr : tool.descEn}</p>
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Tools sidebar */}
+      <AgentToolsSidebar
+        activeMode={activeMode}
+        onSelectMode={handleToolSelect}
+        hasSelectedLead={!!selectedLead}
+      />
     </motion.div>
   );
 };

@@ -2,3 +2,6 @@ project_id = "ecimeextrtqousziglgy"
 
 [functions.sofar-ai-chat]
 verify_jwt = false
+
+[functions.sofar-ai-qualify]
+verify_jwt = false
