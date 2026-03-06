@@ -17,8 +17,8 @@ const BenefitsSection = () => {
 
   const benefits = [
     { icon: DollarSign, title: t("benefits.commissions"), description: t("benefits.commissionsDesc") },
-    { icon: Users, title: t("benefits.community"), description: t("benefits.communityDesc") },
     { icon: Zap, title: t("benefits.tools"), description: t("benefits.toolsDesc") },
+    { icon: Users, title: t("benefits.community"), description: t("benefits.communityDesc") },
     { icon: Trophy, title: t("benefits.recognition"), description: t("benefits.recognitionDesc") },
     { icon: Gift, title: t("benefits.perks"), description: t("benefits.perksDesc") },
     { icon: TrendingUp, title: t("benefits.growth"), description: t("benefits.growthDesc") },
