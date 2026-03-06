@@ -320,7 +320,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Hero
     "hero.badge": "Ambassador Program 2025",
-    "hero.slide1.headline": "Turn your connections into commissions.",
+    "hero.slide1.headline": "Turn your connections\ninto commissions.",
     "hero.slide1.sub": "Become a Sofara ambassador and earn exceptional commissions on every transaction. No license required.",
     "hero.slide2.headline": "Luxury real estate, accessible to your network.",
     "hero.slide2.sub": "Penthouses, Palm villas — give your contacts access to the world's most dynamic real estate market.",
