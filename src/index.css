@@ -266,6 +266,7 @@
 .dash-input {
   background: hsl(var(--dash-input-bg)) !important;
   border-color: hsl(var(--dash-input-border)) !important;
+  color: hsl(var(--dash-fg)) !important;
 }
 
 /* Dashboard dialog/form backgrounds */
