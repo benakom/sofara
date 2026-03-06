@@ -55,6 +55,59 @@ export type Database = {
           },
         ]
       }
+      kyc_submissions: {
+        Row: {
+          client_email: string
+          client_phone: string
+          emirates_id_path: string | null
+          id: string
+          is_uae_resident: boolean
+          lead_id: string
+          passport_path: string | null
+          residence_visa_path: string | null
+          status: string
+          submitted_at: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          client_email: string
+          client_phone: string
+          emirates_id_path?: string | null
+          id?: string
+          is_uae_resident?: boolean
+          lead_id: string
+          passport_path?: string | null
+          residence_visa_path?: string | null
+          status?: string
+          submitted_at?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          client_email?: string
+          client_phone?: string
+          emirates_id_path?: string | null
+          id?: string
+          is_uae_resident?: boolean
+          lead_id?: string
+          passport_path?: string | null
+          residence_visa_path?: string | null
+          status?: string
+          submitted_at?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kyc_submissions_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leads: {
         Row: {
           created_at: string

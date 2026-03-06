@@ -3,6 +3,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { AlertTriangle, CheckCircle, Lock, Star, ShieldCheck, FileText, Upload, Award, BookOpen, Zap, Target } from "lucide-react";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
+import KycUploadForm from "@/components/kyc/KycUploadForm";
 
 const kycDocs = [
   { titleFr: "Passeport valide (copie couleur)", titleEn: "Valid Passport (color copy)", required: true, desc: "Emirates ID or passport" },
@@ -131,6 +132,11 @@ const KycAml = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* KYC Upload Form */}
+      <div className="mt-5">
+        <KycUploadForm />
       </div>
     </motion.div>
   );
