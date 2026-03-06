@@ -228,20 +228,12 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Commissions
     "commission.label": "Transparence totale",
-    "commission.title": "Des commissions claires,",
-    "commission.titleHighlight": "sans zone d'ombre",
-    "commission.description": "Chez Sofara, pas de surprise. Un barème progressif, public et garanti. Vous savez exactement ce que vous gagnez, avant même de recommander.",
-    "commission.tier1Name": "Essentiel",
-    "commission.tier1Range": "Transactions < €250 000",
-    "commission.tier1Desc": "Idéal pour les premiers investissements ou les biens résidentiels accessibles à Dubai.",
-    "commission.tier2Name": "Premium",
-    "commission.tier2Range": "€250 000 – €500 000",
-    "commission.tier2Desc": "Le segment le plus actif : appartements haut de gamme et biens à fort potentiel locatif.",
-    "commission.tier3Name": "Elite",
-    "commission.tier3Range": "Transactions > €500 000",
-    "commission.tier3Desc": "Propriétés de prestige, penthouses et biens d'exception. Les commissions les plus généreuses.",
+    "commission.title": "Une commission unique,",
+    "commission.titleHighlight": "claire et généreuse",
+    "commission.description": "Chez Sofara, pas de surprise. Un taux unique, public et garanti. Vous savez exactement ce que vous gagnez, avant même de recommander.",
+    "commission.badgeSingle": "Commission unique",
+    "commission.singleDesc": "Sur chaque transaction conclue grâce à votre recommandation, vous touchez 2,5% de la valeur totale du bien. Simple, transparent, sans condition cachée.",
     "commission.ofValue": "de la valeur du bien",
-    "commission.popular": "Le plus courant",
     "commission.note": "Les commissions sont calculées sur la valeur totale du bien vendu et versées automatiquement après la clôture de la transaction.",
 
     // Legal pages
@@ -544,20 +536,12 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Commissions
     "commission.label": "Full transparency",
-    "commission.title": "Clear commissions,",
-    "commission.titleHighlight": "no hidden fees",
-    "commission.description": "At Sofara, no surprises. A progressive, public and guaranteed structure. You know exactly what you earn, before you even refer.",
-    "commission.tier1Name": "Essential",
-    "commission.tier1Range": "Transactions < €250,000",
-    "commission.tier1Desc": "Perfect for first investments or accessible residential properties in Dubai.",
-    "commission.tier2Name": "Premium",
-    "commission.tier2Range": "€250,000 – €500,000",
-    "commission.tier2Desc": "The most active segment: upscale apartments and high rental-yield properties.",
-    "commission.tier3Name": "Elite",
-    "commission.tier3Range": "Transactions > €500,000",
-    "commission.tier3Desc": "Prestige properties, penthouses and exceptional real estate. The most generous commissions.",
+    "commission.title": "One commission,",
+    "commission.titleHighlight": "clear and generous",
+    "commission.description": "At Sofara, no surprises. A single, public and guaranteed rate. You know exactly what you earn, before you even refer.",
+    "commission.badgeSingle": "Single commission",
+    "commission.singleDesc": "On every transaction closed through your referral, you earn 2.5% of the total property value. Simple, transparent, no hidden conditions.",
     "commission.ofValue": "of property value",
-    "commission.popular": "Most common",
     "commission.note": "Commissions are calculated on the total property value and paid automatically after transaction closing.",
 
     // Legal pages
