@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Bot, Trophy, MessageCircle, LogOut,
-  Menu, Bell, HelpCircle, Loader2, Calculator, Shield
+  Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays
 } from "lucide-react";
 import { useEffect } from "react";
 
@@ -21,6 +21,7 @@ const navItems = [
   { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML" },
   { path: "/dashboard/sofar-ai", icon: Bot, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI" },
   { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators" },
+  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar" },
   { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
   { path: "/dashboard/community", icon: MessageCircle, labelFr: "Community", labelEn: "Community" },
 ];

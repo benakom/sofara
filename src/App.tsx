@@ -27,6 +27,7 @@ import SofarAI from "./pages/dashboard/SofarAI";
 import BonusRewards from "./pages/dashboard/BonusRewards";
 import Community from "./pages/dashboard/Community";
 import Simulator from "./pages/dashboard/Simulator";
+import CalendarPage from "./pages/dashboard/Calendar";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
                 <Route path="kyc" element={<KycAml />} />
                 <Route path="sofar-ai" element={<SofarAI />} />
                 <Route path="simulator" element={<Simulator />} />
+                <Route path="calendar" element={<CalendarPage />} />
                 <Route path="bonus" element={<BonusRewards />} />
                 <Route path="community" element={<Community />} />
               </Route>
