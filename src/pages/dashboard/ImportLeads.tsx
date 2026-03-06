@@ -31,8 +31,8 @@ const ImportLeads = () => {
             </h3>
             <p className="text-sm text-yellow-800 mt-2">
               {lang === "fr"
-                ? "En uploadant ces leads, j'atteste sur l'honneur qu'il s'agit de mes propres leads, obtenus de manière licite et conforme aux réglementations en vigueur (RGPD, PDPL). Je certifie disposer du consentement explicite de chaque contact pour le partage de leurs informations."
-                : "By uploading these leads, I certify on my honor that these are my own leads, obtained lawfully and in compliance with current regulations (GDPR, PDPL). I certify that I have the explicit consent of each contact for sharing their information."}
+                ? "En uploadant ces leads, j'atteste sur l'honneur qu'il s'agit de mes propres leads, obtenus de manière licite et conforme aux réglementations en vigueur (RGPD, PDPL). Je certifie disposer du consentement explicite de chaque contact pour le partage de leurs informations. Je reconnais également que Sofara se réserve le droit de contacter directement les leads afin de vérifier que le consentement a bien été donné pour l'ambassadeur."
+                : "By uploading these leads, I certify on my honor that these are my own leads, obtained lawfully and in compliance with current regulations (GDPR, PDPL). I certify that I have the explicit consent of each contact for sharing their information. I also acknowledge that Sofara reserves the right to directly contact the leads to verify that consent has been properly given for the ambassador."}
             </p>
             <div className="flex items-center gap-2 mt-4">
               <Checkbox id="accept" checked={accepted} onCheckedChange={(v) => setAccepted(!!v)} />
