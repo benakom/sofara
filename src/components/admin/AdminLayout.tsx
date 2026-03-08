@@ -6,7 +6,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Users, GitBranch, DollarSign,
-  CreditCard, LogOut, Menu, Shield, Loader2, BarChart3
+  CreditCard, LogOut, Menu, Shield, Loader2, BarChart3, GraduationCap
 } from "lucide-react";
 
 const navItems = [
@@ -14,6 +14,7 @@ const navItems = [
   { path: "/admin/ambassadors", icon: Users, label: "Ambassadeurs" },
   { path: "/admin/leads", icon: GitBranch, label: "Leads & Commissions" },
   { path: "/admin/payments", icon: CreditCard, label: "Paiements" },
+  { path: "/admin/courses", icon: GraduationCap, label: "Academy" },
 ];
 
 const AdminLayout = () => {

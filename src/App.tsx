@@ -18,6 +18,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminAmbassadors from "./pages/admin/AdminAmbassadors";
 import AdminLeads from "./pages/admin/AdminLeads";
 import AdminPayments from "./pages/admin/AdminPayments";
+import AdminCourses from "./pages/admin/AdminCourses";
 import Pipeline from "./pages/dashboard/Pipeline";
 import ImportLeads from "./pages/dashboard/ImportLeads";
 import Commissions from "./pages/dashboard/Commissions";
@@ -63,6 +64,7 @@ const App = () => (
                 <Route path="ambassadors" element={<AdminAmbassadors />} />
                 <Route path="leads" element={<AdminLeads />} />
                 <Route path="payments" element={<AdminPayments />} />
+                <Route path="courses" element={<AdminCourses />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
