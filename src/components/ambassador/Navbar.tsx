@@ -62,13 +62,13 @@ const Navbar = () => {
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`px-2 py-1 rounded-md text-sm transition-all duration-200 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-lg transition-all duration-200 ${
                   lang === l.code
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-secondary text-foreground ring-2 ring-primary/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                 }`}
               >
-                <span className="text-sm">{l.flag}</span>
+                {l.flag}
               </button>
             ))}
           </div>
@@ -99,10 +99,10 @@ const Navbar = () => {
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`px-1.5 py-1 rounded-md text-xs transition-all duration-200 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-lg transition-all duration-200 ${
                   lang === l.code
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground"
+                    ? "bg-secondary text-foreground ring-2 ring-primary/50"
+                    : "text-muted-foreground hover:bg-secondary/50"
                 }`}
               >
                 {l.flag}
