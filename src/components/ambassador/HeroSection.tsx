@@ -39,7 +39,7 @@ const HeroSection = () => {
             </p>
 
             <div className="flex justify-center">
-              <a href="#postuler">
+              <a href="/auth">
                 <Button variant="hero" size="lg" className="text-[15px] sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
                   {t("hero.cta")}
                   <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />

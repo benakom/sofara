@@ -52,7 +52,7 @@ const CommissionSection = () => {
               {t("commission.singleDesc")}
             </p>
 
-            <a href="#postuler">
+            <a href="/auth">
               <Button variant="hero" size="lg" className="rounded-full group text-sm sm:text-base px-8 py-5">
                 {t("hero.cta")}
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
