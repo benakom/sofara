@@ -55,6 +55,63 @@ export type Database = {
           },
         ]
       }
+      courses: {
+        Row: {
+          category: string
+          created_at: string
+          description_en: string
+          description_fr: string
+          duration: string
+          id: string
+          is_published: boolean
+          lessons_count: number
+          level: string
+          sort_order: number
+          thumbnail_url: string | null
+          title_en: string
+          title_fr: string
+          updated_at: string
+          xp: number
+          youtube_url: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description_en?: string
+          description_fr?: string
+          duration?: string
+          id?: string
+          is_published?: boolean
+          lessons_count?: number
+          level?: string
+          sort_order?: number
+          thumbnail_url?: string | null
+          title_en: string
+          title_fr: string
+          updated_at?: string
+          xp?: number
+          youtube_url?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description_en?: string
+          description_fr?: string
+          duration?: string
+          id?: string
+          is_published?: boolean
+          lessons_count?: number
+          level?: string
+          sort_order?: number
+          thumbnail_url?: string | null
+          title_en?: string
+          title_fr?: string
+          updated_at?: string
+          xp?: number
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
       kyc_submissions: {
         Row: {
           client_email: string
