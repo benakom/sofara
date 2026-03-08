@@ -7,8 +7,8 @@ import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
 const languages: { code: Lang; label: string; flag: string }[] = [
-  { code: "fr", label: "FR", flag: "🇫🇷" },
-  { code: "en", label: "EN", flag: "🇬🇧" },
+  { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
+  { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
 ];
 
 const Navbar = () => {
