@@ -57,18 +57,18 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1 mr-1">
+          <div className="flex items-center gap-1.5 mr-1">
             {languages.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-xl transition-all duration-200 overflow-hidden ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-[28px] leading-[0] overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "bg-secondary ring-2 ring-primary/60 scale-105"
-                    : "bg-secondary/40 hover:bg-secondary/70 opacity-70 hover:opacity-100"
+                    ? "ring-2 ring-primary/60 scale-110"
+                    : "opacity-60 hover:opacity-100"
                 }`}
               >
-                <span className="leading-none">{l.flag}</span>
+                {l.flag}
               </button>
             ))}
           </div>
@@ -99,13 +99,13 @@ const Navbar = () => {
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-xl transition-all duration-200 overflow-hidden ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-[28px] leading-[0] overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "bg-secondary ring-2 ring-primary/60 scale-105"
-                    : "bg-secondary/40 opacity-70"
+                    ? "ring-2 ring-primary/60 scale-110"
+                    : "opacity-60"
                 }`}
               >
-                <span className="leading-none">{l.flag}</span>
+                {l.flag}
               </button>
             ))}
           </div>
