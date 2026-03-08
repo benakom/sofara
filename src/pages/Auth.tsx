@@ -117,15 +117,15 @@ const Auth = () => {
   return (
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
       {/* Left panel — Hero image + benefits */}
-      <div className="relative lg:w-1/2 h-48 sm:h-56 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
+      <div className="relative lg:w-1/2 h-44 sm:h-52 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
         <img
           src={authHero}
-          alt="Dubai luxury lifestyle"
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="Dubai business partnership"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30 lg:bg-gradient-to-r lg:from-background/80 lg:via-background/50 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20 lg:bg-gradient-to-r lg:from-background/70 lg:via-background/40 lg:to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end lg:justify-center p-5 sm:p-8 lg:p-12">
+        <div className="absolute inset-0 flex flex-col justify-end lg:justify-center items-center lg:items-start p-5 sm:p-8 lg:p-12 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
