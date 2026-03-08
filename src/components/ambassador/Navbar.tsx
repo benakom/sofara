@@ -7,8 +7,8 @@ import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
 const languages: { code: Lang; label: string; flag: string }[] = [
-  { code: "fr", label: "FR", flag: "🇫🇷" },
-  { code: "en", label: "EN", flag: "🇬🇧" },
+  { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
+  { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
 ];
 
 const Navbar = () => {
@@ -62,13 +62,13 @@ const Navbar = () => {
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-[28px] leading-[0] overflow-hidden transition-all duration-200 ${
+                className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "ring-2 ring-primary/60 scale-110"
+                    ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background scale-110"
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
-                {l.flag}
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
@@ -99,13 +99,13 @@ const Navbar = () => {
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-[28px] leading-[0] overflow-hidden transition-all duration-200 ${
+                className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "ring-2 ring-primary/60 scale-110"
+                    ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background scale-110"
                     : "opacity-60"
                 }`}
               >
-                {l.flag}
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
