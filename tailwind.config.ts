@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['Outfit', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+        hero: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

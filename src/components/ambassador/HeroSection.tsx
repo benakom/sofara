@@ -30,10 +30,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-display text-[2.25rem] leading-[1.1] sm:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 sm:mb-8">
-              <span className="text-foreground">{t("hero.slide1.headline").split('\n').map((line, i) => (
-                <span key={i}>{i > 0 && <br />}{line}</span>
-              ))}</span>
+            <h1 className="font-hero text-3xl leading-[0.95] sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 whitespace-pre-line capitalize">
+              <span className="text-foreground">{t("hero.slide1.headline")}</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed px-2">
