@@ -115,50 +115,46 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col lg:flex-row">
-      {/* Left panel — Hero image + benefits (hidden on mobile, shown as top banner) */}
-      <div className="relative lg:w-1/2 lg:min-h-screen overflow-hidden">
-        {/* Image */}
+    <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
+      {/* Left panel — Hero image + benefits */}
+      <div className="relative lg:w-1/2 h-48 sm:h-56 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
         <img
           src={authHero}
           alt="Dubai luxury lifestyle"
-          className="w-full h-56 sm:h-72 lg:h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30 lg:bg-gradient-to-r lg:from-background/80 lg:via-background/50 lg:to-transparent" />
 
-        {/* Content over image */}
-        <div className="absolute inset-0 flex flex-col justify-end lg:justify-center p-6 sm:p-8 lg:p-12 xl:p-16">
+        <div className="absolute inset-0 flex flex-col justify-end lg:justify-center p-5 sm:p-8 lg:p-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <a href="/" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
+            <a href="/" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
               sofara
             </a>
-            <h2 className="font-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mt-3 lg:mt-6 leading-tight">
+            <h2 className="font-display text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-foreground mt-2 lg:mt-4 leading-tight whitespace-pre-line">
               {lang === "fr"
-                ? "Monétisez votre réseau grâce à l'immobilier de Dubai"
+                ? "Monétisez votre réseau\ngrâce à l'immobilier de Dubai"
                 : "Turn your connections\ninto commissions"}
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground mt-2 lg:mt-4 max-w-md hidden sm:block">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 lg:mt-3 max-w-sm hidden sm:block">
               {lang === "fr"
                 ? "Rejoignez 60+ ambassadeurs actifs dans 12 pays"
                 : "Join 60+ active ambassadors across 12 countries"}
             </p>
 
-            {/* Benefits list — visible on sm+ */}
-            <ul className="mt-4 lg:mt-8 space-y-2 lg:space-y-3 hidden sm:block">
+            <ul className="mt-3 lg:mt-6 space-y-1.5 lg:space-y-2.5 hidden sm:block">
               {benefits.map((b, i) => (
                 <motion.li
                   key={i}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 + i * 0.1 }}
-                  className="flex items-center gap-2.5 text-sm lg:text-base text-foreground/90"
+                  className="flex items-center gap-2 text-xs lg:text-sm text-foreground/90"
                 >
-                  <CheckCircle2 className="w-4 h-4 lg:w-5 lg:h-5 text-primary flex-shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
                   {b}
                 </motion.li>
               ))}
@@ -168,35 +164,33 @@ const Auth = () => {
       </div>
 
       {/* Right panel — Auth form */}
-      <div className="flex-1 flex items-center justify-center px-5 sm:px-8 py-8 sm:py-12 lg:py-0">
+      <div className="flex-1 flex items-center justify-center px-5 sm:px-8 py-6 sm:py-10 lg:py-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full max-w-md"
+          className="w-full max-w-sm mx-auto"
         >
-          {/* Back to home */}
           <a
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 lg:mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-5 lg:mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {lang === "fr" ? "Retour à l'accueil" : "Back to home"}
           </a>
 
-          <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 shadow-xl">
-            <div className="text-center mb-6 sm:mb-8">
-              {/* Logo only visible on mobile where left panel logo is small */}
-              <span className="font-display text-2xl lg:hidden font-bold text-foreground tracking-tight block mb-4">
+          <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-5 sm:p-7 shadow-xl">
+            <div className="text-center mb-5 sm:mb-6">
+              <span className="font-display text-xl lg:hidden font-bold text-foreground tracking-tight block mb-3">
                 sofara
               </span>
-              <h1 className="text-xl font-semibold text-foreground">{l.title}</h1>
-              <p className="text-sm text-muted-foreground mt-1">{l.subtitle}</p>
+              <h1 className="text-lg font-semibold text-foreground">{l.title}</h1>
+              <p className="text-xs text-muted-foreground mt-1">{l.subtitle}</p>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+            <form onSubmit={onSubmit} className="space-y-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="email" className="text-xs">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -204,13 +198,13 @@ const Auth = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-background/50"
+                  className="bg-background/50 h-9"
                 />
               </div>
 
               {mode !== "forgot" && (
-                <div className="space-y-2">
-                  <Label htmlFor="password">
+                <div className="space-y-1.5">
+                  <Label htmlFor="password" className="text-xs">
                     {lang === "fr" ? "Mot de passe" : "Password"}
                   </Label>
                   <Input
@@ -221,7 +215,7 @@ const Auth = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     minLength={6}
-                    className="bg-background/50"
+                    className="bg-background/50 h-9"
                   />
                 </div>
               )}
@@ -236,12 +230,12 @@ const Auth = () => {
                 </button>
               )}
 
-              <Button type="submit" variant="hero" className="w-full rounded-xl py-5" disabled={loading}>
+              <Button type="submit" variant="hero" className="w-full rounded-xl py-4 text-sm" disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : l.button}
               </Button>
             </form>
 
-            <p className="text-center text-sm text-muted-foreground mt-6">
+            <p className="text-center text-xs text-muted-foreground mt-4">
               {l.switch}{" "}
               <button
                 onClick={() => setMode(mode === "login" ? "signup" : "login")}
@@ -253,7 +247,7 @@ const Auth = () => {
           </div>
 
           {/* Mobile benefits */}
-          <ul className="mt-6 space-y-2 sm:hidden">
+          <ul className="mt-4 space-y-1.5 sm:hidden">
             {benefits.map((b, i) => (
               <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
