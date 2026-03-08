@@ -57,18 +57,18 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-0.5 mr-1">
+          <div className="flex items-center gap-1 mr-1">
             {languages.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-lg transition-all duration-200 ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-xl transition-all duration-200 overflow-hidden ${
                   lang === l.code
-                    ? "bg-secondary text-foreground ring-2 ring-primary/50"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    ? "bg-secondary ring-2 ring-primary/60 scale-105"
+                    : "bg-secondary/40 hover:bg-secondary/70 opacity-70 hover:opacity-100"
                 }`}
               >
-                {l.flag}
+                <span className="leading-none">{l.flag}</span>
               </button>
             ))}
           </div>
@@ -94,18 +94,18 @@ const Navbar = () => {
 
         {/* Mobile: language + hamburger */}
         <div className="flex md:hidden items-center gap-2">
-          <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-1.5">
             {languages.map((l) => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-lg transition-all duration-200 ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-xl transition-all duration-200 overflow-hidden ${
                   lang === l.code
-                    ? "bg-secondary text-foreground ring-2 ring-primary/50"
-                    : "text-muted-foreground hover:bg-secondary/50"
+                    ? "bg-secondary ring-2 ring-primary/60 scale-105"
+                    : "bg-secondary/40 opacity-70"
                 }`}
               >
-                {l.flag}
+                <span className="leading-none">{l.flag}</span>
               </button>
             ))}
           </div>
