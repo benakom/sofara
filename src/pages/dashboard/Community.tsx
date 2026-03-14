@@ -35,9 +35,9 @@ const Community = () => {
                   <ch.icon className="w-4 h-4 text-[hsl(var(--primary))]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? ch.titleFr : ch.titleEn}</h3>
-                  <p className="text-xs dash-muted-text mt-0.5">{lang === "fr" ? ch.descFr : ch.descEn}</p>
-                  <div className="flex items-center gap-3 mt-2 text-[11px] dash-muted-text">
+                  <h3 className="text-base sm:text-sm font-semibold dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? ch.titleFr : ch.titleEn}</h3>
+                  <p className="text-sm sm:text-xs dash-muted-text mt-0.5">{lang === "fr" ? ch.descFr : ch.descEn}</p>
+                  <div className="flex items-center gap-3 mt-2 text-xs sm:text-[11px] dash-muted-text">
                     <span className="flex items-center gap-1"><Users className="w-3 h-3" /> {ch.members}</span>
                     <span className="flex items-center gap-1"><MessageCircle className="w-3 h-3" /> {ch.posts} posts</span>
                   </div>

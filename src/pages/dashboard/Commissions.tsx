@@ -104,7 +104,7 @@ const Commissions = () => {
           <thead>
             <tr className="border-b dash-border-color">
               {["LEAD", "DEAL", lang === "fr" ? "MONTANT" : "AMOUNT", lang === "fr" ? "STATUT" : "STATUS", "DATE"].map((h) => (
-                <th key={h} className="text-left text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
+                <th key={h} className="text-left text-xs sm:text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
               ))}
             </tr>
           </thead>

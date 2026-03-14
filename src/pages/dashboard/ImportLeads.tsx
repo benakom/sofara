@@ -60,8 +60,8 @@ const ImportLeads = () => {
               <m.icon className="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" />
             </div>
             <h3 className="font-display font-semibold dash-text">{lang === "fr" ? m.titleFr : m.titleEn}</h3>
-            <p className="text-sm dash-muted-text mt-1">{lang === "fr" ? m.descFr : m.descEn}</p>
-            <p className="text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
+            <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "fr" ? m.descFr : m.descEn}</p>
+            <p className="text-base sm:text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
               {lang === "fr" ? "Commencer →" : "Start →"}
             </p>
           </motion.div>

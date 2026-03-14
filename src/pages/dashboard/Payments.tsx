@@ -80,8 +80,8 @@ const Payments = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold dash-text">AED {Number(p.amount).toLocaleString()}</p>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${p.status === "paid" ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}>
+                  <p className="text-base sm:text-sm font-bold dash-text">AED {Number(p.amount).toLocaleString()}</p>
+                  <span className={`text-xs sm:text-[10px] px-1.5 py-0.5 rounded-full font-medium ${p.status === "paid" ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}>
                     {p.status === "paid" ? (lang === "fr" ? "Reçu" : "Received") : (lang === "fr" ? "En attente" : "Pending")}
                   </span>
                 </div>

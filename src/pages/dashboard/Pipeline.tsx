@@ -163,8 +163,8 @@ const Pipeline = () => {
                   const stage = stageLabels[lead.stage] || stageLabels.nouveau;
                   return (
                     <tr key={lead.id} className="border-b dash-border-color last:border-0 hover:bg-[hsl(var(--dash-muted)/.5)] transition-colors">
-                      <td className="px-4 py-3 text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
-                      <td className="px-4 py-3 text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
+                      <td className="px-4 py-3 text-base sm:text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
+                      <td className="px-4 py-3 text-base sm:text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
                       <td className="px-4 py-3">
                         <Select value={lead.stage} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
                           <SelectTrigger className={`text-[11px] h-6 w-auto rounded-full border-0 px-2.5 ${stage.color}`}>
