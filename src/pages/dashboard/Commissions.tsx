@@ -60,7 +60,7 @@ const Commissions = () => {
       {/* Progress + Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
         <div className="lg:col-span-2 dash-card rounded-xl p-4">
-          <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2 mb-3"><BarChart3 className="w-4 h-4" /> {lang === "fr" ? "Progression des paiements" : "Payment Progress"}</h2>
+          <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2 mb-3"><BarChart3 className="w-4 h-4" /> {lang === "fr" ? "Progression des paiements" : "Payment Progress"}</h2>
           <div className="space-y-3">
             {stats.map((s, i) => (
               <div key={i}>
