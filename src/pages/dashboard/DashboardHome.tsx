@@ -94,7 +94,7 @@ const DashboardHome = () => {
               { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "bg-emerald-500" },
             ].map((item, i) => (
               <div key={i}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-sm sm:text-xs mb-1">
                   <span className="dash-muted-text">{item.label}</span>
                   <span className="font-medium dash-text">AED {item.value.toLocaleString()}</span>
                 </div>
