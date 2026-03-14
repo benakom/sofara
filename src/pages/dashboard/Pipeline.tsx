@@ -70,8 +70,8 @@ const Pipeline = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-xl font-display font-bold dash-text">Pipeline</h1>
-          <p className="dash-muted-text text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
+          <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">Pipeline</h1>
+          <p className="dash-muted-text text-base sm:text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
@@ -112,7 +112,7 @@ const Pipeline = () => {
       {/* Vivid pipeline progress bar */}
       {totalLeads > 0 && (
         <div className="dash-card rounded-xl p-4 mb-5">
-          <p className="text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
+          <p className="text-sm sm:text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
           <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
             {Object.entries(stageLabels).map(([key, label]) => {
               const count = leads.filter((l: any) => l.stage === key).length;
@@ -132,7 +132,7 @@ const Pipeline = () => {
               const count = leads.filter((l: any) => l.stage === key).length;
               if (count === 0) return null;
               return (
-                <div key={key} className="flex items-center gap-1.5 text-[11px] dash-muted-text">
+                <div key={key} className="flex items-center gap-1.5 text-xs sm:text-[11px] dash-muted-text">
                   <div className={`w-2 h-2 rounded-full ${label.barColor}`} />
                   {lang === "fr" ? label.fr : label.en}: {count}
                 </div>
@@ -149,13 +149,13 @@ const Pipeline = () => {
             <thead>
               <tr className="border-b dash-border-color">
                 {["LEAD", "SOURCE", "STAGE", "SCORE", "ACTION", "KYC"].map((h) => (
-                  <th key={h} className="text-left text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
+                  <th key={h} className="text-left text-xs sm:text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {leads.length === 0 ? (
-                <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-sm">
+                <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-base sm:text-sm">
                   {lang === "fr" ? "Aucun lead. Ajoutez votre premier lead !" : "No leads. Add your first lead!"}
                 </td></tr>
               ) : (
@@ -163,8 +163,8 @@ const Pipeline = () => {
                   const stage = stageLabels[lead.stage] || stageLabels.nouveau;
                   return (
                     <tr key={lead.id} className="border-b dash-border-color last:border-0 hover:bg-[hsl(var(--dash-muted)/.5)] transition-colors">
-                      <td className="px-4 py-3 text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
-                      <td className="px-4 py-3 text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
+                      <td className="px-4 py-3 text-base sm:text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</td>
+                      <td className="px-4 py-3 text-base sm:text-sm dash-muted-text capitalize">{lead.source?.replace(/_/g, " ")}</td>
                       <td className="px-4 py-3">
                         <Select value={lead.stage} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
                           <SelectTrigger className={`text-[11px] h-6 w-auto rounded-full border-0 px-2.5 ${stage.color}`}>

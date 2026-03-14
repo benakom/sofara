@@ -20,7 +20,7 @@ const ImportLeads = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl font-display font-bold dash-text mb-1">Import Leads</h1>
-      <p className="dash-muted-text text-sm mb-6">{lang === "fr" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-6">{lang === "fr" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
 
       <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
@@ -60,8 +60,8 @@ const ImportLeads = () => {
               <m.icon className="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" />
             </div>
             <h3 className="font-display font-semibold dash-text">{lang === "fr" ? m.titleFr : m.titleEn}</h3>
-            <p className="text-sm dash-muted-text mt-1">{lang === "fr" ? m.descFr : m.descEn}</p>
-            <p className="text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
+            <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "fr" ? m.descFr : m.descEn}</p>
+            <p className="text-base sm:text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
               {lang === "fr" ? "Commencer →" : "Start →"}
             </p>
           </motion.div>

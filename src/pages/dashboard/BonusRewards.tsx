@@ -28,8 +28,8 @@ const BonusRewards = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-xl font-display font-bold dash-text mb-0.5">🏆 Bonus & Rewards</h1>
-      <p className="dash-muted-text text-sm mb-5">{lang === "fr" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">🏆 Bonus & Rewards</h1>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -43,9 +43,9 @@ const BonusRewards = () => {
             className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
+              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
             </div>
-            <p className="text-lg font-display font-bold dash-text">{s.value}</p>
+            <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
           </motion.div>
         ))}
       </div>
