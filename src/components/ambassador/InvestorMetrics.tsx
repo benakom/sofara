@@ -25,17 +25,17 @@ const InvestorMetrics = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
+            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
               {t("investor.label")}
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
+            <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("investor.title")}{" "}
               <span className="text-gradient-primary">{t("investor.titleHighlight")}</span>
             </h2>
-            <p className="text-muted-foreground text-base sm:text-base mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t("investor.description")}
             </p>
-            <Button variant="hero" size="lg" className="text-[15px] sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group" onClick={() => document.getElementById('postuler')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="hero" size="lg" className="text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group" onClick={() => document.getElementById('postuler')?.scrollIntoView({ behavior: 'smooth' })}>
               {t("investor.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -54,8 +54,8 @@ const InvestorMetrics = () => {
                 <div className="font-display text-2xl sm:text-2xl lg:text-3xl font-bold text-gradient-primary mb-0.5 sm:mb-1">
                   {m.value}
                 </div>
-                <div className="text-xs sm:text-xs font-medium text-foreground mb-1.5 sm:mb-2">{m.label}</div>
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] sm:text-[10px] font-semibold">
+                <div className="text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">{m.label}</div>
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] sm:text-xs font-semibold">
                   {m.trend}
                 </div>
               </motion.div>

@@ -23,10 +23,10 @@ const PlatformSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-20"
         >
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
+          <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("platform.label")}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("platform.title")}{" "}
             <span className="text-gradient-primary">{t("platform.titleHighlight")}</span>
           </h2>
@@ -48,8 +48,8 @@ const PlatformSection = () => {
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/15 transition-colors">
                 <f.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="font-display text-base sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">{f.title}</h3>
-              <p className="text-sm sm:text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1.5 sm:mb-2">{f.title}</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>

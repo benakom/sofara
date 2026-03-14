@@ -16,10 +16,10 @@ const CommissionSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
+          <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("commission.label")}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("commission.title")}{" "}
             <span className="text-gradient-primary">{t("commission.titleHighlight")}</span>
           </h2>
@@ -53,7 +53,7 @@ const CommissionSection = () => {
             </p>
 
             <a href="/auth">
-              <Button variant="hero" size="lg" className="rounded-full group text-sm sm:text-base px-8 py-5">
+              <Button variant="hero" size="lg" className="rounded-full group text-base px-8 py-5">
                 {t("hero.cta")}
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -65,7 +65,7 @@ const CommissionSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-xs sm:text-sm text-muted-foreground mt-8 sm:mt-12 max-w-2xl mx-auto"
+          className="text-center text-sm text-muted-foreground mt-8 sm:mt-12 max-w-2xl mx-auto"
         >
           {t("commission.note")}
         </motion.p>

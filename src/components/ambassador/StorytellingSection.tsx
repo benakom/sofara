@@ -24,14 +24,14 @@ const StorytellingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
+            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
               {t("story.label")}
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
+            <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("story.title")}{" "}
               <span className="text-gradient-primary">{t("story.titleHighlight")}</span>
             </h2>
-            <p className="text-muted-foreground text-base sm:text-base mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t("story.description")}
             </p>
 
@@ -45,13 +45,13 @@ const StorytellingSection = () => {
                   transition={{ delay: i * 0.08 }}
                   className="flex items-start gap-3 p-3 rounded-xl bg-secondary/20 border border-border/20"
                 >
-                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/90 text-sm sm:text-sm leading-relaxed">{point}</span>
+                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground/90 text-sm sm:text-base leading-relaxed">{point}</span>
                 </motion.div>
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="text-[15px] sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
+            <Button variant="hero" size="lg" className="text-base sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
               {t("story.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -74,8 +74,8 @@ const StorytellingSection = () => {
               transition={{ delay: 0.3 }}
               className="absolute -bottom-4 sm:-bottom-6 left-4 sm:-left-6 rounded-xl bg-secondary/90 backdrop-blur-xl border border-border/40 p-4 sm:p-5 shadow-2xl"
             >
-              <div className="text-xl sm:text-2xl font-display font-bold text-gradient-primary">€7 500+</div>
-              <div className="text-[10px] sm:text-xs text-muted-foreground">{t("story.statLabel")}</div>
+              <div className="text-2xl sm:text-2xl font-display font-bold text-gradient-primary">€7 500+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">{t("story.statLabel")}</div>
             </motion.div>
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-primary/8 blur-[40px] rounded-full" />
           </motion.div>

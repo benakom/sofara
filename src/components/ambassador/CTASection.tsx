@@ -85,10 +85,10 @@ const CTASection = () => {
     toast({ title: t("cta.successTitle"), description: t("cta.successDesc") });
   };
 
-  const inputClass = "h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-sm";
+  const inputClass = "h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-base";
 
   const RequiredLabel = ({ children }: { children: React.ReactNode }) => (
-    <span className="text-xs text-muted-foreground mb-1 block">
+    <span className="text-sm text-muted-foreground mb-1.5 block">
       {children} <span className="text-destructive">*</span>
     </span>
   );
@@ -106,11 +106,11 @@ const CTASection = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
+          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("cta.title")}{" "}
             <span className="text-gradient-primary">{t("cta.titleHighlight")}</span> ?
           </h2>
-          <p className="text-muted-foreground text-base sm:text-base mb-8 sm:mb-12">{t("cta.description")}</p>
+          <p className="text-muted-foreground text-base sm:text-lg mb-8 sm:mb-12">{t("cta.description")}</p>
 
           {!submitted ? (
             <motion.form
@@ -119,7 +119,7 @@ const CTASection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="rounded-2xl p-5 sm:p-8 bg-secondary/30 border border-border/30 space-y-3 sm:space-y-4 text-left"
+              className="rounded-2xl p-5 sm:p-8 bg-secondary/30 border border-border/30 space-y-4 text-left"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
@@ -157,7 +157,7 @@ const CTASection = () => {
                 <RequiredLabel>{t("cta.phoneLabel")}</RequiredLabel>
                 <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] gap-2">
                   <Select value={phoneCode} onValueChange={setPhoneCode}>
-                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-xs sm:text-sm">
+                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
                       <SelectValue placeholder="+..." />
                     </SelectTrigger>
                     <SelectContent className="max-h-60">
@@ -182,7 +182,7 @@ const CTASection = () => {
                 <div>
                   <RequiredLabel>{t("cta.countryLabel")}</RequiredLabel>
                   <Select value={country} onValueChange={setCountry}>
-                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-xs sm:text-sm">
+                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
                       <SelectValue placeholder={t("cta.countryPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent className="max-h-60">
@@ -195,7 +195,7 @@ const CTASection = () => {
                 <div>
                   <RequiredLabel>{t("cta.profileLabel")}</RequiredLabel>
                   <Select value={profile} onValueChange={setProfile}>
-                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-xs sm:text-sm">
+                    <SelectTrigger className="h-12 sm:h-13 rounded-xl bg-background/60 border-border/40 text-foreground text-sm">
                       <SelectValue placeholder={t("cta.profilePlaceholder")} />
                     </SelectTrigger>
                     <SelectContent>
@@ -208,11 +208,11 @@ const CTASection = () => {
               </div>
 
 
-              <Button variant="hero" size="lg" className="w-full text-[15px] sm:text-base py-5 sm:py-6 rounded-full group">
+              <Button variant="hero" size="lg" className="w-full text-base py-5 sm:py-6 rounded-full group">
                 {t("cta.submit")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className="text-[10px] sm:text-[11px] text-muted-foreground/60 text-center">{t("cta.terms")}</p>
+              <p className="text-xs text-muted-foreground/60 text-center">{t("cta.terms")}</p>
             </motion.form>
           ) : (
             <motion.div
@@ -220,11 +220,11 @@ const CTASection = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="rounded-2xl p-10 sm:p-12 bg-secondary/30 border border-border/30 flex flex-col items-center"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-primary flex items-center justify-center mb-5 sm:mb-6">
-                <Check className="w-6 h-6 sm:w-7 sm:h-7 text-primary-foreground" />
+              <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center mb-5 sm:mb-6">
+                <Check className="w-7 h-7 text-primary-foreground" />
               </div>
               <h3 className="font-display text-xl sm:text-2xl font-semibold mb-2 text-foreground">{t("cta.successHeading")}</h3>
-              <p className="text-muted-foreground text-sm">{t("cta.successMessage")}</p>
+              <p className="text-muted-foreground text-base">{t("cta.successMessage")}</p>
             </motion.div>
           )}
         </motion.div>

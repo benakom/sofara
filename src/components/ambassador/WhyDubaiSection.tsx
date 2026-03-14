@@ -32,10 +32,10 @@ const WhyDubaiSection = () => {
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                 <div className="rounded-xl bg-secondary/80 backdrop-blur-xl border border-border/40 p-4 sm:p-5">
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="text-xl sm:text-2xl font-display font-bold text-gradient-primary">+27%</div>
+                    <div className="text-2xl sm:text-2xl font-display font-bold text-gradient-primary">+27%</div>
                     <div>
-                      <div className="text-xs sm:text-sm font-semibold text-foreground">{t("dubai.growth")}</div>
-                      <div className="text-[10px] sm:text-xs text-muted-foreground">{t("dubai.growthSub")}</div>
+                      <div className="text-sm font-semibold text-foreground">{t("dubai.growth")}</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">{t("dubai.growthSub")}</div>
                     </div>
                   </div>
                 </div>
@@ -50,15 +50,15 @@ const WhyDubaiSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
+              <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
                 {t("dubai.label")}
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
+              <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
                 {t("dubai.title")}{" "}
                 <span className="text-gradient-primary">{t("dubai.titleHighlight")}</span>{" "}
                 {t("dubai.titleEnd")}
               </h2>
-              <p className="text-muted-foreground text-base sm:text-base mb-8 sm:mb-10 leading-relaxed">
+              <p className="text-muted-foreground text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">
                 {t("dubai.description")}
               </p>
             </motion.div>
@@ -73,12 +73,12 @@ const WhyDubaiSection = () => {
                   transition={{ delay: i * 0.06 }}
                   className="flex items-start gap-3 p-3 rounded-xl hover:bg-secondary/40 transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <a.icon className="w-4 h-4 text-primary" />
                   </div>
                   <div className="min-w-0">
                     <div className="text-base font-semibold text-foreground">{a.title}</div>
-                    <div className="text-sm text-muted-foreground leading-relaxed">{a.desc}</div>
+                    <div className="text-sm sm:text-base text-muted-foreground leading-relaxed">{a.desc}</div>
                   </div>
                 </motion.div>
               ))}
