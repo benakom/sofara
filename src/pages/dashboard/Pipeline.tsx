@@ -132,7 +132,7 @@ const Pipeline = () => {
               const count = leads.filter((l: any) => l.stage === key).length;
               if (count === 0) return null;
               return (
-                <div key={key} className="flex items-center gap-1.5 text-[11px] dash-muted-text">
+                <div key={key} className="flex items-center gap-1.5 text-xs sm:text-[11px] dash-muted-text">
                   <div className={`w-2 h-2 rounded-full ${label.barColor}`} />
                   {lang === "fr" ? label.fr : label.en}: {count}
                 </div>
