@@ -75,8 +75,8 @@ const Payments = () => {
                     {p.status === "paid" ? <ArrowDownRight className="w-3.5 h-3.5 text-emerald-500" /> : <Clock className="w-3.5 h-3.5 text-amber-500" />}
                   </div>
                   <div>
-                    <p className="text-sm font-medium dash-text">{p.reference}</p>
-                    <p className="text-[11px] dash-muted-text flex items-center gap-1"><Calendar className="w-3 h-3" /> {new Date(p.date).toLocaleDateString()} • {p.deal_name || "—"}</p>
+                    <p className="text-base sm:text-sm font-medium dash-text">{p.reference}</p>
+                    <p className="text-xs sm:text-[11px] dash-muted-text flex items-center gap-1"><Calendar className="w-3 h-3" /> {new Date(p.date).toLocaleDateString()} • {p.deal_name || "—"}</p>
                   </div>
                 </div>
                 <div className="text-right">
