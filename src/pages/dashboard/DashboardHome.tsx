@@ -135,7 +135,7 @@ const DashboardHome = () => {
                       <p className="text-xs sm:text-[11px] dash-muted-text">{lead.source}</p>
                     </div>
                   </div>
-                  <span className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
+                  <span className="text-xs sm:text-[11px] px-2 py-0.5 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
                 </div>
               ))}
             </div>
