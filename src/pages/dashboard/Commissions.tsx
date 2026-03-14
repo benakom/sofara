@@ -83,7 +83,7 @@ const Commissions = () => {
             <p className="text-3xl sm:text-2xl font-display font-bold dash-text">AED {total.toLocaleString()}</p>
           </div>
           <div className="mt-3 pt-3 border-t dash-border-color">
-            <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center justify-between text-sm sm:text-xs">
               <span className="dash-muted-text">{lang === "fr" ? "Taux encaissé" : "Collection rate"}</span>
               <span className="font-bold text-emerald-600">{paidPct}%</span>
             </div>
