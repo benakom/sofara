@@ -50,7 +50,7 @@ const Payments = () => {
 
       {/* Payment progress */}
       <div className="dash-card rounded-xl p-4 mb-5">
-        <h2 className="text-sm font-display font-semibold dash-text mb-3">{lang === "fr" ? "Répartition" : "Breakdown"}</h2>
+        <h2 className="text-base sm:text-sm font-display font-semibold dash-text mb-3">{lang === "fr" ? "Répartition" : "Breakdown"}</h2>
         <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
           {totalPaid > 0 && <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${totalAll > 0 ? (totalPaid / totalAll) * 100 : 0}%` }} />}
           {totalPending > 0 && <div className="h-full bg-amber-400 rounded-full" style={{ width: `${totalAll > 0 ? (totalPending / totalAll) * 100 : 0}%` }} />}
