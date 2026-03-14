@@ -70,8 +70,8 @@ const Pipeline = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-xl font-display font-bold dash-text">Pipeline</h1>
-          <p className="dash-muted-text text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
+          <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">Pipeline</h1>
+          <p className="dash-muted-text text-base sm:text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
