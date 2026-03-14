@@ -113,8 +113,8 @@ const DashboardHome = () => {
         {/* Recent leads */}
         <div className="lg:col-span-3 dash-card rounded-xl p-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-display font-semibold dash-text">{lang === "fr" ? "Leads récents" : "Recent Leads"}</h2>
-            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+            <h2 className="text-base sm:text-sm font-display font-semibold dash-text">{lang === "fr" ? "Leads récents" : "Recent Leads"}</h2>
+            <button onClick={() => navigate("/dashboard/pipeline")} className="text-sm sm:text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
               Pipeline <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
