@@ -82,8 +82,8 @@ const DashboardHome = () => {
         {/* Commission breakdown */}
         <div className="lg:col-span-2 dash-card rounded-xl p-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Commissions</h2>
-            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+            <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Commissions</h2>
+            <button onClick={() => navigate("/dashboard/commissions")} className="text-sm sm:text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
               {lang === "fr" ? "Détails" : "Details"} <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
