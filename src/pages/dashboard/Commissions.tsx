@@ -93,7 +93,7 @@ const Commissions = () => {
           </div>
           <div className="mt-3 flex items-center gap-2">
             <Target className="w-3.5 h-3.5 dash-muted-text" />
-            <span className="text-xs dash-muted-text">{commissions.length} {lang === "fr" ? "transactions" : "transactions"}</span>
+            <span className="text-sm sm:text-xs dash-muted-text">{commissions.length} {lang === "fr" ? "transactions" : "transactions"}</span>
           </div>
         </div>
       </div>
