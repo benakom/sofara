@@ -26,8 +26,8 @@ const Payments = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-xl font-display font-bold dash-text mb-0.5">{lang === "fr" ? "Paiements" : "Payments"}</h1>
-      <p className="dash-muted-text text-sm mb-5">{lang === "fr" ? "Suivi de vos paiements." : "Track your payments."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">{lang === "fr" ? "Paiements" : "Payments"}</h1>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Suivi de vos paiements." : "Track your payments."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
