@@ -105,8 +105,8 @@ const DashboardHome = () => {
             ))}
           </div>
           <div className="mt-3 pt-3 border-t dash-border-color flex items-center justify-between">
-            <span className="text-xs dash-muted-text">Total</span>
-            <span className="text-sm font-bold dash-text">AED {totalComm.toLocaleString()}</span>
+            <span className="text-sm sm:text-xs dash-muted-text">Total</span>
+            <span className="text-base sm:text-sm font-bold dash-text">AED {totalComm.toLocaleString()}</span>
           </div>
         </div>
 
