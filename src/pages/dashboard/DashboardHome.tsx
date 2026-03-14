@@ -154,7 +154,7 @@ const DashboardHome = () => {
           <button key={i} onClick={() => navigate(action.path)}
             className="dash-card rounded-xl p-3 flex items-center gap-3 hover:shadow-sm transition-shadow text-left group">
             <div className={`p-2 rounded-lg ${action.accent}`}><action.icon className="w-4 h-4" /></div>
-            <span className="text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? action.labelFr : action.labelEn}</span>
+            <span className="text-base sm:text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? action.labelFr : action.labelEn}</span>
           </button>
         ))}
       </div>
