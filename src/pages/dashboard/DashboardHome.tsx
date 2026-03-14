@@ -55,10 +55,10 @@ const DashboardHome = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
       {/* Greeting */}
       <div className="mb-6">
-        <h1 className="text-xl font-display font-bold dash-text">
+        <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">
           👋 {lang === "fr" ? "Bienvenue" : "Welcome"}, {user?.email?.split("@")[0]}
         </h1>
-        <p className="dash-muted-text text-sm mt-0.5">
+        <p className="dash-muted-text text-base sm:text-sm mt-0.5">
           {lang === "fr" ? "Voici le résumé de votre activité." : "Here's your activity summary."}
         </p>
       </div>
