@@ -119,7 +119,7 @@ const DashboardHome = () => {
             </button>
           </div>
           {recentLeads.length === 0 ? (
-            <div className="text-center py-8 dash-muted-text text-sm">
+            <div className="text-center py-8 dash-muted-text text-base sm:text-sm">
               {lang === "fr" ? "Aucun lead. Importez vos premiers leads !" : "No leads. Import your first leads!"}
             </div>
           ) : (
