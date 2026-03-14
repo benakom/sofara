@@ -20,7 +20,7 @@ const ImportLeads = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl font-display font-bold dash-text mb-1">Import Leads</h1>
-      <p className="dash-muted-text text-sm mb-6">{lang === "fr" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-6">{lang === "fr" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
 
       <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
