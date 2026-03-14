@@ -79,8 +79,8 @@ const Commissions = () => {
         </div>
         <div className="dash-card rounded-xl p-4 flex flex-col justify-between">
           <div>
-            <h3 className="text-xs font-semibold dash-muted-text uppercase tracking-wider mb-1">{lang === "fr" ? "Total commissions" : "Total Commissions"}</h3>
-            <p className="text-2xl font-display font-bold dash-text">AED {total.toLocaleString()}</p>
+            <h3 className="text-sm sm:text-xs font-semibold dash-muted-text uppercase tracking-wider mb-1">{lang === "fr" ? "Total commissions" : "Total Commissions"}</h3>
+            <p className="text-3xl sm:text-2xl font-display font-bold dash-text">AED {total.toLocaleString()}</p>
           </div>
           <div className="mt-3 pt-3 border-t dash-border-color">
             <div className="flex items-center justify-between text-xs">
