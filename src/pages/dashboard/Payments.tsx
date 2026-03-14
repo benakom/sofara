@@ -55,7 +55,7 @@ const Payments = () => {
           {totalPaid > 0 && <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${totalAll > 0 ? (totalPaid / totalAll) * 100 : 0}%` }} />}
           {totalPending > 0 && <div className="h-full bg-amber-400 rounded-full" style={{ width: `${totalAll > 0 ? (totalPending / totalAll) * 100 : 0}%` }} />}
         </div>
-        <div className="flex gap-4 mt-2 text-xs dash-muted-text">
+        <div className="flex gap-4 mt-2 text-sm sm:text-xs dash-muted-text">
           <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-500" /> {lang === "fr" ? "Reçu" : "Received"}: AED {totalPaid.toLocaleString()}</span>
           <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-400" /> {lang === "fr" ? "En attente" : "Pending"}: AED {totalPending.toLocaleString()}</span>
         </div>
