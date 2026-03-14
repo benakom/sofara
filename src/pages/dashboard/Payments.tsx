@@ -63,9 +63,9 @@ const Payments = () => {
 
       {/* History */}
       <div className="dash-card rounded-xl p-4">
-        <h2 className="text-sm font-display font-semibold dash-text mb-3">{lang === "fr" ? "Historique" : "History"}</h2>
+        <h2 className="text-base sm:text-sm font-display font-semibold dash-text mb-3">{lang === "fr" ? "Historique" : "History"}</h2>
         {payments.length === 0 ? (
-          <div className="text-center py-12 dash-muted-text text-sm">{lang === "fr" ? "Aucun paiement." : "No payments."}</div>
+          <div className="text-center py-12 dash-muted-text text-base sm:text-sm">{lang === "fr" ? "Aucun paiement." : "No payments."}</div>
         ) : (
           <div className="space-y-2">
             {payments.map((p: any) => (
