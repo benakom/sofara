@@ -112,7 +112,7 @@ const Pipeline = () => {
       {/* Vivid pipeline progress bar */}
       {totalLeads > 0 && (
         <div className="dash-card rounded-xl p-4 mb-5">
-          <p className="text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
+          <p className="text-sm sm:text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
           <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
             {Object.entries(stageLabels).map(([key, label]) => {
               const count = leads.filter((l: any) => l.stage === key).length;
