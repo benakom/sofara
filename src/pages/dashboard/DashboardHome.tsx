@@ -131,8 +131,8 @@ const DashboardHome = () => {
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</p>
-                      <p className="text-[11px] dash-muted-text">{lead.source}</p>
+                      <p className="text-base sm:text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</p>
+                      <p className="text-xs sm:text-[11px] dash-muted-text">{lead.source}</p>
                     </div>
                   </div>
                   <span className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
