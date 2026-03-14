@@ -64,7 +64,7 @@ const Commissions = () => {
           <div className="space-y-3">
             {stats.map((s, i) => (
               <div key={i}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-sm sm:text-xs mb-1">
                   <span className="dash-muted-text">{lang === "fr" ? s.labelFr : s.labelEn}</span>
                   <span className="font-medium dash-text">AED {s.value.toLocaleString()}</span>
                 </div>
