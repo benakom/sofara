@@ -20,8 +20,8 @@ const Community = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-xl font-display font-bold dash-text mb-0.5">Community</h1>
-      <p className="dash-muted-text text-sm mb-5">{lang === "fr" ? "Échangez avec les ambassadeurs Sofara." : "Connect with Sofara ambassadors."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">Community</h1>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Échangez avec les ambassadeurs Sofara." : "Connect with Sofara ambassadors."}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Channels */}
