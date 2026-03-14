@@ -70,9 +70,9 @@ const DashboardHome = () => {
             className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${kpi.accent}`}><kpi.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
+              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
             </div>
-            <p className="text-lg font-display font-bold dash-text">{kpi.prefix || ""}{kpi.value}</p>
+            <p className="text-xl sm:text-lg font-display font-bold dash-text">{kpi.prefix || ""}{kpi.value}</p>
           </motion.div>
         ))}
       </div>
