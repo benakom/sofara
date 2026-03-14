@@ -155,7 +155,7 @@ const Pipeline = () => {
             </thead>
             <tbody>
               {leads.length === 0 ? (
-                <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-sm">
+                <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-base sm:text-sm">
                   {lang === "fr" ? "Aucun lead. Ajoutez votre premier lead !" : "No leads. Add your first lead!"}
                 </td></tr>
               ) : (
