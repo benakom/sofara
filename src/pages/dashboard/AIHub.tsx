@@ -84,9 +84,6 @@ const AIHub = () => {
       case "sequences": return <SequencesTool />;
       case "voice": return <VoiceAgentTool />;
       case "autoscore": return <AutoScoreTool />;
-      case "qualifier":
-        window.location.href = "/dashboard/sofar-ai";
-        return null;
       default: return null;
     }
   };
