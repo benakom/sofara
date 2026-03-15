@@ -10,7 +10,7 @@ import SequencesTool from "@/components/ai-tools/SequencesTool";
 import VoiceAgentTool from "@/components/ai-tools/VoiceAgentTool";
 import AutoScoreTool from "@/components/ai-tools/AutoScoreTool";
 
-type Tool = "roleplay" | "sequences" | "voice" | "autoscore" | "qualifier";
+type Tool = "roleplay" | "sequences" | "voice" | "autoscore";
 
 const AIHub = () => {
   const { lang } = useLanguage();
@@ -66,16 +66,6 @@ const AIHub = () => {
       gradient: "from-sky-500 to-blue-600",
       badge: "BETA",
     },
-    {
-      id: "qualifier",
-      icon: Brain,
-      labelFr: "Lead Qualifier",
-      labelEn: "Lead Qualifier",
-      descFr: "Agent IA complet — Qualifiez, générez des emails, scripts d'appel et messages WhatsApp",
-      descEn: "Complete AI agent — Qualify, generate emails, call scripts and WhatsApp messages",
-      gradient: "from-rose-500 to-pink-600",
-      badge: "AI",
-    },
   ];
 
   const renderTool = () => {
@@ -84,14 +74,11 @@ const AIHub = () => {
       case "sequences": return <SequencesTool />;
       case "voice": return <VoiceAgentTool />;
       case "autoscore": return <AutoScoreTool />;
-      case "qualifier":
-        window.location.href = "/dashboard/sofar-ai";
-        return null;
       default: return null;
     }
   };
 
-  if (activeTool && activeTool !== "qualifier") {
+  if (activeTool) {
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -154,13 +141,7 @@ const AIHub = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08 }}
-            onClick={() => {
-              if (tool.id === "qualifier") {
-                window.location.href = "/dashboard/sofar-ai";
-              } else {
-                setActiveTool(tool.id);
-              }
-            }}
+            onClick={() => setActiveTool(tool.id)}
             className="group dash-card rounded-xl p-5 text-left hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 border border-[hsl(var(--dash-border))]"
           >
             <div className="flex items-start justify-between mb-4">

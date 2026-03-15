@@ -24,7 +24,6 @@ import ImportLeads from "./pages/dashboard/ImportLeads";
 import Commissions from "./pages/dashboard/Commissions";
 import Payments from "./pages/dashboard/Payments";
 import KycAml from "./pages/dashboard/KycAml";
-import SofarAI from "./pages/dashboard/SofarAI";
 import AIHub from "./pages/dashboard/AIHub";
 import BonusRewards from "./pages/dashboard/BonusRewards";
 import Community from "./pages/dashboard/Community";
@@ -54,7 +53,6 @@ const App = () => (
                 <Route path="commissions" element={<Commissions />} />
                 <Route path="payments" element={<Payments />} />
                 <Route path="kyc" element={<KycAml />} />
-                <Route path="sofar-ai" element={<SofarAI />} />
                 <Route path="ai-hub" element={<AIHub />} />
                 <Route path="simulator" element={<Simulator />} />
                 <Route path="calendar" element={<CalendarPage />} />

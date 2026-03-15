@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AvatarChat from "@/components/sofar-ai/AvatarChat";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -20,8 +21,7 @@ const navItems = [
   { path: "/dashboard/commissions", icon: DollarSign, labelFr: "Commissions", labelEn: "Commissions" },
   { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
   { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "AI Suite", labelEn: "AI Suite", badge: "NEW" },
-  { path: "/dashboard/sofar-ai", icon: Bot, labelFr: "SofarAI Chat", labelEn: "SofarAI Chat", badge: "AI" },
+  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI" },
   { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators" },
   { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar" },
   { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
@@ -209,6 +209,9 @@ const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
+
+      {/* SofarAI Avatar Chat */}
+      <AvatarChat />
     </div>
   );
 };
