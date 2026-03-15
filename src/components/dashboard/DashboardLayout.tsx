@@ -147,7 +147,7 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))]">
+    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40">
         <SidebarContent />
