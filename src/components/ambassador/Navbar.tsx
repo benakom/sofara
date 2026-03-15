@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 const languages: { code: Lang; label: string; flag: string }[] = [
   { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
   { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
-  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png" },
+  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ma.png" },
   { code: "es", label: "ES", flag: "https://flagcdn.com/w80/es.png" },
   { code: "ru", label: "RU", flag: "https://flagcdn.com/w80/ru.png" },
 ];
