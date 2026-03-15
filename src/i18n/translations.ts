@@ -1263,7 +1263,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.titleHighlight": "ясная и щедрая",
     "commission.description": "В Sofara без сюрпризов. Единая, публичная и гарантированная ставка.",
     "commission.badgeSingle": "Единая комиссия",
-    "commission.singleDesc": "С каждой сделки, закрытой по вашей рекомендации, вы получаете 2.5% от общей стоимости объекта.",
+    "commission.singleDesc": "С каждой сделки, закрытой по вашей рекомендации, вы получаете 3% от общей стоимости объекта.",
     "commission.ofValue": "от стоимости объекта",
     "commission.note": "Комиссионные рассчитываются от общей стоимости объекта и выплачиваются автоматически после закрытия сделки.",
     "legal.back": "Назад",
