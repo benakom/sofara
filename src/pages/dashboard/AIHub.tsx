@@ -151,13 +151,7 @@ const AIHub = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08 }}
-            onClick={() => {
-              if (tool.id === "qualifier") {
-                window.location.href = "/dashboard/sofar-ai";
-              } else {
-                setActiveTool(tool.id);
-              }
-            }}
+            onClick={() => setActiveTool(tool.id)}
             className="group dash-card rounded-xl p-5 text-left hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 border border-[hsl(var(--dash-border))]"
           >
             <div className="flex items-start justify-between mb-4">
