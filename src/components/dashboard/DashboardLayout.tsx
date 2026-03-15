@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AvatarChat from "@/components/sofar-ai/AvatarChat";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
