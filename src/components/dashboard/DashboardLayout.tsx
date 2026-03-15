@@ -178,7 +178,7 @@ const DashboardLayout = () => {
       </AnimatePresence>
 
       {/* Main content */}
-      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* Top bar */}
         <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
