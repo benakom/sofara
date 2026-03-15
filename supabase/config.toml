@@ -5,3 +5,12 @@ verify_jwt = false
 
 [functions.sofar-ai-qualify]
 verify_jwt = false
+
+[functions.sofar-ai-roleplay]
+verify_jwt = false
+
+[functions.sofar-ai-sequences]
+verify_jwt = false
+
+[functions.elevenlabs-tts]
+verify_jwt = false
