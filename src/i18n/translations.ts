@@ -819,7 +819,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.titleHighlight": "واضحة وسخية",
     "commission.description": "في سوفارا، لا مفاجآت. نسبة واحدة، علنية ومضمونة.",
     "commission.badgeSingle": "عمولة واحدة",
-    "commission.singleDesc": "على كل صفقة تتم عبر إحالتك، تكسب 2.5% من القيمة الإجمالية للعقار.",
+    "commission.singleDesc": "على كل صفقة تتم عبر إحالتك، تكسب 3% من القيمة الإجمالية للعقار.",
     "commission.ofValue": "من قيمة العقار",
     "commission.note": "العمولات تُحسب على القيمة الإجمالية للعقار وتُدفع تلقائياً بعد إغلاق الصفقة.",
     "legal.back": "رجوع",
