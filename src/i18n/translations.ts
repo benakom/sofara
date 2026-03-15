@@ -540,7 +540,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.titleHighlight": "clear and generous",
     "commission.description": "At Sofara, no surprises. A single, public and guaranteed rate. You know exactly what you earn, before you even refer.",
     "commission.badgeSingle": "Single commission",
-    "commission.singleDesc": "On every transaction closed through your referral, you earn 2.5% of the total property value. Simple, transparent, no hidden conditions.",
+    "commission.singleDesc": "On every transaction closed through your referral, you earn 3% of the total property value. Simple, transparent, no hidden conditions.",
     "commission.ofValue": "of property value",
     "commission.note": "Commissions are calculated on the total property value and paid automatically after transaction closing.",
 
