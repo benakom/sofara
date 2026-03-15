@@ -59,13 +59,13 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
               <Bot className="w-3.5 h-3.5 text-white" />
             </div>
           )}
-          <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
+          <div className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-sm overflow-hidden ${
             msg.role === "user"
               ? "bg-[hsl(var(--primary))] text-white rounded-br-md"
               : "bg-white border border-[hsl(var(--dash-border))] dash-text rounded-bl-md"
           }`}>
             {msg.role === "assistant" ? (
-              <div className="prose prose-sm max-w-none prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--primary))]">
+              <div className="prose prose-sm max-w-none break-words overflow-x-auto prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--primary))] [&_pre]:overflow-x-auto [&_table]:text-xs [&_code]:break-all">
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ) : (
