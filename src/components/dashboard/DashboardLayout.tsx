@@ -3,6 +3,7 @@ import AvatarChat from "@/components/sofar-ai/AvatarChat";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useProfileStatus } from "@/hooks/useProfileStatus";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -12,6 +13,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { useEffect } from "react";
+import OnboardingGate from "./OnboardingGate";
 
 const navItems = [
   { path: "/dashboard", icon: LayoutDashboard, labelFr: "Tableau de bord", labelEn: "Dashboard", exact: true },
