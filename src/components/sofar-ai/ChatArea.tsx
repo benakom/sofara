@@ -65,7 +65,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
               : "bg-white border border-[hsl(var(--dash-border))] dash-text rounded-bl-md"
           }`}>
             {msg.role === "assistant" ? (
-              <div className="prose prose-sm max-w-none prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--primary))]">
+              <div className="prose prose-sm max-w-none break-words overflow-x-auto prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--primary))] [&_pre]:overflow-x-auto [&_table]:text-xs [&_code]:break-all">
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ) : (

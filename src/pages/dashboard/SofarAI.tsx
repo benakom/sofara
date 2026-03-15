@@ -176,7 +176,7 @@ const SofarAI = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={lang === "fr" ? "Posez une question sur ce lead…" : "Ask about this lead…"}
-            className="flex-1 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
+            className="flex-1 min-w-0 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading || !input.trim()}
