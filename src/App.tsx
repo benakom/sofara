@@ -67,6 +67,7 @@ const App = () => (
                   <Route path="ai-hub" element={<AIHub />} />
                   <Route path="simulator" element={<Simulator />} />
                   <Route path="calendar" element={<CalendarPage />} />
+                  <Route path="legal-ai" element={<LegalAI />} />
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
                 </Route>
