@@ -115,16 +115,33 @@ const activeBorderMap: Record<string, string> = {
 
 export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelectedLead }: AgentToolsSidebarProps) {
   const { lang } = useLanguage();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="lg:w-64 shrink-0 space-y-2">
-      <div className="flex items-center gap-2 px-1 mb-3">
+      {/* Mobile toggle */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="lg:hidden w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl dash-card"
+      >
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
+          <span className="text-xs font-semibold dash-text uppercase tracking-wider">
+            {lang === "fr" ? "Outils Agent" : "Agent Tools"}
+          </span>
+        </div>
+        <ChevronDown className={`w-4 h-4 dash-muted-text transition-transform ${mobileOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {/* Desktop header */}
+      <div className="hidden lg:flex items-center gap-2 px-1 mb-3">
         <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
         <h3 className="text-xs font-semibold dash-text uppercase tracking-wider">
           {lang === "fr" ? "Outils Agent" : "Agent Tools"}
         </h3>
       </div>
 
+      <div className={`space-y-2 ${mobileOpen ? "block" : "hidden"} lg:block`}>
       {tools.map((tool) => {
         const disabled = tool.needsLead && !hasSelectedLead;
         const isActive = activeMode === tool.mode;
