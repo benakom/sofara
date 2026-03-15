@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Send, Loader2, X, Sparkles } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
@@ -18,14 +18,26 @@ export default function AvatarChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Click outside to minimize
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus();
+    if (!isOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    // Delay to avoid immediate close on open click
+    const timer = setTimeout(() => document.addEventListener("mousedown", handler), 100);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("mousedown", handler);
+    };
   }, [isOpen]);
 
   const sendMessage = async (text: string) => {
@@ -71,12 +83,10 @@ export default function AvatarChat() {
       const reader = resp.body!.getReader();
       const decoder = new TextDecoder();
       let buf = "";
-
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         buf += decoder.decode(value, { stream: true });
-
         let idx: number;
         while ((idx = buf.indexOf("\n")) !== -1) {
           let line = buf.slice(0, idx);
@@ -97,81 +107,53 @@ export default function AvatarChat() {
     setIsLoading(false);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage(input);
-    }
-  };
-
-  const quickPrompts = lang === "fr" ? [
-    "Prix moyens JVC vs Business Bay",
-    "Évalue : Emaar, Downtown, 2BR, 2400 AED/sqft, 70/30",
-    "Top 3 zones ROI locatif 2025",
-    "Golden Visa : conditions",
-  ] : [
-    "Average prices JVC vs Business Bay",
-    "Evaluate: Emaar, Downtown, 2BR, 2400 AED/sqft, 70/30",
-    "Top 3 areas for rental ROI 2025",
-    "Golden Visa: conditions",
-  ];
-
+  // Minimized state: just avatar bubble
   if (!isOpen) {
     return (
       <button onClick={() => setIsOpen(true)} className="fixed bottom-6 right-6 z-50 group">
         <div className="relative">
-          <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-50 blur-lg group-hover:opacity-100 transition-opacity animate-pulse" />
-          <img src={sofaraAvatar} alt="SofarAI" className="relative w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-2xl group-hover:scale-110 transition-transform" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[hsl(var(--background))]" />
+          <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-40 blur-lg group-hover:opacity-80 transition-opacity animate-pulse" />
+          <img src={sofaraAvatar} alt="SofarAI" className="relative w-14 h-14 rounded-full object-cover border-2 border-[hsl(var(--border))] shadow-2xl group-hover:scale-110 transition-transform" />
+          <div className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[hsl(var(--background))]" />
+          {messages.length > 0 && (
+            <div className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-[hsl(var(--primary))] text-white text-[9px] font-bold flex items-center justify-center border-2 border-[hsl(var(--background))]">
+              {messages.filter(m => m.role === "assistant").length}
+            </div>
+          )}
         </div>
-        <span className="absolute -top-10 right-0 bg-[hsl(var(--card))] text-xs text-[hsl(var(--foreground))] px-3 py-1.5 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-[hsl(var(--border))] font-medium">
-          🏗️ {lang === "fr" ? "Expert Immobilier Dubai" : "Dubai Real Estate Expert"}
-        </span>
       </button>
     );
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[420px] h-[620px] flex flex-col rounded-2xl shadow-2xl border border-[hsl(var(--border))] overflow-hidden bg-[hsl(var(--card))]">
+    <div ref={panelRef} className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[500px] flex flex-col rounded-2xl shadow-2xl border border-[hsl(var(--border))] overflow-hidden bg-[hsl(var(--card))]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] p-3.5 flex items-center gap-3 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h20v20H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M10%200v20M0%2010h20%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%220.5%22%2F%3E%3C%2Fsvg%3E')] opacity-50" />
-        <img src={sofaraAvatar} alt="SofarAI" className="relative w-11 h-11 rounded-full object-cover border-2 border-white/30 shadow-lg" />
-        <div className="flex-1 min-w-0 relative">
-          <h3 className="text-sm font-display font-bold text-white flex items-center gap-1.5">
-            SofarAI
-            <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded-full font-medium">PRO</span>
-          </h3>
-          <p className="text-[10px] text-white/70 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
-            {lang === "fr" ? "Expert immobilier Dubai & EAU" : "Dubai & UAE Real Estate Expert"}
+      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] px-3 py-2.5 flex items-center gap-2.5">
+        <img src={sofaraAvatar} alt="SofarAI" className="w-8 h-8 rounded-full object-cover border-2 border-white/30" />
+        <div className="flex-1 min-w-0">
+          <h3 className="text-xs font-display font-bold text-white">SofarAI Expert</h3>
+          <p className="text-[9px] text-white/60 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+            {lang === "fr" ? "En ligne" : "Online"}
           </p>
         </div>
-        <button onClick={() => setIsOpen(false)} className="relative text-white/70 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-lg">
+        <button onClick={() => setIsOpen(false)} className="text-white/60 hover:text-white p-1 hover:bg-white/10 rounded-lg transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3">
+      <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-center px-3">
-            <div className="relative mb-4">
-              <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-[hsl(var(--primary)/.15)] to-[hsl(var(--accent)/.15)] blur-xl" />
-              <img src={sofaraAvatar} alt="SofarAI" className="relative w-20 h-20 rounded-full object-cover shadow-xl border-2 border-[hsl(var(--border))]" />
-            </div>
-            <h3 className="text-sm font-display font-bold text-[hsl(var(--foreground))] mb-1">
-              {lang === "fr" ? "🏗️ Expert Immobilier Dubai" : "🏗️ Dubai Real Estate Expert"}
-            </h3>
-            <p className="text-[11px] text-[hsl(var(--muted-foreground))] leading-relaxed mb-4 max-w-[280px]">
-              {lang === "fr"
-                ? "Prix, évaluation, ROI, objections, scoring… Je suis votre directeur commercial IA."
-                : "Prices, evaluation, ROI, objections, scoring… I'm your AI sales director."}
+          <div className="flex flex-col items-center justify-center h-full text-center">
+            <img src={sofaraAvatar} alt="SofarAI" className="w-14 h-14 rounded-full object-cover shadow-lg mb-3 border border-[hsl(var(--border))]" />
+            <p className="text-xs dash-muted-text mb-3">
+              {lang === "fr" ? "💬 Posez-moi n'importe quelle question" : "💬 Ask me anything"}
             </p>
-            <div className="flex flex-wrap gap-1.5 justify-center">
-              {quickPrompts.map(q => (
+            <div className="flex flex-wrap gap-1 justify-center">
+              {(lang === "fr" ? ["💰 Prix JVC", "📊 Scoring projet", "🏆 Top ROI"] : ["💰 JVC Prices", "📊 Project scoring", "🏆 Top ROI"]).map(q => (
                 <button key={q} onClick={() => sendMessage(q)}
-                  className="text-[10px] px-2.5 py-1.5 rounded-full border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--primary)/.08)] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/.3)] transition-all leading-tight">
+                  className="text-[10px] px-2 py-1.5 rounded-lg border border-[hsl(var(--border))] dash-muted-text hover:bg-[hsl(var(--primary)/.06)] hover:text-[hsl(var(--primary))] transition-all">
                   {q}
                 </button>
               ))}
@@ -180,17 +162,17 @@ export default function AvatarChat() {
         )}
 
         {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-2 duration-200`}>
+          <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             {msg.role === "assistant" && (
-              <img src={sofaraAvatar} alt="AI" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0 shadow-md border border-[hsl(var(--border))]" />
+              <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-1.5 mt-1 shrink-0 border border-[hsl(var(--border))]" />
             )}
-            <div className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
+            <div className={`max-w-[82%] rounded-2xl px-3 py-2 text-xs leading-relaxed ${
               msg.role === "user"
-                ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-br-md shadow-md"
-                : "bg-[hsl(var(--muted))] text-[hsl(var(--foreground))] rounded-bl-md border border-[hsl(var(--border))]"
+                ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-br-sm"
+                : "bg-[hsl(var(--muted)/.5)] dash-text rounded-bl-sm border border-[hsl(var(--border))]"
             }`}>
               {msg.role === "assistant" ? (
-                <div className="prose prose-sm max-w-none prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-[hsl(var(--primary))] prose-table:text-[11px]">
+                <div className="prose prose-xs max-w-none prose-p:my-0.5 prose-li:my-0 prose-strong:text-[hsl(var(--primary))] [&_p]:text-xs [&_li]:text-xs">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (
@@ -201,18 +183,13 @@ export default function AvatarChat() {
         ))}
 
         {isLoading && messages[messages.length - 1]?.role === "user" && (
-          <div className="flex justify-start animate-in fade-in duration-300">
-            <img src={sofaraAvatar} alt="AI" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0 shadow-md" />
-            <div className="bg-[hsl(var(--muted))] border border-[hsl(var(--border))] rounded-2xl rounded-bl-md px-3.5 py-2.5">
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "300ms" }} />
-                </div>
-                <span className="text-[11px] text-[hsl(var(--muted-foreground))]">
-                  {lang === "fr" ? "Analyse en cours…" : "Analyzing…"}
-                </span>
+          <div className="flex justify-start">
+            <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-1.5 mt-1 shrink-0" />
+            <div className="bg-[hsl(var(--muted)/.5)] border border-[hsl(var(--border))] rounded-2xl rounded-bl-sm px-3 py-2">
+              <div className="flex gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "0ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "150ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           </div>
@@ -221,20 +198,17 @@ export default function AvatarChat() {
       </div>
 
       {/* Input */}
-      <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-3 border-t border-[hsl(var(--border))] bg-[hsl(var(--card))]">
-        <div className="flex gap-2 items-end">
-          <textarea
-            ref={inputRef}
+      <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2 border-t border-[hsl(var(--border))]">
+        <div className="flex gap-1.5 items-center">
+          <input
             value={input}
             onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={lang === "fr" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
-            rows={1}
-            className="flex-1 min-h-[36px] max-h-[80px] px-3.5 py-2 rounded-xl bg-[hsl(var(--muted))] border border-[hsl(var(--border))] text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)] resize-none"
+            placeholder={lang === "fr" ? "Votre question…" : "Your question…"}
+            className="flex-1 h-8 px-3 rounded-lg bg-[hsl(var(--muted)/.4)] border border-[hsl(var(--border))] text-xs dash-text placeholder:dash-muted-text focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary)/.3)]"
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading || !input.trim()}
-            className="w-9 h-9 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-40 shrink-0 shadow-md">
+            className="w-8 h-8 rounded-lg bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white flex items-center justify-center disabled:opacity-40 shrink-0">
             <Send className="w-3.5 h-3.5" />
           </button>
         </div>
