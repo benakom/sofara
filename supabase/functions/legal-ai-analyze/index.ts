@@ -54,9 +54,15 @@ serve(async (req) => {
       });
     }
 
-    // Read file as base64
+    // Read file as base64 (chunk to avoid stack overflow on large files)
     const arrayBuffer = await file.arrayBuffer();
-    const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    const bytes = new Uint8Array(arrayBuffer);
+    const CHUNK = 8192;
+    let binary = "";
+    for (let i = 0; i < bytes.length; i += CHUNK) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+    }
+    const base64 = btoa(binary);
 
     const userMessage = question.trim()
       ? `Analyse ce document immobilier et réponds à cette question spécifique : "${question}"\n\nDocument PDF joint.`
