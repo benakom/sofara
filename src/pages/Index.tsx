@@ -13,7 +13,6 @@ const HowItWorksSection = lazy(() => import("@/components/ambassador/HowItWorksS
 const InvestorMetrics = lazy(() => import("@/components/ambassador/InvestorMetrics"));
 const TestimonialsSection = lazy(() => import("@/components/ambassador/TestimonialsSection"));
 const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
-const CTASection = lazy(() => import("@/components/ambassador/CTASection"));
 const FooterSection = lazy(() => import("@/components/ambassador/FooterSection"));
 
 const SectionFallback = () => (
