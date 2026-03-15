@@ -45,9 +45,6 @@ const Index = () => {
         <InvestorMetrics />
         <TestimonialsSection />
         <FAQSection />
-        <div id="postuler">
-          <CTASection />
-        </div>
         <FooterSection />
       </Suspense>
     </div>

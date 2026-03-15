@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,48 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, CheckCircle2, Clock, Shield, FileText, UserCheck } from "lucide-react";
+import {
+  Loader2, CheckCircle2, Clock, Shield, FileText, UserCheck,
+  Lock, Eye, Users, ArrowRight, Sparkles, BarChart3, Bot, GraduationCap,
+  Rocket
+} from "lucide-react";
+
+const PHONE_CODES = [
+  { code: "+971", flag: "🇦🇪", name: "UAE" },
+  { code: "+33", flag: "🇫🇷", name: "France" },
+  { code: "+44", flag: "🇬🇧", name: "UK" },
+  { code: "+1", flag: "🇺🇸", name: "USA" },
+  { code: "+212", flag: "🇲🇦", name: "Maroc" },
+  { code: "+216", flag: "🇹🇳", name: "Tunisie" },
+  { code: "+213", flag: "🇩🇿", name: "Algérie" },
+  { code: "+966", flag: "🇸🇦", name: "Arabie S." },
+  { code: "+961", flag: "🇱🇧", name: "Liban" },
+  { code: "+41", flag: "🇨🇭", name: "Suisse" },
+  { code: "+32", flag: "🇧🇪", name: "Belgique" },
+  { code: "+49", flag: "🇩🇪", name: "Allemagne" },
+  { code: "+39", flag: "🇮🇹", name: "Italie" },
+  { code: "+34", flag: "🇪🇸", name: "Espagne" },
+  { code: "+351", flag: "🇵🇹", name: "Portugal" },
+  { code: "+31", flag: "🇳🇱", name: "Pays-Bas" },
+  { code: "+91", flag: "🇮🇳", name: "Inde" },
+  { code: "+86", flag: "🇨🇳", name: "Chine" },
+  { code: "+7", flag: "🇷🇺", name: "Russie" },
+  { code: "+55", flag: "🇧🇷", name: "Brésil" },
+  { code: "+234", flag: "🇳🇬", name: "Nigeria" },
+  { code: "+27", flag: "🇿🇦", name: "Afr. du Sud" },
+  { code: "+254", flag: "🇰🇪", name: "Kenya" },
+  { code: "+225", flag: "🇨🇮", name: "Côte d'Iv." },
+  { code: "+221", flag: "🇸🇳", name: "Sénégal" },
+  { code: "+237", flag: "🇨🇲", name: "Cameroun" },
+  { code: "+974", flag: "🇶🇦", name: "Qatar" },
+  { code: "+965", flag: "🇰🇼", name: "Koweït" },
+  { code: "+973", flag: "🇧🇭", name: "Bahreïn" },
+  { code: "+968", flag: "🇴🇲", name: "Oman" },
+  { code: "+20", flag: "🇪🇬", name: "Égypte" },
+  { code: "+962", flag: "🇯🇴", name: "Jordanie" },
+  { code: "+90", flag: "🇹🇷", name: "Turquie" },
+  { code: "+1", flag: "🇨🇦", name: "Canada" },
+];
 
 const COUNTRIES = [
   "Émirats Arabes Unis", "France", "Royaume-Uni", "États-Unis", "Canada",
@@ -30,11 +71,6 @@ const PROFILES = [
   { value: "other", labelFr: "Autre", labelEn: "Other" },
 ];
 
-const PHONE_CODES = [
-  "+971", "+33", "+44", "+1", "+212", "+216", "+213", "+966", "+961",
-  "+41", "+32", "+49", "+39", "+34", "+351", "+31", "+91", "+86",
-];
-
 interface OnboardingGateProps {
   needsOnboarding: boolean;
   isPendingReview: boolean;
@@ -47,6 +83,8 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
   const { lang } = useLanguage();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [showTour, setShowTour] = useState(false);
+  const [tourStep, setTourStep] = useState(0);
 
   const [fullName, setFullName] = useState("");
   const [phoneCode, setPhoneCode] = useState("+33");
@@ -55,6 +93,41 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
   const [profileType, setProfileType] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [acceptedConduct, setAcceptedConduct] = useState(false);
+
+  const tourSlides = [
+    {
+      icon: BarChart3,
+      color: "from-blue-500 to-cyan-400",
+      titleFr: "Tableau de bord intelligent",
+      titleEn: "Smart Dashboard",
+      descFr: "Suivez vos performances, vos commissions et votre pipeline en temps réel avec des KPIs clairs et actionnables.",
+      descEn: "Track your performance, commissions and pipeline in real-time with clear, actionable KPIs.",
+    },
+    {
+      icon: Bot,
+      color: "from-violet-500 to-purple-400",
+      titleFr: "SofarAI — Votre assistant IA",
+      titleEn: "SofarAI — Your AI Assistant",
+      descFr: "Qualifiez vos leads, générez des séquences de messages et entraînez-vous avec un roleplay IA réaliste.",
+      descEn: "Qualify your leads, generate message sequences and practice with realistic AI roleplay.",
+    },
+    {
+      icon: GraduationCap,
+      color: "from-amber-500 to-orange-400",
+      titleFr: "Academy & Certification",
+      titleEn: "Academy & Certification",
+      descFr: "Accédez à des formations exclusives sur l'immobilier à Dubai, la vente et la conformité pour devenir un expert.",
+      descEn: "Access exclusive courses on Dubai real estate, sales and compliance to become an expert.",
+    },
+    {
+      icon: Rocket,
+      color: "from-emerald-500 to-teal-400",
+      titleFr: "Prêt à décoller ?",
+      titleEn: "Ready to launch?",
+      descFr: "Notre équipe examine votre profil sous 24-48h. Vous recevrez un email dès que votre accès complet sera activé.",
+      descEn: "Our team reviews your profile within 24-48h. You'll receive an email once your full access is activated.",
+    },
+  ];
 
   // Pending review state
   if (isPendingReview && !needsOnboarding) {
@@ -124,6 +197,68 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
     );
   }
 
+  // Platform tour after submission
+  if (showTour) {
+    const slide = tourSlides[tourStep];
+    const isLast = tourStep === tourSlides.length - 1;
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="max-w-lg w-full"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={tourStep}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.35 }}
+              className="dash-card rounded-2xl p-8 sm:p-10 text-center"
+            >
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${slide.color} flex items-center justify-center mx-auto mb-5 shadow-lg`}>
+                <slide.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-lg font-display font-bold dash-text mb-2">
+                {lang === "fr" ? slide.titleFr : slide.titleEn}
+              </h3>
+              <p className="text-sm dash-muted-text leading-relaxed max-w-sm mx-auto mb-8">
+                {lang === "fr" ? slide.descFr : slide.descEn}
+              </p>
+
+              {/* Progress dots */}
+              <div className="flex justify-center gap-2 mb-6">
+                {tourSlides.map((_, i) => (
+                  <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === tourStep ? "w-6 bg-[hsl(var(--primary))]" : "w-1.5 bg-[hsl(var(--dash-border))]"
+                  }`} />
+                ))}
+              </div>
+
+              <Button
+                variant="hero"
+                className="rounded-full px-8 py-5 text-sm group"
+                onClick={() => {
+                  if (isLast) {
+                    onComplete();
+                  } else {
+                    setTourStep(tourStep + 1);
+                  }
+                }}
+              >
+                {isLast
+                  ? (lang === "fr" ? "C'est parti !" : "Let's go!")
+                  : (lang === "fr" ? "Suivant" : "Next")}
+                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    );
+  }
+
   // Onboarding form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,10 +284,11 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
     if (error) {
       toast({ variant: "destructive", title: "Error", description: error.message });
     } else {
-      toast({ title: lang === "fr" ? "Profil envoyé !" : "Profile submitted!", description: lang === "fr" ? "Votre profil est en cours de vérification." : "Your profile is under review." });
-      onComplete();
+      setShowTour(true);
     }
   };
+
+  const selectedPhoneCode = PHONE_CODES.find(c => c.code === phoneCode);
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-4">
@@ -161,18 +297,33 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
         animate={{ opacity: 1, y: 0 }}
         className="max-w-lg w-full"
       >
+        {/* Header with explanation */}
         <div className="text-center mb-6">
           <div className="w-14 h-14 rounded-full bg-[hsl(var(--primary)/.1)] flex items-center justify-center mx-auto mb-4">
-            <FileText className="w-7 h-7 text-[hsl(var(--primary))]" />
+            <Shield className="w-7 h-7 text-[hsl(var(--primary))]" />
           </div>
           <h2 className="text-xl font-display font-bold dash-text">
-            {lang === "fr" ? "Complétez votre profil" : "Complete Your Profile"}
+            {lang === "fr" ? "Vérification de votre profil" : "Profile Verification"}
           </h2>
-          <p className="text-sm dash-muted-text mt-1">
+          <p className="text-sm dash-muted-text mt-2 max-w-md mx-auto leading-relaxed">
             {lang === "fr"
-              ? "Pour activer votre espace ambassadeur, veuillez remplir les informations suivantes."
-              : "To activate your ambassador space, please fill in the following information."}
+              ? "Sofara est une plateforme sélective. Pour garantir la sécurité de notre réseau et la qualité de nos collaborations, nous vérifions chaque profil avant d'accorder l'accès aux outils."
+              : "Sofara is a selective platform. To ensure network security and collaboration quality, we verify every profile before granting tool access."}
           </p>
+        </div>
+
+        {/* Trust badges */}
+        <div className="grid grid-cols-3 gap-2 mb-5">
+          {[
+            { icon: Lock, labelFr: "Accès sécurisé", labelEn: "Secure access" },
+            { icon: Eye, labelFr: "Données protégées", labelEn: "Data protected" },
+            { icon: Users, labelFr: "Réseau vérifié", labelEn: "Verified network" },
+          ].map((badge, i) => (
+            <div key={i} className="flex flex-col items-center gap-1.5 py-2.5 px-2 rounded-xl bg-[hsl(var(--dash-muted)/.5)] border border-[hsl(var(--dash-border)/.5)]">
+              <badge.icon className="w-4 h-4 text-[hsl(var(--primary))]" />
+              <span className="text-[10px] dash-muted-text text-center font-medium">{lang === "fr" ? badge.labelFr : badge.labelEn}</span>
+            </div>
+          ))}
         </div>
 
         <form onSubmit={handleSubmit} className="dash-card rounded-2xl p-5 sm:p-6 space-y-4">
@@ -183,14 +334,28 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
 
           <div>
             <Label className="text-xs dash-muted-text">{lang === "fr" ? "Téléphone" : "Phone"} <span className="text-destructive">*</span></Label>
-            <div className="grid grid-cols-[100px_1fr] gap-2 mt-1">
+            <div className="grid grid-cols-[160px_1fr] gap-2 mt-1">
               <Select value={phoneCode} onValueChange={setPhoneCode}>
                 <SelectTrigger className="bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))] text-sm">
-                  <SelectValue />
+                  <SelectValue>
+                    {selectedPhoneCode && (
+                      <span className="flex items-center gap-1.5">
+                        <span>{selectedPhoneCode.flag}</span>
+                        <span className="truncate">{selectedPhoneCode.name}</span>
+                        <span className="text-[hsl(var(--dash-muted-fg))]">{selectedPhoneCode.code}</span>
+                      </span>
+                    )}
+                  </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-60">
                   {PHONE_CODES.map((c) => (
-                    <SelectItem key={c} value={c}>{c}</SelectItem>
+                    <SelectItem key={`${c.code}-${c.name}`} value={c.code}>
+                      <span className="flex items-center gap-2">
+                        <span>{c.flag}</span>
+                        <span>{c.name}</span>
+                        <span className="text-muted-foreground">{c.code}</span>
+                      </span>
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -251,6 +416,12 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
           <Button type="submit" variant="hero" className="w-full rounded-xl py-5 text-sm" disabled={loading || !acceptedTerms || !acceptedConduct}>
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "fr" ? "Soumettre ma candidature" : "Submit Application"}
           </Button>
+
+          <p className="text-[10px] dash-muted-text text-center opacity-60">
+            {lang === "fr"
+              ? "Votre candidature sera examinée sous 24-48h par notre équipe."
+              : "Your application will be reviewed within 24-48h by our team."}
+          </p>
         </form>
       </motion.div>
     </div>
