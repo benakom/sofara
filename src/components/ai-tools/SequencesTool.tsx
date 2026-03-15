@@ -36,7 +36,7 @@ const channelIcons: Record<string, typeof Mail> = {
   email: Mail,
   whatsapp: MessageCircle,
   call: Phone,
-  sms: Sms,
+  sms: Smartphone,
 };
 
 const channelColors: Record<string, string> = {
