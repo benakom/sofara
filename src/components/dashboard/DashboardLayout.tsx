@@ -211,7 +211,16 @@ const DashboardLayout = () => {
 
         {/* Page content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <Outlet />
+          {showOnboarding ? (
+            <OnboardingGate
+              needsOnboarding={needsOnboarding}
+              isPendingReview={isPending}
+              isRejected={isRejected}
+              onComplete={refetch}
+            />
+          ) : (
+            <Outlet />
+          )}
         </main>
       </div>
 
