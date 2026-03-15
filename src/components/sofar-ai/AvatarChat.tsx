@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Send, Loader2, X, Building2, TrendingUp, BarChart3, Scale, Sparkles } from "lucide-react";
+import { Send, Loader2, X, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
 import sofaraAvatar from "@/assets/sofara-ai-avatar.png";
-import ChatModeSelector from "./ChatModeSelector";
 
 type Msg = { role: "user" | "assistant"; content: string };
-type ChatMode = "general" | "evaluate" | "compare" | "market";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-chat`;
 
@@ -19,7 +17,6 @@ export default function AvatarChat() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [mode, setMode] = useState<ChatMode>("general");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -61,7 +58,7 @@ export default function AvatarChat() {
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
-        body: JSON.stringify({ messages: updated, mode: mode !== "general" ? mode : undefined }),
+        body: JSON.stringify({ messages: updated }),
       });
 
       if (!resp.ok) {
@@ -107,27 +104,16 @@ export default function AvatarChat() {
     }
   };
 
-  const modeConfig: Record<ChatMode, { icon: typeof Building2; label: string; color: string }> = {
-    general: { icon: Sparkles, label: lang === "fr" ? "Expert Dubai" : "Dubai Expert", color: "from-[hsl(var(--primary))] to-[hsl(var(--accent))]" },
-    evaluate: { icon: BarChart3, label: lang === "fr" ? "Évaluer un projet" : "Evaluate Project", color: "from-emerald-500 to-teal-500" },
-    compare: { icon: Scale, label: lang === "fr" ? "Comparer" : "Compare", color: "from-amber-500 to-orange-500" },
-    market: { icon: TrendingUp, label: lang === "fr" ? "Analyse Marché" : "Market Analysis", color: "from-blue-500 to-indigo-500" },
-  };
-
   const quickPrompts = lang === "fr" ? [
-    { text: "Prix moyens JVC vs Business Bay", mode: "market" as ChatMode },
-    { text: "Évalue : Emaar, Downtown, 2BR, 2,400 AED/sqft, 70/30", mode: "evaluate" as ChatMode },
-    { text: "Top 3 zones ROI locatif 2025", mode: "market" as ChatMode },
-    { text: "Sobha vs Emaar pour un investisseur", mode: "compare" as ChatMode },
-    { text: "Golden Visa : conditions et avantages", mode: "general" as ChatMode },
-    { text: "Comment gérer l'objection 'c'est trop cher'", mode: "general" as ChatMode },
+    "Prix moyens JVC vs Business Bay",
+    "Évalue : Emaar, Downtown, 2BR, 2400 AED/sqft, 70/30",
+    "Top 3 zones ROI locatif 2025",
+    "Golden Visa : conditions",
   ] : [
-    { text: "Average prices JVC vs Business Bay", mode: "market" as ChatMode },
-    { text: "Evaluate: Emaar, Downtown, 2BR, 2,400 AED/sqft, 70/30", mode: "evaluate" as ChatMode },
-    { text: "Top 3 areas for rental ROI 2025", mode: "market" as ChatMode },
-    { text: "Sobha vs Emaar for an investor", mode: "compare" as ChatMode },
-    { text: "Golden Visa: conditions & benefits", mode: "general" as ChatMode },
-    { text: "How to handle 'it's too expensive' objection", mode: "general" as ChatMode },
+    "Average prices JVC vs Business Bay",
+    "Evaluate: Emaar, Downtown, 2BR, 2400 AED/sqft, 70/30",
+    "Top 3 areas for rental ROI 2025",
+    "Golden Visa: conditions",
   ];
 
   if (!isOpen) {
@@ -148,12 +134,12 @@ export default function AvatarChat() {
   return (
     <div className="fixed bottom-6 right-6 z-50 w-[420px] h-[620px] flex flex-col rounded-2xl shadow-2xl border border-[hsl(var(--border))] overflow-hidden bg-[hsl(var(--card))]">
       {/* Header */}
-      <div className={`bg-gradient-to-r ${modeConfig[mode].color} p-3.5 flex items-center gap-3 relative overflow-hidden`}>
+      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] p-3.5 flex items-center gap-3 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h20v20H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M10%200v20M0%2010h20%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%220.5%22%2F%3E%3C%2Fsvg%3E')] opacity-50" />
         <img src={sofaraAvatar} alt="SofarAI" className="relative w-11 h-11 rounded-full object-cover border-2 border-white/30 shadow-lg" />
         <div className="flex-1 min-w-0 relative">
           <h3 className="text-sm font-display font-bold text-white flex items-center gap-1.5">
-            SofarAI Property Expert
+            SofarAI
             <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded-full font-medium">PRO</span>
           </h3>
           <p className="text-[10px] text-white/70 flex items-center gap-1">
@@ -165,9 +151,6 @@ export default function AvatarChat() {
           <X className="w-4 h-4" />
         </button>
       </div>
-
-      {/* Mode selector */}
-      <ChatModeSelector mode={mode} onModeChange={setMode} modeConfig={modeConfig} />
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
@@ -182,17 +165,14 @@ export default function AvatarChat() {
             </h3>
             <p className="text-[11px] text-[hsl(var(--muted-foreground))] leading-relaxed mb-4 max-w-[280px]">
               {lang === "fr"
-                ? "Prix par zone, évaluation de projets, ROI, capital appreciation, scoring, objections… Je suis votre directeur commercial IA."
-                : "Prices by area, project evaluation, ROI, capital appreciation, scoring, objections… I'm your AI sales director."}
+                ? "Prix, évaluation, ROI, objections, scoring… Je suis votre directeur commercial IA."
+                : "Prices, evaluation, ROI, objections, scoring… I'm your AI sales director."}
             </p>
             <div className="flex flex-wrap gap-1.5 justify-center">
               {quickPrompts.map(q => (
-                <button
-                  key={q.text}
-                  onClick={() => { setMode(q.mode); sendMessage(q.text); }}
-                  className="text-[10px] px-2.5 py-1.5 rounded-full border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--primary)/.08)] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/.3)] transition-all leading-tight"
-                >
-                  {q.text}
+                <button key={q} onClick={() => sendMessage(q)}
+                  className="text-[10px] px-2.5 py-1.5 rounded-full border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--primary)/.08)] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/.3)] transition-all leading-tight">
+                  {q}
                 </button>
               ))}
             </div>
@@ -210,7 +190,7 @@ export default function AvatarChat() {
                 : "bg-[hsl(var(--muted))] text-[hsl(var(--foreground))] rounded-bl-md border border-[hsl(var(--border))]"
             }`}>
               {msg.role === "assistant" ? (
-                <div className="prose prose-sm prose-invert max-w-none prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-[hsl(var(--primary))] prose-table:text-[11px] prose-th:px-2 prose-td:px-2 prose-th:py-1 prose-td:py-1">
+                <div className="prose prose-sm max-w-none prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-[hsl(var(--primary))] prose-table:text-[11px]">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (
@@ -248,21 +228,13 @@ export default function AvatarChat() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={
-              mode === "evaluate" ? (lang === "fr" ? "Décrivez le projet : développeur, zone, type, prix/sqft, plan…" : "Describe the project: developer, area, type, price/sqft, plan…")
-              : mode === "compare" ? (lang === "fr" ? "Quels projets ou zones comparer ?" : "Which projects or areas to compare?")
-              : mode === "market" ? (lang === "fr" ? "Quelle zone ou quel type de bien analyser ?" : "Which area or property type to analyze?")
-              : (lang === "fr" ? "Posez votre question immobilier…" : "Ask your real estate question…")
-            }
+            placeholder={lang === "fr" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
             rows={1}
             className="flex-1 min-h-[36px] max-h-[80px] px-3.5 py-2 rounded-xl bg-[hsl(var(--muted))] border border-[hsl(var(--border))] text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)] resize-none"
             disabled={isLoading}
           />
-          <button
-            type="submit"
-            disabled={isLoading || !input.trim()}
-            className={`w-9 h-9 rounded-xl bg-gradient-to-r ${modeConfig[mode].color} text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-40 shrink-0 shadow-md`}
-          >
+          <button type="submit" disabled={isLoading || !input.trim()}
+            className="w-9 h-9 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-40 shrink-0 shadow-md">
             <Send className="w-3.5 h-3.5" />
           </button>
         </div>

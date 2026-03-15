@@ -138,28 +138,9 @@ serve(async (req) => {
       });
     }
 
-    const { messages, mode } = await req.json();
+    const { messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
-
-    let systemPrompt = SYSTEM_PROMPT;
-    
-    // Add mode-specific context
-    if (mode === "evaluate") {
-      systemPrompt += `\n\n## MODE ACTIF : ÉVALUATION DE PROJET
-Tu es en mode évaluation. L'ambassadeur va te donner les détails d'un projet off-plan.
-Tu DOIS :
-1. Donner un SCORE /100 avec détail par critère
-2. Comparer avec le marché
-3. Donner un verdict clair (🟢🟡🟠🔴)
-4. Recommander : acheter, négocier, ou passer`;
-    } else if (mode === "compare") {
-      systemPrompt += `\n\n## MODE ACTIF : COMPARAISON
-Tu es en mode comparaison. Compare les projets/zones demandés sur : prix/sqft, ROI, capital appreciation, développeur, plan de paiement. Utilise un tableau comparatif.`;
-    } else if (mode === "market") {
-      systemPrompt += `\n\n## MODE ACTIF : ANALYSE MARCHÉ
-Tu es en mode analyse marché. Donne les tendances actuelles, prix, rendements et prévisions pour la zone ou le type de bien demandé.`;
-    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
