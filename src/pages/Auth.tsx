@@ -94,13 +94,39 @@ const Auth = () => {
 
   const benefits = lang === "fr"
     ? [
-        "Commission de 2,5% sur chaque vente",
+        "Commission de 3% sur chaque vente",
+        "Commission moyenne : €9 200+ par transaction",
         "Outils marketing IA inclus",
         "Transparence totale sur vos gains",
         "Formation et accompagnement premium",
       ]
+    : lang === "ar"
+    ? [
+        "عمولة 3% على كل عملية بيع",
+        "متوسط العمولة: €9,200+ لكل صفقة",
+        "أدوات تسويق بالذكاء الاصطناعي",
+        "شفافية كاملة على أرباحك",
+        "تدريب ودعم متميز",
+      ]
+    : lang === "es"
+    ? [
+        "Comisión del 3% en cada venta",
+        "Comisión media: €9.200+ por transacción",
+        "Herramientas de marketing IA incluidas",
+        "Transparencia total en tus ganancias",
+        "Formación y soporte premium",
+      ]
+    : lang === "ru"
+    ? [
+        "Комиссия 3% с каждой продажи",
+        "Средняя комиссия: €9 200+ за сделку",
+        "ИИ-инструменты маркетинга включены",
+        "Полная прозрачность доходов",
+        "Премиальное обучение и поддержка",
+      ]
     : [
-        "2.5% commission on every sale",
+        "3% commission on every sale",
+        "Average commission: €9,200+ per transaction",
         "AI-powered marketing tools included",
         "Full transparency on your earnings",
         "Premium training & support",
