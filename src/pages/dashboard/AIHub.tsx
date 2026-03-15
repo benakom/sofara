@@ -10,7 +10,7 @@ import SequencesTool from "@/components/ai-tools/SequencesTool";
 import VoiceAgentTool from "@/components/ai-tools/VoiceAgentTool";
 import AutoScoreTool from "@/components/ai-tools/AutoScoreTool";
 
-type Tool = "roleplay" | "sequences" | "voice" | "autoscore" | "qualifier";
+type Tool = "roleplay" | "sequences" | "voice" | "autoscore";
 
 const AIHub = () => {
   const { lang } = useLanguage();
