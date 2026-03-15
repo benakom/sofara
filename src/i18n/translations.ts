@@ -184,7 +184,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "faq.q2": "Mon identité est-elle visible par les acheteurs ?",
     "faq.a2": "Non. Votre identité est 100% protégée. Les acheteurs ne voient jamais votre nom ni ne savent que vous touchez une commission. La discrétion est au cœur de notre plateforme.",
     "faq.q3": "Combien puis-je gagner concrètement ?",
-    "faq.a3": "Les commissions varient de €6 000 à €30 000 par transaction selon le bien et le projet. Nos top ambassadeurs dépassent €5 000/mois.",
+    "faq.a3": "Les commissions varient de €9 200 à €30 000 par transaction selon le bien et le projet. Nos top ambassadeurs dépassent €5 000/mois.",
     "faq.q4": "Faut-il une licence immobilière ?",
     "faq.a4": "Non. Vous n'êtes pas agent immobilier, vous êtes un apporteur d'affaires. La structure juridique de Sofara est conçue pour que vous exerciez cette activité en toute légalité dans votre pays.",
     "faq.q5": "Comment sont versées les commissions ?",
