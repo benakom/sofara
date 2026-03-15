@@ -59,7 +59,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
               <Bot className="w-3.5 h-3.5 text-white" />
             </div>
           )}
-          <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
+          <div className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-sm overflow-hidden ${
             msg.role === "user"
               ? "bg-[hsl(var(--primary))] text-white rounded-br-md"
               : "bg-white border border-[hsl(var(--dash-border))] dash-text rounded-bl-md"
