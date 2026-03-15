@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Target, Mail, Phone, MessageCircle, BarChart3, ShieldCheck, Sparkles } from "lucide-react";
+import { Target, Mail, Phone, MessageCircle, BarChart3, ShieldCheck, Sparkles, ChevronDown } from "lucide-react";
 
 export type AgentMode = "qualifier" | "email" | "script_appel" | "whatsapp" | "recommandation" | "kyc_check";
 
@@ -142,36 +143,42 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
       </div>
 
       <div className={`space-y-2 ${mobileOpen ? "block" : "hidden"} lg:block`}>
-      {tools.map((tool) => {
-        const disabled = tool.needsLead && !hasSelectedLead;
-        const isActive = activeMode === tool.mode;
+        {tools.map((tool) => {
+          const disabled = tool.needsLead && !hasSelectedLead;
+          const isActive = activeMode === tool.mode;
 
-        return (
-          <button
-            key={tool.mode}
-            onClick={() => !disabled && onSelectMode(tool.mode, lang === "fr" ? tool.promptFr : tool.promptEn)}
-            disabled={disabled}
-            className={`w-full dash-card rounded-xl p-3 text-left transition-all group ${
-              isActive ? `ring-2 ${activeBorderMap[tool.color]} shadow-sm` : ""
-            } ${disabled ? "opacity-40 cursor-not-allowed" : "hover:shadow-sm cursor-pointer"}`}
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <div className={`p-1.5 rounded-lg transition-colors ${colorMap[tool.color]}`}>
-                <tool.icon className="w-3.5 h-3.5" />
+          return (
+            <button
+              key={tool.mode}
+              onClick={() => {
+                if (!disabled) {
+                  onSelectMode(tool.mode, lang === "fr" ? tool.promptFr : tool.promptEn);
+                  setMobileOpen(false);
+                }
+              }}
+              disabled={disabled}
+              className={`w-full dash-card rounded-xl p-3 text-left transition-all group ${
+                isActive ? `ring-2 ${activeBorderMap[tool.color]} shadow-sm` : ""
+              } ${disabled ? "opacity-40 cursor-not-allowed" : "hover:shadow-sm cursor-pointer"}`}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <div className={`p-1.5 rounded-lg transition-colors ${colorMap[tool.color]}`}>
+                  <tool.icon className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-medium dash-text">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
               </div>
-              <span className="text-xs font-medium dash-text">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
-            </div>
-            <p className="text-[10px] dash-muted-text leading-relaxed">
-              {lang === "fr" ? tool.descFr : tool.descEn}
-            </p>
-            {disabled && (
-              <p className="text-[9px] text-amber-500 mt-1 italic">
-                {lang === "fr" ? "↑ Sélectionnez un lead d'abord" : "↑ Select a lead first"}
+              <p className="text-[10px] dash-muted-text leading-relaxed">
+                {lang === "fr" ? tool.descFr : tool.descEn}
               </p>
-            )}
-          </button>
-        );
-      })}
+              {disabled && (
+                <p className="text-[9px] text-[hsl(var(--warning,40_96%_50%))] mt-1 italic">
+                  {lang === "fr" ? "↑ Sélectionnez un lead d'abord" : "↑ Select a lead first"}
+                </p>
+              )}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
