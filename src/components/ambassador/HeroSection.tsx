@@ -11,7 +11,7 @@ const HeroSection = () => {
     <section className="relative min-h-[100svh] overflow-hidden flex items-center">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={dubaiHero1} alt="Dubai skyline" className="w-full h-full object-cover opacity-25" />
+        <img src={dubaiHero1} alt="Dubai skyline" className="w-full h-full object-cover opacity-25" loading="eager" fetchPriority="high" decoding="async" />
       </div>
 
       {/* Overlays */}
