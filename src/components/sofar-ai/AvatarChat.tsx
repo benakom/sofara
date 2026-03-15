@@ -108,7 +108,7 @@ export default function AvatarChat() {
 
   if (!isOpen) {
     return (
-      <button onClick={() => setIsOpen(true)} className="fixed bottom-5 right-5 z-50 group">
+      <button onClick={() => setIsOpen(true)} className="fixed bottom-4 right-3 sm:bottom-5 sm:right-5 z-50 group">
         <div className="relative">
           <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 opacity-50 blur-xl group-hover:opacity-80 transition-opacity animate-pulse" />
           <img src={sofaraAvatar} alt="SofarAI" className="relative w-14 h-14 rounded-full object-cover border-2 border-white/20 shadow-2xl group-hover:scale-110 transition-transform" />
@@ -124,8 +124,11 @@ export default function AvatarChat() {
   }
 
   return (
-    <div ref={panelRef} className="fixed bottom-5 right-5 z-50 w-[380px] max-w-[calc(100vw-1.5rem)] h-[520px] max-h-[calc(100vh-6rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden"
-      style={{ background: "linear-gradient(145deg, hsl(250, 30%, 16%), hsl(230, 25%, 12%))", border: "1px solid hsl(250, 20%, 24%)" }}>
+    <div
+      ref={panelRef}
+      className="fixed bottom-4 right-2 sm:bottom-5 sm:right-5 z-50 w-[calc(100vw-1rem)] sm:w-[380px] max-w-[calc(100vw-1rem)] h-[520px] max-h-[calc(100dvh-6rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden"
+      style={{ background: "linear-gradient(145deg, hsl(250, 30%, 16%), hsl(230, 25%, 12%))", border: "1px solid hsl(250, 20%, 24%)" }}
+    >
       {/* Header */}
       <div className="px-4 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg, hsl(252, 60%, 55%), hsl(200, 80%, 50%))" }}>
         <img src={sofaraAvatar} alt="SofarAI" className="w-9 h-9 rounded-full object-cover border-2 border-white/30 shadow-lg" />

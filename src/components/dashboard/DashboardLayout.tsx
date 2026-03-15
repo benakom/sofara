@@ -49,6 +49,10 @@ const DashboardLayout = () => {
     if (!loading && !user) navigate("/auth");
   }, [user, loading, navigate]);
 
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
   if (loading || profileLoading) {
     return (
       <div className="min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
