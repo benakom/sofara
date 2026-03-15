@@ -251,27 +251,45 @@ export type Database = {
       }
       profiles: {
         Row: {
+          accepted_terms: boolean
+          accepted_terms_at: string | null
           country: string | null
           created_at: string
           full_name: string | null
           id: string
           phone: string | null
+          profile_type: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
           updated_at: string
         }
         Insert: {
+          accepted_terms?: boolean
+          accepted_terms_at?: string | null
           country?: string | null
           created_at?: string
           full_name?: string | null
           id: string
           phone?: string | null
+          profile_type?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
           updated_at?: string
         }
         Update: {
+          accepted_terms?: boolean
+          accepted_terms_at?: string | null
           country?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
           phone?: string | null
+          profile_type?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
           updated_at?: string
         }
         Relationships: []
@@ -302,6 +320,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_profile_status: { Args: { _user_id: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
