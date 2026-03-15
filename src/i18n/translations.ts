@@ -1041,7 +1041,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.titleHighlight": "clara y generosa",
     "commission.description": "En Sofara, sin sorpresas. Una tarifa única, pública y garantizada.",
     "commission.badgeSingle": "Comisión única",
-    "commission.singleDesc": "En cada transacción cerrada a través de tu referencia, ganas el 2.5% del valor total de la propiedad.",
+    "commission.singleDesc": "En cada transacción cerrada a través de tu referencia, ganas el 3% del valor total de la propiedad.",
     "commission.ofValue": "del valor de la propiedad",
     "commission.note": "Las comisiones se calculan sobre el valor total de la propiedad y se pagan automáticamente tras el cierre.",
     "legal.back": "Volver",
