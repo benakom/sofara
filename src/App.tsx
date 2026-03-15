@@ -25,6 +25,7 @@ import Commissions from "./pages/dashboard/Commissions";
 import Payments from "./pages/dashboard/Payments";
 import KycAml from "./pages/dashboard/KycAml";
 import SofarAI from "./pages/dashboard/SofarAI";
+import AIHub from "./pages/dashboard/AIHub";
 import BonusRewards from "./pages/dashboard/BonusRewards";
 import Community from "./pages/dashboard/Community";
 import Simulator from "./pages/dashboard/Simulator";
