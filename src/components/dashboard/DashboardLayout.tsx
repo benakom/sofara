@@ -209,6 +209,9 @@ const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
+
+      {/* SofarAI Avatar Chat */}
+      <AvatarChat />
     </div>
   );
 };
