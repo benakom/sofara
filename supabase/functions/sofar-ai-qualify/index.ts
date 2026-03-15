@@ -76,11 +76,19 @@ Guide la vérification KYC/AML :
 - DLD fees : 4% + admin fees
 - Pas d'impôt sur le revenu, pas de taxe foncière récurrente`;
 
+function validateMessages(messages: unknown): { role: string; content: string }[] {
+  if (!Array.isArray(messages) || messages.length === 0 || messages.length > 20) {
+    throw new Error("INVALID_INPUT");
+  }
+  return messages
+    .filter((m: any) => typeof m === "object" && ["user", "assistant"].includes(m.role))
+    .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, 4000) }));
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    // Authenticate
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return new Response(JSON.stringify({ error: "Non autorisé" }), {
@@ -95,15 +103,16 @@ serve(async (req) => {
     );
 
     const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
-    if (claimsError || !claimsData?.claims?.sub) {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
+    if (userError || !user) {
       return new Response(JSON.stringify({ error: "Session invalide" }), {
         status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const userId = claimsData.claims.sub;
+    const userId = user.id;
     const { messages, mode, leadId } = await req.json();
+    const safeMsgs = validateMessages(messages);
 
     // Fetch user's leads for context
     let leadsContext = "";
@@ -135,7 +144,11 @@ serve(async (req) => {
     const modeInstruction = mode ? `\n\nMODE ACTIF: ${mode.toUpperCase()}. Réponds selon ce mode.` : "";
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!LOVABLE_API_KEY) {
+      return new Response(JSON.stringify({ error: "Service IA indisponible" }), {
+        status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -147,7 +160,7 @@ serve(async (req) => {
         model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: SYSTEM_PROMPT + leadsContext + modeInstruction },
-          ...messages,
+          ...safeMsgs,
         ],
         stream: true,
       }),
@@ -164,8 +177,7 @@ serve(async (req) => {
           status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      const t = await response.text();
-      console.error("AI gateway error:", response.status, t);
+      console.error("AI gateway error:", response.status);
       return new Response(JSON.stringify({ error: "Erreur du service IA" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -176,7 +188,7 @@ serve(async (req) => {
     });
   } catch (e) {
     console.error("qualify error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Erreur interne du serveur" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

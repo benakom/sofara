@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -48,6 +49,18 @@ You test the ambassador's knowledge of the ultra-luxury market.`,
   },
 };
 
+const VALID_SCENARIOS = Object.keys(scenarios);
+const VALID_LANGS = ["fr", "en"];
+
+function validateMessages(messages: unknown): { role: string; content: string }[] {
+  if (!Array.isArray(messages) || messages.length === 0 || messages.length > 20) {
+    throw new Error("INVALID_INPUT");
+  }
+  return messages
+    .filter((m: any) => typeof m === "object" && ["user", "assistant"].includes(m.role))
+    .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, 4000) }));
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -59,13 +72,35 @@ serve(async (req) => {
       });
     }
 
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } }
+    );
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
+    if (userError || !user) {
+      return new Response(JSON.stringify({ error: "Session invalide" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { messages, scenario = "skeptical", lang = "fr" } = await req.json();
+    const safeMsgs = validateMessages(messages);
+    const safeScenario = VALID_SCENARIOS.includes(scenario) ? scenario : "skeptical";
+    const safeLang = VALID_LANGS.includes(lang) ? lang : "fr";
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!LOVABLE_API_KEY) {
+      return new Response(JSON.stringify({ error: "Service IA indisponible" }), {
+        status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
-    const scenarioPrompt = scenarios[scenario]?.[lang as "fr" | "en"] || scenarios.skeptical.fr;
+    const scenarioPrompt = scenarios[safeScenario][safeLang as "fr" | "en"];
 
-    const systemPrompt = lang === "fr"
+    const systemPrompt = safeLang === "fr"
       ? `Tu es un simulateur de roleplay de vente immobilière Dubai pour entraîner des ambassadeurs Sofara.
 
 ${scenarioPrompt}
@@ -107,7 +142,7 @@ RULES:
         model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
-          ...messages,
+          ...safeMsgs,
         ],
         stream: true,
       }),
@@ -124,8 +159,7 @@ RULES:
           status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      const t = await response.text();
-      console.error("AI error:", response.status, t);
+      console.error("AI error:", response.status);
       return new Response(JSON.stringify({ error: "Erreur du service IA" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -136,7 +170,7 @@ RULES:
     });
   } catch (e) {
     console.error("roleplay error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Erreur interne du serveur" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

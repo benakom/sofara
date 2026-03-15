@@ -17,11 +17,7 @@ export const useAdmin = () => {
 
     const checkRole = async () => {
       const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id)
-        .eq("role", "superadmin")
-        .maybeSingle();
+        .rpc("is_superadmin");
 
       setIsSuperAdmin(!!data && !error);
       setLoading(false);
