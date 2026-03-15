@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Bot, Trophy, MessageCircle, LogOut,
-  Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays
+  Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
+  Sparkles
 } from "lucide-react";
 import { useEffect } from "react";
 
