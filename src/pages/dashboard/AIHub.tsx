@@ -88,7 +88,7 @@ const AIHub = () => {
     }
   };
 
-  if (activeTool && activeTool !== "qualifier") {
+  if (activeTool) {
     return (
       <motion.div
         initial={{ opacity: 0 }}
