@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Zap, Mail, MessageCircle, Phone, Sms, Loader2, Copy, Check, ChevronDown } from "lucide-react";
+import { Zap, Mail, MessageCircle, Phone, Smartphone, Loader2, Copy, Check, ChevronDown } from "lucide-react";
 import LeadSelector from "@/components/sofar-ai/LeadSelector";
 
 interface Lead {
