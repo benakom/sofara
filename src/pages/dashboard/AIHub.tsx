@@ -146,67 +146,77 @@ const AIHub = () => {
 
   if (activeTool) {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100vh-7rem)] flex flex-col">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100dvh-7rem)] min-h-0 w-full max-w-full overflow-x-hidden flex flex-col">
         <button onClick={() => setActiveTool(null)}
           className="flex items-center gap-2 text-sm dash-muted-text hover:text-[hsl(var(--dash-fg))] transition-colors mb-4">
           <ArrowLeft className="w-4 h-4" />
           {lang === "fr" ? "Retour à SofarAI" : "Back to SofarAI"}
         </button>
-        <div className="flex-1 min-h-0">{renderTool()}</div>
+        <div className="flex-1 min-h-0 w-full overflow-x-hidden">{renderTool()}</div>
       </motion.div>
     );
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-      className="h-[calc(100vh-7rem)] flex flex-col gap-3"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="h-[calc(100dvh-7rem)] min-h-0 w-full max-w-full overflow-x-hidden flex flex-col gap-3"
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+    >
       {/* Main chat */}
-      <div className="flex-1 min-h-0 flex flex-col rounded-2xl overflow-hidden shadow-lg"
-        style={{ background: "linear-gradient(180deg, hsl(250, 25%, 14%), hsl(230, 20%, 10%))", border: "1px solid hsl(250, 15%, 22%)" }}>
-
+      <div
+        className="flex-1 min-h-0 min-w-0 w-full flex flex-col rounded-2xl overflow-hidden shadow-lg"
+        style={{ background: "linear-gradient(180deg, hsl(250, 25%, 14%), hsl(230, 20%, 10%))", border: "1px solid hsl(250, 15%, 22%)" }}
+      >
         {/* Header */}
-        <div className="flex items-center gap-3 px-4 py-3 shrink-0"
-          style={{ background: "linear-gradient(135deg, hsl(252, 55%, 50%), hsl(200, 75%, 48%))", borderBottom: "1px solid hsl(252, 40%, 45%)" }}>
-          <div className="relative">
+        <div
+          className="flex items-center gap-3 px-3 sm:px-4 py-3 shrink-0 min-w-0"
+          style={{ background: "linear-gradient(135deg, hsl(252, 55%, 50%), hsl(200, 75%, 48%))", borderBottom: "1px solid hsl(252, 40%, 45%)" }}
+        >
+          <div className="relative shrink-0">
             <img src={sofaraAvatar} alt="SofarAI" className="w-10 h-10 rounded-full object-cover border-2 border-white/25 shadow-lg" />
             <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[hsl(252,55%,50%)]" />
           </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <h1 className="text-base font-bold text-white">SofarAI</h1>
-              <span className="text-[9px] font-bold bg-white/15 text-white/90 px-2 py-0.5 rounded-full backdrop-blur-sm">EXPERT</span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <h1 className="text-base font-bold text-white truncate">SofarAI</h1>
+              <span className="text-[9px] font-bold bg-white/15 text-white/90 px-2 py-0.5 rounded-full backdrop-blur-sm shrink-0">EXPERT</span>
             </div>
-            <p className="text-[11px] text-white/60">
+            <p className="text-[11px] text-white/60 truncate">
               {lang === "fr" ? "Expert immobilier Dubai • En ligne" : "Dubai Property Expert • Online"}
             </p>
           </div>
-          <Sparkles className="w-5 h-5 text-white/30" />
+          <Sparkles className="w-5 h-5 text-white/30 shrink-0" />
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ scrollbarWidth: "thin" }}>
+        <div className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 sm:p-4 space-y-3" style={{ scrollbarWidth: "thin" }}>
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full text-center px-4">
+            <div className="flex flex-col items-center justify-center h-full text-center px-2 sm:px-4 min-w-0">
               <div className="relative mb-5">
-                <div className="absolute -inset-6 rounded-full opacity-40 blur-3xl animate-pulse"
-                  style={{ background: "radial-gradient(circle, hsl(252, 60%, 55%) 0%, hsl(200, 70%, 50%) 100%)" }} />
+                <div
+                  className="absolute -inset-6 rounded-full opacity-40 blur-3xl animate-pulse"
+                  style={{ background: "radial-gradient(circle, hsl(252, 60%, 55%) 0%, hsl(200, 70%, 50%) 100%)" }}
+                />
                 <img src={sofaraAvatar} alt="SofarAI" className="relative w-20 h-20 rounded-full object-cover shadow-2xl border-2 border-violet-400/30" />
               </div>
               <h2 className="text-lg font-bold text-white mb-1">
                 {lang === "fr" ? "Bienvenue 👋" : "Welcome 👋"}
               </h2>
-              <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm">
+              <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm break-words">
                 {lang === "fr"
                   ? "Expert IA immobilier Dubai. Prix, scoring, ROI, objections… posez tout !"
                   : "Dubai real estate AI expert. Prices, scoring, ROI, objections… ask anything!"}
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full max-w-lg">
-                {quickPrompts.map(q => (
-                  <button key={q} onClick={() => sendMessage(q)}
-                    className="text-[12px] sm:text-[13px] px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:border-violet-400/40 transition-all text-left"
-                    style={{ background: "hsl(250, 18%, 18%)", border: "1px solid hsl(250, 12%, 26%)" }}>
+              <div className="grid grid-cols-1 min-[360px]:grid-cols-2 sm:grid-cols-3 gap-2 w-full max-w-full sm:max-w-lg">
+                {quickPrompts.map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => sendMessage(q)}
+                    className="text-[12px] sm:text-[13px] px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:border-violet-400/40 transition-all text-left break-words"
+                    style={{ background: "hsl(250, 18%, 18%)", border: "1px solid hsl(250, 12%, 26%)" }}
+                  >
                     {q}
                   </button>
                 ))}
@@ -215,24 +225,24 @@ const AIHub = () => {
           )}
 
           {messages.map((msg, i) => (
-            <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-1 duration-150`}>
+            <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-1 duration-150`}>
               {msg.role === "assistant" && (
                 <img src={sofaraAvatar} alt="AI" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0 shadow-sm border border-violet-400/30" />
               )}
-              <div className={`max-w-[80%] sm:max-w-[70%] rounded-2xl px-4 py-3 text-[13px] sm:text-sm leading-relaxed ${
-                msg.role === "user"
-                  ? "rounded-br-sm text-white shadow-lg"
-                  : "rounded-bl-sm text-slate-200"
-              }`} style={msg.role === "user"
-                ? { background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }
-                : { background: "hsl(250, 16%, 18%)", border: "1px solid hsl(250, 10%, 26%)" }
-              }>
+              <div
+                className={`max-w-[92%] sm:max-w-[70%] min-w-0 overflow-hidden rounded-2xl px-4 py-3 text-[13px] sm:text-sm leading-relaxed ${
+                  msg.role === "user" ? "rounded-br-sm text-white shadow-lg" : "rounded-bl-sm text-slate-200"
+                }`}
+                style={msg.role === "user"
+                  ? { background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }
+                  : { background: "hsl(250, 16%, 18%)", border: "1px solid hsl(250, 10%, 26%)" }}
+              >
                 {msg.role === "assistant" ? (
-                  <div className="prose prose-invert prose-sm max-w-none prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-violet-300 prose-headings:text-white [&_p]:text-slate-200 [&_li]:text-slate-200 [&_table]:text-xs [&_th]:px-2 [&_td]:px-2 [&_th]:py-1 [&_td]:py-1 [&_hr]:border-violet-800/40">
+                  <div className="prose prose-invert prose-sm max-w-none break-words overflow-x-auto prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-violet-300 prose-headings:text-white [&_p]:text-slate-200 [&_li]:text-slate-200 [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_table]:text-xs [&_th]:px-2 [&_td]:px-2 [&_th]:py-1 [&_td]:py-1 [&_hr]:border-violet-800/40 [&_pre]:overflow-x-auto [&_code]:break-all">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                 ) : (
-                  <span className="whitespace-pre-wrap">{msg.content}</span>
+                  <span className="whitespace-pre-wrap break-words">{msg.content}</span>
                 )}
               </div>
             </div>
@@ -257,21 +267,23 @@ const AIHub = () => {
         </div>
 
         {/* Input */}
-        <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
-          className="p-3 shrink-0" style={{ borderTop: "1px solid hsl(250, 12%, 20%)" }}>
-          <div className="flex gap-2 items-center">
+        <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2.5 sm:p-3 shrink-0" style={{ borderTop: "1px solid hsl(250, 12%, 20%)" }}>
+          <div className="flex gap-2 items-center min-w-0">
             <input
               ref={inputRef}
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               placeholder={lang === "fr" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
-              className="flex-1 h-11 px-4 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
+              className="flex-1 min-w-0 h-11 px-4 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
               style={{ background: "hsl(250, 16%, 16%)", border: "1px solid hsl(250, 10%, 24%)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               disabled={isLoading}
             />
-            <button type="submit" disabled={isLoading || !input.trim()}
+            <button
+              type="submit"
+              disabled={isLoading || !input.trim()}
               className="w-11 h-11 rounded-xl text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-30 shrink-0 shadow-lg"
-              style={{ background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }}>
+              style={{ background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }}
+            >
               <Send className="w-4 h-4" />
             </button>
           </div>
@@ -279,7 +291,7 @@ const AIHub = () => {
       </div>
 
       {/* Tools strip */}
-      <div className="flex gap-2 overflow-x-auto pb-1 shrink-0 snap-x" style={{ scrollbarWidth: "none" }}>
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-2 sm:overflow-x-auto pb-1 shrink-0 sm:snap-x" style={{ scrollbarWidth: "none" }}>
         {tools.map((tool, i) => (
           <motion.button
             key={tool.id}
@@ -287,16 +299,16 @@ const AIHub = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.05 }}
             onClick={() => setActiveTool(tool.id)}
-            className="group flex items-center gap-2 rounded-xl px-3 py-2.5 hover:shadow-md transition-all whitespace-nowrap shrink-0 snap-start dash-card"
+            className="group min-w-0 flex items-center gap-2 rounded-xl px-3 py-2.5 hover:shadow-md transition-all sm:whitespace-nowrap sm:shrink-0 sm:snap-start dash-card"
           >
-            <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${tool.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform`}>
+            <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${tool.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform shrink-0`}>
               <tool.icon className="w-3.5 h-3.5 text-white" />
             </div>
-            <div className="text-left">
-              <div className="flex items-center gap-1">
-                <span className="text-xs font-semibold dash-text">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
+            <div className="text-left min-w-0">
+              <div className="flex items-center gap-1 min-w-0">
+                <span className="text-xs font-semibold dash-text truncate">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
                 {tool.badge && (
-                  <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${
+                  <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${
                     tool.badge === "PRO" ? "bg-amber-100 text-amber-700"
                     : tool.badge === "BETA" ? "bg-rose-100 text-rose-700"
                     : "bg-emerald-100 text-emerald-700"

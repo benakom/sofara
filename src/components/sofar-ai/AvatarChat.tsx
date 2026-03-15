@@ -108,7 +108,7 @@ export default function AvatarChat() {
 
   if (!isOpen) {
     return (
-      <button onClick={() => setIsOpen(true)} className="fixed bottom-5 right-5 z-50 group">
+      <button onClick={() => setIsOpen(true)} className="fixed bottom-4 right-3 sm:bottom-5 sm:right-5 z-50 group">
         <div className="relative">
           <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 opacity-50 blur-xl group-hover:opacity-80 transition-opacity animate-pulse" />
           <img src={sofaraAvatar} alt="SofarAI" className="relative w-14 h-14 rounded-full object-cover border-2 border-white/20 shadow-2xl group-hover:scale-110 transition-transform" />
@@ -124,8 +124,11 @@ export default function AvatarChat() {
   }
 
   return (
-    <div ref={panelRef} className="fixed bottom-5 right-5 z-50 w-[380px] max-w-[calc(100vw-1.5rem)] h-[520px] max-h-[calc(100vh-6rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden"
-      style={{ background: "linear-gradient(145deg, hsl(250, 30%, 16%), hsl(230, 25%, 12%))", border: "1px solid hsl(250, 20%, 24%)" }}>
+    <div
+      ref={panelRef}
+      className="fixed bottom-4 right-2 sm:bottom-5 sm:right-5 z-50 w-[calc(100vw-1rem)] sm:w-[380px] max-w-[calc(100vw-1rem)] h-[520px] max-h-[calc(100dvh-6rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden"
+      style={{ background: "linear-gradient(145deg, hsl(250, 30%, 16%), hsl(230, 25%, 12%))", border: "1px solid hsl(250, 20%, 24%)" }}
+    >
       {/* Header */}
       <div className="px-4 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg, hsl(252, 60%, 55%), hsl(200, 80%, 50%))" }}>
         <img src={sofaraAvatar} alt="SofarAI" className="w-9 h-9 rounded-full object-cover border-2 border-white/30 shadow-lg" />
@@ -142,18 +145,21 @@ export default function AvatarChat() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3" style={{ scrollbarWidth: "thin" }}>
+      <div className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 space-y-3" style={{ scrollbarWidth: "thin" }}>
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-center px-2">
+          <div className="flex flex-col items-center justify-center h-full text-center px-2 min-w-0">
             <img src={sofaraAvatar} alt="SofarAI" className="w-16 h-16 rounded-full object-cover shadow-lg mb-3 border-2 border-violet-400/30" />
-            <p className="text-xs text-slate-300 mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <p className="text-xs text-slate-300 mb-4 break-words" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               {lang === "fr" ? "💬 Posez-moi n'importe quelle question !" : "💬 Ask me anything!"}
             </p>
             <div className="flex flex-wrap gap-1.5 justify-center">
-              {(lang === "fr" ? ["💰 Prix JVC", "📊 Évalue un projet", "🏆 Top ROI"] : ["💰 JVC Prices", "📊 Evaluate a project", "🏆 Top ROI"]).map(q => (
-                <button key={q} onClick={() => sendMessage(q)}
-                  className="text-[11px] px-3 py-2 rounded-xl text-slate-300 hover:text-white transition-all"
-                  style={{ background: "hsl(250, 20%, 22%)", border: "1px solid hsl(250, 15%, 30%)" }}>
+              {(lang === "fr" ? ["💰 Prix JVC", "📊 Évalue un projet", "🏆 Top ROI"] : ["💰 JVC Prices", "📊 Evaluate a project", "🏆 Top ROI"]).map((q) => (
+                <button
+                  key={q}
+                  onClick={() => sendMessage(q)}
+                  className="text-[11px] px-3 py-2 rounded-xl text-slate-300 hover:text-white transition-all break-words"
+                  style={{ background: "hsl(250, 20%, 22%)", border: "1px solid hsl(250, 15%, 30%)" }}
+                >
                   {q}
                 </button>
               ))}
@@ -162,24 +168,27 @@ export default function AvatarChat() {
         )}
 
         {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+          <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             {msg.role === "assistant" && (
               <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0 border border-violet-400/30" />
             )}
-            <div className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
-              msg.role === "user"
-                ? "rounded-br-sm text-white shadow-md"
-                : "rounded-bl-sm text-slate-200"
-            }`} style={msg.role === "user"
-              ? { background: "linear-gradient(135deg, hsl(252, 60%, 55%), hsl(200, 70%, 50%))" }
-              : { background: "hsl(250, 18%, 20%)", border: "1px solid hsl(250, 12%, 28%)" }
-            }>
+            <div
+              className={`max-w-[88%] sm:max-w-[82%] min-w-0 overflow-hidden rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
+                msg.role === "user" ? "rounded-br-sm text-white shadow-md" : "rounded-bl-sm text-slate-200"
+              }`}
+              style={msg.role === "user"
+                ? { background: "linear-gradient(135deg, hsl(252, 60%, 55%), hsl(200, 70%, 50%))" }
+                : { background: "hsl(250, 18%, 20%)", border: "1px solid hsl(250, 12%, 28%)" }}
+            >
               {msg.role === "assistant" ? (
-                <div className="prose prose-invert prose-xs max-w-none prose-p:my-0.5 prose-li:my-0 prose-strong:text-violet-300 prose-headings:text-white [&_p]:text-[13px] [&_li]:text-[13px] [&_p]:text-slate-200 [&_li]:text-slate-200" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <div
+                  className="prose prose-invert prose-xs max-w-none break-words overflow-x-auto prose-p:my-0.5 prose-li:my-0 prose-strong:text-violet-300 prose-headings:text-white [&_p]:text-[13px] [&_li]:text-[13px] [&_p]:text-slate-200 [&_li]:text-slate-200 [&_pre]:overflow-x-auto [&_code]:break-all"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (
-                <span className="whitespace-pre-wrap" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{msg.content}</span>
+                <span className="whitespace-pre-wrap break-words" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{msg.content}</span>
               )}
             </div>
           </div>
@@ -202,12 +211,12 @@ export default function AvatarChat() {
 
       {/* Input */}
       <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2.5" style={{ borderTop: "1px solid hsl(250, 12%, 22%)" }}>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center min-w-0">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder={lang === "fr" ? "Votre question…" : "Your question…"}
-            className="flex-1 h-9 px-3.5 rounded-xl text-[13px] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
+            className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
             style={{ background: "hsl(250, 18%, 18%)", border: "1px solid hsl(250, 12%, 26%)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             disabled={isLoading}
           />

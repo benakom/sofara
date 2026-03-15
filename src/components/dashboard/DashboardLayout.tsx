@@ -49,6 +49,10 @@ const DashboardLayout = () => {
     if (!loading && !user) navigate("/auth");
   }, [user, loading, navigate]);
 
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
   if (loading || profileLoading) {
     return (
       <div className="min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
@@ -143,7 +147,7 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))]">
+    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40">
         <SidebarContent />
@@ -174,7 +178,7 @@ const DashboardLayout = () => {
       </AnimatePresence>
 
       {/* Main content */}
-      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* Top bar */}
         <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
