@@ -12,8 +12,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Hero
     "hero.badge": "Programme Ambassadeur 2025",
-    "hero.slide1.headline": "L'immobilier de Dubai,\nvotre prochaine source de revenus.",
-    "hero.slide1.sub": "Devenez ambassadeur Sofara et touchez des commissions exceptionnelles sur chaque transaction immobilière à Dubai. Aucune licence requise.",
+    "hero.slide1.headline": "Transformez vos contacts\nen commissions.",
+    "hero.slide1.sub": "Rejoignez Sofara et touchez 3 % de commission sur chaque vente immobilière à Dubai — sans licence, sans prospection, depuis n'importe où.",
     "hero.slide2.headline": "L'immobilier de luxe, accessible à votre réseau.",
     "hero.slide2.sub": "Penthouses, villas sur Palm — offrez à vos contacts l'accès au marché immobilier le plus dynamique au monde.",
     "hero.slide3.headline": "Dubai : le placement n°1 des investisseurs mondiaux en 2025.",
