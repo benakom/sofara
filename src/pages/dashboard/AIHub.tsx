@@ -66,16 +66,6 @@ const AIHub = () => {
       gradient: "from-sky-500 to-blue-600",
       badge: "BETA",
     },
-    {
-      id: "qualifier",
-      icon: Brain,
-      labelFr: "Lead Qualifier",
-      labelEn: "Lead Qualifier",
-      descFr: "Agent IA complet — Qualifiez, générez des emails, scripts d'appel et messages WhatsApp",
-      descEn: "Complete AI agent — Qualify, generate emails, call scripts and WhatsApp messages",
-      gradient: "from-rose-500 to-pink-600",
-      badge: "AI",
-    },
   ];
 
   const renderTool = () => {
