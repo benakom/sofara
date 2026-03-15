@@ -55,6 +55,7 @@ const App = () => (
                 <Route path="payments" element={<Payments />} />
                 <Route path="kyc" element={<KycAml />} />
                 <Route path="sofar-ai" element={<SofarAI />} />
+                <Route path="ai-hub" element={<AIHub />} />
                 <Route path="simulator" element={<Simulator />} />
                 <Route path="calendar" element={<CalendarPage />} />
                 <Route path="bonus" element={<BonusRewards />} />
