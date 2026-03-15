@@ -232,7 +232,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "commission.titleHighlight": "claire et généreuse",
     "commission.description": "Chez Sofara, pas de surprise. Un taux unique, public et garanti. Vous savez exactement ce que vous gagnez, avant même de recommander.",
     "commission.badgeSingle": "Commission unique",
-    "commission.singleDesc": "Sur chaque transaction conclue grâce à votre recommandation, vous touchez 2,5% de la valeur totale du bien. Simple, transparent, sans condition cachée.",
+    "commission.singleDesc": "Sur chaque transaction conclue grâce à votre recommandation, vous touchez 3% de la valeur totale du bien. Simple, transparent, sans condition cachée.",
     "commission.ofValue": "de la valeur du bien",
     "commission.note": "Les commissions sont calculées sur la valeur totale du bien vendu et versées automatiquement après la clôture de la transaction.",
 
