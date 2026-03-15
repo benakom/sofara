@@ -997,7 +997,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "faq.q2": "¿Es mi identidad visible para los compradores?",
     "faq.a2": "No. Tu identidad está 100% protegida. Los compradores nunca ven tu nombre ni saben que ganas una comisión.",
     "faq.q3": "¿Cuánto puedo ganar realmente?",
-    "faq.a3": "Las comisiones van de 6.000€ a 30.000€ por transacción según la propiedad. Nuestros mejores embajadores superan 5.000€/mes.",
+    "faq.a3": "Las comisiones van de 9.200€ a 30.000€ por transacción según la propiedad. Nuestros mejores embajadores superan 5.000€/mes.",
     "faq.q4": "¿Necesito una licencia inmobiliaria?",
     "faq.a4": "No. No eres un agente inmobiliario, eres un presentador de negocios. La estructura legal de Sofara está diseñada para que puedas ejercer legalmente.",
     "faq.q5": "¿Cómo se pagan las comisiones?",

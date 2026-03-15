@@ -51,10 +51,12 @@ const StorytellingSection = () => {
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="text-base sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
-              {t("story.cta")}
-              <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <a href="/auth">
+              <Button variant="hero" size="lg" className="text-base sm:text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
+                {t("story.cta")}
+                <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
           </motion.div>
 
           <motion.div
