@@ -24,6 +24,7 @@ const navItems = [
   { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
   { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML" },
   { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI" },
+  { path: "/dashboard/legal-ai", icon: Shield, labelFr: "LegalAI", labelEn: "LegalAI", badge: "PRO" },
   { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators" },
   { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar" },
   { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },

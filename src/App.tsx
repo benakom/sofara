@@ -32,6 +32,7 @@ const BonusRewards = lazy(() => import("./pages/dashboard/BonusRewards"));
 const Community = lazy(() => import("./pages/dashboard/Community"));
 const Simulator = lazy(() => import("./pages/dashboard/Simulator"));
 const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
+const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
                   <Route path="ai-hub" element={<AIHub />} />
                   <Route path="simulator" element={<Simulator />} />
                   <Route path="calendar" element={<CalendarPage />} />
+                  <Route path="legal-ai" element={<LegalAI />} />
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
                 </Route>
