@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
+import LandingChatbot from "@/components/landing/LandingChatbot";
 
 // Lazy load all below-fold sections
 const MarketDataSection = lazy(() => import("@/components/ambassador/MarketDataSection"));
