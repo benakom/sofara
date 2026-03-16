@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.legal-ai-analyze]
 verify_jwt = false
+
+[functions.library-scrape-project]
+verify_jwt = false
