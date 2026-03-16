@@ -48,6 +48,7 @@ const Index = () => {
         <FAQSection />
         <FooterSection />
       </Suspense>
+      <LandingChatbot />
     </div>
   );
 };
