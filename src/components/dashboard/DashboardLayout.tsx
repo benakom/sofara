@@ -216,7 +216,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* SofarAI Avatar Chat — only for approved users */}
-      {isApproved && <AvatarChat />}
+      {isApproved && !sidebarOpen && <AvatarChat />}
     </div>
   );
 };
