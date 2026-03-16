@@ -10,7 +10,7 @@ import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
-  Sparkles
+  Sparkles, BookOpen
 } from "lucide-react";
 import OnboardingGate from "./OnboardingGate";
 
