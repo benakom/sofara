@@ -167,8 +167,9 @@ const DashboardLayout = () => {
         {/* Top bar */}
         <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
-            onClick={() => setSidebarOpen(true)}
+            onClick={() => setSidebarOpen((prev) => !prev)}
             className="lg:hidden text-[hsl(var(--dash-muted-fg))] p-1"
+            aria-label={lang === "fr" ? "Ouvrir ou fermer le menu" : "Toggle menu"}
           >
             <Menu className="w-5 h-5" />
           </button>
