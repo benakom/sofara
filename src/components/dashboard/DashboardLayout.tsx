@@ -152,29 +152,15 @@ const DashboardLayout = () => {
         <SidebarContent />
       </aside>
 
-      {/* Mobile sidebar overlay */}
-      <AnimatePresence>
-        {sidebarOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: -240 }}
-              animate={{ x: 0 }}
-              exit={{ x: -240 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 left-0 w-[240px] z-50 flex flex-col lg:hidden"
-            >
-              <SidebarContent />
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Mobile sidebar */}
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContent
+          side="left"
+          className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-sidebar-fg))] [&>button]:hover:text-white [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
+        >
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
 
       {/* Main content */}
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
