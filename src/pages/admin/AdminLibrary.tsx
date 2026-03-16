@@ -2,12 +2,100 @@ import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useCities, useAreas, useDevelopers, useProjects, useAssets, useAssetCategories } from "@/hooks/useLibrary";
-import { Plus, Building2, MapPin, Folder, FileText, Trash2, Pencil, Upload, X, Image, ChevronDown, Save } from "lucide-react";
+import { Plus, Building2, MapPin, Folder, FileText, Trash2, Pencil, X, Save, Link2, Sparkles, Loader2, Globe, CheckCircle2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 
 type Tab = "projects" | "developers" | "areas" | "assets";
+
+// ─── AI SCRAPE HOOK ────────────────────────────────────
+const useAiScrape = () => {
+  return useMutation({
+    mutationFn: async ({ url, type }: { url: string; type: "project" | "developer" | "area" }) => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/library-scrape-project`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+        body: JSON.stringify({ url, type }),
+      });
+      const result = await resp.json();
+      if (!resp.ok) throw new Error(result.error || "Erreur lors du scraping");
+      return result.data;
+    },
+  });
+};
+
+// ─── AI URL INPUT ──────────────────────────────────────
+const AiUrlInput = ({ type, onExtracted, isLoading, onScrape }: {
+  type: "project" | "developer" | "area";
+  onExtracted: (data: any) => void;
+  isLoading: boolean;
+  onScrape: (url: string) => void;
+}) => {
+  const [url, setUrl] = useState("");
+
+  const labels: Record<string, string> = {
+    project: "Collez le lien du projet sur le site du développeur",
+    developer: "Collez le lien du site web du développeur",
+    area: "Collez le lien d'un guide de la zone (ex: Bayut, PropertyFinder...)",
+  };
+
+  return (
+    <div className="p-6 rounded-xl bg-gradient-to-br from-[hsl(var(--primary))]/5 to-[hsl(var(--primary))]/10 border-2 border-dashed border-[hsl(var(--primary))]/30 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-[hsl(var(--primary))]/10 flex items-center justify-center">
+          <Sparkles className="w-5 h-5 text-[hsl(var(--primary))]" />
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">Import intelligent par IA</h3>
+          <p className="text-xs text-[hsl(var(--muted-foreground))]">{labels[type]}</p>
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--muted-foreground))]" />
+          <input
+            type="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="https://www.emaar.com/en/project-name..."
+            className="w-full h-11 pl-10 pr-4 rounded-xl bg-[hsl(var(--background))] border border-[hsl(var(--border))] text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))]/50 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/30"
+            disabled={isLoading}
+          />
+        </div>
+        <button
+          onClick={() => { if (url.trim()) onScrape(url.trim()); }}
+          disabled={!url.trim() || isLoading}
+          className="flex items-center gap-2 px-6 h-11 rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Analyse IA en cours...
+            </>
+          ) : (
+            <>
+              <Sparkles className="w-4 h-4" />
+              Analyser
+            </>
+          )}
+        </button>
+      </div>
+
+      {isLoading && (
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-[hsl(var(--primary))]/5">
+          <Loader2 className="w-4 h-4 animate-spin text-[hsl(var(--primary))]" />
+          <p className="text-xs text-[hsl(var(--muted-foreground))]">L'IA scrape la page web et remplit automatiquement tous les champs... (10-20 secondes)</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const AdminLibrary = () => {
   const [tab, setTab] = useState<Tab>("projects");
@@ -16,10 +104,9 @@ const AdminLibrary = () => {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl font-display font-bold text-[hsl(var(--foreground))]">📚 Project Intelligence Library</h1>
-        <p className="text-sm text-[hsl(var(--muted-foreground))] mt-1">Gérez les projets, développeurs, zones et assets de la bibliothèque</p>
+        <p className="text-sm text-[hsl(var(--muted-foreground))] mt-1">Ajoutez des projets par URL — l'IA remplit automatiquement les fiches</p>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-1 p-1 rounded-xl bg-[hsl(var(--muted))] w-fit">
         {([
           { id: "projects" as Tab, icon: Folder, label: "Projets" },
@@ -54,8 +141,11 @@ const ProjectsTab = () => {
   const { data: projects, isLoading } = useProjects();
   const { data: developers } = useDevelopers();
   const { data: areas } = useAreas();
+  const { data: cities } = useCities();
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
+  const [aiImported, setAiImported] = useState(false);
+  const aiScrape = useAiScrape();
   const [form, setForm] = useState({
     name: "", developer_id: "", area_id: "", status: "under_construction",
     property_type: "apartment", handover_date: "", price_from: "", price_to: "",
@@ -68,6 +158,65 @@ const ProjectsTab = () => {
     setForm({ name: "", developer_id: "", area_id: "", status: "under_construction", property_type: "apartment", handover_date: "", price_from: "", price_to: "", bedrooms: "", description: "", hero_image_url: "", ai_summary: "", quick_pitch: "", whatsapp_summary: "", target_buyer: "", is_featured: false, selling_points_text: "", faq_text: "", objections_text: "", social_captions_text: "" });
     setEditId(null);
     setShowForm(false);
+    setAiImported(false);
+  };
+
+  const handleAiScrape = async (url: string) => {
+    try {
+      const data = await aiScrape.mutateAsync({ url, type: "project" });
+      
+      // Try to match developer by name
+      let devId = "";
+      if (data.developer_name && developers) {
+        const match = developers.find((d: any) => d.name.toLowerCase() === data.developer_name.toLowerCase());
+        if (match) devId = match.id;
+      }
+
+      // Try to match area by name
+      let areaId = "";
+      if (data.area_name && areas) {
+        const match = areas.find((a: any) => a.name.toLowerCase() === data.area_name.toLowerCase());
+        if (match) areaId = match.id;
+      }
+
+      setForm({
+        name: data.name || "",
+        developer_id: devId,
+        area_id: areaId,
+        status: data.status || "under_construction",
+        property_type: data.property_type || "apartment",
+        handover_date: data.handover_date || "",
+        price_from: data.price_from?.toString() || "",
+        price_to: data.price_to?.toString() || "",
+        bedrooms: data.bedrooms || "",
+        description: data.description || "",
+        hero_image_url: data.hero_image_url || "",
+        ai_summary: data.ai_summary || "",
+        quick_pitch: data.quick_pitch || "",
+        whatsapp_summary: data.whatsapp_summary || "",
+        target_buyer: data.target_buyer || "",
+        is_featured: false,
+        selling_points_text: Array.isArray(data.selling_points) ? data.selling_points.join("\n") : "",
+        faq_text: Array.isArray(data.faq) ? data.faq.map((f: any) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n") : "",
+        objections_text: Array.isArray(data.objection_handling) ? data.objection_handling.map((o: any) => `O: ${o.objection}\nR: ${o.answer}`).join("\n\n") : "",
+        social_captions_text: Array.isArray(data.social_captions) ? data.social_captions.join("\n---\n") : "",
+      });
+
+      setShowForm(true);
+      setAiImported(true);
+
+      // Auto-create developer if not found
+      if (!devId && data.developer_name) {
+        toast({ title: "⚠️ Développeur non trouvé", description: `"${data.developer_name}" n'existe pas encore. Créez-le d'abord dans l'onglet Développeurs.` });
+      }
+      if (!areaId && data.area_name) {
+        toast({ title: "⚠️ Zone non trouvée", description: `"${data.area_name}" n'existe pas encore. Créez-la d'abord dans l'onglet Zones.` });
+      }
+
+      toast({ title: "✅ Fiche remplie par l'IA", description: "Vérifiez et ajustez les informations avant de sauvegarder." });
+    } catch (e: any) {
+      toast({ title: "Erreur", description: e.message, variant: "destructive" });
+    }
   };
 
   const editProject = (p: any) => {
@@ -87,6 +236,7 @@ const ProjectsTab = () => {
     });
     setEditId(p.id);
     setShowForm(true);
+    setAiImported(false);
   };
 
   const saveMutation = useMutation({
@@ -116,7 +266,7 @@ const ProjectsTab = () => {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["lib-projects"] });
-      toast({ title: editId ? "Projet mis à jour" : "Projet créé" });
+      toast({ title: editId ? "Projet mis à jour" : "Projet créé ✅" });
       resetForm();
     },
     onError: (e: any) => toast({ title: "Erreur", description: e.message, variant: "destructive" }),
@@ -137,16 +287,33 @@ const ProjectsTab = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-sm text-[hsl(var(--muted-foreground))]">{projects?.length || 0} projets</span>
-        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90">
-          <Plus className="w-4 h-4" /> Ajouter un projet
+        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[hsl(var(--border))] text-sm font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))]">
+          <Plus className="w-4 h-4" /> Ajout manuel
         </button>
       </div>
+
+      {/* AI Import - always visible */}
+      {!showForm && (
+        <AiUrlInput
+          type="project"
+          onExtracted={() => {}}
+          isLoading={aiScrape.isPending}
+          onScrape={handleAiScrape}
+        />
+      )}
 
       {/* Form */}
       {showForm && (
         <div className="p-6 rounded-xl bg-[hsl(var(--card))] border border-[hsl(var(--border))] space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier le projet" : "Nouveau projet"}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier le projet" : "Nouveau projet"}</h3>
+              {aiImported && (
+                <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-semibold">
+                  <CheckCircle2 className="w-3 h-3" /> Rempli par IA
+                </span>
+              )}
+            </div>
             <button onClick={resetForm} className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"><X className="w-4 h-4" /></button>
           </div>
 
@@ -173,8 +340,8 @@ const ProjectsTab = () => {
           <FormTextarea label="WhatsApp Summary" value={form.whatsapp_summary} onChange={(v) => setForm({ ...form, whatsapp_summary: v })} rows={2} />
           <FormField label="Target Buyer" value={form.target_buyer} onChange={(v) => setForm({ ...form, target_buyer: v })} />
           <FormTextarea label="Selling Points (1 par ligne)" value={form.selling_points_text} onChange={(v) => setForm({ ...form, selling_points_text: v })} rows={3} placeholder="ROI de 8-12%\nEmplacement premium\n..." />
-          <FormTextarea label="FAQ (Q: question\nA: answer)" value={form.faq_text} onChange={(v) => setForm({ ...form, faq_text: v })} rows={3} placeholder="Q: Quel est le ROI estimé ?\nA: 8-12% annuel" />
-          <FormTextarea label="Objections (O: objection\nR: réponse)" value={form.objections_text} onChange={(v) => setForm({ ...form, objections_text: v })} rows={3} placeholder="O: Le prix est trop élevé\nR: Comparé à..." />
+          <FormTextarea label="FAQ (Q: question\nA: answer)" value={form.faq_text} onChange={(v) => setForm({ ...form, faq_text: v })} rows={3} />
+          <FormTextarea label="Objections (O: objection\nR: réponse)" value={form.objections_text} onChange={(v) => setForm({ ...form, objections_text: v })} rows={3} />
           <FormTextarea label="Captions Social Media (séparés par ---)" value={form.social_captions_text} onChange={(v) => setForm({ ...form, social_captions_text: v })} rows={3} />
 
           <div className="flex items-center gap-3">
@@ -186,7 +353,7 @@ const ProjectsTab = () => {
 
           <div className="flex gap-2">
             <button onClick={() => saveMutation.mutate()} disabled={!form.name || !form.developer_id || !form.area_id || saveMutation.isPending} className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90 disabled:opacity-50">
-              <Save className="w-4 h-4" /> {editId ? "Mettre à jour" : "Créer"}
+              <Save className="w-4 h-4" /> {editId ? "Mettre à jour" : "Créer le projet"}
             </button>
             <button onClick={resetForm} className="px-4 py-2.5 rounded-lg border border-[hsl(var(--border))] text-sm text-[hsl(var(--muted-foreground))]">Annuler</button>
           </div>
@@ -228,13 +395,33 @@ const DevelopersTab = () => {
   const { data: developers, isLoading } = useDevelopers();
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
+  const [aiImported, setAiImported] = useState(false);
+  const aiScrape = useAiScrape();
   const [form, setForm] = useState({ name: "", logo_url: "", description: "", website: "", trust_points_text: "" });
 
-  const resetForm = () => { setForm({ name: "", logo_url: "", description: "", website: "", trust_points_text: "" }); setEditId(null); setShowForm(false); };
+  const resetForm = () => { setForm({ name: "", logo_url: "", description: "", website: "", trust_points_text: "" }); setEditId(null); setShowForm(false); setAiImported(false); };
+
+  const handleAiScrape = async (url: string) => {
+    try {
+      const data = await aiScrape.mutateAsync({ url, type: "developer" });
+      setForm({
+        name: data.name || "",
+        logo_url: data.logo_url || "",
+        description: data.description || "",
+        website: data.website || url,
+        trust_points_text: Array.isArray(data.trust_points) ? data.trust_points.join("\n") : "",
+      });
+      setShowForm(true);
+      setAiImported(true);
+      toast({ title: "✅ Fiche développeur remplie par l'IA" });
+    } catch (e: any) {
+      toast({ title: "Erreur", description: e.message, variant: "destructive" });
+    }
+  };
 
   const edit = (d: any) => {
     setForm({ name: d.name, logo_url: d.logo_url || "", description: d.description || "", website: d.website || "", trust_points_text: Array.isArray(d.trust_points) ? d.trust_points.join("\n") : "" });
-    setEditId(d.id); setShowForm(true);
+    setEditId(d.id); setShowForm(true); setAiImported(false);
   };
 
   const save = useMutation({
@@ -243,7 +430,7 @@ const DevelopersTab = () => {
       if (editId) { const { error } = await supabase.from("lib_developers").update(payload).eq("id", editId); if (error) throw error; }
       else { const { error } = await supabase.from("lib_developers").insert(payload); if (error) throw error; }
     },
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-developers"] }); toast({ title: editId ? "Développeur mis à jour" : "Développeur créé" }); resetForm(); },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-developers"] }); toast({ title: editId ? "Développeur mis à jour" : "Développeur créé ✅" }); resetForm(); },
     onError: (e: any) => toast({ title: "Erreur", description: e.message, variant: "destructive" }),
   });
 
@@ -256,15 +443,22 @@ const DevelopersTab = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-sm text-[hsl(var(--muted-foreground))]">{developers?.length || 0} développeurs</span>
-        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90">
-          <Plus className="w-4 h-4" /> Ajouter
+        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[hsl(var(--border))] text-sm font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))]">
+          <Plus className="w-4 h-4" /> Ajout manuel
         </button>
       </div>
+
+      {!showForm && (
+        <AiUrlInput type="developer" onExtracted={() => {}} isLoading={aiScrape.isPending} onScrape={handleAiScrape} />
+      )}
 
       {showForm && (
         <div className="p-6 rounded-xl bg-[hsl(var(--card))] border border-[hsl(var(--border))] space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier" : "Nouveau développeur"}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier" : "Nouveau développeur"}</h3>
+              {aiImported && <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-semibold"><CheckCircle2 className="w-3 h-3" /> IA</span>}
+            </div>
             <button onClick={resetForm}><X className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /></button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -273,7 +467,7 @@ const DevelopersTab = () => {
             <FormField label="Website" value={form.website} onChange={(v) => setForm({ ...form, website: v })} placeholder="https://..." />
           </div>
           <FormTextarea label="Description" value={form.description} onChange={(v) => setForm({ ...form, description: v })} rows={2} />
-          <FormTextarea label="Trust Points (1 par ligne)" value={form.trust_points_text} onChange={(v) => setForm({ ...form, trust_points_text: v })} rows={2} placeholder="50+ projets livrés\n#1 Developer UAE\n..." />
+          <FormTextarea label="Trust Points (1 par ligne)" value={form.trust_points_text} onChange={(v) => setForm({ ...form, trust_points_text: v })} rows={2} />
           <div className="flex gap-2">
             <button onClick={() => save.mutate()} disabled={!form.name || save.isPending} className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90 disabled:opacity-50">
               <Save className="w-4 h-4" /> {editId ? "Mettre à jour" : "Créer"}
@@ -313,13 +507,44 @@ const AreasTab = () => {
   const { data: cities } = useCities();
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
+  const [aiImported, setAiImported] = useState(false);
+  const aiScrape = useAiScrape();
   const [form, setForm] = useState({ name: "", city_id: "", description: "", image_url: "", highlights_text: "" });
 
-  const resetForm = () => { setForm({ name: "", city_id: "", description: "", image_url: "", highlights_text: "" }); setEditId(null); setShowForm(false); };
+  const resetForm = () => { setForm({ name: "", city_id: "", description: "", image_url: "", highlights_text: "" }); setEditId(null); setShowForm(false); setAiImported(false); };
+
+  const handleAiScrape = async (url: string) => {
+    try {
+      const data = await aiScrape.mutateAsync({ url, type: "area" });
+      
+      let cityId = "";
+      if (data.city_name && cities) {
+        const match = cities.find((c: any) => c.name.toLowerCase() === data.city_name.toLowerCase());
+        if (match) cityId = match.id;
+      }
+
+      setForm({
+        name: data.name || "",
+        city_id: cityId,
+        description: data.description || "",
+        image_url: data.image_url || "",
+        highlights_text: Array.isArray(data.highlights) ? data.highlights.join("\n") : "",
+      });
+      setShowForm(true);
+      setAiImported(true);
+      
+      if (!cityId && data.city_name) {
+        toast({ title: "⚠️ Ville non trouvée", description: `"${data.city_name}" — sélectionnez manuellement.` });
+      }
+      toast({ title: "✅ Fiche zone remplie par l'IA" });
+    } catch (e: any) {
+      toast({ title: "Erreur", description: e.message, variant: "destructive" });
+    }
+  };
 
   const edit = (a: any) => {
     setForm({ name: a.name, city_id: a.city_id, description: a.description || "", image_url: a.image_url || "", highlights_text: Array.isArray(a.highlights) ? a.highlights.join("\n") : "" });
-    setEditId(a.id); setShowForm(true);
+    setEditId(a.id); setShowForm(true); setAiImported(false);
   };
 
   const save = useMutation({
@@ -328,7 +553,7 @@ const AreasTab = () => {
       if (editId) { const { error } = await supabase.from("lib_areas").update(payload).eq("id", editId); if (error) throw error; }
       else { const { error } = await supabase.from("lib_areas").insert(payload); if (error) throw error; }
     },
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-areas"] }); toast({ title: editId ? "Zone mise à jour" : "Zone créée" }); resetForm(); },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-areas"] }); toast({ title: editId ? "Zone mise à jour" : "Zone créée ✅" }); resetForm(); },
     onError: (e: any) => toast({ title: "Erreur", description: e.message, variant: "destructive" }),
   });
 
@@ -341,15 +566,22 @@ const AreasTab = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-sm text-[hsl(var(--muted-foreground))]">{areas?.length || 0} zones</span>
-        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90">
-          <Plus className="w-4 h-4" /> Ajouter
+        <button onClick={() => { resetForm(); setShowForm(true); }} className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[hsl(var(--border))] text-sm font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))]">
+          <Plus className="w-4 h-4" /> Ajout manuel
         </button>
       </div>
+
+      {!showForm && (
+        <AiUrlInput type="area" onExtracted={() => {}} isLoading={aiScrape.isPending} onScrape={handleAiScrape} />
+      )}
 
       {showForm && (
         <div className="p-6 rounded-xl bg-[hsl(var(--card))] border border-[hsl(var(--border))] space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier" : "Nouvelle zone"}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-semibold text-[hsl(var(--foreground))]">{editId ? "Modifier" : "Nouvelle zone"}</h3>
+              {aiImported && <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-semibold"><CheckCircle2 className="w-3 h-3" /> IA</span>}
+            </div>
             <button onClick={resetForm}><X className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /></button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -443,7 +675,7 @@ const AssetsTab = () => {
       if (editId) { const { error } = await supabase.from("lib_assets").update(payload).eq("id", editId); if (error) throw error; }
       else { const { error } = await supabase.from("lib_assets").insert(payload); if (error) throw error; }
     },
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-assets"] }); toast({ title: editId ? "Asset mis à jour" : "Asset créé" }); resetForm(); },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["lib-assets"] }); toast({ title: editId ? "Asset mis à jour" : "Asset créé ✅" }); resetForm(); },
     onError: (e: any) => toast({ title: "Erreur", description: e.message, variant: "destructive" }),
   });
 
