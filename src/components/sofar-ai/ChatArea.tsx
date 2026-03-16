@@ -51,15 +51,15 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
   }
 
   return (
-    <div className="flex-1 space-y-3 overflow-y-auto">
+    <div className="flex-1 min-w-0 space-y-3 overflow-y-auto overflow-x-hidden">
       {messages.map((msg, i) => (
-        <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+        <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
           {msg.role === "assistant" && (
             <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center mr-2 mt-1 shrink-0">
               <Bot className="w-3.5 h-3.5 text-white" />
             </div>
           )}
-          <div className={`max-w-[85%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-sm overflow-hidden ${
+          <div className={`max-w-[85%] sm:max-w-[80%] min-w-0 rounded-2xl px-4 py-3 text-sm overflow-hidden ${
             msg.role === "user"
               ? "bg-[hsl(var(--primary))] text-white rounded-br-md"
               : "bg-white border border-[hsl(var(--dash-border))] dash-text rounded-bl-md"
@@ -69,7 +69,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ) : (
-              <span className="whitespace-pre-wrap">{msg.content}</span>
+              <span className="whitespace-pre-wrap break-words">{msg.content}</span>
             )}
           </div>
         </div>
