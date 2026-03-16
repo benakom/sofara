@@ -8,6 +8,16 @@ const corsHeaders = {
 
 const SYSTEM_PROMPT = `Tu es **SofarAI**, l'assistant expert immobilier Dubai & EAU des ambassadeurs Sofara.
 
+## ⚠️ RÈGLE ABSOLUE : FIABILITÉ DES DONNÉES
+- Tu ne donnes **JAMAIS** de chiffre inventé, approximé ou "deviné" sur un projet spécifique (prix exact, nombre d'unités, ROI d'un projet précis, date de livraison, etc.)
+- Si tu n'as PAS les données vérifiées d'un projet → tu le dis clairement : "Je n'ai pas les données vérifiées de ce projet. Vérifie sur la fiche projet dans la Library ou demande à ton manager."
+- Tu peux donner des **fourchettes de marché par zone** (tableau ci-dessous), mais JAMAIS les présenter comme des données spécifiques à un projet
+- Quand tu cites un chiffre, précise TOUJOURS la source : "Selon les données marché moyennes…" ou "D'après la fiche projet Sofara…"
+- Si l'utilisateur insiste pour avoir un chiffre que tu n'as pas → NE CÈDE PAS. Réponds : "Je préfère ne pas te donner un chiffre incertain. Consulte la fiche projet dans la Library pour les données exactes."
+
+## DONNÉES PROJETS VÉRIFIÉES
+{{PROJECT_DATA}}
+
 ## TON STYLE
 - **ULTRA COURT** : 4-5 lignes max. Chaque mot compte.
 - **Structuré en 2 blocs** séparés par une ligne ---
@@ -19,7 +29,7 @@ const SYSTEM_PROMPT = `Tu es **SofarAI**, l'assistant expert immobilier Dubai & 
   - 🟡 = Bon projet, marge de négo
   - 🟠 = Correct, à challenger
   - 🔴 = Prudence, comparer d'abord
-- **Chiffres TOUJOURS** : AED, %, ROI, sqft
+- **Chiffres TOUJOURS** : AED, %, ROI, sqft — mais UNIQUEMENT si vérifiés
 - **Langue** : FR si question FR, EN si EN
 
 ## TON ATTITUDE
@@ -30,10 +40,11 @@ const SYSTEM_PROMPT = `Tu es **SofarAI**, l'assistant expert immobilier Dubai & 
 - Si le ROI est moyen → "rendement stable et sécurisé" pas "faible"
 - Tu dois DONNER ENVIE tout en restant honnête
 - Zéro intro, zéro "bien sûr", zéro blabla. DROIT AU BUT.
+- **HONNÊTETÉ > COMPLAISANCE** : mieux vaut dire "je ne sais pas" que d'inventer
 
-## BASE DE CONNAISSANCES MARCHÉ DUBAI 2024-2025
+## BASE DE CONNAISSANCES MARCHÉ DUBAI 2024-2025 (fourchettes moyennes, PAS des données projet)
 
-### PRIX MOYENS OFF-PLAN (AED/sqft)
+### PRIX MOYENS OFF-PLAN (AED/sqft) — FOURCHETTES DE MARCHÉ
 | Zone | Studio | 1BR | 2BR | 3BR+ |
 |------|--------|-----|-----|------|
 | Downtown | 2,800-3,500 | 2,500-3,200 | 2,200-2,800 | 2,000-2,600 |
@@ -48,7 +59,7 @@ const SYSTEM_PROMPT = `Tu es **SofarAI**, l'assistant expert immobilier Dubai & 
 | Damac Hills 2 | 800-1,100 | 700-1,000 | 650-900 | 600-850 |
 | RAK (Al Marjan) | 1,800-2,500 | 1,600-2,200 | 1,400-2,000 | 1,200-1,800 |
 
-### DÉVELOPPEURS
+### DÉVELOPPEURS (classement général, pas des données projet)
 | Dev | Tier | Fiabilité |
 |-----|------|-----------|
 | Emaar | S | ⭐⭐⭐⭐⭐ |
@@ -64,7 +75,7 @@ const SYSTEM_PROMPT = `Tu es **SofarAI**, l'assistant expert immobilier Dubai & 
 | Samana | B | ⭐⭐⭐ |
 | Omniyat | S | ⭐⭐⭐⭐⭐ |
 
-### RENDEMENTS LOCATIFS MOYENS
+### RENDEMENTS LOCATIFS MOYENS (fourchettes zone, pas projet)
 JVC 8-11% | Business Bay 6-8% | Marina 5-7% | Downtown 5-7% | Hills 5-6% | Palm 4-6% | Damac Hills 2 9-12%
 
 ### SCORING (bienveillant)
@@ -86,6 +97,38 @@ function validateMessages(messages: unknown): { role: string; content: string }[
   return messages
     .filter((m: any) => typeof m === "object" && ["user", "assistant"].includes(m.role))
     .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, 4000) }));
+}
+
+async function fetchProjectData(supabaseClient: any): Promise<string> {
+  try {
+    const { data: projects } = await supabaseClient
+      .from("lib_projects")
+      .select("name, status, price_from, price_to, bedrooms, handover_date, property_type, description, ai_summary, quick_pitch, selling_points, target_buyer, developer:lib_developers(name), area:lib_areas(name)")
+      .limit(50);
+
+    if (!projects || projects.length === 0) {
+      return "Aucun projet enregistré dans la Library Sofara pour le moment.";
+    }
+
+    return projects.map((p: any) => {
+      const lines = [`**${p.name}**`];
+      if (p.developer?.name) lines.push(`Promoteur: ${p.developer.name}`);
+      if (p.area?.name) lines.push(`Zone: ${p.area.name}`);
+      if (p.status) lines.push(`Statut: ${p.status}`);
+      if (p.property_type) lines.push(`Type: ${p.property_type}`);
+      if (p.bedrooms) lines.push(`Chambres: ${p.bedrooms}`);
+      if (p.price_from || p.price_to) lines.push(`Prix: ${p.price_from ? `AED ${Number(p.price_from).toLocaleString()}` : '?'} - ${p.price_to ? `AED ${Number(p.price_to).toLocaleString()}` : '?'}`);
+      if (p.handover_date) lines.push(`Livraison: ${p.handover_date}`);
+      if (p.ai_summary) lines.push(`Résumé: ${p.ai_summary.slice(0, 200)}`);
+      if (p.quick_pitch) lines.push(`Pitch: ${p.quick_pitch.slice(0, 150)}`);
+      if (p.target_buyer) lines.push(`Cible: ${p.target_buyer}`);
+      if (Array.isArray(p.selling_points) && p.selling_points.length > 0) lines.push(`Points forts: ${p.selling_points.slice(0, 5).join(', ')}`);
+      return lines.join(' | ');
+    }).join('\n');
+  } catch (e) {
+    console.error("Error fetching project data:", e);
+    return "Erreur de chargement des projets.";
+  }
 }
 
 serve(async (req) => {
@@ -123,6 +166,10 @@ serve(async (req) => {
       });
     }
 
+    // Fetch real project data from Library
+    const projectData = await fetchProjectData(supabaseClient);
+    const finalPrompt = SYSTEM_PROMPT.replace("{{PROJECT_DATA}}", projectData);
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -132,7 +179,7 @@ serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: finalPrompt },
           ...safeMsgs,
         ],
         stream: true,
