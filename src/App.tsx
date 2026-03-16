@@ -71,6 +71,7 @@ const App = () => (
                   <Route path="legal-ai" element={<LegalAI />} />
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
+                  <Route path="library" element={<Library />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
