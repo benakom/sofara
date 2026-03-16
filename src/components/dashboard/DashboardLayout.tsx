@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AvatarChat from "@/components/sofar-ai/AvatarChat";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useProfileStatus } from "@/hooks/useProfileStatus";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
-  CreditCard, ShieldCheck, Bot, Trophy, MessageCircle, LogOut,
+  CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
   Sparkles
 } from "lucide-react";
-import { useEffect } from "react";
 import OnboardingGate from "./OnboardingGate";
 
 const navItems = [
@@ -153,37 +152,24 @@ const DashboardLayout = () => {
         <SidebarContent />
       </aside>
 
-      {/* Mobile sidebar overlay */}
-      <AnimatePresence>
-        {sidebarOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: -240 }}
-              animate={{ x: 0 }}
-              exit={{ x: -240 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 left-0 w-[240px] z-50 flex flex-col lg:hidden"
-            >
-              <SidebarContent />
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Mobile sidebar */}
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContent
+          side="left"
+          className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-sidebar-fg))] [&>button]:hover:text-white [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
+        >
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
 
       {/* Main content */}
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* Top bar */}
         <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
-            onClick={() => setSidebarOpen(true)}
+            onClick={() => setSidebarOpen((prev) => !prev)}
             className="lg:hidden text-[hsl(var(--dash-muted-fg))] p-1"
+            aria-label={lang === "fr" ? "Ouvrir ou fermer le menu" : "Toggle menu"}
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -230,7 +216,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* SofarAI Avatar Chat — only for approved users */}
-      {isApproved && <AvatarChat />}
+      {isApproved && !sidebarOpen && <AvatarChat />}
     </div>
   );
 };
