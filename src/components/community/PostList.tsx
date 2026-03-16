@@ -81,10 +81,10 @@ const PostList = ({
               {post.is_pinned && <Pin className="w-3 h-3 text-amber-500 shrink-0" />}
               {post.is_locked && <Lock className="w-3 h-3 dash-muted-text shrink-0" />}
               <h3 className="text-sm font-semibold dash-text group-hover:text-[hsl(var(--primary))] transition-colors truncate">
-                {post.title}
+                {getLocalizedText(post.title, lang)}
               </h3>
             </div>
-            <p className="text-xs dash-muted-text mt-1 line-clamp-2">{post.content}</p>
+            <p className="text-xs dash-muted-text mt-1 line-clamp-2">{getLocalizedText(post.content, lang)}</p>
             <div className="flex items-center gap-4 mt-2.5 text-[11px] dash-muted-text">
               <span className="font-medium">{post.author_name || "Anonyme"}</span>
               <span>{timeAgo}</span>
