@@ -55,6 +55,163 @@ export type Database = {
           },
         ]
       }
+      community_channels: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description_en: string
+          description_fr: string
+          emoji: string
+          id: string
+          is_locked: boolean
+          sort_order: number
+          title_en: string
+          title_fr: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description_en?: string
+          description_fr?: string
+          emoji?: string
+          id?: string
+          is_locked?: boolean
+          sort_order?: number
+          title_en: string
+          title_fr: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description_en?: string
+          description_fr?: string
+          emoji?: string
+          id?: string
+          is_locked?: boolean
+          sort_order?: number
+          title_en?: string
+          title_fr?: string
+        }
+        Relationships: []
+      }
+      community_likes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string | null
+          reply_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reply_id?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string | null
+          reply_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "community_posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "community_likes_reply_id_fkey"
+            columns: ["reply_id"]
+            isOneToOne: false
+            referencedRelation: "community_replies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_posts: {
+        Row: {
+          channel_id: string
+          content: string
+          created_at: string
+          id: string
+          is_locked: boolean
+          is_pinned: boolean
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          channel_id: string
+          content: string
+          created_at?: string
+          id?: string
+          is_locked?: boolean
+          is_pinned?: boolean
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          channel_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          is_locked?: boolean
+          is_pinned?: boolean
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_posts_channel_id_fkey"
+            columns: ["channel_id"]
+            isOneToOne: false
+            referencedRelation: "community_channels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_replies: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          post_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          post_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_replies_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "community_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       courses: {
         Row: {
           category: string
