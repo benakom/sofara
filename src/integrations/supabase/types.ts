@@ -373,6 +373,444 @@ export type Database = {
         }
         Relationships: []
       }
+      lib_areas: {
+        Row: {
+          city_id: string
+          created_at: string
+          description: string | null
+          highlights: Json | null
+          id: string
+          image_url: string | null
+          name: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          city_id: string
+          created_at?: string
+          description?: string | null
+          highlights?: Json | null
+          id?: string
+          image_url?: string | null
+          name: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          city_id?: string
+          created_at?: string
+          description?: string | null
+          highlights?: Json | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_areas_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "lib_cities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lib_asset_categories: {
+        Row: {
+          icon: string | null
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          icon?: string | null
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          icon?: string | null
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      lib_assets: {
+        Row: {
+          area_id: string | null
+          asset_type: string
+          category_id: string | null
+          city_id: string | null
+          created_at: string
+          description: string | null
+          developer_id: string | null
+          download_count: number
+          file_format: string | null
+          file_size: number | null
+          file_url: string | null
+          id: string
+          is_approved: boolean
+          is_featured: boolean
+          language: string | null
+          project_id: string | null
+          sort_priority: number
+          status: string
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          uploaded_by: string | null
+          version: number
+          visibility: string
+        }
+        Insert: {
+          area_id?: string | null
+          asset_type?: string
+          category_id?: string | null
+          city_id?: string | null
+          created_at?: string
+          description?: string | null
+          developer_id?: string | null
+          download_count?: number
+          file_format?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          is_approved?: boolean
+          is_featured?: boolean
+          language?: string | null
+          project_id?: string | null
+          sort_priority?: number
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          uploaded_by?: string | null
+          version?: number
+          visibility?: string
+        }
+        Update: {
+          area_id?: string | null
+          asset_type?: string
+          category_id?: string | null
+          city_id?: string | null
+          created_at?: string
+          description?: string | null
+          developer_id?: string | null
+          download_count?: number
+          file_format?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          is_approved?: boolean
+          is_featured?: boolean
+          language?: string | null
+          project_id?: string | null
+          sort_priority?: number
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          uploaded_by?: string | null
+          version?: number
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_assets_area_id_fkey"
+            columns: ["area_id"]
+            isOneToOne: false
+            referencedRelation: "lib_areas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_assets_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "lib_asset_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_assets_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "lib_cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_assets_developer_id_fkey"
+            columns: ["developer_id"]
+            isOneToOne: false
+            referencedRelation: "lib_developers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_assets_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "lib_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lib_cities: {
+        Row: {
+          country: string
+          created_at: string
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          country?: string
+          created_at?: string
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      lib_developers: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          sort_order: number
+          trust_points: Json | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          sort_order?: number
+          trust_points?: Json | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          sort_order?: number
+          trust_points?: Json | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      lib_download_logs: {
+        Row: {
+          asset_id: string
+          downloaded_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          asset_id: string
+          downloaded_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          asset_id?: string
+          downloaded_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_download_logs_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "lib_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lib_projects: {
+        Row: {
+          ai_summary: string | null
+          area_id: string
+          bedrooms: string | null
+          created_at: string
+          description: string | null
+          developer_id: string
+          faq: Json | null
+          handover_date: string | null
+          hero_image_url: string | null
+          id: string
+          is_featured: boolean
+          name: string
+          objection_handling: Json | null
+          price_from: number | null
+          price_to: number | null
+          property_type: string
+          quick_pitch: string | null
+          selling_points: Json | null
+          social_captions: Json | null
+          sort_order: number
+          status: string
+          target_buyer: string | null
+          updated_at: string
+          whatsapp_summary: string | null
+        }
+        Insert: {
+          ai_summary?: string | null
+          area_id: string
+          bedrooms?: string | null
+          created_at?: string
+          description?: string | null
+          developer_id: string
+          faq?: Json | null
+          handover_date?: string | null
+          hero_image_url?: string | null
+          id?: string
+          is_featured?: boolean
+          name: string
+          objection_handling?: Json | null
+          price_from?: number | null
+          price_to?: number | null
+          property_type?: string
+          quick_pitch?: string | null
+          selling_points?: Json | null
+          social_captions?: Json | null
+          sort_order?: number
+          status?: string
+          target_buyer?: string | null
+          updated_at?: string
+          whatsapp_summary?: string | null
+        }
+        Update: {
+          ai_summary?: string | null
+          area_id?: string
+          bedrooms?: string | null
+          created_at?: string
+          description?: string | null
+          developer_id?: string
+          faq?: Json | null
+          handover_date?: string | null
+          hero_image_url?: string | null
+          id?: string
+          is_featured?: boolean
+          name?: string
+          objection_handling?: Json | null
+          price_from?: number | null
+          price_to?: number | null
+          property_type?: string
+          quick_pitch?: string | null
+          selling_points?: Json | null
+          social_captions?: Json | null
+          sort_order?: number
+          status?: string
+          target_buyer?: string | null
+          updated_at?: string
+          whatsapp_summary?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_projects_area_id_fkey"
+            columns: ["area_id"]
+            isOneToOne: false
+            referencedRelation: "lib_areas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_projects_developer_id_fkey"
+            columns: ["developer_id"]
+            isOneToOne: false
+            referencedRelation: "lib_developers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lib_user_favorites: {
+        Row: {
+          asset_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          asset_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          asset_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_user_favorites_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "lib_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lib_user_recent_views: {
+        Row: {
+          asset_id: string | null
+          id: string
+          project_id: string | null
+          user_id: string
+          viewed_at: string
+        }
+        Insert: {
+          asset_id?: string | null
+          id?: string
+          project_id?: string | null
+          user_id: string
+          viewed_at?: string
+        }
+        Update: {
+          asset_id?: string | null
+          id?: string
+          project_id?: string | null
+          user_id?: string
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lib_user_recent_views_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "lib_assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lib_user_recent_views_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "lib_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       payments: {
         Row: {
           amount: number

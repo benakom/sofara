@@ -33,6 +33,7 @@ const Community = lazy(() => import("./pages/dashboard/Community"));
 const Simulator = lazy(() => import("./pages/dashboard/Simulator"));
 const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
 const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
+const Library = lazy(() => import("./pages/dashboard/Library"));
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
                   <Route path="legal-ai" element={<LegalAI />} />
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
+                  <Route path="library" element={<Library />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
