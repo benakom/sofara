@@ -22,6 +22,7 @@ const AdminAmbassadors = lazy(() => import("./pages/admin/AdminAmbassadors"));
 const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
 const AdminPayments = lazy(() => import("./pages/admin/AdminPayments"));
 const AdminCourses = lazy(() => import("./pages/admin/AdminCourses"));
+const AdminLibrary = lazy(() => import("./pages/admin/AdminLibrary"));
 const Pipeline = lazy(() => import("./pages/dashboard/Pipeline"));
 const ImportLeads = lazy(() => import("./pages/dashboard/ImportLeads"));
 const Commissions = lazy(() => import("./pages/dashboard/Commissions"));
