@@ -6,7 +6,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Users, GitBranch, DollarSign,
-  CreditCard, LogOut, Menu, Shield, Loader2, BarChart3, GraduationCap
+  CreditCard, LogOut, Menu, Shield, Loader2, BarChart3, GraduationCap, BookOpen
 } from "lucide-react";
 
 const navItems = [
