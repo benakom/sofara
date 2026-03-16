@@ -5,6 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { formatDistanceToNow } from "date-fns";
 import { fr, enUS } from "date-fns/locale";
 import { useState } from "react";
+import { getLocalizedText } from "@/lib/i18n-utils";
 
 export interface Reply {
   id: string;
@@ -72,7 +73,7 @@ const PostDetail = ({
             {(post.author_name || "?")[0].toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg font-display font-bold dash-text">{post.title}</h2>
+            <h2 className="text-lg font-display font-bold dash-text">{getLocalizedText(post.title, lang)}</h2>
             <div className="flex items-center gap-2 text-[11px] dash-muted-text mt-1">
               <span className="font-medium">{post.author_name || "Anonyme"}</span>
               <span>·</span>
@@ -81,7 +82,7 @@ const PostDetail = ({
                 <span className="flex items-center gap-0.5 text-amber-500"><Lock className="w-3 h-3" /> {lang === "fr" ? "Verrouillé" : "Locked"}</span>
               )}
             </div>
-            <p className="text-sm dash-text mt-3 whitespace-pre-wrap leading-relaxed">{post.content}</p>
+            <p className="text-sm dash-text mt-3 whitespace-pre-wrap leading-relaxed">{getLocalizedText(post.content, lang)}</p>
             <div className="flex items-center gap-3 mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
               <button
                 onClick={onLikePost}
