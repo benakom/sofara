@@ -33,6 +33,7 @@ const Community = lazy(() => import("./pages/dashboard/Community"));
 const Simulator = lazy(() => import("./pages/dashboard/Simulator"));
 const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
 const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
+const Library = lazy(() => import("./pages/dashboard/Library"));
 
 const queryClient = new QueryClient();
 
