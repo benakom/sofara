@@ -126,7 +126,7 @@ export default function AvatarChat() {
   return (
     <div
       ref={panelRef}
-      className="fixed bottom-4 right-2 sm:bottom-5 sm:right-5 z-50 w-[calc(100vw-1rem)] sm:w-[380px] max-w-[calc(100vw-1rem)] h-[520px] max-h-[calc(100dvh-6rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden"
+      className="fixed bottom-3 left-2 right-2 sm:bottom-5 sm:left-auto sm:right-5 z-50 w-auto sm:w-[380px] sm:max-w-[calc(100vw-2.5rem)] h-[520px] max-h-[calc(100dvh-5.5rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden"
       style={{ background: "linear-gradient(145deg, hsl(250, 30%, 16%), hsl(230, 25%, 12%))", border: "1px solid hsl(250, 20%, 24%)" }}
     >
       {/* Header */}
