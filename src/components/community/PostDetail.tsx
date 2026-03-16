@@ -5,6 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { formatDistanceToNow } from "date-fns";
 import { fr, enUS } from "date-fns/locale";
 import { useState } from "react";
+import { getLocalizedText } from "@/lib/i18n-utils";
 
 export interface Reply {
   id: string;
