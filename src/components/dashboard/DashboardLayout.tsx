@@ -81,14 +81,15 @@ const DashboardLayout = () => {
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
       {/* Logo */}
-      <div className="px-5 pt-6 pb-4">
-        <a href="/" className="font-display text-2xl font-bold text-white tracking-tight">
+      <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
+        <a href="/" className="font-display text-[22px] font-bold text-white tracking-tight">
           sofara
         </a>
+        <p className="text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--dash-sidebar-fg)/.4)] mt-0.5 font-medium">Ambassador Platform</p>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 px-3 pt-4 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.path, item.exact);
           return (
@@ -100,14 +101,18 @@ const DashboardLayout = () => {
               }}
               className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 ${
                 active
-                  ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-white"
-                  : "text-[hsl(var(--dash-sidebar-fg)/.7)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))]"
+                  ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-white border border-[hsl(var(--dash-sidebar-active)/.2)]"
+                  : "text-[hsl(var(--dash-sidebar-fg)/.65)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
               }`}
             >
               <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
               <span>{lang === "fr" ? item.labelFr : item.labelEn}</span>
               {item.badge && (
-                <span className="ml-auto text-[10px] font-bold bg-[hsl(var(--primary)/.2)] text-[hsl(var(--primary))] px-1.5 py-0.5 rounded-md">
+                <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                  item.badge === "AI" 
+                    ? "bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]" 
+                    : "bg-emerald-500/15 text-emerald-400"
+                }`}>
                   {item.badge}
                 </span>
               )}
@@ -119,12 +124,12 @@ const DashboardLayout = () => {
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-[hsl(var(--primary)/.2)] flex items-center justify-center text-xs font-semibold text-[hsl(var(--primary))]">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--primary)/.6)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-white truncate">{user.email?.split("@")[0]}</p>
-            <p className="text-xs text-[hsl(var(--dash-sidebar-fg)/.5)] truncate">{user.email}</p>
+            <p className="text-[11px] text-[hsl(var(--dash-sidebar-fg)/.4)] truncate">{user.email}</p>
           </div>
         </div>
         {isSuperAdmin && (
@@ -138,7 +143,7 @@ const DashboardLayout = () => {
         )}
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-sm text-[hsl(var(--dash-sidebar-fg)/.5)] hover:text-white transition-colors w-full px-1"
+          className="flex items-center gap-2 text-[13px] text-[hsl(var(--dash-sidebar-fg)/.45)] hover:text-white transition-colors w-full px-1"
         >
           <LogOut className="w-4 h-4" />
           {lang === "fr" ? "Déconnexion" : "Sign Out"}
