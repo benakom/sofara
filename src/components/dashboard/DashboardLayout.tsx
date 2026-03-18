@@ -89,36 +89,38 @@ const DashboardLayout = () => {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 pt-3 flex flex-col justify-between">
-        {navItems.map((item) => {
-          const active = isActive(item.path, item.exact);
-          return (
-            <button
-              key={item.path}
-              onClick={() => {
-                navigate(item.path);
-                setSidebarOpen(false);
-              }}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 ${
-                active
-                  ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-white border border-[hsl(var(--dash-sidebar-active)/.2)]"
-                  : "text-[hsl(var(--dash-sidebar-fg)/.65)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
-              }`}
-            >
-              <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
-              <span>{lang === "fr" ? item.labelFr : item.labelEn}</span>
-              {item.badge && (
-                <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                  item.badge === "AI" 
-                    ? "bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]" 
-                    : "bg-emerald-500/15 text-emerald-400"
-                }`}>
-                  {item.badge}
-                </span>
-              )}
-            </button>
-          );
-        })}
+      <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col">
+        <div className="flex flex-col flex-1 justify-evenly">
+          {navItems.map((item) => {
+            const active = isActive(item.path, item.exact);
+            return (
+              <button
+                key={item.path}
+                onClick={() => {
+                  navigate(item.path);
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
+                  active
+                    ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-white border border-[hsl(var(--dash-sidebar-active)/.2)]"
+                    : "text-[hsl(var(--dash-sidebar-fg)/.65)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
+                }`}
+              >
+                <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
+                <span>{lang === "fr" ? item.labelFr : item.labelEn}</span>
+                {item.badge && (
+                  <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                    item.badge === "AI" 
+                      ? "bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]" 
+                      : "bg-emerald-500/15 text-emerald-400"
+                  }`}>
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </nav>
 
       {/* User footer */}
