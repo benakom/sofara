@@ -89,7 +89,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 pt-4 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 px-3 pt-3 flex flex-col justify-between">
         {navItems.map((item) => {
           const active = isActive(item.path, item.exact);
           return (
