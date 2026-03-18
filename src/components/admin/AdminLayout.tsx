@@ -3,11 +3,11 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Users, GitBranch, DollarSign,
   CreditCard, LogOut, Menu, Shield, Loader2, BarChart3, GraduationCap, BookOpen
 } from "lucide-react";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const navItems = [
   { path: "/admin", icon: BarChart3, label: "Vue d'ensemble", exact: true },
@@ -35,8 +35,8 @@ const AdminLayout = () => {
 
   if (authLoading || adminLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="w-5 h-5 animate-spin text-accent" />
+      <div className="min-h-screen bg-[hsl(var(--background))] flex items-center justify-center">
+        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" />
       </div>
     );
   }
@@ -52,48 +52,47 @@ const AdminLayout = () => {
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-surface">
-      <div className="px-5 pt-5 pb-4 flex items-center gap-2">
-        <Shield className="w-4 h-4 text-destructive" />
-        <span className="text-[18px] font-semibold text-foreground tracking-[2px] uppercase">
-          sofara <span className="text-destructive text-[10px] font-semibold tracking-normal normal-case ml-1">ADMIN</span>
+    <div className="flex flex-col h-full bg-[hsl(228,12%,6%)]">
+      <div className="px-5 pt-6 pb-4 flex items-center gap-2">
+        <Shield className="w-5 h-5 text-[hsl(var(--destructive))]" />
+        <span className="font-display text-xl font-bold text-[hsl(var(--foreground))] tracking-tight">
+          sofara <span className="text-[hsl(var(--destructive))] text-sm font-semibold">ADMIN</span>
         </span>
       </div>
 
       <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
-        <div className="section-label px-3 mb-1.5">Navigation</div>
         {navItems.map((item) => {
           const active = isActive(item.path, item.exact);
           return (
             <button
               key={item.path}
               onClick={() => { navigate(item.path); setSidebarOpen(false); }}
-              className={`w-full flex items-center gap-2.5 px-3 py-[8px] rounded-lg text-[12.5px] font-medium transition-colors ${
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
                 active
-                  ? "bg-accent-pale text-foreground border-l-2 border-accent -ml-[1px]"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  ? "bg-[hsl(var(--destructive)/.12)] text-[hsl(var(--foreground))]"
+                  : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))]"
               }`}
             >
-              <item.icon className={`w-[15px] h-[15px] shrink-0 ${active ? "text-accent" : ""}`} />
+              <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--destructive))]" : ""}`} />
               <span>{item.label}</span>
             </button>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-border mt-auto space-y-2">
+      <div className="p-4 border-t border-[hsl(var(--border))] mt-auto space-y-3">
         <button
           onClick={() => navigate("/dashboard")}
-          className="flex items-center gap-2 text-[12px] text-muted-foreground hover:text-foreground transition-colors w-full px-1"
+          className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors w-full px-1"
         >
-          <LayoutDashboard className="w-3.5 h-3.5" />
+          <LayoutDashboard className="w-4 h-4" />
           Dashboard ambassadeur
         </button>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-[12px] text-muted-foreground hover:text-foreground transition-colors w-full px-1"
+          className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors w-full px-1"
         >
-          <LogOut className="w-3.5 h-3.5" />
+          <LogOut className="w-4 h-4" />
           {lang === "fr" ? "Déconnexion" : "Sign Out"}
         </button>
       </div>
@@ -101,33 +100,42 @@ const AdminLayout = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-background">
-      <aside className="hidden lg:flex flex-col w-[220px] fixed inset-y-0 left-0 z-40 border-r border-border bg-surface">
+    <div className="min-h-screen flex bg-[hsl(var(--background))]">
+      <aside className="hidden lg:flex flex-col w-[240px] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--border))]">
         <SidebarContent />
       </aside>
 
-      {/* Mobile sidebar */}
-      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent
-          side="left"
-          className="w-[280px] max-w-[85vw] p-0 border-border bg-surface lg:hidden"
-        >
-          <SidebarContent />
-        </SheetContent>
-      </Sheet>
+      <AnimatePresence>
+        {sidebarOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+            <motion.aside
+              initial={{ x: -240 }} animate={{ x: 0 }} exit={{ x: -240 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="fixed inset-y-0 left-0 w-[240px] z-50 flex flex-col lg:hidden"
+            >
+              <SidebarContent />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
-      <div className="flex-1 lg:ml-[220px] flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 h-11 border-b border-border bg-surface flex items-center px-4 sm:px-5">
-          <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-muted-foreground p-1">
-            <Menu className="w-4 h-4" />
+      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen">
+        <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--border))] bg-[hsl(var(--card)/.85)] backdrop-blur-xl flex items-center px-4 sm:px-6">
+          <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-[hsl(var(--muted-foreground))] p-1">
+            <Menu className="w-5 h-5" />
           </button>
           <div className="flex-1" />
-          <span className="text-[10px] font-semibold text-destructive bg-status-red-bg px-2 py-1 rounded-pill border border-destructive/20">
+          <span className="text-xs font-semibold text-[hsl(var(--destructive))] bg-[hsl(var(--destructive)/.1)] px-2 py-1 rounded-md">
             SUPER ADMIN
           </span>
         </header>
 
-        <main className="flex-1 p-4 sm:p-5 lg:p-6">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>
