@@ -41,101 +41,118 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, accent: "bg-blue-50 text-blue-600" },
-    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, accent: "bg-violet-50 text-violet-600" },
-    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, accent: "bg-emerald-50 text-emerald-600" },
-    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, accent: "bg-amber-50 text-amber-600" },
-    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, accent: "bg-rose-50 text-rose-600" },
-    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, accent: "bg-green-50 text-green-600", prefix: "AED " },
+    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, color: "from-blue-500/10 to-blue-500/5", iconColor: "text-blue-600", borderColor: "border-blue-100" },
+    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, color: "from-violet-500/10 to-violet-500/5", iconColor: "text-violet-600", borderColor: "border-violet-100" },
+    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, color: "from-emerald-500/10 to-emerald-500/5", iconColor: "text-emerald-600", borderColor: "border-emerald-100" },
+    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, color: "from-amber-500/10 to-amber-500/5", iconColor: "text-amber-600", borderColor: "border-amber-100" },
+    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, color: "from-rose-500/10 to-rose-500/5", iconColor: "text-rose-600", borderColor: "border-rose-100" },
+    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, color: "from-green-500/10 to-green-500/5", iconColor: "text-green-600", borderColor: "border-green-100", prefix: "AED " },
   ];
 
-  const recentLeads = leads.slice(0, 4);
+  const recentLeads = leads.slice(0, 5);
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
       {/* Greeting */}
-      <div className="mb-6">
-        <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">
-          👋 {lang === "fr" ? "Bienvenue" : "Welcome"}, {user?.email?.split("@")[0]}
+      <div className="mb-8">
+        <h1 className="text-2xl font-display font-bold dash-text tracking-tight">
+          {lang === "fr" ? "Bienvenue" : "Welcome"}, {user?.email?.split("@")[0]} 👋
         </h1>
-        <p className="dash-muted-text text-base sm:text-sm mt-0.5">
-          {lang === "fr" ? "Voici le résumé de votre activité." : "Here's your activity summary."}
+        <p className="dash-muted-text text-sm mt-1">
+          {lang === "fr" ? "Voici le résumé de votre activité." : "Here's your activity overview."}
         </p>
       </div>
 
-      {/* KPI Grid - compact */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+      {/* KPI Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
         {kpis.map((kpi, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-            className="dash-card rounded-xl p-3.5">
-            <div className="flex items-center gap-2 mb-2">
-              <div className={`p-1.5 rounded-lg ${kpi.accent}`}><kpi.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
+          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
+            className={`dash-card rounded-xl p-4 relative overflow-hidden`}>
+            <div className={`absolute inset-0 bg-gradient-to-br ${kpi.color} pointer-events-none`} />
+            <div className="relative">
+              <div className="flex items-center gap-2 mb-3">
+                <div className={`p-1.5 rounded-lg bg-white/80 ${kpi.iconColor} shadow-sm`}>
+                  <kpi.icon className="w-3.5 h-3.5" />
+                </div>
+              </div>
+              <p className="text-2xl font-display font-bold dash-text tracking-tight">{kpi.prefix || ""}{kpi.value}</p>
+              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
             </div>
-            <p className="text-xl sm:text-lg font-display font-bold dash-text">{kpi.prefix || ""}{kpi.value}</p>
           </motion.div>
         ))}
       </div>
 
       {/* Two columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-5">
         {/* Commission breakdown */}
-        <div className="lg:col-span-2 dash-card rounded-xl p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2"><BarChart3 className="w-4 h-4" /> Commissions</h2>
-            <button onClick={() => navigate("/dashboard/commissions")} className="text-sm sm:text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+        <div className="lg:col-span-2 dash-card rounded-xl p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--primary)/.08)]">
+                <BarChart3 className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
+              </div>
+              Commissions
+            </h2>
+            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary)/.8)] flex items-center gap-0.5 transition-colors">
               {lang === "fr" ? "Détails" : "Details"} <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
-          <div className="space-y-2.5">
+          <div className="space-y-3">
             {[
               { label: lang === "fr" ? "Estimées" : "Estimated", value: estComm, color: "bg-violet-500" },
               { label: lang === "fr" ? "Validées" : "Validated", value: valComm, color: "bg-blue-500" },
               { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "bg-emerald-500" },
             ].map((item, i) => (
               <div key={i}>
-                <div className="flex justify-between text-sm sm:text-xs mb-1">
-                  <span className="dash-muted-text">{item.label}</span>
-                  <span className="font-medium dash-text">AED {item.value.toLocaleString()}</span>
+                <div className="flex justify-between text-xs mb-1.5">
+                  <span className="dash-muted-text font-medium">{item.label}</span>
+                  <span className="font-semibold dash-text">AED {item.value.toLocaleString()}</span>
                 </div>
-                <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div className={`h-full ${item.color} rounded-full transition-all`} style={{ width: `${totalComm > 0 ? (item.value / totalComm) * 100 : 0}%` }} />
+                <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
+                  <div className={`h-full ${item.color} rounded-full transition-all duration-500`} style={{ width: `${totalComm > 0 ? (item.value / totalComm) * 100 : 0}%` }} />
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-3 pt-3 border-t dash-border-color flex items-center justify-between">
-            <span className="text-sm sm:text-xs dash-muted-text">Total</span>
-            <span className="text-base sm:text-sm font-bold dash-text">AED {totalComm.toLocaleString()}</span>
+          <div className="dash-divider mt-4 mb-3" />
+          <div className="flex items-center justify-between">
+            <span className="text-xs dash-muted-text font-medium">Total</span>
+            <span className="text-lg font-bold font-display dash-text">AED {totalComm.toLocaleString()}</span>
           </div>
         </div>
 
         {/* Recent leads */}
-        <div className="lg:col-span-3 dash-card rounded-xl p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base sm:text-sm font-display font-semibold dash-text">{lang === "fr" ? "Leads récents" : "Recent Leads"}</h2>
-            <button onClick={() => navigate("/dashboard/pipeline")} className="text-sm sm:text-xs text-[hsl(var(--primary))] hover:underline flex items-center gap-0.5">
+        <div className="lg:col-span-3 dash-card rounded-xl p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-blue-50">
+                <Users className="w-3.5 h-3.5 text-blue-600" />
+              </div>
+              {lang === "fr" ? "Leads récents" : "Recent Leads"}
+            </h2>
+            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary)/.8)] flex items-center gap-0.5 transition-colors">
               Pipeline <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
           {recentLeads.length === 0 ? (
-            <div className="text-center py-8 dash-muted-text text-base sm:text-sm">
-              {lang === "fr" ? "Aucun lead. Importez vos premiers leads !" : "No leads. Import your first leads!"}
+            <div className="text-center py-10 dash-muted-text text-sm">
+              <Users className="w-8 h-8 mx-auto mb-2 opacity-30" />
+              {lang === "fr" ? "Aucun lead. Importez vos premiers leads !" : "No leads yet. Import your first leads!"}
             </div>
           ) : (
-            <div className="space-y-2">
-              {recentLeads.map((lead: any) => (
-                <div key={lead.id} className="flex items-center justify-between py-2 border-b dash-border-color last:border-0">
+            <div className="space-y-0">
+              {recentLeads.map((lead: any, i: number) => (
+                <div key={lead.id} className={`flex items-center justify-between py-2.5 ${i < recentLeads.length - 1 ? "border-b border-[hsl(var(--dash-border))]" : ""}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[hsl(var(--primary)/.08)] flex items-center justify-center text-[10px] font-bold text-[hsl(var(--primary))]">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(var(--primary)/.12)] to-[hsl(var(--primary)/.06)] flex items-center justify-center text-[11px] font-bold text-[hsl(var(--primary))]">
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-base sm:text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</p>
-                      <p className="text-xs sm:text-[11px] dash-muted-text">{lead.source}</p>
+                      <p className="text-sm font-medium dash-text">{lead.first_name} {lead.last_name?.charAt(0)}.</p>
+                      <p className="text-[11px] dash-muted-text">{lead.source}</p>
                     </div>
                   </div>
-                  <span className="text-xs sm:text-[11px] px-2 py-0.5 rounded-full bg-gray-100 dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
+                  <span className="dash-badge bg-[hsl(var(--dash-muted))] dash-text capitalize">{lead.stage?.replace(/_/g, " ")}</span>
                 </div>
               ))}
             </div>
@@ -146,16 +163,22 @@ const DashboardHome = () => {
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", accent: "bg-blue-50 text-blue-600" },
-          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", accent: "bg-amber-50 text-amber-600" },
-          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/sofar-ai", accent: "bg-violet-50 text-violet-600" },
-          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", accent: "bg-green-50 text-green-600" },
+          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", gradient: "from-blue-500/8 to-blue-600/4", iconBg: "bg-blue-50", iconColor: "text-blue-600" },
+          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", gradient: "from-amber-500/8 to-amber-600/4", iconBg: "bg-amber-50", iconColor: "text-amber-600" },
+          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", gradient: "from-violet-500/8 to-violet-600/4", iconBg: "bg-violet-50", iconColor: "text-violet-600" },
+          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", gradient: "from-green-500/8 to-green-600/4", iconBg: "bg-green-50", iconColor: "text-green-600" },
         ].map((action, i) => (
-          <button key={i} onClick={() => navigate(action.path)}
-            className="dash-card rounded-xl p-3 flex items-center gap-3 hover:shadow-sm transition-shadow text-left group">
-            <div className={`p-2 rounded-lg ${action.accent}`}><action.icon className="w-4 h-4" /></div>
-            <span className="text-base sm:text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">{lang === "fr" ? action.labelFr : action.labelEn}</span>
-          </button>
+          <motion.button key={i} onClick={() => navigate(action.path)}
+            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }}
+            className="dash-card-interactive rounded-xl p-4 flex items-center gap-3 text-left group relative overflow-hidden">
+            <div className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
+            <div className={`relative p-2 rounded-lg ${action.iconBg} ${action.iconColor} shadow-sm`}>
+              <action.icon className="w-4 h-4" />
+            </div>
+            <span className="relative text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">
+              {lang === "fr" ? action.labelFr : action.labelEn}
+            </span>
+          </motion.button>
         ))}
       </div>
     </motion.div>
