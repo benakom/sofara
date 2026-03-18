@@ -155,7 +155,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40">
+      <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--dash-sidebar-border))]">
         <SidebarContent />
       </aside>
 
@@ -172,10 +172,10 @@ const DashboardLayout = () => {
       {/* Main content */}
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 h-12 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.85)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
+        <header className="sticky top-0 z-30 h-14 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.92)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
             onClick={() => setSidebarOpen((prev) => !prev)}
-            className="lg:hidden text-[hsl(var(--dash-muted-fg))] p-1"
+            className="lg:hidden text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors"
             aria-label={lang === "fr" ? "Ouvrir ou fermer le menu" : "Toggle menu"}
           >
             <Menu className="w-5 h-5" />
@@ -183,14 +183,14 @@ const DashboardLayout = () => {
 
           <div className="flex-1" />
 
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-0.5 bg-[hsl(var(--dash-muted))] rounded-lg p-0.5">
               {langs.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => setLang(l.code)}
-                  className={`px-1.5 py-1 rounded text-sm transition-all ${
-                    lang === l.code ? "opacity-100" : "opacity-40 hover:opacity-70"
+                  className={`px-2 py-1 rounded-md text-sm transition-all ${
+                    lang === l.code ? "bg-[hsl(var(--dash-card))] shadow-sm opacity-100" : "opacity-40 hover:opacity-70"
                   }`}
                 >
                   {l.flag}
@@ -198,11 +198,14 @@ const DashboardLayout = () => {
               ))}
             </div>
 
-            <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))]">
+            <div className="w-px h-5 bg-[hsl(var(--dash-border))] mx-1" />
+
+            <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))]">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))] relative">
+            <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] relative">
               <Bell className="w-4 h-4" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[hsl(var(--primary))] rounded-full" />
             </button>
           </div>
         </header>
