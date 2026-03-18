@@ -63,25 +63,33 @@
     --sidebar-border: 228 8% 14%;
     --sidebar-ring: 252 87% 67%;
 
-    /* Dashboard sidebar - dark */
-    --dash-sidebar-bg: 225 15% 12%;
-    --dash-sidebar-fg: 220 10% 85%;
+    /* Dashboard sidebar - dark premium */
+    --dash-sidebar-bg: 228 24% 8%;
+    --dash-sidebar-fg: 220 15% 82%;
     --dash-sidebar-active: 252 87% 67%;
-    --dash-sidebar-hover: 225 12% 18%;
-    --dash-sidebar-border: 225 10% 18%;
+    --dash-sidebar-hover: 228 18% 14%;
+    --dash-sidebar-border: 228 16% 14%;
 
-    /* Dashboard content area - clean, light, modern */
-    --dash-bg: 220 20% 97%;
-    --dash-fg: 220 20% 12%;
+    /* Dashboard content area - clean, refined */
+    --dash-bg: 220 16% 96%;
+    --dash-fg: 224 24% 12%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 220 20% 12%;
-    --dash-border: 220 13% 91%;
-    --dash-muted: 220 14% 95%;
-    --dash-muted-fg: 220 8% 52%;
+    --dash-card-fg: 224 24% 12%;
+    --dash-border: 220 14% 90%;
+    --dash-muted: 220 14% 94%;
+    --dash-muted-fg: 220 10% 48%;
 
     /* Dashboard form inputs - off-white */
-    --dash-input-bg: 220 20% 97%;
-    --dash-input-border: 220 13% 88%;
+    --dash-input-bg: 220 16% 96%;
+    --dash-input-border: 220 14% 86%;
+
+    /* Dashboard accent tokens */
+    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.03);
+    --dash-card-shadow-hover: 0 4px 12px -2px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+    --dash-card-ring: 220 14% 92%;
+    --dash-success: 152 60% 42%;
+    --dash-warning: 38 92% 50%;
+    --dash-info: 217 91% 60%;
   }
 }
 
@@ -249,7 +257,35 @@
   background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: var(--dash-card-shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dash-card:hover {
+  box-shadow: var(--dash-card-shadow-hover);
+}
+
+.dash-card-elevated {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
+  ring: 1px hsl(var(--dash-card-ring));
+}
+
+.dash-card-interactive {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+  box-shadow: var(--dash-card-shadow);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dash-card-interactive:hover {
+  box-shadow: var(--dash-card-shadow-hover);
+  border-color: hsl(var(--dash-card-ring));
+  transform: translateY(-1px);
 }
 
 .dash-border-color {
@@ -275,9 +311,29 @@
   color: hsl(var(--dash-fg)) !important;
 }
 
+.dash-input:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.08) !important;
+}
+
 /* Dashboard dialog/form backgrounds */
 .dash-form-bg {
-  background: hsl(220, 20%, 98%);
+  background: hsl(220, 16%, 98%);
+}
+
+/* Premium divider */
+.dash-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--dash-border)), transparent);
+}
+
+/* Status badges */
+.dash-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 @keyframes aurora-rotate {
