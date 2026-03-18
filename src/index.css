@@ -257,7 +257,35 @@
   background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: var(--dash-card-shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dash-card:hover {
+  box-shadow: var(--dash-card-shadow-hover);
+}
+
+.dash-card-elevated {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
+  ring: 1px hsl(var(--dash-card-ring));
+}
+
+.dash-card-interactive {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+  box-shadow: var(--dash-card-shadow);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dash-card-interactive:hover {
+  box-shadow: var(--dash-card-shadow-hover);
+  border-color: hsl(var(--dash-card-ring));
+  transform: translateY(-1px);
 }
 
 .dash-border-color {
@@ -283,9 +311,29 @@
   color: hsl(var(--dash-fg)) !important;
 }
 
+.dash-input:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.08) !important;
+}
+
 /* Dashboard dialog/form backgrounds */
 .dash-form-bg {
-  background: hsl(220, 20%, 98%);
+  background: hsl(220, 16%, 98%);
+}
+
+/* Premium divider */
+.dash-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--dash-border)), transparent);
+}
+
+/* Status badges */
+.dash-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 @keyframes aurora-rotate {
