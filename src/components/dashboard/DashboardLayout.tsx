@@ -51,10 +51,18 @@ const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
   const { isApproved, isPending, isRejected, needsOnboarding, loading: profileLoading, refetch } = useProfileStatus();
+  const { profileType, ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Filter nav items based on user tier
+  const navItems = allNavItems.filter((item) => {
+    if (item.tier === "pro" && profileType !== "pro") return false;
+    // Show referrals to everyone (they'll see it's empty if no referrals)
+    return true;
+  });
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
