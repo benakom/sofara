@@ -62,6 +62,25 @@ const COUNTRIES = [
   "Oman", "Égypte", "Jordanie", "Turquie", "Autre",
 ];
 
+const AMBASSADOR_TYPES = [
+  {
+    value: "referrer",
+    labelFr: "J'ai un réseau et je veux recommander",
+    labelEn: "I have a network and want to refer",
+    descFr: "Apportez des contacts, on s'occupe du reste. Aucune compétence immobilière requise.",
+    descEn: "Bring contacts, we handle the rest. No real estate skills needed.",
+    icon: "🤝",
+  },
+  {
+    value: "pro",
+    labelFr: "Je suis professionnel de l'immobilier ou de la vente",
+    labelEn: "I'm a real estate or sales professional",
+    descFr: "Accédez à tous les outils IA pour qualifier, convaincre et closer vos leads.",
+    descEn: "Access all AI tools to qualify, convince and close your leads.",
+    icon: "🏢",
+  },
+];
+
 const PROFILES = [
   { value: "influencer", labelFr: "Influenceur / Créateur", labelEn: "Influencer / Creator" },
   { value: "agent", labelFr: "Agent immobilier", labelEn: "Real estate agent" },
@@ -86,6 +105,7 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
   const [showTour, setShowTour] = useState(false);
   const [tourStep, setTourStep] = useState(0);
 
+  const [ambassadorType, setAmbassadorType] = useState<"referrer" | "pro" | "">("");
   const [fullName, setFullName] = useState("");
   const [phoneCode, setPhoneCode] = useState("+33");
   const [phone, setPhone] = useState("");
