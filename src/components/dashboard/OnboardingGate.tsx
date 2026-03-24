@@ -282,28 +282,47 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
   // Onboarding form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName.trim() || !phone.trim() || !country || !profileType || !acceptedTerms || !acceptedConduct) {
+    if (!fullName.trim() || !phone.trim() || !country || !profileType || !acceptedTerms || !acceptedConduct || !ambassadorType) {
       toast({ variant: "destructive", title: lang === "fr" ? "Champs requis" : "Required fields", description: lang === "fr" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
       return;
     }
     setLoading(true);
+
+    // Check for referral code in URL
+    const params = new URLSearchParams(window.location.search);
+    const refCode = params.get("ref") || localStorage.getItem("sofara_ref");
+    let referredBy: string | null = null;
+
+    if (refCode) {
+      const { data: referrer } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("referral_code", refCode)
+        .single();
+      if (referrer) referredBy = referrer.id;
+    }
+
+    const updateData: Record<string, unknown> = {
+      full_name: fullName.trim(),
+      phone: `${phoneCode}${phone.trim()}`,
+      country,
+      profile_type: ambassadorType === "pro" ? "pro" : profileType,
+      accepted_terms: true,
+      accepted_terms_at: new Date().toISOString(),
+      status: "onboarding",
+    };
+    if (referredBy) updateData.referred_by = referredBy;
+
     const { error } = await supabase
       .from("profiles")
-      .update({
-        full_name: fullName.trim(),
-        phone: `${phoneCode}${phone.trim()}`,
-        country,
-        profile_type: profileType,
-        accepted_terms: true,
-        accepted_terms_at: new Date().toISOString(),
-        status: "onboarding",
-      })
+      .update(updateData)
       .eq("id", user!.id);
 
     setLoading(false);
     if (error) {
       toast({ variant: "destructive", title: "Error", description: error.message });
     } else {
+      localStorage.removeItem("sofara_ref");
       setShowTour(true);
     }
   };
