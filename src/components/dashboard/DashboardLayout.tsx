@@ -101,9 +101,17 @@ const DashboardLayout = () => {
     <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
-        <a href="/" className="font-display text-[22px] font-bold text-white tracking-tight">
-          sofara
-        </a>
+        <div className="flex items-center gap-2">
+          <a href="/" className="font-display text-[22px] font-bold text-white tracking-tight">
+            sofara
+          </a>
+          {profileType === "pro" && (
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]">PRO</span>
+          )}
+          {ambassadorTier === "ambassador_plus" && (
+            <Crown className="w-3.5 h-3.5 text-amber-400" />
+          )}
+        </div>
         <p className="text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--dash-sidebar-fg)/.4)] mt-0.5 font-medium">Ambassador Platform</p>
       </div>
 
