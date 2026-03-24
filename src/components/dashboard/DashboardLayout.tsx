@@ -11,9 +11,10 @@ import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
-  Sparkles, BookOpen, Users, Crown
+  Sparkles, BookOpen, Users, Crown, ArrowUpCircle
 } from "lucide-react";
 import OnboardingGate from "./OnboardingGate";
+import UpgradeToProDialog from "./UpgradeToProDialog";
 
 type NavItem = {
   path: string;
@@ -56,6 +57,7 @@ const DashboardLayout = () => {
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
 
   // Filter nav items based on user tier
   const navItems = allNavItems.filter((item) => {
@@ -149,6 +151,22 @@ const DashboardLayout = () => {
           })}
         </div>
       </nav>
+
+      {/* Upgrade CTA for non-pro users */}
+      {profileType !== "pro" && (
+        <div className="px-3 pb-2">
+          <button
+            onClick={() => setUpgradeOpen(true)}
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary)/.1)] to-[hsl(var(--primary)/.05)] border border-[hsl(var(--primary)/.2)] text-[hsl(var(--primary))] hover:from-[hsl(var(--primary)/.15)] hover:to-[hsl(var(--primary)/.1)] transition-all duration-200 group"
+          >
+            <ArrowUpCircle className="w-4 h-4 shrink-0" />
+            <div className="flex-1 text-left">
+              <p className="text-[11px] font-semibold">{lang === "fr" ? "Passer à Pro" : "Upgrade to Pro"}</p>
+              <p className="text-[9px] opacity-60">{lang === "fr" ? "Gratuit • Outils avancés" : "Free • Advanced tools"}</p>
+            </div>
+          </button>
+        </div>
+      )}
 
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
@@ -256,6 +274,13 @@ const DashboardLayout = () => {
 
       {/* SofarAI Avatar Chat — only for approved users */}
       {isApproved && !sidebarOpen && !shouldHideFloatingChat && <AvatarChat />}
+
+      {/* Upgrade dialog */}
+      <UpgradeToProDialog
+        open={upgradeOpen}
+        onOpenChange={setUpgradeOpen}
+        onUpgradeRequested={() => window.location.reload()}
+      />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 
-export type UserTier = "referrer" | "pro";
+export type UserTier = "referrer" | "pro" | "pro_pending";
 export type AmbassadorTier = "ambassador" | "ambassador_plus";
 
 interface UserTierData {
@@ -33,7 +33,7 @@ export const useUserTier = (): UserTierData => {
 
       if (profile) {
         const pt = profile.profile_type;
-        setProfileType(pt === "pro" ? "pro" : "referrer");
+        setProfileType(pt === "pro" ? "pro" : pt === "pro_pending" ? "pro_pending" : "referrer");
         setReferralCode(profile.referral_code);
       }
 
