@@ -35,6 +35,7 @@ const Simulator = lazy(() => import("./pages/dashboard/Simulator"));
 const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
 const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
 const Library = lazy(() => import("./pages/dashboard/Library"));
+const Referrals = lazy(() => import("./pages/dashboard/Referrals"));
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => (
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
                   <Route path="library" element={<Library />} />
+                  <Route path="referrals" element={<Referrals />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />

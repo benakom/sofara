@@ -854,6 +854,8 @@ export type Database = {
           id: string
           phone: string | null
           profile_type: string | null
+          referral_code: string | null
+          referred_by: string | null
           reviewed_at: string | null
           reviewed_by: string | null
           status: string
@@ -868,6 +870,8 @@ export type Database = {
           id: string
           phone?: string | null
           profile_type?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
@@ -882,12 +886,74 @@ export type Database = {
           id?: string
           phone?: string | null
           profile_type?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referral_bonuses: {
+        Row: {
+          bonus_amount: number
+          commission_id: string | null
+          created_at: string
+          godchild_id: string
+          id: string
+          status: string
+          super_ambassador_id: string
+        }
+        Insert: {
+          bonus_amount?: number
+          commission_id?: string | null
+          created_at?: string
+          godchild_id: string
+          id?: string
+          status?: string
+          super_ambassador_id: string
+        }
+        Update: {
+          bonus_amount?: number
+          commission_id?: string | null
+          created_at?: string
+          godchild_id?: string
+          id?: string
+          status?: string
+          super_ambassador_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referral_bonuses_commission_id_fkey"
+            columns: ["commission_id"]
+            isOneToOne: false
+            referencedRelation: "commissions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referral_bonuses_godchild_id_fkey"
+            columns: ["godchild_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referral_bonuses_super_ambassador_id_fkey"
+            columns: ["super_ambassador_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {

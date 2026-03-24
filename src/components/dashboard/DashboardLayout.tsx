@@ -5,28 +5,39 @@ import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useProfileStatus } from "@/hooks/useProfileStatus";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useUserTier } from "@/hooks/useUserTier";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
-  Sparkles, BookOpen
+  Sparkles, BookOpen, Users, Crown
 } from "lucide-react";
 import OnboardingGate from "./OnboardingGate";
 
-const navItems = [
+type NavItem = {
+  path: string;
+  icon: typeof LayoutDashboard;
+  labelFr: string;
+  labelEn: string;
+  exact?: boolean;
+  badge?: string;
+  tier?: "pro"; // only visible to pro users
+};
+
+const allNavItems: NavItem[] = [
   { path: "/dashboard", icon: LayoutDashboard, labelFr: "Tableau de bord", labelEn: "Dashboard", exact: true },
   { path: "/dashboard/academy", icon: GraduationCap, labelFr: "Academy", labelEn: "Academy" },
   { path: "/dashboard/pipeline", icon: GitBranch, labelFr: "Pipeline", labelEn: "Pipeline" },
   { path: "/dashboard/import-leads", icon: Upload, labelFr: "Import Leads", labelEn: "Import Leads" },
   { path: "/dashboard/commissions", icon: DollarSign, labelFr: "Commissions", labelEn: "Commissions" },
   { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
-  { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI" },
-  { path: "/dashboard/library", icon: BookOpen, labelFr: "Bibliothèque", labelEn: "Library", badge: "NEW" },
-  
-  { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar" },
+  { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
+  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+  { path: "/dashboard/library", icon: BookOpen, labelFr: "Bibliothèque", labelEn: "Library", badge: "NEW", tier: "pro" },
+  { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
+  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar", tier: "pro" },
+  { path: "/dashboard/referrals", icon: Users, labelFr: "Mes Filleuls", labelEn: "My Referrals" },
   { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
   { path: "/dashboard/community", icon: MessageCircle, labelFr: "Community", labelEn: "Community" },
 ];
@@ -40,10 +51,18 @@ const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
   const { isApproved, isPending, isRejected, needsOnboarding, loading: profileLoading, refetch } = useProfileStatus();
+  const { profileType, ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Filter nav items based on user tier
+  const navItems = allNavItems.filter((item) => {
+    if (item.tier === "pro" && profileType !== "pro") return false;
+    // Show referrals to everyone (they'll see it's empty if no referrals)
+    return true;
+  });
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
@@ -82,9 +101,17 @@ const DashboardLayout = () => {
     <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
-        <a href="/" className="font-display text-[22px] font-bold text-white tracking-tight">
-          sofara
-        </a>
+        <div className="flex items-center gap-2">
+          <a href="/" className="font-display text-[22px] font-bold text-white tracking-tight">
+            sofara
+          </a>
+          {profileType === "pro" && (
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]">PRO</span>
+          )}
+          {ambassadorTier === "ambassador_plus" && (
+            <Crown className="w-3.5 h-3.5 text-amber-400" />
+          )}
+        </div>
         <p className="text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--dash-sidebar-fg)/.4)] mt-0.5 font-medium">Ambassador Platform</p>
       </div>
 
