@@ -74,6 +74,7 @@ const App = () => (
                   <Route path="bonus" element={<BonusRewards />} />
                   <Route path="community" element={<Community />} />
                   <Route path="library" element={<Library />} />
+                  <Route path="referrals" element={<Referrals />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
