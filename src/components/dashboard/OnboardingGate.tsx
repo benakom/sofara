@@ -327,6 +327,56 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
     }
   };
 
+  // Ambassador type selection step
+  if (!ambassadorType) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-lg w-full"
+        >
+          <div className="text-center mb-6">
+            <div className="w-14 h-14 rounded-full bg-[hsl(var(--primary)/.1)] flex items-center justify-center mx-auto mb-4">
+              <Sparkles className="w-7 h-7 text-[hsl(var(--primary))]" />
+            </div>
+            <h2 className="text-xl font-display font-bold dash-text">
+              {lang === "fr" ? "Comment souhaitez-vous collaborer ?" : "How would you like to collaborate?"}
+            </h2>
+            <p className="text-sm dash-muted-text mt-2 max-w-md mx-auto">
+              {lang === "fr"
+                ? "Tout est closé au nom de Cevitas. Aucune licence requise."
+                : "Everything is closed under Cevitas. No license required."}
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {AMBASSADOR_TYPES.map((at) => (
+              <button
+                key={at.value}
+                onClick={() => setAmbassadorType(at.value as "referrer" | "pro")}
+                className="w-full dash-card rounded-xl p-5 text-left transition-all duration-200 hover:border-[hsl(var(--primary)/.4)] hover:shadow-md group"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-2xl">{at.icon}</span>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold dash-text group-hover:text-[hsl(var(--primary))] transition-colors">
+                      {lang === "fr" ? at.labelFr : at.labelEn}
+                    </p>
+                    <p className="text-xs dash-muted-text mt-1 leading-relaxed">
+                      {lang === "fr" ? at.descFr : at.descEn}
+                    </p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 dash-muted-text group-hover:text-[hsl(var(--primary))] transition-all group-hover:translate-x-1 mt-1" />
+                </div>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   const selectedPhoneCode = PHONE_CODES.find(c => c.code === phoneCode);
 
   return (
@@ -349,6 +399,10 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
               ? "Sofara est une plateforme sélective. Pour garantir la sécurité de notre réseau et la qualité de nos collaborations, nous vérifions chaque profil avant d'accorder l'accès aux outils."
               : "Sofara is a selective platform. To ensure network security and collaboration quality, we verify every profile before granting tool access."}
           </p>
+          {/* Back button */}
+          <button onClick={() => setAmbassadorType("")} className="mt-2 text-xs text-[hsl(var(--primary))] hover:underline">
+            ← {lang === "fr" ? "Changer de profil" : "Change profile"}
+          </button>
         </div>
 
         {/* Trust badges */}
@@ -366,6 +420,14 @@ const OnboardingGate = ({ needsOnboarding, isPendingReview, isRejected, onComple
         </div>
 
         <form onSubmit={handleSubmit} className="dash-card rounded-2xl p-5 sm:p-6 space-y-4">
+          {/* Selected ambassador type badge */}
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[hsl(var(--primary)/.06)] border border-[hsl(var(--primary)/.15)]">
+            <span className="text-lg">{AMBASSADOR_TYPES.find(a => a.value === ambassadorType)?.icon}</span>
+            <span className="text-xs font-medium text-[hsl(var(--primary))]">
+              {ambassadorType === "pro" ? (lang === "fr" ? "Sofara Pro" : "Sofara Pro") : "Sofara"}
+            </span>
+          </div>
+
           <div>
             <Label className="text-xs dash-muted-text">{lang === "fr" ? "Nom complet" : "Full name"} <span className="text-destructive">*</span></Label>
             <Input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" className="mt-1 bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))]" required />

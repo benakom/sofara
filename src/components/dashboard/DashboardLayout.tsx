@@ -5,28 +5,39 @@ import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useProfileStatus } from "@/hooks/useProfileStatus";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useUserTier } from "@/hooks/useUserTier";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
   CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
-  Sparkles, BookOpen
+  Sparkles, BookOpen, Users, Crown
 } from "lucide-react";
 import OnboardingGate from "./OnboardingGate";
 
-const navItems = [
+type NavItem = {
+  path: string;
+  icon: typeof LayoutDashboard;
+  labelFr: string;
+  labelEn: string;
+  exact?: boolean;
+  badge?: string;
+  tier?: "pro"; // only visible to pro users
+};
+
+const allNavItems: NavItem[] = [
   { path: "/dashboard", icon: LayoutDashboard, labelFr: "Tableau de bord", labelEn: "Dashboard", exact: true },
   { path: "/dashboard/academy", icon: GraduationCap, labelFr: "Academy", labelEn: "Academy" },
   { path: "/dashboard/pipeline", icon: GitBranch, labelFr: "Pipeline", labelEn: "Pipeline" },
   { path: "/dashboard/import-leads", icon: Upload, labelFr: "Import Leads", labelEn: "Import Leads" },
   { path: "/dashboard/commissions", icon: DollarSign, labelFr: "Commissions", labelEn: "Commissions" },
   { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
-  { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI" },
-  { path: "/dashboard/library", icon: BookOpen, labelFr: "Bibliothèque", labelEn: "Library", badge: "NEW" },
-  
-  { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar" },
+  { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
+  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+  { path: "/dashboard/library", icon: BookOpen, labelFr: "Bibliothèque", labelEn: "Library", badge: "NEW", tier: "pro" },
+  { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
+  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar", tier: "pro" },
+  { path: "/dashboard/referrals", icon: Users, labelFr: "Mes Filleuls", labelEn: "My Referrals" },
   { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
   { path: "/dashboard/community", icon: MessageCircle, labelFr: "Community", labelEn: "Community" },
 ];
