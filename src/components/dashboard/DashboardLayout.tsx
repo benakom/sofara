@@ -58,7 +58,6 @@ const DashboardLayout = () => {
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
-  const isProPending = profileType === "referrer"; // will check pro_pending below
 
   // Filter nav items based on user tier
   const navItems = allNavItems.filter((item) => {
