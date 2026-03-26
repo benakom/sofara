@@ -12,7 +12,7 @@ const FooterSection = () => {
             <div className="mb-3 sm:mb-4">
               <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-tight">sofara</span>
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-sm leading-relaxed">
+            <p className="text-sm sm:text-base text-primary max-w-sm leading-relaxed">
               {t("footer.description")}
             </p>
           </div>
