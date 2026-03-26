@@ -72,7 +72,7 @@ const Navbar = () => {
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
               </button>
             ))}
           </div>
@@ -109,7 +109,7 @@ const Navbar = () => {
                     : "opacity-60"
                 }`}
               >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
               </button>
             ))}
           </div>
