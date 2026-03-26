@@ -355,10 +355,35 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.slide3.sub": "0% tax, rental yields of 8-15%, +32% transactions in 2025. The time is now.",
     "hero.cta": "Become an Ambassador",
     "hero.ctaSecondary": "",
+    "hero.ctaSecondaryNew": "How it works",
+    "hero.countriesShort": "countries",
+    "hero.metric2Short": "Active ambassadors",
     "hero.trust": "Join 60+ active ambassadors",
     "hero.metric1": "Commissions paid out",
     "hero.metric2": "Ambassadors in 12 countries",
     "hero.metric3": "Average rental yield",
+
+    // Trust bar
+    "trust.mediaTitle": "Dubai in international press",
+    "trust.liveAgents": "60+ active ambassadors right now",
+    "trust.licensed": "licensed agents",
+    "trust.fees": "registration fees",
+
+    // Mid CTA
+    "midcta.badge": "Limited spots",
+    "midcta.title": "Ready to turn your network into",
+    "midcta.titleHighlight": "passive income",
+    "midcta.description": "Join Sofara and start earning 3% commission on every Dubai real estate transaction. No license required.",
+    "midcta.noLicense": "No license needed · 100% free · Commission from your 1st sale",
+
+    // Final CTA
+    "finalcta.title": "Your network has value.",
+    "finalcta.titleHighlight": "Monetize it.",
+    "finalcta.description": "Thousands of people in your network are looking to invest in Dubai. Don't let this opportunity pass — join Sofara and earn on every transaction.",
+    "finalcta.point1": "100% free, no commitment",
+    "finalcta.point2": "Onboarding in 24h",
+    "finalcta.point3": "60+ active ambassadors",
+    "finalcta.note": "Selective program · Applications open · Response within 48h",
 
     // Logo bar
     "logos.title": "Dubai in international press",
