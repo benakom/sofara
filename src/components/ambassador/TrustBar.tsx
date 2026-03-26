@@ -37,7 +37,7 @@ const TrustBar = () => {
           
           <div className="flex items-center gap-6 sm:gap-10 mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-border/15">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-xs sm:text-sm text-muted-foreground">{t("trust.liveAgents")}</span>
             </div>
             <div className="text-xs sm:text-sm text-muted-foreground">
