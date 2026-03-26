@@ -201,14 +201,14 @@ const BlogPost = () => {
             author: {
               "@type": "Organization",
               name: article.author,
-              url: "https://sofara.lovable.app",
+              url: "https://www.sofara.io",
             },
             publisher: {
               "@type": "Organization",
               name: "Sofara",
-              url: "https://sofara.lovable.app",
+              url: "https://www.sofara.io",
             },
-            mainEntityOfPage: `https://sofara.lovable.app/blog/${article.slug}`,
+            mainEntityOfPage: `https://www.sofara.io/blog/${article.slug}`,
           }),
         }}
       />
