@@ -3,7 +3,7 @@ import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
 import LandingChatbot from "@/components/landing/LandingChatbot";
 
-// Lazy load all below-fold sections
+// Lazy load below-fold sections
 const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
 const HowItWorksSection = lazy(() => import("@/components/ambassador/HowItWorksSection"));
 const CommissionSection = lazy(() => import("@/components/ambassador/CommissionSection"));
@@ -21,9 +21,9 @@ const FinalCTASection = lazy(() => import("@/components/ambassador/FinalCTASecti
 const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
 const FooterSection = lazy(() => import("@/components/ambassador/FooterSection"));
 
-const SectionFallback = () => (
-  <div className="py-20 flex justify-center">
-    <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+const Loader = () => (
+  <div className="py-16 flex justify-center">
+    <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
   </div>
 );
 
@@ -33,63 +33,50 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <Suspense fallback={<SectionFallback />}>
-          {/* 1. Trust & social proof */}
-          <TrustBar />
 
-          {/* 2. Simple 3-step process — reduce friction immediately */}
+        {/* First fold — loads immediately after hero */}
+        <Suspense fallback={<Loader />}>
+          <TrustBar />
           <section id="comment" aria-label="How Sofara works — 3 simple steps">
             <HowItWorksSection />
           </section>
-
-          {/* 3. Show the money — hook visitors */}
           <section id="avantages" aria-label="Ambassador Commissions">
             <CommissionSection />
           </section>
+        </Suspense>
 
-          {/* 4. Why Sofara — Experience, Transparency, Support */}
+        {/* Second fold */}
+        <Suspense fallback={<Loader />}>
           <section id="why-sofara" aria-label="Why choose Sofara">
             <WhySofaraSection />
           </section>
-
-          {/* 5. AI Advantage — Technology for higher conversions */}
           <AIAdvantageSection />
-
-          {/* 6. Mid-page conversion break */}
           <MidCTABanner />
+        </Suspense>
 
-          {/* 7. Dubai market data */}
+        {/* Third fold */}
+        <Suspense fallback={<Loader />}>
           <section id="dubai" aria-label="Dubai Real Estate Market Data">
             <MarketDataSection />
           </section>
-
-          {/* 8. Why Dubai deeper dive */}
           <WhyDubaiSection />
-
-          {/* 9. Platform features */}
           <section id="platform" aria-label="Sofara Ambassador Platform">
             <PlatformSection />
           </section>
+        </Suspense>
 
-          {/* 10. Storytelling — your network = money */}
+        {/* Fourth fold */}
+        <Suspense fallback={<Loader />}>
           <StorytellingSection />
-
-          {/* 11. Benefits */}
           <BenefitsSection />
-
-          {/* 12. Social proof — testimonials */}
           <TestimonialsSection />
-
-          {/* 13. Traction metrics */}
           <InvestorMetrics />
+        </Suspense>
 
-          {/* 14. Final CTA with urgency */}
+        {/* Final */}
+        <Suspense fallback={<Loader />}>
           <FinalCTASection />
-
-          {/* 15. FAQ */}
           <FAQSection />
-
-          {/* 16. Footer */}
           <FooterSection />
         </Suspense>
       </main>
