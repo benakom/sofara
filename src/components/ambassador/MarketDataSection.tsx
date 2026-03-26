@@ -7,10 +7,10 @@ const MarketDataSection = () => {
 
   const stats = [
     { icon: TrendingUp, value: "+32%", label: t("market.transactions"), sub: t("market.transactionsSub") },
-    { icon: DollarSign, value: "€76Mds", label: t("market.volume"), sub: t("market.volumeSub") },
+    { icon: DollarSign, value: "AED 300B", label: t("market.volume"), sub: t("market.volumeSub") },
     { icon: Home, value: "168,000+", label: t("market.units"), sub: t("market.unitsSub") },
     { icon: Users, value: "+41%", label: t("market.foreign"), sub: t("market.foreignSub") },
-    { icon: Building2, value: "€3,200", label: t("market.pricePerSqm"), sub: t("market.pricePerSqmSub") },
+    { icon: Building2, value: "AED 13,000", label: t("market.pricePerSqm"), sub: t("market.pricePerSqmSub") },
     { icon: Globe, value: "200+", label: t("market.nationalities"), sub: t("market.nationalitiesSub") },
   ];
 
