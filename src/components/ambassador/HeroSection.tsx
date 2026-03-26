@@ -30,7 +30,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-hero text-[2.75rem] leading-[1] sm:text-6xl lg:text-8xl font-bold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize">
+            <h1 className="font-hero text-[3.5rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize">
               <span className="text-primary">{t("hero.slide1.headline")}</span>
             </h1>
 
