@@ -11,10 +11,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Rejoindre",
 
     // Hero
-    "hero.badge": "Programme Ambassadeur 2025",
-    "hero.slide1.headline": "Transformez vos contacts\nen commissions.",
-    "hero.slide1.highlight": "contacts",
-    "hero.slide1.sub": "Rejoignez Sofara et touchez 3 % de commission sur chaque vente immobilière à Dubai — sans licence, sans prospection, depuis n'importe où.",
+    "hero.badge": "Programme Ambassadeur 2026",
+    "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
+    "hero.slide1.headline": "Tu réfères.\nOn close. Tu gagnes.",
+    "hero.slide1.highlight": "Tu gagnes.",
+    "hero.slide1.sub": "Rejoignez le programme n°1 d'ambassadeurs immobiliers à Dubai. 3% de commission sur chaque vente — sans licence, sans prospection, depuis n'importe où dans le monde.",
     "hero.slide2.headline": "L'immobilier de luxe, accessible à votre réseau.",
     "hero.slide2.sub": "Penthouses, villas sur Palm — offrez à vos contacts l'accès au marché immobilier le plus dynamique au monde.",
     "hero.slide3.headline": "Dubai : le placement n°1 des investisseurs mondiaux en 2025.",
@@ -28,6 +29,12 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.metric1": "Commissions versées",
     "hero.metric2": "Ambassadeurs dans 12 pays",
     "hero.metric3": "Rendement locatif moyen",
+    "hero.metric3Label": "Commission garantie",
+    "hero.step1": "Tu réfères",
+    "hero.step2": "On close",
+    "hero.step3": "Tu gagnes",
+    "hero.aiLabel": "Propulsé par l'IA",
+    "hero.aiSub": "Taux de conversion supérieur",
 
     // Trust bar
     "trust.mediaTitle": "Dubai dans la presse internationale",
