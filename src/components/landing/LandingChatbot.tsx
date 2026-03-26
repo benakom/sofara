@@ -4,7 +4,7 @@ import { Send, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Lang } from "@/i18n/translations";
 import ReactMarkdown from "react-markdown";
-import avatarImg from "@/assets/landing-bot-avatar.jpg";
+const avatarImg = "/favicon.png";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/landing-chat`;
 const MAX_QUESTIONS = 8;
@@ -154,12 +154,13 @@ export default function LandingChatbot() {
         aria-label="Open chat"
       >
         <div className="relative">
-          <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-primary/40 to-accent/30 blur-lg opacity-60 group-hover:opacity-90 transition-opacity" />
-          <img
-            src={avatarImg}
-            alt="Sara"
-            className="relative w-14 h-14 rounded-full object-cover border-2 border-foreground/10 shadow-xl group-hover:scale-105 transition-transform"
-          />
+          <div className="absolute -inset-2 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse" style={{ background: "radial-gradient(circle, #CCFF00 0%, transparent 70%)" }} />
+          <div
+            className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
+            style={{ background: "#0a0a0a", border: "2px solid #CCFF00", boxShadow: "0 0 16px #CCFF0040, 0 0 4px #CCFF0060 inset" }}
+          >
+            <img src={avatarImg} alt="Sofara" className="w-9 h-9 object-contain" />
+          </div>
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-background" />
         </div>
       </button>
