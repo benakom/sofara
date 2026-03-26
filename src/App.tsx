@@ -10,6 +10,8 @@ import Index from "./pages/Index";
 
 // Lazy load all non-landing pages
 const Legal = lazy(() => import("./pages/Legal"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Auth = lazy(() => import("./pages/Auth"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
