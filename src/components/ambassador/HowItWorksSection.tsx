@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
+import { Send, Handshake, Banknote, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
 
   const steps = [
-    { number: "01", title: t("how.step1"), description: t("how.step1Desc") },
-    { number: "02", title: t("how.step2"), description: t("how.step2Desc") },
-    { number: "03", title: t("how.step3"), description: t("how.step3Desc") },
-    { number: "04", title: t("how.step4"), description: t("how.step4Desc") },
+    { icon: Send, number: "01", title: t("how.step1New"), description: t("how.step1DescNew"), color: "bg-primary/10" },
+    { icon: Handshake, number: "02", title: t("how.step2New"), description: t("how.step2DescNew"), color: "bg-primary/10" },
+    { icon: Banknote, number: "03", title: t("how.step3New"), description: t("how.step3DescNew"), color: "bg-primary/10" },
   ];
 
   return (
@@ -25,31 +26,52 @@ const HowItWorksSection = () => {
             {t("how.label")}
           </span>
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
-            {t("how.title")}{" "}
-            <span className="text-gradient-primary">{t("how.titleHighlight")}</span>
+            {t("how.titleNew")}{" "}
+            <span className="text-gradient-primary">{t("how.titleHighlightNew")}</span>
           </h2>
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            {t("how.subtitleNew")}
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto mb-12 sm:mb-16">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative rounded-2xl p-5 sm:p-7 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 group"
+              transition={{ delay: index * 0.12 }}
+              className="relative rounded-2xl p-6 sm:p-8 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 group text-center"
             >
-              <span className="font-display text-4xl sm:text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors block mb-3 sm:mb-4">{step.number}</span>
-              <h3 className="font-display text-base sm:text-xl font-semibold mb-2 sm:mb-3 text-foreground leading-snug">{step.title}</h3>
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/15 transition-colors">
+                <step.icon className="w-7 h-7 text-primary" />
+              </div>
+              <span className="font-display text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors absolute top-4 right-5">{step.number}</span>
+              <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 text-foreground leading-snug">{step.title}</h3>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{step.description}</p>
               
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 -right-2 w-4 h-px bg-primary/20" />
+                <div className="hidden sm:block absolute top-1/2 -right-3 w-6 h-px bg-primary/20" />
               )}
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <a href="/auth">
+            <Button variant="hero" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 rounded-full group">
+              {t("hero.cta")}
+              <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />
+            </Button>
+          </a>
+          <p className="text-xs text-muted-foreground/50 mt-4">{t("how.noLicense")}</p>
+        </motion.div>
       </div>
     </section>
   );

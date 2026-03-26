@@ -5,8 +5,10 @@ import LandingChatbot from "@/components/landing/LandingChatbot";
 
 // Lazy load all below-fold sections
 const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
-const CommissionSection = lazy(() => import("@/components/ambassador/CommissionSection"));
 const HowItWorksSection = lazy(() => import("@/components/ambassador/HowItWorksSection"));
+const CommissionSection = lazy(() => import("@/components/ambassador/CommissionSection"));
+const WhySofaraSection = lazy(() => import("@/components/ambassador/WhySofaraSection"));
+const AIAdvantageSection = lazy(() => import("@/components/ambassador/AIAdvantageSection"));
 const MarketDataSection = lazy(() => import("@/components/ambassador/MarketDataSection"));
 const MidCTABanner = lazy(() => import("@/components/ambassador/MidCTABanner"));
 const WhyDubaiSection = lazy(() => import("@/components/ambassador/WhyDubaiSection"));
@@ -35,51 +37,59 @@ const Index = () => {
           {/* 1. Trust & social proof */}
           <TrustBar />
 
-          {/* 2. Show the money first — hook visitors immediately */}
+          {/* 2. Simple 3-step process — reduce friction immediately */}
+          <section id="comment" aria-label="How Sofara works — 3 simple steps">
+            <HowItWorksSection />
+          </section>
+
+          {/* 3. Show the money — hook visitors */}
           <section id="avantages" aria-label="Ambassador Commissions">
             <CommissionSection />
           </section>
 
-          {/* 3. How simple it is — reduce friction */}
-          <section id="comment" aria-label="How to become a Dubai Real Estate Ambassador">
-            <HowItWorksSection />
+          {/* 4. Why Sofara — Experience, Transparency, Support */}
+          <section id="why-sofara" aria-label="Why choose Sofara">
+            <WhySofaraSection />
           </section>
 
-          {/* 4. Dubai market opportunity — hook investors */}
+          {/* 5. AI Advantage — Technology for higher conversions */}
+          <AIAdvantageSection />
+
+          {/* 6. Mid-page conversion break */}
+          <MidCTABanner />
+
+          {/* 7. Dubai market data */}
           <section id="dubai" aria-label="Dubai Real Estate Market Data">
             <MarketDataSection />
           </section>
 
-          {/* 5. Mid-page conversion break */}
-          <MidCTABanner />
-
-          {/* 6. Why Dubai deeper dive */}
+          {/* 8. Why Dubai deeper dive */}
           <WhyDubaiSection />
 
-          {/* 7. Platform features */}
+          {/* 9. Platform features */}
           <section id="platform" aria-label="Sofara Ambassador Platform">
             <PlatformSection />
           </section>
 
-          {/* 8. Storytelling — your network = money */}
+          {/* 10. Storytelling — your network = money */}
           <StorytellingSection />
 
-          {/* 9. Benefits */}
+          {/* 11. Benefits */}
           <BenefitsSection />
 
-          {/* 10. Social proof — testimonials */}
+          {/* 12. Social proof — testimonials */}
           <TestimonialsSection />
 
-          {/* 11. Traction metrics */}
+          {/* 13. Traction metrics */}
           <InvestorMetrics />
 
-          {/* 12. Final CTA with urgency */}
+          {/* 14. Final CTA with urgency */}
           <FinalCTASection />
 
-          {/* 13. FAQ */}
+          {/* 15. FAQ */}
           <FAQSection />
 
-          {/* 14. Footer */}
+          {/* 16. Footer */}
           <FooterSection />
         </Suspense>
       </main>
