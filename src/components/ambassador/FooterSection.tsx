@@ -5,7 +5,7 @@ const FooterSection = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border/30 py-10 sm:py-16">
+    <footer className="border-t border-border/30 py-10 sm:py-16" itemScope itemType="https://schema.org/WPFooter">
       <div className="mx-auto px-5 sm:px-6 max-w-7xl">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
           <div className="sm:col-span-2">

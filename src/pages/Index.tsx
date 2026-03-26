@@ -26,28 +26,30 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <HeroSection />
-      <Suspense fallback={<SectionFallback />}>
-        <div id="dubai">
-          <MarketDataSection />
-          <WhyDubaiSection />
-        </div>
-        <div id="platform">
-          <PlatformSection />
-        </div>
-        <StorytellingSection />
-        <div id="avantages">
-          <BenefitsSection />
-        </div>
-        <CommissionSection />
-        <div id="comment">
-          <HowItWorksSection />
-        </div>
-        <InvestorMetrics />
-        <TestimonialsSection />
-        <FAQSection />
-        <FooterSection />
-      </Suspense>
+      <main>
+        <HeroSection />
+        <Suspense fallback={<SectionFallback />}>
+          <section id="dubai" aria-label="Dubai Real Estate Market Data">
+            <MarketDataSection />
+            <WhyDubaiSection />
+          </section>
+          <section id="platform" aria-label="Sofara Ambassador Platform">
+            <PlatformSection />
+          </section>
+          <StorytellingSection />
+          <section id="avantages" aria-label="Ambassador Benefits and Commissions">
+            <BenefitsSection />
+          </section>
+          <CommissionSection />
+          <section id="comment" aria-label="How to become a Dubai Real Estate Ambassador">
+            <HowItWorksSection />
+          </section>
+          <InvestorMetrics />
+          <TestimonialsSection />
+          <FAQSection />
+          <FooterSection />
+        </Suspense>
+      </main>
       <LandingChatbot />
     </div>
   );

@@ -8,10 +8,10 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[100svh] overflow-hidden flex items-center">
+    <section className="relative min-h-[100svh] overflow-hidden flex items-center" aria-label="Sofara Dubai Real Estate Ambassador Program">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={dubaiHero1} alt="Dubai skyline" className="w-full h-full object-cover opacity-25" loading="eager" fetchPriority="high" decoding="async" />
+        <img src={dubaiHero1} alt="Dubai skyline panorama — Burj Khalifa and Downtown Dubai real estate" className="w-full h-full object-cover opacity-25" loading="eager" fetchPriority="high" decoding="async" />
       </div>
 
       {/* Overlays */}
