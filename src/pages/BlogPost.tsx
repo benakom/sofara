@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
 import { useEffect } from "react";
 
@@ -40,7 +41,7 @@ const BlogPost = () => {
           animate={{ opacity: 1, y: 0 }}
           className="px-5 sm:px-6 max-w-4xl mx-auto mb-8"
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
             <Badge variant="outline" className="text-primary border-primary/30">
               {article.category}
             </Badge>
@@ -62,7 +63,7 @@ const BlogPost = () => {
 
         {/* Hero image */}
         <div className="px-5 sm:px-6 max-w-5xl mx-auto mb-10">
-          <div className="rounded-2xl overflow-hidden aspect-[21/9]">
+          <div className="rounded-2xl overflow-hidden aspect-[21/9] shadow-card-dark">
             <img
               src={article.image}
               alt={article.title}
@@ -73,40 +74,31 @@ const BlogPost = () => {
         </div>
 
         {/* Content */}
-        <article className="px-5 sm:px-6 max-w-4xl mx-auto">
-          <div className="prose prose-invert prose-lg max-w-none
-            prose-headings:font-display prose-headings:tracking-tight
-            prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
-            prose-p:text-muted-foreground prose-p:leading-relaxed
-            prose-li:text-muted-foreground
-            prose-strong:text-foreground
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-blockquote:border-primary/50 prose-blockquote:bg-secondary/30 prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:px-4
-            prose-table:text-sm
-            prose-th:text-foreground prose-th:font-display prose-th:bg-secondary/50 prose-th:px-4 prose-th:py-2
-            prose-td:px-4 prose-td:py-2 prose-td:text-muted-foreground prose-td:border-border/30
-            prose-img:rounded-xl
-          ">
-            <ReactMarkdown
-              components={{
-                a: ({ href, children, ...props }) => {
-                  const isExternal = href?.startsWith("http");
-                  return (
-                    <a
-                      href={href}
-                      target={isExternal ? "_blank" : undefined}
-                      rel={isExternal ? "noopener" : undefined}
-                      {...props}
-                    >
-                      {children}
-                      {isExternal && <ExternalLink className="inline w-3 h-3 ml-1 -mt-0.5" />}
-                    </a>
-                  );
-                },
-              }}
-            >
-              {article.content}
-            </ReactMarkdown>
+        <article className="px-5 sm:px-6 max-w-5xl mx-auto">
+          <div className="blog-reading-surface rounded-3xl p-6 sm:p-10 lg:p-14">
+            <div className="blog-prose">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  a: ({ href, children, ...props }) => {
+                    const isExternal = href?.startsWith("http");
+                    return (
+                      <a
+                        href={href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        {...props}
+                      >
+                        {children}
+                        {isExternal && <ExternalLink className="inline w-3 h-3 ml-1 -mt-0.5" />}
+                      </a>
+                    );
+                  },
+                }}
+              >
+                {article.content}
+              </ReactMarkdown>
+            </div>
           </div>
 
           {/* Tags */}
@@ -175,11 +167,11 @@ const BlogPost = () => {
         <section className="px-5 sm:px-6 max-w-4xl mx-auto mt-12">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
             <span>Powered by</span>
-            <a href="https://www.cevitas.ae" target="_blank" rel="noopener" className="text-foreground hover:text-primary transition-colors">
+            <a href="https://www.cevitas.ae" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
               Cevitas Real Estate LLC
             </a>
             <span>•</span>
-            <a href="https://www.offplansimulator.com" target="_blank" rel="noopener" className="text-foreground hover:text-primary transition-colors">
+            <a href="https://www.offplansimulator.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
               Off-Plan Investment Simulator
             </a>
           </div>
