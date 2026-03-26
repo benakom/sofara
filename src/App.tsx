@@ -58,6 +58,8 @@ const App = () => (
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/legal/:section" element={<Legal />} />
