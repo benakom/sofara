@@ -10,6 +10,8 @@ import Index from "./pages/Index";
 
 // Lazy load all non-landing pages
 const Legal = lazy(() => import("./pages/Legal"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Auth = lazy(() => import("./pages/Auth"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -56,6 +58,8 @@ const App = () => (
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/legal/:section" element={<Legal />} />

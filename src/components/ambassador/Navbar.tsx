@@ -48,6 +48,7 @@ const Navbar = () => {
             { href: "#dubai", label: t("nav.whyDubai") },
             { href: "#avantages", label: t("nav.benefits") },
             { href: "#comment", label: t("nav.howItWorks") },
+            { href: "/blog", label: "Blog" },
           ].map((link) => (
             <a
               key={link.href}
