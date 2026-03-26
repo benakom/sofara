@@ -11,7 +11,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Rejoindre",
 
     // Hero
-    "hero.badge": "Programme Ambassadeur 2026",
+    "hero.badge": "🚀 Rejoins le réseau #1 à Dubai — Places limitées",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Tu réfères.\nOn close. Tu gagnes.",
     "hero.slide1.highlight": "Tu gagnes.",
