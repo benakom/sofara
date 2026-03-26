@@ -59,10 +59,20 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-  // Filter nav items based on user tier
+  // Sofara Lite: only show specific menus
+  const liteAllowedPaths = [
+    "/dashboard",
+    "/dashboard/pipeline",
+    "/dashboard/import-leads",
+    "/dashboard/commissions",
+    "/dashboard/payments",
+    "/dashboard/referrals",
+    "/dashboard/bonus",
+  ];
+
   const navItems = allNavItems.filter((item) => {
     if (item.tier === "pro" && profileType !== "pro") return false;
-    // Show referrals to everyone (they'll see it's empty if no referrals)
+    if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
     return true;
   });
 
