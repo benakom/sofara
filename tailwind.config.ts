@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Outfit', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        hero: ['DM Sans', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'sans-serif'],
+        body: ['Plus Jakarta Sans', 'sans-serif'],
+        hero: ['Plus Jakarta Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
