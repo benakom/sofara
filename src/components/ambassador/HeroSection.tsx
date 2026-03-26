@@ -31,7 +31,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="font-hero text-[2.75rem] leading-[1] sm:text-6xl lg:text-8xl font-bold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize">
-              <span className="text-foreground">{t("hero.slide1.headline")}</span>
+              <span className="text-primary">{t("hero.slide1.headline")}</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
