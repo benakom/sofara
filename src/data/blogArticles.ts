@@ -1123,7 +1123,7 @@ This is a **one-time commission** paid per transaction — not a percentage of t
 | **Professional** | 1 | AED 3,000,000 | AED 90,000 | ~AED 1,080,000 |
 | **Top performer** | 2+ | AED 5,000,000+ | AED 300,000+ | ~AED 3,600,000+ |
 
-> Even **one deal per quarter** on a mid-range property generates over €30,000/year in additional income — with minimal time investment.
+> Even **one deal per quarter** on a mid-range property generates over AED 120,000/year in additional income — with minimal time investment.
 
 ---
 
@@ -1238,10 +1238,10 @@ Your referred ambassador closes a sale worth AED 2,000,000:
 ### Example 2: Growing Network
 | Your Network | Their Avg Monthly Commission | Your Monthly Bonus (10%) | Your Annual Passive Income |
 |-------------|----------------------------|--------------------------|--------------------------|
-| 3 active ambassadors | AED 60,000 each | **AED 18,000** | **~€54,000** |
-| 5 active ambassadors | AED 60,000 each | **AED 30,000** | **~€90,000** |
-| 10 active ambassadors | AED 60,000 each | **AED 60,000** | **~€180,000** |
-| 25 active ambassadors | AED 60,000 each | **AED 150,000** | **~€450,000** |
+| 3 active ambassadors | AED 60,000 each | **AED 18,000** | **~AED 216,000** |
+| 5 active ambassadors | AED 60,000 each | **AED 30,000** | **~AED 360,000** |
+| 10 active ambassadors | AED 60,000 each | **AED 60,000** | **~AED 720,000** |
+| 25 active ambassadors | AED 60,000 each | **AED 150,000** | **~AED 1,800,000** |
 
 ### Example 3: Compound Effect
 Imagine referring 10 ambassadors who each close **1 deal per quarter** on a AED 2,000,000 average property:
@@ -1249,7 +1249,7 @@ Imagine referring 10 ambassadors who each close **1 deal per quarter** on a AED 
 - Each deal generates AED 60,000 in commission for them
 - **Your bonus per deal**: AED 6,000
 - **10 ambassadors × 4 deals/year = 40 deals/year**
-- **Your annual passive income: AED 240,000 (~€60,000)** — without closing a single deal yourself
+- **Your annual passive income: AED 240,000 (AED 240,000)** — without closing a single deal yourself
 
 > This is in **addition** to commissions from your own direct referrals (${internalLink("see commission structure", "/blog/sofara-commission-structure-explained")}).
 
@@ -1297,7 +1297,7 @@ ${internalLink("**→ Create your account now**", "/auth")}
   },
   {
     slug: "ambassador-success-stories",
-    title: "From Zero to €50,000+: Real Success Stories from Sofara Ambassadors",
+    title: "From Zero to AED 200,000+: Real Success Stories from Sofara Ambassadors",
     excerpt: "How regular people — not real estate agents — earned significant commissions by simply recommending Dubai properties to their network. Real profiles, real numbers.",
     category: "Ambassador Program",
     tags: ["success stories", "testimonials", "earnings", "ambassador", "Sofara", "case studies"],
@@ -1307,7 +1307,7 @@ ${internalLink("**→ Create your account now**", "/auth")}
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80",
     relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained", "ai-tools-real-estate-ambassadors"],
     content: `
-# From Zero to €50,000+: Real Sofara Ambassador Stories
+# From Zero to AED 200,000+: Real Sofara Ambassador Stories
 
 These aren't real estate professionals. They're **regular people with good networks** who discovered that Dubai's booming property market could generate extraordinary income — through simple referrals.
 
@@ -1319,19 +1319,19 @@ These aren't real estate professionals. They're **regular people with good netwo
 
 **Background:** Independent wealth manager with 40+ HNW clients seeking portfolio diversification.
 
-> "I mentioned Dubai real estate during a routine portfolio review. My client was already considering international diversification — I just pointed him to the right platform. Three months later, he purchased a 2BR in Dubai Hills through ${cevitasLink("Cevitas")}. My commission: **€18,750**."
+> "I mentioned Dubai real estate during a routine portfolio review. My client was already considering international diversification — I just pointed him to the right platform. Three months later, he purchased a 2BR in Dubai Hills through ${cevitasLink("Cevitas")}. My commission: **AED 75,000**."
 
 | Detail | Value |
 |--------|-------|
 | **Time invested** | 1 conversation (15 minutes) |
 | **Property** | 2BR apartment, Dubai Hills Estate |
 | **Sale price** | AED 2,500,000 |
-| **Commission** | AED 75,000 (~€18,750) |
-| **ROI on time** | €75,000/hour equivalent |
+| **Commission** | AED 75,000 (AED 75,000) |
+| **ROI on time** | AED 75,000/hour equivalent |
 
 **Sarah's insight:** *"The beauty is that I didn't have to learn everything about Dubai real estate. Sofara and Cevitas handled the entire process. I just made the introduction."*
 
-Sarah has since referred 3 more clients and earned over **€65,000** in total commissions. She's now an ${internalLink("Ambassadeur+", "/blog/super-ambassador-program")}, having referred two colleagues who also started earning.
+Sarah has since referred 3 more clients and earned over **AED 260,000** in total commissions. She's now an ${internalLink("Ambassadeur+", "/blog/super-ambassador-program")}, having referred two colleagues who also started earning.
 
 ---
 
@@ -1339,14 +1339,14 @@ Sarah has since referred 3 more clients and earned over **€65,000** in total c
 
 **Background:** Founder of a SaaS company with a large network of Moroccan business owners.
 
-> "I shared my Sofara link in a private WhatsApp group of 120 Moroccan entrepreneurs. Two of them were already thinking about Dubai. They each bought through Cevitas. I earned **€27,000** total — from a 5-minute WhatsApp message."
+> "I shared my Sofara link in a private WhatsApp group of 120 Moroccan entrepreneurs. Two of them were already thinking about Dubai. They each bought through Cevitas. I earned **AED 108,000** total — from a 5-minute WhatsApp message."
 
 | Detail | Value |
 |--------|-------|
 | **Time invested** | 5 minutes (1 WhatsApp message) |
 | **Properties** | 1BR Business Bay + 2BR Dubai Marina |
 | **Total sales** | AED 3,600,000 |
-| **Commission** | AED 108,000 (~€27,000) |
+| **Commission** | AED 108,000 (AED 108,000) |
 | **Follow-up required** | Zero — Sofara handled everything |
 
 **Ahmed's insight:** *"The ${internalLink("AI qualification tool", "/blog/ai-lead-qualification-real-estate")} identified which of my contacts were serious buyers. I didn't waste time on people who were just curious."*
@@ -1357,14 +1357,14 @@ Sarah has since referred 3 more clients and earned over **€65,000** in total c
 
 **Background:** Owner of a boutique luxury concierge service catering to UHNW families in Switzerland.
 
-> "My clients regularly ask about international property. Since joining Sofara, I systematically mention Dubai when the topic comes up. ${internalLink("Sofara Pro's AI tools", "/blog/ai-tools-real-estate-ambassadors")} help me present the right projects with professional summaries. I've earned **€52,000** this year."
+> "My clients regularly ask about international property. Since joining Sofara, I systematically mention Dubai when the topic comes up. ${internalLink("Sofara Pro's AI tools", "/blog/ai-tools-real-estate-ambassadors")} help me present the right projects with professional summaries. I've earned **AED 208,000** this year."
 
 | Detail | Value |
 |--------|-------|
 | **Time invested** | ~2 hours/month |
 | **Deals closed** | 4 sales |
 | **Total sales value** | AED 28,000,000 |
-| **Total commission** | AED 840,000 (~€210,000) |
+| **Total commission** | AED 840,000 (AED 840,000) |
 | **Time span** | 10 months |
 
 **Maria's insight:** *"The ${internalLink("AI roleplay training", "/blog/ai-roleplay-sales-training")} was a game-changer. I practiced handling common objections before even my first conversation. Now I feel confident discussing Dubai real estate with any client."*
@@ -1375,14 +1375,14 @@ Sarah has since referred 3 more clients and earned over **€65,000** in total c
 
 **Background:** Specializes in high-value life insurance and pension planning for UK professionals.
 
-> "Many of my clients are higher-rate taxpayers looking for tax-efficient investments. Dubai's 0% income tax is an easy conversation starter. My first referral bought a 1BR in Marina — my commission was **€16,200**."
+> "Many of my clients are higher-rate taxpayers looking for tax-efficient investments. Dubai's 0% income tax is an easy conversation starter. My first referral bought a 1BR in Marina — my commission was **AED 64,800**."
 
 | Detail | Value |
 |--------|-------|
 | **Time invested** | 2 conversations |
 | **Property** | 1BR, Dubai Marina |
 | **Sale price** | AED 2,160,000 |
-| **Commission** | AED 64,800 (~€16,200) |
+| **Commission** | AED 64,800 (AED 64,800) |
 
 **James' insight:** *"I use the ${simulatorLink("Off-Plan Simulator")} to show clients exact numbers — rental yields, DLD costs, projected appreciation. Data sells."*
 
@@ -1392,13 +1392,13 @@ Sarah has since referred 3 more clients and earned over **€65,000** in total c
 
 **Background:** Lifestyle influencer with 85,000 followers across Instagram and TikTok.
 
-> "I created a short series about Dubai investment opportunities on my Instagram. 12 people clicked my Sofara link. 3 converted to sales. **€43,500** in commissions from content I was already creating."
+> "I created a short series about Dubai investment opportunities on my Instagram. 12 people clicked my Sofara link. 3 converted to sales. **AED 174,000** in commissions from content I was already creating."
 
 | Detail | Value |
 |--------|-------|
 | **Time invested** | 3 Instagram reels (2 hours total) |
 | **Deals closed** | 3 |
-| **Total commission** | AED 174,000 (~€43,500) |
+| **Total commission** | AED 174,000 (AED 174,000) |
 
 ---
 
@@ -1436,7 +1436,7 @@ Your network is your asset. Start earning from it today.
     content: `
 # AI Tools for Real Estate Ambassadors: Your Unfair Advantage
 
-What separates a Sofara ambassador who earns €5,000/year from one who earns €100,000+? It's not talent, luck, or experience — it's **tools**.
+What separates a Sofara ambassador who earns AED 20,000/year from one who earns AED 400,000+? It's not talent, luck, or experience — it's **tools**.
 
 ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} integrates cutting-edge AI technology to give ambassadors a systematic, data-driven advantage in converting leads to sales. Here's every AI tool at your disposal and how to use it effectively.
 
@@ -1836,7 +1836,7 @@ Sofara Lite is perfect for:
 - Anyone who wants to earn commissions **without learning about real estate**
 - First-time ambassadors who want to **test the waters** before upgrading
 
-**Typical Lite ambassador**: Refers 1-2 contacts per year, earns €5,000-€20,000 annually.
+**Typical Lite ambassador**: Refers 1-2 contacts per year, earns AED 20,000-AED 80,000 annually.
 
 ---
 
@@ -1850,7 +1850,7 @@ Sofara Pro is designed for:
 - **Influencers and content creators** focused on investment/luxury content
 - Anyone **serious about building recurring income** from Dubai real estate referrals
 
-**Typical Pro ambassador**: Closes 3-8 deals/year, earns €30,000-€150,000+ annually.
+**Typical Pro ambassador**: Closes 3-8 deals/year, earns AED 120,000-AED 600,000+ annually.
 
 > Read ${internalLink("real success stories from Pro ambassadors", "/blog/ambassador-success-stories")}.
 
@@ -1886,7 +1886,7 @@ Based on platform data, Pro ambassadors convert **3-5x more leads** than Lite am
 | Avg leads submitted/month | 2 | 5 | +150% |
 | Conversion rate | 2-3% | 8-12% | +300% |
 | Avg deals/year | 1-2 | 4-8 | +300% |
-| Avg annual commission | €10,000-€20,000 | €40,000-€150,000+ | +400% |
+| Avg annual commission | AED 40,000-AED 80,000 | AED 160,000-AED 600,000+ | +400% |
 
 The difference? **AI tools and knowledge**. Pro ambassadors know which leads to prioritize, how to handle objections, and which projects to recommend for each investor profile.
 
@@ -1954,7 +1954,7 @@ Launched in 2019 and expanded significantly in 2022-2023, the Golden Visa is a l
 ## Real Estate Qualification Criteria (2026)
 
 ### Minimum Investment
-- **AED 2,000,000** in residential property (approximately $545,000 / €500,000)
+- **AED 2,000,000** in residential property (approximately $545,000 / AED 2,000,000)
 - Can be a single property or multiple properties totaling AED 2M+
 - Off-plan properties qualify **only if completed and handed over**
 - Mortgaged properties qualify if equity (paid amount) exceeds AED 2M
@@ -2540,7 +2540,7 @@ ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} equips ambassadors wit
 
 ${cevitasLink("Cevitas Real Estate")} provides **white-glove service** for high-value transactions — including private viewings, VIP developer access, and dedicated closing teams.
 
-**Commission potential:** 3% on a AED 10M luxury property = **AED 300,000 (~€75,000)** per deal.
+**Commission potential:** 3% on a AED 10M luxury property = **AED 300,000 (AED 300,000)** per deal.
 
 ${internalLink("**→ Join Sofara and connect your HNW contacts with Dubai's finest properties**", "/auth")}
 
@@ -3077,7 +3077,7 @@ Expo City represents an **ideal entry-level opportunity** for first-time Dubai i
 - **Strong growth story**: Airport + Metro + Expo legacy
 - **Easy to explain**: "Near the world's largest airport"
 
-This is much easier to pitch than a AED 5M Palm Jumeirah villa — and the commission on a AED 800,000 property is still **AED 24,000 (~€6,000)**.
+This is much easier to pitch than a AED 5M Palm Jumeirah villa — and the commission on a AED 800,000 property is still **AED 24,000 (AED 24,000)**.
 
 ${simulatorLink("→ Model Expo City investment returns")}
 
