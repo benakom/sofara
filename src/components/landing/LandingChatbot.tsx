@@ -160,7 +160,7 @@ export default function LandingChatbot() {
           <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ border: "2px solid #CCFF00" }} />
           <div
             className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
-            style={{ background: "#0a0a0a", border: "2px solid #CCFF00", boxShadow: "0 0 16px #CCFF0040, 0 0 4px #CCFF0060 inset" }}
+            style={{ background: "#134830", border: "2px solid #CCFF00", boxShadow: "0 0 16px #CCFF0040, 0 0 4px #CCFF0060 inset" }}
           >
             <img src={avatarImg} alt="Sofara" className="w-9 h-9 object-contain" />
           </div>
