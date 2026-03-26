@@ -104,7 +104,7 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-[22px] font-bold text-[hsl(var(--primary))] tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--primary))] tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
