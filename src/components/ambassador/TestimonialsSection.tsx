@@ -6,10 +6,10 @@ const TestimonialsSection = () => {
   const { t } = useLanguage();
 
   const testimonials = [
-    { name: t("testimonials.t1.name"), role: t("testimonials.t1.role"), text: t("testimonials.t1.text"), avatar: "K", amount: "€8 000+" },
-    { name: t("testimonials.t2.name"), role: t("testimonials.t2.role"), text: t("testimonials.t2.text"), avatar: "S", amount: "€14 500+" },
-    { name: t("testimonials.t3.name"), role: t("testimonials.t3.role"), text: t("testimonials.t3.text"), avatar: "J", amount: "€6 200+" },
-    { name: t("testimonials.t4.name"), role: t("testimonials.t4.role"), text: t("testimonials.t4.text"), avatar: "A", amount: "€11 000+" },
+    { name: t("testimonials.t1.name"), role: t("testimonials.t1.role"), text: t("testimonials.t1.text"), avatar: "K", amount: "AED 32,000+" },
+    { name: t("testimonials.t2.name"), role: t("testimonials.t2.role"), text: t("testimonials.t2.text"), avatar: "S", amount: "AED 58,000+" },
+    { name: t("testimonials.t3.name"), role: t("testimonials.t3.role"), text: t("testimonials.t3.text"), avatar: "J", amount: "AED 25,000+" },
+    { name: t("testimonials.t4.name"), role: t("testimonials.t4.role"), text: t("testimonials.t4.text"), avatar: "A", amount: "AED 44,000+" },
   ];
 
   return (

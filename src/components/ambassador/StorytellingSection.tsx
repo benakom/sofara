@@ -76,7 +76,7 @@ const StorytellingSection = () => {
               transition={{ delay: 0.3 }}
               className="absolute -bottom-4 sm:-bottom-6 left-4 sm:-left-6 rounded-xl bg-secondary/90 backdrop-blur-xl border border-border/40 p-4 sm:p-5 shadow-2xl"
             >
-              <div className="text-2xl sm:text-2xl font-display font-bold text-gradient-primary">€9 200+</div>
+              <div className="text-2xl sm:text-2xl font-display font-bold text-gradient-primary">AED 37,000+</div>
               <div className="text-xs sm:text-sm text-muted-foreground">{t("story.statLabel")}</div>
             </motion.div>
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-primary/8 blur-[40px] rounded-full" />

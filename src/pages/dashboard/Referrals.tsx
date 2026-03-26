@@ -165,7 +165,7 @@ const Referrals = () => {
           },
           {
             icon: Gift,
-            value: `€${bonusTotal.toLocaleString()}`,
+            value: `AED ${bonusTotal.toLocaleString()}`,
             labelFr: "Bonus gagnés",
             labelEn: "Bonuses earned",
             color: "text-amber-500",

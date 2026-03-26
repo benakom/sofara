@@ -6,7 +6,7 @@ const StatsSection = () => {
 
   const stats = [
     { value: "500+", label: t("stats.ambassadors") },
-    { value: "€2.5M+", label: t("stats.commissions") },
+    { value: "AED 10M+", label: t("stats.commissions") },
     { value: "98%", label: t("stats.satisfaction") },
     { value: t("stats.countriesValue"), label: t("stats.countries") },
     { value: "72h", label: t("stats.avgConversion") },
