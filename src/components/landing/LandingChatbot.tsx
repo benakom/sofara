@@ -154,14 +154,30 @@ export default function LandingChatbot() {
         aria-label="Open chat"
       >
         <div className="relative">
+          {/* Pulsing ring */}
           <div className="absolute -inset-2 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse" style={{ background: "radial-gradient(circle, #CCFF00 0%, transparent 70%)" }} />
+          {/* Ping ring animation */}
+          <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ border: "2px solid #CCFF00" }} />
           <div
             className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
             style={{ background: "#0a0a0a", border: "2px solid #CCFF00", boxShadow: "0 0 16px #CCFF0040, 0 0 4px #CCFF0060 inset" }}
           >
             <img src={avatarImg} alt="Sofara" className="w-9 h-9 object-contain" />
           </div>
+          {/* Green online dot with ping */}
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-background" />
+          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping opacity-60" />
+          {/* Tooltip label */}
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.5, duration: 0.4 }}
+            className="absolute -left-2 top-1/2 -translate-y-1/2 -translate-x-full whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold shadow-lg pointer-events-none"
+            style={{ background: "#CCFF00", color: "#134830", fontFamily: "var(--font-display)" }}
+          >
+            {lang === "fr" ? "💬 Posez vos questions !" : lang === "ar" ? "💬 !اطرح أسئلتك" : lang === "es" ? "💬 ¡Haz tus preguntas!" : lang === "ru" ? "💬 Задайте вопрос!" : "💬 Ask me anything!"}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2 h-2 rotate-45" style={{ background: "#CCFF00" }} />
+          </motion.div>
         </div>
       </button>
     );
