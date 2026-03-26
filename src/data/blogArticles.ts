@@ -19,20 +19,20 @@ const internalLink = (text: string, path: string) => `[${text}](${path})`;
 export const blogArticles: BlogArticle[] = [
   // ── CATEGORY: Dubai Market ──
   {
-    slug: "dubai-real-estate-market-2025-overview",
-    title: "Dubai Real Estate Market 2025: The Complete Investor's Guide",
-    excerpt: "Dubai recorded over 180,000 property transactions in 2025, a 32% increase from 2024. Here's everything investors need to know about the world's fastest-growing real estate market.",
+    slug: "dubai-real-estate-market-2026-overview",
+    title: "Dubai Real Estate Market 2026: The Complete Investor's Guide",
+    excerpt: "Dubai recorded over 180,000 property transactions in 2026, a 32% increase from 2025. Here's everything investors need to know about the world's fastest-growing real estate market.",
     category: "Dubai Market",
-    tags: ["Dubai real estate", "market analysis", "investment", "2025"],
+    tags: ["Dubai real estate", "market analysis", "investment", "2026"],
     readTime: "8 min",
-    date: "2025-12-15",
+    date: "2026-12-15",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-    relatedSlugs: ["why-invest-dubai-property-2025", "dubai-off-plan-vs-ready-properties", "top-dubai-areas-investment-2025"],
+    relatedSlugs: ["why-invest-dubai-property-2026", "dubai-off-plan-vs-ready-properties", "top-dubai-areas-investment-2026"],
     content: `
-# Dubai Real Estate Market 2025: The Complete Investor's Guide
+# Dubai Real Estate Market 2026: The Complete Investor's Guide
 
-Dubai's real estate market has shattered all previous records in 2025, cementing its position as the **world's most attractive property investment destination**. With over 180,000 transactions worth AED 522 billion, the emirate continues to attract global capital at an unprecedented pace.
+Dubai's real estate market has shattered all previous records in 2026, cementing its position as the **world's most attractive property investment destination**. With over 180,000 transactions worth AED 522 billion, the emirate continues to attract global capital at an unprecedented pace.
 
 ## Key Market Highlights
 
@@ -60,7 +60,7 @@ Compared to London, New York, or Singapore, Dubai offers:
 | Income tax | 0% | Up to 45% | Up to 37% |
 | Price/sqft | $500-950 | $1,800+ | $1,500+ |
 
-> Dubai remains **70% cheaper per square foot** than London while delivering **3x the rental yield**. — Knight Frank Global Report 2025
+> Dubai remains **70% cheaper per square foot** than London while delivering **3x the rental yield**. — Knight Frank Global Report 2026
 
 ## The Role of Technology in Dubai Real Estate
 
@@ -74,22 +74,22 @@ Before investing, use the ${simulatorLink("Dubai Off-Plan Investment Simulator")
 
 ## Conclusion
 
-Dubai's real estate market in 2025 is not just growing — it's **redefining global property investment**. Whether you're an experienced investor or a first-time buyer, the opportunity is clear. ${internalLink("Join the Sofara ambassador network", "/auth")} to capitalize on this historic moment.
+Dubai's real estate market in 2026 is not just growing — it's **redefining global property investment**. Whether you're an experienced investor or a first-time buyer, the opportunity is clear. ${internalLink("Join the Sofara ambassador network", "/auth")} to capitalize on this historic moment.
 `
   },
   {
-    slug: "why-invest-dubai-property-2025",
-    title: "7 Reasons Why Smart Investors Choose Dubai Property in 2025",
-    excerpt: "From 0% income tax to 8-15% rental yields, discover why Dubai is the #1 destination for global property investors in 2025.",
+    slug: "why-invest-dubai-property-2026",
+    title: "7 Reasons Why Smart Investors Choose Dubai Property in 2026",
+    excerpt: "From 0% income tax to 8-15% rental yields, discover why Dubai is the #1 destination for global property investors in 2026.",
     category: "Dubai Market",
     tags: ["Dubai investment", "tax-free", "rental yield", "Golden Visa"],
     readTime: "6 min",
-    date: "2025-11-28",
+    date: "2026-11-28",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80",
-    relatedSlugs: ["dubai-real-estate-market-2025-overview", "dubai-golden-visa-real-estate", "dubai-rental-yields-explained"],
+    relatedSlugs: ["dubai-real-estate-market-2026-overview", "dubai-golden-visa-real-estate", "dubai-rental-yields-explained"],
     content: `
-# 7 Reasons Why Smart Investors Choose Dubai Property in 2025
+# 7 Reasons Why Smart Investors Choose Dubai Property in 2026
 
 Global investors are flocking to Dubai like never before. Here's why the emirate has become the undisputed capital of real estate investment.
 
@@ -130,18 +130,18 @@ ${internalLink("Join the Sofara ambassador network", "/auth")} and help your con
 `
   },
   {
-    slug: "top-dubai-areas-investment-2025",
-    title: "Best Areas to Invest in Dubai 2025: A Data-Driven Analysis",
+    slug: "top-dubai-areas-investment-2026",
+    title: "Best Areas to Invest in Dubai 2026: A Data-Driven Analysis",
     excerpt: "Downtown, Marina, JVC, or Dubai Hills? We analyze price trends, yields, and growth potential across Dubai's top investment areas.",
     category: "Dubai Market",
     tags: ["Dubai areas", "investment zones", "Downtown Dubai", "Dubai Marina", "JVC"],
     readTime: "10 min",
-    date: "2025-11-15",
+    date: "2026-11-15",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1546412414-e1885259563a?w=800&q=80",
-    relatedSlugs: ["dubai-real-estate-market-2025-overview", "dubai-off-plan-vs-ready-properties", "emaar-properties-guide"],
+    relatedSlugs: ["dubai-real-estate-market-2026-overview", "dubai-off-plan-vs-ready-properties", "emaar-properties-guide"],
     content: `
-# Best Areas to Invest in Dubai 2025: A Data-Driven Analysis
+# Best Areas to Invest in Dubai 2026: A Data-Driven Analysis
 
 Choosing the right area is crucial for maximizing your Dubai real estate returns. Here's our data-driven breakdown of the top investment zones.
 
@@ -195,10 +195,10 @@ Use the ${simulatorLink("Off-Plan Investment Simulator")} to compare projected r
     category: "Dubai Market",
     tags: ["off-plan", "ready properties", "investment strategy", "Dubai"],
     readTime: "7 min",
-    date: "2025-10-20",
+    date: "2026-10-20",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&q=80",
-    relatedSlugs: ["top-dubai-areas-investment-2025", "dubai-payment-plans-explained", "emaar-properties-guide"],
+    relatedSlugs: ["top-dubai-areas-investment-2026", "dubai-payment-plans-explained", "emaar-properties-guide"],
     content: `
 # Off-Plan vs Ready Properties in Dubai: Which Is Better?
 
@@ -250,10 +250,10 @@ ${cevitasLink("Cevitas Real Estate")} specializes in curating the best off-plan 
     category: "Developers",
     tags: ["Emaar", "Emaar Properties", "Dubai developer", "Burj Khalifa", "Dubai Hills"],
     readTime: "8 min",
-    date: "2025-10-10",
+    date: "2026-10-10",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
-    relatedSlugs: ["damac-properties-guide", "sobha-realty-quality-investment", "top-dubai-areas-investment-2025"],
+    relatedSlugs: ["damac-properties-guide", "sobha-realty-quality-investment", "top-dubai-areas-investment-2026"],
     content: `
 # Emaar Properties: The Complete Investor's Guide
 
@@ -281,7 +281,7 @@ Emaar properties command a **10-15% brand premium** at resale, making them excel
 ### 4. Payment Plans
 Emaar offers competitive payment plans, typically **60/40 or 70/30**, with some projects offering post-handover plans.
 
-## Top Emaar Projects for 2025
+## Top Emaar Projects for 2026
 
 1. **The Valley Phase 3** — Affordable family living
 2. **Emaar Beachfront** — Waterfront luxury
@@ -304,7 +304,7 @@ ${internalLink("Become a Sofara ambassador today", "/auth")} and start earning c
     category: "Developers",
     tags: ["Damac", "Damac Properties", "luxury real estate", "branded residences", "Dubai"],
     readTime: "7 min",
-    date: "2025-09-28",
+    date: "2026-09-28",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=800&q=80",
     relatedSlugs: ["emaar-properties-guide", "sobha-realty-quality-investment", "dubai-luxury-real-estate-trends"],
@@ -334,7 +334,7 @@ Damac operates across multiple segments:
 ### Strong Returns
 Damac properties in prime locations deliver **8-12% rental yields**, with branded units achieving even higher returns on short-term rental platforms.
 
-## Key Projects for 2025
+## Key Projects for 2026
 
 1. **Damac Lagoons** — Mediterranean-inspired lagoon living
 2. **Cavalli Tower** — Marina luxury by Roberto Cavalli
@@ -355,10 +355,10 @@ Use the ${simulatorLink("Off-Plan Simulator")} to compare Damac projects.
     category: "Developers",
     tags: ["Sobha", "Sobha Realty", "quality construction", "Dubai developer", "Sobha Hartland"],
     readTime: "6 min",
-    date: "2025-09-15",
+    date: "2026-09-15",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    relatedSlugs: ["emaar-properties-guide", "damac-properties-guide", "top-dubai-areas-investment-2025"],
+    relatedSlugs: ["emaar-properties-guide", "damac-properties-guide", "top-dubai-areas-investment-2026"],
     content: `
 # Sobha Realty: The Quality-First Developer
 
@@ -409,7 +409,7 @@ Model your returns: ${simulatorLink("Off-Plan Investment Simulator")}.
     category: "Ambassador Program",
     tags: ["ambassador program", "real estate commission", "referral", "Sofara", "earn money"],
     readTime: "6 min",
-    date: "2025-12-01",
+    date: "2026-12-01",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
     relatedSlugs: ["sofara-commission-structure-explained", "ambassador-success-stories", "ai-tools-real-estate-ambassadors"],
@@ -462,7 +462,7 @@ ${internalLink("Join now — it's free", "/auth")}.
     category: "Ambassador Program",
     tags: ["commission", "earnings", "3%", "Sofara", "passive income"],
     readTime: "5 min",
-    date: "2025-11-20",
+    date: "2026-11-20",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
     relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories", "super-ambassador-program"],
@@ -511,7 +511,7 @@ ${internalLink("Start earning today", "/auth")}.
     category: "Ambassador Program",
     tags: ["super ambassador", "referral bonus", "network", "passive income", "Sofara"],
     readTime: "5 min",
-    date: "2025-11-10",
+    date: "2026-11-10",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
     relatedSlugs: ["sofara-commission-structure-explained", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
@@ -558,7 +558,7 @@ Every ambassador gets a unique referral code automatically. Share it, grow your 
     category: "Ambassador Program",
     tags: ["success stories", "testimonials", "earnings", "ambassador", "Sofara"],
     readTime: "6 min",
-    date: "2025-10-25",
+    date: "2026-10-25",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80",
     relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained", "ai-tools-real-estate-ambassadors"],
@@ -601,7 +601,7 @@ ${internalLink("Create your free Sofara account", "/auth")} and start earning fr
     category: "AI & Technology",
     tags: ["AI", "artificial intelligence", "lead scoring", "real estate tech", "Sofara Pro"],
     readTime: "7 min",
-    date: "2025-12-05",
+    date: "2026-12-05",
     author: "Sofara Tech",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
     relatedSlugs: ["ai-lead-qualification-real-estate", "ai-roleplay-sales-training", "sofara-pro-vs-lite"],
@@ -655,7 +655,7 @@ Not all ambassadors need the full suite. ${internalLink("Compare Sofara Lite and
     category: "AI & Technology",
     tags: ["AI", "lead qualification", "lead scoring", "conversion", "real estate tech"],
     readTime: "6 min",
-    date: "2025-11-05",
+    date: "2026-11-05",
     author: "Sofara Tech",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-roleplay-sales-training", "how-to-become-dubai-real-estate-ambassador"],
@@ -713,7 +713,7 @@ All transactions are handled by ${cevitasLink("Cevitas Real Estate LLC")}, ensur
     category: "AI & Technology",
     tags: ["AI roleplay", "sales training", "pitch practice", "real estate", "Sofara Pro"],
     readTime: "5 min",
-    date: "2025-10-15",
+    date: "2026-10-15",
     author: "Sofara Tech",
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
     relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-lead-qualification-real-estate", "sofara-pro-vs-lite"],
@@ -756,7 +756,7 @@ Available exclusively on ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite"
     category: "Ambassador Program",
     tags: ["Sofara Pro", "Sofara Lite", "comparison", "upgrade", "ambassador tiers"],
     readTime: "4 min",
-    date: "2025-09-20",
+    date: "2026-09-20",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     relatedSlugs: ["ai-tools-real-estate-ambassadors", "how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained"],
@@ -811,17 +811,17 @@ Calculate your potential: ${simulatorLink("Off-Plan Investment Simulator")}.
   // ── CATEGORY: Legal & Finance ──
   {
     slug: "dubai-golden-visa-real-estate",
-    title: "Dubai Golden Visa Through Real Estate: Complete 2025 Guide",
+    title: "Dubai Golden Visa Through Real Estate: Complete 2026 Guide",
     excerpt: "Invest AED 2M+ in Dubai property and get a 10-year residence visa. Here's everything you need to know about the Golden Visa program.",
     category: "Legal & Finance",
     tags: ["Golden Visa", "Dubai visa", "residency", "investment visa", "UAE"],
     readTime: "7 min",
-    date: "2025-11-25",
+    date: "2026-11-25",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
-    relatedSlugs: ["why-invest-dubai-property-2025", "dubai-dld-fees-explained", "dubai-payment-plans-explained"],
+    relatedSlugs: ["why-invest-dubai-property-2026", "dubai-dld-fees-explained", "dubai-payment-plans-explained"],
     content: `
-# Dubai Golden Visa Through Real Estate: 2025 Guide
+# Dubai Golden Visa Through Real Estate: 2026 Guide
 
 The UAE's **Golden Visa** program offers 10-year residency to property investors — one of the most attractive investor visa programs globally.
 
@@ -868,17 +868,17 @@ Use the ${simulatorLink("Investment Simulator")} to show them exact costs and re
   },
   {
     slug: "dubai-dld-fees-explained",
-    title: "Dubai DLD Fees & Transfer Costs: Complete Breakdown for 2025",
+    title: "Dubai DLD Fees & Transfer Costs: Complete Breakdown for 2026",
     excerpt: "Understand all costs involved in buying Dubai property: DLD fees, agent commission, registration charges, and service fees explained.",
     category: "Legal & Finance",
     tags: ["DLD fees", "transfer costs", "Dubai Land Department", "buying costs", "property fees"],
     readTime: "5 min",
-    date: "2025-10-05",
+    date: "2026-10-05",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6e?w=800&q=80",
     relatedSlugs: ["dubai-golden-visa-real-estate", "dubai-payment-plans-explained", "dubai-off-plan-vs-ready-properties"],
     content: `
-# Dubai DLD Fees & Transfer Costs: 2025 Breakdown
+# Dubai DLD Fees & Transfer Costs: 2026 Breakdown
 
 Understanding the full cost of buying property in Dubai is essential. Here's the transparent breakdown.
 
@@ -914,10 +914,10 @@ ${cevitasLink("Cevitas Real Estate")} handles all DLD paperwork and ensures comp
     category: "Legal & Finance",
     tags: ["payment plans", "off-plan", "installments", "Dubai", "investment"],
     readTime: "6 min",
-    date: "2025-09-10",
+    date: "2026-09-10",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
-    relatedSlugs: ["dubai-off-plan-vs-ready-properties", "dubai-dld-fees-explained", "top-dubai-areas-investment-2025"],
+    relatedSlugs: ["dubai-off-plan-vs-ready-properties", "dubai-dld-fees-explained", "top-dubai-areas-investment-2026"],
     content: `
 # Dubai Off-Plan Payment Plans Explained
 
@@ -961,17 +961,17 @@ ${internalLink("Join Sofara", "/auth")} to help your contacts navigate these opt
   // ── CATEGORY: Market Insights ──
   {
     slug: "dubai-rental-yields-explained",
-    title: "Dubai Rental Yields 2025: Area-by-Area Breakdown (8-15% ROI)",
+    title: "Dubai Rental Yields 2026: Area-by-Area Breakdown (8-15% ROI)",
     excerpt: "Dubai delivers 8-15% rental yields — 3x London, 4x Paris. See yields by area, property type, and short vs long-term strategies.",
     category: "Market Insights",
     tags: ["rental yield", "ROI", "passive income", "Dubai", "short-term rental"],
     readTime: "7 min",
-    date: "2025-12-10",
+    date: "2026-12-10",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1582407947092-50af7071f6e1?w=800&q=80",
-    relatedSlugs: ["top-dubai-areas-investment-2025", "why-invest-dubai-property-2025", "dubai-real-estate-market-2025-overview"],
+    relatedSlugs: ["top-dubai-areas-investment-2026", "why-invest-dubai-property-2026", "dubai-real-estate-market-2026-overview"],
     content: `
-# Dubai Rental Yields 2025: Area-by-Area Breakdown
+# Dubai Rental Yields 2026: Area-by-Area Breakdown
 
 Dubai consistently delivers some of the **highest rental yields globally**. Here's the detailed breakdown.
 
@@ -1001,7 +1001,7 @@ Dubai consistently delivers some of the **highest rental yields globally**. Here
 
 ## Maximizing Your Yield
 
-1. **Choose the right area** — ${internalLink("See our area analysis", "/blog/top-dubai-areas-investment-2025")}
+1. **Choose the right area** — ${internalLink("See our area analysis", "/blog/top-dubai-areas-investment-2026")}
 2. **Furnish smartly** — Furnished units earn 20-30% more
 3. **Consider short-term** — Use platforms like Airbnb for premium returns
 4. **Buy off-plan** — Lower entry cost = higher yield on investment
@@ -1015,17 +1015,17 @@ Rental yields are your **strongest selling point** with investors. Use this data
   },
   {
     slug: "dubai-luxury-real-estate-trends",
-    title: "Dubai Luxury Real Estate Trends 2025: What Ultra-Wealthy Buyers Want",
+    title: "Dubai Luxury Real Estate Trends 2026: What Ultra-Wealthy Buyers Want",
     excerpt: "Branded residences, waterfront mansions, and AI-enabled smart homes — the luxury Dubai property market is evolving fast.",
     category: "Market Insights",
     tags: ["luxury", "branded residences", "UHNW", "Dubai trends", "smart homes"],
     readTime: "6 min",
-    date: "2025-11-01",
+    date: "2026-11-01",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
-    relatedSlugs: ["damac-properties-guide", "dubai-real-estate-market-2025-overview", "top-dubai-areas-investment-2025"],
+    relatedSlugs: ["damac-properties-guide", "dubai-real-estate-market-2026-overview", "top-dubai-areas-investment-2026"],
     content: `
-# Dubai Luxury Real Estate Trends 2025
+# Dubai Luxury Real Estate Trends 2026
 
 Dubai has become the **world's top destination for luxury property buyers**, surpassing London and New York. Here's what's driving the ultra-luxury segment.
 
@@ -1072,10 +1072,10 @@ ${internalLink("Join Sofara", "/auth")} to connect your HNW contacts with Dubai'
     category: "Legal & Finance",
     tags: ["foreign buyers", "international investors", "freehold", "Dubai property law", "ownership"],
     readTime: "6 min",
-    date: "2025-08-30",
+    date: "2026-08-30",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=800&q=80",
-    relatedSlugs: ["dubai-golden-visa-real-estate", "dubai-dld-fees-explained", "why-invest-dubai-property-2025"],
+    relatedSlugs: ["dubai-golden-visa-real-estate", "dubai-dld-fees-explained", "why-invest-dubai-property-2026"],
     content: `
 # Can Foreigners Buy Property in Dubai? Yes — Here's How
 
@@ -1122,12 +1122,12 @@ Simulate their investment: ${simulatorLink("Off-Plan Investment Simulator")}.
   },
   {
     slug: "ai-real-estate-future-dubai",
-    title: "The Future of AI in Dubai Real Estate: PropTech Revolution 2025",
+    title: "The Future of AI in Dubai Real Estate: PropTech Revolution 2026",
     excerpt: "From virtual property tours to AI-powered valuations, Dubai is leading the global PropTech revolution. Here's what's changing.",
     category: "AI & Technology",
     tags: ["AI", "PropTech", "virtual tours", "smart city", "Dubai innovation"],
     readTime: "7 min",
-    date: "2025-10-01",
+    date: "2026-10-01",
     author: "Sofara Tech",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
     relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-lead-qualification-real-estate", "dubai-luxury-real-estate-trends"],
@@ -1188,7 +1188,7 @@ ${internalLink("Join Sofara", "/auth")} and access the future of real estate tec
     category: "AI & Technology",
     tags: ["WhatsApp", "marketing", "lead generation", "communication", "Dubai"],
     readTime: "6 min",
-    date: "2025-09-05",
+    date: "2026-09-05",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
     relatedSlugs: ["ai-tools-real-estate-ambassadors", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
@@ -1237,10 +1237,10 @@ All leads shared through your link are protected for 12 months. ${cevitasLink("C
     category: "Market Insights",
     tags: ["Expo City", "Expo 2020", "Dubai South", "real estate growth", "infrastructure"],
     readTime: "5 min",
-    date: "2025-08-20",
+    date: "2026-08-20",
     author: "Sofara Research",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-    relatedSlugs: ["dubai-real-estate-market-2025-overview", "top-dubai-areas-investment-2025", "why-invest-dubai-property-2025"],
+    relatedSlugs: ["dubai-real-estate-market-2026-overview", "top-dubai-areas-investment-2026", "why-invest-dubai-property-2026"],
     content: `
 # Expo City Dubai: From World Expo to Investment Hotspot
 
