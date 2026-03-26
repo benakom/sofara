@@ -48,6 +48,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "midcta.titleHighlight": "revenus passifs",
     "midcta.description": "Rejoignez Sofara et commencez à toucher 3% de commission sur chaque transaction immobilière à Dubai. Aucune licence requise.",
     "midcta.noLicense": "Aucune licence requise · 100% gratuit · Commission dès la 1ère vente",
+    "midcta.aiNote": "IA intégrée — Taux de conversion 3x supérieur",
 
     // Final CTA
     "finalcta.title": "Votre réseau a de la valeur.",
@@ -56,6 +57,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point1": "100% gratuit, sans engagement",
     "finalcta.point2": "Onboarding en 24h",
     "finalcta.point3": "60+ ambassadeurs actifs",
+    "finalcta.point4": "IA pour convertir plus",
+    "finalcta.point5": "Leads protégés à vie",
+    "finalcta.point6": "Support dédié 24/7",
     "finalcta.note": "Programme sélectif · Candidatures ouvertes · Réponse sous 48h",
 
     // Logo bar
