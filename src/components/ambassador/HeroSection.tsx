@@ -30,8 +30,20 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-hero text-[3.5rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize">
-              <span className="text-primary">{t("hero.slide1.headline")}</span>
+            <h1 className="font-hero text-[3.5rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
+              {(() => {
+                const headline = t("hero.slide1.headline");
+                const highlight = t("hero.slide1.highlight");
+                const idx = headline.toLowerCase().indexOf(highlight.toLowerCase());
+                if (idx === -1) return headline;
+                return (
+                  <>
+                    {headline.slice(0, idx)}
+                    <span className="text-primary">{headline.slice(idx, idx + highlight.length)}</span>
+                    {headline.slice(idx + highlight.length)}
+                  </>
+                );
+              })()}
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
