@@ -6,10 +6,10 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
-const languages: { code: Lang; label: string; flag: string }[] = [
+const languages: { code: Lang; label: string; flag: string; pos?: string }[] = [
   { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
   { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
-  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png" },
+  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png", pos: "25% center" },
   { code: "es", label: "ES", flag: "https://flagcdn.com/w80/es.png" },
   { code: "ru", label: "RU", flag: "https://flagcdn.com/w80/ru.png" },
 ];
@@ -72,7 +72,7 @@ const Navbar = () => {
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
               </button>
             ))}
           </div>
@@ -109,7 +109,7 @@ const Navbar = () => {
                     : "opacity-60"
                 }`}
               >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" />
+                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
               </button>
             ))}
           </div>
