@@ -147,7 +147,7 @@ The explosive growth in Dubai real estate creates an unprecedented opportunity f
 - **More nationalities** = your global network is your asset
 - **AI tools** = close deals faster with ${internalLink("Sofara Pro features", "/blog/sofara-pro-vs-lite")}
 
-A single referral on a AED 2,000,000 property earns you **AED 60,000 (~€15,000)** — and the ${internalLink("Ambassadeur+ program", "/blog/super-ambassador-program")} adds a 10% bonus on your referrals' commissions.
+A single referral on a AED 2,000,000 property earns you **AED 60,000** — and the ${internalLink("Ambassadeur+ program", "/blog/super-ambassador-program")} adds a 10% bonus on your referrals' commissions.
 
 ---
 
@@ -933,7 +933,7 @@ ${internalLink("**→ Join the Sofara network — it's free**", "/auth")}
   {
     slug: "how-to-become-dubai-real-estate-ambassador",
     title: "How to Become a Dubai Real Estate Ambassador in 2026: The Complete Step-by-Step Guide",
-    excerpt: "No license needed, no experience required, 100% free. Learn how to earn €9,000-€60,000+ per deal by referring clients to Dubai's booming real estate market through Sofara.",
+    excerpt: "No license needed, no experience required, 100% free. Learn how to earn AED 36,000-AED 240,000+ per deal by referring clients to Dubai's booming real estate market through Sofara.",
     category: "Ambassador Program",
     tags: ["ambassador program", "real estate commission", "referral", "Sofara", "earn money", "business introducer"],
     readTime: "11 min",
@@ -978,7 +978,7 @@ You don't need a specific background — but certain profiles naturally excel:
 | **Accountants & tax advisors** | Clients seeking tax-efficient investments | 3-6 |
 | **Anyone well-connected** | Friends, family, business contacts | 1-3 |
 
-Read ${internalLink("real success stories from Sofara ambassadors", "/blog/ambassador-success-stories")} — including someone who earned €27,000 from a single WhatsApp message.
+Read ${internalLink("real success stories from Sofara ambassadors", "/blog/ambassador-success-stories")} — including someone who earned AED 108,000 from a single WhatsApp message.
 
 ---
 
@@ -1012,16 +1012,16 @@ When a lead converts to a completed sale, you earn **3% of the property purchase
 
 ## What Commissions Actually Look Like
 
-| Property Type | Area | Value (AED) | Your Commission (3%) | In EUR (~) |
-|--------------|------|-------------|---------------------|------------|
-| Studio | JVC | 700,000 | 21,000 | €5,250 |
-| 1BR Apartment | Business Bay | 1,200,000 | 36,000 | €9,000 |
-| 2BR Apartment | Dubai Hills | 2,500,000 | 75,000 | €18,750 |
-| 3BR Townhouse | Dubai Hills | 4,000,000 | 120,000 | €30,000 |
-| Villa | Palm Jumeirah | 8,000,000 | 240,000 | €60,000 |
-| Penthouse | Downtown | 15,000,000 | 450,000 | €112,500 |
+| Property Type | Area | Value (AED) | Your Commission (3%) |
+|--------------|------|-------------|---------------------|
+| Studio | JVC | 700,000 | AED 21,000 |
+| 1BR Apartment | Business Bay | 1,200,000 | AED 36,000 |
+| 2BR Apartment | Dubai Hills | 2,500,000 | AED 75,000 |
+| 3BR Townhouse | Dubai Hills | 4,000,000 | AED 120,000 |
+| Villa | Palm Jumeirah | 8,000,000 | AED 240,000 |
+| Penthouse | Downtown | 15,000,000 | AED 450,000 |
 
-> **One referral. One conversation. Potentially €10,000-€60,000+ in commission.**
+> **One referral. One conversation. Potentially AED 40,000-AED 240,000+ in commission.**
 
 For a complete breakdown of the commission model, see our ${internalLink("Commission Structure Explained guide", "/blog/sofara-commission-structure-explained")}.
 
@@ -1118,10 +1118,10 @@ This is a **one-time commission** paid per transaction — not a percentage of t
 
 | Ambassador Profile | Deals/Month | Avg Property Value | Monthly Commission | Annual Commission |
 |-------------------|------------|-------------------|-------------------|------------------|
-| **Casual referrer** | 0.25 (1/quarter) | AED 1,500,000 | ~AED 11,250 | ~€33,750 |
-| **Active networker** | 0.5 (1/2 months) | AED 2,000,000 | ~AED 30,000 | ~€90,000 |
-| **Professional** | 1 | AED 3,000,000 | AED 90,000 | ~€270,000 |
-| **Top performer** | 2+ | AED 5,000,000+ | AED 300,000+ | ~€900,000+ |
+| **Casual referrer** | 0.25 (1/quarter) | AED 1,500,000 | ~AED 11,250 | ~AED 45,000 |
+| **Active networker** | 0.5 (1/2 months) | AED 2,000,000 | ~AED 30,000 | ~AED 360,000 |
+| **Professional** | 1 | AED 3,000,000 | AED 90,000 | ~AED 1,080,000 |
+| **Top performer** | 2+ | AED 5,000,000+ | AED 300,000+ | ~AED 3,600,000+ |
 
 > Even **one deal per quarter** on a mid-range property generates over €30,000/year in additional income — with minimal time investment.
 
