@@ -1,18 +1,53 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn, LayoutDashboard } from "lucide-react";
+import { Menu, X, LogIn, LayoutDashboard, Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
-const languages: { code: Lang; label: string; flag: string; pos?: string }[] = [
-  { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
-  { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
-  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png", pos: "25% center" },
-  { code: "es", label: "ES", flag: "https://flagcdn.com/w80/es.png" },
-  { code: "ru", label: "RU", flag: "https://flagcdn.com/w80/ru.png" },
+const languages: { code: Lang; label: string }[] = [
+  { code: "en", label: "English" },
+  { code: "ar", label: "العربية" },
 ];
+
+const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) => {
+  const [open, setOpen] = useState(false);
+  const current = languages.find(l => l.code === lang) || languages[0];
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border/30 text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <Globe className="w-3.5 h-3.5" />
+        <span className="font-medium">{current.label}</span>
+        <ChevronDown className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 top-full mt-1 z-50 bg-background/95 backdrop-blur-xl border border-border/40 rounded-xl shadow-xl overflow-hidden min-w-[130px]">
+            {languages.map(l => (
+              <button
+                key={l.code}
+                onClick={() => { setLang(l.code); setOpen(false); }}
+                className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                  lang === l.code
+                    ? "bg-primary/10 text-primary font-semibold"
+                    : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
