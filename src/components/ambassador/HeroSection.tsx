@@ -42,19 +42,6 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-primary/5 blur-[100px] sm:blur-[150px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] rounded-full bg-accent/5 blur-[80px] sm:blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
 
-      {/* Top strip - #1 Program */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="relative z-10 w-full bg-primary/10 border-b border-primary/20 backdrop-blur-sm"
-      >
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 py-2.5 flex items-center justify-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-          <span className="text-primary text-xs sm:text-sm font-bold tracking-wide">{t("hero.topStrip")}</span>
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-        </div>
-      </motion.div>
 
       <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-20">
         <div className="max-w-5xl mx-auto text-center w-full">
