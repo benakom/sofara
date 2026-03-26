@@ -341,7 +341,7 @@
   background: hsl(var(--dash-card));
   color: hsl(var(--dash-fg));
   border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 8px 32px -16px hsl(var(--primary) / 0.3), var(--dash-card-shadow);
+  box-shadow: 0 8px 32px -16px hsl(var(--primary) / 0.2), var(--dash-card-shadow);
 }
 
 .blog-prose {
