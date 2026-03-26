@@ -25,11 +25,11 @@ const HowItWorksSection = () => {
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("how.label")}
           </span>
-          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
+          <h2 className="font-display text-[2rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("how.titleNew")}{" "}
             <span className="text-gradient-primary">{t("how.titleHighlightNew")}</span>
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("how.subtitleNew")}
           </p>
         </motion.div>
@@ -48,8 +48,8 @@ const HowItWorksSection = () => {
                 <step.icon className="w-7 h-7 text-primary" />
               </div>
               <span className="font-display text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors absolute top-4 right-5">{step.number}</span>
-              <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 text-foreground leading-snug">{step.title}</h3>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{step.description}</p>
+              <h3 className="font-display text-2xl sm:text-2xl font-bold mb-3 text-foreground leading-snug">{step.title}</h3>
+              <p className="text-base sm:text-base text-muted-foreground leading-relaxed">{step.description}</p>
               
               {index < steps.length - 1 && (
                 <div className="hidden sm:block absolute top-1/2 -right-3 w-6 h-px bg-primary/20" />
