@@ -104,7 +104,7 @@ const Auth = () => {
   const benefits = lang === "fr"
     ? [
         "Commission de 3% sur chaque vente",
-        "Commission moyenne : €9 200+ par transaction",
+        "Commission moyenne : AED 37 000+ par transaction",
         "Outils marketing IA inclus",
         "Transparence totale sur vos gains",
         "Formation et accompagnement premium",
@@ -112,7 +112,7 @@ const Auth = () => {
     : lang === "ar"
     ? [
         "عمولة 3% على كل عملية بيع",
-        "متوسط العمولة: €9,200+ لكل صفقة",
+        "متوسط العمولة: AED 37,000+ لكل صفقة",
         "أدوات تسويق بالذكاء الاصطناعي",
         "شفافية كاملة على أرباحك",
         "تدريب ودعم متميز",
@@ -120,7 +120,7 @@ const Auth = () => {
     : lang === "es"
     ? [
         "Comisión del 3% en cada venta",
-        "Comisión media: €9.200+ por transacción",
+        "Comisión media: AED 37,000+ por transacción",
         "Herramientas de marketing IA incluidas",
         "Transparencia total en tus ganancias",
         "Formación y soporte premium",
@@ -128,14 +128,14 @@ const Auth = () => {
     : lang === "ru"
     ? [
         "Комиссия 3% с каждой продажи",
-        "Средняя комиссия: €9 200+ за сделку",
+        "Средняя комиссия: AED 37,000+ за сделку",
         "ИИ-инструменты маркетинга включены",
         "Полная прозрачность доходов",
         "Премиальное обучение и поддержка",
       ]
     : [
         "3% commission on every sale",
-        "Average commission: €9,200+ per transaction",
+        "Average commission: AED 37,000+ per transaction",
         "AI-powered marketing tools included",
         "Full transparency on your earnings",
         "Premium training & support",

@@ -8,10 +8,10 @@ import ReactMarkdown from "react-markdown";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const scenarios = [
-  { id: "skeptical", labelFr: "🤨 Investisseur sceptique", labelEn: "🤨 Skeptical investor", descFr: "Budget 500K€, plein de doutes", descEn: "€500K budget, full of doubts" },
+  { id: "skeptical", labelFr: "🤨 Investisseur sceptique", labelEn: "🤨 Skeptical investor", descFr: "Budget AED 2M, plein de doutes", descEn: "AED 2M budget, full of doubts" },
   { id: "busy_exec", labelFr: "👔 Cadre pressé", labelEn: "👔 Busy executive", descFr: "PDG, veut des chiffres, pas de temps", descEn: "CEO, wants numbers, no time" },
-  { id: "first_buyer", labelFr: "🏠 Primo-accédant", labelEn: "🏠 First-time buyer", descFr: "Budget 150-250K€, anxieux mais excité", descEn: "€150-250K budget, anxious but excited" },
-  { id: "vip_client", labelFr: "💎 Client VIP", labelEn: "💎 VIP client", descFr: "Budget 5M€+, ultra-exigeant", descEn: "€5M+ budget, ultra-demanding" },
+  { id: "first_buyer", labelFr: "🏠 Primo-accédant", labelEn: "🏠 First-time buyer", descFr: "Budget AED 600K-1M, anxieux mais excité", descEn: "AED 600K-1M budget, anxious but excited" },
+  { id: "vip_client", labelFr: "💎 Client VIP", labelEn: "💎 VIP client", descFr: "Budget AED 20M+, ultra-exigeant", descEn: "AED 20M+ budget, ultra-demanding" },
 ];
 
 const ROLEPLAY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-roleplay`;
