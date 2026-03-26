@@ -6,10 +6,10 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
-const languages: { code: Lang; label: string; flag: string }[] = [
+const languages: { code: Lang; label: string; flag: string; pos?: string }[] = [
   { code: "fr", label: "FR", flag: "https://flagcdn.com/w80/fr.png" },
   { code: "en", label: "EN", flag: "https://flagcdn.com/w80/gb.png" },
-  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png" },
+  { code: "ar", label: "AR", flag: "https://flagcdn.com/w80/ae.png", pos: "25% center" },
   { code: "es", label: "ES", flag: "https://flagcdn.com/w80/es.png" },
   { code: "ru", label: "RU", flag: "https://flagcdn.com/w80/ru.png" },
 ];
