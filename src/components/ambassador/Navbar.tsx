@@ -96,21 +96,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1.5 mr-1">
-            {languages.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
-                  lang === l.code
-                    ? "ring-2 ring-primary ring-offset-1 ring-offset-background scale-110"
-                    : "opacity-60 hover:opacity-100"
-                }`}
-              >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
-              </button>
-            ))}
-          </div>
+          <LangSwitcher lang={lang} setLang={setLang} />
 
           {!loading && (
             user ? (
@@ -133,21 +119,7 @@ const Navbar = () => {
 
         {/* Mobile: language + hamburger */}
         <div className="flex md:hidden items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            {languages.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLang(l.code)}
-                className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
-                  lang === l.code
-                    ? "ring-2 ring-primary ring-offset-1 ring-offset-background scale-110"
-                    : "opacity-60"
-                }`}
-              >
-                <img src={l.flag} alt={l.label} className="w-full h-full object-cover" style={l.pos ? { objectPosition: l.pos } : undefined} />
-              </button>
-            ))}
-          </div>
+          <LangSwitcher lang={lang} setLang={setLang} />
           <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground p-1">
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
