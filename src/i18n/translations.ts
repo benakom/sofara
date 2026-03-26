@@ -403,10 +403,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Join",
 
     // Hero
-    "hero.badge": "Ambassador Program 2025",
-    "hero.slide1.headline": "Turn your connections\ninto commissions.",
-    "hero.slide1.highlight": "connections",
-    "hero.slide1.sub": "Join Sofara and earn 3% commission on every Dubai real estate transaction — no license, no cold calling, from anywhere in the world.",
+    "hero.badge": "Ambassador Program 2026",
+    "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
+    "hero.slide1.headline": "You refer.\nWe close. You earn.",
+    "hero.slide1.highlight": "You earn.",
+    "hero.slide1.sub": "Join the #1 Dubai real estate ambassador program. Earn 3% commission on every sale — no license, no cold calling, from anywhere in the world.",
     "hero.slide2.headline": "Luxury real estate, accessible to your network.",
     "hero.slide2.sub": "Penthouses, Palm villas — give your contacts access to the world's most dynamic real estate market.",
     "hero.slide3.headline": "Dubai: the #1 investment destination worldwide in 2025.",
@@ -420,6 +421,12 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.metric1": "Commissions paid out",
     "hero.metric2": "Ambassadors in 12 countries",
     "hero.metric3": "Average rental yield",
+    "hero.metric3Label": "Guaranteed commission",
+    "hero.step1": "You refer",
+    "hero.step2": "We close",
+    "hero.step3": "You earn",
+    "hero.aiLabel": "AI-Powered",
+    "hero.aiSub": "Higher conversion rate",
 
     // Trust bar
     "trust.mediaTitle": "Dubai in international press",
@@ -433,6 +440,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "midcta.titleHighlight": "passive income",
     "midcta.description": "Join Sofara and start earning 3% commission on every Dubai real estate transaction. No license required.",
     "midcta.noLicense": "No license needed · 100% free · Commission from your 1st sale",
+    "midcta.aiNote": "AI-powered — 3x higher conversion rate",
 
     // Final CTA
     "finalcta.title": "Your network has value.",
@@ -441,6 +449,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point1": "100% free, no commitment",
     "finalcta.point2": "Onboarding in 24h",
     "finalcta.point3": "60+ active ambassadors",
+    "finalcta.point4": "AI-powered conversions",
+    "finalcta.point5": "Leads protected for life",
+    "finalcta.point6": "24/7 dedicated support",
     "finalcta.note": "Selective program · Applications open · Response within 48h",
 
     // Logo bar
