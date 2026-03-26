@@ -164,8 +164,8 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-sm sm:text-base font-bold text-foreground font-display">8–15%</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric3")}</div>
+                <div className="text-sm sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={60} suffix="+" /></div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric2Short")}</div>
               </div>
             </div>
           </motion.div>
