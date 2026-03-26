@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Clock, Users, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Clock, Users, CheckCircle2, Brain, Shield, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -27,19 +27,22 @@ const FinalCTASection = () => {
             {t("finalcta.description")}
           </p>
 
-          {/* Trust points */}
+          {/* Trust points - 2 rows */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-10">
             {[
               { icon: CheckCircle2, text: t("finalcta.point1") },
               { icon: Clock, text: t("finalcta.point2") },
               { icon: Users, text: t("finalcta.point3") },
+              { icon: Brain, text: t("finalcta.point4") },
+              { icon: Shield, text: t("finalcta.point5") },
+              { icon: Headphones, text: t("finalcta.point6") },
             ].map((p, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-2 text-sm text-muted-foreground"
               >
                 <p.icon className="w-4 h-4 text-primary" />

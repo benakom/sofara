@@ -1,9 +1,9 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Globe, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useState } from "react";
-import dubaiHero1 from "@/assets/dubai-hero-1.jpg";
+import dubaiHero from "@/assets/dubai-night-aerial.jpg";
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -22,41 +22,60 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
 const HeroSection = () => {
   const { t } = useLanguage();
 
-  return (
-    <section className="relative min-h-[100svh] overflow-hidden flex items-center" aria-label="Sofara Dubai Real Estate Ambassador Program">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img src={dubaiHero1} alt="Dubai skyline panorama — Burj Khalifa and Downtown Dubai real estate" className="w-full h-full object-cover opacity-20" loading="eager" fetchPriority="high" decoding="async" />
-      </div>
+  const steps = [
+    { icon: Send, label: t("hero.step1"), num: "01" },
+    { icon: Handshake, label: t("hero.step2"), num: "02" },
+    { icon: Banknote, label: t("hero.step3"), num: "03" },
+  ];
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-background/70" />
+  return (
+    <section className="relative min-h-[100svh] overflow-hidden flex flex-col" aria-label="Sofara Dubai Real Estate Ambassador Program">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <img src={dubaiHero} alt="Dubai skyline at night — luxury real estate market" className="w-full h-full object-cover opacity-30" loading="eager" fetchPriority="high" decoding="async" />
+      </div>
+      <div className="absolute inset-0 bg-background/60" />
       <div className="absolute inset-0 bg-gradient-mesh" />
-      <div className="absolute inset-0 grid-pattern opacity-15 hidden sm:block" />
+      <div className="absolute inset-0 grid-pattern opacity-10 hidden sm:block" />
 
       {/* Glow orbs */}
       <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-primary/5 blur-[100px] sm:blur-[150px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] rounded-full bg-accent/5 blur-[80px] sm:blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
 
-      <div className="relative z-10 w-full px-5 sm:px-6 pt-24 sm:pt-28 pb-16 sm:pb-20">
-        <div className="max-w-5xl mx-auto text-center">
+      {/* Top strip - #1 Program */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="relative z-10 w-full bg-primary/10 border-b border-primary/20 backdrop-blur-sm"
+      >
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 py-2.5 flex items-center justify-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+          <span className="text-primary text-xs sm:text-sm font-bold tracking-wide">{t("hero.topStrip")}</span>
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+        </div>
+      </motion.div>
+
+      <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-20">
+        <div className="max-w-5xl mx-auto text-center w-full">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
           </motion.div>
 
+          {/* Headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <h1 className="font-hero text-[2.8rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
+            <h1 className="font-hero text-[2.5rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
               {(() => {
                 const headline = t("hero.slide1.headline");
                 const highlight = t("hero.slide1.highlight");
@@ -77,11 +96,43 @@ const HeroSection = () => {
             </p>
           </motion.div>
 
+          {/* 3-Step Process Visual */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0 mb-8 sm:mb-10"
+          >
+            {steps.map((step, i) => (
+              <div key={i} className="flex items-center gap-0">
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.4 + i * 0.15 }}
+                  className="flex items-center gap-3 px-5 sm:px-6 py-3 sm:py-4 rounded-2xl bg-secondary/50 border border-border/40 backdrop-blur-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+                    <step.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-[10px] text-muted-foreground font-mono">{step.num}</div>
+                    <div className="text-sm sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
+                  </div>
+                </motion.div>
+                {i < steps.length - 1 && (
+                  <div className="hidden sm:flex items-center px-2">
+                    <ArrowRight className="w-4 h-4 text-primary/40" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </motion.div>
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14"
           >
             <a href="/auth">
@@ -97,26 +148,39 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          {/* Animated metrics strip */}
+          {/* AI + Metrics strip */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
-            {[
-              { icon: Shield, value: <AnimatedCounter target={720000} prefix="AED " suffix="+" />, label: t("hero.metric1") },
-              { icon: Globe, value: <><AnimatedCounter target={60} suffix="+" /><span className="text-base sm:text-lg font-normal text-muted-foreground ml-1">· 12 {t("hero.countriesShort")}</span></>, label: t("hero.metric2Short") },
-              { icon: Zap, value: <span>8–15%</span>, label: t("hero.metric3") },
-            ].map((m, i) => (
-              <div key={i} className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
-                <m.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-sm sm:text-base font-bold text-foreground font-display">{m.value}</div>
-                  <div className="text-[10px] sm:text-xs text-muted-foreground">{m.label}</div>
-                </div>
+            {/* AI badge */}
+            <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/30 backdrop-blur-sm">
+              <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
+              <div className="text-left">
+                <div className="text-sm sm:text-base font-bold text-primary font-display">{t("hero.aiLabel")}</div>
+                <div className="text-[10px] sm:text-xs text-primary/70">{t("hero.aiSub")}</div>
               </div>
-            ))}
+            </div>
+            <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
+              <div className="text-left">
+                <div className="text-sm sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={720000} prefix="AED " suffix="+" /></div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric1")}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
+              <div className="text-left">
+                <div className="text-sm sm:text-base font-bold text-foreground font-display">3%</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric3Label")}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
+              <div className="text-left">
+                <div className="text-sm sm:text-base font-bold text-foreground font-display">8–15%</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric3")}</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
