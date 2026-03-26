@@ -19,11 +19,11 @@ const CommissionSection = () => {
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("commission.label")}
           </span>
-          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
+          <h2 className="font-display text-[2rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("commission.title")}{" "}
             <span className="text-gradient-primary">{t("commission.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("commission.description")}
           </p>
         </motion.div>
@@ -41,7 +41,7 @@ const CommissionSection = () => {
             </div>
             
             <div className="mt-4 mb-2">
-              <span className="font-display text-7xl sm:text-8xl lg:text-9xl font-bold text-gradient-primary">
+              <span className="font-display text-8xl sm:text-8xl lg:text-9xl font-bold text-gradient-primary">
                 3%
               </span>
             </div>

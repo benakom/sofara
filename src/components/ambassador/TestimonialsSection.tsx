@@ -24,7 +24,7 @@ const TestimonialsSection = () => {
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("testimonials.label")}
           </span>
-          <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4 leading-tight">
+          <h2 className="font-display text-[2rem] sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4 leading-tight">
             {t("testimonials.title")}{" "}
             <span className="text-gradient-primary">{t("testimonials.titleHighlight")}</span>
           </h2>

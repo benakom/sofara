@@ -50,10 +50,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-xs sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
+            <span className="text-primary text-sm sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
           </motion.div>
 
           {/* Headline */}
@@ -62,7 +62,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <h1 className="font-hero text-[2.5rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
+            <h1 className="font-hero text-[3rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
               {(() => {
                 const headline = t("hero.slide1.headline");
                 const highlight = t("hero.slide1.highlight");
@@ -78,7 +78,7 @@ const HeroSection = () => {
               })()}
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+            <p className="text-xl sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
               {t("hero.slide1.sub")}
             </p>
           </motion.div>
@@ -102,8 +102,8 @@ const HeroSection = () => {
                     <step.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <div className="text-[10px] text-muted-foreground font-mono">{step.num}</div>
-                    <div className="text-sm sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
+                    <div className="text-[11px] text-muted-foreground font-mono">{step.num}</div>
+                    <div className="text-base sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
                   </div>
                 </motion.div>
                 {i < steps.length - 1 && (
@@ -123,13 +123,13 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14"
           >
             <a href="/auth">
-              <Button variant="hero" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 rounded-full group">
+              <Button variant="hero" size="lg" className="text-lg sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-full group">
                 {t("hero.cta")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />
               </Button>
             </a>
             <a href="#comment">
-              <Button variant="heroOutline" size="lg" className="text-base px-7 sm:px-8 py-5 sm:py-7 rounded-full">
+              <Button variant="heroOutline" size="lg" className="text-base sm:text-base px-7 sm:px-8 py-6 sm:py-7 rounded-full">
                 {t("hero.ctaSecondaryNew")}
               </Button>
             </a>
@@ -146,26 +146,26 @@ const HeroSection = () => {
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/30 backdrop-blur-sm">
               <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
               <div className="text-left">
-                <div className="text-sm sm:text-base font-bold text-primary font-display">{t("hero.aiLabel")}</div>
-                <div className="text-[10px] sm:text-xs text-primary/70">{t("hero.aiSub")}</div>
+                <div className="text-base sm:text-base font-bold text-primary font-display">{t("hero.aiLabel")}</div>
+                <div className="text-xs sm:text-xs text-primary/70">{t("hero.aiSub")}</div>
               </div>
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-sm sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={720000} prefix="AED " suffix="+" /></div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric1")}</div>
+                <div className="text-base sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={720000} prefix="AED " suffix="+" /></div>
+                <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric1")}</div>
               </div>
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-sm sm:text-base font-bold text-foreground font-display">3%</div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric3Label")}</div>
+                <div className="text-base sm:text-base font-bold text-foreground font-display">3%</div>
+                <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric3Label")}</div>
               </div>
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-sm sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={60} suffix="+" /></div>
-                <div className="text-[10px] sm:text-xs text-muted-foreground">{t("hero.metric2Short")}</div>
+                <div className="text-base sm:text-base font-bold text-foreground font-display"><AnimatedCounter target={60} suffix="+" /></div>
+                <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric2Short")}</div>
               </div>
             </div>
           </motion.div>
