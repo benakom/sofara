@@ -167,17 +167,6 @@ export default function LandingChatbot() {
           {/* Green online dot with ping */}
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-background" />
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping opacity-60" />
-          {/* Tooltip label */}
-          <motion.div
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.5, duration: 0.4 }}
-            className="absolute -left-2 top-1/2 -translate-y-1/2 -translate-x-full whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold shadow-lg pointer-events-none"
-            style={{ background: "#CCFF00", color: "#134830", fontFamily: "var(--font-display)" }}
-          >
-            {lang === "fr" ? "💬 Posez vos questions !" : lang === "ar" ? "💬 !اطرح أسئلتك" : lang === "es" ? "💬 ¡Haz tus preguntas!" : lang === "ru" ? "💬 Задайте вопрос!" : "💬 Ask me anything!"}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2 h-2 rotate-45" style={{ background: "#CCFF00" }} />
-          </motion.div>
         </div>
       </button>
     );
