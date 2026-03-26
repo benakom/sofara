@@ -68,7 +68,7 @@ const Navbar = () => {
                 onClick={() => setLang(l.code)}
                 className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "ring-2 ring-[hsl(40,60%,55%)] ring-offset-1 ring-offset-background scale-110"
+                    ? "ring-2 ring-primary ring-offset-1 ring-offset-background scale-110"
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
@@ -105,7 +105,7 @@ const Navbar = () => {
                 onClick={() => setLang(l.code)}
                 className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
                   lang === l.code
-                    ? "ring-2 ring-[hsl(40,60%,55%)] ring-offset-1 ring-offset-background scale-110"
+                    ? "ring-2 ring-primary ring-offset-1 ring-offset-background scale-110"
                     : "opacity-60"
                 }`}
               >
