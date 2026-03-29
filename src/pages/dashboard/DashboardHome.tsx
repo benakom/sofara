@@ -5,14 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { useIsMobile } from "@/hooks/use-mobile";
-import StoriesCircles from "@/components/dashboard/StoriesCircles";
 
 const DashboardHome = () => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const isMobile = useIsMobile();
 
   const { data: leads = [] } = useQuery({
     queryKey: ["leads", user?.id],
@@ -115,9 +112,6 @@ const DashboardHome = () => {
           {lang === "ar" ? "عرض كل العملاء" : "View All Leads"} <ArrowUpRight className="w-4 h-4" />
         </button>
       </div>
-
-      {/* Mobile-only Stories */}
-      {isMobile && <StoriesCircles />}
 
       {/* Main KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
