@@ -68,15 +68,18 @@ const DashboardHome = () => {
         {kpis.map((kpi, i) => (
           <motion.button key={i} onClick={() => navigate(kpi.path)}
             initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
-            className={`rounded-xl p-4 relative overflow-hidden text-left cursor-pointer border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 ${kpi.blockClass}`}>
+            className={`rounded-2xl p-5 relative overflow-hidden text-left cursor-pointer border-0 shadow-lg hover:shadow-2xl hover:scale-[1.04] active:scale-[0.97] transition-all duration-200 ${kpi.blockClass}`}>
+            {/* Subtle glass overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-black/10 pointer-events-none" />
             <div className="relative">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
-                  <kpi.icon className="w-3.5 h-3.5 text-white" />
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-2 rounded-xl bg-white/20 backdrop-blur-sm">
+                  <kpi.icon className="w-4 h-4 text-white drop-shadow-sm" />
                 </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-white/50 group-hover:text-white/80 transition-colors" />
               </div>
-              <p className="text-2xl font-display font-bold text-white tracking-tight drop-shadow-sm">{kpi.prefix || ""}{kpi.value}</p>
-              <span className="text-[11px] font-medium text-white/80 uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
+              <p className="text-3xl font-display font-extrabold text-white tracking-tight drop-shadow-md leading-none">{kpi.prefix || ""}{kpi.value}</p>
+              <span className="text-xs font-semibold text-white/75 uppercase tracking-widest mt-1.5 block">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
             </div>
           </motion.button>
         ))}
