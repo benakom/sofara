@@ -64,36 +64,37 @@
     --sidebar-ring: 246 80% 60%;
 
     /* Dashboard sidebar */
-    --dash-sidebar-bg: 220 35% 98%;
-    --dash-sidebar-fg: 222 24% 34%;
-    --dash-sidebar-active: 217 91% 60%;
-    --dash-sidebar-hover: 221 32% 94%;
-    --dash-sidebar-border: 220 24% 90%;
+    --dash-sidebar-bg: 260 52% 97%;
+    --dash-sidebar-fg: 258 22% 35%;
+    --dash-sidebar-active: 268 88% 62%;
+    --dash-sidebar-hover: 260 44% 93%;
+    --dash-sidebar-border: 257 26% 86%;
+    --dash-sidebar-gradient: linear-gradient(180deg, hsl(262 60% 98%), hsl(255 52% 96%));
 
-    /* Dashboard content — light Waze style */
-    --dash-bg: 220 38% 97%;
-    --dash-fg: 223 28% 16%;
+    /* Dashboard content — violet investor theme */
+    --dash-bg: 258 48% 97%;
+    --dash-fg: 258 26% 16%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 223 28% 16%;
-    --dash-border: 220 20% 90%;
-    --dash-muted: 220 33% 95%;
-    --dash-muted-fg: 221 16% 44%;
+    --dash-card-fg: 258 26% 16%;
+    --dash-border: 258 24% 88%;
+    --dash-muted: 258 36% 94%;
+    --dash-muted-fg: 258 13% 43%;
 
     /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 220 20% 86%;
+    --dash-input-border: 258 22% 84%;
 
     /* Dashboard accent tokens */
-    --dash-accent: 217 91% 60%;
+    --dash-accent: 268 88% 62%;
     --dash-accent-fg: 0 0% 100%;
-    --dash-accent-gradient: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(193, 95%, 54%), hsl(281, 86%, 63%));
-    --dash-accent-glow: 0 10px 32px -10px hsl(217, 91%, 60%, 0.45);
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.03);
-    --dash-card-shadow-hover: 0 8px 24px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
-    --dash-card-ring: 220 13% 87%;
+    --dash-accent-gradient: linear-gradient(135deg, hsl(268 88% 62%), hsl(281 84% 64%), hsl(297 79% 62%));
+    --dash-accent-glow: 0 12px 34px -10px hsl(268 88% 62% / 0.45);
+    --dash-card-shadow: 0 1px 3px 0 rgba(36, 13, 78, 0.08), 0 1px 2px -1px rgba(36, 13, 78, 0.06);
+    --dash-card-shadow-hover: 0 12px 30px -6px rgba(71, 30, 140, 0.16), 0 4px 10px -3px rgba(71, 30, 140, 0.12);
+    --dash-card-ring: 258 18% 84%;
     --dash-success: 160 84% 39%;
     --dash-warning: 38 92% 50%;
-    --dash-info: 199 89% 48%;
+    --dash-info: 271 91% 65%;
   }
 }
 
@@ -275,12 +276,15 @@
 
 /* Dashboard content area */
 .dash-content {
-  background: hsl(var(--dash-bg));
+  background:
+    radial-gradient(circle at 0% 0%, hsl(var(--dash-accent) / 0.09), transparent 42%),
+    radial-gradient(circle at 100% 10%, hsl(var(--dash-accent) / 0.05), transparent 40%),
+    hsl(var(--dash-bg));
   color: hsl(var(--dash-fg));
 }
 
 .dash-card {
-  background: linear-gradient(160deg, hsl(var(--dash-card)), hsl(220 42% 98%));
+  background: linear-gradient(160deg, hsl(var(--dash-card)), hsl(262 68% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
@@ -293,14 +297,14 @@
 }
 
 .dash-card-elevated {
-  background: linear-gradient(140deg, hsl(var(--dash-card)), hsl(220 40% 98%));
+  background: linear-gradient(140deg, hsl(var(--dash-card)), hsl(260 62% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
 }
 
 .dash-card-interactive {
-  background: linear-gradient(145deg, hsl(var(--dash-card)), hsl(220 38% 98%));
+  background: linear-gradient(145deg, hsl(var(--dash-card)), hsl(258 58% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
@@ -354,7 +358,7 @@
   font-weight: 600;
   border: none;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px -2px hsl(246, 80%, 60%, 0.3);
+  box-shadow: 0 2px 8px -2px hsl(var(--dash-accent) / 0.3);
 }
 
 .dash-btn-accent:hover {
@@ -379,12 +383,12 @@
 }
 
 /* Waze-like colorful gradient blocks — modern SaaS style */
-.dash-block-a { background: linear-gradient(135deg, hsl(221 83% 53%), hsl(245 58% 51%)); border-color: transparent; }
-.dash-block-b { background: linear-gradient(135deg, hsl(271 76% 53%), hsl(316 72% 52%)); border-color: transparent; }
-.dash-block-c { background: linear-gradient(135deg, hsl(172 66% 50%), hsl(199 89% 48%)); border-color: transparent; }
-.dash-block-d { background: linear-gradient(135deg, hsl(24 95% 53%), hsl(45 93% 47%)); border-color: transparent; }
-.dash-block-e { background: linear-gradient(135deg, hsl(346 77% 49%), hsl(24 95% 53%)); border-color: transparent; }
-.dash-block-f { background: linear-gradient(135deg, hsl(152 69% 31%), hsl(172 66% 50%)); border-color: transparent; }
+.dash-block-a { background: linear-gradient(135deg, hsl(266 82% 60%), hsl(284 76% 62%)); border-color: transparent; }
+.dash-block-b { background: linear-gradient(135deg, hsl(276 80% 58%), hsl(300 72% 60%)); border-color: transparent; }
+.dash-block-c { background: linear-gradient(135deg, hsl(257 82% 56%), hsl(272 78% 60%)); border-color: transparent; }
+.dash-block-d { background: linear-gradient(135deg, hsl(286 76% 56%), hsl(312 68% 60%)); border-color: transparent; }
+.dash-block-e { background: linear-gradient(135deg, hsl(262 74% 54%), hsl(289 72% 57%)); border-color: transparent; }
+.dash-block-f { background: linear-gradient(135deg, hsl(271 70% 52%), hsl(296 65% 58%)); border-color: transparent; }
 
 .dash-icon-a { background: hsl(211 100% 92%); color: hsl(217 91% 50%); }
 .dash-icon-b { background: hsl(260 100% 92%); color: hsl(262 83% 54%); }
