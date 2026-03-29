@@ -152,37 +152,47 @@ const DashboardLayout = () => {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col">
-        <div className="flex flex-col flex-1 justify-evenly">
-          {navItems.map((item) => {
-            const active = isActive(item.path, item.exact);
-            return (
-              <button
-                key={item.path}
-                onClick={() => {
-                  navigate(item.path);
-                  setSidebarOpen(false);
-                }}
-                className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
-                  active
-                    ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-[hsl(var(--dash-fg))] border border-[hsl(var(--dash-sidebar-active)/.24)] shadow-sm"
-                    : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
-                }`}
-              >
-                <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
-                <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
-                {item.badge && (
-                  <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                    item.badge === "AI" 
-                      ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
-                      : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"
-                  }`}>
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+      <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col overflow-y-auto">
+        <div className="flex flex-col flex-1 gap-1">
+          {filteredGroups.map((group, gi) => (
+            <div key={group.labelEn}>
+              {gi > 0 && (
+                <div className="mx-2 my-2 h-px bg-[hsl(var(--dash-sidebar-border))]" />
+              )}
+              <p className="px-3 pt-2 pb-1.5 text-[9px] uppercase tracking-[0.18em] font-semibold text-[hsl(var(--dash-muted-fg)/.6)]">
+                {lang === "ar" ? group.labelAr : group.labelEn}
+              </p>
+              {group.items.map((item) => {
+                const active = isActive(item.path, item.exact);
+                return (
+                  <button
+                    key={item.path}
+                    onClick={() => {
+                      navigate(item.path);
+                      setSidebarOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
+                      active
+                        ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-[hsl(var(--dash-fg))] border border-[hsl(var(--dash-sidebar-active)/.24)] shadow-sm"
+                        : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
+                    }`}
+                  >
+                    <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
+                    <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
+                    {item.badge && (
+                      <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                        item.badge === "AI" 
+                          ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
+                          : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"
+                      }`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </nav>
 
