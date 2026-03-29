@@ -63,37 +63,55 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar */
-    --dash-sidebar-bg: 220 35% 98%;
-    --dash-sidebar-fg: 222 24% 34%;
-    --dash-sidebar-active: 217 91% 60%;
-    --dash-sidebar-hover: 221 32% 94%;
-    --dash-sidebar-border: 220 24% 90%;
+    /* ======= DASHBOARD / SOFARA PLATFORM DESIGN SYSTEM ======= */
+    /* Lumin-inspired: lime green accent, dark cards, off-white bg */
 
-    /* Dashboard content — light Waze style */
-    --dash-bg: 220 38% 97%;
-    --dash-fg: 223 28% 16%;
-    --dash-card: 0 0% 100%;
-    --dash-card-fg: 223 28% 16%;
-    --dash-border: 220 20% 90%;
-    --dash-muted: 220 33% 95%;
-    --dash-muted-fg: 221 16% 44%;
+    /* Page backgrounds */
+    --dash-bg: 240 5% 96%;          /* #F5F5F7 */
+    --dash-fg: 240 10% 11%;         /* #1A1A1E */
+    --dash-card: 0 0% 100%;         /* #FFFFFF */
+    --dash-card-fg: 240 10% 11%;    /* #1A1A1E */
+
+    /* Borders */
+    --dash-border: 220 13% 91%;     /* #E5E7EB */
+    --dash-muted: 220 14% 96%;      /* #F3F4F6 */
+    --dash-muted-fg: 220 9% 46%;    /* #6B7280 */
+
+    /* Tertiary text */
+    --dash-tertiary-fg: 220 9% 64%; /* #9CA3AF */
 
     /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 220 20% 86%;
+    --dash-input-border: 220 13% 91%;
 
-    /* Dashboard accent tokens */
-    --dash-accent: 217 91% 60%;
-    --dash-accent-fg: 0 0% 100%;
-    --dash-accent-gradient: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(193, 95%, 54%), hsl(281, 86%, 63%));
-    --dash-accent-glow: 0 10px 32px -10px hsl(217, 91%, 60%, 0.45);
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.03);
-    --dash-card-shadow-hover: 0 8px 24px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
-    --dash-card-ring: 220 13% 87%;
-    --dash-success: 160 84% 39%;
-    --dash-warning: 38 92% 50%;
-    --dash-info: 199 89% 48%;
+    /* Accent = LIME GREEN — the signature color */
+    --dash-accent: 72 89% 62%;      /* #D2F34C */
+    --dash-accent-hover: 72 80% 56%; /* #BDE040 */
+    --dash-accent-fg: 240 10% 11%;  /* Dark text on lime */
+
+    /* Dark card */
+    --dash-dark: 240 10% 11%;       /* #1A1A1E */
+    --dash-dark-secondary: 240 5% 18%; /* #2C2C2E */
+    --dash-dark-hover: 240 3% 23%;  /* #3A3A3C */
+    --dash-dark-fg: 0 0% 100%;      /* White text on dark */
+    --dash-dark-muted: 220 9% 64%;  /* #9CA3AF on dark */
+
+    /* Semantic */
+    --dash-success: 142 71% 45%;    /* #22C55E */
+    --dash-danger: 0 84% 60%;       /* #EF4444 */
+    --dash-warning: 38 92% 50%;     /* #F59E0B */
+
+    /* Shadows */
+    --dash-card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --dash-card-shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+    --dash-nav-shadow: 0 1px 2px rgba(0,0,0,0.05);
+
+    /* Sidebar (legacy — keeping for compatibility but not used in new layout) */
+    --dash-sidebar-bg: 0 0% 100%;
+    --dash-sidebar-fg: 220 9% 46%;
+    --dash-sidebar-active: 240 10% 11%;
+    --dash-sidebar-hover: 220 14% 96%;
+    --dash-sidebar-border: 220 13% 91%;
   }
 }
 
@@ -252,25 +270,29 @@
 }
 
 /* ======= DASHBOARD SCOPED THEME ======= */
-/* Overrides --primary inside dashboard so ALL components automatically pick up the new accent */
 .dash-theme {
-  --primary: 217 91% 60%;
-  --primary-foreground: 0 0% 100%;
-  --background: 220 38% 97%;
-  --foreground: 223 28% 16%;
+  --primary: 72 89% 62%;
+  --primary-foreground: 240 10% 11%;
+  --background: 240 5% 96%;
+  --foreground: 240 10% 11%;
   --card: 0 0% 100%;
-  --card-foreground: 223 28% 16%;
-  --border: 220 20% 90%;
-  --input: 220 20% 86%;
-  --ring: 217 91% 60%;
-  --muted: 220 33% 95%;
-  --muted-foreground: 221 16% 44%;
-  --accent: 217 91% 60%;
-  --accent-foreground: 0 0% 100%;
+  --card-foreground: 240 10% 11%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 72 89% 62%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 72 89% 62%;
+  --accent-foreground: 240 10% 11%;
   --popover: 0 0% 100%;
-  --popover-foreground: 223 28% 16%;
-  --destructive: 0 72% 51%;
+  --popover-foreground: 240 10% 11%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.dash-theme h1, .dash-theme h2, .dash-theme h3, .dash-theme h4, .dash-theme h5, .dash-theme h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Dashboard content area */
@@ -279,41 +301,67 @@
   color: hsl(var(--dash-fg));
 }
 
+/* ===== CARD TYPES ===== */
+
+/* TYPE 1: White card */
 .dash-card {
-  background: linear-gradient(160deg, hsl(var(--dash-card)), hsl(220 42% 98%));
+  background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  border-radius: 1.25rem;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  border-radius: 16px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .dash-card:hover {
   box-shadow: var(--dash-card-shadow-hover);
 }
 
-.dash-card-elevated {
-  background: linear-gradient(140deg, hsl(var(--dash-card)), hsl(220 40% 98%));
-  color: hsl(var(--dash-card-fg));
-  border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
-}
-
 .dash-card-interactive {
-  background: linear-gradient(145deg, hsl(var(--dash-card)), hsl(220 38% 98%));
+  background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  transition: all 0.25s ease;
+  border-radius: 16px;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .dash-card-interactive:hover {
   box-shadow: var(--dash-card-shadow-hover);
-  border-color: hsl(var(--dash-accent) / 0.25);
   transform: translateY(-2px);
 }
 
+/* TYPE 2: Dark card */
+.dash-card-dark {
+  background: hsl(var(--dash-dark));
+  color: hsl(var(--dash-dark-fg));
+  border: none;
+  border-radius: 16px;
+}
+
+.dash-card-dark .dash-dark-secondary {
+  color: hsl(var(--dash-dark-muted));
+}
+
+/* TYPE 3: Accent/promotional card */
+.dash-card-accent {
+  background: hsl(var(--dash-accent));
+  color: hsl(var(--dash-accent-fg));
+  border: none;
+  border-radius: 16px;
+}
+
+/* ===== ELEVATED CARDS ===== */
+.dash-card-elevated {
+  background: hsl(var(--dash-card));
+  color: hsl(var(--dash-card-fg));
+  border: 1px solid hsl(var(--dash-border));
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
+  border-radius: 16px;
+}
+
+/* ===== UTILITY CLASSES ===== */
 .dash-border-color {
   border-color: hsl(var(--dash-border));
 }
@@ -324,6 +372,10 @@
 
 .dash-muted-text {
   color: hsl(var(--dash-muted-fg));
+}
+
+.dash-tertiary-text {
+  color: hsl(var(--dash-tertiary-fg));
 }
 
 .dash-muted-bg {
@@ -339,53 +391,192 @@
 
 .dash-input:focus {
   border-color: hsl(var(--dash-accent)) !important;
-  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.1) !important;
+  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.15) !important;
 }
 
-/* Dashboard dialog/form backgrounds */
 .dash-form-bg {
   background: hsl(0, 0%, 100%);
 }
 
-/* Dashboard accent button — vibrant gradient */
+/* ===== BUTTONS ===== */
+
+/* Primary button: lime green */
+.dash-btn-primary {
+  background: hsl(var(--dash-accent));
+  color: hsl(var(--dash-accent-fg));
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  transition: all 0.2s ease;
+}
+
+.dash-btn-primary:hover {
+  background: hsl(var(--dash-accent-hover));
+  transform: translateY(-1px);
+}
+
+/* Secondary button: dark */
+.dash-btn-secondary {
+  background: hsl(var(--dash-dark));
+  color: hsl(var(--dash-dark-fg));
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  transition: all 0.2s ease;
+}
+
+.dash-btn-secondary:hover {
+  background: hsl(var(--dash-dark-secondary));
+}
+
+/* Outline button */
+.dash-btn-outline {
+  background: transparent;
+  color: hsl(var(--dash-fg));
+  font-weight: 600;
+  border: 1px solid hsl(var(--dash-border));
+  border-radius: 9999px;
+  padding: 10px 24px;
+  transition: all 0.2s ease;
+}
+
+.dash-btn-outline:hover {
+  background: hsl(var(--dash-muted));
+}
+
+/* Ghost button */
+.dash-btn-ghost {
+  background: transparent;
+  color: hsl(var(--dash-muted-fg));
+  font-weight: 500;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  transition: all 0.2s ease;
+}
+
+.dash-btn-ghost:hover {
+  background: hsl(var(--dash-muted));
+  color: hsl(var(--dash-fg));
+}
+
+/* Legacy accent button — map to new primary */
 .dash-btn-accent {
-  background: var(--dash-accent-gradient);
+  background: hsl(var(--dash-accent));
   color: hsl(var(--dash-accent-fg));
   font-weight: 600;
   border: none;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px -2px hsl(246, 80%, 60%, 0.3);
 }
 
 .dash-btn-accent:hover {
-  opacity: 0.92;
-  box-shadow: var(--dash-accent-glow);
+  background: hsl(var(--dash-accent-hover));
   transform: translateY(-1px);
 }
 
-/* Premium divider */
+/* ===== STATUS PILLS ===== */
+.dash-pill-qualified { background: hsl(72 89% 62%); color: hsl(240 10% 11%); }
+.dash-pill-progress { background: hsl(48 96% 89%); color: hsl(26 78% 29%); }
+.dash-pill-new { background: hsl(220 14% 96%); color: hsl(220 13% 26%); }
+.dash-pill-lost { background: hsl(0 93% 94%); color: hsl(0 74% 42%); }
+.dash-pill-closed { background: hsl(149 80% 90%); color: hsl(160 84% 19%); }
+
+/* ===== DIVIDER ===== */
 .dash-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, hsl(var(--dash-border)), transparent);
 }
 
-/* Status badges */
-.dash-badge {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 2px 8px;
-  border-radius: 6px;
+/* ===== ARROW ICON CIRCLE ===== */
+.dash-arrow-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--dash-border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: hsl(var(--dash-muted-fg));
 }
 
-/* Waze-like colorful gradient blocks — modern SaaS style */
-.dash-block-a { background: linear-gradient(135deg, hsl(221 83% 53%), hsl(245 58% 51%)); border-color: transparent; }
-.dash-block-b { background: linear-gradient(135deg, hsl(271 76% 53%), hsl(316 72% 52%)); border-color: transparent; }
-.dash-block-c { background: linear-gradient(135deg, hsl(172 66% 50%), hsl(199 89% 48%)); border-color: transparent; }
-.dash-block-d { background: linear-gradient(135deg, hsl(24 95% 53%), hsl(45 93% 47%)); border-color: transparent; }
-.dash-block-e { background: linear-gradient(135deg, hsl(346 77% 49%), hsl(24 95% 53%)); border-color: transparent; }
-.dash-block-f { background: linear-gradient(135deg, hsl(152 69% 31%), hsl(172 66% 50%)); border-color: transparent; }
+.dash-arrow-circle:hover {
+  background: hsl(var(--dash-accent));
+  border-color: hsl(var(--dash-accent));
+  color: hsl(var(--dash-accent-fg));
+}
 
+/* ===== DARK ACTION BUTTONS (on dark card) ===== */
+.dash-dark-action {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: hsl(var(--dash-dark-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--dash-dark-fg));
+  transition: all 0.2s ease;
+}
+
+.dash-dark-action:hover {
+  background: hsl(var(--dash-dark-hover));
+}
+
+/* ===== PROGRESS BAR ===== */
+.dash-progress-track {
+  height: 8px;
+  background: hsl(var(--dash-dark-secondary));
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.dash-progress-fill {
+  height: 100%;
+  background: hsl(var(--dash-accent));
+  border-radius: 9999px;
+  transition: width 0.6s ease;
+}
+
+/* Hatched pattern at end of progress */
+.dash-progress-hatched {
+  background: repeating-linear-gradient(
+    -45deg,
+    hsl(var(--dash-accent)),
+    hsl(var(--dash-accent)) 3px,
+    hsl(var(--dash-accent) / 0.5) 3px,
+    hsl(var(--dash-accent) / 0.5) 6px
+  );
+}
+
+/* ===== NAV PILL ===== */
+.dash-nav-pill-active {
+  background: hsl(var(--dash-dark));
+  color: hsl(var(--dash-dark-fg));
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dash-nav-pill-inactive {
+  background: transparent;
+  color: hsl(var(--dash-muted-fg));
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.dash-nav-pill-inactive:hover {
+  background: hsl(var(--dash-muted));
+  color: hsl(var(--dash-fg));
+}
+
+/* ===== ICON BACKGROUNDS (legacy compatibility) ===== */
 .dash-icon-a { background: hsl(211 100% 92%); color: hsl(217 91% 50%); }
 .dash-icon-b { background: hsl(260 100% 92%); color: hsl(262 83% 54%); }
 .dash-icon-c { background: hsl(191 100% 90%); color: hsl(196 92% 45%); }
@@ -402,12 +593,20 @@
 .dash-chip-g { background: hsl(286 100% 93%); color: hsl(281 83% 48%); }
 .dash-chip-h { background: hsl(205 100% 93%); color: hsl(201 94% 42%); }
 
-.dash-bar-a { background: hsl(217 91% 60%); }
-.dash-bar-b { background: hsl(262 83% 58%); }
-.dash-bar-c { background: hsl(196 92% 52%); }
+.dash-bar-a { background: hsl(var(--dash-accent)); }
+.dash-bar-b { background: hsl(var(--dash-dark)); }
+.dash-bar-c { background: hsl(var(--dash-muted-fg)); }
 .dash-bar-d { background: hsl(35 92% 56%); }
 .dash-bar-e { background: hsl(0 84% 58%); }
 .dash-bar-f { background: hsl(234 84% 62%); }
+
+/* ===== LOADING SKELETON ===== */
+.dash-skeleton {
+  background: linear-gradient(90deg, hsl(220 14% 96%) 25%, hsl(220 13% 91%) 50%, hsl(220 14% 96%) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
 
 /* Blog article reading experience */
 .blog-reading-surface {
