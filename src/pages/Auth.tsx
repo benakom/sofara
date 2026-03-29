@@ -151,6 +151,7 @@ const Auth = () => {
     if (error) {
       toast({ variant: "destructive", title: lang === "fr" ? "Erreur d'inscription" : "Signup error", description: error.message });
     } else {
+      localStorage.removeItem("sofara_ref");
       setSignupEmail(email);
       setSignupComplete(true);
     }
