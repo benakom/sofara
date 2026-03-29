@@ -213,17 +213,21 @@ const DashboardLayout = () => {
     </div>
   );
 
+  const isRtl = lang === "ar";
+
   return (
-    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
+    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden" dir={isRtl ? "rtl" : "ltr"}>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--dash-sidebar-border))]">
+      <aside className={`hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 z-40 ${
+        isRtl ? "right-0 border-l" : "left-0 border-r"
+      } border-[hsl(var(--dash-sidebar-border))]`}>
         <SidebarContent />
       </aside>
 
       {/* Mobile sidebar */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent
-          side="left"
+          side={isRtl ? "right" : "left"}
           className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-muted-fg))] [&>button]:hover:text-[hsl(var(--dash-fg))] [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
         >
           <SidebarContent />
@@ -231,7 +235,7 @@ const DashboardLayout = () => {
       </Sheet>
 
       {/* Main content */}
-      <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
+      <div className={`flex-1 ${isRtl ? "lg:mr-[240px]" : "lg:ml-[240px]"} flex flex-col min-h-screen min-w-0 overflow-x-hidden`}>
         {/* Top bar */}
         <header className="sticky top-0 z-30 h-14 border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card)/.92)] backdrop-blur-xl flex items-center justify-between px-4 sm:px-6">
           <button
