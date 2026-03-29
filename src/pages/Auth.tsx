@@ -339,9 +339,37 @@ const Auth = () => {
               <p className="text-sm text-muted-foreground mt-1">{l.subtitle}</p>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-3.5">
+              {/* Signup fields: Nom + Prénom */}
+              {mode === "signup" && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="lastName" className="text-sm">{lang === "fr" ? "Nom" : "Last Name"} <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="lastName"
+                      placeholder={lang === "fr" ? "Dupont" : "Smith"}
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                      className="bg-background/50 h-11 rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="firstName" className="text-sm">{lang === "fr" ? "Prénom" : "First Name"} <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="firstName"
+                      placeholder={lang === "fr" ? "Jean" : "John"}
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                      className="bg-background/50 h-11 rounded-xl"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-sm">Email</Label>
+                <Label htmlFor="email" className="text-sm">Email {mode === "signup" && <span className="text-destructive">*</span>}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -356,7 +384,7 @@ const Auth = () => {
               {mode !== "forgot" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "fr" ? "Mot de passe" : "Password"}
+                    {lang === "fr" ? "Mot de passe" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
                   <Input
                     id="password"
@@ -368,6 +396,69 @@ const Auth = () => {
                     minLength={6}
                     className="bg-background/50 h-11 rounded-xl"
                   />
+                </div>
+              )}
+
+              {/* Signup: Phone */}
+              {mode === "signup" && (
+                <div className="space-y-1.5">
+                  <Label className="text-sm">{lang === "fr" ? "Téléphone" : "Phone"} <span className="text-destructive">*</span></Label>
+                  <div className="grid grid-cols-[140px_1fr] gap-2">
+                    <Select value={phoneCode} onValueChange={(v) => { setPhoneCode(v); setPhoneError(""); }}>
+                      <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
+                        <SelectValue>
+                          {selectedPhoneEntry && (
+                            <span className="flex items-center gap-1.5">
+                              <span>{selectedPhoneEntry.flag}</span>
+                              <span className="text-muted-foreground">{selectedPhoneEntry.code}</span>
+                            </span>
+                          )}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 bg-popover border-border">
+                        {PHONE_CODES.map((c) => (
+                          <SelectItem key={`${c.code}-${c.name}`} value={c.code} className="focus:bg-primary/10 focus:text-primary">
+                            <span className="flex items-center gap-2">
+                              <span>{c.flag}</span>
+                              <span>{c.name}</span>
+                              <span className="text-muted-foreground">{c.code}</span>
+                            </span>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Input
+                      value={phone}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^\d\s]/g, "");
+                        setPhone(v);
+                        setPhoneError(validatePhone(v, phoneCode));
+                      }}
+                      placeholder={selectedPhoneEntry ? `${selectedPhoneEntry.digits} chiffres` : ""}
+                      className="bg-background/50 h-11 rounded-xl"
+                      required
+                    />
+                  </div>
+                  {phoneError && <p className="text-xs text-destructive mt-1">{phoneError}</p>}
+                </div>
+              )}
+
+              {/* Signup: Occupation */}
+              {mode === "signup" && (
+                <div className="space-y-1.5">
+                  <Label className="text-sm">{lang === "fr" ? "Occupation" : "Occupation"} <span className="text-destructive">*</span></Label>
+                  <Select value={occupation} onValueChange={setOccupation}>
+                    <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
+                      <SelectValue placeholder={lang === "fr" ? "Sélectionnez votre activité" : "Select your activity"} />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-border">
+                      {OCCUPATIONS.map((o) => (
+                        <SelectItem key={o.value} value={o.value} className="focus:bg-primary/10 focus:text-primary">
+                          {lang === "fr" ? o.labelFr : o.labelEn}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               )}
 
