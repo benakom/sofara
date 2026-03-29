@@ -41,12 +41,12 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelAr: "العملاء", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a" },
-    { labelAr: "مؤهلون", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b" },
-    { labelAr: "مقبولون", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c" },
-    { labelAr: "حجوزات", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d" },
-    { labelAr: "معدل التحويل", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e" },
-    { labelAr: "العمولات", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED " },
+    { labelAr: "العملاء", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a", path: "/dashboard/pipeline" },
+    { labelAr: "مؤهلون", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b", path: "/dashboard/pipeline" },
+    { labelAr: "مقبولون", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c", path: "/dashboard/pipeline" },
+    { labelAr: "حجوزات", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d", path: "/dashboard/pipeline" },
+    { labelAr: "معدل التحويل", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e", path: "/dashboard/pipeline" },
+    { labelAr: "العمولات", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED ", path: "/dashboard/commissions" },
   ];
 
   const recentLeads = leads.slice(0, 5);
