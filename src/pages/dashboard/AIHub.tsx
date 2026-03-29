@@ -126,11 +126,11 @@ const AIHub = () => {
     gradient: string;
     badge?: string;
   }[] = [
-    { id: "autoscore", icon: Target, labelAr: "Smart Scoring", labelEn: "Smart Scoring", descFr: "Scoring prédictif", descEn: "Predictive scoring", gradient: "from-violet-500 to-fuchsia-600", badge: "AI" },
-    { id: "legalai", icon: Scale, labelAr: "LegalAI", labelEn: "LegalAI", descFr: "Analyse de contrats", descEn: "Contract analysis", gradient: "from-violet-600 to-purple-700", badge: "PRO" },
-    { id: "roleplay", icon: MessageSquare, labelAr: "Roleplay", labelEn: "Roleplay", descFr: "Entraînement vente", descEn: "Sales training", gradient: "from-fuchsia-500 to-purple-600" },
-    { id: "sequences", icon: Zap, labelAr: "Séquences", labelEn: "Sequences", descFr: "Plans de relance", descEn: "Follow-up plans", gradient: "from-purple-500 to-indigo-600" },
-    { id: "voice", icon: Mic, labelAr: "Voice", labelEn: "Voice", descFr: "Agent vocal", descEn: "Voice agent", gradient: "from-violet-500 to-pink-600", badge: "BETA" },
+    { id: "autoscore", icon: Target, labelAr: "Smart Scoring", labelEn: "Smart Scoring", descFr: "Scoring prédictif", descEn: "Predictive scoring", gradient: "from-emerald-500 to-teal-600", badge: "AI" },
+    { id: "legalai", icon: Scale, labelAr: "LegalAI", labelEn: "LegalAI", descFr: "Analyse de contrats", descEn: "Contract analysis", gradient: "from-amber-500 to-yellow-600", badge: "PRO" },
+    { id: "roleplay", icon: MessageSquare, labelAr: "Roleplay", labelEn: "Roleplay", descFr: "Entraînement vente", descEn: "Sales training", gradient: "from-violet-500 to-purple-600" },
+    { id: "sequences", icon: Zap, labelAr: "Séquences", labelEn: "Sequences", descFr: "Plans de relance", descEn: "Follow-up plans", gradient: "from-sky-500 to-blue-600" },
+    { id: "voice", icon: Mic, labelAr: "Voice", labelEn: "Voice", descFr: "Agent vocal", descEn: "Voice agent", gradient: "from-rose-500 to-pink-600", badge: "BETA" },
   ];
 
   const renderTool = () => {
@@ -167,12 +167,12 @@ const AIHub = () => {
       {/* Main chat */}
       <div
         className="flex-1 min-h-0 min-w-0 w-full flex flex-col rounded-2xl overflow-hidden shadow-lg"
-        style={{ background: "linear-gradient(180deg, hsl(268, 28%, 14%), hsl(272, 24%, 10%))", border: "1px solid hsl(268, 16%, 22%)" }}
+        style={{ background: "linear-gradient(180deg, hsl(250, 25%, 14%), hsl(230, 20%, 10%))", border: "1px solid hsl(250, 15%, 22%)" }}
       >
         {/* Header */}
         <div
           className="flex items-center gap-3 px-3 sm:px-4 py-3 shrink-0 min-w-0"
-          style={{ background: "linear-gradient(135deg, hsl(268, 74%, 56%), hsl(292, 70%, 58%))", borderBottom: "1px solid hsl(270, 46%, 46%)" }}
+          style={{ background: "linear-gradient(135deg, hsl(252, 55%, 50%), hsl(200, 75%, 48%))", borderBottom: "1px solid hsl(252, 40%, 45%)" }}
         >
           <div className="relative shrink-0">
             <img src={sofaraAvatar} alt="SofarAI" className="w-10 h-10 rounded-full object-cover border-2 border-white/25 shadow-lg" />
@@ -197,7 +197,7 @@ const AIHub = () => {
               <div className="relative mb-5">
                 <div
                   className="absolute -inset-6 rounded-full opacity-40 blur-3xl animate-pulse"
-                  style={{ background: "radial-gradient(circle, hsl(268, 74%, 56%) 0%, hsl(292, 70%, 58%) 100%)" }}
+                  style={{ background: "radial-gradient(circle, hsl(252, 60%, 55%) 0%, hsl(200, 70%, 50%) 100%)" }}
                 />
                 <img src={sofaraAvatar} alt="SofarAI" className="relative w-20 h-20 rounded-full object-cover shadow-2xl border-2 border-violet-400/30" />
               </div>
@@ -234,7 +234,7 @@ const AIHub = () => {
                   msg.role === "user" ? "rounded-br-sm text-white shadow-lg" : "rounded-bl-sm text-slate-200"
                 }`}
                 style={msg.role === "user"
-                  ? { background: "linear-gradient(135deg, hsl(268, 74%, 56%), hsl(292, 70%, 58%))" }
+                  ? { background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }
                   : { background: "hsl(250, 16%, 18%)", border: "1px solid hsl(250, 10%, 26%)" }}
               >
                 {msg.role === "assistant" ? (
@@ -282,7 +282,7 @@ const AIHub = () => {
               type="submit"
               disabled={isLoading || !input.trim()}
               className="w-11 h-11 rounded-xl text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-30 shrink-0 shadow-lg"
-              style={{ background: "linear-gradient(135deg, hsl(268, 74%, 56%), hsl(292, 70%, 58%))" }}
+              style={{ background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }}
             >
               <Send className="w-4 h-4" />
             </button>
@@ -339,7 +339,7 @@ const LegalAIGate = () => {
           : "Analyze your SPAs, reservation contracts and legal documents with AI. Get key points, negotiation clauses and a clear summary."}
       </p>
       <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold text-sm shadow-lg"
-        style={{ background: "linear-gradient(135deg, hsl(268, 74%, 56%), hsl(292, 70%, 58%))" }}>
+        style={{ background: "linear-gradient(135deg, hsl(40, 90%, 50%), hsl(35, 85%, 45%))" }}>
         ⚡ {lang === "ar" ? "Bientôt disponible — Plan Pro" : "Coming soon — Pro Plan"}
       </div>
       <p className="text-[11px] dash-muted-text mt-4 max-w-sm italic">
