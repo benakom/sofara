@@ -86,7 +86,7 @@ const DashboardLayout = () => {
 
   if (loading || profileLoading) {
     return (
-      <div className="min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
+      <div className="dash-theme min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
         <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" />
       </div>
     );
@@ -210,7 +210,7 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
+    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--dash-sidebar-border))]">
         <SidebarContent />
