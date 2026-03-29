@@ -23,24 +23,47 @@ type NavItem = {
   labelEn: string;
   exact?: boolean;
   badge?: string;
-  tier?: "pro"; // only visible to pro users
+  tier?: "pro";
 };
 
-const allNavItems: NavItem[] = [
-  { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
-  { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
-  { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
-  { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
-  { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
-  { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
-  { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
-  { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", badge: "NEW", tier: "pro" },
-  { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulators", tier: "pro" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
-  { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "My Referrals" },
-  { path: "/dashboard/bonus", icon: Trophy, labelAr: "المكافآت والجوائز", labelEn: "Bonus & Rewards" },
-  { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
+type NavGroup = {
+  labelEn: string;
+  labelAr: string;
+  items: NavItem[];
+};
+
+const navGroups: NavGroup[] = [
+  {
+    labelEn: "Preparation",
+    labelAr: "التحضير",
+    items: [
+      { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
+      { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
+      { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", tier: "pro" },
+      { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulator", tier: "pro" },
+      { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+    ],
+  },
+  {
+    labelEn: "Lead Process",
+    labelAr: "إدارة العملاء",
+    items: [
+      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
+      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
+      { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
+      { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
+    ],
+  },
+  {
+    labelEn: "Admin",
+    labelAr: "الإدارة",
+    items: [
+      { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
+      { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
+      { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
+      { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "Referrals" },
+    ],
+  },
 ];
 
 const langs: { code: "en" | "ar"; flag: string }[] = [
