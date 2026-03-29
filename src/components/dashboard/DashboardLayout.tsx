@@ -109,11 +109,15 @@ const DashboardLayout = () => {
   const userInitials = user.email?.substring(0, 2).toUpperCase() || "AB";
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
+    <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]" style={{ background: "var(--dash-sidebar-gradient)" }}>
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-fg))] tracking-tight">
+          <a
+            href="/"
+            className="font-display text-4xl font-black tracking-tight text-transparent bg-clip-text"
+            style={{ backgroundImage: "var(--dash-accent-gradient)" }}
+          >
             sofara
           </a>
           {profileType === "pro" && (

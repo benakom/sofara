@@ -50,25 +50,25 @@ const DashboardHome = () => {
       labelAr: "إجمالي العملاء", labelEn: "Total Leads",
       subAr: `+0 ${lang === "ar" ? "اليوم" : "today"}`, subEn: `+0 today · ${totalLeads} this week`,
       value: totalLeads, icon: Users, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(246,72%,59%)] to-[hsl(280,68%,55%)]",
+      gradient: "from-[hsl(262,84%,60%)] to-[hsl(286,76%,60%)]",
     },
     {
       labelAr: "عملاء مؤهلون", labelEn: "Hot Leads",
       subAr: `${qualified} في خط الأنابيب`, subEn: `${qualified} warm leads in pipeline`,
       value: qualified, icon: Zap, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(346,82%,57%)] to-[hsl(16,90%,56%)]",
+      gradient: "from-[hsl(275,80%,58%)] to-[hsl(298,72%,62%)]",
     },
     {
       labelAr: "قيمة خط الأنابيب", labelEn: "Pipeline Value",
       subAr: `${accepted} صفقات مغلقة`, subEn: `${accepted} won deals closed`,
       value: `AED ${totalComm > 0 ? (totalComm / 1000).toFixed(0) + "K" : "0"}`, icon: DollarSign, path: "/dashboard/commissions",
-      gradient: "from-[hsl(160,72%,42%)] to-[hsl(180,65%,48%)]",
+      gradient: "from-[hsl(257,82%,58%)] to-[hsl(279,78%,62%)]",
     },
     {
       labelAr: "نقاط العميل", labelEn: "Lead Score",
       subAr: `${convRate}% معدل التحويل`, subEn: `${convRate}% conversion rate`,
       value: `${convRate}/100`, icon: Target, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(262,72%,56%)] to-[hsl(290,60%,52%)]",
+      gradient: "from-[hsl(285,78%,57%)] to-[hsl(310,68%,61%)]",
     },
   ];
 
