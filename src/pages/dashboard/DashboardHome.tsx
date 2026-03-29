@@ -50,25 +50,25 @@ const DashboardHome = () => {
       labelAr: "إجمالي العملاء", labelEn: "Total Leads",
       subAr: `+0 ${lang === "ar" ? "اليوم" : "today"}`, subEn: `+0 today · ${totalLeads} this week`,
       value: totalLeads, icon: Users, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(246,72%,59%)] to-[hsl(280,68%,55%)]",
+      gradient: "from-[#D2F34C] to-[#b8d940]", textColor: "text-black",
     },
     {
       labelAr: "عملاء مؤهلون", labelEn: "Hot Leads",
       subAr: `${qualified} في خط الأنابيب`, subEn: `${qualified} warm leads in pipeline`,
       value: qualified, icon: Zap, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(346,82%,57%)] to-[hsl(16,90%,56%)]",
+      gradient: "from-[#1a1a1a] to-[#2a2a2a]", textColor: "text-white",
     },
     {
       labelAr: "قيمة خط الأنابيب", labelEn: "Pipeline Value",
       subAr: `${accepted} صفقات مغلقة`, subEn: `${accepted} won deals closed`,
       value: `AED ${totalComm > 0 ? (totalComm / 1000).toFixed(0) + "K" : "0"}`, icon: DollarSign, path: "/dashboard/commissions",
-      gradient: "from-[hsl(160,72%,42%)] to-[hsl(180,65%,48%)]",
+      gradient: "from-[#D2F34C] to-[#a8c438]", textColor: "text-black",
     },
     {
       labelAr: "نقاط العميل", labelEn: "Lead Score",
       subAr: `${convRate}% معدل التحويل`, subEn: `${convRate}% conversion rate`,
       value: `${convRate}/100`, icon: Target, path: "/dashboard/pipeline",
-      gradient: "from-[hsl(262,72%,56%)] to-[hsl(290,60%,52%)]",
+      gradient: "from-[#111111] to-[#1f1f1f]", textColor: "text-white",
     },
   ];
 
@@ -92,14 +92,14 @@ const DashboardHome = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-br from-[hsl(262,72%,56%)] to-[hsl(290,60%,52%)] shadow-lg">
-            <Send className="w-5 h-5 text-white" />
+          <div className="p-2.5 rounded-2xl bg-[#D2F34C] shadow-lg">
+            <Send className="w-5 h-5 text-black" />
           </div>
           <div>
-            <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight">
+            <h1 className="text-2xl font-display font-extrabold text-[hsl(var(--dash-fg))] tracking-tight">
               {lang === "ar" ? "لوحة التحكم" : "Dashboard"}
             </h1>
-            <p className="dash-muted-text text-xs mt-0.5 flex items-center gap-1.5">
+            <p className="text-[hsl(var(--dash-muted-fg))] text-xs mt-0.5 flex items-center gap-1.5">
               <CalendarDays className="w-3 h-3" /> {dateStr}
             </p>
           </div>
@@ -107,7 +107,7 @@ const DashboardHome = () => {
 
         <button
           onClick={() => navigate("/dashboard/pipeline")}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(262,72%,56%)] to-[hsl(290,60%,52%)] text-white text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D2F34C] text-black text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           {lang === "ar" ? "عرض كل العملاء" : "View All Leads"} <ArrowUpRight className="w-4 h-4" />
         </button>
@@ -125,19 +125,19 @@ const DashboardHome = () => {
             className={`relative overflow-hidden rounded-3xl p-6 text-left cursor-pointer border-0 shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 bg-gradient-to-br ${kpi.gradient}`}
           >
             {/* Glass overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5 pointer-events-none rounded-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/5 pointer-events-none rounded-3xl" />
             <div className="relative">
               <div className="flex items-center justify-between mb-5">
-                <div className="p-2.5 rounded-2xl bg-white/20 backdrop-blur-sm shadow-sm">
-                  <kpi.icon className="w-5 h-5 text-white" />
+                <div className={`p-2.5 rounded-2xl backdrop-blur-sm shadow-sm ${kpi.textColor === "text-black" ? "bg-black/10" : "bg-white/10"}`}>
+                  <kpi.icon className={`w-5 h-5 ${kpi.textColor}`} />
                 </div>
-                <TrendingUp className="w-4 h-4 text-white/40" />
+                <TrendingUp className={`w-4 h-4 ${kpi.textColor} opacity-40`} />
               </div>
-              <p className="text-4xl font-display font-black text-white tracking-tight drop-shadow-sm leading-none mb-1">
+              <p className={`text-4xl font-display font-black ${kpi.textColor} tracking-tight drop-shadow-sm leading-none mb-1`}>
                 {kpi.value}
               </p>
-              <p className="text-sm font-semibold text-white/90 mt-1">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</p>
-              <p className="text-xs text-white/55 mt-0.5">{lang === "ar" ? kpi.subAr : kpi.subEn}</p>
+              <p className={`text-sm font-semibold ${kpi.textColor} opacity-90 mt-1`}>{lang === "ar" ? kpi.labelAr : kpi.labelEn}</p>
+              <p className={`text-xs ${kpi.textColor} opacity-55 mt-0.5`}>{lang === "ar" ? kpi.subAr : kpi.subEn}</p>
             </div>
           </motion.button>
         ))}
@@ -228,7 +228,7 @@ const DashboardHome = () => {
               {recentLeads.map((lead: any, i: number) => (
                 <div key={lead.id} className={`flex items-center justify-between py-3 ${i < recentLeads.length - 1 ? "border-b border-[hsl(var(--dash-border))]" : ""}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[hsl(262,72%,56%)] to-[hsl(290,60%,52%)] flex items-center justify-center text-[11px] font-bold text-white shadow-sm">
+                    <div className="w-9 h-9 rounded-full bg-[#D2F34C] flex items-center justify-center text-[11px] font-bold text-black shadow-sm">
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
