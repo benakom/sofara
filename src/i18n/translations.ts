@@ -11,7 +11,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Rejoindre",
 
     // Hero
-    "hero.badge": "🚀 Rejoins le réseau #1 à Dubai — Places limitées",
+    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Tu réfères.\nOn close. Tu gagnes.",
     "hero.slide1.highlight": "Tu gagnes.",
@@ -403,7 +403,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Join",
 
     // Hero
-    "hero.badge": "🚀 Join the #1 Network in Dubai — Limited Spots",
+    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "You refer.\nWe close. You earn.",
     "hero.slide1.highlight": "You earn.",
@@ -792,7 +792,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.howItWorks": "كيف يعمل",
     "nav.apply": "تقديم طلب",
     "nav.join": "انضم",
-    "hero.badge": "🚀 انضم إلى الشبكة رقم 1 في دبي — أماكن محدودة",
+    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "أنت تُحيل.\nنحن نُغلق. أنت تكسب.",
     "hero.slide1.highlight": "أنت تكسب.",
@@ -1088,7 +1088,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.howItWorks": "Cómo funciona",
     "nav.apply": "Aplicar",
     "nav.join": "Únete",
-    "hero.badge": "🚀 Únete a la red #1 en Dubái — Plazas limitadas",
+    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Tú refieres.\nNosotros cerramos. Tú ganas.",
     "hero.slide1.highlight": "Tú ganas.",
@@ -1384,7 +1384,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.howItWorks": "Как это работает",
     "nav.apply": "Подать заявку",
     "nav.join": "Присоединиться",
-    "hero.badge": "🚀 Присоединяйтесь к сети #1 в Дубае — Места ограничены",
+    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Ты рекомендуешь.\nМы закрываем. Ты зарабатываешь.",
     "hero.slide1.highlight": "Ты зарабатываешь.",
