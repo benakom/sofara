@@ -41,12 +41,12 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelAr: "العملاء", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a" },
-    { labelAr: "مؤهلون", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b" },
-    { labelAr: "مقبولون", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c" },
-    { labelAr: "حجوزات", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d" },
-    { labelAr: "معدل التحويل", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e" },
-    { labelAr: "العمولات", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED " },
+    { labelAr: "العملاء", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a", path: "/dashboard/pipeline" },
+    { labelAr: "مؤهلون", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b", path: "/dashboard/pipeline" },
+    { labelAr: "مقبولون", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c", path: "/dashboard/pipeline" },
+    { labelAr: "حجوزات", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d", path: "/dashboard/pipeline" },
+    { labelAr: "معدل التحويل", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e", path: "/dashboard/pipeline" },
+    { labelAr: "العمولات", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED ", path: "/dashboard/commissions" },
   ];
 
   const recentLeads = leads.slice(0, 5);
@@ -66,18 +66,19 @@ const DashboardHome = () => {
       {/* KPI Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
         {kpis.map((kpi, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
-            className={`dash-card rounded-xl p-4 relative overflow-hidden ${kpi.blockClass}`}>
+          <motion.button key={i} onClick={() => navigate(kpi.path)}
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
+            className={`rounded-xl p-4 relative overflow-hidden text-left cursor-pointer border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 ${kpi.blockClass}`}>
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <div className={`p-1.5 rounded-lg ${kpi.iconClass}`}>
-                  <kpi.icon className="w-3.5 h-3.5" />
+                <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
+                  <kpi.icon className="w-3.5 h-3.5 text-white" />
                 </div>
               </div>
-              <p className="text-2xl font-display font-bold dash-text tracking-tight">{kpi.prefix || ""}{kpi.value}</p>
-              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
+              <p className="text-2xl font-display font-bold text-white tracking-tight drop-shadow-sm">{kpi.prefix || ""}{kpi.value}</p>
+              <span className="text-[11px] font-medium text-white/80 uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
             </div>
-          </motion.div>
+          </motion.button>
         ))}
       </div>
 
