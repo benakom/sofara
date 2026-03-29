@@ -63,34 +63,34 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar — Influency clean style */
+    /* Dashboard — Lime/Dark design system */
     --dash-sidebar-bg: 0 0% 100%;
-    --dash-sidebar-fg: 0 0% 45%;
-    --dash-sidebar-active: 68 80% 52%;
-    --dash-sidebar-hover: 0 0% 97%;
-    --dash-sidebar-border: 0 0% 93%;
+    --dash-sidebar-fg: 0 0% 40%;
+    --dash-sidebar-active: 68 100% 50%;
+    --dash-sidebar-hover: 0 0% 96%;
+    --dash-sidebar-border: 0 0% 92%;
 
-    /* Dashboard content — ultra-clean light gray */
-    --dash-bg: 220 14% 96%;
-    --dash-fg: 220 15% 15%;
+    --dash-bg: 60 5% 95%;
+    --dash-fg: 0 0% 10%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 220 15% 15%;
-    --dash-border: 220 9% 91%;
-    --dash-muted: 220 14% 96%;
-    --dash-muted-fg: 220 9% 46%;
+    --dash-card-fg: 0 0% 10%;
+    --dash-border: 0 0% 90%;
+    --dash-muted: 60 4% 93%;
+    --dash-muted-fg: 0 0% 48%;
 
-    /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 220 9% 89%;
+    --dash-input-border: 0 0% 88%;
 
-    /* Dashboard accent — Influency lime/chartreuse */
-    --dash-accent: 68 80% 52%;
-    --dash-accent-fg: 220 15% 10%;
-    --dash-accent-gradient: linear-gradient(145deg, hsl(68, 100%, 62%), hsl(72, 80%, 48%));
-    --dash-accent-glow: 0 6px 24px -6px hsl(68, 80%, 52%, 0.35);
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.02);
-    --dash-card-shadow-hover: 0 4px 16px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
-    --dash-card-ring: 220 9% 91%;
+    /* Lime accent — exact from screenshot */
+    --dash-lime: 68 100% 50%;
+    --dash-lime-fg: 0 0% 10%;
+    --dash-dark: 0 0% 12%;
+    --dash-dark-fg: 0 0% 95%;
+
+    --dash-accent: 68 100% 50%;
+    --dash-accent-fg: 0 0% 10%;
+    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04);
+    --dash-card-shadow-hover: 0 8px 24px -8px rgba(0,0,0,0.1);
     --dash-success: 160 84% 39%;
     --dash-warning: 38 92% 50%;
     --dash-info: 210 80% 55%;
@@ -252,31 +252,25 @@
 }
 
 /* ======= DASHBOARD SCOPED THEME ======= */
-/* Influency-inspired clean SaaS override */
+/* Lime/Dark design system */
 .dash-theme {
-  --primary: 68 80% 52%;
-  --primary-foreground: 220 15% 10%;
-  --background: 220 14% 96%;
-  --foreground: 220 15% 15%;
+  --primary: 68 100% 50%;
+  --primary-foreground: 0 0% 10%;
+  --background: 60 5% 95%;
+  --foreground: 0 0% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 220 15% 15%;
-  --border: 220 9% 91%;
-  --input: 220 9% 89%;
-  --ring: 68 80% 52%;
-  --muted: 220 14% 96%;
-  --muted-foreground: 220 9% 46%;
-  --accent: 68 80% 52%;
-  --accent-foreground: 220 15% 10%;
+  --card-foreground: 0 0% 10%;
+  --border: 0 0% 90%;
+  --input: 0 0% 88%;
+  --ring: 68 100% 50%;
+  --muted: 60 4% 93%;
+  --muted-foreground: 0 0% 48%;
+  --accent: 68 100% 50%;
+  --accent-foreground: 0 0% 10%;
   --popover: 0 0% 100%;
-  --popover-foreground: 220 15% 15%;
+  --popover-foreground: 0 0% 10%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-}
-
-/* Dashboard content area */
-.dash-content {
-  background: hsl(var(--dash-bg));
-  color: hsl(var(--dash-fg));
 }
 
 .dash-card {
@@ -284,126 +278,76 @@
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  border-radius: 1rem;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  border-radius: 1.25rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .dash-card:hover {
   box-shadow: var(--dash-card-shadow-hover);
 }
 
-.dash-card-elevated {
-  background: hsl(var(--dash-card));
-  color: hsl(var(--dash-card-fg));
-  border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 2px 8px -2px rgba(0,0,0,0.04);
+.dash-card-lime {
+  background: hsl(var(--dash-lime));
+  color: hsl(var(--dash-lime-fg));
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 20px -6px hsl(68, 100%, 50%, 0.3);
 }
 
-.dash-card-interactive {
-  background: hsl(var(--dash-card));
-  color: hsl(var(--dash-card-fg));
-  border: 1px solid hsl(var(--dash-border));
-  box-shadow: var(--dash-card-shadow);
-  transition: all 0.2s ease;
-  cursor: pointer;
+.dash-card-dark {
+  background: hsl(var(--dash-dark));
+  color: hsl(var(--dash-dark-fg));
+  border: none;
+  border-radius: 1.25rem;
 }
 
-.dash-card-interactive:hover {
-  box-shadow: var(--dash-card-shadow-hover);
-  border-color: hsl(var(--dash-accent) / 0.3);
-}
+.dash-text { color: hsl(var(--dash-fg)); }
+.dash-muted-text { color: hsl(var(--dash-muted-fg)); }
 
-.dash-border-color {
-  border-color: hsl(var(--dash-border));
+.dash-btn-accent {
+  background: hsl(var(--dash-accent));
+  color: hsl(var(--dash-accent-fg));
+  font-weight: 700;
+  border: none;
+  border-radius: 0.75rem;
 }
+.dash-btn-accent:hover { opacity: 0.9; }
 
-.dash-text {
-  color: hsl(var(--dash-fg));
+.dash-btn-dark {
+  background: hsl(var(--dash-dark));
+  color: hsl(var(--dash-dark-fg));
+  font-weight: 600;
+  border: none;
+  border-radius: 0.75rem;
 }
+.dash-btn-dark:hover { opacity: 0.85; }
 
-.dash-muted-text {
-  color: hsl(var(--dash-muted-fg));
-}
-
-.dash-muted-bg {
-  background: hsl(var(--dash-muted));
-}
-
-/* Form inputs in dashboard */
 .dash-input {
   background: hsl(var(--dash-input-bg)) !important;
   border-color: hsl(var(--dash-input-border)) !important;
   color: hsl(var(--dash-fg)) !important;
+  border-radius: 0.75rem;
 }
-
 .dash-input:focus {
   border-color: hsl(var(--dash-accent)) !important;
-  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.1) !important;
+  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.15) !important;
 }
 
-/* Dashboard dialog/form backgrounds */
-.dash-form-bg {
-  background: hsl(0, 0%, 100%);
-}
-
-/* Dashboard accent button — Vestox orange */
-.dash-btn-accent {
-  background: hsl(var(--dash-accent));
-  color: hsl(var(--dash-accent-fg));
-  font-weight: 600;
-  border: none;
-  transition: all 0.15s ease;
-}
-
-.dash-btn-accent:hover {
-  opacity: 0.9;
-}
-
-/* Premium divider */
 .dash-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(var(--dash-border)), transparent);
+  background: hsl(var(--dash-border));
 }
 
-/* Status badges */
-.dash-badge {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 2px 8px;
-  border-radius: 6px;
+.dash-progress-lime {
+  background: hsl(var(--dash-lime));
+  border-radius: 999px;
 }
 
-/* Clean SaaS accent blocks — Influency palette */
-.dash-block-a { background: linear-gradient(145deg, hsl(68, 100%, 62%), hsl(72, 80%, 48%)); border-color: transparent; }
-.dash-block-b { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
-.dash-block-c { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
-.dash-block-d { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
-.dash-block-e { background: hsl(0, 70%, 55%); border-color: transparent; }
-.dash-block-f { background: hsl(220, 14%, 30%); border-color: transparent; }
-
-.dash-icon-a { background: hsl(68, 60%, 90%); color: hsl(68, 80%, 35%); }
-.dash-icon-b { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
-.dash-icon-c { background: hsl(210, 60%, 92%); color: hsl(210, 80%, 45%); }
-.dash-icon-d { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
-.dash-icon-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 48%); }
-.dash-icon-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
-
-.dash-chip-a { background: hsl(68, 70%, 90%); color: hsl(68, 80%, 30%); }
-.dash-chip-b { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
-.dash-chip-c { background: hsl(210, 60%, 92%); color: hsl(210, 80%, 40%); }
-.dash-chip-d { background: hsl(38, 100%, 92%); color: hsl(38, 92%, 40%); }
-.dash-chip-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 45%); }
-.dash-chip-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
-.dash-chip-g { background: hsl(160, 50%, 93%); color: hsl(160, 60%, 35%); }
-.dash-chip-h { background: hsl(200, 60%, 93%); color: hsl(200, 60%, 38%); }
-
-.dash-bar-a { background: hsl(68, 80%, 52%); }
-.dash-bar-b { background: hsl(210, 60%, 72%); }
-.dash-bar-c { background: hsl(160, 60%, 45%); }
-.dash-bar-d { background: hsl(38, 92%, 50%); }
-.dash-bar-e { background: hsl(0, 70%, 55%); }
-.dash-bar-f { background: hsl(220, 14%, 40%); }
+.dash-progress-track {
+  background: hsl(var(--dash-muted));
+  border-radius: 999px;
+  overflow: hidden;
+}
 
 /* Blog article reading experience */
 .blog-reading-surface {
