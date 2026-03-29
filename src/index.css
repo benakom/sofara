@@ -64,30 +64,30 @@
     --sidebar-ring: 246 80% 60%;
 
     /* Dashboard sidebar */
-    --dash-sidebar-bg: 228 33% 12%;
-    --dash-sidebar-fg: 215 20% 75%;
-    --dash-sidebar-active: 246 80% 60%;
-    --dash-sidebar-hover: 228 25% 17%;
-    --dash-sidebar-border: 228 22% 17%;
+    --dash-sidebar-bg: 220 35% 98%;
+    --dash-sidebar-fg: 222 24% 34%;
+    --dash-sidebar-active: 217 91% 60%;
+    --dash-sidebar-hover: 221 32% 94%;
+    --dash-sidebar-border: 220 24% 90%;
 
     /* Dashboard content — light Waze style */
-    --dash-bg: 220 14% 96%;
-    --dash-fg: 222 47% 11%;
+    --dash-bg: 220 38% 97%;
+    --dash-fg: 223 28% 16%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 222 47% 11%;
-    --dash-border: 220 13% 91%;
-    --dash-muted: 220 14% 96%;
-    --dash-muted-fg: 215 16% 47%;
+    --dash-card-fg: 223 28% 16%;
+    --dash-border: 220 20% 90%;
+    --dash-muted: 220 33% 95%;
+    --dash-muted-fg: 221 16% 44%;
 
     /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 220 13% 87%;
+    --dash-input-border: 220 20% 86%;
 
     /* Dashboard accent tokens */
-    --dash-accent: 246 80% 60%;
+    --dash-accent: 217 91% 60%;
     --dash-accent-fg: 0 0% 100%;
-    --dash-accent-gradient: linear-gradient(135deg, hsl(246, 80%, 60%), hsl(280, 75%, 55%));
-    --dash-accent-glow: 0 0 24px -4px hsl(246, 80%, 60%, 0.3);
+    --dash-accent-gradient: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(193, 95%, 54%), hsl(281, 86%, 63%));
+    --dash-accent-glow: 0 10px 32px -10px hsl(217, 91%, 60%, 0.45);
     --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.03);
     --dash-card-shadow-hover: 0 8px 24px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
     --dash-card-ring: 220 13% 87%;
@@ -280,7 +280,7 @@
 }
 
 .dash-card {
-  background: hsl(var(--dash-card));
+  background: linear-gradient(160deg, hsl(var(--dash-card)), hsl(220 42% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
@@ -293,14 +293,14 @@
 }
 
 .dash-card-elevated {
-  background: hsl(var(--dash-card));
+  background: linear-gradient(140deg, hsl(var(--dash-card)), hsl(220 40% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
 }
 
 .dash-card-interactive {
-  background: hsl(var(--dash-card));
+  background: linear-gradient(145deg, hsl(var(--dash-card)), hsl(220 38% 98%));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
@@ -350,7 +350,7 @@
 /* Dashboard accent button — vibrant gradient */
 .dash-btn-accent {
   background: var(--dash-accent-gradient);
-  color: white;
+  color: hsl(var(--dash-accent-fg));
   font-weight: 600;
   border: none;
   transition: all 0.2s ease;
