@@ -95,7 +95,6 @@ const DashboardLayout = () => {
   if (!user) return null;
 
   const shouldHideFloatingChat = location.pathname.startsWith("/dashboard/ai-hub");
-  const shouldHideFloatingChat = location.pathname.startsWith("/dashboard/ai-hub");
 
   const isActive = (path: string, exact?: boolean) => {
     if (exact) return location.pathname === path;
