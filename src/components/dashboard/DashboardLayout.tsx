@@ -51,7 +51,7 @@ const langs: { code: "fr" | "en"; flag: string }[] = [
 const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
-  const { isApproved, isPending, isRejected, needsOnboarding, loading: profileLoading, refetch } = useProfileStatus();
+  const { isApproved, loading: profileLoading } = useProfileStatus();
   const { profileType, ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
@@ -94,7 +94,7 @@ const DashboardLayout = () => {
 
   if (!user) return null;
 
-  const showOnboarding = !isApproved && (needsOnboarding || isPending || isRejected);
+  const shouldHideFloatingChat = location.pathname.startsWith("/dashboard/ai-hub");
   const shouldHideFloatingChat = location.pathname.startsWith("/dashboard/ai-hub");
 
   const isActive = (path: string, exact?: boolean) => {
@@ -274,16 +274,7 @@ const DashboardLayout = () => {
 
         {/* Page content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-x-hidden">
-          {showOnboarding ? (
-            <OnboardingGate
-              needsOnboarding={needsOnboarding}
-              isPendingReview={isPending}
-              isRejected={isRejected}
-              onComplete={refetch}
-            />
-          ) : (
-            <Outlet />
-          )}
+          <Outlet />
         </main>
       </div>
 

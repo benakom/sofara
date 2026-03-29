@@ -112,7 +112,18 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) {
-      toast({ variant: "destructive", title: lang === "fr" ? "Erreur de connexion" : "Login error", description: error.message });
+      const isEmailNotConfirmed = /email not confirmed|email.*confirm/i.test(error.message);
+      toast({
+        variant: "destructive",
+        title: isEmailNotConfirmed
+          ? (lang === "fr" ? "Email non vérifié" : "Email not verified")
+          : (lang === "fr" ? "Erreur de connexion" : "Login error"),
+        description: isEmailNotConfirmed
+          ? (lang === "fr"
+              ? "Vérifiez votre email puis reconnectez-vous."
+              : "Please verify your email and try again.")
+          : error.message,
+      });
     } else {
       navigate("/dashboard");
     }
