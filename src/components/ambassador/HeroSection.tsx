@@ -42,18 +42,17 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-primary/5 blur-[100px] sm:blur-[150px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] rounded-full bg-accent/5 blur-[80px] sm:blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
 
-
-      <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-20">
+      <div className="relative z-10 flex-1 flex items-center w-full px-4 sm:px-6 pt-14 sm:pt-20 pb-6 sm:pb-20">
         <div className="max-w-5xl mx-auto text-center w-full">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-sm sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
+            <span className="text-primary text-xs sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
           </motion.div>
 
           {/* Headline */}
@@ -62,7 +61,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <h1 className="font-hero text-[3rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
+            <h1 className="font-hero text-[2.25rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-3 sm:mb-8 whitespace-pre-line capitalize text-white">
               {(() => {
                 const headline = t("hero.slide1.headline");
                 const highlight = t("hero.slide1.highlight");
@@ -78,7 +77,7 @@ const HeroSection = () => {
               })()}
             </h1>
 
-            <p className="text-xl sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 sm:mb-10 leading-relaxed px-2">
               {t("hero.slide1.sub")}
             </p>
           </motion.div>
@@ -88,7 +87,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0 mb-8 sm:mb-10"
+            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 mb-5 sm:mb-10"
           >
             {steps.map((step, i) => (
               <div key={i} className="flex items-center gap-0">
@@ -96,14 +95,14 @@ const HeroSection = () => {
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.4 + i * 0.15 }}
-                  className="flex items-center gap-3 px-5 sm:px-6 py-3 sm:py-4 rounded-2xl bg-secondary/50 border border-border/40 backdrop-blur-sm"
+                  className="flex items-center gap-2.5 px-4 sm:px-6 py-2 sm:py-4 rounded-2xl bg-secondary/50 border border-border/40 backdrop-blur-sm"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
-                    <step.icon className="w-5 h-5 text-primary" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+                    <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <div className="text-[11px] text-muted-foreground font-mono">{step.num}</div>
-                    <div className="text-base sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
+                    <div className="text-[10px] sm:text-[11px] text-muted-foreground font-mono">{step.num}</div>
+                    <div className="text-sm sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
                   </div>
                 </motion.div>
                 {i < steps.length - 1 && (
@@ -120,16 +119,16 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14"
+            className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mb-5 sm:mb-14"
           >
             <a href="/auth">
-              <Button variant="hero" size="lg" className="text-lg sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-full group">
+              <Button variant="hero" size="lg" className="text-base sm:text-lg px-7 sm:px-10 py-5 sm:py-7 rounded-full group">
                 {t("hero.cta")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />
               </Button>
             </a>
             <a href="#comment">
-              <Button variant="heroOutline" size="lg" className="text-base sm:text-base px-7 sm:px-8 py-6 sm:py-7 rounded-full">
+              <Button variant="heroOutline" size="lg" className="text-sm sm:text-base px-6 sm:px-8 py-4 sm:py-7 rounded-full">
                 {t("hero.ctaSecondaryNew")}
               </Button>
             </a>
@@ -140,7 +139,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
             {/* AI badge */}
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/30 backdrop-blur-sm">
