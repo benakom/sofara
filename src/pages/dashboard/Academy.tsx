@@ -337,8 +337,8 @@ const Academy = () => {
             <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
               className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
                 activeCategory === cat.id
-                  ? "bg-[hsl(var(--primary))] text-white shadow-md"
-                  : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] dash-text hover:shadow-sm hover:border-[hsl(var(--primary)/.3)]"
+                  ? "dash-btn-accent shadow-md"
+                  : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] dash-text hover:shadow-sm hover:border-[hsl(var(--dash-accent)/.3)]"
               }`}>
               <cat.icon className="w-4 h-4" />
               {lang === "fr" ? cat.labelFr : cat.labelEn}
@@ -360,7 +360,7 @@ const Academy = () => {
 
       {/* Course grid */}
       {loading ? (
-        <div className="flex justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--primary))]" /></div>
+        <div className="flex justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-accent))]" /></div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-16 dash-muted-text">
           <GraduationCap className="w-12 h-12 mx-auto mb-3 opacity-30" />
@@ -416,7 +416,7 @@ const Academy = () => {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="text-base sm:text-[15px] font-display font-semibold dash-text line-clamp-2 group-hover:text-[hsl(var(--primary))] transition-colors leading-snug mb-1.5">
+                  <h3 className="text-base sm:text-[15px] font-display font-semibold dash-text line-clamp-2 group-hover:text-[hsl(var(--dash-accent))] transition-colors leading-snug mb-1.5">
                     {lang === "fr" ? course.title_fr : course.title_en}
                   </h3>
                   <p className="text-sm sm:text-xs dash-muted-text line-clamp-2 mb-3">{lang === "fr" ? course.description_fr : course.description_en}</p>
