@@ -153,10 +153,8 @@ const DashboardLayout = () => {
 
       {/* Nav */}
       <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col overflow-y-auto">
-        <div className="flex flex-col flex-1 gap-0.5">
-          {filteredGroups.map((group) => (
-            <div key={group.labelEn}>
-              {group.items.map((item) => {
+        <div className="flex flex-col flex-1">
+          {filteredGroups.flatMap((group) => group.items).map((item) => {
                 const active = isActive(item.path, item.exact);
                 return (
                   <button
@@ -185,8 +183,6 @@ const DashboardLayout = () => {
                   </button>
                 );
               })}
-            </div>
-          ))}
         </div>
       </nav>
 
