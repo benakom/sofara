@@ -70,8 +70,8 @@ const Pipeline = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">Pipeline</h1>
-          <p className="dash-muted-text text-base sm:text-sm">{lang === "ar" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
+          <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight">Pipeline</h1>
+          <p className="dash-muted-text text-xs mt-0.5">{lang === "ar" ? "تتبع تقدم عملائك." : "Track your leads progression."}</p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
@@ -111,7 +111,7 @@ const Pipeline = () => {
 
       {/* Vivid pipeline progress bar */}
       {totalLeads > 0 && (
-        <div className="dash-card rounded-xl p-4 mb-5">
+        <div className="dash-card rounded-2xl p-5 mb-5">
           <p className="text-sm sm:text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "ar" ? "Répartition" : "Distribution"}</p>
           <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
             {Object.entries(stageLabels).map(([key, label]) => {
@@ -143,7 +143,7 @@ const Pipeline = () => {
       )}
 
       {/* Table */}
-      <div className="dash-card rounded-xl overflow-hidden">
+      <div className="dash-card rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

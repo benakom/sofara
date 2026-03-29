@@ -282,9 +282,9 @@ const Community = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto">
-      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">Community</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">
-        {lang === "ar" ? "Échangez avec les ambassadeurs Sofara." : "Connect with Sofara ambassadors."}
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "المجتمع" : "Community"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">
+        {lang === "ar" ? "تواصل مع سفراء سفارة." : "Connect with Sofara ambassadors."}
       </p>
 
       {/* Mobile: stacked views / Desktop: side-by-side */}
