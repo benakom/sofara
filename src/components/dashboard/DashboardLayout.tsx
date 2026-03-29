@@ -114,7 +114,7 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-sidebar-active))] tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-white tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
@@ -181,7 +181,7 @@ const DashboardLayout = () => {
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(217,91%,60%)] to-[hsl(263,70%,58%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(246,80%,60%)] to-[hsl(280,75%,55%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
