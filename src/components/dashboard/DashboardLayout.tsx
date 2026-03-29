@@ -113,7 +113,7 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-fg))] tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-[#D2F34C] tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
@@ -166,9 +166,9 @@ const DashboardLayout = () => {
         <div className="px-3 pb-2">
           <button
             onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl dash-card-interactive border-[hsl(var(--dash-accent)/.22)]"
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl dash-card-interactive border-[#D2F34C]/22"
           >
-            <div className="w-8 h-8 rounded-lg dash-btn-accent flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#D2F34C] flex items-center justify-center shrink-0 text-black">
               <ArrowUpCircle className="w-4 h-4" />
             </div>
             <div className="flex-1 text-left">
@@ -183,8 +183,7 @@ const DashboardLayout = () => {
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
           <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-[hsl(var(--dash-accent-fg))] shadow-sm"
-            style={{ background: "var(--dash-accent-gradient)" }}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-black shadow-sm bg-[#D2F34C]"
           >
             {userInitials}
           </div>
