@@ -43,7 +43,7 @@ const HeroSection = () => {
       <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] rounded-full bg-accent/5 blur-[80px] sm:blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
 
 
-      <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-24 sm:pt-28 pb-16 sm:pb-20">
+      <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-20">
         <div className="max-w-5xl mx-auto text-center w-full">
           {/* Badge */}
           <motion.div
@@ -62,10 +62,20 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <h1 className="font-hero text-[2.5rem] leading-[1] sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-5 sm:mb-8 text-white">
-              The #1 <span className="text-primary">AI</span> Real Estate{" "}
-              <br className="hidden sm:block" />
-              Ambassadors Network
+            <h1 className="font-hero text-[3rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-5 sm:mb-8 whitespace-pre-line capitalize text-white">
+              {(() => {
+                const headline = t("hero.slide1.headline");
+                const highlight = t("hero.slide1.highlight");
+                const idx = headline.toLowerCase().indexOf(highlight.toLowerCase());
+                if (idx === -1) return headline;
+                return (
+                  <>
+                    {headline.slice(0, idx)}
+                    <span className="text-primary">{headline.slice(idx, idx + highlight.length)}</span>
+                    {headline.slice(idx + highlight.length)}
+                  </>
+                );
+              })()}
             </h1>
 
             <p className="text-xl sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
