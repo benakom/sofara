@@ -10,7 +10,17 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useState<Lang>(() => {
+    const saved = localStorage.getItem("sofara-lang");
+    return saved === "ar" ? "ar" : "en";
+  });
+
+  const changeLang = (l: Lang) => {
+    setLang(l);
+    localStorage.setItem("sofara-lang", l);
+    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = l;
+  };
 
   const t = useCallback(
     (key: string) => translations[lang][key] || key,
@@ -18,7 +28,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: changeLang, t }}>
       {children}
     </LanguageContext.Provider>
   );
