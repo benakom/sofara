@@ -9,7 +9,7 @@ import { useUserTier } from "@/hooks/useUserTier";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
-  CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
+  CreditCard, ShieldCheck, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
   Sparkles, BookOpen, Users, Crown, ArrowUpCircle
 } from "lucide-react";
