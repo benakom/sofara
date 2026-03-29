@@ -131,6 +131,7 @@ const Auth = () => {
       return;
     }
     setLoading(true);
+    const refCode = localStorage.getItem("sofara_ref");
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -142,6 +143,7 @@ const Auth = () => {
           full_name: `${firstName.trim()} ${lastName.trim()}`,
           phone: `${phoneCode}${digits}`,
           occupation,
+          ...(refCode ? { ref_code: refCode } : {}),
         },
       },
     });
