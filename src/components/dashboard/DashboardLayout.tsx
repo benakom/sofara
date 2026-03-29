@@ -13,7 +13,7 @@ import {
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
   Sparkles, BookOpen, Users, Crown, ArrowUpCircle
 } from "lucide-react";
-import OnboardingGate from "./OnboardingGate";
+
 import UpgradeToProDialog from "./UpgradeToProDialog";
 
 type NavItem = {
