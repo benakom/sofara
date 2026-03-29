@@ -28,8 +28,8 @@ const BonusRewards = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">🏆 Bonus & Rewards</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">🏆 {lang === "ar" ? "المكافآت والجوائز" : "Bonus & Rewards"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "برنامج الولاء والمكافآت." : "Loyalty program and rewards."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -40,7 +40,7 @@ const BonusRewards = () => {
           { labelAr: "Deals closés", labelEn: "Closed Deals", value: "0", icon: Target, accent: "bg-blue-50 text-blue-600" },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-            className="dash-card rounded-xl p-3.5">
+            className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
@@ -52,8 +52,8 @@ const BonusRewards = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
         {/* Tier progression */}
-        <div className="lg:col-span-2 dash-card rounded-xl p-4">
-          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Medal className="w-4 h-4" /> {lang === "ar" ? "Niveaux de fidélité" : "Loyalty Tiers"}</h2>
+        <div className="lg:col-span-2 dash-card rounded-2xl p-5">
+          <h2 className="text-sm font-display font-bold dash-text mb-3 flex items-center gap-2"><Medal className="w-4 h-4" /> {lang === "ar" ? "مستويات الولاء" : "Loyalty Tiers"}</h2>
           <div className="space-y-2.5">
             {tiers.map((tier) => (
               <div key={tier.level} className={`flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r ${tier.color} border`}>
@@ -74,8 +74,8 @@ const BonusRewards = () => {
         </div>
 
         {/* Challenges */}
-        <div className="dash-card rounded-xl p-4">
-          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /> {lang === "ar" ? "Challenges actifs" : "Active Challenges"}</h2>
+        <div className="dash-card rounded-2xl p-5">
+          <h2 className="text-sm font-display font-bold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /> {lang === "ar" ? "التحديات النشطة" : "Active Challenges"}</h2>
           <div className="space-y-3">
             {challenges.map((ch, i) => (
               <div key={i} className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.3)] border border-[hsl(var(--dash-border))]">
@@ -97,8 +97,8 @@ const BonusRewards = () => {
       </div>
 
       {/* Perks */}
-      <div className="dash-card rounded-xl p-4">
-        <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Gift className="w-4 h-4" /> {lang === "ar" ? "Avantages par niveau" : "Perks by Tier"}</h2>
+      <div className="dash-card rounded-2xl p-5">
+        <h2 className="text-sm font-display font-bold dash-text mb-3 flex items-center gap-2"><Gift className="w-4 h-4" /> {lang === "ar" ? "المزايا حسب المستوى" : "Perks by Tier"}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {perks.map((perk, i) => (
             <div key={i} className={`p-3 rounded-xl border transition-all ${currentTier >= perk.tier ? "bg-emerald-50 border-emerald-200" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))] opacity-60"}`}>

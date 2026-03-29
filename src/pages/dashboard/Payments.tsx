@@ -26,8 +26,8 @@ const Payments = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">{lang === "ar" ? "المدفوعات" : "Payments"}</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Suivi de vos paiements." : "Track your payments."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "المدفوعات" : "Payments"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "تتبع مدفوعاتك." : "Track your payments."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -38,7 +38,7 @@ const Payments = () => {
           { labelAr: "Transactions", labelEn: "Transactions", value: payments.length, icon: CreditCard, accent: "bg-violet-50 text-violet-600", noPrefix: true },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-            className="dash-card rounded-xl p-3.5">
+            className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
@@ -49,7 +49,7 @@ const Payments = () => {
       </div>
 
       {/* Payment progress */}
-      <div className="dash-card rounded-xl p-4 mb-5">
+      <div className="dash-card rounded-2xl p-5 mb-5">
         <h2 className="text-base sm:text-sm font-display font-semibold dash-text mb-3">{lang === "ar" ? "Répartition" : "Breakdown"}</h2>
         <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
           {totalPaid > 0 && <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${totalAll > 0 ? (totalPaid / totalAll) * 100 : 0}%` }} />}
@@ -62,7 +62,7 @@ const Payments = () => {
       </div>
 
       {/* History */}
-      <div className="dash-card rounded-xl p-4">
+      <div className="dash-card rounded-2xl p-5">
         <h2 className="text-base sm:text-sm font-display font-semibold dash-text mb-3">{lang === "ar" ? "Historique" : "History"}</h2>
         {payments.length === 0 ? (
           <div className="text-center py-12 dash-muted-text text-base sm:text-sm">{lang === "ar" ? "Aucun paiement." : "No payments."}</div>

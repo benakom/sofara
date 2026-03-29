@@ -19,10 +19,10 @@ const ImportLeads = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl font-display font-bold dash-text mb-1">Import Leads</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-6">{lang === "ar" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
+      <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight mb-1">{lang === "ar" ? "استيراد العملاء" : "Import Leads"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-6">{lang === "ar" ? "قم بتحميل عملائك بطرق مختلفة" : "Upload your leads through different methods"}</p>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5 mb-6">
+      <div className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 shrink-0" />
           <div>
@@ -56,7 +56,7 @@ const ImportLeads = () => {
               accepted ? "hover:shadow-md hover:border-primary/30" : "opacity-50 pointer-events-none"
             }`}
           >
-            <div className="p-3 rounded-xl bg-gray-100 w-fit mb-4">
+            <div className="p-3 rounded-xl bg-[hsl(var(--dash-muted))] w-fit mb-4">
               <m.icon className="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" />
             </div>
             <h3 className="font-display font-semibold dash-text">{lang === "ar" ? m.titleFr : m.titleEn}</h3>

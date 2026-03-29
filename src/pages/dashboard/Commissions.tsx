@@ -40,14 +40,14 @@ const Commissions = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">Commissions</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Suivi détaillé de vos commissions." : "Detailed tracking of your commissions."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "العمولات" : "Commissions"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "تتبع مفصل لعمولاتك." : "Detailed tracking of your commissions."}</p>
 
       {/* KPI row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {stats.map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-            className="dash-card rounded-xl p-3.5">
+            className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
@@ -59,7 +59,7 @@ const Commissions = () => {
 
       {/* Progress + Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
-        <div className="lg:col-span-2 dash-card rounded-xl p-4">
+        <div className="lg:col-span-2 dash-card rounded-2xl p-5">
           <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2 mb-3"><BarChart3 className="w-4 h-4" /> {lang === "ar" ? "Progression des paiements" : "Payment Progress"}</h2>
           <div className="space-y-3">
             {stats.map((s, i) => (
@@ -77,7 +77,7 @@ const Commissions = () => {
             ))}
           </div>
         </div>
-        <div className="dash-card rounded-xl p-4 flex flex-col justify-between">
+        <div className="dash-card rounded-2xl p-5 flex flex-col justify-between">
           <div>
             <h3 className="text-sm sm:text-xs font-semibold dash-muted-text uppercase tracking-wider mb-1">{lang === "ar" ? "Total commissions" : "Total Commissions"}</h3>
             <p className="text-3xl sm:text-2xl font-display font-bold dash-text">AED {total.toLocaleString()}</p>
@@ -99,7 +99,7 @@ const Commissions = () => {
       </div>
 
       {/* Table */}
-      <div className="dash-card rounded-xl overflow-hidden">
+      <div className="dash-card rounded-2xl overflow-hidden">
         <table className="w-full">
           <thead>
             <tr className="border-b dash-border-color">

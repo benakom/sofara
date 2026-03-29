@@ -32,8 +32,8 @@ const KycAml = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">KYC & AML</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Conformité et vérification." : "Compliance and verification."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">KYC & AML</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "الامتثال والتحقق." : "Compliance and verification."}</p>
 
       {/* Overview stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -44,7 +44,7 @@ const KycAml = () => {
           { labelAr: "XP gagnés", labelEn: "XP Earned", value: `${earnedPts}`, icon: Zap, accent: "bg-emerald-50 text-emerald-600" },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-            className="dash-card rounded-xl p-3.5">
+            className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
@@ -56,7 +56,7 @@ const KycAml = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* KYC Checklist */}
-        <div className="dash-card rounded-xl p-4">
+        <div className="dash-card rounded-2xl p-5">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> Checklist KYC</h2>
             <span className="text-xs dash-muted-text">{checkedCount}/{totalDocs}</span>
@@ -89,7 +89,7 @@ const KycAml = () => {
 
         {/* AML Training */}
         <div className="space-y-4">
-          <div className="dash-card rounded-xl p-4">
+          <div className="dash-card rounded-2xl p-5">
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "Formation AML" : "AML Training"}</h2>
               <span className="text-xs font-medium text-[hsl(var(--dash-accent))]">{earnedPts}/{totalPts} pts</span>
@@ -116,7 +116,7 @@ const KycAml = () => {
           </div>
 
           {/* Certification card */}
-          <div className="dash-card rounded-xl p-4 border-[hsl(var(--primary)/.2)]" style={{ borderColor: "hsl(var(--primary) / 0.2)" }}>
+          <div className="dash-card rounded-2xl p-5 border-[hsl(var(--primary)/.2)]" style={{ borderColor: "hsl(var(--primary) / 0.2)" }}>
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-amber-50">
                 <Award className="w-5 h-5 text-amber-500" />

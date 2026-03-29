@@ -96,7 +96,7 @@ const Referrals = () => {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-1">
-          <h1 className="text-xl font-display font-bold dash-text">
+          <h1 className="text-xl font-display font-extrabold dash-text tracking-tight">
             {lang === "ar" ? "إحالاتي" : "My Referrals"}
           </h1>
           {ambassadorTier === "ambassador_plus" && (
@@ -114,7 +114,7 @@ const Referrals = () => {
       </div>
 
       {/* Referral link card */}
-      <div className="dash-card rounded-xl p-5">
+      <div className="dash-card rounded-2xl p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center">
             <UserPlus className="w-5 h-5 text-violet-600" />
@@ -172,7 +172,7 @@ const Referrals = () => {
             bg: "bg-amber-500/10",
           },
         ].map((kpi, i) => (
-          <div key={i} className="dash-card rounded-xl p-4 flex items-center gap-3">
+          <div key={i} className="dash-card rounded-2xl p-4 flex items-center gap-3">
             <div className={`w-10 h-10 rounded-lg ${kpi.bg} flex items-center justify-center`}>
               <kpi.icon className={`w-5 h-5 ${kpi.color}`} />
             </div>
@@ -186,7 +186,7 @@ const Referrals = () => {
 
       {/* Godchildren table */}
       {godchildren.length > 0 ? (
-        <div className="dash-card rounded-xl overflow-hidden">
+        <div className="dash-card rounded-2xl overflow-hidden">
           <div className="p-4 border-b border-[hsl(var(--dash-border))]">
             <h3 className="text-sm font-semibold dash-text">
               {lang === "ar" ? "Ambassadeurs parrainés" : "Referred ambassadors"}
@@ -232,7 +232,7 @@ const Referrals = () => {
           </div>
         </div>
       ) : (
-        <div className="dash-card rounded-xl p-8 text-center">
+        <div className="dash-card rounded-2xl p-8 text-center">
           <Users className="w-10 h-10 mx-auto dash-muted-text mb-3 opacity-40" />
           <p className="text-sm dash-muted-text">
             {lang === "ar"
