@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,8 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
-import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Loader2, CheckCircle2, Sparkles, TrendingUp, Users, Globe, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import authHero from "@/assets/auth-hero.jpg";
 
@@ -24,18 +23,13 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!authLoading && user) {
-      navigate("/dashboard");
-    }
+    if (!authLoading && user) navigate("/dashboard");
   }, [user, authLoading, navigate]);
 
-  // Capture referral code from URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
-    if (ref) {
-      localStorage.setItem("sofara_ref", ref);
-    }
+    if (ref) localStorage.setItem("sofara_ref", ref);
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -77,14 +71,14 @@ const Auth = () => {
   const labels = {
     login: {
       title: lang === "fr" ? "Connexion" : "Sign In",
-      subtitle: lang === "fr" ? "Accédez à votre espace ambassadeur" : "Access your ambassador space",
+      subtitle: lang === "fr" ? "Accédez à votre espace ambassadeur" : "Access your ambassador dashboard",
       button: lang === "fr" ? "Se connecter" : "Sign In",
       switch: lang === "fr" ? "Pas encore de compte ?" : "No account yet?",
       switchAction: lang === "fr" ? "Créer un compte" : "Create account",
     },
     signup: {
       title: lang === "fr" ? "Créer un compte" : "Create Account",
-      subtitle: lang === "fr" ? "Rejoignez le programme ambassadeur Sofara" : "Join the Sofara ambassador program",
+      subtitle: lang === "fr" ? "Rejoignez le réseau ambassadeur #1" : "Join the #1 ambassador network",
       button: lang === "fr" ? "S'inscrire" : "Sign Up",
       switch: lang === "fr" ? "Déjà un compte ?" : "Already have an account?",
       switchAction: lang === "fr" ? "Se connecter" : "Sign In",
@@ -101,44 +95,26 @@ const Auth = () => {
   const l = labels[mode];
   const onSubmit = mode === "login" ? handleLogin : mode === "signup" ? handleSignup : handleForgot;
 
-  const benefits = lang === "fr"
+  const metrics = [
+    { icon: TrendingUp, value: "3%", label: lang === "fr" ? "Commission par vente" : "Commission per sale" },
+    { icon: Users, value: "60+", label: lang === "fr" ? "Ambassadeurs actifs" : "Active ambassadors" },
+    { icon: Globe, value: "12", label: lang === "fr" ? "Pays représentés" : "Countries represented" },
+  ];
+
+  const trustPoints = lang === "fr"
     ? [
-        "Commission de 3% sur chaque vente",
-        "Commission moyenne : AED 37 000+ par transaction",
-        "Outils marketing IA inclus",
-        "Transparence totale sur vos gains",
-        "Formation et accompagnement premium",
-      ]
-    : lang === "ar"
-    ? [
-        "عمولة 3% على كل عملية بيع",
-        "متوسط العمولة: AED 37,000+ لكل صفقة",
-        "أدوات تسويق بالذكاء الاصطناعي",
-        "شفافية كاملة على أرباحك",
-        "تدريب ودعم متميز",
-      ]
-    : lang === "es"
-    ? [
-        "Comisión del 3% en cada venta",
-        "Comisión media: AED 37,000+ por transacción",
-        "Herramientas de marketing IA incluidas",
-        "Transparencia total en tus ganancias",
-        "Formación y soporte premium",
-      ]
-    : lang === "ru"
-    ? [
-        "Комиссия 3% с каждой продажи",
-        "Средняя комиссия: AED 37,000+ за сделку",
-        "ИИ-инструменты маркетинга включены",
-        "Полная прозрачность доходов",
-        "Премиальное обучение и поддержка",
+        "Processus 100% propulsé par l'IA",
+        "Commission moyenne : AED 37 000+ par deal",
+        "Transparence totale — suivi en temps réel",
+        "Formation & accompagnement premium",
+        "Aucune licence immobilière requise",
       ]
     : [
-        "3% commission on every sale",
-        "Average commission: AED 37,000+ per transaction",
-        "AI-powered marketing tools included",
-        "Full transparency on your earnings",
-        "Premium training & support",
+        "Full AI powered process",
+        "Average commission: AED 37,000+ per deal",
+        "Full transparency — real-time tracking",
+        "Premium training & dedicated support",
+        "No real estate license required",
       ];
 
   if (authLoading) {
@@ -151,59 +127,103 @@ const Auth = () => {
 
   return (
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
-      {/* Left panel — Hero image + benefits */}
-      <div className="relative lg:w-1/2 h-44 sm:h-52 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
+      {/* Left panel — Immersive hero */}
+      <div className="relative lg:w-[55%] h-52 sm:h-64 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
         <img
           src={authHero}
-          alt="Dubai business partnership"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          alt="Dubai business networking event with Burj Khalifa skyline"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20 lg:bg-gradient-to-r lg:from-background/70 lg:via-background/40 lg:to-transparent" />
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0a] via-[#0a0f0a]/50 to-transparent lg:bg-gradient-to-r lg:from-[#0a0f0a]/80 lg:via-[#0a0f0a]/40 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0a]/60 via-transparent to-[#0a0f0a]/90 lg:bg-gradient-to-t lg:from-[#0a0f0a]/70 lg:via-transparent lg:to-[#0a0f0a]/50" />
 
-        <div className="absolute inset-0 flex flex-col justify-end lg:justify-center items-center lg:items-start p-5 sm:p-8 lg:p-12 text-center lg:text-left">
+        <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-14 xl:p-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-lg"
           >
-            <a href="/" className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-              sofara
+            {/* Logo */}
+            <a href="/" className="inline-block mb-6 lg:mb-10">
+              <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
+                sofara
+              </span>
             </a>
-            <h2 className="font-display text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-foreground mt-2 lg:mt-4 leading-tight whitespace-pre-line">
-              {lang === "fr"
-                ? "Monétisez votre réseau\ngrâce à l'immobilier de Dubai"
-                : "Turn your connections\ninto commissions"}
-            </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 lg:mt-3 max-w-sm hidden sm:block">
-              {lang === "fr"
-                ? "Rejoignez 60+ ambassadeurs actifs dans 12 pays"
-                : "Join 60+ active ambassadors across 12 countries"}
-            </p>
 
-            <ul className="mt-3 lg:mt-6 space-y-1.5 lg:space-y-2.5 hidden sm:block">
-              {benefits.map((b, i) => (
+            {/* Headline */}
+            <h2 className="font-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-[1.15] mb-2 lg:mb-4">
+              {lang === "fr"
+                ? "Le réseau ambassadeur immobilier #1 propulsé par l'IA"
+                : "The #1 AI Real Estate Ambassadors Network"}
+            </h2>
+
+            {/* AI badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 mb-4 lg:mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <span className="text-primary text-xs sm:text-sm font-semibold">Full AI powered process</span>
+            </div>
+
+            {/* Metrics row */}
+            <div className="hidden sm:flex items-center gap-3 lg:gap-4 mb-5 lg:mb-8">
+              {metrics.map((m, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
+                >
+                  <m.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <div>
+                    <div className="text-sm lg:text-base font-bold text-white">{m.value}</div>
+                    <div className="text-[10px] lg:text-xs text-white/60">{m.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Trust points */}
+            <ul className="space-y-2 lg:space-y-2.5 hidden sm:block">
+              {trustPoints.map((point, i) => (
                 <motion.li
                   key={i}
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                  className="flex items-center gap-2 text-xs lg:text-sm text-foreground/90"
+                  transition={{ delay: 0.5 + i * 0.08 }}
+                  className="flex items-center gap-2.5"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                  {b}
+                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm lg:text-[15px] text-white/90 font-medium">{point}</span>
                 </motion.li>
               ))}
             </ul>
+
+            {/* VC credibility bar */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="hidden lg:flex items-center gap-3 mt-8 pt-6 border-t border-white/10"
+            >
+              <ShieldCheck className="w-4 h-4 text-primary/70 flex-shrink-0" />
+              <span className="text-xs text-white/40">
+                {lang === "fr"
+                  ? "Basé à Dubai · RERA Compliant · Technologie propriétaire · Données temps réel"
+                  : "Dubai HQ · RERA Compliant · Proprietary AI · Real-time analytics"}
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* Right panel — Auth form */}
-      <div className="flex-1 flex items-center justify-center px-5 sm:px-8 py-6 sm:py-10 lg:py-0">
+      <div className="flex-1 flex items-center justify-center px-5 sm:px-8 lg:px-12 py-6 sm:py-10 lg:py-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="w-full max-w-sm mx-auto"
         >
           <a
@@ -214,32 +234,33 @@ const Auth = () => {
             {lang === "fr" ? "Retour à l'accueil" : "Back to home"}
           </a>
 
-          <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-5 sm:p-7 shadow-xl">
-            <div className="text-center mb-5 sm:mb-6">
-              <span className="font-display text-xl lg:hidden font-bold text-foreground tracking-tight block mb-3">
+          <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div className="text-center mb-6">
+              {/* Mobile logo */}
+              <span className="font-display text-3xl lg:hidden font-bold text-primary tracking-tight block mb-4">
                 sofara
               </span>
-              <h1 className="text-lg font-semibold text-foreground">{l.title}</h1>
-              <p className="text-xs text-muted-foreground mt-1">{l.subtitle}</p>
+              <h1 className="text-xl font-bold text-foreground">{l.title}</h1>
+              <p className="text-sm text-muted-foreground mt-1">{l.subtitle}</p>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-3">
+            <form onSubmit={onSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-xs">Email</Label>
+                <Label htmlFor="email" className="text-sm">Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="nom@exemple.com"
+                  placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-background/50 h-9"
+                  className="bg-background/50 h-11 rounded-xl"
                 />
               </div>
 
               {mode !== "forgot" && (
                 <div className="space-y-1.5">
-                  <Label htmlFor="password" className="text-xs">
+                  <Label htmlFor="password" className="text-sm">
                     {lang === "fr" ? "Mot de passe" : "Password"}
                   </Label>
                   <Input
@@ -250,7 +271,7 @@ const Auth = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     minLength={6}
-                    className="bg-background/50 h-9"
+                    className="bg-background/50 h-11 rounded-xl"
                   />
                 </div>
               )}
@@ -265,31 +286,37 @@ const Auth = () => {
                 </button>
               )}
 
-              <Button type="submit" variant="hero" className="w-full rounded-xl py-4 text-sm" disabled={loading}>
+              <Button type="submit" variant="hero" className="w-full rounded-xl py-5 text-sm font-semibold" disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : l.button}
               </Button>
             </form>
 
-            <p className="text-center text-xs text-muted-foreground mt-4">
+            <p className="text-center text-xs text-muted-foreground mt-5">
               {l.switch}{" "}
               <button
                 onClick={() => setMode(mode === "login" ? "signup" : "login")}
-                className="text-primary hover:underline font-medium"
+                className="text-primary hover:underline font-semibold"
               >
                 {l.switchAction}
               </button>
             </p>
           </div>
 
-          {/* Mobile benefits */}
-          <ul className="mt-4 space-y-1.5 sm:hidden">
-            {benefits.map((b, i) => (
+          {/* Mobile trust points */}
+          <ul className="mt-4 space-y-2 sm:hidden">
+            {trustPoints.map((point, i) => (
               <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                {b}
+                {point}
               </li>
             ))}
           </ul>
+
+          {/* Mobile AI badge */}
+          <div className="flex items-center justify-center gap-2 mt-4 sm:hidden">
+            <Sparkles className="w-3 h-3 text-primary" />
+            <span className="text-xs text-primary font-semibold">Full AI powered process</span>
+          </div>
         </motion.div>
       </div>
     </div>
