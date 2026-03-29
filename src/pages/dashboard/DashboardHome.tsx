@@ -41,12 +41,12 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, color: "from-blue-500/10 to-blue-500/5", iconColor: "text-blue-600", borderColor: "border-blue-100" },
-    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, color: "from-violet-500/10 to-violet-500/5", iconColor: "text-violet-600", borderColor: "border-violet-100" },
-    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, color: "from-emerald-500/10 to-emerald-500/5", iconColor: "text-emerald-600", borderColor: "border-emerald-100" },
-    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, color: "from-amber-500/10 to-amber-500/5", iconColor: "text-amber-600", borderColor: "border-amber-100" },
-    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, color: "from-rose-500/10 to-rose-500/5", iconColor: "text-rose-600", borderColor: "border-rose-100" },
-    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, color: "from-green-500/10 to-green-500/5", iconColor: "text-green-600", borderColor: "border-green-100", prefix: "AED " },
+    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, color: "from-blue-500/15 to-blue-500/5", iconColor: "text-blue-400", iconBg: "bg-blue-500/15" },
+    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, color: "from-violet-500/15 to-violet-500/5", iconColor: "text-violet-400", iconBg: "bg-violet-500/15" },
+    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, color: "from-emerald-500/15 to-emerald-500/5", iconColor: "text-emerald-400", iconBg: "bg-emerald-500/15" },
+    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, color: "from-amber-500/15 to-amber-500/5", iconColor: "text-amber-400", iconBg: "bg-amber-500/15" },
+    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, color: "from-rose-500/15 to-rose-500/5", iconColor: "text-rose-400", iconBg: "bg-rose-500/15" },
+    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, color: "from-green-500/15 to-green-500/5", iconColor: "text-green-400", iconBg: "bg-green-500/15", prefix: "AED " },
   ];
 
   const recentLeads = leads.slice(0, 5);
@@ -71,7 +71,7 @@ const DashboardHome = () => {
             <div className={`absolute inset-0 bg-gradient-to-br ${kpi.color} pointer-events-none`} />
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <div className={`p-1.5 rounded-lg bg-white/80 ${kpi.iconColor} shadow-sm`}>
+                <div className={`p-1.5 rounded-lg ${kpi.iconBg} ${kpi.iconColor}`}>
                   <kpi.icon className="w-3.5 h-3.5" />
                 </div>
               </div>
@@ -88,12 +88,12 @@ const DashboardHome = () => {
         <div className="lg:col-span-2 dash-card rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-[hsl(var(--primary)/.08)]">
-                <BarChart3 className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)]">
+                <BarChart3 className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
               </div>
               Commissions
             </h2>
-            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary)/.8)] flex items-center gap-0.5 transition-colors">
+            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-medium text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.8)] flex items-center gap-0.5 transition-colors">
               {lang === "fr" ? "Détails" : "Details"} <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
@@ -125,12 +125,12 @@ const DashboardHome = () => {
         <div className="lg:col-span-3 dash-card rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-blue-50">
-                <Users className="w-3.5 h-3.5 text-blue-600" />
+              <div className="p-1.5 rounded-lg bg-blue-500/15">
+                <Users className="w-3.5 h-3.5 text-blue-400" />
               </div>
               {lang === "fr" ? "Leads récents" : "Recent Leads"}
             </h2>
-            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-medium text-[hsl(var(--primary))] hover:text-[hsl(var(--primary)/.8)] flex items-center gap-0.5 transition-colors">
+            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-medium text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.8)] flex items-center gap-0.5 transition-colors">
               Pipeline <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
@@ -144,7 +144,7 @@ const DashboardHome = () => {
               {recentLeads.map((lead: any, i: number) => (
                 <div key={lead.id} className={`flex items-center justify-between py-2.5 ${i < recentLeads.length - 1 ? "border-b border-[hsl(var(--dash-border))]" : ""}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(var(--primary)/.12)] to-[hsl(var(--primary)/.06)] flex items-center justify-center text-[11px] font-bold text-[hsl(var(--primary))]">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(217,91%,60%,.15)] to-[hsl(263,70%,58%,.1)] flex items-center justify-center text-[11px] font-bold text-[hsl(var(--dash-accent))]">
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
@@ -163,10 +163,10 @@ const DashboardHome = () => {
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", gradient: "from-blue-500/8 to-blue-600/4", iconBg: "bg-blue-50", iconColor: "text-blue-600" },
-          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", gradient: "from-amber-500/8 to-amber-600/4", iconBg: "bg-amber-50", iconColor: "text-amber-600" },
-          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", gradient: "from-violet-500/8 to-violet-600/4", iconBg: "bg-violet-50", iconColor: "text-violet-600" },
-          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", gradient: "from-green-500/8 to-green-600/4", iconBg: "bg-green-50", iconColor: "text-green-600" },
+          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", gradient: "from-blue-500/10 to-blue-600/5", iconBg: "bg-blue-500/15", iconColor: "text-blue-400" },
+          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", gradient: "from-amber-500/10 to-amber-600/5", iconBg: "bg-amber-500/15", iconColor: "text-amber-400" },
+          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", gradient: "from-violet-500/10 to-violet-600/5", iconBg: "bg-violet-500/15", iconColor: "text-violet-400" },
+          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", gradient: "from-green-500/10 to-green-600/5", iconBg: "bg-green-500/15", iconColor: "text-green-400" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }}
@@ -175,7 +175,7 @@ const DashboardHome = () => {
             <div className={`relative p-2 rounded-lg ${action.iconBg} ${action.iconColor} shadow-sm`}>
               <action.icon className="w-4 h-4" />
             </div>
-            <span className="relative text-sm font-medium dash-text group-hover:text-[hsl(var(--primary))] transition-colors">
+            <span className="relative text-sm font-medium dash-text group-hover:text-[hsl(var(--dash-accent))] transition-colors">
               {lang === "fr" ? action.labelFr : action.labelEn}
             </span>
           </motion.button>
