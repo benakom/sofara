@@ -25,10 +25,10 @@ const Commissions = () => {
   const paidPct = total > 0 ? Math.round((paidTotal / total) * 100) : 0;
 
   const stats = [
-    { labelFr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp, accent: "bg-violet-500/15 text-violet-400" },
-    { labelFr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle, accent: "bg-blue-500/15 text-blue-400" },
-    { labelFr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign, accent: "bg-emerald-500/15 text-emerald-400" },
-    { labelFr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock, accent: "bg-amber-500/15 text-amber-400" },
+    { labelFr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp, accent: "bg-violet-100 text-violet-600" },
+    { labelFr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle, accent: "bg-blue-100 text-blue-600" },
+    { labelFr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign, accent: "bg-emerald-100 text-emerald-600" },
+    { labelFr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock, accent: "bg-amber-100 text-amber-600" },
   ];
 
   const statusConfig: Record<string, { badge: string; labelFr: string }> = {
