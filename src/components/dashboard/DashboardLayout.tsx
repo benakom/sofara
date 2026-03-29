@@ -154,11 +154,8 @@ const DashboardLayout = () => {
       {/* Nav */}
       <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col overflow-y-auto">
         <div className="flex flex-col flex-1 gap-0.5">
-          {filteredGroups.map((group, gi) => (
+          {filteredGroups.map((group) => (
             <div key={group.labelEn}>
-              {gi > 0 && (
-                <div className="mx-2 my-2.5 h-px bg-[hsl(var(--dash-sidebar-border))]" />
-              )}
               {group.items.map((item) => {
                 const active = isActive(item.path, item.exact);
                 return (
