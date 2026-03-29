@@ -239,8 +239,8 @@ const Calendar = () => {
                       `}
                     >
                       <span className={`inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full text-xs sm:text-sm font-medium
-                        ${today ? "bg-gradient-primary text-white shadow-sm" : ""}
-                        ${isSelected && !today ? "ring-2 ring-[hsl(var(--primary))] text-[hsl(var(--primary))]" : "text-[hsl(var(--dash-fg))]"}
+                        ${today ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-sm" : ""}
+                        ${isSelected && !today ? "ring-2 ring-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent))]" : "text-[hsl(var(--dash-fg))]"}
                       `}>
                         {format(day, "d")}
                       </span>
@@ -342,7 +342,7 @@ const Calendar = () => {
                   </p>
                   <button
                     onClick={() => openNewEvent(selectedDate)}
-                    className="mt-2 text-xs text-[hsl(var(--primary))] font-medium hover:underline"
+                    className="mt-2 text-xs text-[hsl(var(--dash-accent))] font-medium hover:underline"
                   >
                     {lang === "fr" ? "+ Ajouter" : "+ Add"}
                   </button>
