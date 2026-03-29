@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { lazy, Suspense } from "react";
@@ -41,11 +41,24 @@ const Referrals = lazy(() => import("./pages/dashboard/Referrals"));
 
 const queryClient = new QueryClient();
 
-const Loading = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-  </div>
-);
+const RouteLoading = () => {
+  const { pathname } = useLocation();
+  const isBackendRoute = pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
+
+  return (
+    <div
+      className={`min-h-screen flex items-center justify-center ${
+        isBackendRoute ? "dash-theme bg-[hsl(var(--dash-bg))]" : "bg-background"
+      }`}
+    >
+      <div
+        className={`w-8 h-8 rounded-full animate-spin border-2 border-t-transparent ${
+          isBackendRoute ? "border-[hsl(var(--dash-accent))]" : "border-primary"
+        }`}
+      />
+    </div>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -55,7 +68,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<RouteLoading />}>
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/blog" element={<Blog />} />
