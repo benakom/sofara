@@ -223,6 +223,108 @@ const Auth = () => {
     );
   }
 
+  // Email verification screen after signup
+  if (signupComplete) {
+    const handleResend = async () => {
+      setLoading(true);
+      const { error } = await supabase.auth.resend({ type: "signup", email: signupEmail });
+      setLoading(false);
+      if (error) {
+        toast({ variant: "destructive", title: "Error", description: error.message });
+      } else {
+        toast({ title: lang === "fr" ? "Email renvoyé !" : "Email resent!", description: lang === "fr" ? "Vérifiez votre boîte mail." : "Check your inbox." });
+      }
+    };
+
+    return (
+      <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
+        {/* Left panel — same hero */}
+        <div className="relative lg:w-[55%] h-52 sm:h-64 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
+          <img src={authHero} alt="Dubai business networking" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0a] via-[#0a0f0a]/50 to-transparent lg:bg-gradient-to-r lg:from-[#0a0f0a]/80 lg:via-[#0a0f0a]/40 lg:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0a]/60 via-transparent to-[#0a0f0a]/90 lg:bg-gradient-to-t lg:from-[#0a0f0a]/70 lg:via-transparent lg:to-[#0a0f0a]/50" />
+          <div className="absolute inset-0 flex items-end p-5 sm:p-8 lg:p-14">
+            <a href="/" className="inline-block">
+              <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">sofara</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right panel — Verification message */}
+        <div className="flex-1 flex items-center justify-center px-5 sm:px-8 lg:px-12 py-10 lg:py-0">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-sm mx-auto text-center"
+          >
+            <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-8 sm:p-10 shadow-2xl">
+              {/* Animated envelope */}
+              <motion.div
+                initial={{ y: -10 }}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center"
+              >
+                <Mail className="w-9 h-9 text-primary" />
+              </motion.div>
+
+              <h2 className="text-xl font-bold text-foreground mb-2">
+                {lang === "fr" ? "Vérifiez votre email" : "Check your email"}
+              </h2>
+              <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
+                {lang === "fr"
+                  ? "Un lien de confirmation a été envoyé à :"
+                  : "A confirmation link has been sent to:"}
+              </p>
+              <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
+
+              <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {lang === "fr"
+                    ? "Cliquez sur le lien dans l'email pour activer votre compte et accéder à votre espace ambassadeur Sofara."
+                    : "Click the link in the email to activate your account and access your Sofara ambassador dashboard."}
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <Button
+                  variant="outline"
+                  className="w-full rounded-xl py-5 text-sm gap-2"
+                  onClick={handleResend}
+                  disabled={loading}
+                >
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+                  {lang === "fr" ? "Renvoyer l'email" : "Resend email"}
+                </Button>
+
+                <button
+                  onClick={() => { setSignupComplete(false); setMode("login"); }}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {lang === "fr" ? "← Retour à la connexion" : "← Back to sign in"}
+                </button>
+              </div>
+            </div>
+
+            {/* Tips */}
+            <div className="mt-6 space-y-2">
+              {[
+                lang === "fr" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
+                lang === "fr" ? "Le lien expire après 24h" : "The link expires after 24h",
+              ].map((tip, i) => (
+                <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
+                  <CheckCircle2 className="w-3 h-3 text-primary/50" />
+                  {tip}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
       {/* Left panel — Immersive hero */}
