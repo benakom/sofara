@@ -167,7 +167,7 @@ const DashboardLayout = () => {
         <div className="px-3 pb-2">
           <button
             onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(217,91%,60%,.12)] to-[hsl(263,70%,58%,.08)] border border-[hsl(217,91%,60%,.2)] text-[hsl(var(--dash-sidebar-active))] hover:from-[hsl(217,91%,60%,.18)] hover:to-[hsl(263,70%,58%,.12)] transition-all duration-200 group"
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-violet-500/10 to-blue-500/10 border border-violet-500/20 text-violet-300 hover:from-violet-500/15 hover:to-blue-500/15 transition-all duration-200 group"
           >
             <ArrowUpCircle className="w-4 h-4 shrink-0" />
             <div className="flex-1 text-left">
