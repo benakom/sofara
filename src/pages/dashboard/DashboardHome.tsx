@@ -41,12 +41,12 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, color: "from-blue-50 to-blue-100/50", iconColor: "text-blue-600", iconBg: "bg-blue-100" },
-    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, color: "from-violet-50 to-violet-100/50", iconColor: "text-violet-600", iconBg: "bg-violet-100" },
-    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, color: "from-emerald-50 to-emerald-100/50", iconColor: "text-emerald-600", iconBg: "bg-emerald-100" },
-    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, color: "from-amber-50 to-amber-100/50", iconColor: "text-amber-600", iconBg: "bg-amber-100" },
-    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, color: "from-rose-50 to-rose-100/50", iconColor: "text-rose-600", iconBg: "bg-rose-100" },
-    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, color: "from-green-50 to-green-100/50", iconColor: "text-green-600", iconBg: "bg-green-100", prefix: "AED " },
+    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a" },
+    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b" },
+    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c" },
+    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d" },
+    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e" },
+    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED " },
   ];
 
   const recentLeads = leads.slice(0, 5);
@@ -67,11 +67,10 @@ const DashboardHome = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
         {kpis.map((kpi, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
-            className={`dash-card rounded-xl p-4 relative overflow-hidden`}>
-            <div className={`absolute inset-0 bg-gradient-to-br ${kpi.color} pointer-events-none`} />
+            className={`dash-card rounded-xl p-4 relative overflow-hidden ${kpi.blockClass}`}>
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <div className={`p-1.5 rounded-lg ${kpi.iconBg} ${kpi.iconColor}`}>
+                <div className={`p-1.5 rounded-lg ${kpi.iconClass}`}>
                   <kpi.icon className="w-3.5 h-3.5" />
                 </div>
               </div>
@@ -88,8 +87,8 @@ const DashboardHome = () => {
         <div className="lg:col-span-2 dash-card rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-violet-100">
-                <BarChart3 className="w-3.5 h-3.5 text-violet-600" />
+              <div className="p-1.5 rounded-lg dash-icon-b">
+                <BarChart3 className="w-3.5 h-3.5" />
               </div>
               Commissions
             </h2>
@@ -99,9 +98,9 @@ const DashboardHome = () => {
           </div>
           <div className="space-y-3">
             {[
-              { label: lang === "fr" ? "Estimées" : "Estimated", value: estComm, color: "bg-violet-500" },
-              { label: lang === "fr" ? "Validées" : "Validated", value: valComm, color: "bg-blue-500" },
-              { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "bg-emerald-500" },
+              { label: lang === "fr" ? "Estimées" : "Estimated", value: estComm, color: "dash-bar-b" },
+              { label: lang === "fr" ? "Validées" : "Validated", value: valComm, color: "dash-bar-a" },
+              { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "dash-bar-c" },
             ].map((item, i) => (
               <div key={i}>
                 <div className="flex justify-between text-xs mb-1.5">
@@ -125,8 +124,8 @@ const DashboardHome = () => {
         <div className="lg:col-span-3 dash-card rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-blue-100">
-                <Users className="w-3.5 h-3.5 text-blue-600" />
+              <div className="p-1.5 rounded-lg dash-icon-a">
+                <Users className="w-3.5 h-3.5" />
               </div>
               {lang === "fr" ? "Leads récents" : "Recent Leads"}
             </h2>
@@ -144,7 +143,7 @@ const DashboardHome = () => {
               {recentLeads.map((lead: any, i: number) => (
                 <div key={lead.id} className={`flex items-center justify-between py-2.5 ${i < recentLeads.length - 1 ? "border-b border-[hsl(var(--dash-border))]" : ""}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-100 to-blue-100 flex items-center justify-center text-[11px] font-bold text-violet-600">
+                    <div className="w-8 h-8 rounded-full dash-icon-b flex items-center justify-center text-[11px] font-bold">
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
@@ -163,16 +162,15 @@ const DashboardHome = () => {
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", gradient: "from-blue-50 to-blue-100/50", iconBg: "bg-blue-100", iconColor: "text-blue-600" },
-          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", gradient: "from-amber-50 to-amber-100/50", iconBg: "bg-amber-100", iconColor: "text-amber-600" },
-          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", gradient: "from-violet-50 to-violet-100/50", iconBg: "bg-violet-100", iconColor: "text-violet-600" },
-          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", gradient: "from-green-50 to-green-100/50", iconBg: "bg-green-100", iconColor: "text-green-600" },
+          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", blockClass: "dash-block-a", iconClass: "dash-icon-a" },
+          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", blockClass: "dash-block-d", iconClass: "dash-icon-d" },
+          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", blockClass: "dash-block-b", iconClass: "dash-icon-b" },
+          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", blockClass: "dash-block-c", iconClass: "dash-icon-c" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }}
-            className="dash-card-interactive rounded-xl p-4 flex items-center gap-3 text-left group relative overflow-hidden">
-            <div className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
-            <div className={`relative p-2 rounded-lg ${action.iconBg} ${action.iconColor} shadow-sm`}>
+            className={`dash-card-interactive rounded-xl p-4 flex items-center gap-3 text-left group relative overflow-hidden ${action.blockClass}`}>
+            <div className={`relative p-2 rounded-lg ${action.iconClass} shadow-sm`}>
               <action.icon className="w-4 h-4" />
             </div>
             <span className="relative text-sm font-medium dash-text group-hover:text-[hsl(var(--dash-accent))] transition-colors">
