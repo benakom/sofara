@@ -86,7 +86,7 @@ const DashboardLayout = () => {
 
   if (loading || profileLoading) {
     return (
-      <div className="min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
+      <div className="dash-theme min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
         <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" />
       </div>
     );
@@ -114,7 +114,7 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-sidebar-active))] tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-white tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
@@ -167,7 +167,7 @@ const DashboardLayout = () => {
         <div className="px-3 pb-2">
           <button
             onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(217,91%,60%,.12)] to-[hsl(263,70%,58%,.08)] border border-[hsl(217,91%,60%,.2)] text-[hsl(var(--dash-sidebar-active))] hover:from-[hsl(217,91%,60%,.18)] hover:to-[hsl(263,70%,58%,.12)] transition-all duration-200 group"
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-violet-500/10 to-blue-500/10 border border-violet-500/20 text-violet-300 hover:from-violet-500/15 hover:to-blue-500/15 transition-all duration-200 group"
           >
             <ArrowUpCircle className="w-4 h-4 shrink-0" />
             <div className="flex-1 text-left">
@@ -181,7 +181,7 @@ const DashboardLayout = () => {
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(217,91%,60%)] to-[hsl(263,70%,58%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(246,80%,60%)] to-[hsl(280,75%,55%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
@@ -210,7 +210,7 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
+    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--dash-sidebar-border))]">
         <SidebarContent />

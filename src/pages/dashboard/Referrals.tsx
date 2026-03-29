@@ -116,8 +116,8 @@ const Referrals = () => {
       {/* Referral link card */}
       <div className="dash-card rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
-            <UserPlus className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
+          <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center">
+            <UserPlus className="w-5 h-5 text-violet-600" />
           </div>
           <div>
             <p className="text-sm font-semibold dash-text">
