@@ -63,34 +63,34 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar */
-    --dash-sidebar-bg: 220 35% 98%;
-    --dash-sidebar-fg: 222 24% 34%;
-    --dash-sidebar-active: 217 91% 60%;
-    --dash-sidebar-hover: 221 32% 94%;
-    --dash-sidebar-border: 220 24% 90%;
+    /* Dashboard sidebar — Vestox clean style */
+    --dash-sidebar-bg: 0 0% 100%;
+    --dash-sidebar-fg: 0 0% 40%;
+    --dash-sidebar-active: 17 90% 55%;
+    --dash-sidebar-hover: 0 0% 97%;
+    --dash-sidebar-border: 0 0% 93%;
 
-    /* Dashboard content — light Waze style */
-    --dash-bg: 220 38% 97%;
-    --dash-fg: 223 28% 16%;
+    /* Dashboard content — ultra-clean white */
+    --dash-bg: 0 0% 96%;
+    --dash-fg: 0 0% 12%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 223 28% 16%;
-    --dash-border: 220 20% 90%;
-    --dash-muted: 220 33% 95%;
-    --dash-muted-fg: 221 16% 44%;
+    --dash-card-fg: 0 0% 12%;
+    --dash-border: 0 0% 91%;
+    --dash-muted: 0 0% 96%;
+    --dash-muted-fg: 0 0% 50%;
 
     /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 220 20% 86%;
+    --dash-input-border: 0 0% 88%;
 
-    /* Dashboard accent tokens */
-    --dash-accent: 217 91% 60%;
+    /* Dashboard accent — Vestox orange */
+    --dash-accent: 17 90% 55%;
     --dash-accent-fg: 0 0% 100%;
-    --dash-accent-gradient: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(193, 95%, 54%), hsl(281, 86%, 63%));
-    --dash-accent-glow: 0 10px 32px -10px hsl(217, 91%, 60%, 0.45);
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.03);
-    --dash-card-shadow-hover: 0 8px 24px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
-    --dash-card-ring: 220 13% 87%;
+    --dash-accent-gradient: linear-gradient(135deg, hsl(17, 90%, 55%), hsl(25, 95%, 58%));
+    --dash-accent-glow: 0 6px 20px -6px hsl(17, 90%, 55%, 0.35);
+    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.03), 0 1px 2px -1px rgba(0,0,0,0.02);
+    --dash-card-shadow-hover: 0 4px 12px -2px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.03);
+    --dash-card-ring: 0 0% 91%;
     --dash-success: 160 84% 39%;
     --dash-warning: 38 92% 50%;
     --dash-info: 199 89% 48%;
@@ -252,23 +252,23 @@
 }
 
 /* ======= DASHBOARD SCOPED THEME ======= */
-/* Overrides --primary inside dashboard so ALL components automatically pick up the new accent */
+/* Vestox-inspired clean SaaS override */
 .dash-theme {
-  --primary: 217 91% 60%;
+  --primary: 17 90% 55%;
   --primary-foreground: 0 0% 100%;
-  --background: 220 38% 97%;
-  --foreground: 223 28% 16%;
+  --background: 0 0% 96%;
+  --foreground: 0 0% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 223 28% 16%;
-  --border: 220 20% 90%;
-  --input: 220 20% 86%;
-  --ring: 217 91% 60%;
-  --muted: 220 33% 95%;
-  --muted-foreground: 221 16% 44%;
-  --accent: 217 91% 60%;
+  --card-foreground: 0 0% 12%;
+  --border: 0 0% 91%;
+  --input: 0 0% 88%;
+  --ring: 17 90% 55%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 50%;
+  --accent: 17 90% 55%;
   --accent-foreground: 0 0% 100%;
   --popover: 0 0% 100%;
-  --popover-foreground: 223 28% 16%;
+  --popover-foreground: 0 0% 12%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 }
@@ -280,12 +280,12 @@
 }
 
 .dash-card {
-  background: linear-gradient(160deg, hsl(var(--dash-card)), hsl(220 42% 98%));
+  background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  border-radius: 1.25rem;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  border-radius: 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .dash-card:hover {
@@ -293,25 +293,24 @@
 }
 
 .dash-card-elevated {
-  background: linear-gradient(140deg, hsl(var(--dash-card)), hsl(220 40% 98%));
+  background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 8px -2px rgba(0,0,0,0.04);
 }
 
 .dash-card-interactive {
-  background: linear-gradient(145deg, hsl(var(--dash-card)), hsl(220 38% 98%));
+  background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .dash-card-interactive:hover {
   box-shadow: var(--dash-card-shadow-hover);
-  border-color: hsl(var(--dash-accent) / 0.25);
-  transform: translateY(-2px);
+  border-color: hsl(var(--dash-accent) / 0.3);
 }
 
 .dash-border-color {
@@ -347,20 +346,17 @@
   background: hsl(0, 0%, 100%);
 }
 
-/* Dashboard accent button — vibrant gradient */
+/* Dashboard accent button — Vestox orange */
 .dash-btn-accent {
-  background: var(--dash-accent-gradient);
+  background: hsl(var(--dash-accent));
   color: hsl(var(--dash-accent-fg));
   font-weight: 600;
   border: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px -2px hsl(246, 80%, 60%, 0.3);
+  transition: all 0.15s ease;
 }
 
 .dash-btn-accent:hover {
-  opacity: 0.92;
-  box-shadow: var(--dash-accent-glow);
-  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
 /* Premium divider */
@@ -378,36 +374,36 @@
   border-radius: 6px;
 }
 
-/* Waze-like colorful gradient blocks — modern SaaS style */
-.dash-block-a { background: linear-gradient(135deg, hsl(221 83% 53%), hsl(245 58% 51%)); border-color: transparent; }
-.dash-block-b { background: linear-gradient(135deg, hsl(271 76% 53%), hsl(316 72% 52%)); border-color: transparent; }
-.dash-block-c { background: linear-gradient(135deg, hsl(172 66% 50%), hsl(199 89% 48%)); border-color: transparent; }
-.dash-block-d { background: linear-gradient(135deg, hsl(24 95% 53%), hsl(45 93% 47%)); border-color: transparent; }
-.dash-block-e { background: linear-gradient(135deg, hsl(346 77% 49%), hsl(24 95% 53%)); border-color: transparent; }
-.dash-block-f { background: linear-gradient(135deg, hsl(152 69% 31%), hsl(172 66% 50%)); border-color: transparent; }
+/* Clean SaaS accent blocks — Vestox palette */
+.dash-block-a { background: hsl(17, 90%, 55%); border-color: transparent; }
+.dash-block-b { background: hsl(0, 0%, 14%); border-color: transparent; }
+.dash-block-c { background: hsl(160, 60%, 45%); border-color: transparent; }
+.dash-block-d { background: hsl(38, 92%, 50%); border-color: transparent; }
+.dash-block-e { background: hsl(0, 70%, 55%); border-color: transparent; }
+.dash-block-f { background: hsl(220, 14%, 30%); border-color: transparent; }
 
-.dash-icon-a { background: hsl(211 100% 92%); color: hsl(217 91% 50%); }
-.dash-icon-b { background: hsl(260 100% 92%); color: hsl(262 83% 54%); }
-.dash-icon-c { background: hsl(191 100% 90%); color: hsl(196 92% 45%); }
-.dash-icon-d { background: hsl(43 100% 88%); color: hsl(35 92% 48%); }
-.dash-icon-e { background: hsl(324 100% 92%); color: hsl(327 81% 48%); }
-.dash-icon-f { background: hsl(232 100% 93%); color: hsl(234 84% 55%); }
+.dash-icon-a { background: hsl(17, 100%, 95%); color: hsl(17, 90%, 50%); }
+.dash-icon-b { background: hsl(0, 0%, 94%); color: hsl(0, 0%, 25%); }
+.dash-icon-c { background: hsl(160, 60%, 92%); color: hsl(160, 60%, 38%); }
+.dash-icon-d { background: hsl(38, 100%, 92%); color: hsl(38, 92%, 42%); }
+.dash-icon-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 48%); }
+.dash-icon-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
 
-.dash-chip-a { background: hsl(215 100% 93%); color: hsl(217 91% 45%); }
-.dash-chip-b { background: hsl(257 100% 93%); color: hsl(262 83% 48%); }
-.dash-chip-c { background: hsl(191 100% 91%); color: hsl(196 92% 40%); }
-.dash-chip-d { background: hsl(43 100% 89%); color: hsl(35 92% 45%); }
-.dash-chip-e { background: hsl(352 100% 92%); color: hsl(0 84% 44%); }
-.dash-chip-f { background: hsl(226 100% 93%); color: hsl(234 84% 48%); }
-.dash-chip-g { background: hsl(286 100% 93%); color: hsl(281 83% 48%); }
-.dash-chip-h { background: hsl(205 100% 93%); color: hsl(201 94% 42%); }
+.dash-chip-a { background: hsl(17, 100%, 95%); color: hsl(17, 90%, 45%); }
+.dash-chip-b { background: hsl(0, 0%, 94%); color: hsl(0, 0%, 30%); }
+.dash-chip-c { background: hsl(160, 60%, 92%); color: hsl(160, 60%, 35%); }
+.dash-chip-d { background: hsl(38, 100%, 92%); color: hsl(38, 92%, 40%); }
+.dash-chip-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 45%); }
+.dash-chip-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
+.dash-chip-g { background: hsl(160, 50%, 93%); color: hsl(160, 60%, 35%); }
+.dash-chip-h { background: hsl(200, 60%, 93%); color: hsl(200, 60%, 38%); }
 
-.dash-bar-a { background: hsl(217 91% 60%); }
-.dash-bar-b { background: hsl(262 83% 58%); }
-.dash-bar-c { background: hsl(196 92% 52%); }
-.dash-bar-d { background: hsl(35 92% 56%); }
-.dash-bar-e { background: hsl(0 84% 58%); }
-.dash-bar-f { background: hsl(234 84% 62%); }
+.dash-bar-a { background: hsl(17, 90%, 55%); }
+.dash-bar-b { background: hsl(0, 0%, 20%); }
+.dash-bar-c { background: hsl(160, 60%, 45%); }
+.dash-bar-d { background: hsl(38, 92%, 50%); }
+.dash-bar-e { background: hsl(0, 70%, 55%); }
+.dash-bar-f { background: hsl(220, 14%, 40%); }
 
 /* Blog article reading experience */
 .blog-reading-surface {
