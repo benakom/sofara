@@ -251,7 +251,29 @@
   }
 }
 
-/* Dashboard light content area */
+/* ======= DASHBOARD SCOPED THEME ======= */
+/* Overrides --primary inside dashboard so ALL components automatically pick up the new accent */
+.dash-theme {
+  --primary: 246 80% 60%;
+  --primary-foreground: 0 0% 100%;
+  --background: 220 14% 96%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --border: 220 13% 91%;
+  --input: 220 13% 87%;
+  --ring: 246 80% 60%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 246 80% 60%;
+  --accent-foreground: 0 0% 100%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+/* Dashboard content area */
 .dash-content {
   background: hsl(var(--dash-bg));
   color: hsl(var(--dash-fg));
@@ -262,6 +284,7 @@
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
+  border-radius: 1rem;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -273,8 +296,7 @@
   background: hsl(var(--dash-card));
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
-  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
-  ring: 1px hsl(var(--dash-card-ring));
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06), 0 2px 6px -2px rgba(0,0,0,0.03);
 }
 
 .dash-card-interactive {
@@ -282,14 +304,14 @@
   color: hsl(var(--dash-card-fg));
   border: 1px solid hsl(var(--dash-border));
   box-shadow: var(--dash-card-shadow);
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .dash-card-interactive:hover {
   box-shadow: var(--dash-card-shadow-hover);
-  border-color: hsl(var(--dash-card-ring));
-  transform: translateY(-1px);
+  border-color: hsl(var(--dash-accent) / 0.25);
+  transform: translateY(-2px);
 }
 
 .dash-border-color {
@@ -308,7 +330,7 @@
   background: hsl(var(--dash-muted));
 }
 
-/* Off-white form inputs in dashboard */
+/* Form inputs in dashboard */
 .dash-input {
   background: hsl(var(--dash-input-bg)) !important;
   border-color: hsl(var(--dash-input-border)) !important;
@@ -317,26 +339,28 @@
 
 .dash-input:focus {
   border-color: hsl(var(--dash-accent)) !important;
-  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.12) !important;
+  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.1) !important;
 }
 
 /* Dashboard dialog/form backgrounds */
 .dash-form-bg {
-  background: hsl(224, 25%, 14%);
+  background: hsl(0, 0%, 100%);
 }
 
-/* Dashboard accent button */
+/* Dashboard accent button — vibrant gradient */
 .dash-btn-accent {
   background: var(--dash-accent-gradient);
   color: white;
   font-weight: 600;
   border: none;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 8px -2px hsl(246, 80%, 60%, 0.3);
 }
 
 .dash-btn-accent:hover {
-  opacity: 0.9;
+  opacity: 0.92;
   box-shadow: var(--dash-accent-glow);
+  transform: translateY(-1px);
 }
 
 /* Premium divider */
