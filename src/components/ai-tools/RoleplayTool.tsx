@@ -8,10 +8,10 @@ import ReactMarkdown from "react-markdown";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const scenarios = [
-  { id: "skeptical", labelFr: "🤨 Investisseur sceptique", labelEn: "🤨 Skeptical investor", descFr: "Budget AED 2M, plein de doutes", descEn: "AED 2M budget, full of doubts" },
-  { id: "busy_exec", labelFr: "👔 Cadre pressé", labelEn: "👔 Busy executive", descFr: "PDG, veut des chiffres, pas de temps", descEn: "CEO, wants numbers, no time" },
-  { id: "first_buyer", labelFr: "🏠 Primo-accédant", labelEn: "🏠 First-time buyer", descFr: "Budget AED 600K-1M, anxieux mais excité", descEn: "AED 600K-1M budget, anxious but excited" },
-  { id: "vip_client", labelFr: "💎 Client VIP", labelEn: "💎 VIP client", descFr: "Budget AED 20M+, ultra-exigeant", descEn: "AED 20M+ budget, ultra-demanding" },
+  { id: "skeptical", labelAr: "🤨 Investisseur sceptique", labelEn: "🤨 Skeptical investor", descFr: "Budget AED 2M, plein de doutes", descEn: "AED 2M budget, full of doubts" },
+  { id: "busy_exec", labelAr: "👔 Cadre pressé", labelEn: "👔 Busy executive", descFr: "PDG, veut des chiffres, pas de temps", descEn: "CEO, wants numbers, no time" },
+  { id: "first_buyer", labelAr: "🏠 Primo-accédant", labelEn: "🏠 First-time buyer", descFr: "Budget AED 600K-1M, anxieux mais excité", descEn: "AED 600K-1M budget, anxious but excited" },
+  { id: "vip_client", labelAr: "💎 Client VIP", labelEn: "💎 VIP client", descFr: "Budget AED 20M+, ultra-exigeant", descEn: "AED 20M+ budget, ultra-demanding" },
 ];
 
 const ROLEPLAY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-roleplay`;
@@ -36,7 +36,7 @@ export default function RoleplayTool() {
 
     const firstMsg: Msg = {
       role: "user",
-      content: lang === "fr"
+      content: lang === "ar"
         ? "Bonjour, je suis ambassadeur Sofara. Commençons le roleplay. Présentez-vous."
         : "Hello, I'm a Sofara ambassador. Let's start the roleplay. Please introduce yourself.",
     };
@@ -62,7 +62,7 @@ export default function RoleplayTool() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Connectez-vous d'abord." : "Please log in first." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first." });
         setIsLoading(false);
         return;
       }
@@ -132,10 +132,10 @@ export default function RoleplayTool() {
       <div className="h-full flex flex-col">
         <div className="mb-6">
           <h2 className="text-lg font-display font-bold dash-text mb-1">
-            {lang === "fr" ? "🎭 Choisissez votre scénario" : "🎭 Choose your scenario"}
+            {lang === "ar" ? "🎭 Choisissez votre scénario" : "🎭 Choose your scenario"}
           </h2>
           <p className="text-xs dash-muted-text">
-            {lang === "fr"
+            {lang === "ar"
               ? "L'IA va jouer le rôle d'un client potentiel. Entraînez-vous à closer !"
               : "The AI will play a potential client. Practice your closing skills!"}
           </p>
@@ -148,9 +148,9 @@ export default function RoleplayTool() {
               className="dash-card rounded-xl p-5 text-left hover:shadow-md transition-all hover:-translate-y-0.5 border border-[hsl(var(--dash-border))] group"
             >
               <h3 className="text-sm font-semibold dash-text mb-1 group-hover:text-[hsl(var(--primary))] transition-colors">
-                {lang === "fr" ? s.labelFr : s.labelEn}
+                {lang === "ar" ? s.labelAr : s.labelEn}
               </h3>
-              <p className="text-xs dash-muted-text">{lang === "fr" ? s.descFr : s.descEn}</p>
+              <p className="text-xs dash-muted-text">{lang === "ar" ? s.descFr : s.descEn}</p>
             </button>
           ))}
         </div>
@@ -168,10 +168,10 @@ export default function RoleplayTool() {
           </div>
           <div>
             <h2 className="text-sm font-semibold dash-text">
-              {lang === "fr" ? "Roleplay en cours" : "Roleplay in progress"}
+              {lang === "ar" ? "Roleplay en cours" : "Roleplay in progress"}
             </h2>
             <p className="text-[10px] dash-muted-text">
-              {scenarios.find(s => s.id === scenario)?.[lang === "fr" ? "labelFr" : "labelEn"]}
+              {scenarios.find(s => s.id === scenario)?.[lang === "ar" ? "labelFr" : "labelEn"]}
             </p>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function RoleplayTool() {
           className="flex items-center gap-1.5 text-[11px] dash-muted-text hover:text-[hsl(var(--dash-fg))] transition-colors px-3 py-1.5 rounded-lg border border-[hsl(var(--dash-border))]"
         >
           <RotateCcw className="w-3 h-3" />
-          {lang === "fr" ? "Nouveau scénario" : "New scenario"}
+          {lang === "ar" ? "Nouveau scénario" : "New scenario"}
         </button>
       </div>
 
@@ -232,7 +232,7 @@ export default function RoleplayTool() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={lang === "fr" ? "Répondez au client…" : "Reply to the client…"}
+          placeholder={lang === "ar" ? "Répondez au client…" : "Reply to the client…"}
           className="flex-1 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-violet-300"
           disabled={isLoading}
         />
@@ -247,7 +247,7 @@ export default function RoleplayTool() {
 
       {/* Tip */}
       <p className="text-[10px] dash-muted-text mt-2 text-center">
-        {lang === "fr"
+        {lang === "ar"
           ? "💡 Tapez \"fin\" pour recevoir votre feedback de performance"
           : "💡 Type \"end\" to receive your performance feedback"}
       </p>

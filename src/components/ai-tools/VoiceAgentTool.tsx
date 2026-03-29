@@ -132,7 +132,7 @@ export default function VoiceAgentTool() {
   const startListening = useCallback(() => {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Reconnaissance vocale non supportée par ce navigateur." : "Speech recognition not supported." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Reconnaissance vocale non supportée par ce navigateur." : "Speech recognition not supported." });
       return;
     }
 
@@ -143,7 +143,7 @@ export default function VoiceAgentTool() {
     }
 
     const recognition = new SpeechRecognition();
-    recognition.lang = lang === "fr" ? "fr-FR" : "en-US";
+    recognition.lang = lang === "ar" ? "fr-FR" : "en-US";
     recognition.continuous = false;
     recognition.interimResults = true;
 
@@ -180,10 +180,10 @@ export default function VoiceAgentTool() {
           </div>
           <div>
             <h2 className="text-sm font-display font-bold dash-text">
-              {lang === "fr" ? "Voice Agent SofarAI" : "SofarAI Voice Agent"}
+              {lang === "ar" ? "Voice Agent SofarAI" : "SofarAI Voice Agent"}
             </h2>
             <p className="text-[10px] dash-muted-text">
-              {lang === "fr" ? "Parlez, SofarAI vous répond à voix haute" : "Speak, SofarAI answers out loud"}
+              {lang === "ar" ? "Parlez, SofarAI vous répond à voix haute" : "Speak, SofarAI answers out loud"}
             </p>
           </div>
         </div>
@@ -203,10 +203,10 @@ export default function VoiceAgentTool() {
               <Mic className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-sm font-semibold dash-text mb-1">
-              {lang === "fr" ? "Appuyez sur le micro pour parler" : "Press the mic to speak"}
+              {lang === "ar" ? "Appuyez sur le micro pour parler" : "Press the mic to speak"}
             </h3>
             <p className="text-xs dash-muted-text max-w-xs">
-              {lang === "fr"
+              {lang === "ar"
                 ? "SofarAI vous répondra à voix haute grâce à la technologie ElevenLabs"
                 : "SofarAI will answer out loud using ElevenLabs technology"}
             </p>
@@ -281,10 +281,10 @@ export default function VoiceAgentTool() {
 
       <p className="text-[10px] dash-muted-text mt-2 text-center">
         {isListening
-          ? (lang === "fr" ? "🔴 Écoute en cours… Parlez maintenant" : "🔴 Listening… Speak now")
+          ? (lang === "ar" ? "🔴 Écoute en cours… Parlez maintenant" : "🔴 Listening… Speak now")
           : isSpeaking
-          ? (lang === "fr" ? "🔊 SofarAI parle…" : "🔊 SofarAI is speaking…")
-          : (lang === "fr" ? "Appuyez pour parler à SofarAI" : "Press to talk to SofarAI")}
+          ? (lang === "ar" ? "🔊 SofarAI parle…" : "🔊 SofarAI is speaking…")
+          : (lang === "ar" ? "Appuyez pour parler à SofarAI" : "Press to talk to SofarAI")}
       </p>
     </div>
   );

@@ -34,8 +34,8 @@ const ResetPassword = () => {
       toast({ variant: "destructive", title: "Error", description: error.message });
     } else {
       toast({
-        title: lang === "fr" ? "Mot de passe mis à jour" : "Password updated",
-        description: lang === "fr" ? "Vous pouvez maintenant vous connecter." : "You can now sign in.",
+        title: lang === "ar" ? "Mot de passe mis à jour" : "Password updated",
+        description: lang === "ar" ? "Vous pouvez maintenant vous connecter." : "You can now sign in.",
       });
       navigate("/auth");
     }
@@ -45,7 +45,7 @@ const ResetPassword = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <p className="text-muted-foreground">
-          {lang === "fr" ? "Lien invalide ou expiré." : "Invalid or expired link."}
+          {lang === "ar" ? "Lien invalide ou expiré." : "Invalid or expired link."}
         </p>
       </div>
     );
@@ -59,11 +59,11 @@ const ResetPassword = () => {
         className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-8 shadow-xl"
       >
         <h1 className="text-xl font-semibold text-foreground text-center mb-6">
-          {lang === "fr" ? "Nouveau mot de passe" : "New Password"}
+          {lang === "ar" ? "كلمة مرور جديدة" : "New Password"}
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label>{lang === "fr" ? "Nouveau mot de passe" : "New password"}</Label>
+            <Label>{lang === "ar" ? "كلمة مرور جديدة" : "New password"}</Label>
             <div className="relative">
               <Input
                 type={showPassword ? "text" : "password"}
@@ -77,14 +77,14 @@ const ResetPassword = () => {
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
                 className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
-                aria-label={showPassword ? (lang === "fr" ? "Masquer le mot de passe" : "Hide password") : (lang === "fr" ? "Afficher le mot de passe" : "Show password")}
+                aria-label={showPassword ? (lang === "ar" ? "Masquer le mot de passe" : "Hide password") : (lang === "ar" ? "Afficher le mot de passe" : "Show password")}
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
           </div>
           <Button type="submit" variant="hero" className="w-full rounded-xl py-5" disabled={loading}>
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "fr" ? "Mettre à jour" : "Update"}
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "ar" ? "تحديث" : "Update"}
           </Button>
         </form>
       </motion.div>

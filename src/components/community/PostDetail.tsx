@@ -56,14 +56,14 @@ const PostDetail = ({
   };
 
   const timeAgo = (date: string) =>
-    formatDistanceToNow(new Date(date), { addSuffix: true, locale: lang === "fr" ? fr : enUS });
+    formatDistanceToNow(new Date(date), { addSuffix: true, locale: lang === "ar" ? fr : enUS });
 
   return (
     <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
       {/* Back */}
       <button onClick={onBack} className="flex items-center gap-1.5 text-xs dash-muted-text hover:text-[hsl(var(--primary))] transition-colors">
         <ArrowLeft className="w-3.5 h-3.5" />
-        {lang === "fr" ? "Retour" : "Back"}
+        {lang === "ar" ? "Retour" : "Back"}
       </button>
 
       {/* Post */}
@@ -79,7 +79,7 @@ const PostDetail = ({
               <span>·</span>
               <span>{timeAgo(post.created_at)}</span>
               {post.is_locked && (
-                <span className="flex items-center gap-0.5 text-amber-500"><Lock className="w-3 h-3" /> {lang === "fr" ? "Verrouillé" : "Locked"}</span>
+                <span className="flex items-center gap-0.5 text-amber-500"><Lock className="w-3 h-3" /> {lang === "ar" ? "Verrouillé" : "Locked"}</span>
               )}
             </div>
             <p className="text-sm dash-text mt-3 whitespace-pre-wrap leading-relaxed">{getLocalizedText(post.content, lang)}</p>
@@ -89,7 +89,7 @@ const PostDetail = ({
                 className={`flex items-center gap-1.5 text-xs transition-colors ${post.user_liked ? "text-red-400" : "dash-muted-text hover:text-red-400"}`}
               >
                 <Heart className={`w-4 h-4 ${post.user_liked ? "fill-red-400" : ""}`} />
-                {post.like_count} {lang === "fr" ? "j'aime" : "likes"}
+                {post.like_count} {lang === "ar" ? "j'aime" : "likes"}
               </button>
             </div>
           </div>
@@ -99,7 +99,7 @@ const PostDetail = ({
       {/* Replies */}
       <div>
         <h3 className="text-xs font-semibold dash-muted-text uppercase tracking-wider px-1 mb-3">
-          {replies.length} {lang === "fr" ? "réponse(s)" : "reply(ies)"}
+          {replies.length} {lang === "ar" ? "réponse(s)" : "reply(ies)"}
         </h3>
 
         {loadingReplies ? (
@@ -160,7 +160,7 @@ const PostDetail = ({
           <input
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
-            placeholder={lang === "fr" ? "Votre réponse…" : "Your reply…"}
+            placeholder={lang === "ar" ? "Votre réponse…" : "Your reply…"}
             className="flex-1 min-w-0 h-10 px-4 rounded-full bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:dash-muted-text focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
             disabled={replying}
           />

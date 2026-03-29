@@ -12,10 +12,10 @@ const StepPropertyType = ({ value, onChange, lang }: Props) => (
   <div>
     <div className="text-center mb-8">
       <h2 className="text-2xl font-bold text-[hsl(var(--dash-fg))] font-display">
-        🏠 {lang === "fr" ? "Type de bien" : "Select Property Type"}
+        🏠 {lang === "ar" ? "Type de bien" : "Select Property Type"}
       </h2>
       <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-2">
-        {lang === "fr" ? "Choisissez le type de bien qui vous intéresse" : "Choose the type of property you are interested in"}
+        {lang === "ar" ? "Choisissez le type de bien qui vous intéresse" : "Choose the type of property you are interested in"}
       </p>
     </div>
     <div className="grid grid-cols-1 gap-3">

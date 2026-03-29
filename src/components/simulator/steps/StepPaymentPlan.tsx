@@ -12,10 +12,10 @@ const StepPaymentPlan = ({ value, onChange, lang }: Props) => (
   <div>
     <div className="text-center mb-8">
       <h2 className="text-2xl font-bold text-[hsl(var(--dash-fg))] font-display">
-        📋 {lang === "fr" ? "Plan de paiement" : "Payment Plan"}
+        📋 {lang === "ar" ? "Plan de paiement" : "Payment Plan"}
       </h2>
       <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-2">
-        {lang === "fr" ? "Comment souhaitez-vous répartir les paiements ?" : "How would you like to split your payments?"}
+        {lang === "ar" ? "Comment souhaitez-vous répartir les paiements ?" : "How would you like to split your payments?"}
       </p>
     </div>
     <div className="grid grid-cols-1 gap-3">
@@ -62,9 +62,9 @@ const StepPaymentPlan = ({ value, onChange, lang }: Props) => (
     </div>
 
     <div className="mt-6 p-4 rounded-xl bg-blue-50 border border-blue-100">
-      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "fr" ? "POURQUOI C'EST IMPORTANT ?" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-blue-700 leading-relaxed">
-        {lang === "fr"
+        {lang === "ar"
           ? "Le plan de paiement détermine combien vous payez pendant la construction et combien à la remise des clés. Un plan 60/40 est le plus courant à Dubaï."
           : "The payment plan determines how much you pay during construction vs on handover. A 60/40 plan is the most common in Dubai."}
       </p>

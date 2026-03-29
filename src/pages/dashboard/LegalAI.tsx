@@ -30,11 +30,11 @@ const LegalAI = () => {
 
   const handleFile = useCallback((f: File) => {
     if (f.type !== "application/pdf") {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Seuls les fichiers PDF sont acceptés." : "Only PDF files are accepted." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Seuls les fichiers PDF sont acceptés." : "Only PDF files are accepted." });
       return;
     }
     if (f.size > 20 * 1024 * 1024) {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Fichier trop volumineux (max 20 MB)." : "File too large (max 20 MB)." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Fichier trop volumineux (max 20 MB)." : "File too large (max 20 MB)." });
       return;
     }
     setFile(f);
@@ -53,7 +53,7 @@ const LegalAI = () => {
 
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.access_token) {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Vous devez être connecté." : "You must be logged in." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Vous devez être connecté." : "You must be logged in." });
       return;
     }
 
@@ -106,7 +106,7 @@ const LegalAI = () => {
         }
       }
     } catch {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Impossible de contacter LegalAI." : "Unable to reach LegalAI." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Impossible de contacter LegalAI." : "Unable to reach LegalAI." });
     }
     setIsLoading(false);
   };
@@ -124,7 +124,7 @@ const LegalAI = () => {
             <span className="text-[10px] font-bold bg-amber-500/20 text-amber-600 px-2 py-0.5 rounded-full">PRO</span>
           </h1>
           <p className="text-xs dash-muted-text">
-            {lang === "fr" ? "Analysez vos contrats immobiliers Dubai & EAU" : "Analyze your Dubai & UAE real estate contracts"}
+            {lang === "ar" ? "Analysez vos contrats immobiliers Dubai & EAU" : "Analyze your Dubai & UAE real estate contracts"}
           </p>
         </div>
       </div>
@@ -135,7 +135,7 @@ const LegalAI = () => {
           <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-medium dash-text mb-1.5">
-              {lang === "fr" ? "Documents acceptés (immobilier Dubai & EAU uniquement)" : "Accepted documents (Dubai & UAE real estate only)"}
+              {lang === "ar" ? "Documents acceptés (immobilier Dubai & EAU uniquement)" : "Accepted documents (Dubai & UAE real estate only)"}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {ACCEPTED_DOCS.map(doc => (
@@ -186,7 +186,7 @@ const LegalAI = () => {
           <div className="space-y-2">
             <FileUp className="w-10 h-10 mx-auto dash-muted-text" />
             <p className="text-sm font-medium dash-text">
-              {lang === "fr" ? "Glissez votre PDF ici ou cliquez" : "Drag your PDF here or click"}
+              {lang === "ar" ? "Glissez votre PDF ici ou cliquez" : "Drag your PDF here or click"}
             </p>
             <p className="text-xs dash-muted-text">PDF • Max 20 MB</p>
           </div>
@@ -200,7 +200,7 @@ const LegalAI = () => {
             <input
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder={lang === "fr" ? "Question spécifique (optionnel) : ex. Y a-t-il des pénalités de retard ?" : "Specific question (optional): e.g. Are there late payment penalties?"}
+              placeholder={lang === "ar" ? "Question spécifique (optionnel) : ex. Y a-t-il des pénalités de retard ?" : "Specific question (optional): e.g. Are there late payment penalties?"}
               className="flex-1 h-10 px-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-amber-500/30"
               disabled={isLoading}
             />
@@ -210,7 +210,7 @@ const LegalAI = () => {
               className="h-10 px-5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 shrink-0"
             >
               {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-              {lang === "fr" ? "Analyser" : "Analyze"}
+              {lang === "ar" ? "Analyser" : "Analyze"}
             </button>
           </div>
         </motion.div>
@@ -228,7 +228,7 @@ const LegalAI = () => {
             <div className="flex items-center gap-2 mb-4">
               <Scale className="w-4 h-4 text-amber-500" />
               <h2 className="text-sm font-semibold dash-text">
-                {lang === "fr" ? "Analyse juridique" : "Legal analysis"}
+                {lang === "ar" ? "Analyse juridique" : "Legal analysis"}
               </h2>
               {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-500 ml-auto" />}
             </div>
@@ -239,7 +239,7 @@ const LegalAI = () => {
             ) : (
               <div className="flex items-center gap-2 text-sm dash-muted-text">
                 <Loader2 className="w-4 h-4 animate-spin" />
-                {lang === "fr" ? "Analyse en cours…" : "Analyzing…"}
+                {lang === "ar" ? "Analyse en cours…" : "Analyzing…"}
               </div>
             )}
 
@@ -247,7 +247,7 @@ const LegalAI = () => {
             {analysis && !isLoading && (
               <div className="mt-6 pt-4 border-t border-[hsl(var(--dash-border))]">
                 <p className="text-[10px] dash-muted-text leading-relaxed">
-                  ⚖️ {lang === "fr"
+                  ⚖️ {lang === "ar"
                     ? "Cette analyse est fournie à titre informatif uniquement et ne constitue pas un avis juridique. Consultez un avocat agréé aux EAU pour toute décision juridique."
                     : "This analysis is provided for informational purposes only and does not constitute legal advice. Consult a UAE-licensed attorney for any legal decisions."}
                 </p>

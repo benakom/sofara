@@ -41,13 +41,13 @@ const SimulatorAIAnalysis = ({ results, data, lang }: Props) => {
 - Annual Service Charges: AED ${fmt(results.annualServiceCharge)}
 - Net Annual Income: AED ${fmt(results.netAnnualIncome)}
 
-Provide your analysis in ${lang === "fr" ? "French" : "English"} with these sections:
-1. **${lang === "fr" ? "Score Global" : "Overall Score"}** (give a score /10 with emoji)
-2. **${lang === "fr" ? "Points Forts" : "Strengths"}** (3-4 bullet points)
-3. **${lang === "fr" ? "Points de Vigilance" : "Risk Factors"}** (3-4 bullet points)
-4. **${lang === "fr" ? "Comparaison Marché" : "Market Comparison"}** (how this compares to Dubai average)
-5. **${lang === "fr" ? "Recommandation" : "Recommendation"}** (clear buy/hold/avoid with reasoning)
-6. **${lang === "fr" ? "Arguments de Vente" : "Selling Points"}** (3 key talking points the ambassador can use with the client)
+Provide your analysis in ${lang === "ar" ? "French" : "English"} with these sections:
+1. **${lang === "ar" ? "Score Global" : "Overall Score"}** (give a score /10 with emoji)
+2. **${lang === "ar" ? "Points Forts" : "Strengths"}** (3-4 bullet points)
+3. **${lang === "ar" ? "Points de Vigilance" : "Risk Factors"}** (3-4 bullet points)
+4. **${lang === "ar" ? "Comparaison Marché" : "Market Comparison"}** (how this compares to Dubai average)
+5. **${lang === "ar" ? "Recommandation" : "Recommendation"}** (clear buy/hold/avoid with reasoning)
+6. **${lang === "ar" ? "Arguments de Vente" : "Selling Points"}** (3 key talking points the ambassador can use with the client)
 
 Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
 
@@ -96,7 +96,7 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
       setDone(true);
     } catch (err) {
       console.error("AI analysis error:", err);
-      setAnalysis(lang === "fr" ? "Erreur lors de l'analyse. Veuillez réessayer." : "Error during analysis. Please try again.");
+      setAnalysis(lang === "ar" ? "خطأ أثناء التحليل. يرجى المحاولة مجدداً." : "Error during analysis. Please try again.");
       setDone(true);
     } finally {
       setLoading(false);
@@ -111,19 +111,19 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
             <Bot className="w-4 h-4 text-violet-600" />
           </div>
           <h3 className="text-lg font-semibold text-[hsl(var(--dash-fg))] font-display">
-            {lang === "fr" ? "Analyse IA" : "AI Analysis"}
+            {lang === "ar" ? "تحليل ذكي" : "AI Analysis"}
           </h3>
         </div>
         {!done && (
           <Button onClick={runAnalysis} disabled={loading} className="dash-btn-accent rounded-xl gap-2 h-9 px-5 text-sm">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-            {loading ? (lang === "fr" ? "Analyse en cours..." : "Analyzing...") : (lang === "fr" ? "Lancer l'analyse IA" : "Run AI Analysis")}
+            {loading ? (lang === "ar" ? "جاري التحليل..." : "Analyzing...") : (lang === "ar" ? "بدء التحليل الذكي" : "Run AI Analysis")}
           </Button>
         )}
       </div>
       {!analysis && !loading && (
         <p className="text-sm text-[hsl(var(--dash-muted-fg))] italic">
-          {lang === "fr"
+          {lang === "ar"
             ? "Cliquez sur \"Lancer l'analyse IA\" pour obtenir une évaluation détaillée."
             : "Click \"Run AI Analysis\" to get a detailed AI-powered evaluation."}
         </p>

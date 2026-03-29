@@ -158,14 +158,14 @@ const InvestmentSimulator = () => {
         <div className="flex items-center justify-between">
           <button onClick={handleReset} className="flex items-center gap-2 text-sm text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors">
             <RotateCcw className="w-4 h-4" />
-            {lang === "fr" ? "Nouvelle simulation" : "New Simulation"}
+            {lang === "ar" ? "Nouvelle simulation" : "New Simulation"}
           </button>
         </div>
         <SimulatorResults results={results} data={data} lang={lang} onBack={handleReset} />
         <SimulatorAIAnalysis results={results} data={data} lang={lang} />
         <div className="p-4 rounded-xl border border-amber-200/60 bg-amber-50/80 text-amber-800 text-xs leading-relaxed">
           <span className="font-semibold">⚠️ Disclaimer :</span>{" "}
-          {lang === "fr"
+          {lang === "ar"
             ? "Résultats donnés à titre indicatif. Ils peuvent varier selon le projet, le promoteur et les frais réels."
             : "Results are indicative. They may vary depending on the project, developer, and actual fees."}
         </div>
@@ -179,7 +179,7 @@ const InvestmentSimulator = () => {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-[hsl(var(--dash-muted-fg))]">
-            {lang === "fr" ? `Étape ${step + 1} sur 5` : `Step ${step + 1} of 5`}
+            {lang === "ar" ? `Étape ${step + 1} sur 5` : `Step ${step + 1} of 5`}
           </span>
           <span className="text-sm font-semibold text-[hsl(var(--dash-accent))]">{Math.round(progress)}%</span>
         </div>
@@ -226,25 +226,25 @@ const InvestmentSimulator = () => {
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          {lang === "fr" ? "Retour" : "Back"}
+          {lang === "ar" ? "Retour" : "Back"}
         </button>
         <button
           onClick={handleContinue}
           disabled={!canContinue}
           className="flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold text-white bg-[hsl(var(--dash-accent))] hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
         >
-          {step === 4 ? (lang === "fr" ? "Simuler" : "Simulate") : (lang === "fr" ? "Continuer" : "Continue")}
+          {step === 4 ? (lang === "ar" ? "Simuler" : "Simulate") : (lang === "ar" ? "Continuer" : "Continue")}
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
 
       {/* Disclaimer */}
       <p className="text-center text-[10px] text-[hsl(var(--dash-muted-fg))] mt-8 leading-relaxed">
-        {lang === "fr"
+        {lang === "ar"
           ? "Ce simulateur fournit des estimations basées sur des moyennes du marché. Les prix, rendements et retours réels peuvent varier."
           : "This simulator provides estimates based on market averages. Actual prices, yields, and returns may vary."}
         {" "}
-        <span className="underline">{lang === "fr" ? "Ceci n'est pas un conseil financier." : "This is not financial advice."}</span>
+        <span className="underline">{lang === "ar" ? "Ceci n'est pas un conseil financier." : "This is not financial advice."}</span>
       </p>
     </div>
   );

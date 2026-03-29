@@ -20,16 +20,16 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
   const { data: assets, isLoading: assetLoading } = useAssets({ search: search || undefined });
 
   const t = {
-    title: lang === "fr" ? "Project Intelligence Library" : "Project Intelligence Library",
-    subtitle: lang === "fr" ? "Accédez à tous les documents, médias et données projets en un seul endroit" : "Access all project documents, media and data in one place",
-    search: lang === "fr" ? "Rechercher un projet, développeur, document..." : "Search project, developer, document...",
-    featured: lang === "fr" ? "Projets vedettes" : "Featured Projects",
-    developers: lang === "fr" ? "Développeurs" : "Top Developers",
-    areas: lang === "fr" ? "Zones populaires" : "Popular Areas",
-    recent: lang === "fr" ? "Derniers documents" : "Latest Uploads",
-    browseAll: lang === "fr" ? "Tout explorer" : "Browse All",
-    noResults: lang === "fr" ? "Aucun résultat" : "No results found",
-    viewAll: lang === "fr" ? "Voir tout" : "View All",
+    title: lang === "ar" ? "Project Intelligence Library" : "Project Intelligence Library",
+    subtitle: lang === "ar" ? "Accédez à tous les documents, médias et données projets en un seul endroit" : "Access all project documents, media and data in one place",
+    search: lang === "ar" ? "Rechercher un projet, développeur, document..." : "Search project, developer, document...",
+    featured: lang === "ar" ? "Projets vedettes" : "Featured Projects",
+    developers: lang === "ar" ? "المطورون" : "Top Developers",
+    areas: lang === "ar" ? "Zones populaires" : "Popular Areas",
+    recent: lang === "ar" ? "Derniers documents" : "Latest Uploads",
+    browseAll: lang === "ar" ? "Tout explorer" : "Browse All",
+    noResults: lang === "ar" ? "لا توجد نتائج" : "No results found",
+    viewAll: lang === "ar" ? "Voir tout" : "View All",
   };
 
   const showSearchResults = search.length > 2;
@@ -58,7 +58,7 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
       {showSearchResults && (
         <div className="bg-[hsl(var(--dash-card))] rounded-xl border border-[hsl(var(--dash-border))] p-6">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-            {assets?.length || 0} {lang === "fr" ? "résultats" : "results"}
+            {assets?.length || 0} {lang === "ar" ? "résultats" : "results"}
           </h3>
           {assetLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -93,10 +93,10 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
           {/* Quick browse buttons */}
           <div className="flex flex-wrap gap-2">
             {[
-              { icon: Building2, label: lang === "fr" ? "Développeurs" : "Developers", tab: "developers" },
-              { icon: MapPin, label: lang === "fr" ? "Zones" : "Areas", tab: "areas" },
-              { icon: Folder, label: lang === "fr" ? "Projets" : "Projects", tab: "projects" },
-              { icon: Star, label: lang === "fr" ? "Favoris" : "Favorites", tab: "favorites" },
+              { icon: Building2, label: lang === "ar" ? "المطورون" : "Developers", tab: "developers" },
+              { icon: MapPin, label: lang === "ar" ? "المناطق" : "Areas", tab: "areas" },
+              { icon: Folder, label: lang === "ar" ? "مشاريع" : "Projects", tab: "projects" },
+              { icon: Star, label: lang === "ar" ? "Favoris" : "Favorites", tab: "favorites" },
             ].map((btn) => (
               <button
                 key={btn.tab}
@@ -122,7 +122,7 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
                 ))}
               </div>
             ) : (
-              <EmptyState text={lang === "fr" ? "Aucun projet vedette pour le moment" : "No featured projects yet"} />
+              <EmptyState text={lang === "ar" ? "Aucun projet vedette pour le moment" : "No featured projects yet"} />
             )}
           </Section>
 
@@ -148,7 +148,7 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
                 ))}
               </div>
             ) : (
-              <EmptyState text={lang === "fr" ? "Aucun développeur ajouté" : "No developers added yet"} />
+              <EmptyState text={lang === "ar" ? "Aucun développeur ajouté" : "No developers added yet"} />
             )}
           </Section>
 
@@ -167,7 +167,7 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
                 ))}
               </div>
             ) : (
-              <EmptyState text={lang === "fr" ? "Aucune zone ajoutée" : "No areas added yet"} />
+              <EmptyState text={lang === "ar" ? "Aucune zone ajoutée" : "No areas added yet"} />
             )}
           </Section>
 
@@ -196,7 +196,7 @@ const LibraryHome = ({ navigate, onPreviewAsset }: Props) => {
                 ))}
               </div>
             ) : (
-              <EmptyState text={lang === "fr" ? "Aucun document uploadé" : "No assets uploaded yet"} />
+              <EmptyState text={lang === "ar" ? "Aucun document uploadé" : "No assets uploaded yet"} />
             )}
           </Section>
         </>

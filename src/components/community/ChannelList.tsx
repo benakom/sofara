@@ -45,13 +45,13 @@ const ChannelList = ({ channels, selectedId, onSelect, onCreateChannel, loading 
     <div className="space-y-2">
       <div className="flex items-center justify-between px-1 mb-1">
         <h2 className="text-xs font-semibold dash-muted-text uppercase tracking-wider">
-          {lang === "fr" ? "Espaces" : "Channels"}
+          {lang === "ar" ? "Espaces" : "Channels"}
         </h2>
         {isSuperAdmin && onCreateChannel && (
           <button
             onClick={onCreateChannel}
             className="p-1 rounded-md hover:bg-[hsl(var(--dash-muted))] text-[hsl(var(--primary))] transition-colors"
-            title={lang === "fr" ? "Créer un espace" : "Create channel"}
+            title={lang === "ar" ? "Créer un espace" : "Create channel"}
           >
             <Plus className="w-4 h-4" />
           </button>
@@ -60,7 +60,7 @@ const ChannelList = ({ channels, selectedId, onSelect, onCreateChannel, loading 
 
       {channels.length === 0 && (
         <p className="text-xs dash-muted-text text-center py-6">
-          {lang === "fr" ? "Aucun espace pour le moment." : "No channels yet."}
+          {lang === "ar" ? "Aucun espace pour le moment." : "No channels yet."}
         </p>
       )}
 
@@ -84,12 +84,12 @@ const ChannelList = ({ channels, selectedId, onSelect, onCreateChannel, loading 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
                   <h3 className={`text-sm font-semibold truncate ${active ? "text-[hsl(var(--primary))]" : "dash-text"}`}>
-                    {lang === "fr" ? ch.title_fr : ch.title_en}
+                    {lang === "ar" ? ch.title_fr : ch.title_en}
                   </h3>
                   {ch.is_locked && <Lock className="w-3 h-3 dash-muted-text shrink-0" />}
                 </div>
                 <p className="text-[11px] dash-muted-text truncate mt-0.5">
-                  {lang === "fr" ? ch.description_fr : ch.description_en}
+                  {lang === "ar" ? ch.description_fr : ch.description_en}
                 </p>
               </div>
             </div>

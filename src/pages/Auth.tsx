@@ -50,14 +50,14 @@ const PHONE_CODES = [
 ];
 
 const OCCUPATIONS = [
-  { value: "real_estate_agent", labelFr: "Agent immobilier", labelEn: "Real Estate Agent" },
-  { value: "influencer", labelFr: "Influenceur / Créateur de contenu", labelEn: "Influencer / Content Creator" },
-  { value: "entrepreneur", labelFr: "Entrepreneur", labelEn: "Entrepreneur" },
-  { value: "investor", labelFr: "Investisseur", labelEn: "Investor" },
-  { value: "networker", labelFr: "Networker / Communauté", labelEn: "Networker / Community" },
-  { value: "finance", labelFr: "Finance / Banque", labelEn: "Finance / Banking" },
-  { value: "consultant", labelFr: "Consultant", labelEn: "Consultant" },
-  { value: "other", labelFr: "Autre", labelEn: "Other" },
+  { value: "real_estate_agent", labelAr: "Agent immobilier", labelEn: "Real Estate Agent" },
+  { value: "influencer", labelAr: "Influenceur / Créateur de contenu", labelEn: "Influencer / Content Creator" },
+  { value: "entrepreneur", labelAr: "Entrepreneur", labelEn: "Entrepreneur" },
+  { value: "investor", labelAr: "Investisseur", labelEn: "Investor" },
+  { value: "networker", labelAr: "Networker / Communauté", labelEn: "Networker / Community" },
+  { value: "finance", labelAr: "Finance / Banque", labelEn: "Finance / Banking" },
+  { value: "consultant", labelAr: "Consultant", labelEn: "Consultant" },
+  { value: "other", labelAr: "Autre", labelEn: "Other" },
 ];
 
 const Auth = () => {
@@ -89,7 +89,7 @@ const Auth = () => {
     const entry = PHONE_CODES.find(c => c.code === code);
     if (!entry) return "";
     if (digits.length > 0 && digits.length !== entry.digits) {
-      return lang === "fr"
+      return lang === "ar"
         ? `${entry.digits} chiffres requis pour ${entry.name}`
         : `${entry.digits} digits required for ${entry.name}`;
     }
@@ -116,10 +116,10 @@ const Auth = () => {
       toast({
         variant: "destructive",
         title: isEmailNotConfirmed
-          ? (lang === "fr" ? "Email non vérifié" : "Email not verified")
-          : (lang === "fr" ? "Erreur de connexion" : "Login error"),
+          ? (lang === "ar" ? "Email non vérifié" : "Email not verified")
+          : (lang === "ar" ? "خطأ في تسجيل الدخول" : "Login error"),
         description: isEmailNotConfirmed
-          ? (lang === "fr"
+          ? (lang === "ar"
               ? "Vérifiez votre email puis reconnectez-vous."
               : "Please verify your email and try again.")
           : error.message,
@@ -139,7 +139,7 @@ const Auth = () => {
       return;
     }
     if (!firstName.trim() || !lastName.trim() || !occupation) {
-      toast({ variant: "destructive", title: lang === "fr" ? "Champs requis" : "Required fields", description: lang === "fr" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
+      toast({ variant: "destructive", title: lang === "ar" ? "Champs requis" : "Required fields", description: lang === "ar" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
       return;
     }
     setLoading(true);
@@ -161,7 +161,7 @@ const Auth = () => {
     });
     setLoading(false);
     if (error) {
-      toast({ variant: "destructive", title: lang === "fr" ? "Erreur d'inscription" : "Signup error", description: error.message });
+      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Signup error", description: error.message });
     } else {
       localStorage.removeItem("sofara_ref");
       setSignupEmail(email);
@@ -177,31 +177,31 @@ const Auth = () => {
     if (error) {
       toast({ variant: "destructive", title: "Error", description: error.message });
     } else {
-      toast({ title: lang === "fr" ? "Email envoyé" : "Email sent", description: lang === "fr" ? "Vérifiez votre boîte mail pour réinitialiser votre mot de passe." : "Check your inbox to reset your password." });
+      toast({ title: lang === "ar" ? "Email envoyé" : "Email sent", description: lang === "ar" ? "Vérifiez votre boîte mail pour réinitialiser votre mot de passe." : "Check your inbox to reset your password." });
     }
   };
 
   const labels = {
     login: {
-      title: lang === "fr" ? "Connexion" : "Sign In",
-      subtitle: lang === "fr" ? "Accédez à votre espace ambassadeur" : "Access your ambassador dashboard",
-      button: lang === "fr" ? "Se connecter" : "Sign In",
-      switch: lang === "fr" ? "Pas encore de compte ?" : "No account yet?",
-      switchAction: lang === "fr" ? "Créer un compte" : "Create account",
+      title: lang === "ar" ? "تسجيل الدخول" : "Sign In",
+      subtitle: lang === "ar" ? "Accédez à votre espace ambassadeur" : "Access your ambassador dashboard",
+      button: lang === "ar" ? "تسجيل الدخول" : "Sign In",
+      switch: lang === "ar" ? "ليس لديك حساب؟" : "No account yet?",
+      switchAction: lang === "ar" ? "إنشاء حساب" : "Create account",
     },
     signup: {
-      title: lang === "fr" ? "Créer un compte" : "Create Account",
-      subtitle: lang === "fr" ? "Rejoignez le réseau ambassadeur #1" : "Join the #1 ambassador network",
-      button: lang === "fr" ? "S'inscrire" : "Sign Up",
-      switch: lang === "fr" ? "Déjà un compte ?" : "Already have an account?",
-      switchAction: lang === "fr" ? "Se connecter" : "Sign In",
+      title: lang === "ar" ? "إنشاء حساب" : "Create Account",
+      subtitle: lang === "ar" ? "Rejoignez le réseau ambassadeur #1" : "Join the #1 ambassador network",
+      button: lang === "ar" ? "S'inscrire" : "Sign Up",
+      switch: lang === "ar" ? "لديك حساب بالفعل؟" : "Already have an account?",
+      switchAction: lang === "ar" ? "تسجيل الدخول" : "Sign In",
     },
     forgot: {
-      title: lang === "fr" ? "Mot de passe oublié" : "Forgot Password",
-      subtitle: lang === "fr" ? "Entrez votre email pour réinitialiser" : "Enter your email to reset",
-      button: lang === "fr" ? "Envoyer le lien" : "Send reset link",
-      switch: lang === "fr" ? "Retour à la" : "Back to",
-      switchAction: lang === "fr" ? "connexion" : "sign in",
+      title: lang === "ar" ? "Mot de passe oublié" : "Forgot Password",
+      subtitle: lang === "ar" ? "Entrez votre email pour réinitialiser" : "Enter your email to reset",
+      button: lang === "ar" ? "Envoyer le lien" : "Send reset link",
+      switch: lang === "ar" ? "Retour à la" : "Back to",
+      switchAction: lang === "ar" ? "connexion" : "sign in",
     },
   };
 
@@ -209,12 +209,12 @@ const Auth = () => {
   const onSubmit = mode === "login" ? handleLogin : mode === "signup" ? handleSignup : handleForgot;
 
   const metrics = [
-    { icon: TrendingUp, value: "3%", label: lang === "fr" ? "Commission par vente" : "Commission per sale" },
-    { icon: Users, value: "60+", label: lang === "fr" ? "Ambassadeurs actifs" : "Active ambassadors" },
-    { icon: Globe, value: "12", label: lang === "fr" ? "Pays représentés" : "Countries represented" },
+    { icon: TrendingUp, value: "3%", label: lang === "ar" ? "Commission par vente" : "Commission per sale" },
+    { icon: Users, value: "60+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
+    { icon: Globe, value: "12", label: lang === "ar" ? "Pays représentés" : "Countries represented" },
   ];
 
-  const trustPoints = lang === "fr"
+  const trustPoints = lang === "ar"
     ? [
         "Processus 100% propulsé par l'IA",
         "Commission moyenne : AED 37 000+ par deal",
@@ -247,7 +247,7 @@ const Auth = () => {
       if (error) {
         toast({ variant: "destructive", title: "Error", description: error.message });
       } else {
-        toast({ title: lang === "fr" ? "Email renvoyé !" : "Email resent!", description: lang === "fr" ? "Vérifiez votre boîte mail." : "Check your inbox." });
+        toast({ title: lang === "ar" ? "Email renvoyé !" : "Email resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
       }
     };
 
@@ -285,10 +285,10 @@ const Auth = () => {
               </motion.div>
 
               <h2 className="text-xl font-bold text-foreground mb-2">
-                {lang === "fr" ? "Vérifiez votre email" : "Check your email"}
+                {lang === "ar" ? "Vérifiez votre email" : "Check your email"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                {lang === "fr"
+                {lang === "ar"
                   ? "Un lien de confirmation a été envoyé à :"
                   : "A confirmation link has been sent to:"}
               </p>
@@ -296,7 +296,7 @@ const Auth = () => {
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {lang === "fr"
+                  {lang === "ar"
                     ? "Cliquez sur le lien dans l'email pour activer votre compte et accéder à votre espace ambassadeur Sofara."
                     : "Click the link in the email to activate your account and access your Sofara ambassador dashboard."}
                 </p>
@@ -310,14 +310,14 @@ const Auth = () => {
                   disabled={loading}
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                  {lang === "fr" ? "Renvoyer l'email" : "Resend email"}
+                  {lang === "ar" ? "Renvoyer l'email" : "Resend email"}
                 </Button>
 
                 <button
                   onClick={() => { setSignupComplete(false); setMode("login"); }}
                   className="text-xs text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {lang === "fr" ? "← Retour à la connexion" : "← Back to sign in"}
+                  {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
                 </button>
               </div>
             </div>
@@ -325,8 +325,8 @@ const Auth = () => {
             {/* Tips */}
             <div className="mt-6 space-y-2">
               {[
-                lang === "fr" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
-                lang === "fr" ? "Le lien expire après 24h" : "The link expires after 24h",
+                lang === "ar" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
+                lang === "ar" ? "Le lien expire après 24h" : "The link expires after 24h",
               ].map((tip, i) => (
                 <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
                   <CheckCircle2 className="w-3 h-3 text-primary/50" />
@@ -369,7 +369,7 @@ const Auth = () => {
 
             {/* Headline */}
             <h2 className="font-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-[1.15] mb-2 lg:mb-4">
-              {lang === "fr"
+              {lang === "ar"
                 ? "Le réseau ambassadeur immobilier #1 propulsé par l'IA"
                 : "The #1 AI Real Estate Ambassadors Network"}
             </h2>
@@ -424,7 +424,7 @@ const Auth = () => {
             >
               <ShieldCheck className="w-4 h-4 text-primary/70 flex-shrink-0" />
               <span className="text-xs text-white/40">
-                {lang === "fr"
+                {lang === "ar"
                   ? "Basé à Dubai · RERA Compliant · Technologie propriétaire · Données temps réel"
                   : "Dubai HQ · RERA Compliant · Proprietary AI · Real-time analytics"}
               </span>
@@ -446,7 +446,7 @@ const Auth = () => {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-5 lg:mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            {lang === "fr" ? "Retour à l'accueil" : "Back to home"}
+            {lang === "ar" ? "Retour à l'accueil" : "Back to home"}
           </a>
 
           <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 shadow-2xl">
@@ -464,10 +464,10 @@ const Auth = () => {
               {mode === "signup" && (
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <Label htmlFor="lastName" className="text-sm">{lang === "fr" ? "Nom" : "Last Name"} <span className="text-destructive">*</span></Label>
+                    <Label htmlFor="lastName" className="text-sm">{lang === "ar" ? "الاسم العائلي" : "Last Name"} <span className="text-destructive">*</span></Label>
                     <Input
                       id="lastName"
-                      placeholder={lang === "fr" ? "Dupont" : "Smith"}
+                      placeholder={lang === "ar" ? "Dupont" : "Smith"}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
@@ -475,10 +475,10 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="firstName" className="text-sm">{lang === "fr" ? "Prénom" : "First Name"} <span className="text-destructive">*</span></Label>
+                    <Label htmlFor="firstName" className="text-sm">{lang === "ar" ? "الاسم الأول" : "First Name"} <span className="text-destructive">*</span></Label>
                     <Input
                       id="firstName"
-                      placeholder={lang === "fr" ? "Jean" : "John"}
+                      placeholder={lang === "ar" ? "Jean" : "John"}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
@@ -504,7 +504,7 @@ const Auth = () => {
               {mode !== "forgot" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "fr" ? "Mot de passe" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
+                    {lang === "ar" ? "كلمة المرور" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
                   <div className="relative">
                     <Input
@@ -521,7 +521,7 @@ const Auth = () => {
                       type="button"
                       onClick={() => setShowPassword((prev) => !prev)}
                       className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
-                      aria-label={showPassword ? (lang === "fr" ? "Masquer le mot de passe" : "Hide password") : (lang === "fr" ? "Afficher le mot de passe" : "Show password")}
+                      aria-label={showPassword ? (lang === "ar" ? "Masquer le mot de passe" : "Hide password") : (lang === "ar" ? "Afficher le mot de passe" : "Show password")}
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -532,7 +532,7 @@ const Auth = () => {
               {/* Signup: Phone */}
               {mode === "signup" && (
                 <div className="space-y-1.5">
-                  <Label className="text-sm">{lang === "fr" ? "Téléphone" : "Phone"} <span className="text-destructive">*</span></Label>
+                  <Label className="text-sm">{lang === "ar" ? "الهاتف" : "Phone"} <span className="text-destructive">*</span></Label>
                   <div className="grid grid-cols-[140px_1fr] gap-2">
                     <Select value={phoneCode} onValueChange={(v) => { setPhoneCode(v); setPhoneError(""); }}>
                       <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
@@ -576,15 +576,15 @@ const Auth = () => {
               {/* Signup: Occupation */}
               {mode === "signup" && (
                 <div className="space-y-1.5">
-                  <Label className="text-sm">{lang === "fr" ? "Occupation" : "Occupation"} <span className="text-destructive">*</span></Label>
+                  <Label className="text-sm">{lang === "ar" ? "Occupation" : "Occupation"} <span className="text-destructive">*</span></Label>
                   <Select value={occupation} onValueChange={setOccupation}>
                     <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
-                      <SelectValue placeholder={lang === "fr" ? "Sélectionnez votre activité" : "Select your activity"} />
+                      <SelectValue placeholder={lang === "ar" ? "Sélectionnez votre activité" : "Select your activity"} />
                     </SelectTrigger>
                     <SelectContent className="bg-popover border-border">
                       {OCCUPATIONS.map((o) => (
                         <SelectItem key={o.value} value={o.value} className="focus:bg-primary/10 focus:text-primary">
-                          {lang === "fr" ? o.labelFr : o.labelEn}
+                          {lang === "ar" ? o.labelAr : o.labelEn}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -598,7 +598,7 @@ const Auth = () => {
                   onClick={() => setMode("forgot")}
                   className="text-xs text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {lang === "fr" ? "Mot de passe oublié ?" : "Forgot password?"}
+                  {lang === "ar" ? "نسيت كلمة المرور؟" : "Forgot password?"}
                 </button>
               )}
 

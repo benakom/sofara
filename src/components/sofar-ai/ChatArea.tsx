@@ -25,25 +25,25 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
           <Sparkles className="w-8 h-8 text-[hsl(var(--primary))]" />
         </div>
         <h2 className="text-base font-display font-bold dash-text mb-1">
-          {lang === "fr" ? "Agent de Qualification" : "Lead Qualification Agent"}
+          {lang === "ar" ? "Agent de Qualification" : "Lead Qualification Agent"}
         </h2>
         <p className="text-xs dash-muted-text text-center max-w-sm mb-2">
-          {lang === "fr"
+          {lang === "ar"
             ? "Sélectionnez un lead et utilisez les outils à droite pour le qualifier automatiquement, générer des messages, ou analyser votre pipeline."
             : "Select a lead and use the tools on the right to auto-qualify, generate messages, or analyze your pipeline."}
         </p>
         <div className="flex items-center gap-4 mt-3">
           <div className="flex items-center gap-1.5 text-[10px] dash-muted-text">
             <div className="w-2 h-2 rounded-full bg-emerald-400" />
-            {lang === "fr" ? "Scoring IA" : "AI Scoring"}
+            {lang === "ar" ? "Scoring IA" : "AI Scoring"}
           </div>
           <div className="flex items-center gap-1.5 text-[10px] dash-muted-text">
             <div className="w-2 h-2 rounded-full bg-sky-400" />
-            {lang === "fr" ? "Messages auto" : "Auto messages"}
+            {lang === "ar" ? "Messages auto" : "Auto messages"}
           </div>
           <div className="flex items-center gap-1.5 text-[10px] dash-muted-text">
             <div className="w-2 h-2 rounded-full bg-amber-400" />
-            {lang === "fr" ? "Analyse pipeline" : "Pipeline analysis"}
+            {lang === "ar" ? "Analyse pipeline" : "Pipeline analysis"}
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
             <div className="flex items-center gap-2">
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--primary))]" />
               <span className="text-xs dash-muted-text">
-                {lang === "fr" ? "Analyse en cours…" : "Analyzing…"}
+                {lang === "ar" ? "Analyse en cours…" : "Analyzing…"}
               </span>
             </div>
           </div>

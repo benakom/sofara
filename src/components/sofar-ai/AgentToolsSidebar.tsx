@@ -13,7 +13,7 @@ interface AgentToolsSidebarProps {
 const tools: {
   mode: AgentMode;
   icon: typeof Target;
-  labelFr: string;
+  labelAr: string;
   labelEn: string;
   descFr: string;
   descEn: string;
@@ -25,7 +25,7 @@ const tools: {
   {
     mode: "qualifier",
     icon: Target,
-    labelFr: "Qualifier le lead",
+    labelAr: "Qualifier le lead",
     labelEn: "Qualify lead",
     descFr: "Analyse complète : score, profil, actions recommandées",
     descEn: "Full analysis: score, profile, recommended actions",
@@ -37,7 +37,7 @@ const tools: {
   {
     mode: "email",
     icon: Mail,
-    labelFr: "Générer un email",
+    labelAr: "Générer un email",
     labelEn: "Generate email",
     descFr: "Email professionnel personnalisé pour ce lead",
     descEn: "Personalized professional email for this lead",
@@ -49,7 +49,7 @@ const tools: {
   {
     mode: "script_appel",
     icon: Phone,
-    labelFr: "Script d'appel",
+    labelAr: "Script d'appel",
     labelEn: "Call script",
     descFr: "Script structuré avec questions et objections",
     descEn: "Structured script with questions and objections",
@@ -61,7 +61,7 @@ const tools: {
   {
     mode: "whatsapp",
     icon: MessageCircle,
-    labelFr: "Message WhatsApp",
+    labelAr: "Message WhatsApp",
     labelEn: "WhatsApp message",
     descFr: "Message court et percutant pour relancer",
     descEn: "Short, impactful follow-up message",
@@ -73,7 +73,7 @@ const tools: {
   {
     mode: "recommandation",
     icon: BarChart3,
-    labelFr: "Analyse pipeline",
+    labelAr: "Analyse pipeline",
     labelEn: "Pipeline analysis",
     descFr: "Vue d'ensemble et recommandations sur tous vos leads",
     descEn: "Overview and recommendations on all your leads",
@@ -85,7 +85,7 @@ const tools: {
   {
     mode: "kyc_check",
     icon: ShieldCheck,
-    labelFr: "Check KYC/AML",
+    labelAr: "Check KYC/AML",
     labelEn: "KYC/AML check",
     descFr: "Checklist de conformité et documents requis",
     descEn: "Compliance checklist and required documents",
@@ -128,7 +128,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
           <span className="text-xs font-semibold dash-text uppercase tracking-wider">
-            {lang === "fr" ? "Outils Agent" : "Agent Tools"}
+            {lang === "ar" ? "Outils Agent" : "Agent Tools"}
           </span>
         </div>
         <ChevronDown className={`w-4 h-4 dash-muted-text transition-transform ${mobileOpen ? "rotate-180" : ""}`} />
@@ -138,7 +138,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
       <div className="hidden lg:flex items-center gap-2 px-1 mb-3">
         <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
         <h3 className="text-xs font-semibold dash-text uppercase tracking-wider">
-          {lang === "fr" ? "Outils Agent" : "Agent Tools"}
+          {lang === "ar" ? "Outils Agent" : "Agent Tools"}
         </h3>
       </div>
 
@@ -152,7 +152,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
               key={tool.mode}
               onClick={() => {
                 if (!disabled) {
-                  onSelectMode(tool.mode, lang === "fr" ? tool.promptFr : tool.promptEn);
+                  onSelectMode(tool.mode, lang === "ar" ? tool.promptFr : tool.promptEn);
                   setMobileOpen(false);
                 }
               }}
@@ -165,14 +165,14 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
                 <div className={`p-1.5 rounded-lg transition-colors ${colorMap[tool.color]}`}>
                   <tool.icon className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-xs font-medium dash-text">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
+                <span className="text-xs font-medium dash-text">{lang === "ar" ? tool.labelAr : tool.labelEn}</span>
               </div>
               <p className="text-[10px] dash-muted-text leading-relaxed">
-                {lang === "fr" ? tool.descFr : tool.descEn}
+                {lang === "ar" ? tool.descFr : tool.descEn}
               </p>
               {disabled && (
                 <p className="text-[9px] text-[hsl(var(--warning,40_96%_50%))] mt-1 italic">
-                  {lang === "fr" ? "↑ Sélectionnez un lead d'abord" : "↑ Select a lead first"}
+                  {lang === "ar" ? "↑ Sélectionnez un lead d'abord" : "↑ Select a lead first"}
                 </p>
               )}
             </button>

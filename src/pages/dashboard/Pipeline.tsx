@@ -51,7 +51,7 @@ const Pipeline = () => {
       queryClient.invalidateQueries({ queryKey: ["leads"] });
       setNewLeadOpen(false);
       setForm({ first_name: "", last_name: "", email: "", phone: "", source: "manual" });
-      toast({ title: lang === "fr" ? "Lead ajouté !" : "Lead added!" });
+      toast({ title: lang === "ar" ? "Lead ajouté !" : "Lead added!" });
     },
     onError: (e: any) => toast({ variant: "destructive", title: "Error", description: e.message }),
   });
@@ -71,38 +71,38 @@ const Pipeline = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">Pipeline</h1>
-          <p className="dash-muted-text text-base sm:text-sm">{lang === "fr" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
+          <p className="dash-muted-text text-base sm:text-sm">{lang === "ar" ? "Suivez la progression de vos leads." : "Track your leads progression."}</p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
             <Button size="sm" className="gap-1.5 rounded-lg dash-btn-accent">
-              + {lang === "fr" ? "Nouveau lead" : "New lead"}
+              + {lang === "ar" ? "عميل جديد" : "New lead"}
             </Button>
           </DialogTrigger>
           <DialogContent className="dash-form-bg border-[hsl(var(--dash-border))]">
             <DialogHeader>
-              <DialogTitle className="dash-text">{lang === "fr" ? "Ajouter un lead" : "Add a lead"}</DialogTitle>
+              <DialogTitle className="dash-text">{lang === "ar" ? "إضافة عميل" : "Add a lead"}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => { e.preventDefault(); addLead.mutate(); }} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
-                <div><Label className="dash-text text-xs">{lang === "fr" ? "Prénom" : "First Name"}</Label><Input required value={form.first_name} onChange={e => setForm(p => ({ ...p, first_name: e.target.value }))} className="mt-1 dash-input" /></div>
-                <div><Label className="dash-text text-xs">{lang === "fr" ? "Nom" : "Last Name"}</Label><Input required value={form.last_name} onChange={e => setForm(p => ({ ...p, last_name: e.target.value }))} className="mt-1 dash-input" /></div>
+                <div><Label className="dash-text text-xs">{lang === "ar" ? "الاسم الأول" : "First Name"}</Label><Input required value={form.first_name} onChange={e => setForm(p => ({ ...p, first_name: e.target.value }))} className="mt-1 dash-input" /></div>
+                <div><Label className="dash-text text-xs">{lang === "ar" ? "الاسم العائلي" : "Last Name"}</Label><Input required value={form.last_name} onChange={e => setForm(p => ({ ...p, last_name: e.target.value }))} className="mt-1 dash-input" /></div>
               </div>
               <div><Label className="dash-text text-xs">Email</Label><Input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} className="mt-1 dash-input" /></div>
-              <div><Label className="dash-text text-xs">{lang === "fr" ? "Téléphone" : "Phone"}</Label><Input value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} className="mt-1 dash-input" /></div>
+              <div><Label className="dash-text text-xs">{lang === "ar" ? "الهاتف" : "Phone"}</Label><Input value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} className="mt-1 dash-input" /></div>
               <div><Label className="dash-text text-xs">Source</Label>
                 <Select value={form.source} onValueChange={v => setForm(p => ({ ...p, source: v }))}>
                   <SelectTrigger className="mt-1 dash-input"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="manual">{lang === "fr" ? "Manuel" : "Manual"}</SelectItem>
+                    <SelectItem value="manual">{lang === "ar" ? "Manuel" : "Manual"}</SelectItem>
                     <SelectItem value="meta_ads">Meta Ads</SelectItem>
                     <SelectItem value="google_sheet">Google Sheet</SelectItem>
-                    <SelectItem value="referral">{lang === "fr" ? "Parrainage" : "Referral"}</SelectItem>
+                    <SelectItem value="referral">{lang === "ar" ? "Parrainage" : "Referral"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <Button type="submit" className="w-full dash-btn-accent" disabled={addLead.isPending}>
-                {addLead.isPending ? "..." : lang === "fr" ? "Ajouter" : "Add"}
+                {addLead.isPending ? "..." : lang === "ar" ? "إضافة" : "Add"}
               </Button>
             </form>
           </DialogContent>
@@ -112,7 +112,7 @@ const Pipeline = () => {
       {/* Vivid pipeline progress bar */}
       {totalLeads > 0 && (
         <div className="dash-card rounded-xl p-4 mb-5">
-          <p className="text-sm sm:text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "fr" ? "Répartition" : "Distribution"}</p>
+          <p className="text-sm sm:text-xs font-medium dash-muted-text mb-2 uppercase tracking-wider">{lang === "ar" ? "Répartition" : "Distribution"}</p>
           <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
             {Object.entries(stageLabels).map(([key, label]) => {
               const count = leads.filter((l: any) => l.stage === key).length;
@@ -121,7 +121,7 @@ const Pipeline = () => {
                 <div key={key} className={`h-full ${label.barColor} rounded-full transition-all relative group`}
                   style={{ width: `${(count / totalLeads) * 100}%`, minWidth: 8 }}>
                   <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[hsl(var(--dash-fg))] text-[hsl(var(--dash-card))] text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                    {lang === "fr" ? label.fr : label.en}: {count}
+                    {lang === "ar" ? label.fr : label.en}: {count}
                   </div>
                 </div>
               );
@@ -134,7 +134,7 @@ const Pipeline = () => {
               return (
                 <div key={key} className="flex items-center gap-1.5 text-xs sm:text-[11px] dash-muted-text">
                   <div className={`w-2 h-2 rounded-full ${label.barColor}`} />
-                  {lang === "fr" ? label.fr : label.en}: {count}
+                  {lang === "ar" ? label.fr : label.en}: {count}
                 </div>
               );
             })}
@@ -156,7 +156,7 @@ const Pipeline = () => {
             <tbody>
               {leads.length === 0 ? (
                 <tr><td colSpan={6} className="text-center py-14 dash-muted-text text-base sm:text-sm">
-                  {lang === "fr" ? "Aucun lead. Ajoutez votre premier lead !" : "No leads. Add your first lead!"}
+                  {lang === "ar" ? "Aucun lead. Ajoutez votre premier lead !" : "No leads. Add your first lead!"}
                 </td></tr>
               ) : (
                 leads.map((lead: any) => {
@@ -172,7 +172,7 @@ const Pipeline = () => {
                           </SelectTrigger>
                           <SelectContent>
                             {Object.entries(stageLabels).map(([k, v]) => (
-                              <SelectItem key={k} value={k}>{lang === "fr" ? v.fr : v.en}</SelectItem>
+                              <SelectItem key={k} value={k}>{lang === "ar" ? v.fr : v.en}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>

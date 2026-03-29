@@ -19,7 +19,7 @@ import UpgradeToProDialog from "./UpgradeToProDialog";
 type NavItem = {
   path: string;
   icon: typeof LayoutDashboard;
-  labelFr: string;
+  labelAr: string;
   labelEn: string;
   exact?: boolean;
   badge?: string;
@@ -27,24 +27,24 @@ type NavItem = {
 };
 
 const allNavItems: NavItem[] = [
-  { path: "/dashboard", icon: LayoutDashboard, labelFr: "Tableau de bord", labelEn: "Dashboard", exact: true },
-  { path: "/dashboard/academy", icon: GraduationCap, labelFr: "Academy", labelEn: "Academy" },
-  { path: "/dashboard/pipeline", icon: GitBranch, labelFr: "Pipeline", labelEn: "Pipeline" },
-  { path: "/dashboard/import-leads", icon: Upload, labelFr: "Import Leads", labelEn: "Import Leads" },
-  { path: "/dashboard/commissions", icon: DollarSign, labelFr: "Commissions", labelEn: "Commissions" },
-  { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
-  { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelFr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
-  { path: "/dashboard/library", icon: BookOpen, labelFr: "Bibliothèque", labelEn: "Library", badge: "NEW", tier: "pro" },
-  { path: "/dashboard/simulator", icon: Calculator, labelFr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelFr: "Calendrier", labelEn: "Calendar", tier: "pro" },
-  { path: "/dashboard/referrals", icon: Users, labelFr: "Mes Filleuls", labelEn: "My Referrals" },
-  { path: "/dashboard/bonus", icon: Trophy, labelFr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
-  { path: "/dashboard/community", icon: MessageCircle, labelFr: "Community", labelEn: "Community" },
+  { path: "/dashboard", icon: LayoutDashboard, labelAr: "Tableau de bord", labelEn: "Dashboard", exact: true },
+  { path: "/dashboard/academy", icon: GraduationCap, labelAr: "Academy", labelEn: "Academy" },
+  { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "Pipeline", labelEn: "Pipeline" },
+  { path: "/dashboard/import-leads", icon: Upload, labelAr: "Import Leads", labelEn: "Import Leads" },
+  { path: "/dashboard/commissions", icon: DollarSign, labelAr: "Commissions", labelEn: "Commissions" },
+  { path: "/dashboard/payments", icon: CreditCard, labelAr: "Paiements", labelEn: "Payments" },
+  { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
+  { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+  { path: "/dashboard/library", icon: BookOpen, labelAr: "Bibliothèque", labelEn: "Library", badge: "NEW", tier: "pro" },
+  { path: "/dashboard/simulator", icon: Calculator, labelAr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
+  { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "Calendrier", labelEn: "Calendar", tier: "pro" },
+  { path: "/dashboard/referrals", icon: Users, labelAr: "Mes Filleuls", labelEn: "My Referrals" },
+  { path: "/dashboard/bonus", icon: Trophy, labelAr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
+  { path: "/dashboard/community", icon: MessageCircle, labelAr: "Community", labelEn: "Community" },
 ];
 
 const langs: { code: "fr" | "en"; flag: string }[] = [
-  { code: "fr", flag: "🇫🇷" },
+  { code: "en", flag: "🇬🇧" },
   { code: "en", flag: "🇬🇧" },
 ];
 
@@ -145,7 +145,7 @@ const DashboardLayout = () => {
                 }`}
               >
                 <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
-                <span>{lang === "fr" ? item.labelFr : item.labelEn}</span>
+                <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
                 {item.badge && (
                   <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
                     item.badge === "AI" 
@@ -172,8 +172,8 @@ const DashboardLayout = () => {
               <ArrowUpCircle className="w-4 h-4" />
             </div>
             <div className="flex-1 text-left">
-              <p className="text-[11px] font-semibold text-[hsl(var(--dash-fg))]">{lang === "fr" ? "Passer à Pro" : "Upgrade to Pro"}</p>
-              <p className="text-[9px] text-[hsl(var(--dash-muted-fg))]">{lang === "fr" ? "Gratuit • Outils avancés" : "Free • Advanced tools"}</p>
+              <p className="text-[11px] font-semibold text-[hsl(var(--dash-fg))]">{lang === "ar" ? "الترقية إلى Pro" : "Upgrade to Pro"}</p>
+              <p className="text-[9px] text-[hsl(var(--dash-muted-fg))]">{lang === "ar" ? "مجاني • أدوات متقدمة" : "Free • Advanced tools"}</p>
             </div>
           </button>
         </div>
@@ -207,7 +207,7 @@ const DashboardLayout = () => {
           className="flex items-center gap-2 text-[13px] text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors w-full px-1"
         >
           <LogOut className="w-4 h-4" />
-          {lang === "fr" ? "Déconnexion" : "Sign Out"}
+          {lang === "ar" ? "تسجيل الخروج" : "Sign Out"}
         </button>
       </div>
     </div>
@@ -237,7 +237,7 @@ const DashboardLayout = () => {
           <button
             onClick={() => setSidebarOpen((prev) => !prev)}
             className="lg:hidden text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors"
-            aria-label={lang === "fr" ? "Ouvrir ou fermer le menu" : "Toggle menu"}
+            aria-label={lang === "ar" ? "فتح أو إغلاق القائمة" : "Toggle menu"}
           >
             <Menu className="w-5 h-5" />
           </button>

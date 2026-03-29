@@ -41,12 +41,12 @@ const DashboardHome = () => {
   const convRate = totalLeads > 0 ? Math.round((accepted / totalLeads) * 100) : 0;
 
   const kpis = [
-    { labelFr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a" },
-    { labelFr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b" },
-    { labelFr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c" },
-    { labelFr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d" },
-    { labelFr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e" },
-    { labelFr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED " },
+    { labelAr: "Leads", labelEn: "Leads", value: totalLeads, icon: Users, blockClass: "dash-block-a", iconClass: "dash-icon-a" },
+    { labelAr: "Qualifiés", labelEn: "Qualified", value: qualified, icon: GitBranch, blockClass: "dash-block-b", iconClass: "dash-icon-b" },
+    { labelAr: "Acceptés", labelEn: "Accepted", value: accepted, icon: CheckCircle, blockClass: "dash-block-c", iconClass: "dash-icon-c" },
+    { labelAr: "Bookings", labelEn: "Bookings", value: booked, icon: Target, blockClass: "dash-block-d", iconClass: "dash-icon-d" },
+    { labelAr: "Taux conv.", labelEn: "Conv. rate", value: `${convRate}%`, icon: TrendingUp, blockClass: "dash-block-e", iconClass: "dash-icon-e" },
+    { labelAr: "Commissions", labelEn: "Commissions", value: `${totalComm.toLocaleString()}`, icon: DollarSign, blockClass: "dash-block-f", iconClass: "dash-icon-f", prefix: "AED " },
   ];
 
   const recentLeads = leads.slice(0, 5);
@@ -56,10 +56,10 @@ const DashboardHome = () => {
       {/* Greeting */}
       <div className="mb-8">
         <h1 className="text-2xl font-display font-bold dash-text tracking-tight">
-          {lang === "fr" ? "Bienvenue" : "Welcome"}, {user?.email?.split("@")[0]} 👋
+          {lang === "ar" ? "مرحباً" : "Welcome"}, {user?.email?.split("@")[0]} 👋
         </h1>
         <p className="dash-muted-text text-sm mt-1">
-          {lang === "fr" ? "Voici le résumé de votre activité." : "Here's your activity overview."}
+          {lang === "ar" ? "إليك ملخص نشاطك." : "Here's your activity overview."}
         </p>
       </div>
 
@@ -75,7 +75,7 @@ const DashboardHome = () => {
                 </div>
               </div>
               <p className="text-2xl font-display font-bold dash-text tracking-tight">{kpi.prefix || ""}{kpi.value}</p>
-              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</span>
+              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
             </div>
           </motion.div>
         ))}
@@ -93,14 +93,14 @@ const DashboardHome = () => {
               Commissions
             </h2>
             <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-medium text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.8)] flex items-center gap-0.5 transition-colors">
-              {lang === "fr" ? "Détails" : "Details"} <ArrowUpRight className="w-3 h-3" />
+              {lang === "ar" ? "التفاصيل" : "Details"} <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
           <div className="space-y-3">
             {[
-              { label: lang === "fr" ? "Estimées" : "Estimated", value: estComm, color: "dash-bar-b" },
-              { label: lang === "fr" ? "Validées" : "Validated", value: valComm, color: "dash-bar-a" },
-              { label: lang === "fr" ? "Payées" : "Paid", value: paidComm, color: "dash-bar-c" },
+              { label: lang === "ar" ? "تقديرية" : "Estimated", value: estComm, color: "dash-bar-b" },
+              { label: lang === "ar" ? "مؤكدة" : "Validated", value: valComm, color: "dash-bar-a" },
+              { label: lang === "ar" ? "مدفوعة" : "Paid", value: paidComm, color: "dash-bar-c" },
             ].map((item, i) => (
               <div key={i}>
                 <div className="flex justify-between text-xs mb-1.5">
@@ -127,7 +127,7 @@ const DashboardHome = () => {
               <div className="p-1.5 rounded-lg dash-icon-a">
                 <Users className="w-3.5 h-3.5" />
               </div>
-              {lang === "fr" ? "Leads récents" : "Recent Leads"}
+              {lang === "ar" ? "العملاء الأخيرون" : "Recent Leads"}
             </h2>
             <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-medium text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.8)] flex items-center gap-0.5 transition-colors">
               Pipeline <ArrowUpRight className="w-3 h-3" />
@@ -136,7 +136,7 @@ const DashboardHome = () => {
           {recentLeads.length === 0 ? (
             <div className="text-center py-10 dash-muted-text text-sm">
               <Users className="w-8 h-8 mx-auto mb-2 opacity-30" />
-              {lang === "fr" ? "Aucun lead. Importez vos premiers leads !" : "No leads yet. Import your first leads!"}
+              {lang === "ar" ? "لا يوجد عملاء بعد. قم باستيراد عملائك الأوائل!" : "No leads yet. Import your first leads!"}
             </div>
           ) : (
             <div className="space-y-0">
@@ -162,10 +162,10 @@ const DashboardHome = () => {
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { labelFr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", blockClass: "dash-block-a", iconClass: "dash-icon-a" },
-          { labelFr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", blockClass: "dash-block-d", iconClass: "dash-icon-d" },
-          { labelFr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", blockClass: "dash-block-b", iconClass: "dash-icon-b" },
-          { labelFr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", blockClass: "dash-block-c", iconClass: "dash-icon-c" },
+          { labelAr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", blockClass: "dash-block-a", iconClass: "dash-icon-a" },
+          { labelAr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", blockClass: "dash-block-d", iconClass: "dash-icon-d" },
+          { labelAr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", blockClass: "dash-block-b", iconClass: "dash-icon-b" },
+          { labelAr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", blockClass: "dash-block-c", iconClass: "dash-icon-c" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }}
@@ -174,7 +174,7 @@ const DashboardHome = () => {
               <action.icon className="w-4 h-4" />
             </div>
             <span className="relative text-sm font-medium dash-text group-hover:text-[hsl(var(--dash-accent))] transition-colors">
-              {lang === "fr" ? action.labelFr : action.labelEn}
+              {lang === "ar" ? action.labelAr : action.labelEn}
             </span>
           </motion.button>
         ))}

@@ -21,25 +21,25 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
   const [generating, setGenerating] = useState(false);
 
   const kpis = [
-    { label: lang === "fr" ? "ROI Total" : "Total ROI", value: fmtPct(results.totalROI), icon: TrendingUp, color: "bg-emerald-100 text-emerald-600", positive: results.totalROI > 0 },
-    { label: lang === "fr" ? "ROI Annualisé" : "Annualized ROI", value: fmtPct(results.annualizedROI), icon: Percent, color: "bg-blue-100 text-blue-600", positive: results.annualizedROI > 0 },
-    { label: lang === "fr" ? "Rendement Brut" : "Gross Yield", value: fmtPct(results.grossYield), icon: BarChart3, color: "bg-violet-100 text-violet-600", positive: true },
-    { label: lang === "fr" ? "Rendement Net" : "Net Yield", value: fmtPct(results.netYield), icon: PiggyBank, color: "bg-amber-100 text-amber-600", positive: results.netYield > 0 },
-    { label: lang === "fr" ? "Cashflow Mensuel" : "Monthly Cashflow", value: `AED ${fmt(results.netMonthlyCashflow)}`, icon: DollarSign, color: "bg-cyan-100 text-cyan-600", positive: results.netMonthlyCashflow > 0 },
-    { label: lang === "fr" ? "Plus-value" : "Capital Gain", value: `AED ${fmt(results.capitalGain)}`, icon: TrendingUp, color: "bg-pink-100 text-pink-600", positive: results.capitalGain > 0 },
-    { label: lang === "fr" ? "Valeur Future" : "Future Value", value: `AED ${fmt(results.futureValue)}`, icon: Home, color: "bg-indigo-100 text-indigo-600", positive: true },
-    { label: lang === "fr" ? "Break-even" : "Break-even", value: results.breakEvenMonths ? `${results.breakEvenMonths} ${lang === "fr" ? "mois" : "months"}` : "N/A", icon: Clock, color: "bg-orange-100 text-orange-600", positive: true },
+    { label: lang === "ar" ? "ROI Total" : "Total ROI", value: fmtPct(results.totalROI), icon: TrendingUp, color: "bg-emerald-100 text-emerald-600", positive: results.totalROI > 0 },
+    { label: lang === "ar" ? "ROI Annualisé" : "Annualized ROI", value: fmtPct(results.annualizedROI), icon: Percent, color: "bg-blue-100 text-blue-600", positive: results.annualizedROI > 0 },
+    { label: lang === "ar" ? "Rendement Brut" : "Gross Yield", value: fmtPct(results.grossYield), icon: BarChart3, color: "bg-violet-100 text-violet-600", positive: true },
+    { label: lang === "ar" ? "Rendement Net" : "Net Yield", value: fmtPct(results.netYield), icon: PiggyBank, color: "bg-amber-100 text-amber-600", positive: results.netYield > 0 },
+    { label: lang === "ar" ? "Cashflow Mensuel" : "Monthly Cashflow", value: `AED ${fmt(results.netMonthlyCashflow)}`, icon: DollarSign, color: "bg-cyan-100 text-cyan-600", positive: results.netMonthlyCashflow > 0 },
+    { label: lang === "ar" ? "Plus-value" : "Capital Gain", value: `AED ${fmt(results.capitalGain)}`, icon: TrendingUp, color: "bg-pink-100 text-pink-600", positive: results.capitalGain > 0 },
+    { label: lang === "ar" ? "Valeur Future" : "Future Value", value: `AED ${fmt(results.futureValue)}`, icon: Home, color: "bg-indigo-100 text-indigo-600", positive: true },
+    { label: lang === "ar" ? "Break-even" : "Break-even", value: results.breakEvenMonths ? `${results.breakEvenMonths} ${lang === "ar" ? "mois" : "months"}` : "N/A", icon: Clock, color: "bg-orange-100 text-orange-600", positive: true },
   ];
 
   const pieData = [
-    { name: lang === "fr" ? "Prix du bien" : "Property Price", value: results.price },
+    { name: lang === "ar" ? "Prix du bien" : "Property Price", value: results.price },
     { name: "DLD Fee (4%)", value: results.dldFee },
-    { name: lang === "fr" ? "Frais admin" : "Admin Fee", value: results.adminFee },
-    { name: lang === "fr" ? "Frais courtier" : "Broker Fee", value: results.brokerFee },
+    { name: lang === "ar" ? "Frais admin" : "Admin Fee", value: results.adminFee },
+    { name: lang === "ar" ? "Frais courtier" : "Broker Fee", value: results.brokerFee },
   ];
 
   const projectionData = results.yearlyProjection.map((y) => ({
-    name: `${lang === "fr" ? "An" : "Y"}${y.year}`,
+    name: `${lang === "ar" ? "An" : "Y"}${y.year}`,
     value: y.propertyValue,
     rental: y.totalRental,
     roi: y.roi,
@@ -139,24 +139,24 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2 text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))]">
           <ArrowLeft className="w-4 h-4" />
-          {lang === "fr" ? "Nouvelle simulation" : "New Simulation"}
+          {lang === "ar" ? "Nouvelle simulation" : "New Simulation"}
         </Button>
         <Button onClick={generatePDF} disabled={generating} className="dash-btn-accent rounded-xl gap-2 h-10 px-5 text-sm">
           {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileDown className="w-4 h-4" />}
-          {lang === "fr" ? "Télécharger PDF" : "Download PDF"}
+          {lang === "ar" ? "Télécharger PDF" : "Download PDF"}
         </Button>
       </div>
 
       {/* Summary banner */}
       <div className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl p-6 text-white">
         <h2 className="text-xl font-bold font-display mb-2">
-          {lang === "fr" ? "Résultat de votre simulation" : "Your Simulation Results"}
+          {lang === "ar" ? "Résultat de votre simulation" : "Your Simulation Results"}
         </h2>
         <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm opacity-90">
           <span>{results.propertyType} · {results.areaLabel}</span>
           <span>AED {fmt(results.price)}</span>
           <span>{results.paymentPlan} plan</span>
-          <span>{lang === "fr" ? "Livraison" : "Handover"} {results.handoverYear}</span>
+          <span>{lang === "ar" ? "Livraison" : "Handover"} {results.handoverYear}</span>
         </div>
       </div>
 
@@ -179,7 +179,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-            {lang === "fr" ? "Projection de valeur" : "Value Projection"}
+            {lang === "ar" ? "Projection de valeur" : "Value Projection"}
           </h3>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={projectionData}>
@@ -199,7 +199,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
         </div>
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-            {lang === "fr" ? "Répartition des coûts" : "Cost Breakdown"}
+            {lang === "ar" ? "Répartition des coûts" : "Cost Breakdown"}
           </h3>
           <div className="flex items-center gap-4">
             <ResponsiveContainer width="50%" height={200}>
@@ -225,7 +225,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       {/* ROI Bar */}
       <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
         <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-          {lang === "fr" ? "ROI cumulé par année" : "Cumulative ROI by Year"}
+          {lang === "ar" ? "ROI cumulé par année" : "Cumulative ROI by Year"}
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={projectionData}>
@@ -242,24 +242,24 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-            {lang === "fr" ? "Revenus & Charges annuels" : "Annual Income & Expenses"}
+            {lang === "ar" ? "Revenus & Charges annuels" : "Annual Income & Expenses"}
           </h3>
           <div className="space-y-3">
-            <BarItem label={lang === "fr" ? "Loyer brut annuel" : "Gross Annual Rental"} value={results.annualRental} max={results.annualRental} color="bg-emerald-500" />
-            <BarItem label={lang === "fr" ? "Loyer effectif" : "Effective Rental"} value={results.effectiveRental} max={results.annualRental} color="bg-blue-500" />
-            <BarItem label={lang === "fr" ? "Service Charges" : "Service Charges"} value={results.annualServiceCharge} max={results.annualRental} color="bg-amber-500" />
-            <BarItem label={lang === "fr" ? "Assurance" : "Insurance"} value={results.annualInsurance} max={results.annualRental} color="bg-red-400" />
+            <BarItem label={lang === "ar" ? "Loyer brut annuel" : "Gross Annual Rental"} value={results.annualRental} max={results.annualRental} color="bg-emerald-500" />
+            <BarItem label={lang === "ar" ? "Loyer effectif" : "Effective Rental"} value={results.effectiveRental} max={results.annualRental} color="bg-blue-500" />
+            <BarItem label={lang === "ar" ? "Service Charges" : "Service Charges"} value={results.annualServiceCharge} max={results.annualRental} color="bg-amber-500" />
+            <BarItem label={lang === "ar" ? "Assurance" : "Insurance"} value={results.annualInsurance} max={results.annualRental} color="bg-red-400" />
           </div>
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
-              <span className="text-[hsl(var(--dash-fg))]">{lang === "fr" ? "Revenu net annuel" : "Net Annual Income"}</span>
+              <span className="text-[hsl(var(--dash-fg))]">{lang === "ar" ? "Revenu net annuel" : "Net Annual Income"}</span>
               <span className={results.netAnnualIncome > 0 ? "text-emerald-600" : "text-red-500"}>AED {fmt(results.netAnnualIncome)}</span>
             </div>
           </div>
         </div>
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
-            {lang === "fr" ? "Échéancier de paiement" : "Payment Schedule"}
+            {lang === "ar" ? "Échéancier de paiement" : "Payment Schedule"}
           </h3>
           <div className="space-y-3">
             {results.paymentSchedule.map((p, i) => (
@@ -275,7 +275,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           </div>
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
-              <span>{lang === "fr" ? "Coût total" : "Total Acquisition"}</span>
+              <span>{lang === "ar" ? "Coût total" : "Total Acquisition"}</span>
               <span className="text-[hsl(var(--dash-accent))]">AED {fmt(results.totalAcquisition)}</span>
             </div>
           </div>

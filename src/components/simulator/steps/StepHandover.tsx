@@ -11,10 +11,10 @@ const StepHandover = ({ value, onChange, lang }: Props) => (
   <div>
     <div className="text-center mb-8">
       <h2 className="text-2xl font-bold text-[hsl(var(--dash-fg))] font-display">
-        📅 {lang === "fr" ? "Date de livraison" : "Expected Handover"}
+        📅 {lang === "ar" ? "تاريخ التسليم" : "Expected Handover"}
       </h2>
       <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-2">
-        {lang === "fr" ? "Quand prévoyez-vous de recevoir votre bien ?" : "When do you expect to receive your property?"}
+        {lang === "ar" ? "متى تتوقع استلام عقارك؟" : "When do you expect to receive your property?"}
       </p>
     </div>
     <div className="grid grid-cols-3 gap-3">
@@ -36,9 +36,9 @@ const StepHandover = ({ value, onChange, lang }: Props) => (
     </div>
 
     <div className="mt-6 p-4 rounded-xl bg-blue-50 border border-blue-100">
-      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "fr" ? "POURQUOI C'EST IMPORTANT ?" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-blue-700 leading-relaxed">
-        {lang === "fr"
+        {lang === "ar"
           ? "La date de livraison détermine quand vous commencerez à percevoir des revenus locatifs. Jusque-là, votre capital est investi pendant la construction sans rendement. Cela aide à calculer votre rendement réel plus précisément."
           : "The handover date determines when you can start earning rental income. Until then, your capital is invested during construction with no returns. This helps calculate your actual cash-on-cash return more accurately."}
       </p>
