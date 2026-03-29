@@ -12,6 +12,7 @@ const DashboardHome = () => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const isMobile = useIsMobile();
 
   const { data: leads = [] } = useQuery({
     queryKey: ["leads", user?.id],
