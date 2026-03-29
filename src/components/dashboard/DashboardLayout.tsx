@@ -114,11 +114,11 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--primary))] tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-sidebar-active))] tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]">PRO</span>
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]">PRO</span>
           )}
           {ambassadorTier === "ambassador_plus" && (
             <Crown className="w-3.5 h-3.5 text-amber-400" />
@@ -150,7 +150,7 @@ const DashboardLayout = () => {
                 {item.badge && (
                   <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
                     item.badge === "AI" 
-                      ? "bg-[hsl(var(--primary)/.15)] text-[hsl(var(--primary))]" 
+                      ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
                       : "bg-emerald-500/15 text-emerald-400"
                   }`}>
                     {item.badge}
@@ -167,7 +167,7 @@ const DashboardLayout = () => {
         <div className="px-3 pb-2">
           <button
             onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary)/.1)] to-[hsl(var(--primary)/.05)] border border-[hsl(var(--primary)/.2)] text-[hsl(var(--primary))] hover:from-[hsl(var(--primary)/.15)] hover:to-[hsl(var(--primary)/.1)] transition-all duration-200 group"
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-[hsl(217,91%,60%,.12)] to-[hsl(263,70%,58%,.08)] border border-[hsl(217,91%,60%,.2)] text-[hsl(var(--dash-sidebar-active))] hover:from-[hsl(217,91%,60%,.18)] hover:to-[hsl(263,70%,58%,.12)] transition-all duration-200 group"
           >
             <ArrowUpCircle className="w-4 h-4 shrink-0" />
             <div className="flex-1 text-left">
@@ -181,7 +181,7 @@ const DashboardLayout = () => {
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--primary)/.6)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(217,91%,60%)] to-[hsl(263,70%,58%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
@@ -262,7 +262,7 @@ const DashboardLayout = () => {
             </button>
             <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] relative">
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[hsl(var(--primary))] rounded-full" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[hsl(var(--dash-accent))] rounded-full" />
             </button>
           </div>
         </header>
