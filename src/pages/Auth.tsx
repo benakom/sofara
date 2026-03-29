@@ -117,8 +117,32 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Validate phone
+    const digits = phone.replace(/\D/g, "");
+    const pErr = validatePhone(digits, phoneCode);
+    if (pErr) {
+      setPhoneError(pErr);
+      return;
+    }
+    if (!firstName.trim() || !lastName.trim() || !occupation) {
+      toast({ variant: "destructive", title: lang === "fr" ? "Champs requis" : "Required fields", description: lang === "fr" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
+      return;
+    }
     setLoading(true);
-    const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin } });
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          full_name: `${firstName.trim()} ${lastName.trim()}`,
+          phone: `${phoneCode}${digits}`,
+          occupation,
+        },
+      },
+    });
     setLoading(false);
     if (error) {
       toast({ variant: "destructive", title: lang === "fr" ? "Erreur d'inscription" : "Signup error", description: error.message });
