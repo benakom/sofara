@@ -1,5 +1,6 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Link } from "react-router-dom";
+import { Instagram } from "lucide-react";
 
 const FooterSection = () => {
   const { t } = useLanguage();
