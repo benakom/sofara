@@ -40,9 +40,8 @@ const Commissions = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-[22px] font-semibold text-[hsl(var(--dash-fg))] tracking-[-0.02em] mb-0.5">{lang === "ar" ? "العمولات" : "Commissions"}</h1>
-      <p className="text-[hsl(var(--dash-muted-fg))] text-xs mt-0.5 mb-1">{lang === "ar" ? "تتبع مفصل لعمولاتك." : "Detailed tracking of your commissions."}</p>
-      <p className="text-[32px] font-bold text-[hsl(var(--dash-fg))] tracking-[-0.02em] mb-5">AED {total.toLocaleString()}<span className="text-sm font-normal text-[hsl(var(--dash-muted-fg))]">.00</span></p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "العمولات" : "Commissions"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "تتبع مفصل لعمولاتك." : "Detailed tracking of your commissions."}</p>
 
       {/* KPI row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">

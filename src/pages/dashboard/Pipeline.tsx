@@ -70,15 +70,12 @@ const Pipeline = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-[22px] font-semibold text-[hsl(var(--dash-fg))] tracking-[-0.02em]">
-            {lang === "ar" ? "العملاء" : "My Leads"}
-            <span className="ml-2 inline-flex items-center justify-center w-7 h-7 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))] text-xs font-bold">{totalLeads}</span>
-          </h1>
-          <p className="text-[hsl(var(--dash-muted-fg))] text-xs mt-0.5">{lang === "ar" ? "تتبع تقدم عملائك." : "Track your leads progression."}</p>
+          <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight">Pipeline</h1>
+          <p className="dash-muted-text text-xs mt-0.5">{lang === "ar" ? "تتبع تقدم عملائك." : "Track your leads progression."}</p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" className="gap-1.5 rounded-full dash-btn-primary text-sm">
+            <Button size="sm" className="gap-1.5 rounded-lg dash-btn-accent">
               + {lang === "ar" ? "عميل جديد" : "New lead"}
             </Button>
           </DialogTrigger>

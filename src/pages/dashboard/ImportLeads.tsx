@@ -19,8 +19,8 @@ const ImportLeads = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-[22px] font-semibold text-[hsl(var(--dash-fg))] tracking-[-0.02em] mb-1">{lang === "ar" ? "استيراد العملاء" : "Import Leads"}</h1>
-      <p className="text-[hsl(var(--dash-muted-fg))] text-xs mt-0.5 mb-6">{lang === "ar" ? "قم بتحميل عملائك بطرق مختلفة" : "Upload your leads through different methods"}</p>
+      <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight mb-1">{lang === "ar" ? "استيراد العملاء" : "Import Leads"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-6">{lang === "ar" ? "قم بتحميل عملائك بطرق مختلفة" : "Upload your leads through different methods"}</p>
 
       <div className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
