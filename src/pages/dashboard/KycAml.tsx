@@ -62,7 +62,7 @@ const KycAml = () => {
             <span className="text-xs dash-muted-text">{checkedCount}/{totalDocs}</span>
           </div>
           {/* Progress */}
-          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-4">
+          <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-4">
             <div className="h-full bg-blue-500 rounded-full transition-all" style={{ width: `${totalDocs > 0 ? (checkedCount / totalDocs) * 100 : 0}%` }} />
           </div>
           <div className="space-y-2">

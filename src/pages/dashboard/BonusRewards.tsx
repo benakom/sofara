@@ -83,7 +83,7 @@ const BonusRewards = () => {
                   <ch.icon className="w-3.5 h-3.5 text-amber-500" />
                   <span className="text-xs font-medium dash-text">{lang === "ar" ? ch.titleFr : ch.titleEn}</span>
                 </div>
-                <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-1">
+                <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-1">
                   <div className="h-full bg-amber-400 rounded-full" style={{ width: `${(ch.progress / ch.target) * 100}%` }} />
                 </div>
                 <div className="flex justify-between text-[10px]">

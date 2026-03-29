@@ -261,9 +261,9 @@ const Academy = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       {/* Header */}
       <div className="mb-5">
-        <h1 className="text-2xl sm:text-xl font-display font-bold dash-text">🎓 Sofara Academy</h1>
-        <p className="dash-muted-text text-base sm:text-sm mt-1">
-          {lang === "ar" ? "Formez-vous et devenez un expert de l'immobilier à Dubai" : "Train yourself and become a Dubai real estate expert"}
+        <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight">🎓 Sofara Academy</h1>
+        <p className="dash-muted-text text-xs mt-0.5">
+          {lang === "ar" ? "تدرب وكن خبيرًا في العقارات في دبي" : "Train yourself and become a Dubai real estate expert"}
         </p>
       </div>
 
@@ -275,7 +275,7 @@ const Academy = () => {
           { labelAr: "Leçons", labelEn: "Lessons", value: totalLessons, icon: GraduationCap, accent: "bg-emerald-100 text-emerald-600" },
           { labelAr: "Votre XP", labelEn: "Your XP", value: `${userXP}/${nextLevelXP}`, icon: Zap, accent: "bg-amber-100 text-amber-600" },
         ].map((s, i) => (
-          <div key={i} className="dash-card rounded-xl p-3.5">
+          <div key={i} className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-1.5">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
@@ -444,7 +444,7 @@ const Academy = () => {
 
       {/* Gamification footer */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="dash-card rounded-xl p-4">
+        <div className="dash-card rounded-2xl p-5">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-amber-50"><Trophy className="w-5 h-5 text-amber-500" /></div>
             <div>
@@ -452,12 +452,12 @@ const Academy = () => {
               <p className="text-xs dash-muted-text">{userXP}/{nextLevelXP} XP</p>
             </div>
           </div>
-          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full transition-all" style={{ width: `${(userXP / nextLevelXP) * 100}%` }} />
           </div>
         </div>
 
-        <div className="dash-card rounded-xl p-4">
+        <div className="dash-card rounded-2xl p-5">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-emerald-50"><Award className="w-5 h-5 text-emerald-500" /></div>
             <div>
@@ -465,12 +465,12 @@ const Academy = () => {
               <p className="text-xs dash-muted-text">{completedCourses}/{courses.length}</p>
             </div>
           </div>
-          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all" style={{ width: `${courses.length > 0 ? (completedCourses / courses.length) * 100 : 0}%` }} />
           </div>
         </div>
 
-        <div className="dash-card rounded-xl p-4">
+        <div className="dash-card rounded-2xl p-5">
           <h3 className="text-xs font-semibold dash-text uppercase tracking-wider mb-3">{lang === "ar" ? "Badges" : "Badges"}</h3>
           <div className="flex gap-2">
             {[
@@ -480,7 +480,7 @@ const Academy = () => {
               { icon: "🏆", label: "Top 10" },
               { icon: "💎", label: "Expert" },
             ].map((badge, i) => (
-              <div key={i} className="flex flex-col items-center gap-0.5 p-1.5 rounded-lg bg-gray-50 opacity-40" title={badge.label}>
+              <div key={i} className="flex flex-col items-center gap-0.5 p-1.5 rounded-lg bg-[hsl(var(--dash-muted))] opacity-40" title={badge.label}>
                 <span className="text-lg">{badge.icon}</span>
               </div>
             ))}

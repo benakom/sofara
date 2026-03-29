@@ -186,7 +186,7 @@ const Calendar = () => {
           { label: lang === "ar" ? "Cette semaine" : "This week", value: events.filter(e => { const d = parseISO(e.date); const now = new Date(); const weekEnd = addDays(now, 7); return d >= now && d <= weekEnd; }).length, sub: lang === "ar" ? "événements" : "events" },
           { label: lang === "ar" ? "Ce mois" : "This month", value: events.filter(e => isSameMonth(parseISO(e.date), currentMonth)).length, sub: lang === "ar" ? "total" : "total" },
         ].map((s, i) => (
-          <div key={i} className="dash-card rounded-xl p-3 sm:p-4">
+          <div key={i} className="dash-card rounded-2xl p-3 sm:p-4">
             <p className="text-xs text-[hsl(var(--dash-muted-fg))] mb-1">{s.label}</p>
             <p className="text-xl sm:text-2xl font-bold text-[hsl(var(--dash-fg))]">{s.value}</p>
             <p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{s.sub}</p>
@@ -196,7 +196,7 @@ const Calendar = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4 sm:gap-6">
         {/* Main calendar / agenda */}
-        <div className="dash-card rounded-xl overflow-hidden">
+        <div className="dash-card rounded-2xl overflow-hidden">
           {view === "month" ? (
             <>
               {/* Month navigation */}
@@ -315,7 +315,7 @@ const Calendar = () => {
         {/* Right sidebar — selected day detail */}
         <div className="space-y-4">
           {/* Selected date events */}
-          <div className="dash-card rounded-xl">
+          <div className="dash-card rounded-2xl">
             <div className="px-4 py-3 border-b border-[hsl(var(--dash-border))] flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-[hsl(var(--dash-fg))] capitalize">
