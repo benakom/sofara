@@ -52,17 +52,6 @@ const DashboardHome = () => {
           <div className="w-12 h-12 rounded-full bg-[hsl(var(--dash-dark))] flex items-center justify-center text-sm font-bold text-[hsl(var(--dash-lime))]">
             {userName.substring(0, 2).toUpperCase()}
           </div>
-          {/* Desktop lang toggle */}
-          <div className="hidden lg:flex items-center gap-1">
-            {[{ code: "en" as const, flag: "🇬🇧" }, { code: "ar" as const, flag: "🇦🇪" }].map((l) => (
-              <button key={l.code} onClick={() => {
-                const { setLang } = useLanguage();
-              }}
-                className="px-2 py-1 rounded-lg text-xs opacity-50 hover:opacity-100 transition-opacity">
-                {l.flag}
-              </button>
-            ))}
-          </div>
         </div>
         <div className="flex items-center gap-2">
           <button className="w-10 h-10 rounded-full bg-[hsl(var(--dash-muted))] flex items-center justify-center text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-border))] transition-colors">
