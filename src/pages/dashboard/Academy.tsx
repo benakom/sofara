@@ -220,7 +220,7 @@ const Academy = () => {
                 <span className="text-2xl font-display font-bold text-emerald-500">{lang === "fr" ? "Gratuit" : "Free"}</span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-semibold">{lang === "fr" ? "Inclus dans votre plan" : "Included in your plan"}</span>
               </div>
-              <button className="w-full py-3 rounded-xl bg-[hsl(var(--primary))] text-white font-semibold text-base hover:opacity-90 transition-opacity mb-3">
+              <button className="w-full py-3 rounded-xl dash-btn-accent text-base">
                 {lang === "fr" ? "Commencer le cours" : "Start course"}
               </button>
               <div className="space-y-2.5 text-sm">
@@ -270,10 +270,10 @@ const Academy = () => {
       {/* Stats banner */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
         {[
-          { labelFr: "Cours", labelEn: "Courses", value: courses.length, icon: BookOpen, accent: "bg-blue-50 text-blue-600" },
-          { labelFr: "Heures +", labelEn: "Hours +", value: `${totalHours}h`, icon: Clock, accent: "bg-violet-50 text-violet-600" },
-          { labelFr: "Leçons", labelEn: "Lessons", value: totalLessons, icon: GraduationCap, accent: "bg-emerald-50 text-emerald-600" },
-          { labelFr: "Votre XP", labelEn: "Your XP", value: `${userXP}/${nextLevelXP}`, icon: Zap, accent: "bg-amber-50 text-amber-600" },
+          { labelFr: "Cours", labelEn: "Courses", value: courses.length, icon: BookOpen, accent: "bg-blue-500/15 text-blue-400" },
+          { labelFr: "Heures +", labelEn: "Hours +", value: `${totalHours}h`, icon: Clock, accent: "bg-violet-500/15 text-violet-400" },
+          { labelFr: "Leçons", labelEn: "Lessons", value: totalLessons, icon: GraduationCap, accent: "bg-emerald-500/15 text-emerald-400" },
+          { labelFr: "Votre XP", labelEn: "Your XP", value: `${userXP}/${nextLevelXP}`, icon: Zap, accent: "bg-amber-500/15 text-amber-400" },
         ].map((s, i) => (
           <div key={i} className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-1.5">
@@ -329,7 +329,7 @@ const Academy = () => {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder={lang === "fr" ? "Rechercher un cours..." : "Search courses..."}
-            className="w-full h-10 pl-9 pr-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:dash-muted-text focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
+            className="w-full h-10 pl-9 pr-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:dash-muted-text focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)]"
           />
         </div>
         <div className="flex gap-2 overflow-x-auto scrollbar-none">
@@ -337,8 +337,8 @@ const Academy = () => {
             <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
               className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
                 activeCategory === cat.id
-                  ? "bg-[hsl(var(--primary))] text-white shadow-md"
-                  : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] dash-text hover:shadow-sm hover:border-[hsl(var(--primary)/.3)]"
+                  ? "dash-btn-accent shadow-md"
+                  : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] dash-text hover:shadow-sm hover:border-[hsl(var(--dash-accent)/.3)]"
               }`}>
               <cat.icon className="w-4 h-4" />
               {lang === "fr" ? cat.labelFr : cat.labelEn}
@@ -360,7 +360,7 @@ const Academy = () => {
 
       {/* Course grid */}
       {loading ? (
-        <div className="flex justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--primary))]" /></div>
+        <div className="flex justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-accent))]" /></div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-16 dash-muted-text">
           <GraduationCap className="w-12 h-12 mx-auto mb-3 opacity-30" />
@@ -416,7 +416,7 @@ const Academy = () => {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="text-base sm:text-[15px] font-display font-semibold dash-text line-clamp-2 group-hover:text-[hsl(var(--primary))] transition-colors leading-snug mb-1.5">
+                  <h3 className="text-base sm:text-[15px] font-display font-semibold dash-text line-clamp-2 group-hover:text-[hsl(var(--dash-accent))] transition-colors leading-snug mb-1.5">
                     {lang === "fr" ? course.title_fr : course.title_en}
                   </h3>
                   <p className="text-sm sm:text-xs dash-muted-text line-clamp-2 mb-3">{lang === "fr" ? course.description_fr : course.description_en}</p>

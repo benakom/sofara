@@ -54,42 +54,46 @@
     --font-display: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
 
-    --sidebar-background: 152 50% 15%;
-    --sidebar-foreground: 80 20% 95%;
-    --sidebar-primary: 72 100% 50%;
-    --sidebar-primary-foreground: 152 58% 18%;
-    --sidebar-accent: 150 35% 22%;
-    --sidebar-accent-foreground: 80 20% 95%;
-    --sidebar-border: 150 30% 24%;
-    --sidebar-ring: 72 100% 50%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 215 20% 85%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 30% 18%;
+    --sidebar-accent-foreground: 215 20% 90%;
+    --sidebar-border: 222 25% 18%;
+    --sidebar-ring: 217 91% 60%;
 
-    /* Dashboard sidebar - dark premium */
-    --dash-sidebar-bg: 152 50% 14%;
-    --dash-sidebar-fg: 140 15% 82%;
-    --dash-sidebar-active: 72 100% 50%;
-    --dash-sidebar-hover: 150 35% 20%;
-    --dash-sidebar-border: 150 30% 20%;
+    /* Dashboard sidebar - deep slate */
+    --dash-sidebar-bg: 222 47% 11%;
+    --dash-sidebar-fg: 215 20% 75%;
+    --dash-sidebar-active: 217 91% 60%;
+    --dash-sidebar-hover: 222 30% 16%;
+    --dash-sidebar-border: 222 25% 16%;
 
-    /* Dashboard content area - forest green */
-    --dash-bg: 152 57% 14%;
-    --dash-fg: 80 20% 92%;
-    --dash-card: 152 50% 18%;
-    --dash-card-fg: 80 20% 92%;
-    --dash-border: 152 40% 24%;
-    --dash-muted: 152 40% 21%;
-    --dash-muted-fg: 140 15% 58%;
+    /* Dashboard content area - charcoal slate */
+    --dash-bg: 224 30% 12%;
+    --dash-fg: 210 20% 93%;
+    --dash-card: 224 25% 16%;
+    --dash-card-fg: 210 20% 93%;
+    --dash-border: 222 20% 22%;
+    --dash-muted: 222 20% 19%;
+    --dash-muted-fg: 215 15% 55%;
 
     /* Dashboard form inputs */
-    --dash-input-bg: 152 45% 16%;
-    --dash-input-border: 152 35% 26%;
+    --dash-input-bg: 224 25% 14%;
+    --dash-input-border: 222 20% 25%;
 
     /* Dashboard accent tokens */
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.15), 0 1px 2px -1px rgba(0,0,0,0.1);
-    --dash-card-shadow-hover: 0 4px 12px -2px rgba(0,0,0,0.25), 0 2px 4px -2px rgba(0,0,0,0.15);
-    --dash-card-ring: 152 40% 28%;
-    --dash-success: 72 100% 50%;
+    --dash-accent: 217 91% 60%;
+    --dash-accent-fg: 0 0% 100%;
+    --dash-accent-gradient: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(263, 70%, 58%));
+    --dash-accent-glow: 0 0 30px -6px hsl(217, 91%, 60%, 0.35);
+    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.25), 0 1px 2px -1px rgba(0,0,0,0.15);
+    --dash-card-shadow-hover: 0 4px 12px -2px rgba(0,0,0,0.35), 0 2px 4px -2px rgba(0,0,0,0.2);
+    --dash-card-ring: 222 20% 28%;
+    --dash-success: 160 84% 39%;
     --dash-warning: 38 92% 50%;
-    --dash-info: 72 80% 60%;
+    --dash-info: 199 89% 48%;
   }
 }
 
@@ -312,13 +316,27 @@
 }
 
 .dash-input:focus {
-  border-color: hsl(var(--primary)) !important;
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.08) !important;
+  border-color: hsl(var(--dash-accent)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.12) !important;
 }
 
 /* Dashboard dialog/form backgrounds */
 .dash-form-bg {
-  background: hsl(152, 45%, 16%);
+  background: hsl(224, 25%, 14%);
+}
+
+/* Dashboard accent button */
+.dash-btn-accent {
+  background: var(--dash-accent-gradient);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.dash-btn-accent:hover {
+  opacity: 0.9;
+  box-shadow: var(--dash-accent-glow);
 }
 
 /* Premium divider */

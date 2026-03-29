@@ -75,7 +75,7 @@ const Pipeline = () => {
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" className="gap-1.5 rounded-lg bg-[hsl(var(--primary))] text-white hover:opacity-90">
+            <Button size="sm" className="gap-1.5 rounded-lg dash-btn-accent">
               + {lang === "fr" ? "Nouveau lead" : "New lead"}
             </Button>
           </DialogTrigger>
@@ -101,7 +101,7 @@ const Pipeline = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <Button type="submit" className="w-full bg-[hsl(var(--primary))] text-white" disabled={addLead.isPending}>
+              <Button type="submit" className="w-full dash-btn-accent" disabled={addLead.isPending}>
                 {addLead.isPending ? "..." : lang === "fr" ? "Ajouter" : "Add"}
               </Button>
             </form>
@@ -177,7 +177,7 @@ const Pipeline = () => {
                           </SelectContent>
                         </Select>
                       </td>
-                      <td className="px-4 py-3"><span className="text-xs font-medium bg-gray-50 border border-gray-200 rounded-full px-2 py-0.5 dash-text">{lead.score}</span></td>
+                      <td className="px-4 py-3"><span className="text-xs font-medium bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] rounded-full px-2 py-0.5 dash-text">{lead.score}</span></td>
                       <td className="px-4 py-3 text-sm dash-muted-text">{lead.next_action || "—"}</td>
                       <td className="px-4 py-3"><span className="text-xs dash-muted-text capitalize">{lead.kyc_status?.replace(/_/g, " ")}</span></td>
                     </tr>

@@ -180,7 +180,7 @@ const SofarAI = () => {
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading || !input.trim()}
-            className="w-10 h-10 rounded-full bg-[hsl(var(--primary))] text-white flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40 shrink-0">
+            className="w-10 h-10 rounded-full dash-btn-accent flex items-center justify-center disabled:opacity-40 shrink-0">
             <Send className="w-4 h-4" />
           </button>
         </form>

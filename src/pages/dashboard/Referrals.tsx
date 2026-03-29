@@ -86,7 +86,7 @@ const Referrals = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[40vh]">
-        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" />
+        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" />
       </div>
     );
   }
@@ -116,8 +116,8 @@ const Referrals = () => {
       {/* Referral link card */}
       <div className="dash-card rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary)/.1)] flex items-center justify-center">
-            <UserPlus className="w-5 h-5 text-[hsl(var(--primary))]" />
+          <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
+            <UserPlus className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
           </div>
           <div>
             <p className="text-sm font-semibold dash-text">
@@ -139,7 +139,7 @@ const Referrals = () => {
         </div>
         {referralCode && (
           <p className="text-xs dash-muted-text mt-2">
-            {lang === "fr" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--primary))]">{referralCode}</span>
+            {lang === "fr" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--dash-accent))]">{referralCode}</span>
           </p>
         )}
       </div>

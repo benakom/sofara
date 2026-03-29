@@ -91,11 +91,11 @@ const KycAml = () => {
         <div className="space-y-4">
           <div className="dash-card rounded-xl p-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--primary))]" /> {lang === "fr" ? "Formation AML" : "AML Training"}</h2>
-              <span className="text-xs font-medium text-[hsl(var(--primary))]">{earnedPts}/{totalPts} pts</span>
+              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "fr" ? "Formation AML" : "AML Training"}</h2>
+              <span className="text-xs font-medium text-[hsl(var(--dash-accent))]">{earnedPts}/{totalPts} pts</span>
             </div>
-            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-4">
-              <div className="h-full bg-[hsl(var(--primary))] rounded-full transition-all" style={{ width: `${(earnedPts / totalPts) * 100}%` }} />
+            <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-4">
+              <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${(earnedPts / totalPts) * 100}%` }} />
             </div>
             <div className="space-y-2">
               {amlModules.map((mod, i) => (
