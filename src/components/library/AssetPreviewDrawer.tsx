@@ -86,7 +86,7 @@ const AssetPreviewDrawer = ({ assetId, onClose }: Props) => {
                   className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[hsl(var(--primary))] text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-40"
                 >
                   <Download className="w-4 h-4" />
-                  {lang === "fr" ? "Télécharger" : "Download"}
+                  {lang === "ar" ? "Télécharger" : "Download"}
                 </button>
                 <button
                   onClick={() => toggleFav.mutate({ assetId: asset.id, isFav: !!isFav })}
@@ -107,13 +107,13 @@ const AssetPreviewDrawer = ({ assetId, onClose }: Props) => {
 
               {/* Metadata */}
               <div className="space-y-3">
-                <h3 className="text-xs font-semibold text-[hsl(var(--dash-fg))] uppercase tracking-wider">{lang === "fr" ? "Détails" : "Details"}</h3>
-                <MetaRow icon={<Layers className="w-3.5 h-3.5" />} label={lang === "fr" ? "Type" : "Type"} value={asset.asset_type} />
+                <h3 className="text-xs font-semibold text-[hsl(var(--dash-fg))] uppercase tracking-wider">{lang === "ar" ? "التفاصيل" : "Details"}</h3>
+                <MetaRow icon={<Layers className="w-3.5 h-3.5" />} label={lang === "ar" ? "Type" : "Type"} value={asset.asset_type} />
                 {asset.file_format && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label="Format" value={asset.file_format.toUpperCase()} />}
-                {asset.file_size && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "fr" ? "Taille" : "Size"} value={`${(asset.file_size / 1024 / 1024).toFixed(1)} MB`} />}
+                {asset.file_size && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "ar" ? "Taille" : "Size"} value={`${(asset.file_size / 1024 / 1024).toFixed(1)} MB`} />}
                 <MetaRow icon={<Tag className="w-3.5 h-3.5" />} label="Version" value={`v${asset.version}`} />
-                <MetaRow icon={<Globe className="w-3.5 h-3.5" />} label={lang === "fr" ? "Langue" : "Language"} value={asset.language?.toUpperCase() || "EN"} />
-                <MetaRow icon={<Clock className="w-3.5 h-3.5" />} label={lang === "fr" ? "Mis à jour" : "Updated"} value={new Date(asset.updated_at).toLocaleDateString()} />
+                <MetaRow icon={<Globe className="w-3.5 h-3.5" />} label={lang === "ar" ? "Langue" : "Language"} value={asset.language?.toUpperCase() || "EN"} />
+                <MetaRow icon={<Clock className="w-3.5 h-3.5" />} label={lang === "ar" ? "Mis à jour" : "Updated"} value={new Date(asset.updated_at).toLocaleDateString()} />
                 <MetaRow icon={<Download className="w-3.5 h-3.5" />} label="Downloads" value={String(asset.download_count)} />
                 <MetaRow
                   icon={<Tag className="w-3.5 h-3.5" />}
@@ -128,9 +128,9 @@ const AssetPreviewDrawer = ({ assetId, onClose }: Props) => {
                     </span>
                   }
                 />
-                {asset.project && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "fr" ? "Projet" : "Project"} value={asset.project.name} />}
-                {asset.developer && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "fr" ? "Développeur" : "Developer"} value={asset.developer.name} />}
-                {asset.area && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "fr" ? "Zone" : "Area"} value={asset.area.name} />}
+                {asset.project && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "ar" ? "Projet" : "Project"} value={asset.project.name} />}
+                {asset.developer && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "ar" ? "Développeur" : "Developer"} value={asset.developer.name} />}
+                {asset.area && <MetaRow icon={<FileText className="w-3.5 h-3.5" />} label={lang === "ar" ? "Zone" : "Area"} value={asset.area.name} />}
               </div>
 
               {/* Tags */}

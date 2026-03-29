@@ -13,10 +13,10 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
   <div>
     <div className="text-center mb-8">
       <h2 className="text-2xl font-bold text-[hsl(var(--dash-fg))] font-display">
-        💰 {lang === "fr" ? "Votre budget" : "Your Budget"}
+        💰 {lang === "ar" ? "Votre budget" : "Your Budget"}
       </h2>
       <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-2">
-        {lang === "fr" ? "Sélectionnez votre budget d'investissement" : "Select your investment budget"}
+        {lang === "ar" ? "Sélectionnez votre budget d'investissement" : "Select your investment budget"}
       </p>
     </div>
     <div className="grid grid-cols-3 gap-3">
@@ -40,7 +40,7 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
     {/* Custom input */}
     <div className="mt-6">
       <label className="text-xs font-medium text-[hsl(var(--dash-muted-fg))] block mb-2">
-        {lang === "fr" ? "Ou entrez un montant personnalisé (AED)" : "Or enter a custom amount (AED)"}
+        {lang === "ar" ? "Ou entrez un montant personnalisé (AED)" : "Or enter a custom amount (AED)"}
       </label>
       <input
         type="text"
@@ -57,9 +57,9 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
 
     {/* Info box */}
     <div className="mt-6 p-4 rounded-xl bg-blue-50 border border-blue-100">
-      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "fr" ? "POURQUOI C'EST IMPORTANT ?" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-blue-700 leading-relaxed">
-        {lang === "fr"
+        {lang === "ar"
           ? "Votre budget détermine les types de biens et zones accessibles. Le simulateur calculera le meilleur scénario d'investissement en fonction de ce montant."
           : "Your budget determines which property types and areas are accessible. The simulator will calculate the best investment scenario based on this amount."}
       </p>

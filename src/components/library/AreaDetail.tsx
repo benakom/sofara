@@ -36,7 +36,7 @@ const AreaDetail = ({ areaId, navigate, onPreviewAsset }: Props) => {
       <div className="flex items-center gap-2 text-xs text-[hsl(var(--dash-muted-fg))]">
         <button onClick={() => navigate({ type: "home" })} className="hover:text-[hsl(var(--primary))]">Library</button>
         <span>/</span>
-        <button onClick={() => navigate({ type: "browse", tab: "areas" })} className="hover:text-[hsl(var(--primary))]">{lang === "fr" ? "Zones" : "Areas"}</button>
+        <button onClick={() => navigate({ type: "browse", tab: "areas" })} className="hover:text-[hsl(var(--primary))]">{lang === "ar" ? "المناطق" : "Areas"}</button>
         <span>/</span>
         <span className="text-[hsl(var(--dash-fg))] font-medium">{area.name}</span>
       </div>
@@ -76,7 +76,7 @@ const AreaDetail = ({ areaId, navigate, onPreviewAsset }: Props) => {
 
       {/* Projects in area */}
       <div>
-        <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "fr" ? "Projets dans cette zone" : "Projects in this area"}</h3>
+        <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "ar" ? "مشاريع في هذه المنطقة" : "Projects in this area"}</h3>
         {projects && projects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((p: any) => (
@@ -92,7 +92,7 @@ const AreaDetail = ({ areaId, navigate, onPreviewAsset }: Props) => {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-[hsl(var(--dash-muted-fg))] py-8 text-center">{lang === "fr" ? "Aucun projet dans cette zone" : "No projects in this area yet"}</p>
+          <p className="text-sm text-[hsl(var(--dash-muted-fg))] py-8 text-center">{lang === "ar" ? "لا توجد مشاريع في هذه المنطقة بعد" : "No projects in this area yet"}</p>
         )}
       </div>
     </div>

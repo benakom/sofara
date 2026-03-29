@@ -110,7 +110,7 @@ const Navbar = () => {
               <a href="/auth">
                 <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
                   <LogIn className="w-4 h-4" />
-                  {lang === "fr" ? "Se connecter" : "Sign In"}
+                  {lang === "ar" ? "تسجيل الدخول" : "Sign In"}
                 </Button>
               </a>
             )
@@ -163,7 +163,7 @@ const Navbar = () => {
                     <a href="/auth" onClick={() => setMobileOpen(false)} className="block">
                       <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
                         <LogIn className="w-4 h-4" />
-                        {lang === "fr" ? "Se connecter" : "Sign In"}
+                        {lang === "ar" ? "تسجيل الدخول" : "Sign In"}
                       </Button>
                     </a>
                   )

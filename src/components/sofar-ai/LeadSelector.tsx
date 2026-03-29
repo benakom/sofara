@@ -75,7 +75,7 @@ export default function LeadSelector({ selectedLead, onSelectLead }: LeadSelecto
         className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl border border-dashed border-[hsl(var(--dash-border))] hover:border-[hsl(var(--primary)/.4)] hover:bg-[hsl(var(--primary)/.04)] transition-all text-sm dash-muted-text"
       >
         <User className="w-4 h-4" />
-        <span>{lang === "fr" ? "Sélectionner un lead…" : "Select a lead…"}</span>
+        <span>{lang === "ar" ? "Sélectionner un lead…" : "Select a lead…"}</span>
         <ChevronDown className="w-3.5 h-3.5 ml-auto" />
       </button>
 
@@ -87,7 +87,7 @@ export default function LeadSelector({ selectedLead, onSelectLead }: LeadSelecto
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder={lang === "fr" ? "Rechercher…" : "Search…"}
+                placeholder={lang === "ar" ? "Rechercher…" : "Search…"}
                 className="flex-1 text-xs bg-transparent outline-none dash-text placeholder:text-[hsl(var(--dash-muted-fg))]"
                 autoFocus
               />
@@ -96,7 +96,7 @@ export default function LeadSelector({ selectedLead, onSelectLead }: LeadSelecto
           <div className="overflow-y-auto flex-1">
             {filtered.length === 0 ? (
               <p className="text-xs dash-muted-text text-center py-4">
-                {lang === "fr" ? "Aucun lead trouvé" : "No leads found"}
+                {lang === "ar" ? "Aucun lead trouvé" : "No leads found"}
               </p>
             ) : (
               filtered.map((lead) => (

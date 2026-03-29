@@ -12,10 +12,10 @@ interface Props {
 }
 
 const projectTabs = [
-  { id: "overview", labelEn: "Overview", labelFr: "Aperçu" },
-  { id: "documents", labelEn: "Documents", labelFr: "Documents" },
-  { id: "media", labelEn: "Media", labelFr: "Médias" },
-  { id: "toolkit", labelEn: "Sales Toolkit", labelFr: "Kit de Vente" },
+  { id: "overview", labelEn: "Overview", labelAr: "Aperçu" },
+  { id: "documents", labelEn: "Documents", labelAr: "Documents" },
+  { id: "media", labelEn: "Media", labelAr: "Médias" },
+  { id: "toolkit", labelEn: "Sales Toolkit", labelAr: "Kit de Vente" },
 ];
 
 const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
@@ -48,7 +48,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
       <div className="flex items-center gap-2 text-xs text-[hsl(var(--dash-muted-fg))]">
         <button onClick={() => navigate({ type: "home" })} className="hover:text-[hsl(var(--primary))]">Library</button>
         <span>/</span>
-        <button onClick={() => navigate({ type: "browse", tab: "projects" })} className="hover:text-[hsl(var(--primary))]">{lang === "fr" ? "Projets" : "Projects"}</button>
+        <button onClick={() => navigate({ type: "browse", tab: "projects" })} className="hover:text-[hsl(var(--primary))]">{lang === "ar" ? "مشاريع" : "Projects"}</button>
         <span>/</span>
         <span className="text-[hsl(var(--dash-fg))] font-medium">{project.name}</span>
       </div>
@@ -86,10 +86,10 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
       {/* Quick Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { icon: DollarSign, label: lang === "fr" ? "Prix" : "Price", value: project.price_from ? `AED ${(project.price_from / 1000).toFixed(0)}K${project.price_to ? ` - ${(project.price_to / 1000000).toFixed(1)}M` : "+"}` : "TBA" },
-          { icon: Bed, label: lang === "fr" ? "Chambres" : "Bedrooms", value: project.bedrooms || "TBA" },
-          { icon: Calendar, label: lang === "fr" ? "Livraison" : "Handover", value: project.handover_date || "TBA" },
-          { icon: FileText, label: lang === "fr" ? "Documents" : "Documents", value: `${assets?.length || 0} files` },
+          { icon: DollarSign, label: lang === "ar" ? "Prix" : "Price", value: project.price_from ? `AED ${(project.price_from / 1000).toFixed(0)}K${project.price_to ? ` - ${(project.price_to / 1000000).toFixed(1)}M` : "+"}` : "TBA" },
+          { icon: Bed, label: lang === "ar" ? "Chambres" : "Bedrooms", value: project.bedrooms || "TBA" },
+          { icon: Calendar, label: lang === "ar" ? "Livraison" : "Handover", value: project.handover_date || "TBA" },
+          { icon: FileText, label: lang === "ar" ? "Documents" : "Documents", value: `${assets?.length || 0} files` },
         ].map((m, i) => (
           <div key={i} className="p-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
             <div className="flex items-center gap-2 mb-1">
@@ -111,7 +111,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
               tab === t.id ? "bg-[hsl(var(--dash-card))] text-[hsl(var(--dash-fg))] shadow-sm" : "text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))]"
             }`}
           >
-            {lang === "fr" ? t.labelFr : t.labelEn}
+            {lang === "ar" ? t.labelAr : t.labelEn}
           </button>
         ))}
       </div>
@@ -122,13 +122,13 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
           <div className="lg:col-span-2 space-y-6">
             {project.description && (
               <div className="p-6 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
-                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "fr" ? "Description" : "Description"}</h3>
+                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "ar" ? "Description" : "Description"}</h3>
                 <p className="text-sm text-[hsl(var(--dash-muted-fg))] leading-relaxed whitespace-pre-line">{project.description}</p>
               </div>
             )}
             {sellingPoints.length > 0 && (
               <div className="p-6 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
-                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">🔑 {lang === "fr" ? "Points clés de vente" : "Key Selling Points"}</h3>
+                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">🔑 {lang === "ar" ? "Points clés de vente" : "Key Selling Points"}</h3>
                 <ul className="space-y-2">
                   {sellingPoints.map((sp: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[hsl(var(--dash-muted-fg))]">
@@ -177,13 +177,13 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
                 </div>
                 <p className="text-sm text-[hsl(var(--dash-muted-fg))] leading-relaxed">{project.whatsapp_summary}</p>
                 <button className="mt-3 w-full py-2 rounded-lg bg-green-500/10 text-green-600 text-xs font-medium hover:bg-green-500/20 transition-colors">
-                  📋 {lang === "fr" ? "Copier" : "Copy"}
+                  📋 {lang === "ar" ? "Copier" : "Copy"}
                 </button>
               </div>
             )}
             {project.target_buyer && (
               <div className="p-5 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
-                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-2">👤 {lang === "fr" ? "Profil Acheteur" : "Buyer Profile"}</h3>
+                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-2">👤 {lang === "ar" ? "Profil Acheteur" : "Buyer Profile"}</h3>
                 <p className="text-sm text-[hsl(var(--dash-muted-fg))]">{project.target_buyer}</p>
               </div>
             )}
@@ -197,7 +197,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
             <AssetCard key={a.id} asset={a} onClick={() => onPreviewAsset(a.id)} />
           )) : (
             <div className="col-span-full py-16 text-center text-sm text-[hsl(var(--dash-muted-fg))]">
-              {lang === "fr" ? "Aucun document pour le moment" : "No documents yet"}
+              {lang === "ar" ? "Aucun document pour le moment" : "No documents yet"}
             </div>
           )}
         </div>
@@ -209,7 +209,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
             <AssetCard key={a.id} asset={a} onClick={() => onPreviewAsset(a.id)} />
           )) : (
             <div className="col-span-full py-16 text-center text-sm text-[hsl(var(--dash-muted-fg))]">
-              {lang === "fr" ? "Aucun média pour le moment" : "No media yet"}
+              {lang === "ar" ? "Aucun média pour le moment" : "No media yet"}
             </div>
           )}
         </div>
@@ -219,7 +219,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {objections.length > 0 && (
             <div className="p-6 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
-              <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">💡 {lang === "fr" ? "Objections & Réponses" : "Objections & Answers"}</h3>
+              <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">💡 {lang === "ar" ? "Objections & Réponses" : "Objections & Answers"}</h3>
               <div className="space-y-4">
                 {objections.map((o: any, i: number) => (
                   <div key={i}>
@@ -234,7 +234,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
             <div className="p-6 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
               <div className="flex items-center gap-2 mb-4">
                 <Share2 className="w-4 h-4 text-[hsl(var(--primary))]" />
-                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{lang === "fr" ? "Captions Réseaux Sociaux" : "Social Media Captions"}</h3>
+                <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{lang === "ar" ? "Captions Réseaux Sociaux" : "Social Media Captions"}</h3>
               </div>
               <div className="space-y-3">
                 {project.social_captions.map((c: string, i: number) => (
@@ -245,7 +245,7 @@ const ProjectDetail = ({ projectId, navigate, onPreviewAsset }: Props) => {
           )}
           {!objections.length && !project.social_captions?.length && (
             <div className="col-span-full py-16 text-center text-sm text-[hsl(var(--dash-muted-fg))]">
-              {lang === "fr" ? "Le kit de vente sera bientôt disponible" : "Sales toolkit coming soon"}
+              {lang === "ar" ? "Le kit de vente sera bientôt disponible" : "Sales toolkit coming soon"}
             </div>
           )}
         </div>

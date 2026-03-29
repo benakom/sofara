@@ -165,10 +165,10 @@ export default function AutoScoreTool() {
     <div className="h-full flex flex-col">
       <div className="mb-4">
         <h2 className="text-lg font-display font-bold dash-text mb-1">
-          {lang === "fr" ? "🎯 Smart Scoring AI" : "🎯 AI Smart Scoring"}
+          {lang === "ar" ? "🎯 Smart Scoring AI" : "🎯 AI Smart Scoring"}
         </h2>
         <p className="text-xs dash-muted-text">
-          {lang === "fr"
+          {lang === "ar"
             ? `${leads.length} leads détectés — L'IA analyse chaque profil et attribue un score prédictif`
             : `${leads.length} leads detected — AI analyzes each profile and assigns a predictive score`}
         </p>
@@ -181,14 +181,14 @@ export default function AutoScoreTool() {
           className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 mb-4"
         >
           <Target className="w-4 h-4" />
-          {lang === "fr" ? `Scorer ${leads.length} leads` : `Score ${leads.length} leads`}
+          {lang === "ar" ? `Scorer ${leads.length} leads` : `Score ${leads.length} leads`}
         </button>
       )}
 
       {isLoading && (
         <div className="mb-4">
           <div className="flex items-center justify-between text-xs dash-muted-text mb-2">
-            <span>{lang === "fr" ? "Analyse en cours…" : "Analyzing…"}</span>
+            <span>{lang === "ar" ? "Analyse en cours…" : "Analyzing…"}</span>
             <span>{progress}%</span>
           </div>
           <div className="w-full h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
@@ -231,7 +231,7 @@ export default function AutoScoreTool() {
                   <span className="text-sm font-medium dash-text">{r.name}</span>
                   {r.current_score !== r.ai_score && (
                     <span className="text-[10px] dash-muted-text">
-                      ({lang === "fr" ? "était" : "was"} {r.current_score})
+                      ({lang === "ar" ? "était" : "was"} {r.current_score})
                     </span>
                   )}
                 </div>
@@ -253,7 +253,7 @@ export default function AutoScoreTool() {
               onClick={scoreAllLeads}
               className="w-full py-2.5 rounded-xl border border-[hsl(var(--dash-border))] text-xs font-medium dash-text hover:bg-[hsl(var(--dash-muted)/.3)] transition-colors mt-2"
             >
-              {lang === "fr" ? "🔄 Rescorer tous les leads" : "🔄 Rescore all leads"}
+              {lang === "ar" ? "🔄 Rescorer tous les leads" : "🔄 Rescore all leads"}
             </button>
           )}
         </div>

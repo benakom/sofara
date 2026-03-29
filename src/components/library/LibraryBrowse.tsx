@@ -12,11 +12,11 @@ interface Props {
 }
 
 const tabs = [
-  { id: "projects", icon: Folder, labelEn: "Projects", labelFr: "Projets" },
-  { id: "developers", icon: Building2, labelEn: "Developers", labelFr: "Développeurs" },
-  { id: "areas", icon: MapPin, labelEn: "Areas", labelFr: "Zones" },
-  { id: "assets", icon: Grid3X3, labelEn: "Documents", labelFr: "Documents" },
-  { id: "favorites", icon: Star, labelEn: "Favorites", labelFr: "Favoris" },
+  { id: "projects", icon: Folder, labelEn: "Projects", labelAr: "Projets" },
+  { id: "developers", icon: Building2, labelEn: "Developers", labelAr: "Développeurs" },
+  { id: "areas", icon: MapPin, labelEn: "Areas", labelAr: "Zones" },
+  { id: "assets", icon: Grid3X3, labelEn: "Documents", labelAr: "Documents" },
+  { id: "favorites", icon: Star, labelEn: "Favorites", labelAr: "Favoris" },
 ];
 
 const LibraryBrowse = ({ navigate, defaultTab = "projects", onPreviewAsset }: Props) => {
@@ -44,7 +44,7 @@ const LibraryBrowse = ({ navigate, defaultTab = "projects", onPreviewAsset }: Pr
           <ChevronLeft className="w-5 h-5" />
         </button>
         <h1 className="text-xl font-display font-bold text-[hsl(var(--dash-fg))]">
-          {lang === "fr" ? "Explorer la Bibliothèque" : "Browse Library"}
+          {lang === "ar" ? "Explorer la Bibliothèque" : "Browse Library"}
         </h1>
       </div>
 
@@ -62,7 +62,7 @@ const LibraryBrowse = ({ navigate, defaultTab = "projects", onPreviewAsset }: Pr
               }`}
             >
               <t.icon className="w-3.5 h-3.5" />
-              {lang === "fr" ? t.labelFr : t.labelEn}
+              {lang === "ar" ? t.labelAr : t.labelEn}
             </button>
           ))}
         </div>
@@ -73,7 +73,7 @@ const LibraryBrowse = ({ navigate, defaultTab = "projects", onPreviewAsset }: Pr
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder={lang === "fr" ? "Rechercher..." : "Search..."}
+              placeholder={lang === "ar" ? "بحث..." : "Search..."}
               className="w-full h-9 pl-9 pr-3 rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary))]/30"
             />
           </div>
@@ -187,7 +187,7 @@ const LibraryBrowse = ({ navigate, defaultTab = "projects", onPreviewAsset }: Pr
       )}
 
       {tab === "favorites" && (
-        <EmptyBrowse text={lang === "fr" ? "Vos favoris apparaîtront ici" : "Your favorites will appear here"} />
+        <EmptyBrowse text={lang === "ar" ? "Vos favoris apparaîtront ici" : "Your favorites will appear here"} />
       )}
     </div>
   );

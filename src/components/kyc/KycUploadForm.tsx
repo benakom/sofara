@@ -73,15 +73,15 @@ const KycUploadForm = () => {
     if (!user || !selectedLeadId) return;
 
     if (!passportFile) {
-      toast.error(lang === "fr" ? "Le passeport est requis" : "Passport is required");
+      toast.error(lang === "ar" ? "Le passeport est requis" : "Passport is required");
       return;
     }
     if (isUaeResident && (!emiratesIdFile || !visaFile)) {
-      toast.error(lang === "fr" ? "Emirates ID et Visa de résidence sont requis pour les résidents UAE" : "Emirates ID and Residence Visa are required for UAE residents");
+      toast.error(lang === "ar" ? "Emirates ID et Visa de résidence sont requis pour les résidents UAE" : "Emirates ID and Residence Visa are required for UAE residents");
       return;
     }
     if (!clientPhone.trim() || !clientEmail.trim()) {
-      toast.error(lang === "fr" ? "Téléphone et email sont requis" : "Phone and email are required");
+      toast.error(lang === "ar" ? "Téléphone et email sont requis" : "Phone and email are required");
       return;
     }
 
@@ -116,10 +116,10 @@ const KycUploadForm = () => {
       await supabase.from("leads").update({ kyc_status: "submitted" }).eq("id", selectedLeadId);
 
       setSubmitted(true);
-      toast.success(lang === "fr" ? "Documents KYC soumis avec succès !" : "KYC documents submitted successfully!");
+      toast.success(lang === "ar" ? "Documents KYC soumis avec succès !" : "KYC documents submitted successfully!");
     } catch (err: any) {
       console.error(err);
-      toast.error(lang === "fr" ? "Erreur lors de la soumission" : "Submission error");
+      toast.error(lang === "ar" ? "Erreur lors de la soumission" : "Submission error");
     } finally {
       setSubmitting(false);
     }
@@ -135,13 +135,13 @@ const KycUploadForm = () => {
           <CheckCircle className="w-8 h-8 text-emerald-600" />
         </div>
         <h3 className="text-lg font-display font-bold dash-text mb-1">
-          {lang === "fr" ? "Documents KYC soumis !" : "KYC Documents Submitted!"}
+          {lang === "ar" ? "Documents KYC soumis !" : "KYC Documents Submitted!"}
         </h3>
         <p className="text-sm dash-muted-text mb-4">
-          {lang === "fr" ? "Les documents seront vérifiés dans les plus brefs délais." : "Documents will be reviewed shortly."}
+          {lang === "ar" ? "Les documents seront vérifiés dans les plus brefs délais." : "Documents will be reviewed shortly."}
         </p>
         <Button variant="outline" onClick={() => { setSubmitted(false); setSelectedLeadId(""); setPassportFile(null); setEmiratesIdFile(null); setVisaFile(null); }}>
-          {lang === "fr" ? "Soumettre un autre dossier" : "Submit another file"}
+          {lang === "ar" ? "Soumettre un autre dossier" : "Submit another file"}
         </Button>
       </motion.div>
     );
@@ -152,7 +152,7 @@ const KycUploadForm = () => {
       className="dash-card rounded-xl p-4">
       <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2 mb-4">
         <Upload className="w-4 h-4 text-[hsl(var(--primary))]" />
-        {lang === "fr" ? "Soumettre les documents KYC" : "Submit KYC Documents"}
+        {lang === "ar" ? "Soumettre les documents KYC" : "Submit KYC Documents"}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -160,16 +160,16 @@ const KycUploadForm = () => {
         <div className="space-y-1.5">
           <Label className="text-xs font-medium flex items-center gap-1.5">
             <User className="w-3.5 h-3.5" />
-            {lang === "fr" ? "Sélectionner le client" : "Select client"}
+            {lang === "ar" ? "Sélectionner le client" : "Select client"}
           </Label>
           <Select value={selectedLeadId} onValueChange={setSelectedLeadId}>
             <SelectTrigger>
-              <SelectValue placeholder={lang === "fr" ? "Choisir un lead prêt à acheter..." : "Choose a lead ready to buy..."} />
+              <SelectValue placeholder={lang === "ar" ? "Choisir un lead prêt à acheter..." : "Choose a lead ready to buy..."} />
             </SelectTrigger>
             <SelectContent>
               {readyLeads.length === 0 && (
                 <div className="px-3 py-2 text-xs text-muted-foreground">
-                  {lang === "fr" ? "Aucun lead en phase de closing" : "No leads in closing phase"}
+                  {lang === "ar" ? "Aucun lead en phase de closing" : "No leads in closing phase"}
                 </div>
               )}
               {readyLeads.map(lead => (
@@ -188,7 +188,7 @@ const KycUploadForm = () => {
               <div className="space-y-1.5">
                 <Label className="text-xs font-medium flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5" />
-                  {lang === "fr" ? "WhatsApp du client" : "Client WhatsApp"}
+                  {lang === "ar" ? "WhatsApp du client" : "Client WhatsApp"}
                 </Label>
                 <Input
                   type="tel"
@@ -201,7 +201,7 @@ const KycUploadForm = () => {
               <div className="space-y-1.5">
                 <Label className="text-xs font-medium flex items-center gap-1.5">
                   <Mail className="w-3.5 h-3.5" />
-                  {lang === "fr" ? "Email du client" : "Client email"}
+                  {lang === "ar" ? "Email du client" : "Client email"}
                 </Label>
                 <Input
                   type="email"
@@ -218,7 +218,7 @@ const KycUploadForm = () => {
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 dash-muted-text" />
                 <span className="text-sm font-medium dash-text">
-                  {lang === "fr" ? "Résident aux Émirats ?" : "UAE Resident?"}
+                  {lang === "ar" ? "Résident aux Émirats ?" : "UAE Resident?"}
                 </span>
               </div>
               <Switch checked={isUaeResident} onCheckedChange={setIsUaeResident} />
@@ -227,12 +227,12 @@ const KycUploadForm = () => {
             {/* Document uploads */}
             <div className="space-y-3">
               <p className="text-xs font-semibold dash-muted-text uppercase tracking-wider">
-                {lang === "fr" ? "Documents requis" : "Required Documents"}
+                {lang === "ar" ? "Documents requis" : "Required Documents"}
               </p>
 
               {/* Passport - always required */}
               <FileUploadField
-                label={lang === "fr" ? "Passeport (copie couleur)" : "Passport (color copy)"}
+                label={lang === "ar" ? "Passeport (copie couleur)" : "Passport (color copy)"}
                 file={passportFile}
                 onFileChange={setPassportFile}
                 required
@@ -254,7 +254,7 @@ const KycUploadForm = () => {
               {isUaeResident && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
                   <FileUploadField
-                    label={lang === "fr" ? "Visa de résidence" : "Residence Visa"}
+                    label={lang === "ar" ? "Visa de résidence" : "Residence Visa"}
                     file={visaFile}
                     onFileChange={setVisaFile}
                     required
@@ -266,9 +266,9 @@ const KycUploadForm = () => {
             {/* Submit */}
             <Button type="submit" className="w-full" disabled={submitting || !selectedLeadId}>
               {submitting ? (
-                <><Loader2 className="w-4 h-4 animate-spin mr-2" /> {lang === "fr" ? "Envoi en cours..." : "Submitting..."}</>
+                <><Loader2 className="w-4 h-4 animate-spin mr-2" /> {lang === "ar" ? "Envoi en cours..." : "Submitting..."}</>
               ) : (
-                <><FileCheck className="w-4 h-4 mr-2" /> {lang === "fr" ? "Soumettre le dossier KYC" : "Submit KYC File"}</>
+                <><FileCheck className="w-4 h-4 mr-2" /> {lang === "ar" ? "Soumettre le dossier KYC" : "Submit KYC File"}</>
               )}
             </Button>
           </motion.div>

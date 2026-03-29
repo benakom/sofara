@@ -55,7 +55,7 @@ const AIHub = () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Connectez-vous d'abord." : "Please log in first." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first." });
         setIsLoading(false);
         return;
       }
@@ -100,7 +100,7 @@ const AIHub = () => {
     setIsLoading(false);
   };
 
-  const quickPrompts = lang === "fr" ? [
+  const quickPrompts = lang === "ar" ? [
     "💰 Prix moyens par zone",
     "📊 Évalue un projet",
     "🏆 Top ROI 2025",
@@ -119,18 +119,18 @@ const AIHub = () => {
   const tools: {
     id: Tool;
     icon: typeof Target;
-    labelFr: string;
+    labelAr: string;
     labelEn: string;
     descFr: string;
     descEn: string;
     gradient: string;
     badge?: string;
   }[] = [
-    { id: "autoscore", icon: Target, labelFr: "Smart Scoring", labelEn: "Smart Scoring", descFr: "Scoring prédictif", descEn: "Predictive scoring", gradient: "from-emerald-500 to-teal-600", badge: "AI" },
-    { id: "legalai", icon: Scale, labelFr: "LegalAI", labelEn: "LegalAI", descFr: "Analyse de contrats", descEn: "Contract analysis", gradient: "from-amber-500 to-yellow-600", badge: "PRO" },
-    { id: "roleplay", icon: MessageSquare, labelFr: "Roleplay", labelEn: "Roleplay", descFr: "Entraînement vente", descEn: "Sales training", gradient: "from-violet-500 to-purple-600" },
-    { id: "sequences", icon: Zap, labelFr: "Séquences", labelEn: "Sequences", descFr: "Plans de relance", descEn: "Follow-up plans", gradient: "from-sky-500 to-blue-600" },
-    { id: "voice", icon: Mic, labelFr: "Voice", labelEn: "Voice", descFr: "Agent vocal", descEn: "Voice agent", gradient: "from-rose-500 to-pink-600", badge: "BETA" },
+    { id: "autoscore", icon: Target, labelAr: "Smart Scoring", labelEn: "Smart Scoring", descFr: "Scoring prédictif", descEn: "Predictive scoring", gradient: "from-emerald-500 to-teal-600", badge: "AI" },
+    { id: "legalai", icon: Scale, labelAr: "LegalAI", labelEn: "LegalAI", descFr: "Analyse de contrats", descEn: "Contract analysis", gradient: "from-amber-500 to-yellow-600", badge: "PRO" },
+    { id: "roleplay", icon: MessageSquare, labelAr: "Roleplay", labelEn: "Roleplay", descFr: "Entraînement vente", descEn: "Sales training", gradient: "from-violet-500 to-purple-600" },
+    { id: "sequences", icon: Zap, labelAr: "Séquences", labelEn: "Sequences", descFr: "Plans de relance", descEn: "Follow-up plans", gradient: "from-sky-500 to-blue-600" },
+    { id: "voice", icon: Mic, labelAr: "Voice", labelEn: "Voice", descFr: "Agent vocal", descEn: "Voice agent", gradient: "from-rose-500 to-pink-600", badge: "BETA" },
   ];
 
   const renderTool = () => {
@@ -150,7 +150,7 @@ const AIHub = () => {
         <button onClick={() => setActiveTool(null)}
           className="flex items-center gap-2 text-sm dash-muted-text hover:text-[hsl(var(--dash-fg))] transition-colors mb-4">
           <ArrowLeft className="w-4 h-4" />
-          {lang === "fr" ? "Retour à SofarAI" : "Back to SofarAI"}
+          {lang === "ar" ? "Retour à SofarAI" : "Back to SofarAI"}
         </button>
         <div className="flex-1 min-h-0 w-full overflow-x-hidden">{renderTool()}</div>
       </motion.div>
@@ -184,7 +184,7 @@ const AIHub = () => {
               <span className="text-[9px] font-bold bg-white/15 text-white/90 px-2 py-0.5 rounded-full backdrop-blur-sm shrink-0">EXPERT</span>
             </div>
             <p className="text-[11px] text-white/60 truncate">
-              {lang === "fr" ? "Expert immobilier Dubai • En ligne" : "Dubai Property Expert • Online"}
+              {lang === "ar" ? "Expert immobilier Dubai • En ligne" : "Dubai Property Expert • Online"}
             </p>
           </div>
           <Sparkles className="w-5 h-5 text-white/30 shrink-0" />
@@ -202,10 +202,10 @@ const AIHub = () => {
                 <img src={sofaraAvatar} alt="SofarAI" className="relative w-20 h-20 rounded-full object-cover shadow-2xl border-2 border-violet-400/30" />
               </div>
               <h2 className="text-lg font-bold text-white mb-1">
-                {lang === "fr" ? "Bienvenue 👋" : "Welcome 👋"}
+                {lang === "ar" ? "Bienvenue 👋" : "Welcome 👋"}
               </h2>
               <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm break-words">
-                {lang === "fr"
+                {lang === "ar"
                   ? "Expert IA immobilier Dubai. Prix, scoring, ROI, objections… posez tout !"
                   : "Dubai real estate AI expert. Prices, scoring, ROI, objections… ask anything!"}
               </p>
@@ -258,7 +258,7 @@ const AIHub = () => {
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "150ms" }} />
                     <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-bounce" style={{ animationDelay: "300ms" }} />
                   </div>
-                  <span className="text-xs text-slate-500">{lang === "fr" ? "Analyse…" : "Analyzing…"}</span>
+                  <span className="text-xs text-slate-500">{lang === "ar" ? "Analyse…" : "Analyzing…"}</span>
                 </div>
               </div>
             </div>
@@ -273,7 +273,7 @@ const AIHub = () => {
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={lang === "fr" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
+              placeholder={lang === "ar" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
               className="flex-1 min-w-0 h-11 px-4 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
               style={{ background: "hsl(250, 16%, 16%)", border: "1px solid hsl(250, 10%, 24%)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               disabled={isLoading}
@@ -306,7 +306,7 @@ const AIHub = () => {
             </div>
             <div className="text-left min-w-0">
               <div className="flex items-center gap-1 min-w-0">
-                <span className="text-xs font-semibold dash-text truncate">{lang === "fr" ? tool.labelFr : tool.labelEn}</span>
+                <span className="text-xs font-semibold dash-text truncate">{lang === "ar" ? tool.labelAr : tool.labelEn}</span>
                 {tool.badge && (
                   <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${
                     tool.badge === "PRO" ? "bg-amber-100 text-amber-700"
@@ -315,7 +315,7 @@ const AIHub = () => {
                   }`}>{tool.badge}</span>
                 )}
               </div>
-              <p className="text-[10px] dash-muted-text hidden sm:block">{lang === "fr" ? tool.descFr : tool.descEn}</p>
+              <p className="text-[10px] dash-muted-text hidden sm:block">{lang === "ar" ? tool.descFr : tool.descEn}</p>
             </div>
           </motion.button>
         ))}
@@ -334,16 +334,16 @@ const LegalAIGate = () => {
       </div>
       <h2 className="text-xl font-bold dash-text mb-2">LegalAI</h2>
       <p className="text-sm dash-muted-text mb-4 max-w-md leading-relaxed">
-        {lang === "fr"
+        {lang === "ar"
           ? "Analysez vos SPA, contrats de réservation et documents juridiques avec l'IA. Obtenez des points d'attention, clauses à négocier et un résumé clair."
           : "Analyze your SPAs, reservation contracts and legal documents with AI. Get key points, negotiation clauses and a clear summary."}
       </p>
       <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold text-sm shadow-lg"
         style={{ background: "linear-gradient(135deg, hsl(40, 90%, 50%), hsl(35, 85%, 45%))" }}>
-        ⚡ {lang === "fr" ? "Bientôt disponible — Plan Pro" : "Coming soon — Pro Plan"}
+        ⚡ {lang === "ar" ? "Bientôt disponible — Plan Pro" : "Coming soon — Pro Plan"}
       </div>
       <p className="text-[11px] dash-muted-text mt-4 max-w-sm italic">
-        ⚖️ {lang === "fr"
+        ⚖️ {lang === "ar"
           ? "Disclaimer : LegalAI fournit une analyse informative. Il ne remplace pas un avocat. Consultez toujours un professionnel du droit pour vos décisions juridiques."
           : "Disclaimer: LegalAI provides informational analysis. It does not replace a lawyer. Always consult a legal professional for legal decisions."}
       </p>

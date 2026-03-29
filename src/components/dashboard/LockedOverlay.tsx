@@ -8,7 +8,7 @@ const LockedOverlay = () => {
       <div className="text-center space-y-2">
         <Lock className="w-6 h-6 dash-muted-text mx-auto" />
         <p className="text-sm font-medium dash-muted-text">
-          {lang === "fr" ? "Disponible après activation" : "Available after activation"}
+          {lang === "ar" ? "متاح بعد التفعيل" : "Available after activation"}
         </p>
       </div>
     </div>

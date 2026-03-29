@@ -40,7 +40,7 @@ const Legal = () => {
             sofara
           </a>
           <div className="flex items-center gap-0.5">
-            {(["fr", "en"] as const).map((l) => (
+            {(["en", "ar"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
@@ -50,7 +50,7 @@ const Legal = () => {
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {l === "fr" ? "🇫🇷" : "🇬🇧"}
+                {l === "ar" ? "🇦🇪" : "🇬🇧"}
               </button>
             ))}
           </div>

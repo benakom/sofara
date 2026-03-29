@@ -57,7 +57,7 @@ export default function SequencesTool() {
 
   const generate = async () => {
     if (!selectedLead) {
-      toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Sélectionnez un lead." : "Select a lead." });
+      toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Sélectionnez un lead." : "Select a lead." });
       return;
     }
     setIsLoading(true);
@@ -96,17 +96,17 @@ export default function SequencesTool() {
     navigator.clipboard.writeText(content);
     setCopiedIdx(idx);
     setTimeout(() => setCopiedIdx(null), 2000);
-    toast({ title: lang === "fr" ? "Copié !" : "Copied!" });
+    toast({ title: lang === "ar" ? "Copié !" : "Copied!" });
   };
 
   return (
     <div className="h-full flex flex-col">
       <div className="mb-4">
         <h2 className="text-lg font-display font-bold dash-text mb-1">
-          {lang === "fr" ? "⚡ Séquences Follow-up AI" : "⚡ AI Follow-up Sequences"}
+          {lang === "ar" ? "⚡ Séquences Follow-up AI" : "⚡ AI Follow-up Sequences"}
         </h2>
         <p className="text-xs dash-muted-text">
-          {lang === "fr"
+          {lang === "ar"
             ? "Sélectionnez un lead et générez une séquence de relance complète en un clic"
             : "Select a lead and generate a complete follow-up sequence in one click"}
         </p>
@@ -125,12 +125,12 @@ export default function SequencesTool() {
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              {lang === "fr" ? "Génération en cours…" : "Generating…"}
+              {lang === "ar" ? "Génération en cours…" : "Generating…"}
             </>
           ) : (
             <>
               <Zap className="w-4 h-4" />
-              {lang === "fr" ? "Générer la séquence" : "Generate sequence"}
+              {lang === "ar" ? "Générer la séquence" : "Generate sequence"}
             </>
           )}
         </button>
@@ -141,7 +141,7 @@ export default function SequencesTool() {
           {/* Strategy */}
           <div className="dash-card rounded-xl p-4 border border-amber-200 bg-amber-50/50">
             <h3 className="text-sm font-semibold text-amber-800 mb-1">
-              {lang === "fr" ? "📋 Stratégie" : "📋 Strategy"}
+              {lang === "ar" ? "📋 Stratégie" : "📋 Strategy"}
             </h3>
             <p className="text-xs text-amber-700 leading-relaxed">{result.strategy_summary}</p>
           </div>
@@ -175,21 +175,21 @@ export default function SequencesTool() {
                       <div className="border-t border-[hsl(var(--dash-border))] p-4 space-y-3">
                         <div>
                           <p className="text-[10px] font-semibold dash-muted-text uppercase mb-1">
-                            {lang === "fr" ? "Objectif" : "Objective"}
+                            {lang === "ar" ? "Objectif" : "Objective"}
                           </p>
                           <p className="text-xs dash-text">{step.objective}</p>
                         </div>
                         <div>
                           <div className="flex items-center justify-between mb-1">
                             <p className="text-[10px] font-semibold dash-muted-text uppercase">
-                              {lang === "fr" ? "Contenu" : "Content"}
+                              {lang === "ar" ? "Contenu" : "Content"}
                             </p>
                             <button
                               onClick={() => copyContent(step.content, i)}
                               className="flex items-center gap-1 text-[10px] text-[hsl(var(--primary))] hover:underline"
                             >
                               {copiedIdx === i ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              {copiedIdx === i ? (lang === "fr" ? "Copié" : "Copied") : (lang === "fr" ? "Copier" : "Copy")}
+                              {copiedIdx === i ? (lang === "ar" ? "Copié" : "Copied") : (lang === "ar" ? "Copier" : "Copy")}
                             </button>
                           </div>
                           <div className="bg-[hsl(var(--dash-muted)/.3)] rounded-lg p-3 text-xs dash-text whitespace-pre-wrap leading-relaxed">
@@ -216,7 +216,7 @@ export default function SequencesTool() {
             disabled={isLoading}
             className="w-full py-2.5 rounded-xl border border-[hsl(var(--dash-border))] text-xs font-medium dash-text hover:bg-[hsl(var(--dash-muted)/.3)] transition-colors"
           >
-            {lang === "fr" ? "🔄 Régénérer la séquence" : "🔄 Regenerate sequence"}
+            {lang === "ar" ? "🔄 Régénérer la séquence" : "🔄 Regenerate sequence"}
           </button>
         </div>
       )}

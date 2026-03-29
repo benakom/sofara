@@ -25,23 +25,23 @@ const Commissions = () => {
   const paidPct = total > 0 ? Math.round((paidTotal / total) * 100) : 0;
 
   const stats = [
-    { labelFr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp, accent: "bg-violet-100 text-violet-600" },
-    { labelFr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle, accent: "bg-blue-100 text-blue-600" },
-    { labelFr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign, accent: "bg-emerald-100 text-emerald-600" },
-    { labelFr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock, accent: "bg-amber-100 text-amber-600" },
+    { labelAr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp, accent: "bg-violet-100 text-violet-600" },
+    { labelAr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle, accent: "bg-blue-100 text-blue-600" },
+    { labelAr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign, accent: "bg-emerald-100 text-emerald-600" },
+    { labelAr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock, accent: "bg-amber-100 text-amber-600" },
   ];
 
-  const statusConfig: Record<string, { badge: string; labelFr: string }> = {
-    estimated: { badge: "bg-violet-100 text-violet-700", labelFr: "Estimée" },
-    validated: { badge: "bg-blue-100 text-blue-700", labelFr: "Validée" },
-    paid: { badge: "bg-emerald-100 text-emerald-700", labelFr: "Payée" },
-    pending: { badge: "bg-amber-100 text-amber-700", labelFr: "En attente" },
+  const statusConfig: Record<string, { badge: string; labelAr: string }> = {
+    estimated: { badge: "bg-violet-100 text-violet-700", labelAr: "Estimée" },
+    validated: { badge: "bg-blue-100 text-blue-700", labelAr: "Validée" },
+    paid: { badge: "bg-emerald-100 text-emerald-700", labelAr: "Payée" },
+    pending: { badge: "bg-amber-100 text-amber-700", labelAr: "En attente" },
   };
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">Commissions</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Suivi détaillé de vos commissions." : "Detailed tracking of your commissions."}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Suivi détaillé de vos commissions." : "Detailed tracking of your commissions."}</p>
 
       {/* KPI row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -50,7 +50,7 @@ const Commissions = () => {
             className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
+              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">AED {s.value.toLocaleString()}</p>
           </motion.div>
@@ -60,12 +60,12 @@ const Commissions = () => {
       {/* Progress + Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
         <div className="lg:col-span-2 dash-card rounded-xl p-4">
-          <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2 mb-3"><BarChart3 className="w-4 h-4" /> {lang === "fr" ? "Progression des paiements" : "Payment Progress"}</h2>
+          <h2 className="text-base sm:text-sm font-display font-semibold dash-text flex items-center gap-2 mb-3"><BarChart3 className="w-4 h-4" /> {lang === "ar" ? "Progression des paiements" : "Payment Progress"}</h2>
           <div className="space-y-3">
             {stats.map((s, i) => (
               <div key={i}>
                 <div className="flex justify-between text-sm sm:text-xs mb-1">
-                  <span className="dash-muted-text">{lang === "fr" ? s.labelFr : s.labelEn}</span>
+                  <span className="dash-muted-text">{lang === "ar" ? s.labelAr : s.labelEn}</span>
                   <span className="font-medium dash-text">AED {s.value.toLocaleString()}</span>
                 </div>
                 <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
@@ -79,12 +79,12 @@ const Commissions = () => {
         </div>
         <div className="dash-card rounded-xl p-4 flex flex-col justify-between">
           <div>
-            <h3 className="text-sm sm:text-xs font-semibold dash-muted-text uppercase tracking-wider mb-1">{lang === "fr" ? "Total commissions" : "Total Commissions"}</h3>
+            <h3 className="text-sm sm:text-xs font-semibold dash-muted-text uppercase tracking-wider mb-1">{lang === "ar" ? "Total commissions" : "Total Commissions"}</h3>
             <p className="text-3xl sm:text-2xl font-display font-bold dash-text">AED {total.toLocaleString()}</p>
           </div>
           <div className="mt-3 pt-3 border-t dash-border-color">
             <div className="flex items-center justify-between text-sm sm:text-xs">
-              <span className="dash-muted-text">{lang === "fr" ? "Taux encaissé" : "Collection rate"}</span>
+              <span className="dash-muted-text">{lang === "ar" ? "Taux encaissé" : "Collection rate"}</span>
               <span className="font-bold text-emerald-600">{paidPct}%</span>
             </div>
             <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mt-1.5">
@@ -93,7 +93,7 @@ const Commissions = () => {
           </div>
           <div className="mt-3 flex items-center gap-2">
             <Target className="w-3.5 h-3.5 dash-muted-text" />
-            <span className="text-sm sm:text-xs dash-muted-text">{commissions.length} {lang === "fr" ? "transactions" : "transactions"}</span>
+            <span className="text-sm sm:text-xs dash-muted-text">{commissions.length} {lang === "ar" ? "transactions" : "transactions"}</span>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ const Commissions = () => {
         <table className="w-full">
           <thead>
             <tr className="border-b dash-border-color">
-              {["LEAD", "DEAL", lang === "fr" ? "MONTANT" : "AMOUNT", lang === "fr" ? "STATUT" : "STATUS", "DATE"].map((h) => (
+              {["LEAD", "DEAL", lang === "ar" ? "MONTANT" : "AMOUNT", lang === "ar" ? "STATUT" : "STATUS", "DATE"].map((h) => (
                 <th key={h} className="text-left text-xs sm:text-[11px] font-semibold dash-muted-text uppercase tracking-wider px-4 py-3">{h}</th>
               ))}
             </tr>
@@ -111,7 +111,7 @@ const Commissions = () => {
           <tbody>
             {commissions.length === 0 ? (
               <tr><td colSpan={5} className="text-center py-14 dash-muted-text text-sm">
-                {lang === "fr" ? "Aucune commission pour le moment." : "No commissions yet."}
+                {lang === "ar" ? "Aucune commission pour le moment." : "No commissions yet."}
               </td></tr>
             ) : (
               commissions.map((c: any) => {
@@ -121,7 +121,7 @@ const Commissions = () => {
                     <td className="px-4 py-3 text-sm dash-text font-medium">{c.leads?.first_name || "—"} {c.leads?.last_name?.charAt(0) || ""}.</td>
                     <td className="px-4 py-3 text-sm dash-muted-text">{c.deal_name}</td>
                     <td className="px-4 py-3 text-sm font-semibold dash-text">AED {Number(c.amount).toLocaleString()}</td>
-                    <td className="px-4 py-3"><span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${cfg.badge}`}>{lang === "fr" ? cfg.labelFr : c.status}</span></td>
+                    <td className="px-4 py-3"><span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${cfg.badge}`}>{lang === "ar" ? cfg.labelAr : c.status}</span></td>
                     <td className="px-4 py-3 text-sm dash-muted-text">{new Date(c.date).toLocaleDateString()}</td>
                   </tr>
                 );

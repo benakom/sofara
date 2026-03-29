@@ -33,21 +33,21 @@ const KycAml = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">KYC & AML</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Conformité et vérification." : "Compliance and verification."}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Conformité et vérification." : "Compliance and verification."}</p>
 
       {/* Overview stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
-          { labelFr: "Documents", labelEn: "Documents", value: `${checkedCount}/${totalDocs}`, icon: FileText, accent: "bg-blue-50 text-blue-600" },
-          { labelFr: "AML Score", labelEn: "AML Score", value: `${earnedPts}/${totalPts}`, icon: ShieldCheck, accent: "bg-violet-50 text-violet-600" },
-          { labelFr: "Certification", labelEn: "Certification", value: earnedPts >= totalPts ? "✅" : "🔒", icon: Award, accent: "bg-amber-50 text-amber-600" },
-          { labelFr: "XP gagnés", labelEn: "XP Earned", value: `${earnedPts}`, icon: Zap, accent: "bg-emerald-50 text-emerald-600" },
+          { labelAr: "Documents", labelEn: "Documents", value: `${checkedCount}/${totalDocs}`, icon: FileText, accent: "bg-blue-50 text-blue-600" },
+          { labelAr: "AML Score", labelEn: "AML Score", value: `${earnedPts}/${totalPts}`, icon: ShieldCheck, accent: "bg-violet-50 text-violet-600" },
+          { labelAr: "Certification", labelEn: "Certification", value: earnedPts >= totalPts ? "✅" : "🔒", icon: Award, accent: "bg-amber-50 text-amber-600" },
+          { labelAr: "XP gagnés", labelEn: "XP Earned", value: `${earnedPts}`, icon: Zap, accent: "bg-emerald-50 text-emerald-600" },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
+              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
           </motion.div>
@@ -77,8 +77,8 @@ const KycAml = () => {
                 />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium dash-text">{lang === "fr" ? doc.titleFr : doc.titleEn}</span>
-                    {doc.required && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-50 text-red-600 font-medium">{lang === "fr" ? "Requis" : "Required"}</span>}
+                    <span className="text-sm font-medium dash-text">{lang === "ar" ? doc.titleFr : doc.titleEn}</span>
+                    {doc.required && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-50 text-red-600 font-medium">{lang === "ar" ? "Requis" : "Required"}</span>}
                   </div>
                   <p className="text-[11px] dash-muted-text mt-0.5">{doc.desc}</p>
                 </div>
@@ -91,7 +91,7 @@ const KycAml = () => {
         <div className="space-y-4">
           <div className="dash-card rounded-xl p-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "fr" ? "Formation AML" : "AML Training"}</h2>
+              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "Formation AML" : "AML Training"}</h2>
               <span className="text-xs font-medium text-[hsl(var(--dash-accent))]">{earnedPts}/{totalPts} pts</span>
             </div>
             <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-4">
@@ -106,7 +106,7 @@ const KycAml = () => {
                     {mod.completed ? <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> : <mod.icon className="w-3.5 h-3.5 text-gray-400" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium dash-text truncate">{lang === "fr" ? mod.titleFr : mod.titleEn}</p>
+                    <p className="text-sm font-medium dash-text truncate">{lang === "ar" ? mod.titleFr : mod.titleEn}</p>
                     <p className="text-[11px] dash-muted-text">+{mod.pts} XP</p>
                   </div>
                   {!mod.completed && <Lock className="w-3.5 h-3.5 text-gray-300 shrink-0" />}
@@ -122,13 +122,13 @@ const KycAml = () => {
                 <Award className="w-5 h-5 text-amber-500" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold dash-text">{lang === "fr" ? "Certification AML Sofara" : "Sofara AML Certification"}</h3>
-                <p className="text-[11px] dash-muted-text">{lang === "fr" ? "Complétez tous les modules pour obtenir votre badge." : "Complete all modules to earn your badge."}</p>
+                <h3 className="text-sm font-semibold dash-text">{lang === "ar" ? "Certification AML Sofara" : "Sofara AML Certification"}</h3>
+                <p className="text-[11px] dash-muted-text">{lang === "ar" ? "Complétez tous les modules pour obtenir votre badge." : "Complete all modules to earn your badge."}</p>
               </div>
             </div>
             <div className="mt-3 flex items-center gap-2 text-xs dash-muted-text">
               <Star className="w-3.5 h-3.5 text-amber-400" />
-              <span>{lang === "fr" ? `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules complétés` : `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules completed`}</span>
+              <span>{lang === "ar" ? `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules complétés` : `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules completed`}</span>
             </div>
           </div>
         </div>

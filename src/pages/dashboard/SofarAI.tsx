@@ -55,7 +55,7 @@ const SofarAI = () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Vous devez être connecté." : "You must be logged in." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Vous devez être connecté." : "You must be logged in." });
         setIsLoading(false);
         return;
       }
@@ -146,7 +146,7 @@ const SofarAI = () => {
           <div className="flex-1">
             <h1 className="text-base font-display font-bold dash-text">SofarAI Qualifier</h1>
             <p className="text-[11px] dash-muted-text">
-              {lang === "fr" ? "Agent de qualification de leads" : "Lead qualification agent"}
+              {lang === "ar" ? "Agent de qualification de leads" : "Lead qualification agent"}
             </p>
           </div>
           {messages.length > 0 && (
@@ -154,7 +154,7 @@ const SofarAI = () => {
               onClick={handleNewConversation}
               className="text-[11px] px-3 py-1.5 rounded-lg border border-[hsl(var(--dash-border))] dash-muted-text hover:bg-[hsl(var(--dash-muted))] transition-colors"
             >
-              {lang === "fr" ? "Nouvelle conversation" : "New conversation"}
+              {lang === "ar" ? "Nouvelle conversation" : "New conversation"}
             </button>
           )}
         </div>
@@ -175,7 +175,7 @@ const SofarAI = () => {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={lang === "fr" ? "Posez une question sur ce lead…" : "Ask about this lead…"}
+            placeholder={lang === "ar" ? "Posez une question sur ce lead…" : "Ask about this lead…"}
             className="flex-1 min-w-0 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
             disabled={isLoading}
           />

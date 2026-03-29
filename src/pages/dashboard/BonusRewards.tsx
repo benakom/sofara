@@ -29,21 +29,21 @@ const BonusRewards = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">🏆 Bonus & Rewards</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "fr" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-5">{lang === "ar" ? "Programme de fidélité et récompenses." : "Loyalty program and rewards."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
-          { labelFr: "Bonus gagnés", labelEn: "Bonuses Earned", value: "AED 0", icon: DollarSign, accent: "bg-emerald-50 text-emerald-600" },
-          { labelFr: "Solde coins", labelEn: "Coin Balance", value: "0", icon: Gift, accent: "bg-amber-50 text-amber-600" },
-          { labelFr: "Tier actuel", labelEn: "Current Tier", value: "—", icon: Crown, accent: "bg-violet-50 text-violet-600" },
-          { labelFr: "Deals closés", labelEn: "Closed Deals", value: "0", icon: Target, accent: "bg-blue-50 text-blue-600" },
+          { labelAr: "Bonus gagnés", labelEn: "Bonuses Earned", value: "AED 0", icon: DollarSign, accent: "bg-emerald-50 text-emerald-600" },
+          { labelAr: "Solde coins", labelEn: "Coin Balance", value: "0", icon: Gift, accent: "bg-amber-50 text-amber-600" },
+          { labelAr: "Tier actuel", labelEn: "Current Tier", value: "—", icon: Crown, accent: "bg-violet-50 text-violet-600" },
+          { labelAr: "Deals closés", labelEn: "Closed Deals", value: "0", icon: Target, accent: "bg-blue-50 text-blue-600" },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-xl p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
-              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "fr" ? s.labelFr : s.labelEn}</span>
+              <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
           </motion.div>
@@ -53,7 +53,7 @@ const BonusRewards = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
         {/* Tier progression */}
         <div className="lg:col-span-2 dash-card rounded-xl p-4">
-          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Medal className="w-4 h-4" /> {lang === "fr" ? "Niveaux de fidélité" : "Loyalty Tiers"}</h2>
+          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Medal className="w-4 h-4" /> {lang === "ar" ? "Niveaux de fidélité" : "Loyalty Tiers"}</h2>
           <div className="space-y-2.5">
             {tiers.map((tier) => (
               <div key={tier.level} className={`flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r ${tier.color} border`}>
@@ -61,7 +61,7 @@ const BonusRewards = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold dash-text">{tier.name}</span>
-                    <span className="text-[11px] dash-muted-text">{lang === "fr" ? tier.conditionFr : tier.conditionEn}</span>
+                    <span className="text-[11px] dash-muted-text">{lang === "ar" ? tier.conditionFr : tier.conditionEn}</span>
                   </div>
                   <div className="h-1 bg-white/60 rounded-full mt-1.5 overflow-hidden">
                     <div className="h-full bg-current rounded-full opacity-30" style={{ width: "0%" }} />
@@ -75,13 +75,13 @@ const BonusRewards = () => {
 
         {/* Challenges */}
         <div className="dash-card rounded-xl p-4">
-          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /> {lang === "fr" ? "Challenges actifs" : "Active Challenges"}</h2>
+          <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /> {lang === "ar" ? "Challenges actifs" : "Active Challenges"}</h2>
           <div className="space-y-3">
             {challenges.map((ch, i) => (
               <div key={i} className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.3)] border border-[hsl(var(--dash-border))]">
                 <div className="flex items-center gap-2 mb-1.5">
                   <ch.icon className="w-3.5 h-3.5 text-amber-500" />
-                  <span className="text-xs font-medium dash-text">{lang === "fr" ? ch.titleFr : ch.titleEn}</span>
+                  <span className="text-xs font-medium dash-text">{lang === "ar" ? ch.titleFr : ch.titleEn}</span>
                 </div>
                 <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-1">
                   <div className="h-full bg-amber-400 rounded-full" style={{ width: `${(ch.progress / ch.target) * 100}%` }} />
@@ -98,13 +98,13 @@ const BonusRewards = () => {
 
       {/* Perks */}
       <div className="dash-card rounded-xl p-4">
-        <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Gift className="w-4 h-4" /> {lang === "fr" ? "Avantages par niveau" : "Perks by Tier"}</h2>
+        <h2 className="text-sm font-display font-semibold dash-text mb-3 flex items-center gap-2"><Gift className="w-4 h-4" /> {lang === "ar" ? "Avantages par niveau" : "Perks by Tier"}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {perks.map((perk, i) => (
             <div key={i} className={`p-3 rounded-xl border transition-all ${currentTier >= perk.tier ? "bg-emerald-50 border-emerald-200" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))] opacity-60"}`}>
               <span className="text-2xl">{perk.icon}</span>
-              <p className="text-sm font-medium dash-text mt-2">{lang === "fr" ? perk.titleFr : perk.titleEn}</p>
-              <p className="text-[11px] dash-muted-text mt-0.5">{lang === "fr" ? perk.descFr : perk.descEn}</p>
+              <p className="text-sm font-medium dash-text mt-2">{lang === "ar" ? perk.titleFr : perk.titleEn}</p>
+              <p className="text-[11px] dash-muted-text mt-0.5">{lang === "ar" ? perk.descFr : perk.descEn}</p>
               <p className="text-[10px] font-medium mt-2 text-amber-600">Tier {perk.tier}+</p>
             </div>
           ))}

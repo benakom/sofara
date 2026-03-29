@@ -20,24 +20,24 @@ const ImportLeads = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       <h1 className="text-2xl font-display font-bold dash-text mb-1">Import Leads</h1>
-      <p className="dash-muted-text text-base sm:text-sm mb-6">{lang === "fr" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
+      <p className="dash-muted-text text-base sm:text-sm mb-6">{lang === "ar" ? "Uploadez vos leads par différents moyens" : "Upload your leads through different methods"}</p>
 
       <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 shrink-0" />
           <div>
             <h3 className="font-semibold text-yellow-900 text-sm flex items-center gap-2">
-              ⚠️ {lang === "fr" ? "Déclaration obligatoire" : "Mandatory Declaration"}
+              ⚠️ {lang === "ar" ? "Déclaration obligatoire" : "Mandatory Declaration"}
             </h3>
             <p className="text-sm text-yellow-800 mt-2">
-              {lang === "fr"
+              {lang === "ar"
                 ? "En uploadant ces leads, j'atteste sur l'honneur qu'il s'agit de mes propres leads, obtenus de manière licite et conforme aux réglementations en vigueur (RGPD, PDPL). Je certifie disposer du consentement explicite de chaque contact pour le partage de leurs informations. Je reconnais également que Sofara se réserve le droit de contacter directement les leads afin de vérifier que le consentement a bien été donné pour l'ambassadeur."
                 : "By uploading these leads, I certify on my honor that these are my own leads, obtained lawfully and in compliance with current regulations (GDPR, PDPL). I certify that I have the explicit consent of each contact for sharing their information. I also acknowledge that Sofara reserves the right to directly contact the leads to verify that consent has been properly given for the ambassador."}
             </p>
             <div className="flex items-center gap-2 mt-4">
               <Checkbox id="accept" checked={accepted} onCheckedChange={(v) => setAccepted(!!v)} />
               <label htmlFor="accept" className="text-sm text-yellow-900 font-medium cursor-pointer">
-                {lang === "fr" ? "J'accepte les conditions ci-dessus" : "I accept the above conditions"}
+                {lang === "ar" ? "J'accepte les conditions ci-dessus" : "I accept the above conditions"}
               </label>
             </div>
           </div>
@@ -59,10 +59,10 @@ const ImportLeads = () => {
             <div className="p-3 rounded-xl bg-gray-100 w-fit mb-4">
               <m.icon className="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" />
             </div>
-            <h3 className="font-display font-semibold dash-text">{lang === "fr" ? m.titleFr : m.titleEn}</h3>
-            <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "fr" ? m.descFr : m.descEn}</p>
+            <h3 className="font-display font-semibold dash-text">{lang === "ar" ? m.titleFr : m.titleEn}</h3>
+            <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "ar" ? m.descFr : m.descEn}</p>
             <p className="text-base sm:text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
-              {lang === "fr" ? "Commencer →" : "Start →"}
+              {lang === "ar" ? "Commencer →" : "Start →"}
             </p>
           </motion.div>
         ))}

@@ -22,10 +22,10 @@ const StepArea = ({ value, onChange, lang }: Props) => {
     <div>
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-[hsl(var(--dash-fg))] font-display">
-          📍 {lang === "fr" ? "Choisissez la zone" : "Select Area"}
+          📍 {lang === "ar" ? "Choisissez la zone" : "Select Area"}
         </h2>
         <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-2">
-          {lang === "fr" ? "Où souhaitez-vous investir à Dubaï ?" : "Where do you want to invest in Dubai?"}
+          {lang === "ar" ? "Où souhaitez-vous investir à Dubaï ?" : "Where do you want to invest in Dubai?"}
         </p>
       </div>
 
@@ -36,7 +36,7 @@ const StepArea = ({ value, onChange, lang }: Props) => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder={lang === "fr" ? "Rechercher une zone..." : "Search areas..."}
+          placeholder={lang === "ar" ? "Rechercher une zone..." : "Search areas..."}
           className="w-full h-12 rounded-xl border-2 border-[hsl(var(--dash-border))] bg-white pl-11 pr-4 text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:border-[hsl(var(--dash-accent))] transition-colors"
         />
       </div>
@@ -57,7 +57,7 @@ const StepArea = ({ value, onChange, lang }: Props) => {
               <span className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{area.label}</span>
               {area.popular && (
                 <span className="ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                  {lang === "fr" ? "Populaire" : "Popular"}
+                  {lang === "ar" ? "Populaire" : "Popular"}
                 </span>
               )}
             </div>
@@ -71,7 +71,7 @@ const StepArea = ({ value, onChange, lang }: Props) => {
         ))}
         {filtered.length === 0 && (
           <p className="text-center text-sm text-[hsl(var(--dash-muted-fg))] py-8">
-            {lang === "fr" ? "Aucune zone trouvée" : "No areas found"}
+            {lang === "ar" ? "Aucune zone trouvée" : "No areas found"}
           </p>
         )}
       </div>

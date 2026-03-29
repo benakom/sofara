@@ -61,7 +61,7 @@ export default function AvatarChat() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Connectez-vous d'abord." : "Please log in first." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first." });
         setIsLoading(false);
         return;
       }
@@ -136,7 +136,7 @@ export default function AvatarChat() {
           <h3 className="text-sm font-bold text-white" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>SofarAI</h3>
           <p className="text-[10px] text-white/70 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-            {lang === "fr" ? "Expert immobilier" : "Property expert"}
+            {lang === "ar" ? "Expert immobilier" : "Property expert"}
           </p>
         </div>
         <button onClick={() => setIsOpen(false)} className="text-white/60 hover:text-white p-1.5 hover:bg-white/10 rounded-lg transition-colors">
@@ -150,10 +150,10 @@ export default function AvatarChat() {
           <div className="flex flex-col items-center justify-center h-full text-center px-2 min-w-0">
             <img src={sofaraAvatar} alt="SofarAI" className="w-16 h-16 rounded-full object-cover shadow-lg mb-3 border-2 border-violet-400/30" />
             <p className="text-xs text-slate-300 mb-4 break-words" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              {lang === "fr" ? "💬 Posez-moi n'importe quelle question !" : "💬 Ask me anything!"}
+              {lang === "ar" ? "💬 Posez-moi n'importe quelle question !" : "💬 Ask me anything!"}
             </p>
             <div className="flex flex-wrap gap-1.5 justify-center">
-              {(lang === "fr" ? ["💰 Prix JVC", "📊 Évalue un projet", "🏆 Top ROI"] : ["💰 JVC Prices", "📊 Evaluate a project", "🏆 Top ROI"]).map((q) => (
+              {(lang === "ar" ? ["💰 Prix JVC", "📊 Évalue un projet", "🏆 Top ROI"] : ["💰 JVC Prices", "📊 Evaluate a project", "🏆 Top ROI"]).map((q) => (
                 <button
                   key={q}
                   onClick={() => sendMessage(q)}
@@ -215,7 +215,7 @@ export default function AvatarChat() {
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
-            placeholder={lang === "fr" ? "Votre question…" : "Your question…"}
+            placeholder={lang === "ar" ? "Votre question…" : "Your question…"}
             className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
             style={{ background: "hsl(250, 18%, 18%)", border: "1px solid hsl(250, 12%, 26%)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             disabled={isLoading}

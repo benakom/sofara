@@ -45,7 +45,7 @@ export default function PhoneChat() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "fr" ? "Connectez-vous d'abord." : "Please log in first." });
+        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first." });
         setIsLoading(false);
         return;
       }
@@ -94,7 +94,7 @@ export default function PhoneChat() {
   const now = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
-  const quickPrompts = lang === "fr" ? [
+  const quickPrompts = lang === "ar" ? [
     "💰 Prix moyens par zone",
     "📊 Évaluer un projet",
     "🏆 Top ROI 2025",
@@ -140,7 +140,7 @@ export default function PhoneChat() {
               <div className="flex-1">
                 <h3 className="text-[13px] font-display font-bold text-white">SofarAI</h3>
                 <p className="text-[9px] text-white/60">
-                  {lang === "fr" ? "Expert immobilier Dubai • En ligne" : "Dubai Real Estate Expert • Online"}
+                  {lang === "ar" ? "Expert immobilier Dubai • En ligne" : "Dubai Real Estate Expert • Online"}
                 </p>
               </div>
               <div className="flex items-center gap-1">
@@ -157,10 +157,10 @@ export default function PhoneChat() {
                     <img src={sofaraAvatar} alt="SofarAI" className="relative w-16 h-16 rounded-full object-cover shadow-xl border-2 border-[hsl(var(--border))]" />
                   </div>
                   <h3 className="text-[13px] font-display font-bold text-[hsl(var(--foreground))] mb-0.5">
-                    {lang === "fr" ? "Bienvenue 👋" : "Welcome 👋"}
+                    {lang === "ar" ? "Bienvenue 👋" : "Welcome 👋"}
                   </h3>
                   <p className="text-[10px] text-[hsl(var(--muted-foreground))] leading-relaxed mb-3 max-w-[250px]">
-                    {lang === "fr"
+                    {lang === "ar"
                       ? "Je suis votre expert IA immobilier Dubai. Prix, scoring, ROI, objections… posez-moi tout !"
                       : "I'm your Dubai real estate AI expert. Prices, scoring, ROI, objections… ask me anything!"}
                   </p>
@@ -207,7 +207,7 @@ export default function PhoneChat() {
                         <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-bounce" style={{ animationDelay: "300ms" }} />
                       </div>
                       <span className="text-[10px] text-[hsl(var(--muted-foreground))]">
-                        {lang === "fr" ? "Analyse…" : "Analyzing…"}
+                        {lang === "ar" ? "Analyse…" : "Analyzing…"}
                       </span>
                     </div>
                   </div>
@@ -224,7 +224,7 @@ export default function PhoneChat() {
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); sendMessage(input); }}}
-                  placeholder={lang === "fr" ? "Message SofarAI…" : "Message SofarAI…"}
+                  placeholder={lang === "ar" ? "Message SofarAI…" : "Message SofarAI…"}
                   className="flex-1 h-9 px-3 rounded-full bg-[hsl(var(--muted))] border border-[hsl(var(--border))] text-[12px] text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
                   disabled={isLoading}
                 />

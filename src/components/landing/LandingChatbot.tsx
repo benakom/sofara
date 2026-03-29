@@ -13,32 +13,20 @@ type Msg = { role: "user" | "assistant"; content: string };
 
 const i18n: Record<string, Record<Lang, string>> = {
   welcome: {
-    fr: "Bonjour ! Je suis Sara, votre assistante Sofara 👋 Posez-moi vos questions sur l'investissement à Dubai ou le programme ambassadeur.",
     en: "Hi! I'm Sara, your Sofara assistant 👋 Ask me anything about investing in Dubai or the ambassador program.",
-    ar: "مرحبًا! أنا سارة، مساعدة Sofara 👋 اسألني عن الاستثمار في دبي أو برنامج السفراء.",
-    es: "¡Hola! Soy Sara, tu asistente Sofara 👋 Pregúntame sobre invertir en Dubái o el programa de embajadores.",
-    ru: "Привет! Я Сара, ассистент Sofara 👋 Спрашивайте об инвестициях в Дубай или программе амбассадоров.",
+    ar: "مرحباً! أنا سارة، مساعدة Sofara 👋 اسألني عن الاستثمار في دبي أو برنامج السفراء.",
   },
   placeholder: {
-    fr: "Posez votre question…",
     en: "Ask your question…",
     ar: "اطرح سؤالك…",
-    es: "Haz tu pregunta…",
-    ru: "Задайте вопрос…",
   },
   limitReached: {
-    fr: "Vous avez atteint la limite de questions pour cette session. Contactez-nous à hello@sofara.io pour continuer la conversation !",
     en: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
     ar: "لقد وصلت إلى حد الأسئلة لهذه الجلسة. تواصل معنا على hello@sofara.io!",
-    es: "Has alcanzado el límite de preguntas. ¡Contáctanos en hello@sofara.io!",
-    ru: "Вы достигли лимита вопросов. Свяжитесь с нами: hello@sofara.io!",
   },
   online: {
-    fr: "En ligne",
     en: "Online",
     ar: "متصل",
-    es: "En línea",
-    ru: "Онлайн",
   },
 };
 

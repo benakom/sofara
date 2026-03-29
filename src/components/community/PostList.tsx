@@ -60,7 +60,7 @@ const PostList = ({
   const renderPost = (post: Post, i: number) => {
     const timeAgo = formatDistanceToNow(new Date(post.created_at), {
       addSuffix: true,
-      locale: lang === "fr" ? fr : enUS,
+      locale: lang === "ar" ? fr : enUS,
     });
 
     return (
@@ -136,7 +136,7 @@ const PostList = ({
             className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-[hsl(var(--primary))] text-white hover:opacity-90 transition-opacity"
           >
             <Plus className="w-3 h-3" />
-            {lang === "fr" ? "Nouveau post" : "New post"}
+            {lang === "ar" ? "منشور جديد" : "New post"}
           </button>
         )}
       </div>
@@ -145,7 +145,7 @@ const PostList = ({
         <div className="text-center py-12">
           <MessageCircle className="w-8 h-8 mx-auto dash-muted-text mb-2" />
           <p className="text-sm dash-muted-text">
-            {lang === "fr" ? "Aucune discussion dans cet espace." : "No posts in this channel yet."}
+            {lang === "ar" ? "Aucune discussion dans cet espace." : "No posts in this channel yet."}
           </p>
         </div>
       )}

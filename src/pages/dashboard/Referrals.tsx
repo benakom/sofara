@@ -79,7 +79,7 @@ const Referrals = () => {
   const handleCopy = () => {
     navigator.clipboard.writeText(referralLink);
     setCopied(true);
-    toast({ title: lang === "fr" ? "Lien copié !" : "Link copied!" });
+    toast({ title: lang === "ar" ? "Lien copié !" : "Link copied!" });
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -97,7 +97,7 @@ const Referrals = () => {
       <div>
         <div className="flex items-center gap-2 mb-1">
           <h1 className="text-xl font-display font-bold dash-text">
-            {lang === "fr" ? "Mes Filleuls" : "My Referrals"}
+            {lang === "ar" ? "إحالاتي" : "My Referrals"}
           </h1>
           {ambassadorTier === "ambassador_plus" && (
             <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500">
@@ -107,7 +107,7 @@ const Referrals = () => {
           )}
         </div>
         <p className="text-sm dash-muted-text">
-          {lang === "fr"
+          {lang === "ar"
             ? "Parrainez de nouveaux ambassadeurs et gagnez 10% de bonus sur chacun de leurs closings."
             : "Refer new ambassadors and earn 10% bonus on each of their closings."}
         </p>
@@ -121,10 +121,10 @@ const Referrals = () => {
           </div>
           <div>
             <p className="text-sm font-semibold dash-text">
-              {lang === "fr" ? "Votre lien de parrainage" : "Your referral link"}
+              {lang === "ar" ? "Votre lien de parrainage" : "Your referral link"}
             </p>
             <p className="text-xs dash-muted-text">
-              {lang === "fr" ? "Partagez ce lien pour parrainer" : "Share this link to refer"}
+              {lang === "ar" ? "Partagez ce lien pour parrainer" : "Share this link to refer"}
             </p>
           </div>
         </div>
@@ -134,12 +134,12 @@ const Referrals = () => {
           </div>
           <Button variant="outline" size="sm" onClick={handleCopy} className="shrink-0 gap-1.5">
             {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-            {copied ? (lang === "fr" ? "Copié" : "Copied") : (lang === "fr" ? "Copier" : "Copy")}
+            {copied ? (lang === "ar" ? "Copié" : "Copied") : (lang === "ar" ? "Copier" : "Copy")}
           </Button>
         </div>
         {referralCode && (
           <p className="text-xs dash-muted-text mt-2">
-            {lang === "fr" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--dash-accent))]">{referralCode}</span>
+            {lang === "ar" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--dash-accent))]">{referralCode}</span>
           </p>
         )}
       </div>
@@ -150,7 +150,7 @@ const Referrals = () => {
           {
             icon: Users,
             value: godchildrenCount,
-            labelFr: "Filleuls",
+            labelAr: "Filleuls",
             labelEn: "Referrals",
             color: "text-blue-500",
             bg: "bg-blue-500/10",
@@ -158,7 +158,7 @@ const Referrals = () => {
           {
             icon: TrendingUp,
             value: godchildren.reduce((s, g) => s + g.deals_closed, 0),
-            labelFr: "Deals closés",
+            labelAr: "Deals closés",
             labelEn: "Deals closed",
             color: "text-emerald-500",
             bg: "bg-emerald-500/10",
@@ -166,7 +166,7 @@ const Referrals = () => {
           {
             icon: Gift,
             value: `AED ${bonusTotal.toLocaleString()}`,
-            labelFr: "Bonus gagnés",
+            labelAr: "Bonus gagnés",
             labelEn: "Bonuses earned",
             color: "text-amber-500",
             bg: "bg-amber-500/10",
@@ -178,7 +178,7 @@ const Referrals = () => {
             </div>
             <div>
               <p className="text-lg font-bold dash-text">{kpi.value}</p>
-              <p className="text-xs dash-muted-text">{lang === "fr" ? kpi.labelFr : kpi.labelEn}</p>
+              <p className="text-xs dash-muted-text">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</p>
             </div>
           </div>
         ))}
@@ -189,18 +189,18 @@ const Referrals = () => {
         <div className="dash-card rounded-xl overflow-hidden">
           <div className="p-4 border-b border-[hsl(var(--dash-border))]">
             <h3 className="text-sm font-semibold dash-text">
-              {lang === "fr" ? "Ambassadeurs parrainés" : "Referred ambassadors"}
+              {lang === "ar" ? "Ambassadeurs parrainés" : "Referred ambassadors"}
             </h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-[hsl(var(--dash-border))]">
-                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "fr" ? "Nom" : "Name"}</th>
-                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "fr" ? "Statut" : "Status"}</th>
-                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "fr" ? "Leads" : "Leads"}</th>
-                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "fr" ? "Deals closés" : "Deals closed"}</th>
-                  <th className="text-right px-4 py-3 text-xs dash-muted-text font-medium">{lang === "fr" ? "Inscrit le" : "Joined"}</th>
+                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "الاسم العائلي" : "Name"}</th>
+                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "الحالة" : "Status"}</th>
+                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "العملاء" : "Leads"}</th>
+                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Deals closés" : "Deals closed"}</th>
+                  <th className="text-right px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Inscrit le" : "Joined"}</th>
                 </tr>
               </thead>
               <tbody>
@@ -215,15 +215,15 @@ const Referrals = () => {
                           ? "bg-red-500/10 text-red-500"
                           : "bg-amber-500/10 text-amber-500"
                       }`}>
-                        {g.status === "approved" ? (lang === "fr" ? "Actif" : "Active") :
-                         g.status === "rejected" ? (lang === "fr" ? "Rejeté" : "Rejected") :
-                         (lang === "fr" ? "En attente" : "Pending")}
+                        {g.status === "approved" ? (lang === "ar" ? "Actif" : "Active") :
+                         g.status === "rejected" ? (lang === "ar" ? "Rejeté" : "Rejected") :
+                         (lang === "ar" ? "قيد الانتظار" : "Pending")}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center dash-text">{g.leads_count}</td>
                     <td className="px-4 py-3 text-center dash-text">{g.deals_closed}</td>
                     <td className="px-4 py-3 text-right dash-muted-text text-xs">
-                      {new Date(g.created_at).toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US")}
+                      {new Date(g.created_at).toLocaleDateString(lang === "ar" ? "fr-FR" : "en-US")}
                     </td>
                   </tr>
                 ))}
@@ -235,7 +235,7 @@ const Referrals = () => {
         <div className="dash-card rounded-xl p-8 text-center">
           <Users className="w-10 h-10 mx-auto dash-muted-text mb-3 opacity-40" />
           <p className="text-sm dash-muted-text">
-            {lang === "fr"
+            {lang === "ar"
               ? "Vous n'avez pas encore de filleuls. Partagez votre lien pour commencer !"
               : "You don't have any referrals yet. Share your link to get started!"}
           </p>

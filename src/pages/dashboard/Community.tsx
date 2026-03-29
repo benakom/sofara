@@ -172,7 +172,7 @@ const Community = () => {
     } else {
       setShowCreateChannel(false);
       fetchChannels();
-      toast({ title: lang === "fr" ? "Espace créé !" : "Channel created!" });
+      toast({ title: lang === "ar" ? "Espace créé !" : "Channel created!" });
     }
   };
 
@@ -192,7 +192,7 @@ const Community = () => {
     } else {
       setShowCreatePost(false);
       fetchPosts(selectedChannel.id);
-      toast({ title: lang === "fr" ? "Post publié !" : "Post published!" });
+      toast({ title: lang === "ar" ? "Post publié !" : "Post published!" });
     }
   };
 
@@ -284,7 +284,7 @@ const Community = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto">
       <h1 className="text-2xl sm:text-xl font-display font-bold dash-text mb-0.5">Community</h1>
       <p className="dash-muted-text text-base sm:text-sm mb-5">
-        {lang === "fr" ? "Échangez avec les ambassadeurs Sofara." : "Connect with Sofara ambassadors."}
+        {lang === "ar" ? "Échangez avec les ambassadeurs Sofara." : "Connect with Sofara ambassadors."}
       </p>
 
       {/* Mobile: stacked views / Desktop: side-by-side */}
@@ -306,7 +306,7 @@ const Community = () => {
             <div className="lg:hidden text-center py-12">
               <MessageCircle className="w-10 h-10 mx-auto dash-muted-text mb-3" />
               <p className="text-sm dash-muted-text">
-                {lang === "fr" ? "Sélectionnez un espace pour commencer." : "Select a channel to get started."}
+                {lang === "ar" ? "Sélectionnez un espace pour commencer." : "Select a channel to get started."}
               </p>
             </div>
           )}
@@ -316,7 +316,7 @@ const Community = () => {
               <div className="text-center">
                 <MessageCircle className="w-10 h-10 mx-auto dash-muted-text mb-3" />
                 <p className="text-sm dash-muted-text">
-                  {lang === "fr" ? "Sélectionnez un espace pour voir les discussions." : "Select a channel to see discussions."}
+                  {lang === "ar" ? "Sélectionnez un espace pour voir les discussions." : "Select a channel to see discussions."}
                 </p>
               </div>
             </div>
@@ -325,11 +325,11 @@ const Community = () => {
           {view === "posts" && selectedChannel && (
             <>
               <button onClick={handleBackToChannels} className="lg:hidden flex items-center gap-1.5 text-xs dash-muted-text hover:text-[hsl(var(--dash-accent))] transition-colors mb-3">
-                ← {lang === "fr" ? "Espaces" : "Channels"}
+                ← {lang === "ar" ? "Espaces" : "Channels"}
               </button>
               <PostList
                 posts={posts}
-                channelTitle={`${selectedChannel.emoji} ${lang === "fr" ? selectedChannel.title_fr : selectedChannel.title_en}`}
+                channelTitle={`${selectedChannel.emoji} ${lang === "ar" ? selectedChannel.title_fr : selectedChannel.title_en}`}
                 channelLocked={selectedChannel.is_locked}
                 onSelectPost={handleSelectPost}
                 onCreatePost={() => setShowCreatePost(true)}

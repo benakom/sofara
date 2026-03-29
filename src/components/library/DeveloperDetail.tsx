@@ -36,7 +36,7 @@ const DeveloperDetail = ({ developerId, navigate, onPreviewAsset }: Props) => {
       <div className="flex items-center gap-2 text-xs text-[hsl(var(--dash-muted-fg))]">
         <button onClick={() => navigate({ type: "home" })} className="hover:text-[hsl(var(--primary))]">Library</button>
         <span>/</span>
-        <button onClick={() => navigate({ type: "browse", tab: "developers" })} className="hover:text-[hsl(var(--primary))]">{lang === "fr" ? "Développeurs" : "Developers"}</button>
+        <button onClick={() => navigate({ type: "browse", tab: "developers" })} className="hover:text-[hsl(var(--primary))]">{lang === "ar" ? "المطورون" : "Developers"}</button>
         <span>/</span>
         <span className="text-[hsl(var(--dash-fg))] font-medium">{developer.name}</span>
       </div>
@@ -50,8 +50,8 @@ const DeveloperDetail = ({ developerId, navigate, onPreviewAsset }: Props) => {
           <h1 className="text-xl font-display font-bold text-[hsl(var(--dash-fg))]">{developer.name}</h1>
           {developer.description && <p className="text-sm text-[hsl(var(--dash-muted-fg))] mt-1 line-clamp-2">{developer.description}</p>}
           <div className="flex items-center gap-3 mt-2">
-            <span className="text-xs text-[hsl(var(--dash-muted-fg))]">{projects?.length || 0} {lang === "fr" ? "projets" : "projects"}</span>
-            <span className="text-xs text-[hsl(var(--dash-muted-fg))]">{assets?.length || 0} {lang === "fr" ? "documents" : "assets"}</span>
+            <span className="text-xs text-[hsl(var(--dash-muted-fg))]">{projects?.length || 0} {lang === "ar" ? "مشاريع" : "projects"}</span>
+            <span className="text-xs text-[hsl(var(--dash-muted-fg))]">{assets?.length || 0} {lang === "ar" ? "مستندات" : "assets"}</span>
             {developer.website && (
               <a href={developer.website} target="_blank" rel="noopener" className="flex items-center gap-1 text-xs text-[hsl(var(--primary))] hover:underline">
                 <Globe className="w-3 h-3" /> Website <ExternalLink className="w-2.5 h-2.5" />
@@ -75,7 +75,7 @@ const DeveloperDetail = ({ developerId, navigate, onPreviewAsset }: Props) => {
 
       {/* Projects */}
       <div>
-        <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "fr" ? "Projets" : "Projects"}</h3>
+        <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "ar" ? "مشاريع" : "Projects"}</h3>
         {projects && projects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((p: any) => (
@@ -91,14 +91,14 @@ const DeveloperDetail = ({ developerId, navigate, onPreviewAsset }: Props) => {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-[hsl(var(--dash-muted-fg))] py-8 text-center">{lang === "fr" ? "Aucun projet" : "No projects yet"}</p>
+          <p className="text-sm text-[hsl(var(--dash-muted-fg))] py-8 text-center">{lang === "ar" ? "لا توجد مشاريع بعد" : "No projects yet"}</p>
         )}
       </div>
 
       {/* Assets */}
       {assets && assets.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "fr" ? "Documents & Médias" : "Assets & Media"}</h3>
+          <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-3">{lang === "ar" ? "المستندات والوسائط" : "Assets & Media"}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {assets.map((a: any) => (
               <button key={a.id} onClick={() => onPreviewAsset(a.id)} className="flex items-center gap-3 p-3 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] hover:border-[hsl(var(--primary))]/20 transition-all text-left w-full">

@@ -93,7 +93,7 @@ const AdminLayout = () => {
           className="flex items-center gap-2 text-sm text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors w-full px-1"
         >
           <LogOut className="w-4 h-4" />
-          {lang === "fr" ? "Déconnexion" : "Sign Out"}
+          {lang === "ar" ? "تسجيل الخروج" : "Sign Out"}
         </button>
       </div>
     </div>

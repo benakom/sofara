@@ -59,11 +59,11 @@ const COUNTRIES = [
 ];
 
 const PROFILES = [
-  { value: "influencer", labelFr: "Influenceur / Créateur", labelEn: "Influencer / Creator" },
-  { value: "entrepreneur", labelFr: "Entrepreneur", labelEn: "Entrepreneur" },
-  { value: "investor", labelFr: "Investisseur", labelEn: "Investor" },
-  { value: "networker", labelFr: "Réseau / Communauté", labelEn: "Network / Community" },
-  { value: "other", labelFr: "Autre", labelEn: "Other" },
+  { value: "influencer", labelAr: "Influenceur / Créateur", labelEn: "Influencer / Creator" },
+  { value: "entrepreneur", labelAr: "Entrepreneur", labelEn: "Entrepreneur" },
+  { value: "investor", labelAr: "Investisseur", labelEn: "Investor" },
+  { value: "networker", labelAr: "Réseau / Communauté", labelEn: "Network / Community" },
+  { value: "other", labelAr: "Autre", labelEn: "Other" },
 ];
 
 interface OnboardingGateProps {
@@ -92,7 +92,7 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !phone.trim() || !country || !profileType || !acceptedTerms || !acceptedConduct) {
-      toast({ variant: "destructive", title: lang === "fr" ? "Champs requis" : "Required fields", description: lang === "fr" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
+      toast({ variant: "destructive", title: lang === "ar" ? "Champs requis" : "Required fields", description: lang === "ar" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
       return;
     }
     setLoading(true);
@@ -132,8 +132,8 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
     } else {
       localStorage.removeItem("sofara_ref");
       toast({
-        title: lang === "fr" ? "Bienvenue sur Sofara ! 🎉" : "Welcome to Sofara! 🎉",
-        description: lang === "fr" ? "Votre compte est activé." : "Your account is activated.",
+        title: lang === "ar" ? "Bienvenue sur Sofara ! 🎉" : "Welcome to Sofara! 🎉",
+        description: lang === "ar" ? "Votre compte est activé." : "Your account is activated.",
       });
       onComplete();
     }
@@ -151,10 +151,10 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
             <Sparkles className="w-7 h-7 text-[hsl(var(--primary))]" />
           </div>
           <h2 className="text-xl font-display font-bold dash-text">
-            {lang === "fr" ? "Bienvenue sur Sofara" : "Welcome to Sofara"}
+            {lang === "ar" ? "Bienvenue sur Sofara" : "Welcome to Sofara"}
           </h2>
           <p className="text-sm dash-muted-text mt-2 max-w-md mx-auto leading-relaxed">
-            {lang === "fr"
+            {lang === "ar"
               ? "Complétez votre profil pour accéder à la plateforme. Votre compte sera activé immédiatement."
               : "Complete your profile to access the platform. Your account will be activated immediately."}
           </p>
@@ -162,25 +162,25 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
 
         <div className="grid grid-cols-3 gap-2 mb-5">
           {[
-            { icon: Lock, labelFr: "Accès sécurisé", labelEn: "Secure access" },
-            { icon: Eye, labelFr: "Données protégées", labelEn: "Data protected" },
-            { icon: Users, labelFr: "Réseau vérifié", labelEn: "Verified network" },
+            { icon: Lock, labelAr: "Accès sécurisé", labelEn: "Secure access" },
+            { icon: Eye, labelAr: "Données protégées", labelEn: "Data protected" },
+            { icon: Users, labelAr: "Réseau vérifié", labelEn: "Verified network" },
           ].map((badge, i) => (
             <div key={i} className="flex flex-col items-center gap-1.5 py-2.5 px-2 rounded-xl bg-[hsl(var(--dash-muted)/.5)] border border-[hsl(var(--dash-border)/.5)]">
               <badge.icon className="w-4 h-4 text-[hsl(var(--primary))]" />
-              <span className="text-[10px] dash-muted-text text-center font-medium">{lang === "fr" ? badge.labelFr : badge.labelEn}</span>
+              <span className="text-[10px] dash-muted-text text-center font-medium">{lang === "ar" ? badge.labelAr : badge.labelEn}</span>
             </div>
           ))}
         </div>
 
         <form onSubmit={handleSubmit} className="dash-card rounded-2xl p-5 sm:p-6 space-y-4">
           <div>
-            <Label className="text-xs dash-muted-text">{lang === "fr" ? "Nom complet" : "Full name"} <span className="text-destructive">*</span></Label>
+            <Label className="text-xs dash-muted-text">{lang === "ar" ? "Nom complet" : "Full name"} <span className="text-destructive">*</span></Label>
             <Input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" className="mt-1 bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))]" required />
           </div>
 
           <div>
-            <Label className="text-xs dash-muted-text">{lang === "fr" ? "Téléphone" : "Phone"} <span className="text-destructive">*</span></Label>
+            <Label className="text-xs dash-muted-text">{lang === "ar" ? "الهاتف" : "Phone"} <span className="text-destructive">*</span></Label>
             <div className="grid grid-cols-[160px_1fr] gap-2 mt-1">
               <Select value={phoneCode} onValueChange={setPhoneCode}>
                 <SelectTrigger className="bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))] text-sm">
@@ -212,10 +212,10 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs dash-muted-text">{lang === "fr" ? "Pays de résidence" : "Country"} <span className="text-destructive">*</span></Label>
+              <Label className="text-xs dash-muted-text">{lang === "ar" ? "Pays de résidence" : "Country"} <span className="text-destructive">*</span></Label>
               <Select value={country} onValueChange={setCountry}>
                 <SelectTrigger className="mt-1 bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))] text-sm">
-                  <SelectValue placeholder={lang === "fr" ? "Sélectionner" : "Select"} />
+                  <SelectValue placeholder={lang === "ar" ? "Sélectionner" : "Select"} />
                 </SelectTrigger>
                 <SelectContent className="max-h-60">
                   {COUNTRIES.map((c) => (
@@ -225,14 +225,14 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
               </Select>
             </div>
             <div>
-              <Label className="text-xs dash-muted-text">{lang === "fr" ? "Profil" : "Profile"} <span className="text-destructive">*</span></Label>
+              <Label className="text-xs dash-muted-text">{lang === "ar" ? "Profil" : "Profile"} <span className="text-destructive">*</span></Label>
               <Select value={profileType} onValueChange={setProfileType}>
                 <SelectTrigger className="mt-1 bg-[hsl(var(--dash-bg))] border-[hsl(var(--dash-border))] text-sm">
-                  <SelectValue placeholder={lang === "fr" ? "Sélectionner" : "Select"} />
+                  <SelectValue placeholder={lang === "ar" ? "Sélectionner" : "Select"} />
                 </SelectTrigger>
                 <SelectContent>
                   {PROFILES.map((p) => (
-                    <SelectItem key={p.value} value={p.value}>{lang === "fr" ? p.labelFr : p.labelEn}</SelectItem>
+                    <SelectItem key={p.value} value={p.value}>{lang === "ar" ? p.labelAr : p.labelEn}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -243,7 +243,7 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
             <div className="flex items-start gap-3">
               <Checkbox id="terms" checked={acceptedTerms} onCheckedChange={(v) => setAcceptedTerms(!!v)} className="mt-0.5" />
               <label htmlFor="terms" className="text-xs dash-muted-text leading-relaxed cursor-pointer">
-                {lang === "fr"
+                {lang === "ar"
                   ? "J'accepte les conditions générales d'utilisation et la politique de confidentialité de Sofara."
                   : "I accept Sofara's terms of service and privacy policy."}
                 <span className="text-destructive ml-0.5">*</span>
@@ -252,7 +252,7 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
             <div className="flex items-start gap-3">
               <Checkbox id="conduct" checked={acceptedConduct} onCheckedChange={(v) => setAcceptedConduct(!!v)} className="mt-0.5" />
               <label htmlFor="conduct" className="text-xs dash-muted-text leading-relaxed cursor-pointer">
-                {lang === "fr"
+                {lang === "ar"
                   ? "Je m'engage à respecter le code de conduite du programme ambassadeur."
                   : "I commit to respecting the ambassador program code of conduct."}
                 <span className="text-destructive ml-0.5">*</span>
@@ -261,7 +261,7 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
           </div>
 
           <Button type="submit" variant="hero" className="w-full rounded-xl py-5 text-sm" disabled={loading || !acceptedTerms || !acceptedConduct}>
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "fr" ? "Activer mon compte" : "Activate my account"}
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "ar" ? "Activer mon compte" : "Activate my account"}
           </Button>
         </form>
       </motion.div>
