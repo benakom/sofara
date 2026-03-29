@@ -63,37 +63,37 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar — Vestox clean style */
+    /* Dashboard sidebar — Influency clean style */
     --dash-sidebar-bg: 0 0% 100%;
-    --dash-sidebar-fg: 0 0% 40%;
-    --dash-sidebar-active: 17 90% 55%;
+    --dash-sidebar-fg: 0 0% 45%;
+    --dash-sidebar-active: 68 80% 52%;
     --dash-sidebar-hover: 0 0% 97%;
     --dash-sidebar-border: 0 0% 93%;
 
-    /* Dashboard content — ultra-clean white */
-    --dash-bg: 0 0% 96%;
-    --dash-fg: 0 0% 12%;
+    /* Dashboard content — ultra-clean light gray */
+    --dash-bg: 220 14% 96%;
+    --dash-fg: 220 15% 15%;
     --dash-card: 0 0% 100%;
-    --dash-card-fg: 0 0% 12%;
-    --dash-border: 0 0% 91%;
-    --dash-muted: 0 0% 96%;
-    --dash-muted-fg: 0 0% 50%;
+    --dash-card-fg: 220 15% 15%;
+    --dash-border: 220 9% 91%;
+    --dash-muted: 220 14% 96%;
+    --dash-muted-fg: 220 9% 46%;
 
     /* Dashboard form inputs */
     --dash-input-bg: 0 0% 100%;
-    --dash-input-border: 0 0% 88%;
+    --dash-input-border: 220 9% 89%;
 
-    /* Dashboard accent — Vestox orange */
-    --dash-accent: 17 90% 55%;
-    --dash-accent-fg: 0 0% 100%;
-    --dash-accent-gradient: linear-gradient(135deg, hsl(17, 90%, 55%), hsl(25, 95%, 58%));
-    --dash-accent-glow: 0 6px 20px -6px hsl(17, 90%, 55%, 0.35);
-    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.03), 0 1px 2px -1px rgba(0,0,0,0.02);
-    --dash-card-shadow-hover: 0 4px 12px -2px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.03);
-    --dash-card-ring: 0 0% 91%;
+    /* Dashboard accent — Influency lime/chartreuse */
+    --dash-accent: 68 80% 52%;
+    --dash-accent-fg: 220 15% 10%;
+    --dash-accent-gradient: linear-gradient(145deg, hsl(68, 100%, 62%), hsl(72, 80%, 48%));
+    --dash-accent-glow: 0 6px 24px -6px hsl(68, 80%, 52%, 0.35);
+    --dash-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.02);
+    --dash-card-shadow-hover: 0 4px 16px -4px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
+    --dash-card-ring: 220 9% 91%;
     --dash-success: 160 84% 39%;
     --dash-warning: 38 92% 50%;
-    --dash-info: 199 89% 48%;
+    --dash-info: 210 80% 55%;
   }
 }
 
@@ -252,23 +252,23 @@
 }
 
 /* ======= DASHBOARD SCOPED THEME ======= */
-/* Vestox-inspired clean SaaS override */
+/* Influency-inspired clean SaaS override */
 .dash-theme {
-  --primary: 17 90% 55%;
-  --primary-foreground: 0 0% 100%;
-  --background: 0 0% 96%;
-  --foreground: 0 0% 12%;
+  --primary: 68 80% 52%;
+  --primary-foreground: 220 15% 10%;
+  --background: 220 14% 96%;
+  --foreground: 220 15% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 12%;
-  --border: 0 0% 91%;
-  --input: 0 0% 88%;
-  --ring: 17 90% 55%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 50%;
-  --accent: 17 90% 55%;
-  --accent-foreground: 0 0% 100%;
+  --card-foreground: 220 15% 15%;
+  --border: 220 9% 91%;
+  --input: 220 9% 89%;
+  --ring: 68 80% 52%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 68 80% 52%;
+  --accent-foreground: 220 15% 10%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 12%;
+  --popover-foreground: 220 15% 15%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 }
@@ -374,32 +374,32 @@
   border-radius: 6px;
 }
 
-/* Clean SaaS accent blocks — Vestox palette */
-.dash-block-a { background: hsl(17, 90%, 55%); border-color: transparent; }
-.dash-block-b { background: hsl(0, 0%, 14%); border-color: transparent; }
-.dash-block-c { background: hsl(160, 60%, 45%); border-color: transparent; }
-.dash-block-d { background: hsl(38, 92%, 50%); border-color: transparent; }
+/* Clean SaaS accent blocks — Influency palette */
+.dash-block-a { background: linear-gradient(145deg, hsl(68, 100%, 62%), hsl(72, 80%, 48%)); border-color: transparent; }
+.dash-block-b { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
+.dash-block-c { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
+.dash-block-d { background: hsl(220, 14%, 96%); border-color: hsl(220, 9%, 91%); }
 .dash-block-e { background: hsl(0, 70%, 55%); border-color: transparent; }
 .dash-block-f { background: hsl(220, 14%, 30%); border-color: transparent; }
 
-.dash-icon-a { background: hsl(17, 100%, 95%); color: hsl(17, 90%, 50%); }
-.dash-icon-b { background: hsl(0, 0%, 94%); color: hsl(0, 0%, 25%); }
-.dash-icon-c { background: hsl(160, 60%, 92%); color: hsl(160, 60%, 38%); }
-.dash-icon-d { background: hsl(38, 100%, 92%); color: hsl(38, 92%, 42%); }
+.dash-icon-a { background: hsl(68, 60%, 90%); color: hsl(68, 80%, 35%); }
+.dash-icon-b { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
+.dash-icon-c { background: hsl(210, 60%, 92%); color: hsl(210, 80%, 45%); }
+.dash-icon-d { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
 .dash-icon-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 48%); }
 .dash-icon-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
 
-.dash-chip-a { background: hsl(17, 100%, 95%); color: hsl(17, 90%, 45%); }
-.dash-chip-b { background: hsl(0, 0%, 94%); color: hsl(0, 0%, 30%); }
-.dash-chip-c { background: hsl(160, 60%, 92%); color: hsl(160, 60%, 35%); }
+.dash-chip-a { background: hsl(68, 70%, 90%); color: hsl(68, 80%, 30%); }
+.dash-chip-b { background: hsl(220, 14%, 94%); color: hsl(220, 15%, 35%); }
+.dash-chip-c { background: hsl(210, 60%, 92%); color: hsl(210, 80%, 40%); }
 .dash-chip-d { background: hsl(38, 100%, 92%); color: hsl(38, 92%, 40%); }
 .dash-chip-e { background: hsl(0, 80%, 94%); color: hsl(0, 70%, 45%); }
 .dash-chip-f { background: hsl(220, 20%, 93%); color: hsl(220, 14%, 35%); }
 .dash-chip-g { background: hsl(160, 50%, 93%); color: hsl(160, 60%, 35%); }
 .dash-chip-h { background: hsl(200, 60%, 93%); color: hsl(200, 60%, 38%); }
 
-.dash-bar-a { background: hsl(17, 90%, 55%); }
-.dash-bar-b { background: hsl(0, 0%, 20%); }
+.dash-bar-a { background: hsl(68, 80%, 52%); }
+.dash-bar-b { background: hsl(210, 60%, 72%); }
 .dash-bar-c { background: hsl(160, 60%, 45%); }
 .dash-bar-d { background: hsl(38, 92%, 50%); }
 .dash-bar-e { background: hsl(0, 70%, 55%); }
