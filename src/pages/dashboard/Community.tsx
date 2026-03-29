@@ -324,7 +324,7 @@ const Community = () => {
 
           {view === "posts" && selectedChannel && (
             <>
-              <button onClick={handleBackToChannels} className="lg:hidden flex items-center gap-1.5 text-xs dash-muted-text hover:text-[hsl(var(--primary))] transition-colors mb-3">
+              <button onClick={handleBackToChannels} className="lg:hidden flex items-center gap-1.5 text-xs dash-muted-text hover:text-[hsl(var(--dash-accent))] transition-colors mb-3">
                 ← {lang === "fr" ? "Espaces" : "Channels"}
               </button>
               <PostList
