@@ -183,8 +183,6 @@ const DashboardLayout = () => {
                   </button>
                 );
               })}
-            </div>
-          ))}
         </div>
       </nav>
 
