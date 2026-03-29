@@ -67,6 +67,8 @@ const Auth = () => {
   const { toast } = useToast();
 
   const [mode, setMode] = useState<"login" | "signup" | "forgot">("login");
+  const [signupComplete, setSignupComplete] = useState(false);
+  const [signupEmail, setSignupEmail] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
