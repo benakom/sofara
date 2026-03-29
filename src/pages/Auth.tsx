@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useAuth } from "@/hooks/useAuth";
-import { ArrowLeft, Loader2, CheckCircle2, Sparkles, TrendingUp, Users, Globe, ShieldCheck, Mail, RefreshCw } from "lucide-react";
+import { ArrowLeft, Loader2, CheckCircle2, Sparkles, TrendingUp, Users, Globe, ShieldCheck, Mail, RefreshCw, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import authHero from "@/assets/auth-hero.jpg";
 
@@ -72,6 +72,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Signup-specific fields
   const [firstName, setFirstName] = useState("");
@@ -111,7 +112,18 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) {
-      toast({ variant: "destructive", title: lang === "fr" ? "Erreur de connexion" : "Login error", description: error.message });
+      const isEmailNotConfirmed = /email not confirmed|email.*confirm/i.test(error.message);
+      toast({
+        variant: "destructive",
+        title: isEmailNotConfirmed
+          ? (lang === "fr" ? "Email non vérifié" : "Email not verified")
+          : (lang === "fr" ? "Erreur de connexion" : "Login error"),
+        description: isEmailNotConfirmed
+          ? (lang === "fr"
+              ? "Vérifiez votre email puis reconnectez-vous."
+              : "Please verify your email and try again.")
+          : error.message,
+      });
     } else {
       navigate("/dashboard");
     }
@@ -494,16 +506,26 @@ const Auth = () => {
                   <Label htmlFor="password" className="text-sm">
                     {lang === "fr" ? "Mot de passe" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    minLength={6}
-                    className="bg-background/50 h-11 rounded-xl"
-                  />
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      minLength={6}
+                      className="bg-background/50 h-11 rounded-xl pr-11"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={showPassword ? (lang === "fr" ? "Masquer le mot de passe" : "Hide password") : (lang === "fr" ? "Afficher le mot de passe" : "Show password")}
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
               )}
 
