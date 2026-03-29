@@ -149,7 +149,8 @@ const Auth = () => {
     if (error) {
       toast({ variant: "destructive", title: lang === "fr" ? "Erreur d'inscription" : "Signup error", description: error.message });
     } else {
-      toast({ title: lang === "fr" ? "Vérifiez votre email" : "Check your email", description: lang === "fr" ? "Un lien de confirmation vous a été envoyé." : "A confirmation link has been sent to you." });
+      setSignupEmail(email);
+      setSignupComplete(true);
     }
   };
 
