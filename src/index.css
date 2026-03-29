@@ -316,8 +316,8 @@
 }
 
 .dash-input:focus {
-  border-color: hsl(var(--primary)) !important;
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.08) !important;
+  border-color: hsl(var(--dash-accent)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--dash-accent) / 0.12) !important;
 }
 
 /* Dashboard dialog/form backgrounds */
