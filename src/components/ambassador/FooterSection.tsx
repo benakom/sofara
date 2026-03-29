@@ -13,9 +13,12 @@ const FooterSection = () => {
             <div className="mb-3 sm:mb-4">
               <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-tight">sofara</span>
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-sm leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-sm leading-relaxed mb-4">
               {t("footer.description")}
             </p>
+            <a href="https://www.instagram.com/sofaradubai/" target="_blank" rel="noopener" className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+              <Instagram size={18} />
+            </a>
           </div>
 
           <div>
