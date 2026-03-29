@@ -42,8 +42,7 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-primary/5 blur-[100px] sm:blur-[150px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] rounded-full bg-accent/5 blur-[80px] sm:blur-[120px] animate-pulse-soft" style={{ animationDelay: '2s' }} />
 
-
-      <div className="relative z-10 flex-1 flex items-center w-full px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-20">
+      <div className="relative z-10 flex-1 flex items-center w-full px-4 sm:px-6 pt-14 sm:pt-20 pb-6 sm:pb-20">
         <div className="max-w-5xl mx-auto text-center w-full">
           {/* Badge */}
           <motion.div
