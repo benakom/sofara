@@ -66,18 +66,19 @@ const DashboardHome = () => {
       {/* KPI Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
         {kpis.map((kpi, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
-            className={`dash-card rounded-xl p-4 relative overflow-hidden ${kpi.blockClass}`}>
+          <motion.button key={i} onClick={() => navigate(kpi.path)}
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
+            className={`rounded-xl p-4 relative overflow-hidden text-left cursor-pointer border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 ${kpi.blockClass}`}>
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <div className={`p-1.5 rounded-lg ${kpi.iconClass}`}>
-                  <kpi.icon className="w-3.5 h-3.5" />
+                <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
+                  <kpi.icon className="w-3.5 h-3.5 text-white" />
                 </div>
               </div>
-              <p className="text-2xl font-display font-bold dash-text tracking-tight">{kpi.prefix || ""}{kpi.value}</p>
-              <span className="text-[11px] font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
+              <p className="text-2xl font-display font-bold text-white tracking-tight drop-shadow-sm">{kpi.prefix || ""}{kpi.value}</p>
+              <span className="text-[11px] font-medium text-white/80 uppercase tracking-wider">{lang === "ar" ? kpi.labelAr : kpi.labelEn}</span>
             </div>
-          </motion.div>
+          </motion.button>
         ))}
       </div>
 
