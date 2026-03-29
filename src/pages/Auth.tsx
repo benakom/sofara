@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -10,6 +11,54 @@ import { useAuth } from "@/hooks/useAuth";
 import { ArrowLeft, Loader2, CheckCircle2, Sparkles, TrendingUp, Users, Globe, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import authHero from "@/assets/auth-hero.jpg";
+
+const PHONE_CODES = [
+  { code: "+971", flag: "🇦🇪", name: "UAE", digits: 9 },
+  { code: "+33", flag: "🇫🇷", name: "France", digits: 9 },
+  { code: "+44", flag: "🇬🇧", name: "UK", digits: 10 },
+  { code: "+1", flag: "🇺🇸", name: "USA", digits: 10 },
+  { code: "+212", flag: "🇲🇦", name: "Maroc", digits: 9 },
+  { code: "+216", flag: "🇹🇳", name: "Tunisie", digits: 8 },
+  { code: "+213", flag: "🇩🇿", name: "Algérie", digits: 9 },
+  { code: "+966", flag: "🇸🇦", name: "Arabie S.", digits: 9 },
+  { code: "+961", flag: "🇱🇧", name: "Liban", digits: 8 },
+  { code: "+41", flag: "🇨🇭", name: "Suisse", digits: 9 },
+  { code: "+32", flag: "🇧🇪", name: "Belgique", digits: 9 },
+  { code: "+49", flag: "🇩🇪", name: "Allemagne", digits: 11 },
+  { code: "+39", flag: "🇮🇹", name: "Italie", digits: 10 },
+  { code: "+34", flag: "🇪🇸", name: "Espagne", digits: 9 },
+  { code: "+351", flag: "🇵🇹", name: "Portugal", digits: 9 },
+  { code: "+31", flag: "🇳🇱", name: "Pays-Bas", digits: 9 },
+  { code: "+91", flag: "🇮🇳", name: "Inde", digits: 10 },
+  { code: "+86", flag: "🇨🇳", name: "Chine", digits: 11 },
+  { code: "+7", flag: "🇷🇺", name: "Russie", digits: 10 },
+  { code: "+55", flag: "🇧🇷", name: "Brésil", digits: 11 },
+  { code: "+234", flag: "🇳🇬", name: "Nigeria", digits: 10 },
+  { code: "+27", flag: "🇿🇦", name: "Afr. du Sud", digits: 9 },
+  { code: "+254", flag: "🇰🇪", name: "Kenya", digits: 9 },
+  { code: "+225", flag: "🇨🇮", name: "Côte d'Iv.", digits: 10 },
+  { code: "+221", flag: "🇸🇳", name: "Sénégal", digits: 9 },
+  { code: "+237", flag: "🇨🇲", name: "Cameroun", digits: 9 },
+  { code: "+974", flag: "🇶🇦", name: "Qatar", digits: 8 },
+  { code: "+965", flag: "🇰🇼", name: "Koweït", digits: 8 },
+  { code: "+973", flag: "🇧🇭", name: "Bahreïn", digits: 8 },
+  { code: "+968", flag: "🇴🇲", name: "Oman", digits: 8 },
+  { code: "+20", flag: "🇪🇬", name: "Égypte", digits: 10 },
+  { code: "+962", flag: "🇯🇴", name: "Jordanie", digits: 9 },
+  { code: "+90", flag: "🇹🇷", name: "Turquie", digits: 10 },
+  { code: "+1", flag: "🇨🇦", name: "Canada", digits: 10 },
+];
+
+const OCCUPATIONS = [
+  { value: "real_estate_agent", labelFr: "Agent immobilier", labelEn: "Real Estate Agent" },
+  { value: "influencer", labelFr: "Influenceur / Créateur de contenu", labelEn: "Influencer / Content Creator" },
+  { value: "entrepreneur", labelFr: "Entrepreneur", labelEn: "Entrepreneur" },
+  { value: "investor", labelFr: "Investisseur", labelEn: "Investor" },
+  { value: "networker", labelFr: "Networker / Communauté", labelEn: "Networker / Community" },
+  { value: "finance", labelFr: "Finance / Banque", labelEn: "Finance / Banking" },
+  { value: "consultant", labelFr: "Consultant", labelEn: "Consultant" },
+  { value: "other", labelFr: "Autre", labelEn: "Other" },
+];
 
 const Auth = () => {
   const { lang } = useLanguage();
@@ -21,6 +70,28 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Signup-specific fields
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneCode, setPhoneCode] = useState("+971");
+  const [phone, setPhone] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  const selectedPhoneEntry = PHONE_CODES.find(c => c.code === phoneCode);
+
+  const validatePhone = (value: string, code: string) => {
+    const digits = value.replace(/\D/g, "");
+    const entry = PHONE_CODES.find(c => c.code === code);
+    if (!entry) return "";
+    if (digits.length > 0 && digits.length !== entry.digits) {
+      return lang === "fr"
+        ? `${entry.digits} chiffres requis pour ${entry.name}`
+        : `${entry.digits} digits required for ${entry.name}`;
+    }
+    return "";
+  };
 
   useEffect(() => {
     if (!authLoading && user) navigate("/dashboard");
@@ -46,8 +117,32 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Validate phone
+    const digits = phone.replace(/\D/g, "");
+    const pErr = validatePhone(digits, phoneCode);
+    if (pErr) {
+      setPhoneError(pErr);
+      return;
+    }
+    if (!firstName.trim() || !lastName.trim() || !occupation) {
+      toast({ variant: "destructive", title: lang === "fr" ? "Champs requis" : "Required fields", description: lang === "fr" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
+      return;
+    }
     setLoading(true);
-    const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin } });
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          full_name: `${firstName.trim()} ${lastName.trim()}`,
+          phone: `${phoneCode}${digits}`,
+          occupation,
+        },
+      },
+    });
     setLoading(false);
     if (error) {
       toast({ variant: "destructive", title: lang === "fr" ? "Erreur d'inscription" : "Signup error", description: error.message });
@@ -224,7 +319,7 @@ const Auth = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="w-full max-w-sm mx-auto"
+          className={`w-full ${mode === "signup" ? "max-w-md" : "max-w-sm"} mx-auto`}
         >
           <a
             href="/"
@@ -244,9 +339,37 @@ const Auth = () => {
               <p className="text-sm text-muted-foreground mt-1">{l.subtitle}</p>
             </div>
 
-            <form onSubmit={onSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-3.5">
+              {/* Signup fields: Nom + Prénom */}
+              {mode === "signup" && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="lastName" className="text-sm">{lang === "fr" ? "Nom" : "Last Name"} <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="lastName"
+                      placeholder={lang === "fr" ? "Dupont" : "Smith"}
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                      className="bg-background/50 h-11 rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="firstName" className="text-sm">{lang === "fr" ? "Prénom" : "First Name"} <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="firstName"
+                      placeholder={lang === "fr" ? "Jean" : "John"}
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                      className="bg-background/50 h-11 rounded-xl"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-sm">Email</Label>
+                <Label htmlFor="email" className="text-sm">Email {mode === "signup" && <span className="text-destructive">*</span>}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -261,7 +384,7 @@ const Auth = () => {
               {mode !== "forgot" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "fr" ? "Mot de passe" : "Password"}
+                    {lang === "fr" ? "Mot de passe" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
                   <Input
                     id="password"
@@ -273,6 +396,69 @@ const Auth = () => {
                     minLength={6}
                     className="bg-background/50 h-11 rounded-xl"
                   />
+                </div>
+              )}
+
+              {/* Signup: Phone */}
+              {mode === "signup" && (
+                <div className="space-y-1.5">
+                  <Label className="text-sm">{lang === "fr" ? "Téléphone" : "Phone"} <span className="text-destructive">*</span></Label>
+                  <div className="grid grid-cols-[140px_1fr] gap-2">
+                    <Select value={phoneCode} onValueChange={(v) => { setPhoneCode(v); setPhoneError(""); }}>
+                      <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
+                        <SelectValue>
+                          {selectedPhoneEntry && (
+                            <span className="flex items-center gap-1.5">
+                              <span>{selectedPhoneEntry.flag}</span>
+                              <span className="text-muted-foreground">{selectedPhoneEntry.code}</span>
+                            </span>
+                          )}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 bg-popover border-border">
+                        {PHONE_CODES.map((c) => (
+                          <SelectItem key={`${c.code}-${c.name}`} value={c.code} className="focus:bg-primary/10 focus:text-primary">
+                            <span className="flex items-center gap-2">
+                              <span>{c.flag}</span>
+                              <span>{c.name}</span>
+                              <span className="text-muted-foreground">{c.code}</span>
+                            </span>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Input
+                      value={phone}
+                      onChange={(e) => {
+                        const v = e.target.value.replace(/[^\d\s]/g, "");
+                        setPhone(v);
+                        setPhoneError(validatePhone(v, phoneCode));
+                      }}
+                      placeholder={selectedPhoneEntry ? `${selectedPhoneEntry.digits} chiffres` : ""}
+                      className="bg-background/50 h-11 rounded-xl"
+                      required
+                    />
+                  </div>
+                  {phoneError && <p className="text-xs text-destructive mt-1">{phoneError}</p>}
+                </div>
+              )}
+
+              {/* Signup: Occupation */}
+              {mode === "signup" && (
+                <div className="space-y-1.5">
+                  <Label className="text-sm">{lang === "fr" ? "Occupation" : "Occupation"} <span className="text-destructive">*</span></Label>
+                  <Select value={occupation} onValueChange={setOccupation}>
+                    <SelectTrigger className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
+                      <SelectValue placeholder={lang === "fr" ? "Sélectionnez votre activité" : "Select your activity"} />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-border">
+                      {OCCUPATIONS.map((o) => (
+                        <SelectItem key={o.value} value={o.value} className="focus:bg-primary/10 focus:text-primary">
+                          {lang === "fr" ? o.labelFr : o.labelEn}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               )}
 
