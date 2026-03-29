@@ -162,10 +162,10 @@ const DashboardHome = () => {
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { labelAr: "Ajouter un lead", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", blockClass: "dash-block-a", iconClass: "dash-icon-a" },
-          { labelAr: "Academy", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", blockClass: "dash-block-d", iconClass: "dash-icon-d" },
+          { labelAr: "إضافة عميل", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", blockClass: "dash-block-a", iconClass: "dash-icon-a" },
+          { labelAr: "الأكاديمية", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", blockClass: "dash-block-d", iconClass: "dash-icon-d" },
           { labelAr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", blockClass: "dash-block-b", iconClass: "dash-icon-b" },
-          { labelAr: "Bonus", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", blockClass: "dash-block-c", iconClass: "dash-icon-c" },
+          { labelAr: "المكافآت", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", blockClass: "dash-block-c", iconClass: "dash-icon-c" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }}
