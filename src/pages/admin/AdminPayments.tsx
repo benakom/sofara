@@ -28,7 +28,7 @@ const AdminPayments = () => {
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
 
   if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" /></div>;
+    return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" /></div>;
   }
 
   return (
@@ -59,7 +59,7 @@ const AdminPayments = () => {
                 <TableCell>
                   <Badge variant="secondary" className={
                     p.status === "paid" ? "bg-[hsl(160,70%,50%,.1)] text-[hsl(160,70%,50%)]" :
-                    p.status === "processing" ? "bg-[hsl(var(--primary)/.1)] text-[hsl(var(--primary))]" :
+                    p.status === "processing" ? "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-accent))]" :
                     "bg-[hsl(45,90%,55%,.1)] text-[hsl(45,90%,55%)]"
                   }>
                     {p.status ?? "pending"}
