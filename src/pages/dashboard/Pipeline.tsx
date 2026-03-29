@@ -12,14 +12,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 const stageLabels: Record<string, { fr: string; en: string; color: string; barColor: string }> = {
-  nouveau: { fr: "Nouveau", en: "New", color: "bg-slate-100 text-slate-700", barColor: "bg-slate-400" },
-  prequalifie: { fr: "Préqualifié", en: "Prequalified", color: "bg-sky-100 text-sky-700", barColor: "bg-sky-500" },
-  qualifie: { fr: "Qualifié", en: "Qualified", color: "bg-violet-100 text-violet-700", barColor: "bg-violet-500" },
-  injoignable: { fr: "Injoignable", en: "Unreachable", color: "bg-red-100 text-red-600", barColor: "bg-red-500" },
-  offre_envoyee: { fr: "Offre envoyée", en: "Offer Sent", color: "bg-amber-100 text-amber-700", barColor: "bg-amber-500" },
-  offre_acceptee: { fr: "Offre acceptée", en: "Offer Accepted", color: "bg-emerald-100 text-emerald-700", barColor: "bg-emerald-500" },
-  booking: { fr: "Booking payé", en: "Booking Paid", color: "bg-green-100 text-green-700", barColor: "bg-green-500" },
-  dp_paye: { fr: "DP payé", en: "DP Paid", color: "bg-teal-100 text-teal-700", barColor: "bg-teal-600" },
+  nouveau: { fr: "Nouveau", en: "New", color: "dash-chip-a", barColor: "dash-bar-f" },
+  prequalifie: { fr: "Préqualifié", en: "Prequalified", color: "dash-chip-h", barColor: "dash-bar-a" },
+  qualifie: { fr: "Qualifié", en: "Qualified", color: "dash-chip-b", barColor: "dash-bar-b" },
+  injoignable: { fr: "Injoignable", en: "Unreachable", color: "dash-chip-e", barColor: "dash-bar-e" },
+  offre_envoyee: { fr: "Offre envoyée", en: "Offer Sent", color: "dash-chip-d", barColor: "dash-bar-d" },
+  offre_acceptee: { fr: "Offre acceptée", en: "Offer Accepted", color: "dash-chip-c", barColor: "dash-bar-c" },
+  booking: { fr: "Booking payé", en: "Booking Paid", color: "dash-chip-g", barColor: "dash-bar-b" },
+  dp_paye: { fr: "DP payé", en: "DP Paid", color: "dash-chip-f", barColor: "dash-bar-f" },
 };
 
 const Pipeline = () => {
@@ -120,7 +120,7 @@ const Pipeline = () => {
               return (
                 <div key={key} className={`h-full ${label.barColor} rounded-full transition-all relative group`}
                   style={{ width: `${(count / totalLeads) * 100}%`, minWidth: 8 }}>
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[hsl(var(--dash-fg))] text-[hsl(var(--dash-card))] text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                     {lang === "fr" ? label.fr : label.en}: {count}
                   </div>
                 </div>

@@ -114,17 +114,17 @@ const DashboardLayout = () => {
       {/* Logo */}
       <div className="px-5 pt-6 pb-5 border-b border-[hsl(var(--dash-sidebar-border))]">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-4xl font-bold text-white tracking-tight">
+          <a href="/" className="font-display text-4xl font-bold text-[hsl(var(--dash-fg))] tracking-tight">
             sofara
           </a>
           {profileType === "pro" && (
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]">PRO</span>
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))] border border-[hsl(var(--dash-sidebar-active)/.25)]">PRO</span>
           )}
           {ambassadorTier === "ambassador_plus" && (
-            <Crown className="w-3.5 h-3.5 text-amber-400" />
+            <Crown className="w-3.5 h-3.5 text-[hsl(var(--dash-sidebar-active))]" />
           )}
         </div>
-        <p className="text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--dash-sidebar-fg)/.4)] mt-0.5 font-medium">Ambassador Platform</p>
+        <p className="text-[10px] uppercase tracking-[0.15em] text-[hsl(var(--dash-muted-fg))] mt-0.5 font-medium">Ambassador Platform</p>
       </div>
 
       {/* Nav */}
@@ -141,8 +141,8 @@ const DashboardLayout = () => {
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
                   active
-                    ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-white border border-[hsl(var(--dash-sidebar-active)/.2)]"
-                    : "text-[hsl(var(--dash-sidebar-fg)/.65)] hover:text-white hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
+                    ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-[hsl(var(--dash-fg))] border border-[hsl(var(--dash-sidebar-active)/.24)] shadow-sm"
+                    : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
                 }`}
               >
                 <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
@@ -151,7 +151,7 @@ const DashboardLayout = () => {
                   <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
                     item.badge === "AI" 
                       ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
-                      : "bg-emerald-500/15 text-emerald-400"
+                      : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"
                   }`}>
                     {item.badge}
                   </span>
@@ -167,12 +167,14 @@ const DashboardLayout = () => {
         <div className="px-3 pb-2">
           <button
             onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-violet-500/10 to-blue-500/10 border border-violet-500/20 text-violet-300 hover:from-violet-500/15 hover:to-blue-500/15 transition-all duration-200 group"
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl dash-card-interactive border-[hsl(var(--dash-accent)/.22)]"
           >
-            <ArrowUpCircle className="w-4 h-4 shrink-0" />
+            <div className="w-8 h-8 rounded-lg dash-btn-accent flex items-center justify-center shrink-0">
+              <ArrowUpCircle className="w-4 h-4" />
+            </div>
             <div className="flex-1 text-left">
-              <p className="text-[11px] font-semibold">{lang === "fr" ? "Passer à Pro" : "Upgrade to Pro"}</p>
-              <p className="text-[9px] opacity-60">{lang === "fr" ? "Gratuit • Outils avancés" : "Free • Advanced tools"}</p>
+              <p className="text-[11px] font-semibold text-[hsl(var(--dash-fg))]">{lang === "fr" ? "Passer à Pro" : "Upgrade to Pro"}</p>
+              <p className="text-[9px] text-[hsl(var(--dash-muted-fg))]">{lang === "fr" ? "Gratuit • Outils avancés" : "Free • Advanced tools"}</p>
             </div>
           </button>
         </div>
@@ -181,18 +183,21 @@ const DashboardLayout = () => {
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(246,80%,60%)] to-[hsl(280,75%,55%)] flex items-center justify-center text-xs font-bold text-white shadow-sm">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-[hsl(var(--dash-accent-fg))] shadow-sm"
+            style={{ background: "var(--dash-accent-gradient)" }}
+          >
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-white truncate">{user.email?.split("@")[0]}</p>
-            <p className="text-[11px] text-[hsl(var(--dash-sidebar-fg)/.4)] truncate">{user.email}</p>
+            <p className="text-sm font-medium text-[hsl(var(--dash-fg))] truncate">{user.email?.split("@")[0]}</p>
+            <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] truncate">{user.email}</p>
           </div>
         </div>
         {isSuperAdmin && (
           <button
             onClick={() => navigate("/admin")}
-            className="flex items-center gap-2 text-sm text-[hsl(var(--destructive))] hover:text-[hsl(var(--destructive))] transition-colors w-full px-1 mb-2 font-semibold"
+            className="flex items-center gap-2 text-sm text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent))] transition-colors w-full px-1 mb-2 font-semibold"
           >
             <Shield className="w-4 h-4" />
             Super Admin
@@ -200,7 +205,7 @@ const DashboardLayout = () => {
         )}
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-[13px] text-[hsl(var(--dash-sidebar-fg)/.45)] hover:text-white transition-colors w-full px-1"
+          className="flex items-center gap-2 text-[13px] text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors w-full px-1"
         >
           <LogOut className="w-4 h-4" />
           {lang === "fr" ? "Déconnexion" : "Sign Out"}
@@ -220,7 +225,7 @@ const DashboardLayout = () => {
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent
           side="left"
-          className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-sidebar-fg))] [&>button]:hover:text-white [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
+          className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-muted-fg))] [&>button]:hover:text-[hsl(var(--dash-fg))] [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
         >
           <SidebarContent />
         </SheetContent>
