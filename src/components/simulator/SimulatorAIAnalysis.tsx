@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Bot, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
-import { supabase } from "@/integrations/supabase/client";
 import { fmt, fmtPct } from "./InvestmentSimulator";
 import type { SimulationData, SimulationResults } from "./simulator-types";
 import type { Lang } from "@/i18n/translations";
@@ -27,21 +26,19 @@ const SimulatorAIAnalysis = ({ results, data, lang }: Props) => {
 
 **Property:**
 - Price: AED ${fmt(results.price)} | Area: ${fmt(results.sqft)} sqft | Price/sqft: AED ${fmt(results.pricePerSqft)}
-- Type: ${data.propertyType} | Bedrooms: ${data.bedrooms} | Location: ${data.location.replace(/_/g, " ")}
-- Payment Plan: ${data.paymentPlan}
+- Type: ${results.propertyType} | Location: ${results.areaLabel}
+- Payment Plan: ${results.paymentPlan} | Handover: ${results.handoverYear}
 
-**Financial KPIs (${data.investmentHorizon}-year horizon):**
+**Financial KPIs (${results.investmentHorizon}-year horizon):**
 - Total ROI: ${fmtPct(results.totalROI)} | Annualized ROI: ${fmtPct(results.annualizedROI)}
 - Gross Yield: ${fmtPct(results.grossYield)} | Net Yield: ${fmtPct(results.netYield)}
 - Monthly Cashflow: AED ${fmt(results.netMonthlyCashflow)}
 - Capital Gain: AED ${fmt(results.capitalGain)} | Future Value: AED ${fmt(results.futureValue)}
 - Break-even: ${results.breakEvenMonths ?? "N/A"} months
-- Financing: ${data.financingType}${data.financingType === "mortgage" ? ` (LTV ${data.mortgageLTV}%, Rate ${data.mortgageRate}%)` : ""}
 
 **Costs:**
 - Total Acquisition: AED ${fmt(results.totalAcquisition)}
 - Annual Service Charges: AED ${fmt(results.annualServiceCharge)}
-- Annual Insurance: AED ${fmt(results.annualInsurance)}
 - Net Annual Income: AED ${fmt(results.netAnnualIncome)}
 
 Provide your analysis in ${lang === "fr" ? "French" : "English"} with these sections:
@@ -70,9 +67,7 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
         }),
       });
 
-      if (!resp.ok || !resp.body) {
-        throw new Error("AI analysis failed");
-      }
+      if (!resp.ok || !resp.body) throw new Error("AI analysis failed");
 
       const reader = resp.body.getReader();
       const decoder = new TextDecoder();
@@ -83,7 +78,6 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
         const { done: streamDone, value } = await reader.read();
         if (streamDone) break;
         buffer += decoder.decode(value, { stream: true });
-
         let idx: number;
         while ((idx = buffer.indexOf("\n")) !== -1) {
           let line = buffer.slice(0, idx);
@@ -95,14 +89,10 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
           try {
             const parsed = JSON.parse(jsonStr);
             const content = parsed.choices?.[0]?.delta?.content;
-            if (content) {
-              fullText += content;
-              setAnalysis(fullText);
-            }
+            if (content) { fullText += content; setAnalysis(fullText); }
           } catch {}
         }
       }
-
       setDone(true);
     } catch (err) {
       console.error("AI analysis error:", err);
@@ -125,27 +115,19 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
           </h3>
         </div>
         {!done && (
-          <Button
-            onClick={runAnalysis}
-            disabled={loading}
-            className="dash-btn-accent rounded-xl gap-2 h-9 px-5 text-sm"
-          >
+          <Button onClick={runAnalysis} disabled={loading} className="dash-btn-accent rounded-xl gap-2 h-9 px-5 text-sm">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-            {loading
-              ? (lang === "fr" ? "Analyse en cours..." : "Analyzing...")
-              : (lang === "fr" ? "Lancer l'analyse IA" : "Run AI Analysis")}
+            {loading ? (lang === "fr" ? "Analyse en cours..." : "Analyzing...") : (lang === "fr" ? "Lancer l'analyse IA" : "Run AI Analysis")}
           </Button>
         )}
       </div>
-
       {!analysis && !loading && (
         <p className="text-sm text-[hsl(var(--dash-muted-fg))] italic">
           {lang === "fr"
-            ? "Cliquez sur \"Lancer l'analyse IA\" pour obtenir une évaluation détaillée de cet investissement par l'IA."
-            : "Click \"Run AI Analysis\" to get a detailed AI-powered evaluation of this investment."}
+            ? "Cliquez sur \"Lancer l'analyse IA\" pour obtenir une évaluation détaillée."
+            : "Click \"Run AI Analysis\" to get a detailed AI-powered evaluation."}
         </p>
       )}
-
       {analysis && (
         <div className="prose prose-sm max-w-none text-[hsl(var(--dash-fg))]">
           <ReactMarkdown>{analysis}</ReactMarkdown>

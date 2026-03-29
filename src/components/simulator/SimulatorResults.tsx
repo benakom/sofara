@@ -1,4 +1,4 @@
-import { ArrowLeft, FileDown, Loader2, TrendingUp, DollarSign, BarChart3, Calendar, Percent, Home, PiggyBank, Clock } from "lucide-react";
+import { ArrowLeft, FileDown, Loader2, TrendingUp, DollarSign, BarChart3, Percent, Home, PiggyBank, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
@@ -75,9 +75,9 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
 
       const summaryItems = [
         [`Property Price: AED ${fmt(results.price)}`, `Area: ${fmt(results.sqft)} sqft`],
-        [`Price/sqft: AED ${fmt(results.pricePerSqft)}`, `Type: ${data.propertyType}`],
-        [`Payment Plan: ${data.paymentPlan}`, `Horizon: ${data.investmentHorizon} years`],
-        [`Financing: ${data.financingType}`, `Rental Yield: ${data.expectedRentalYield}%`],
+        [`Price/sqft: AED ${fmt(results.pricePerSqft)}`, `Type: ${results.propertyType}`],
+        [`Payment Plan: ${results.paymentPlan}`, `Horizon: ${results.investmentHorizon} years`],
+        [`Location: ${results.areaLabel}`, `Handover: ${results.handoverYear}`],
       ];
       summaryItems.forEach(([a, b]) => {
         doc.text(a, 14, y);
@@ -125,9 +125,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       doc.setFontSize(7);
       doc.setFont("helvetica", "italic");
       doc.setTextColor(130, 130, 130);
-      const disclaimer = "Disclaimer: Results are indicative and approximate. They may vary depending on the project, developer, and actual fees. Sofara does not guarantee accuracy.";
-      doc.text(doc.splitTextToSize(disclaimer, 180), 14, dy);
-
+      doc.text(doc.splitTextToSize("Disclaimer: Results are indicative. Sofara does not guarantee accuracy.", 180), 14, dy);
       doc.save("sofara-investment-report.pdf");
     } catch (err) {
       console.error("PDF error:", err);
@@ -138,16 +136,28 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2 text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))]">
           <ArrowLeft className="w-4 h-4" />
-          {lang === "fr" ? "Modifier" : "Edit"}
+          {lang === "fr" ? "Nouvelle simulation" : "New Simulation"}
         </Button>
         <Button onClick={generatePDF} disabled={generating} className="dash-btn-accent rounded-xl gap-2 h-10 px-5 text-sm">
           {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileDown className="w-4 h-4" />}
           {lang === "fr" ? "Télécharger PDF" : "Download PDF"}
         </Button>
+      </div>
+
+      {/* Summary banner */}
+      <div className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl p-6 text-white">
+        <h2 className="text-xl font-bold font-display mb-2">
+          {lang === "fr" ? "Résultat de votre simulation" : "Your Simulation Results"}
+        </h2>
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm opacity-90">
+          <span>{results.propertyType} · {results.areaLabel}</span>
+          <span>AED {fmt(results.price)}</span>
+          <span>{results.paymentPlan} plan</span>
+          <span>{lang === "fr" ? "Livraison" : "Handover"} {results.handoverYear}</span>
+        </div>
       </div>
 
       {/* KPI Grid */}
@@ -165,9 +175,8 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
         ))}
       </div>
 
-      {/* Charts Row */}
+      {/* Charts */}
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Property Value Projection */}
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "fr" ? "Projection de valeur" : "Value Projection"}
@@ -184,12 +193,10 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
               <XAxis dataKey="name" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${(v / 1e6).toFixed(1)}M`} />
               <Tooltip formatter={(v: number) => [`AED ${fmt(v)}`, ""]} />
-              <Area type="monotone" dataKey="value" stroke="#6366f1" fill="url(#colorValue)" strokeWidth={2} name={lang === "fr" ? "Valeur" : "Value"} />
+              <Area type="monotone" dataKey="value" stroke="#6366f1" fill="url(#colorValue)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
-
-        {/* Cost Breakdown Pie */}
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "fr" ? "Répartition des coûts" : "Cost Breakdown"}
@@ -198,9 +205,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
             <ResponsiveContainer width="50%" height={200}>
               <PieChart>
                 <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value" stroke="none">
-                  {pieData.map((_, i) => (
-                    <Cell key={i} fill={COLORS[i]} />
-                  ))}
+                  {pieData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
                 </Pie>
                 <Tooltip formatter={(v: number) => `AED ${fmt(v)}`} />
               </PieChart>
@@ -217,7 +222,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
         </div>
       </div>
 
-      {/* ROI Projection Bar Chart */}
+      {/* ROI Bar */}
       <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
         <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
           {lang === "fr" ? "ROI cumulé par année" : "Cumulative ROI by Year"}
@@ -228,12 +233,12 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
             <XAxis dataKey="name" tick={{ fontSize: 11 }} />
             <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${v.toFixed(0)}%`} />
             <Tooltip formatter={(v: number) => [`${v.toFixed(1)}%`, "ROI"]} />
-            <Bar dataKey="roi" fill="#6366f1" radius={[6, 6, 0, 0]} name="ROI" />
+            <Bar dataKey="roi" fill="#6366f1" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Annual Income vs Expenses */}
+      {/* Income & Payment */}
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
@@ -244,10 +249,6 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
             <BarItem label={lang === "fr" ? "Loyer effectif" : "Effective Rental"} value={results.effectiveRental} max={results.annualRental} color="bg-blue-500" />
             <BarItem label={lang === "fr" ? "Service Charges" : "Service Charges"} value={results.annualServiceCharge} max={results.annualRental} color="bg-amber-500" />
             <BarItem label={lang === "fr" ? "Assurance" : "Insurance"} value={results.annualInsurance} max={results.annualRental} color="bg-red-400" />
-            <BarItem label={lang === "fr" ? "Maintenance" : "Maintenance"} value={data.annualMaintenance} max={results.annualRental} color="bg-orange-400" />
-            {data.financingType === "mortgage" && (
-              <BarItem label={lang === "fr" ? "Hypothèque / an" : "Mortgage / yr"} value={results.monthlyMortgage * 12} max={results.annualRental} color="bg-violet-500" />
-            )}
           </div>
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
@@ -256,8 +257,6 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
             </div>
           </div>
         </div>
-
-        {/* Payment Schedule */}
         <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "fr" ? "Échéancier de paiement" : "Payment Schedule"}
@@ -265,9 +264,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           <div className="space-y-3">
             {results.paymentSchedule.map((p, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: COLORS[i] }}>
-                  {i + 1}
-                </div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: COLORS[i] }}>{i + 1}</div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-[hsl(var(--dash-fg))]">{p.milestone}</p>
                   <p className="text-xs text-[hsl(var(--dash-muted-fg))]">{p.percentage}%</p>
@@ -278,7 +275,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           </div>
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
-              <span className="text-[hsl(var(--dash-fg))]">{lang === "fr" ? "Coût total d'acquisition" : "Total Acquisition Cost"}</span>
+              <span>{lang === "fr" ? "Coût total" : "Total Acquisition"}</span>
               <span className="text-[hsl(var(--dash-accent))]">AED {fmt(results.totalAcquisition)}</span>
             </div>
           </div>
