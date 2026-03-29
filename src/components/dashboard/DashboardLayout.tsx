@@ -43,9 +43,9 @@ const allNavItems: NavItem[] = [
   { path: "/dashboard/community", icon: MessageCircle, labelAr: "Community", labelEn: "Community" },
 ];
 
-const langs: { code: "fr" | "en"; flag: string }[] = [
+const langs: { code: "en" | "ar"; flag: string }[] = [
   { code: "en", flag: "🇬🇧" },
-  { code: "en", flag: "🇬🇧" },
+  { code: "ar", flag: "🇦🇪" },
 ];
 
 const DashboardLayout = () => {
