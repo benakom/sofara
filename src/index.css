@@ -255,21 +255,21 @@
 /* ======= DASHBOARD SCOPED THEME ======= */
 /* Overrides --primary inside dashboard so ALL components automatically pick up the new accent */
 .dash-theme {
-  --primary: 217 91% 60%;
+  --primary: 268 88% 62%;
   --primary-foreground: 0 0% 100%;
-  --background: 220 38% 97%;
-  --foreground: 223 28% 16%;
+  --background: 258 48% 97%;
+  --foreground: 258 26% 16%;
   --card: 0 0% 100%;
-  --card-foreground: 223 28% 16%;
-  --border: 220 20% 90%;
-  --input: 220 20% 86%;
-  --ring: 217 91% 60%;
-  --muted: 220 33% 95%;
-  --muted-foreground: 221 16% 44%;
-  --accent: 217 91% 60%;
+  --card-foreground: 258 26% 16%;
+  --border: 258 24% 88%;
+  --input: 258 22% 84%;
+  --ring: 268 88% 62%;
+  --muted: 258 36% 94%;
+  --muted-foreground: 258 13% 43%;
+  --accent: 281 84% 64%;
   --accent-foreground: 0 0% 100%;
   --popover: 0 0% 100%;
-  --popover-foreground: 223 28% 16%;
+  --popover-foreground: 258 26% 16%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 }
