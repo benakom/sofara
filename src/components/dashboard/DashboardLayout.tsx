@@ -9,7 +9,7 @@ import { useUserTier } from "@/hooks/useUserTier";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
-  CreditCard, ShieldCheck, Trophy, MessageCircle, LogOut,
+  CreditCard, ShieldCheck, MessageCircle, LogOut,
   Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
   Sparkles, BookOpen, Users, Crown, ArrowUpCircle
 } from "lucide-react";
@@ -23,24 +23,47 @@ type NavItem = {
   labelEn: string;
   exact?: boolean;
   badge?: string;
-  tier?: "pro"; // only visible to pro users
+  tier?: "pro";
 };
 
-const allNavItems: NavItem[] = [
-  { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
-  { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
-  { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
-  { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
-  { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
-  { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
-  { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
-  { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
-  { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", badge: "NEW", tier: "pro" },
-  { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulators", tier: "pro" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
-  { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "My Referrals" },
-  { path: "/dashboard/bonus", icon: Trophy, labelAr: "المكافآت والجوائز", labelEn: "Bonus & Rewards" },
-  { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
+type NavGroup = {
+  labelEn: string;
+  labelAr: string;
+  items: NavItem[];
+};
+
+const navGroups: NavGroup[] = [
+  {
+    labelEn: "Preparation",
+    labelAr: "التحضير",
+    items: [
+      { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
+      { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
+      { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", tier: "pro" },
+      { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulator", tier: "pro" },
+      { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+    ],
+  },
+  {
+    labelEn: "Lead Process",
+    labelAr: "إدارة العملاء",
+    items: [
+      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
+      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
+      { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
+      { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
+    ],
+  },
+  {
+    labelEn: "Admin",
+    labelAr: "الإدارة",
+    items: [
+      { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
+      { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
+      { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
+      { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "Referrals" },
+    ],
+  },
 ];
 
 const langs: { code: "en" | "ar"; flag: string }[] = [
@@ -67,14 +90,16 @@ const DashboardLayout = () => {
     "/dashboard/commissions",
     "/dashboard/payments",
     "/dashboard/referrals",
-    "/dashboard/bonus",
   ];
 
-  const navItems = allNavItems.filter((item) => {
-    if (item.tier === "pro" && profileType !== "pro") return false;
-    if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
-    return true;
-  });
+  const filteredGroups = navGroups.map((group) => ({
+    ...group,
+    items: group.items.filter((item) => {
+      if (item.tier === "pro" && profileType !== "pro") return false;
+      if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
+      return true;
+    }),
+  })).filter((group) => group.items.length > 0);
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
@@ -127,37 +152,47 @@ const DashboardLayout = () => {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col">
-        <div className="flex flex-col flex-1 justify-evenly">
-          {navItems.map((item) => {
-            const active = isActive(item.path, item.exact);
-            return (
-              <button
-                key={item.path}
-                onClick={() => {
-                  navigate(item.path);
-                  setSidebarOpen(false);
-                }}
-                className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
-                  active
-                    ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-[hsl(var(--dash-fg))] border border-[hsl(var(--dash-sidebar-active)/.24)] shadow-sm"
-                    : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
-                }`}
-              >
-                <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
-                <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
-                {item.badge && (
-                  <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                    item.badge === "AI" 
-                      ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
-                      : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"
-                  }`}>
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+      <nav className="flex-1 px-3 pt-3 pb-2 flex flex-col overflow-y-auto">
+        <div className="flex flex-col flex-1 gap-1">
+          {filteredGroups.map((group, gi) => (
+            <div key={group.labelEn}>
+              {gi > 0 && (
+                <div className="mx-2 my-2 h-px bg-[hsl(var(--dash-sidebar-border))]" />
+              )}
+              <p className="px-3 pt-2 pb-1.5 text-[9px] uppercase tracking-[0.18em] font-semibold text-[hsl(var(--dash-muted-fg)/.6)]">
+                {lang === "ar" ? group.labelAr : group.labelEn}
+              </p>
+              {group.items.map((item) => {
+                const active = isActive(item.path, item.exact);
+                return (
+                  <button
+                    key={item.path}
+                    onClick={() => {
+                      navigate(item.path);
+                      setSidebarOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150 ${
+                      active
+                        ? "bg-[hsl(var(--dash-sidebar-active)/.12)] text-[hsl(var(--dash-fg))] border border-[hsl(var(--dash-sidebar-active)/.24)] shadow-sm"
+                        : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))] border border-transparent"
+                    }`}
+                  >
+                    <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-sidebar-active))]" : ""}`} />
+                    <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
+                    {item.badge && (
+                      <span className={`ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                        item.badge === "AI" 
+                          ? "bg-[hsl(var(--dash-sidebar-active)/.15)] text-[hsl(var(--dash-sidebar-active))]" 
+                          : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"
+                      }`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </nav>
 

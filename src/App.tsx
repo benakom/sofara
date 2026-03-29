@@ -31,7 +31,7 @@ const Commissions = lazy(() => import("./pages/dashboard/Commissions"));
 const Payments = lazy(() => import("./pages/dashboard/Payments"));
 const KycAml = lazy(() => import("./pages/dashboard/KycAml"));
 const AIHub = lazy(() => import("./pages/dashboard/AIHub"));
-const BonusRewards = lazy(() => import("./pages/dashboard/BonusRewards"));
+
 const Community = lazy(() => import("./pages/dashboard/Community"));
 const Simulator = lazy(() => import("./pages/dashboard/Simulator"));
 const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
@@ -88,7 +88,7 @@ const App = () => (
                   <Route path="simulator" element={<Simulator />} />
                   <Route path="calendar" element={<CalendarPage />} />
                   <Route path="legal-ai" element={<LegalAI />} />
-                  <Route path="bonus" element={<BonusRewards />} />
+                  
                   <Route path="community" element={<Community />} />
                   <Route path="library" element={<Library />} />
                   <Route path="referrals" element={<Referrals />} />
