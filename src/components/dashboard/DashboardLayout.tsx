@@ -90,14 +90,16 @@ const DashboardLayout = () => {
     "/dashboard/commissions",
     "/dashboard/payments",
     "/dashboard/referrals",
-    "/dashboard/bonus",
   ];
 
-  const navItems = allNavItems.filter((item) => {
-    if (item.tier === "pro" && profileType !== "pro") return false;
-    if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
-    return true;
-  });
+  const filteredGroups = navGroups.map((group) => ({
+    ...group,
+    items: group.items.filter((item) => {
+      if (item.tier === "pro" && profileType !== "pro") return false;
+      if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
+      return true;
+    }),
+  })).filter((group) => group.items.length > 0);
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
