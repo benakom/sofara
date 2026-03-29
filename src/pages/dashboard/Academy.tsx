@@ -261,10 +261,14 @@ const Academy = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
       {/* Header */}
       <div className="mb-5">
-        <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight">🎓 Sofara Academy</h1>
-        <p className="dash-muted-text text-xs mt-0.5">
+        <h1 className="text-[22px] font-semibold text-[hsl(var(--dash-fg))] tracking-[-0.02em]">🎓 Sofara Academy</h1>
+        <p className="text-[hsl(var(--dash-muted-fg))] text-xs mt-0.5">
           {lang === "ar" ? "تدرب وكن خبيرًا في العقارات في دبي" : "Train yourself and become a Dubai real estate expert"}
         </p>
+        <div className="mt-2 h-2 w-full max-w-xs bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
+          <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full" style={{ width: `${courses.length > 0 ? (completedCourses / courses.length) * 100 : 0}%`, minWidth: 4 }} />
+        </div>
+        <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] mt-1">{completedCourses} {lang === "ar" ? "من" : "of"} {courses.length} {lang === "ar" ? "مكتمل" : "completed"}</p>
       </div>
 
       {/* Stats banner */}
