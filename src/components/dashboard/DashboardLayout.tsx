@@ -27,20 +27,20 @@ type NavItem = {
 };
 
 const allNavItems: NavItem[] = [
-  { path: "/dashboard", icon: LayoutDashboard, labelAr: "Tableau de bord", labelEn: "Dashboard", exact: true },
-  { path: "/dashboard/academy", icon: GraduationCap, labelAr: "Academy", labelEn: "Academy" },
-  { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "Pipeline", labelEn: "Pipeline" },
-  { path: "/dashboard/import-leads", icon: Upload, labelAr: "Import Leads", labelEn: "Import Leads" },
-  { path: "/dashboard/commissions", icon: DollarSign, labelAr: "Commissions", labelEn: "Commissions" },
-  { path: "/dashboard/payments", icon: CreditCard, labelAr: "Paiements", labelEn: "Payments" },
+  { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
+  { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
+  { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
+  { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
+  { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
+  { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
   { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
   { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
-  { path: "/dashboard/library", icon: BookOpen, labelAr: "Bibliothèque", labelEn: "Library", badge: "NEW", tier: "pro" },
-  { path: "/dashboard/simulator", icon: Calculator, labelAr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
-  { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "Calendrier", labelEn: "Calendar", tier: "pro" },
-  { path: "/dashboard/referrals", icon: Users, labelAr: "Mes Filleuls", labelEn: "My Referrals" },
-  { path: "/dashboard/bonus", icon: Trophy, labelAr: "Bonus & Rewards", labelEn: "Bonus & Rewards" },
-  { path: "/dashboard/community", icon: MessageCircle, labelAr: "Community", labelEn: "Community" },
+  { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", badge: "NEW", tier: "pro" },
+  { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulators", tier: "pro" },
+  { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
+  { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "My Referrals" },
+  { path: "/dashboard/bonus", icon: Trophy, labelAr: "المكافآت والجوائز", labelEn: "Bonus & Rewards" },
+  { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
 ];
 
 const langs: { code: "en" | "ar"; flag: string }[] = [
