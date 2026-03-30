@@ -18,12 +18,12 @@ const StepPaymentPlan = ({ value, onChange, lang }: Props) => (
         {lang === "ar" ? "Comment souhaitez-vous répartir les paiements ?" : "How would you like to split your payments?"}
       </p>
     </div>
-    <div className="grid grid-cols-1 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
       {PAYMENT_PLANS.map((plan) => (
         <button
           key={plan.value}
           onClick={() => onChange(plan.value)}
-          className={`flex items-center gap-4 px-5 py-5 rounded-2xl border-2 text-left transition-all ${
+          className={`relative flex flex-col items-center gap-3 px-4 py-6 rounded-2xl border-2 text-center transition-all ${
             value === plan.value
               ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.08)] shadow-md"
               : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
@@ -36,23 +36,18 @@ const StepPaymentPlan = ({ value, onChange, lang }: Props) => (
           }`}>
             {plan.label}
           </div>
-          <div className="flex-1">
-            <p className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{plan.description}</p>
-            <div className="flex gap-3 mt-2">
-              <div className="flex-1 h-2 rounded-full bg-[hsl(var(--dash-muted))] overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-[hsl(var(--dash-accent))]"
-                  style={{ width: `${plan.constructionPct}%` }}
-                />
-              </div>
-              <span className="text-[10px] font-medium text-[hsl(var(--dash-muted-fg))] whitespace-nowrap">
-                {plan.constructionPct}% / {plan.handoverPct}%
-              </span>
+          <div>
+            <p className="text-xs font-semibold text-[hsl(var(--dash-fg))]">{plan.constructionPct}% / {plan.handoverPct}%</p>
+            <div className="w-full h-1.5 rounded-full bg-[hsl(var(--dash-muted))] overflow-hidden mt-2">
+              <div
+                className="h-full rounded-full bg-[hsl(var(--dash-accent))]"
+                style={{ width: `${plan.constructionPct}%` }}
+              />
             </div>
           </div>
           {value === plan.value && (
-            <div className="w-6 h-6 rounded-full bg-[hsl(var(--dash-accent))] flex items-center justify-center flex-shrink-0">
-              <svg className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-fg))]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[hsl(var(--dash-accent))] flex items-center justify-center">
+              <svg className="w-3 h-3 text-[hsl(var(--dash-accent-fg))]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
