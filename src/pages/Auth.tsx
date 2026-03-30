@@ -102,7 +102,14 @@ const Auth = () => {
   };
 
   useEffect(() => {
-    if (!authLoading && user) navigate("/dashboard");
+    if (!authLoading && user) {
+      // Check if superadmin → redirect to admin panel
+      const checkAdmin = async () => {
+        const { data } = await supabase.rpc("is_superadmin");
+        navigate(data ? "/admin" : "/dashboard");
+      };
+      checkAdmin();
+    }
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
@@ -130,7 +137,9 @@ const Auth = () => {
           : error.message,
       });
     } else {
-      navigate("/dashboard");
+      // Check if superadmin → redirect to admin panel
+      const { data } = await supabase.rpc("is_superadmin");
+      navigate(data ? "/admin" : "/dashboard");
     }
   };
 
@@ -194,7 +203,8 @@ const Auth = () => {
         title: lang === "ar" ? "Compte vérifié !" : "Account verified!",
         description: lang === "ar" ? "Bienvenue chez Sofara." : "Welcome to Sofara.",
       });
-      navigate("/dashboard");
+      const { data: isAdmin } = await supabase.rpc("is_superadmin");
+      navigate(isAdmin ? "/admin" : "/dashboard");
     }
   };
 
