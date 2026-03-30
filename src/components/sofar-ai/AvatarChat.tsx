@@ -126,7 +126,7 @@ export default function AvatarChat() {
   return (
     <div
       ref={panelRef}
-      className="fixed bottom-3 left-2 right-2 sm:bottom-5 sm:left-auto sm:right-5 z-50 w-auto sm:w-[380px] sm:max-w-[calc(100vw-2.5rem)] h-[520px] max-h-[calc(100dvh-5.5rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden bg-[hsl(var(--dash-bg))] border border-[hsl(var(--dash-border))]"
+      className="fixed bottom-3 left-2 right-2 sm:bottom-5 sm:left-auto sm:right-5 z-50 w-auto sm:w-[380px] sm:max-w-[calc(100vw-2.5rem)] h-[520px] max-h-[calc(100dvh-5.5rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden overflow-x-hidden bg-[hsl(0,0%,8%)] border border-[hsl(0,0%,16%)]"
     >
       {/* Header */}
       <div className="px-4 py-3 flex items-center gap-3 bg-[hsl(var(--dash-accent))]">
@@ -144,11 +144,11 @@ export default function AvatarChat() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 space-y-3 bg-[hsl(var(--dash-muted)/.3)]" style={{ scrollbarWidth: "thin" }}>
+      <div className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 space-y-3 bg-[hsl(0,0%,10%)]" style={{ scrollbarWidth: "thin" }}>
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center px-2 min-w-0">
-            <img src={sofaraAvatar} alt="SofarAI" className="w-16 h-16 rounded-full object-cover shadow-lg mb-3 border-2 border-[hsl(var(--dash-accent)/.3)]" />
-            <p className="text-xs text-[hsl(var(--dash-muted-fg))] mb-4 break-words font-display">
+            <img src={sofaraAvatar} alt="SofarAI" className="w-16 h-16 rounded-full object-cover shadow-lg mb-3 border-2 border-[#D2F34C]/30" />
+            <p className="text-xs text-white/60 mb-4 break-words font-display">
               {lang === "ar" ? "💬 Posez-moi n'importe quelle question !" : "💬 Ask me anything!"}
             </p>
             <div className="flex flex-wrap gap-1.5 justify-center">
@@ -156,7 +156,7 @@ export default function AvatarChat() {
                 <button
                   key={q}
                   onClick={() => sendMessage(q)}
-                  className="text-[11px] px-3 py-2 rounded-xl text-[hsl(var(--dash-fg))] hover:text-[hsl(var(--dash-accent))] transition-all break-words bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] hover:border-[hsl(var(--dash-accent)/.4)]"
+                  className="text-[11px] px-3 py-2 rounded-xl text-white/70 hover:text-[#D2F34C] transition-all break-words bg-white/8 border border-white/10 hover:border-[#D2F34C]/40"
                 >
                   {q}
                 </button>
@@ -168,17 +168,17 @@ export default function AvatarChat() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             {msg.role === "assistant" && (
-              <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0 border border-[hsl(var(--dash-accent)/.3)]" />
+              <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0 border border-[#D2F34C]/30" />
             )}
             <div
               className={`max-w-[88%] sm:max-w-[82%] min-w-0 overflow-hidden rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
                 msg.role === "user"
-                  ? "rounded-br-sm text-[hsl(var(--dash-accent-fg))] shadow-md bg-[hsl(var(--dash-accent))]"
-                  : "rounded-bl-sm text-[hsl(var(--dash-fg))] bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]"
+                  ? "rounded-br-sm text-black shadow-md bg-[#D2F34C]"
+                  : "rounded-bl-sm text-white/90 bg-white/8 border border-white/10"
               }`}
             >
               {msg.role === "assistant" ? (
-                <div className="prose prose-invert prose-xs max-w-none break-words overflow-x-auto prose-p:my-0.5 prose-li:my-0 prose-strong:text-[hsl(var(--dash-accent))] prose-headings:text-[hsl(var(--dash-fg))] [&_p]:text-[13px] [&_li]:text-[13px] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))] [&_pre]:overflow-x-auto [&_code]:break-all">
+                <div className="prose prose-invert prose-xs max-w-none break-words overflow-x-auto prose-p:my-0.5 prose-li:my-0 prose-strong:text-[#D2F34C] prose-headings:text-white [&_p]:text-[13px] [&_li]:text-[13px] [&_p]:text-white/90 [&_li]:text-white/90 [&_pre]:overflow-x-auto [&_code]:break-all">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (
@@ -191,11 +191,11 @@ export default function AvatarChat() {
         {isLoading && messages[messages.length - 1]?.role === "user" && (
           <div className="flex justify-start">
             <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" />
-            <div className="rounded-2xl rounded-bl-sm px-4 py-3 bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
+            <div className="rounded-2xl rounded-bl-sm px-4 py-3 bg-white/8 border border-white/10">
               <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "0ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent)/.6)] animate-bounce" style={{ animationDelay: "150ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "300ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C] animate-bounce" style={{ animationDelay: "0ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C]/60 animate-bounce" style={{ animationDelay: "150ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C] animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           </div>
@@ -204,17 +204,17 @@ export default function AvatarChat() {
       </div>
 
       {/* Input */}
-      <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2.5 border-t border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))]">
+      <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2.5 border-t border-white/10 bg-[hsl(0,0%,8%)]">
         <div className="flex gap-2 items-center min-w-0">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder={lang === "ar" ? "Votre question…" : "Your question…"}
-            className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.4)] bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] font-display"
+            className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/40 bg-white/8 border border-white/10 font-display"
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading || !input.trim()}
-            className="w-9 h-9 rounded-xl bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))] flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity">
+            className="w-9 h-9 rounded-xl bg-[#D2F34C] text-black flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity">
             <Send className="w-3.5 h-3.5" />
           </button>
         </div>
