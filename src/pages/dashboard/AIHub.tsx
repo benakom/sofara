@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useState, useRef, useEffect } from "react";
-import {
-  Target, Zap, Mic, ArrowLeft, Sparkles,
-  MessageSquare, Send, Scale
-} from "lucide-react";
+import { Target, Zap, Mic, ArrowLeft, Sparkles, MessageSquare, Send, Scale } from "lucide-react";
 import RoleplayTool from "@/components/ai-tools/RoleplayTool";
 import SequencesTool from "@/components/ai-tools/SequencesTool";
 import VoiceAgentTool from "@/components/ai-tools/VoiceAgentTool";
@@ -44,18 +41,24 @@ const AIHub = () => {
     let assistantSoFar = "";
     const upsert = (chunk: string) => {
       assistantSoFar += chunk;
-      setMessages(prev => {
+      setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === "assistant")
-          return prev.map((m, i) => i === prev.length - 1 ? { ...m, content: assistantSoFar } : m);
+          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
         return [...prev, { role: "assistant", content: assistantSoFar }];
       });
     };
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session?.access_token) {
-        toast({ variant: "destructive", title: "Erreur", description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first." });
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: lang === "ar" ? "Connectez-vous d'abord." : "Please log in first.",
+        });
         setIsLoading(false);
         return;
       }
@@ -91,7 +94,9 @@ const AIHub = () => {
           try {
             const c = JSON.parse(json).choices?.[0]?.delta?.content;
             if (c) upsert(c);
-          } catch { break; }
+          } catch {
+            break;
+          }
         }
       }
     } catch {
@@ -100,21 +105,24 @@ const AIHub = () => {
     setIsLoading(false);
   };
 
-  const quickPrompts = lang === "ar" ? [
-    "💰 Prix moyens par zone",
-    "📊 Évalue un projet",
-    "🏆 Top ROI 2025",
-    "🎯 Gérer une objection",
-    "🏗️ Comparer développeurs",
-    "🪪 Golden Visa",
-  ] : [
-    "💰 Average prices by area",
-    "📊 Evaluate a project",
-    "🏆 Top ROI 2025",
-    "🎯 Handle an objection",
-    "🏗️ Compare developers",
-    "🪪 Golden Visa",
-  ];
+  const quickPrompts =
+    lang === "ar"
+      ? [
+          "💰 Prix moyens par zone",
+          "📊 Évalue un projet",
+          "🏆 Top ROI 2025",
+          "🎯 Gérer une objection",
+          "🏗️ Comparer développeurs",
+          "🪪 Golden Visa",
+        ]
+      : [
+          "💰 Average prices by area",
+          "📊 Evaluate a project",
+          "🏆 Top ROI 2025",
+          "🎯 Handle an objection",
+          "🏗️ Compare developers",
+          "🪪 Golden Visa",
+        ];
 
   const tools: {
     id: Tool;
@@ -123,32 +131,81 @@ const AIHub = () => {
     labelEn: string;
     descFr: string;
     descEn: string;
-    gradient: string;
     badge?: string;
   }[] = [
-    { id: "autoscore", icon: Target, labelAr: "Smart Scoring", labelEn: "Smart Scoring", descFr: "Scoring prédictif", descEn: "Predictive scoring", gradient: "from-emerald-500 to-teal-600", badge: "AI" },
-    { id: "legalai", icon: Scale, labelAr: "LegalAI", labelEn: "LegalAI", descFr: "Analyse de contrats", descEn: "Contract analysis", gradient: "from-amber-500 to-yellow-600", badge: "PRO" },
-    { id: "roleplay", icon: MessageSquare, labelAr: "Roleplay", labelEn: "Roleplay", descFr: "Entraînement vente", descEn: "Sales training", gradient: "from-violet-500 to-purple-600" },
-    { id: "sequences", icon: Zap, labelAr: "Séquences", labelEn: "Sequences", descFr: "Plans de relance", descEn: "Follow-up plans", gradient: "from-sky-500 to-blue-600" },
-    { id: "voice", icon: Mic, labelAr: "Voice", labelEn: "Voice", descFr: "Agent vocal", descEn: "Voice agent", gradient: "from-rose-500 to-pink-600", badge: "BETA" },
+    {
+      id: "autoscore",
+      icon: Target,
+      labelAr: "Smart Scoring",
+      labelEn: "Smart Scoring",
+      descFr: "Scoring prédictif",
+      descEn: "Predictive scoring",
+      badge: "AI",
+    },
+    {
+      id: "legalai",
+      icon: Scale,
+      labelAr: "LegalAI",
+      labelEn: "LegalAI",
+      descFr: "Analyse de contrats",
+      descEn: "Contract analysis",
+      badge: "PRO",
+    },
+    {
+      id: "roleplay",
+      icon: MessageSquare,
+      labelAr: "Roleplay",
+      labelEn: "Roleplay",
+      descFr: "Entraînement vente",
+      descEn: "Sales training",
+    },
+    {
+      id: "sequences",
+      icon: Zap,
+      labelAr: "Séquences",
+      labelEn: "Sequences",
+      descFr: "Plans de relance",
+      descEn: "Follow-up plans",
+    },
+    {
+      id: "voice",
+      icon: Mic,
+      labelAr: "Voice",
+      labelEn: "Voice",
+      descFr: "Agent vocal",
+      descEn: "Voice agent",
+      badge: "BETA",
+    },
   ];
 
   const renderTool = () => {
     switch (activeTool) {
-      case "roleplay": return <RoleplayTool />;
-      case "sequences": return <SequencesTool />;
-      case "voice": return <VoiceAgentTool />;
-      case "autoscore": return <AutoScoreTool />;
-      case "legalai": return <LegalAIGate />;
-      default: return null;
+      case "roleplay":
+        return <RoleplayTool />;
+      case "sequences":
+        return <SequencesTool />;
+      case "voice":
+        return <VoiceAgentTool />;
+      case "autoscore":
+        return <AutoScoreTool />;
+      case "legalai":
+        return <LegalAIGate />;
+      default:
+        return null;
     }
   };
 
   if (activeTool) {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100dvh-7rem)] min-h-0 w-full max-w-full overflow-x-hidden flex flex-col">
-        <button onClick={() => setActiveTool(null)}
-          className="flex items-center gap-2 text-sm dash-muted-text hover:text-[hsl(var(--dash-fg))] transition-colors mb-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="h-[calc(100dvh-7rem)] min-h-0 w-full max-w-full overflow-x-hidden flex flex-col"
+      >
+        <button
+          onClick={() => setActiveTool(null)}
+          className="flex items-center gap-2 text-sm dash-muted-text hover:text-[hsl(var(--dash-fg))] transition-colors mb-4"
+        >
           <ArrowLeft className="w-4 h-4" />
           {lang === "ar" ? "Retour à SofarAI" : "Back to SofarAI"}
         </button>
@@ -162,32 +219,31 @@ const AIHub = () => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className="h-[calc(100dvh-7rem)] min-h-0 w-full max-w-full overflow-x-hidden flex flex-col gap-3"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       {/* Main chat */}
-      <div
-        className="flex-1 min-h-0 min-w-0 w-full flex flex-col rounded-2xl overflow-hidden shadow-lg"
-        style={{ background: "linear-gradient(180deg, hsl(250, 25%, 14%), hsl(230, 20%, 10%))", border: "1px solid hsl(250, 15%, 22%)" }}
-      >
+      <div className="flex-1 min-h-0 min-w-0 w-full flex flex-col rounded-2xl overflow-hidden shadow-lg bg-[hsl(var(--dash-bg))] border border-[hsl(var(--dash-border))]">
         {/* Header */}
-        <div
-          className="flex items-center gap-3 px-3 sm:px-4 py-3 shrink-0 min-w-0"
-          style={{ background: "linear-gradient(135deg, hsl(252, 55%, 50%), hsl(200, 75%, 48%))", borderBottom: "1px solid hsl(252, 40%, 45%)" }}
-        >
+        <div className="flex items-center gap-3 px-3 sm:px-4 py-3 shrink-0 min-w-0 bg-[hsl(var(--dash-accent))] border-b border-[hsl(var(--dash-accent-fg)/.15)]">
           <div className="relative shrink-0">
-            <img src={sofaraAvatar} alt="SofarAI" className="w-10 h-10 rounded-full object-cover border-2 border-white/25 shadow-lg" />
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[hsl(252,55%,50%)]" />
+            <img
+              src={sofaraAvatar}
+              alt="SofarAI"
+              className="w-10 h-10 rounded-full object-cover shadow-lg border-2 border-[hsl(var(--dash-accent-fg)/.18)]"
+            />
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-[hsl(var(--dash-accent))] border-2 border-[hsl(var(--dash-accent-fg)/.25)]" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 min-w-0">
-              <h1 className="text-base font-bold text-white truncate">SofarAI</h1>
-              <span className="text-[9px] font-bold bg-white/15 text-white/90 px-2 py-0.5 rounded-full backdrop-blur-sm shrink-0">EXPERT</span>
+              <h1 className="text-base font-bold truncate text-[hsl(var(--dash-accent-fg))]">SofarAI</h1>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shrink-0 bg-[hsl(var(--dash-accent-fg)/.12)] text-[hsl(var(--dash-accent-fg))]">
+                EXPERT
+              </span>
             </div>
-            <p className="text-[11px] text-white/60 truncate">
+            <p className="text-[11px] truncate text-[hsl(var(--dash-accent-fg)/.65)]">
               {lang === "ar" ? "Expert immobilier Dubai • En ligne" : "Dubai Property Expert • Online"}
             </p>
           </div>
-          <Sparkles className="w-5 h-5 text-white/30 shrink-0" />
+          <Sparkles className="w-5 h-5 shrink-0 text-[hsl(var(--dash-accent-fg)/.35)]" />
         </div>
 
         {/* Messages */}
@@ -197,14 +253,16 @@ const AIHub = () => {
               <div className="relative mb-5">
                 <div
                   className="absolute -inset-6 rounded-full opacity-40 blur-3xl animate-pulse"
-                  style={{ background: "radial-gradient(circle, hsl(252, 60%, 55%) 0%, hsl(200, 70%, 50%) 100%)" }}
+                  style={{ background: "radial-gradient(circle, hsl(var(--dash-accent) / .35) 0%, transparent 70%)" }}
                 />
-                <img src={sofaraAvatar} alt="SofarAI" className="relative w-20 h-20 rounded-full object-cover shadow-2xl border-2 border-violet-400/30" />
+                <img
+                  src={sofaraAvatar}
+                  alt="SofarAI"
+                  className="relative w-20 h-20 rounded-full object-cover shadow-2xl border-2 border-[hsl(var(--dash-accent)/.35)]"
+                />
               </div>
-              <h2 className="text-lg font-bold text-white mb-1">
-                {lang === "ar" ? "Bienvenue 👋" : "Welcome 👋"}
-              </h2>
-              <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm break-words">
+              <h2 className="text-lg font-bold mb-1 text-[hsl(var(--dash-fg))]">{lang === "ar" ? "Bienvenue 👋" : "Welcome 👋"}</h2>
+              <p className="text-sm leading-relaxed mb-6 max-w-sm break-words text-[hsl(var(--dash-fg)/.75)]">
                 {lang === "ar"
                   ? "Expert IA immobilier Dubai. Prix, scoring, ROI, objections… posez tout !"
                   : "Dubai real estate AI expert. Prices, scoring, ROI, objections… ask anything!"}
@@ -214,8 +272,7 @@ const AIHub = () => {
                   <button
                     key={q}
                     onClick={() => sendMessage(q)}
-                    className="text-[12px] sm:text-[13px] px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:border-violet-400/40 transition-all text-left break-words"
-                    style={{ background: "hsl(250, 18%, 18%)", border: "1px solid hsl(250, 12%, 26%)" }}
+                    className="text-[12px] sm:text-[13px] px-3 py-2.5 rounded-xl transition-all text-left break-words bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))] border border-[hsl(var(--dash-accent-fg)/.12)] hover:opacity-90"
                   >
                     {q}
                   </button>
@@ -225,20 +282,29 @@ const AIHub = () => {
           )}
 
           {messages.map((msg, i) => (
-            <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-1 duration-150`}>
+            <div
+              key={i}
+              className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-1 duration-150`}
+            >
               {msg.role === "assistant" && (
-                <img src={sofaraAvatar} alt="AI" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0 shadow-sm border border-violet-400/30" />
+                <img
+                  src={sofaraAvatar}
+                  alt="AI"
+                  className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0 shadow-sm border border-[hsl(var(--dash-accent)/.35)]"
+                />
               )}
               <div
                 className={`max-w-[92%] sm:max-w-[70%] min-w-0 overflow-hidden rounded-2xl px-4 py-3 text-[13px] sm:text-sm leading-relaxed ${
-                  msg.role === "user" ? "rounded-br-sm text-white shadow-lg" : "rounded-bl-sm text-slate-200"
+                  msg.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"
                 }`}
-                style={msg.role === "user"
-                  ? { background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }
-                  : { background: "hsl(250, 16%, 18%)", border: "1px solid hsl(250, 10%, 26%)" }}
+                style={
+                  msg.role === "user"
+                    ? { background: "hsl(var(--dash-accent))", color: "hsl(var(--dash-accent-fg))" }
+                    : { background: "hsl(var(--dash-card))", border: "1px solid hsl(var(--dash-border))", color: "hsl(var(--dash-fg))" }
+                }
               >
                 {msg.role === "assistant" ? (
-                  <div className="prose prose-invert prose-sm max-w-none break-words overflow-x-auto prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-strong:text-violet-300 prose-headings:text-white [&_p]:text-slate-200 [&_li]:text-slate-200 [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_table]:text-xs [&_th]:px-2 [&_td]:px-2 [&_th]:py-1 [&_td]:py-1 [&_hr]:border-violet-800/40 [&_pre]:overflow-x-auto [&_code]:break-all">
+                  <div className="prose prose-invert prose-sm max-w-none break-words overflow-x-auto prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-headings:text-[hsl(var(--dash-fg))] prose-strong:text-[hsl(var(--dash-accent))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))] [&_hr]:border-[hsl(var(--dash-border))] [&_pre]:overflow-x-auto [&_code]:break-all">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                 ) : (
@@ -251,14 +317,14 @@ const AIHub = () => {
           {isLoading && messages[messages.length - 1]?.role === "user" && (
             <div className="flex justify-start animate-in fade-in duration-300">
               <img src={sofaraAvatar} alt="AI" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 shrink-0" />
-              <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: "hsl(250, 16%, 18%)", border: "1px solid hsl(250, 10%, 26%)" }}>
+              <div className="rounded-2xl rounded-bl-sm px-4 py-3 bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent)/.65)] animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "300ms" }} />
                   </div>
-                  <span className="text-xs text-slate-500">{lang === "ar" ? "Analyse…" : "Analyzing…"}</span>
+                  <span className="text-xs text-[hsl(var(--dash-muted-fg))]">{lang === "ar" ? "Analyse…" : "Analyzing…"}</span>
                 </div>
               </div>
             </div>
@@ -267,22 +333,36 @@ const AIHub = () => {
         </div>
 
         {/* Input */}
-        <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="p-2.5 sm:p-3 shrink-0" style={{ borderTop: "1px solid hsl(250, 12%, 20%)" }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage(input);
+          }}
+          className="p-2.5 sm:p-3 shrink-0 border-t border-[hsl(var(--dash-border))]"
+          style={{ background: "hsl(var(--dash-bg))" }}
+        >
           <div className="flex gap-2 items-center min-w-0">
             <input
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={lang === "ar" ? "Posez votre question immobilier…" : "Ask your real estate question…"}
-              className="flex-1 min-w-0 h-11 px-4 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
-              style={{ background: "hsl(250, 16%, 16%)", border: "1px solid hsl(250, 10%, 24%)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              className="flex-1 min-w-0 h-11 px-4 rounded-xl text-sm focus:outline-none focus:ring-2"
+              style={{
+                background: "hsl(var(--dash-card))",
+                border: "1px solid hsl(var(--dash-border))",
+                color: "hsl(var(--dash-fg))",
+                fontFamily: "var(--font-body)",
+                // Tailwind ring color override
+                "--tw-ring-color": "hsl(var(--dash-accent) / .35)",
+              } as React.CSSProperties}
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="w-11 h-11 rounded-xl text-white flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-30 shrink-0 shadow-lg"
-              style={{ background: "linear-gradient(135deg, hsl(252, 55%, 52%), hsl(200, 70%, 48%))" }}
+              className="w-11 h-11 rounded-xl flex items-center justify-center transition-all disabled:opacity-30 shrink-0"
+              style={{ background: "hsl(var(--dash-accent))", color: "hsl(var(--dash-accent-fg))" }}
             >
               <Send className="w-4 h-4" />
             </button>
@@ -301,18 +381,16 @@ const AIHub = () => {
             onClick={() => setActiveTool(tool.id)}
             className="group min-w-0 flex items-center gap-2 rounded-xl px-3 py-2.5 hover:shadow-md transition-all sm:whitespace-nowrap sm:shrink-0 sm:snap-start dash-card"
           >
-            <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${tool.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform shrink-0`}>
-              <tool.icon className="w-3.5 h-3.5 text-white" />
+            <div className="w-7 h-7 rounded-lg bg-[hsl(var(--dash-accent))] flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform shrink-0">
+              <tool.icon className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-fg))]" />
             </div>
             <div className="text-left min-w-0">
               <div className="flex items-center gap-1 min-w-0">
                 <span className="text-xs font-semibold dash-text truncate">{lang === "ar" ? tool.labelAr : tool.labelEn}</span>
                 {tool.badge && (
-                  <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${
-                    tool.badge === "PRO" ? "bg-amber-100 text-amber-700"
-                    : tool.badge === "BETA" ? "bg-rose-100 text-rose-700"
-                    : "bg-emerald-100 text-emerald-700"
-                  }`}>{tool.badge}</span>
+                  <span className="text-[7px] font-bold px-1.5 py-0.5 rounded-full shrink-0 bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">
+                    {tool.badge}
+                  </span>
                 )}
               </div>
               <p className="text-[10px] dash-muted-text hidden sm:block">{lang === "ar" ? tool.descFr : tool.descEn}</p>
@@ -328,9 +406,9 @@ const AIHub = () => {
 const LegalAIGate = () => {
   const { lang } = useLanguage();
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center px-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center mb-5 shadow-lg">
-        <Scale className="w-8 h-8 text-white" />
+    <div className="flex flex-col items-center justify-center h-full text-center px-6">
+      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-lg bg-[hsl(var(--dash-accent))]">
+        <Scale className="w-8 h-8 text-[hsl(var(--dash-accent-fg))]" />
       </div>
       <h2 className="text-xl font-bold dash-text mb-2">LegalAI</h2>
       <p className="text-sm dash-muted-text mb-4 max-w-md leading-relaxed">
@@ -338,12 +416,13 @@ const LegalAIGate = () => {
           ? "Analysez vos SPA, contrats de réservation et documents juridiques avec l'IA. Obtenez des points d'attention, clauses à négocier et un résumé clair."
           : "Analyze your SPAs, reservation contracts and legal documents with AI. Get key points, negotiation clauses and a clear summary."}
       </p>
-      <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold text-sm shadow-lg"
-        style={{ background: "linear-gradient(135deg, hsl(40, 90%, 50%), hsl(35, 85%, 45%))" }}>
+      <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm shadow-lg bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">
         ⚡ {lang === "ar" ? "Bientôt disponible — Plan Pro" : "Coming soon — Pro Plan"}
       </div>
       <p className="text-[11px] dash-muted-text mt-4 max-w-sm italic">
-        ⚖️ {lang === "ar"
+        ⚖️
+        {" "}
+        {lang === "ar"
           ? "Disclaimer : LegalAI fournit une analyse informative. Il ne remplace pas un avocat. Consultez toujours un professionnel du droit pour vos décisions juridiques."
           : "Disclaimer: LegalAI provides informational analysis. It does not replace a lawyer. Always consult a legal professional for legal decisions."}
       </p>
