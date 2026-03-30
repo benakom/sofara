@@ -7,7 +7,7 @@ import type { SimulationData, SimulationResults } from "./simulator-types";
 import type { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 
-const COLORS = ["#6366f1", "#3b82f6", "#06b6d4", "#10b981", "#f59e0b", "#ef4444"];
+const COLORS = ["#D2F34C", "#a3c93a", "#7a9f2d", "#526e1f", "#3b5216", "#2a3b10"];
 
 type Props = {
   results: SimulationResults;
@@ -21,14 +21,14 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
   const [generating, setGenerating] = useState(false);
 
   const kpis = [
-    { label: lang === "ar" ? "ROI Total" : "Total ROI", value: fmtPct(results.totalROI), icon: TrendingUp, color: "bg-emerald-100 text-emerald-600", positive: results.totalROI > 0 },
-    { label: lang === "ar" ? "ROI Annualisé" : "Annualized ROI", value: fmtPct(results.annualizedROI), icon: Percent, color: "bg-blue-100 text-blue-600", positive: results.annualizedROI > 0 },
-    { label: lang === "ar" ? "Rendement Brut" : "Gross Yield", value: fmtPct(results.grossYield), icon: BarChart3, color: "bg-violet-100 text-violet-600", positive: true },
-    { label: lang === "ar" ? "Rendement Net" : "Net Yield", value: fmtPct(results.netYield), icon: PiggyBank, color: "bg-amber-100 text-amber-600", positive: results.netYield > 0 },
-    { label: lang === "ar" ? "Cashflow Mensuel" : "Monthly Cashflow", value: `AED ${fmt(results.netMonthlyCashflow)}`, icon: DollarSign, color: "bg-cyan-100 text-cyan-600", positive: results.netMonthlyCashflow > 0 },
-    { label: lang === "ar" ? "Plus-value" : "Capital Gain", value: `AED ${fmt(results.capitalGain)}`, icon: TrendingUp, color: "bg-pink-100 text-pink-600", positive: results.capitalGain > 0 },
-    { label: lang === "ar" ? "Valeur Future" : "Future Value", value: `AED ${fmt(results.futureValue)}`, icon: Home, color: "bg-indigo-100 text-indigo-600", positive: true },
-    { label: lang === "ar" ? "Break-even" : "Break-even", value: results.breakEvenMonths ? `${results.breakEvenMonths} ${lang === "ar" ? "mois" : "months"}` : "N/A", icon: Clock, color: "bg-orange-100 text-orange-600", positive: true },
+    { label: lang === "ar" ? "ROI Total" : "Total ROI", value: fmtPct(results.totalROI), icon: TrendingUp, positive: results.totalROI > 0 },
+    { label: lang === "ar" ? "ROI Annualisé" : "Annualized ROI", value: fmtPct(results.annualizedROI), icon: Percent, positive: results.annualizedROI > 0 },
+    { label: lang === "ar" ? "Rendement Brut" : "Gross Yield", value: fmtPct(results.grossYield), icon: BarChart3, positive: true },
+    { label: lang === "ar" ? "Rendement Net" : "Net Yield", value: fmtPct(results.netYield), icon: PiggyBank, positive: results.netYield > 0 },
+    { label: lang === "ar" ? "Cashflow Mensuel" : "Monthly Cashflow", value: `AED ${fmt(results.netMonthlyCashflow)}`, icon: DollarSign, positive: results.netMonthlyCashflow > 0 },
+    { label: lang === "ar" ? "Plus-value" : "Capital Gain", value: `AED ${fmt(results.capitalGain)}`, icon: TrendingUp, positive: results.capitalGain > 0 },
+    { label: lang === "ar" ? "Valeur Future" : "Future Value", value: `AED ${fmt(results.futureValue)}`, icon: Home, positive: true },
+    { label: lang === "ar" ? "Break-even" : "Break-even", value: results.breakEvenMonths ? `${results.breakEvenMonths} ${lang === "ar" ? "mois" : "months"}` : "N/A", icon: Clock, positive: true },
   ];
 
   const pieData = [
@@ -51,16 +51,17 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       const { default: jsPDF } = await import("jspdf");
       const autoTable = (await import("jspdf-autotable")).default;
       const doc = new jsPDF();
-      const accent = [99, 102, 241] as [number, number, number];
+      const accent = [210, 243, 76] as [number, number, number];
 
-      doc.setFillColor(...accent);
+      doc.setFillColor(10, 10, 10);
       doc.rect(0, 0, 210, 32, "F");
-      doc.setTextColor(255, 255, 255);
+      doc.setTextColor(...accent);
       doc.setFontSize(22);
       doc.setFont("helvetica", "bold");
       doc.text("SOFARA", 14, 18);
       doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
+      doc.setTextColor(255, 255, 255);
       doc.text("Off-Plan Investment Report", 14, 26);
       doc.text(new Date().toLocaleDateString("en-GB"), 196, 18, { align: "right" });
       if (user?.email) doc.text(user.email, 196, 24, { align: "right" });
@@ -95,8 +96,8 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
         head: [["KPI", "Value"]],
         body: kpis.map(k => [k.label, k.value]),
         styles: { fontSize: 9, cellPadding: 3 },
-        headStyles: { fillColor: accent, textColor: [255, 255, 255] },
-        alternateRowStyles: { fillColor: [245, 243, 255] },
+        headStyles: { fillColor: [10, 10, 10], textColor: accent },
+        alternateRowStyles: { fillColor: [245, 250, 230] },
       });
 
       const fy = (doc as any).lastAutoTable?.finalY || y + 50;
@@ -117,7 +118,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           ["Total Acquisition", `AED ${fmt(results.totalAcquisition)}`],
         ],
         styles: { fontSize: 9, cellPadding: 3 },
-        headStyles: { fillColor: accent, textColor: [255, 255, 255] },
+        headStyles: { fillColor: [10, 10, 10], textColor: accent },
       });
 
       const fy2 = (doc as any).lastAutoTable?.finalY || ty + 40;
@@ -148,11 +149,11 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       </div>
 
       {/* Summary banner */}
-      <div className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl p-6 text-white">
+      <div className="bg-[hsl(var(--dash-accent))] rounded-2xl p-6 text-[hsl(var(--dash-accent-fg))]">
         <h2 className="text-xl font-bold font-display mb-2">
           {lang === "ar" ? "Résultat de votre simulation" : "Your Simulation Results"}
         </h2>
-        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm opacity-90">
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm opacity-80">
           <span>{results.propertyType} · {results.areaLabel}</span>
           <span>AED {fmt(results.price)}</span>
           <span>{results.paymentPlan} plan</span>
@@ -163,21 +164,21 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       {/* KPI Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((kpi, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="dash-card rounded-2xl p-4 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-2 mb-2">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${kpi.color}`}>
-                <kpi.icon className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[hsl(var(--dash-accent)/.12)]">
+                <kpi.icon className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
               </div>
             </div>
             <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] leading-tight mb-1">{kpi.label}</p>
-            <p className={`text-lg font-bold font-display ${kpi.positive ? "text-[hsl(var(--dash-fg))]" : "text-red-500"}`}>{kpi.value}</p>
+            <p className={`text-lg font-bold font-display ${kpi.positive ? "text-[hsl(var(--dash-fg))]" : "text-red-400"}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Charts */}
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
+        <div className="dash-card rounded-2xl p-6">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "ar" ? "Projection de valeur" : "Value Projection"}
           </h3>
@@ -185,19 +186,22 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
             <AreaChart data={projectionData}>
               <defs>
                 <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#D2F34C" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#D2F34C" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-              <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${(v / 1e6).toFixed(1)}M`} />
-              <Tooltip formatter={(v: number) => [`AED ${fmt(v)}`, ""]} />
-              <Area type="monotone" dataKey="value" stroke="#6366f1" fill="url(#colorValue)" strokeWidth={2} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#888' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#888' }} tickFormatter={(v) => `${(v / 1e6).toFixed(1)}M`} />
+              <Tooltip
+                contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', color: '#fff' }}
+                formatter={(v: number) => [`AED ${fmt(v)}`, ""]}
+              />
+              <Area type="monotone" dataKey="value" stroke="#D2F34C" fill="url(#colorValue)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
-        <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
+        <div className="dash-card rounded-2xl p-6">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "ar" ? "Répartition des coûts" : "Cost Breakdown"}
           </h3>
@@ -207,7 +211,10 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
                 <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value" stroke="none">
                   {pieData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
                 </Pie>
-                <Tooltip formatter={(v: number) => `AED ${fmt(v)}`} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', color: '#fff' }}
+                  formatter={(v: number) => `AED ${fmt(v)}`}
+                />
               </PieChart>
             </ResponsiveContainer>
             <div className="space-y-2 text-xs">
@@ -223,48 +230,51 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       </div>
 
       {/* ROI Bar */}
-      <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
+      <div className="dash-card rounded-2xl p-6">
         <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
           {lang === "ar" ? "ROI cumulé par année" : "Cumulative ROI by Year"}
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={projectionData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-            <YAxis tick={{ fontSize: 11 }} tickFormatter={(v) => `${v.toFixed(0)}%`} />
-            <Tooltip formatter={(v: number) => [`${v.toFixed(1)}%`, "ROI"]} />
-            <Bar dataKey="roi" fill="#6366f1" radius={[6, 6, 0, 0]} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+            <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#888' }} />
+            <YAxis tick={{ fontSize: 11, fill: '#888' }} tickFormatter={(v) => `${v.toFixed(0)}%`} />
+            <Tooltip
+              contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', color: '#fff' }}
+              formatter={(v: number) => [`${v.toFixed(1)}%`, "ROI"]}
+            />
+            <Bar dataKey="roi" fill="#D2F34C" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Income & Payment */}
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
+        <div className="dash-card rounded-2xl p-6">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "ar" ? "Revenus & Charges annuels" : "Annual Income & Expenses"}
           </h3>
           <div className="space-y-3">
-            <BarItem label={lang === "ar" ? "Loyer brut annuel" : "Gross Annual Rental"} value={results.annualRental} max={results.annualRental} color="bg-emerald-500" />
-            <BarItem label={lang === "ar" ? "Loyer effectif" : "Effective Rental"} value={results.effectiveRental} max={results.annualRental} color="bg-blue-500" />
+            <BarItem label={lang === "ar" ? "Loyer brut annuel" : "Gross Annual Rental"} value={results.annualRental} max={results.annualRental} color="bg-[hsl(var(--dash-accent))]" />
+            <BarItem label={lang === "ar" ? "Loyer effectif" : "Effective Rental"} value={results.effectiveRental} max={results.annualRental} color="bg-[hsl(var(--dash-accent)/.7)]" />
             <BarItem label={lang === "ar" ? "Service Charges" : "Service Charges"} value={results.annualServiceCharge} max={results.annualRental} color="bg-amber-500" />
             <BarItem label={lang === "ar" ? "Assurance" : "Insurance"} value={results.annualInsurance} max={results.annualRental} color="bg-red-400" />
           </div>
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
               <span className="text-[hsl(var(--dash-fg))]">{lang === "ar" ? "Revenu net annuel" : "Net Annual Income"}</span>
-              <span className={results.netAnnualIncome > 0 ? "text-emerald-600" : "text-red-500"}>AED {fmt(results.netAnnualIncome)}</span>
+              <span className={results.netAnnualIncome > 0 ? "text-[hsl(var(--dash-accent))]" : "text-red-400"}>AED {fmt(results.netAnnualIncome)}</span>
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-[hsl(var(--dash-border))] p-6 shadow-sm">
+        <div className="dash-card rounded-2xl p-6">
           <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-4">
             {lang === "ar" ? "Échéancier de paiement" : "Payment Schedule"}
           </h3>
           <div className="space-y-3">
             {results.paymentSchedule.map((p, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: COLORS[i] }}>{i + 1}</div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">{i + 1}</div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-[hsl(var(--dash-fg))]">{p.milestone}</p>
                   <p className="text-xs text-[hsl(var(--dash-muted-fg))]">{p.percentage}%</p>

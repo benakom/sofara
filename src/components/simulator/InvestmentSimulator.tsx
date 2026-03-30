@@ -163,8 +163,8 @@ const InvestmentSimulator = () => {
         </div>
         <SimulatorResults results={results} data={data} lang={lang} onBack={handleReset} />
         <SimulatorAIAnalysis results={results} data={data} lang={lang} />
-        <div className="p-4 rounded-xl border border-amber-200/60 bg-amber-50/80 text-amber-800 text-xs leading-relaxed">
-          <span className="font-semibold">⚠️ Disclaimer :</span>{" "}
+        <div className="p-4 rounded-xl border border-[hsl(var(--dash-accent)/.2)] bg-[hsl(var(--dash-accent)/.06)] text-[hsl(var(--dash-muted-fg))] text-xs leading-relaxed">
+          <span className="font-semibold text-[hsl(var(--dash-accent))]">⚠️ Disclaimer :</span>{" "}
           {lang === "ar"
             ? "Résultats donnés à titre indicatif. Ils peuvent varier selon le projet, le promoteur et les frais réels."
             : "Results are indicative. They may vary depending on the project, developer, and actual fees."}
@@ -185,7 +185,7 @@ const InvestmentSimulator = () => {
         </div>
         <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-[hsl(var(--dash-accent))] to-blue-500"
+            className="h-full rounded-full bg-[hsl(var(--dash-accent))]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -231,7 +231,7 @@ const InvestmentSimulator = () => {
         <button
           onClick={handleContinue}
           disabled={!canContinue}
-          className="flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold text-white bg-[hsl(var(--dash-accent))] hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+          className="flex items-center gap-2 px-7 py-3 rounded-xl text-sm font-bold dash-btn-accent disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
         >
           {step === 4 ? (lang === "ar" ? "Simuler" : "Simulate") : (lang === "ar" ? "Continuer" : "Continue")}
           <ArrowRight className="w-4 h-4" />

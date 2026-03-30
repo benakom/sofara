@@ -26,8 +26,8 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
           onClick={() => onChange(b.value)}
           className={`px-4 py-4 rounded-2xl border-2 text-center transition-all ${
             value === b.value
-              ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.06)] shadow-md"
-              : "border-[hsl(var(--dash-border))] bg-white hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
+              ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.08)] shadow-md"
+              : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
           }`}
         >
           <span className={`text-sm font-bold ${value === b.value ? "text-[hsl(var(--dash-accent))]" : "text-[hsl(var(--dash-fg))]"}`}>
@@ -51,14 +51,14 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
           if (!isNaN(num)) onChange(num);
         }}
         placeholder="e.g. 2,500,000"
-        className="w-full h-12 rounded-xl border-2 border-[hsl(var(--dash-border))] bg-white px-4 text-base font-semibold text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:border-[hsl(var(--dash-accent))] transition-colors"
+        className="w-full h-12 rounded-xl border-2 border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] px-4 text-base font-semibold text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:border-[hsl(var(--dash-accent))] transition-colors"
       />
     </div>
 
     {/* Info box */}
-    <div className="mt-6 p-4 rounded-xl bg-blue-50 border border-blue-100">
-      <h3 className="text-xs font-bold text-blue-800 mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
-      <p className="text-xs text-blue-700 leading-relaxed">
+    <div className="mt-6 p-4 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)]">
+      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
+      <p className="text-xs text-[hsl(var(--dash-muted-fg))] leading-relaxed">
         {lang === "ar"
           ? "Votre budget détermine les types de biens et zones accessibles. Le simulateur calculera le meilleur scénario d'investissement en fonction de ce montant."
           : "Your budget determines which property types and areas are accessible. The simulator will calculate the best investment scenario based on this amount."}
