@@ -29,7 +29,6 @@ const Referrals = () => {
   useEffect(() => {
     if (!user) return;
     const fetchData = async () => {
-      // Fetch godchildren profiles
       const { data: profiles } = await supabase
         .from("profiles")
         .select("id, full_name, status, created_at")
@@ -49,26 +48,18 @@ const Referrals = () => {
               .eq("user_id", p.id)
               .eq("status", "confirmed");
 
-            return {
-              ...p,
-              leads_count: leadsCount ?? 0,
-              deals_closed: dealsCount ?? 0,
-            };
+            return { ...p, leads_count: leadsCount ?? 0, deals_closed: dealsCount ?? 0 };
           })
         );
         setGodchildren(enriched);
       }
 
-      // Fetch total bonuses
       const { data: bonuses } = await supabase
         .from("referral_bonuses")
         .select("bonus_amount")
         .eq("super_ambassador_id", user.id);
 
-      if (bonuses) {
-        setBonusTotal(bonuses.reduce((sum, b) => sum + Number(b.bonus_amount), 0));
-      }
-
+      if (bonuses) setBonusTotal(bonuses.reduce((sum, b) => sum + Number(b.bonus_amount), 0));
       setLoading(false);
     };
     fetchData();
@@ -93,14 +84,13 @@ const Referrals = () => {
 
   return (
     <div className="space-y-6 max-w-4xl">
-      {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-1">
           <h1 className="text-xl font-display font-extrabold dash-text tracking-tight">
             {lang === "ar" ? "إحالاتي" : "My Referrals"}
           </h1>
           {ambassadorTier === "ambassador_plus" && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]">
               <Crown className="w-3 h-3" />
               Ambassadeur+
             </span>
@@ -116,8 +106,8 @@ const Referrals = () => {
       {/* Referral link card */}
       <div className="dash-card rounded-2xl p-5">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center">
-            <UserPlus className="w-5 h-5 text-violet-600" />
+          <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
+            <UserPlus className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
           </div>
           <div>
             <p className="text-sm font-semibold dash-text">
@@ -133,7 +123,7 @@ const Referrals = () => {
             {referralLink}
           </div>
           <Button variant="outline" size="sm" onClick={handleCopy} className="shrink-0 gap-1.5">
-            {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+            {copied ? <CheckCircle2 className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> : <Copy className="w-4 h-4" />}
             {copied ? (lang === "ar" ? "Copié" : "Copied") : (lang === "ar" ? "Copier" : "Copy")}
           </Button>
         </div>
@@ -147,34 +137,13 @@ const Referrals = () => {
       {/* KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
-          {
-            icon: Users,
-            value: godchildrenCount,
-            labelAr: "Filleuls",
-            labelEn: "Referrals",
-            color: "text-blue-500",
-            bg: "bg-blue-500/10",
-          },
-          {
-            icon: TrendingUp,
-            value: godchildren.reduce((s, g) => s + g.deals_closed, 0),
-            labelAr: "Deals closés",
-            labelEn: "Deals closed",
-            color: "text-emerald-500",
-            bg: "bg-emerald-500/10",
-          },
-          {
-            icon: Gift,
-            value: `AED ${bonusTotal.toLocaleString()}`,
-            labelAr: "Bonus gagnés",
-            labelEn: "Bonuses earned",
-            color: "text-amber-500",
-            bg: "bg-amber-500/10",
-          },
+          { icon: Users, value: godchildrenCount, labelAr: "Filleuls", labelEn: "Referrals" },
+          { icon: TrendingUp, value: godchildren.reduce((s, g) => s + g.deals_closed, 0), labelAr: "Deals closés", labelEn: "Deals closed" },
+          { icon: Gift, value: `AED ${bonusTotal.toLocaleString()}`, labelAr: "Bonus gagnés", labelEn: "Bonuses earned" },
         ].map((kpi, i) => (
           <div key={i} className="dash-card rounded-2xl p-4 flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-lg ${kpi.bg} flex items-center justify-center`}>
-              <kpi.icon className={`w-5 h-5 ${kpi.color}`} />
+            <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
+              <kpi.icon className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
             </div>
             <div>
               <p className="text-lg font-bold dash-text">{kpi.value}</p>
@@ -210,10 +179,10 @@ const Referrals = () => {
                     <td className="px-4 py-3">
                       <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
                         g.status === "approved"
-                          ? "bg-emerald-500/10 text-emerald-500"
+                          ? "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]"
                           : g.status === "rejected"
-                          ? "bg-red-500/10 text-red-500"
-                          : "bg-amber-500/10 text-amber-500"
+                          ? "bg-[hsl(0,72%,51%/.15)] text-[hsl(0,72%,60%)]"
+                          : "bg-[hsl(var(--dash-muted))] dash-muted-text"
                       }`}>
                         {g.status === "approved" ? (lang === "ar" ? "Actif" : "Active") :
                          g.status === "rejected" ? (lang === "ar" ? "Rejeté" : "Rejected") :

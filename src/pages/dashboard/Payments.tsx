@@ -32,15 +32,15 @@ const Payments = () => {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
-          { labelAr: "Total reçu", labelEn: "Total Received", value: totalPaid, icon: CheckCircle, accent: "bg-emerald-50 text-emerald-600" },
-          { labelAr: "En attente", labelEn: "Pending", value: totalPending, icon: Clock, accent: "bg-amber-50 text-amber-600" },
-          { labelAr: "Total global", labelEn: "Total Overall", value: totalAll, icon: BarChart3, accent: "bg-blue-50 text-blue-600" },
-          { labelAr: "Transactions", labelEn: "Transactions", value: payments.length, icon: CreditCard, accent: "bg-violet-50 text-violet-600", noPrefix: true },
+          { labelAr: "Total reçu", labelEn: "Total Received", value: totalPaid, icon: CheckCircle },
+          { labelAr: "En attente", labelEn: "Pending", value: totalPending, icon: Clock },
+          { labelAr: "Total global", labelEn: "Total Overall", value: totalAll, icon: BarChart3 },
+          { labelAr: "Transactions", labelEn: "Transactions", value: payments.length, icon: CreditCard, noPrefix: true },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{(s as any).noPrefix ? s.value : `AED ${s.value.toLocaleString()}`}</p>
@@ -52,12 +52,12 @@ const Payments = () => {
       <div className="dash-card rounded-2xl p-5 mb-5">
         <h2 className="text-base sm:text-sm font-display font-semibold dash-text mb-3">{lang === "ar" ? "Répartition" : "Breakdown"}</h2>
         <div className="h-3 rounded-full overflow-hidden flex gap-0.5">
-          {totalPaid > 0 && <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${totalAll > 0 ? (totalPaid / totalAll) * 100 : 0}%` }} />}
-          {totalPending > 0 && <div className="h-full bg-amber-400 rounded-full" style={{ width: `${totalAll > 0 ? (totalPending / totalAll) * 100 : 0}%` }} />}
+          {totalPaid > 0 && <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full" style={{ width: `${totalAll > 0 ? (totalPaid / totalAll) * 100 : 0}%` }} />}
+          {totalPending > 0 && <div className="h-full bg-[hsl(var(--dash-accent)/.4)] rounded-full" style={{ width: `${totalAll > 0 ? (totalPending / totalAll) * 100 : 0}%` }} />}
         </div>
         <div className="flex gap-4 mt-2 text-sm sm:text-xs dash-muted-text">
-          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-500" /> {lang === "ar" ? "Reçu" : "Received"}: AED {totalPaid.toLocaleString()}</span>
-          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-400" /> {lang === "ar" ? "قيد الانتظار" : "Pending"}: AED {totalPending.toLocaleString()}</span>
+          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "Reçu" : "Received"}: AED {totalPaid.toLocaleString()}</span>
+          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[hsl(var(--dash-accent)/.4)]" /> {lang === "ar" ? "قيد الانتظار" : "Pending"}: AED {totalPending.toLocaleString()}</span>
         </div>
       </div>
 
@@ -71,8 +71,8 @@ const Payments = () => {
             {payments.map((p: any) => (
               <div key={p.id} className="flex items-center justify-between py-2.5 border-b dash-border-color last:border-0">
                 <div className="flex items-center gap-3">
-                  <div className={`p-1.5 rounded-lg ${p.status === "paid" ? "bg-emerald-50" : "bg-amber-50"}`}>
-                    {p.status === "paid" ? <ArrowDownRight className="w-3.5 h-3.5 text-emerald-500" /> : <Clock className="w-3.5 h-3.5 text-amber-500" />}
+                  <div className={`p-1.5 rounded-lg ${p.status === "paid" ? "bg-[hsl(var(--dash-accent)/.12)]" : "bg-[hsl(var(--dash-muted))]"}`}>
+                    {p.status === "paid" ? <ArrowDownRight className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" /> : <Clock className="w-3.5 h-3.5 dash-muted-text" />}
                   </div>
                   <div>
                     <p className="text-base sm:text-sm font-medium dash-text">{p.reference}</p>
@@ -81,7 +81,7 @@ const Payments = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-base sm:text-sm font-bold dash-text">AED {Number(p.amount).toLocaleString()}</p>
-                  <span className={`text-xs sm:text-[10px] px-1.5 py-0.5 rounded-full font-medium ${p.status === "paid" ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}>
+                  <span className={`text-xs sm:text-[10px] px-1.5 py-0.5 rounded-full font-medium ${p.status === "paid" ? "bg-[hsl(var(--dash-accent))] text-black" : "bg-[hsl(var(--dash-muted))] dash-muted-text"}`}>
                     {p.status === "paid" ? (lang === "ar" ? "Reçu" : "Received") : (lang === "ar" ? "قيد الانتظار" : "Pending")}
                   </span>
                 </div>
