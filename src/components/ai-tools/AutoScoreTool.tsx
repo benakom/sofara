@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Target, Loader2, TrendingUp, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
+import { Target, Loader2, TrendingUp, CheckCircle } from "lucide-react";
 
 interface Lead {
   id: string;
@@ -28,11 +28,11 @@ interface ScoreResult {
 
 const QUALIFY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sofar-ai-qualify`;
 
-const scoreColors: Record<string, string> = {
-  A: "bg-emerald-100 text-emerald-700 border-emerald-300",
-  B: "bg-sky-100 text-sky-700 border-sky-300",
-  C: "bg-amber-100 text-amber-700 border-amber-300",
-  D: "bg-red-100 text-red-700 border-red-300",
+const scoreStyles: Record<string, string> = {
+  A: "bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))] border-[hsl(var(--dash-accent-fg)/.18)]",
+  B: "bg-[hsl(var(--dash-accent)/.75)] text-[hsl(var(--dash-accent-fg))] border-[hsl(var(--dash-accent-fg)/.18)]",
+  C: "bg-[hsl(var(--dash-accent)/.55)] text-[hsl(var(--dash-accent-fg))] border-[hsl(var(--dash-accent-fg)/.18)]",
+  D: "bg-[hsl(var(--dash-accent)/.35)] text-[hsl(var(--dash-accent-fg))] border-[hsl(var(--dash-accent-fg)/.18)]",
 };
 
 export default function AutoScoreTool() {
@@ -49,7 +49,7 @@ export default function AutoScoreTool() {
   }, []);
 
   const loadLeads = async () => {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("leads")
       .select("id, first_name, last_name, email, phone, score, stage, source, notes")
       .order("created_at", { ascending: false })
@@ -65,7 +65,9 @@ export default function AutoScoreTool() {
     setResults([]);
     setProgress(0);
 
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session?.access_token) {
       toast({ variant: "destructive", title: "Erreur", description: "Connectez-vous." });
       setIsLoading(false);
@@ -86,10 +88,12 @@ export default function AutoScoreTool() {
             Authorization: `Bearer ${session.access_token}`,
           },
           body: JSON.stringify({
-            messages: [{
-              role: "user",
-              content: `Score ce lead de manière concise. Lead: ${lead.first_name} ${lead.last_name}, Score actuel: ${lead.score || "N/A"}, Stage: ${lead.stage || "N/A"}, Source: ${lead.source || "N/A"}, Email: ${lead.email || "N/A"}, Phone: ${lead.phone || "N/A"}, Notes: ${lead.notes || "Aucune"}. Réponds UNIQUEMENT au format JSON: {"ai_score":"A/B/C/D","probability":0-100,"reasoning":"courte explication","priority_action":"action recommandée"}`,
-            }],
+            messages: [
+              {
+                role: "user",
+                content: `Score ce lead de manière concise. Lead: ${lead.first_name} ${lead.last_name}, Score actuel: ${lead.score || "N/A"}, Stage: ${lead.stage || "N/A"}, Source: ${lead.source || "N/A"}, Email: ${lead.email || "N/A"}, Phone: ${lead.phone || "N/A"}, Notes: ${lead.notes || "Aucune"}. Réponds UNIQUEMENT au format JSON: {"ai_score":"A/B/C/D","probability":0-100,"reasoning":"courte explication","priority_action":"action recommandée"}`,
+              },
+            ],
             mode: "qualifier",
             leadId: lead.id,
           }),
@@ -117,11 +121,13 @@ export default function AutoScoreTool() {
                 const parsed = JSON.parse(json);
                 const c = parsed.choices?.[0]?.delta?.content;
                 if (c) fullText += c;
-              } catch { buf = line + "\n" + buf; break; }
+              } catch {
+                buf = line + "\n" + buf;
+                break;
+              }
             }
           }
 
-          // Parse JSON from response
           const jsonMatch = fullText.match(/\{[\s\S]*\}/);
           if (jsonMatch) {
             try {
@@ -137,16 +143,17 @@ export default function AutoScoreTool() {
               };
               scoredResults.push(result);
               setResults([...scoredResults]);
-            } catch {}
+            } catch {
+              // ignore
+            }
           }
         }
       } catch (e) {
         console.error(`Error scoring lead ${lead.id}:`, e);
       }
 
-      // Small delay to avoid rate limiting
       if (i < leads.length - 1) {
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise((r) => setTimeout(r, 800));
       }
     }
 
@@ -156,7 +163,7 @@ export default function AutoScoreTool() {
   if (loadingLeads) {
     return (
       <div className="h-full flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--primary))]" />
+        <Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-accent))]" />
       </div>
     );
   }
@@ -164,9 +171,7 @@ export default function AutoScoreTool() {
   return (
     <div className="h-full flex flex-col">
       <div className="mb-4">
-        <h2 className="text-lg font-display font-bold dash-text mb-1">
-          {lang === "ar" ? "🎯 Smart Scoring AI" : "🎯 AI Smart Scoring"}
-        </h2>
+        <h2 className="text-lg font-display font-bold dash-text mb-1">{lang === "ar" ? "🎯 Smart Scoring AI" : "🎯 AI Smart Scoring"}</h2>
         <p className="text-xs dash-muted-text">
           {lang === "ar"
             ? `${leads.length} leads détectés — L'IA analyse chaque profil et attribue un score prédictif`
@@ -178,7 +183,7 @@ export default function AutoScoreTool() {
         <button
           onClick={scoreAllLeads}
           disabled={leads.length === 0}
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 mb-4"
+          className="w-full sm:w-auto px-6 py-3 rounded-xl font-medium text-sm transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 mb-4 bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))] hover:opacity-90"
         >
           <Target className="w-4 h-4" />
           {lang === "ar" ? `Scorer ${leads.length} leads` : `Score ${leads.length} leads`}
@@ -193,8 +198,8 @@ export default function AutoScoreTool() {
           </div>
           <div className="w-full h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
+              className="h-full rounded-full transition-all duration-300"
+              style={{ width: `${progress}%`, background: "hsl(var(--dash-accent))" }}
             />
           </div>
         </div>
@@ -202,12 +207,14 @@ export default function AutoScoreTool() {
 
       {results.length > 0 && (
         <div className="flex-1 overflow-y-auto space-y-2">
-          {/* Summary */}
           <div className="grid grid-cols-4 gap-2 mb-3">
-            {["A", "B", "C", "D"].map(s => {
-              const count = results.filter(r => r.ai_score === s).length;
+            {(["A", "B", "C", "D"] as const).map((s) => {
+              const count = results.filter((r) => r.ai_score === s).length;
               return (
-                <div key={s} className={`rounded-lg p-3 text-center border ${scoreColors[s]}`}>
+                <div
+                  key={s}
+                  className={`rounded-lg p-3 text-center border ${scoreStyles[s]}`}
+                >
                   <p className="text-lg font-bold">{count}</p>
                   <p className="text-[10px] font-medium">Score {s}</p>
                 </div>
@@ -215,38 +222,33 @@ export default function AutoScoreTool() {
             })}
           </div>
 
-          {/* Lead list */}
           {results
             .sort((a, b) => {
               const order = { A: 0, B: 1, C: 2, D: 3 };
               return (order[a.ai_score as keyof typeof order] || 3) - (order[b.ai_score as keyof typeof order] || 3);
             })
             .map((r) => (
-            <div key={r.lead_id} className="dash-card rounded-xl p-4 border border-[hsl(var(--dash-border))]">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-3">
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-lg border ${scoreColors[r.ai_score]}`}>
-                    {r.ai_score}
-                  </span>
-                  <span className="text-sm font-medium dash-text">{r.name}</span>
-                  {r.current_score !== r.ai_score && (
-                    <span className="text-[10px] dash-muted-text">
-                      ({lang === "ar" ? "était" : "was"} {r.current_score})
-                    </span>
-                  )}
+              <div key={r.lead_id} className="dash-card rounded-xl p-4 border border-[hsl(var(--dash-border))]">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-3">
+                    <span className={`text-xs font-bold px-2.5 py-1 rounded-lg border ${scoreStyles[r.ai_score] || scoreStyles.C}`}>{r.ai_score}</span>
+                    <span className="text-sm font-medium dash-text">{r.name}</span>
+                    {r.current_score !== r.ai_score && (
+                      <span className="text-[10px] dash-muted-text">({lang === "ar" ? "était" : "was"} {r.current_score})</span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <TrendingUp className="w-3 h-3 text-[hsl(var(--dash-accent))]" />
+                    <span className="text-xs font-bold text-[hsl(var(--dash-accent))]">{r.probability}%</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3 text-emerald-500" />
-                  <span className="text-xs font-bold text-emerald-600">{r.probability}%</span>
+                <p className="text-xs dash-muted-text mb-1">{r.reasoning}</p>
+                <div className="flex items-center gap-1.5 mt-2">
+                  <CheckCircle className="w-3 h-3 text-[hsl(var(--dash-accent))]" />
+                  <p className="text-[11px] text-[hsl(var(--dash-accent))] font-medium">{r.priority_action}</p>
                 </div>
               </div>
-              <p className="text-xs dash-muted-text mb-1">{r.reasoning}</p>
-              <div className="flex items-center gap-1.5 mt-2">
-                <CheckCircle className="w-3 h-3 text-[hsl(var(--primary))]" />
-                <p className="text-[11px] text-[hsl(var(--primary))] font-medium">{r.priority_action}</p>
-              </div>
-            </div>
-          ))}
+            ))}
 
           {!isLoading && (
             <button

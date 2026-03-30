@@ -39,11 +39,11 @@ const channelIcons: Record<string, typeof Mail> = {
   sms: Smartphone,
 };
 
-const channelColors: Record<string, string> = {
-  email: "bg-sky-100 text-sky-700",
-  whatsapp: "bg-green-100 text-green-700",
-  call: "bg-violet-100 text-violet-700",
-  sms: "bg-amber-100 text-amber-700",
+const channelBadge: Record<string, string> = {
+  email: "bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]",
+  whatsapp: "bg-[hsl(var(--dash-accent)/.75)] text-[hsl(var(--dash-accent-fg))]",
+  call: "bg-[hsl(var(--dash-accent)/.55)] text-[hsl(var(--dash-accent-fg))]",
+  sms: "bg-[hsl(var(--dash-accent)/.35)] text-[hsl(var(--dash-accent-fg))]",
 };
 
 export default function SequencesTool() {
@@ -64,7 +64,9 @@ export default function SequencesTool() {
     setResult(null);
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session?.access_token) throw new Error("Not authenticated");
 
       const resp = await fetch(SEQUENCES_URL, {
@@ -102,9 +104,7 @@ export default function SequencesTool() {
   return (
     <div className="h-full flex flex-col">
       <div className="mb-4">
-        <h2 className="text-lg font-display font-bold dash-text mb-1">
-          {lang === "ar" ? "⚡ Séquences Follow-up AI" : "⚡ AI Follow-up Sequences"}
-        </h2>
+        <h2 className="text-lg font-display font-bold dash-text mb-1">{lang === "ar" ? "⚡ Séquences Follow-up AI" : "⚡ AI Follow-up Sequences"}</h2>
         <p className="text-xs dash-muted-text">
           {lang === "ar"
             ? "Sélectionnez un lead et générez une séquence de relance complète en un clic"
@@ -120,7 +120,7 @@ export default function SequencesTool() {
         <button
           onClick={generate}
           disabled={!selectedLead || isLoading}
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 mb-4"
+          className="w-full sm:w-auto px-6 py-3 rounded-xl font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center justify-center gap-2 mb-4 bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]"
         >
           {isLoading ? (
             <>
@@ -138,15 +138,11 @@ export default function SequencesTool() {
 
       {result && (
         <div className="flex-1 overflow-y-auto space-y-4">
-          {/* Strategy */}
-          <div className="dash-card rounded-xl p-4 border border-amber-200 bg-amber-50/50">
-            <h3 className="text-sm font-semibold text-amber-800 mb-1">
-              {lang === "ar" ? "📋 Stratégie" : "📋 Strategy"}
-            </h3>
-            <p className="text-xs text-amber-700 leading-relaxed">{result.strategy_summary}</p>
+          <div className="dash-card rounded-xl p-4 border border-[hsl(var(--dash-border))]">
+            <h3 className="text-sm font-semibold mb-1 text-[hsl(var(--dash-fg))]">{lang === "ar" ? "📋 Stratégie" : "📋 Strategy"}</h3>
+            <p className="text-xs leading-relaxed text-[hsl(var(--dash-muted-fg))]">{result.strategy_summary}</p>
           </div>
 
-          {/* Timeline */}
           <div className="relative">
             <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-[hsl(var(--dash-border))]" />
             {result.steps.map((step, i) => {
@@ -154,7 +150,11 @@ export default function SequencesTool() {
               const isExpanded = expandedIdx === i;
               return (
                 <div key={i} className="relative pl-12 pb-4">
-                  <div className={`absolute left-3 w-5 h-5 rounded-full flex items-center justify-center ${channelColors[step.channel] || "bg-gray-100 text-gray-600"} ring-2 ring-white`}>
+                  <div
+                    className={`absolute left-3 w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-[hsl(var(--dash-bg))] ${
+                      channelBadge[step.channel] || channelBadge.email
+                    }`}
+                  >
                     <Icon className="w-3 h-3" />
                   </div>
                   <div className="dash-card rounded-xl border border-[hsl(var(--dash-border))] overflow-hidden">
@@ -162,44 +162,43 @@ export default function SequencesTool() {
                       onClick={() => setExpandedIdx(isExpanded ? null : i)}
                       className="w-full flex items-center justify-between p-3 hover:bg-[hsl(var(--dash-muted)/.3)] transition-colors"
                     >
-                      <div className="flex items-center gap-3 text-left">
-                        <span className="text-[10px] font-bold dash-muted-text">J+{step.day}</span>
-                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${channelColors[step.channel]}`}>
+                      <div className="flex items-center gap-3 text-left min-w-0">
+                        <span className="text-[10px] font-bold dash-muted-text shrink-0">J+{step.day}</span>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium shrink-0 ${channelBadge[step.channel] || channelBadge.email}`}>
                           {step.channel}
                         </span>
-                        <span className="text-xs font-medium dash-text">{step.subject}</span>
+                        <span className="text-xs font-medium dash-text truncate">{step.subject}</span>
                       </div>
                       <ChevronDown className={`w-4 h-4 dash-muted-text transition-transform ${isExpanded ? "rotate-180" : ""}`} />
                     </button>
+
                     {isExpanded && (
                       <div className="border-t border-[hsl(var(--dash-border))] p-4 space-y-3">
                         <div>
-                          <p className="text-[10px] font-semibold dash-muted-text uppercase mb-1">
-                            {lang === "ar" ? "Objectif" : "Objective"}
-                          </p>
+                          <p className="text-[10px] font-semibold dash-muted-text uppercase mb-1">{lang === "ar" ? "Objectif" : "Objective"}</p>
                           <p className="text-xs dash-text">{step.objective}</p>
                         </div>
+
                         <div>
                           <div className="flex items-center justify-between mb-1">
-                            <p className="text-[10px] font-semibold dash-muted-text uppercase">
-                              {lang === "ar" ? "Contenu" : "Content"}
-                            </p>
+                            <p className="text-[10px] font-semibold dash-muted-text uppercase">{lang === "ar" ? "Contenu" : "Content"}</p>
                             <button
                               onClick={() => copyContent(step.content, i)}
-                              className="flex items-center gap-1 text-[10px] text-[hsl(var(--primary))] hover:underline"
+                              className="flex items-center gap-1 text-[10px] text-[hsl(var(--dash-accent))] hover:underline"
                             >
                               {copiedIdx === i ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              {copiedIdx === i ? (lang === "ar" ? "Copié" : "Copied") : (lang === "ar" ? "Copier" : "Copy")}
+                              {copiedIdx === i ? (lang === "ar" ? "Copié" : "Copied") : lang === "ar" ? "Copier" : "Copy"}
                             </button>
                           </div>
                           <div className="bg-[hsl(var(--dash-muted)/.3)] rounded-lg p-3 text-xs dash-text whitespace-pre-wrap leading-relaxed">
                             {step.content}
                           </div>
                         </div>
+
                         {step.tips && (
-                          <div className="bg-amber-50 rounded-lg p-3">
-                            <p className="text-[10px] font-semibold text-amber-700 mb-0.5">💡 Pro tip</p>
-                            <p className="text-xs text-amber-600">{step.tips}</p>
+                          <div className="bg-[hsl(var(--dash-muted)/.25)] border border-[hsl(var(--dash-border))] rounded-lg p-3">
+                            <p className="text-[10px] font-semibold mb-0.5 text-[hsl(var(--dash-accent))]">💡 Pro tip</p>
+                            <p className="text-xs text-[hsl(var(--dash-muted-fg))]">{step.tips}</p>
                           </div>
                         )}
                       </div>
@@ -210,7 +209,6 @@ export default function SequencesTool() {
             })}
           </div>
 
-          {/* Regenerate */}
           <button
             onClick={generate}
             disabled={isLoading}
