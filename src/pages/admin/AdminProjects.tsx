@@ -3,6 +3,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { Search, Plus, Building2, Edit, Trash2, LayoutGrid, List } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+
+const emptyProject = {
+  name: "", developer_id: "", area_id: "", property_type: "apartment", status: "under_construction",
+  price_from: "", price_to: "", handover_date: "", bedrooms: "", description: "", hero_image_url: "",
+};
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -12,25 +19,30 @@ const AdminProjects = () => {
   const [search, setSearch] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 
-  useEffect(() => {
-    const fetch = async () => {
-      const [pRes, dRes, aRes] = await Promise.all([
-        supabase.from("lib_projects").select("*").order("sort_order"),
-        supabase.from("lib_developers").select("id, name, logo_url"),
-        supabase.from("lib_areas").select("id, name"),
-      ]);
-      setProjects(pRes.data ?? []);
-      setDevelopers(dRes.data ?? []);
-      setAreas(aRes.data ?? []);
-      setLoading(false);
-    };
-    fetch();
-  }, []);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editing, setEditing] = useState<any>(null);
+  const [form, setForm] = useState({ ...emptyProject });
+  const [saving, setSaving] = useState(false);
+
+  const [deleteTarget, setDeleteTarget] = useState<any>(null);
+
+  const fetchData = async () => {
+    const [pRes, dRes, aRes] = await Promise.all([
+      supabase.from("lib_projects").select("*").order("sort_order"),
+      supabase.from("lib_developers").select("id, name, logo_url"),
+      supabase.from("lib_areas").select("id, name"),
+    ]);
+    setProjects(pRes.data ?? []);
+    setDevelopers(dRes.data ?? []);
+    setAreas(aRes.data ?? []);
+    setLoading(false);
+  };
+
+  useEffect(() => { fetchData(); }, []);
 
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
   const getDevName = (id: string) => developers.find(d => d.id === id)?.name || "—";
   const getAreaName = (id: string) => areas.find(a => a.id === id)?.name || "—";
-
   const filtered = projects.filter(p => !search || p.name.toLowerCase().includes(search.toLowerCase()));
 
   const toggleStatus = async (id: string, currentStatus: string) => {
@@ -39,6 +51,65 @@ const AdminProjects = () => {
     setProjects(prev => prev.map(p => p.id === id ? { ...p, status: newStatus } : p));
     toast({ title: `Project ${newStatus}` });
   };
+
+  const openAdd = () => {
+    setEditing(null);
+    setForm({ ...emptyProject });
+    setDialogOpen(true);
+  };
+
+  const openEdit = (p: any) => {
+    setEditing(p);
+    setForm({
+      name: p.name || "", developer_id: p.developer_id || "", area_id: p.area_id || "",
+      property_type: p.property_type || "apartment", status: p.status || "under_construction",
+      price_from: p.price_from?.toString() || "", price_to: p.price_to?.toString() || "",
+      handover_date: p.handover_date || "", bedrooms: p.bedrooms || "",
+      description: p.description || "", hero_image_url: p.hero_image_url || "",
+    });
+    setDialogOpen(true);
+  };
+
+  const handleSave = async () => {
+    if (!form.name || !form.developer_id || !form.area_id) {
+      toast({ title: "Please fill required fields (Name, Developer, Area)", variant: "destructive" });
+      return;
+    }
+    setSaving(true);
+    const payload: any = {
+      name: form.name, developer_id: form.developer_id, area_id: form.area_id,
+      property_type: form.property_type, status: form.status,
+      price_from: form.price_from ? Number(form.price_from) : null,
+      price_to: form.price_to ? Number(form.price_to) : null,
+      handover_date: form.handover_date || null, bedrooms: form.bedrooms || null,
+      description: form.description || null, hero_image_url: form.hero_image_url || null,
+    };
+
+    if (editing) {
+      const { error } = await supabase.from("lib_projects").update(payload).eq("id", editing.id);
+      if (error) { toast({ title: "Error updating project", description: error.message, variant: "destructive" }); }
+      else { toast({ title: "Project updated" }); }
+    } else {
+      const { error } = await supabase.from("lib_projects").insert(payload);
+      if (error) { toast({ title: "Error creating project", description: error.message, variant: "destructive" }); }
+      else { toast({ title: "Project created" }); }
+    }
+    setSaving(false);
+    setDialogOpen(false);
+    fetchData();
+  };
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    const { error } = await supabase.from("lib_projects").delete().eq("id", deleteTarget.id);
+    if (error) { toast({ title: "Error deleting project", description: error.message, variant: "destructive" }); }
+    else { toast({ title: "Project deleted" }); fetchData(); }
+    setDeleteTarget(null);
+  };
+
+  const inputCls = "w-full h-9 px-3 rounded-lg bg-white border border-[#E5E7EB] text-sm text-[#154B3B] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50";
+  const selectCls = inputCls;
+  const labelCls = "text-[11px] font-semibold text-[#6B7280] uppercase mb-1";
 
   if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" /></div>;
 
@@ -51,7 +122,7 @@ const AdminProjects = () => {
             <button onClick={() => setViewMode("grid")} className={`p-1.5 rounded-md ${viewMode === "grid" ? "bg-white shadow-sm" : ""}`}><LayoutGrid className="w-4 h-4 text-[#6B7280]" /></button>
             <button onClick={() => setViewMode("table")} className={`p-1.5 rounded-md ${viewMode === "table" ? "bg-white shadow-sm" : ""}`}><List className="w-4 h-4 text-[#6B7280]" /></button>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">
+          <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">
             <Plus className="w-3.5 h-3.5" /> Add Project
           </button>
         </div>
@@ -68,11 +139,7 @@ const AdminProjects = () => {
           {filtered.map(p => (
             <div key={p.id} className="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="h-32 bg-gradient-to-br from-[#154B3B] to-[#1B5E4A] flex items-center justify-center">
-                {p.hero_image_url ? (
-                  <img src={p.hero_image_url} alt={p.name} className="w-full h-full object-cover" />
-                ) : (
-                  <Building2 className="w-8 h-8 text-[#9CC5B5]" />
-                )}
+                {p.hero_image_url ? <img src={p.hero_image_url} alt={p.name} className="w-full h-full object-cover" /> : <Building2 className="w-8 h-8 text-[#9CC5B5]" />}
               </div>
               <div className="p-4">
                 <p className="text-[10px] text-[#9CA3AF] font-medium">{getDevName(p.developer_id)}</p>
@@ -90,8 +157,8 @@ const AdminProjects = () => {
                     <span className="text-[10px] text-[#9CA3AF]">{p.status}</span>
                   </div>
                   <div className="flex gap-1">
-                    <button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button>
-                    <button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
+                    <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button>
+                    <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
                   </div>
                 </div>
               </div>
@@ -109,7 +176,7 @@ const AdminProjects = () => {
                   <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Zone</th>
                   <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Price</th>
                   <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Status</th>
-                  <th className="w-12"></th>
+                  <th className="w-20"></th>
                 </tr>
               </thead>
               <tbody>
@@ -120,7 +187,12 @@ const AdminProjects = () => {
                     <td className="px-4 py-3 text-xs text-[#6B7280]">{getAreaName(p.area_id)}</td>
                     <td className="px-4 py-3 text-xs font-bold text-[#154B3B]">{p.price_from ? `AED ${fmt(p.price_from)}` : "—"}</td>
                     <td className="px-4 py-3"><Switch checked={p.status === "active" || p.status === "under_construction"} onCheckedChange={() => toggleStatus(p.id, p.status)} /></td>
-                    <td className="px-4 py-3"><button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button></td>
+                    <td className="px-4 py-3">
+                      <div className="flex gap-1">
+                        <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button>
+                        <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -134,9 +206,84 @@ const AdminProjects = () => {
           <Building2 className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" />
           <h3 className="text-sm font-semibold text-[#154B3B] mb-1">No projects found</h3>
           <p className="text-xs text-[#9CA3AF]">Add your first project to get started.</p>
-          <button className="mt-4 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">Add Project</button>
+          <button onClick={openAdd} className="mt-4 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">Add Project</button>
         </div>
       )}
+
+      {/* Add / Edit Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-[#154B3B]">{editing ? "Edit Project" : "Add Project"}</DialogTitle>
+            <DialogDescription className="text-xs text-[#9CA3AF]">
+              {editing ? "Update the project details below." : "Fill in the project details to create a new listing."}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div><label className={labelCls}>Name *</label><input className={inputCls} value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="Project name" /></div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className={labelCls}>Developer *</label>
+                <select className={selectCls} value={form.developer_id} onChange={e => setForm(f => ({ ...f, developer_id: e.target.value }))}>
+                  <option value="">Select developer</option>
+                  {developers.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>Area *</label>
+                <select className={selectCls} value={form.area_id} onChange={e => setForm(f => ({ ...f, area_id: e.target.value }))}>
+                  <option value="">Select area</option>
+                  {areas.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                </select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className={labelCls}>Property Type</label>
+                <select className={selectCls} value={form.property_type} onChange={e => setForm(f => ({ ...f, property_type: e.target.value }))}>
+                  {["apartment", "villa", "townhouse", "penthouse", "studio", "land"].map(t => <option key={t} value={t}>{t}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>Status</label>
+                <select className={selectCls} value={form.status} onChange={e => setForm(f => ({ ...f, status: e.target.value }))}>
+                  {["under_construction", "active", "inactive", "sold_out", "completed"].map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div><label className={labelCls}>Price From (AED)</label><input type="number" className={inputCls} value={form.price_from} onChange={e => setForm(f => ({ ...f, price_from: e.target.value }))} /></div>
+              <div><label className={labelCls}>Price To (AED)</label><input type="number" className={inputCls} value={form.price_to} onChange={e => setForm(f => ({ ...f, price_to: e.target.value }))} /></div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div><label className={labelCls}>Handover Date</label><input className={inputCls} value={form.handover_date} onChange={e => setForm(f => ({ ...f, handover_date: e.target.value }))} placeholder="Q4 2026" /></div>
+              <div><label className={labelCls}>Bedrooms</label><input className={inputCls} value={form.bedrooms} onChange={e => setForm(f => ({ ...f, bedrooms: e.target.value }))} placeholder="Studio, 1BR, 2BR" /></div>
+            </div>
+            <div><label className={labelCls}>Hero Image URL</label><input className={inputCls} value={form.hero_image_url} onChange={e => setForm(f => ({ ...f, hero_image_url: e.target.value }))} placeholder="https://..." /></div>
+            <div><label className={labelCls}>Description</label><textarea className={inputCls + " h-20 resize-none"} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} /></div>
+          </div>
+          <DialogFooter>
+            <button onClick={() => setDialogOpen(false)} className="px-4 py-2 text-xs text-[#6B7280] hover:bg-[#F5F5F7] rounded-lg">Cancel</button>
+            <button onClick={handleSave} disabled={saving} className="px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040] disabled:opacity-50">
+              {saving ? "Saving..." : editing ? "Update" : "Create"}
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation */}
+      <AlertDialog open={!!deleteTarget} onOpenChange={open => !open && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete "{deleteTarget?.name}"?</AlertDialogTitle>
+            <AlertDialogDescription>This action cannot be undone. The project will be permanently removed.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-[#EF4444] hover:bg-[#DC2626]">Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
