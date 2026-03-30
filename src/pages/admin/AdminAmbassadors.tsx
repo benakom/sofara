@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, Search, CheckCircle2, XCircle, Clock, Eye } from "lucide-react";
+import { Loader2, Search, CheckCircle2, XCircle, Clock, Eye, Users, UserCheck, UserX } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -15,15 +15,16 @@ interface Ambassador {
   profile_type: string | null;
   status: string;
   created_at: string;
+  referral_code: string | null;
   leadsCount: number;
   commissionsTotal: number;
 }
 
-const statusConfig: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: typeof Clock }> = {
-  pending: { label: "En attente", variant: "secondary", icon: Clock },
-  onboarding: { label: "À valider", variant: "outline", icon: Clock },
-  approved: { label: "Actif", variant: "default", icon: CheckCircle2 },
-  rejected: { label: "Refusé", variant: "destructive", icon: XCircle },
+const statusConfig: Record<string, { label: string; color: string; icon: typeof Clock }> = {
+  pending: { label: "En attente", color: "bg-[hsl(45,90%,55%/.12)] text-[hsl(45,90%,55%)]", icon: Clock },
+  onboarding: { label: "À valider", color: "bg-[hsl(280,70%,60%/.12)] text-[hsl(280,70%,60%)]", icon: Clock },
+  approved: { label: "Actif", color: "bg-[hsl(160,70%,50%/.12)] text-[hsl(160,70%,50%)]", icon: CheckCircle2 },
+  rejected: { label: "Refusé", color: "bg-[hsl(var(--destructive)/.12)] text-[hsl(var(--destructive))]", icon: XCircle },
 };
 
 const AdminAmbassadors = () => {
@@ -43,13 +44,9 @@ const AdminAmbassadors = () => {
     const { data: commissions } = await supabase.from("commissions").select("user_id, amount");
 
     const enriched: Ambassador[] = profiles.map((p: any) => ({
-      id: p.id,
-      full_name: p.full_name,
-      phone: p.phone,
-      country: p.country,
-      profile_type: p.profile_type,
-      status: p.status || "pending",
-      created_at: p.created_at,
+      id: p.id, full_name: p.full_name, phone: p.phone, country: p.country,
+      profile_type: p.profile_type, status: p.status || "pending", created_at: p.created_at,
+      referral_code: p.referral_code,
       leadsCount: leads?.filter((l: any) => l.user_id === p.id).length ?? 0,
       commissionsTotal: commissions?.filter((c: any) => c.user_id === p.id).reduce((s: number, c: any) => s + Number(c.amount), 0) ?? 0,
     }));
@@ -66,12 +63,11 @@ const AdminAmbassadors = () => {
       .from("profiles")
       .update({ status: newStatus, reviewed_at: new Date().toISOString() })
       .eq("id", userId);
-
     setActionLoading(null);
     if (error) {
       toast({ variant: "destructive", title: "Erreur", description: error.message });
     } else {
-      toast({ title: "Statut mis à jour", description: `Ambassadeur ${newStatus === "approved" ? "activé" : "refusé"}.` });
+      toast({ title: "Statut mis à jour" });
       fetchData();
     }
   };
@@ -95,10 +91,18 @@ const AdminAmbassadors = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-[1400px]">
       <div>
-        <h1 className="text-2xl font-display font-bold text-[hsl(var(--foreground))]">Ambassadeurs</h1>
-        <p className="text-sm text-[hsl(var(--muted-foreground))] mt-1">{ambassadors.length} ambassadeurs inscrits</p>
+        <h1 className="text-2xl font-display font-bold text-white">Ambassadeurs</h1>
+        <p className="text-sm text-[hsl(228,10%,50%)] mt-1">{ambassadors.length} ambassadeurs inscrits</p>
+      </div>
+
+      {/* Summary cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <MiniCard icon={Users} label="Total" value={counts.all} color="hsl(var(--primary))" />
+        <MiniCard icon={UserCheck} label="Actifs" value={counts.approved} color="hsl(160,70%,50%)" />
+        <MiniCard icon={Clock} label="En attente" value={counts.pending + counts.onboarding} color="hsl(45,90%,55%)" />
+        <MiniCard icon={UserX} label="Refusés" value={counts.rejected} color="hsl(var(--destructive))" />
       </div>
 
       {/* Filter tabs */}
@@ -114,9 +118,7 @@ const AdminAmbassadors = () => {
             key={tab.key}
             onClick={() => setFilter(tab.key)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              filter === tab.key
-                ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
-                : "bg-[hsl(var(--card))] text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))]"
+              filter === tab.key ? "bg-white/10 text-white" : "bg-[hsl(228,18%,12%)] text-[hsl(228,10%,50%)] hover:text-white"
             }`}
           >
             {tab.label} ({counts[tab.key as keyof typeof counts]})
@@ -125,49 +127,47 @@ const AdminAmbassadors = () => {
       </div>
 
       <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--muted-foreground))]" />
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2 rounded-lg bg-[hsl(var(--card))] border border-[hsl(var(--border))] text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary))]"
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(228,10%,35%)]" />
+        <input type="text" placeholder="Rechercher..." value={search} onChange={(e) => setSearch(e.target.value)}
+          className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] text-sm text-white placeholder:text-[hsl(228,10%,35%)] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary)/.5)]"
         />
       </div>
 
-      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-hidden">
+      <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="border-[hsl(var(--border))]">
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Nom</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Profil</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Pays</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Statut</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Leads</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Commissions</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Inscrit le</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-center">Actions</TableHead>
+            <TableRow className="border-[hsl(228,18%,14%)] hover:bg-transparent">
+              <TableHead className="text-[hsl(228,10%,45%)]">Nom</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)]">Profil</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)]">Pays</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)]">Code parrainage</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)]">Statut</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)] text-right">Leads</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)] text-right">Commissions</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)]">Inscrit le</TableHead>
+              <TableHead className="text-[hsl(228,10%,45%)] text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.map((a) => {
               const sc = statusConfig[a.status] || statusConfig.pending;
               return (
-                <TableRow key={a.id} className="border-[hsl(var(--border))]">
-                  <TableCell className="font-medium text-[hsl(var(--foreground))]">{a.full_name || "—"}</TableCell>
-                  <TableCell className="text-[hsl(var(--muted-foreground))] text-xs capitalize">{a.profile_type || "—"}</TableCell>
-                  <TableCell className="text-[hsl(var(--muted-foreground))]">{a.country || "—"}</TableCell>
+                <TableRow key={a.id} className="border-[hsl(228,18%,12%)] hover:bg-[hsl(228,18%,12%)]">
+                  <TableCell className="font-medium text-white">{a.full_name || "—"}</TableCell>
+                  <TableCell className="text-[hsl(228,10%,50%)] text-xs capitalize">{a.profile_type || "—"}</TableCell>
+                  <TableCell className="text-[hsl(228,10%,50%)]">{a.country || "—"}</TableCell>
+                  <TableCell className="font-mono text-xs text-[hsl(var(--primary))]">{a.referral_code || "—"}</TableCell>
                   <TableCell>
-                    <Badge variant={sc.variant} className="gap-1 text-xs">
-                      <sc.icon className="w-3 h-3" />
+                    <Badge className={`gap-1 text-[10px] border-0 ${sc.color}`}>
+                      <sc.icon className="w-2.5 h-2.5" />
                       {sc.label}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Badge variant="secondary" className="bg-[hsl(var(--accent)/.1)] text-[hsl(var(--accent))]">{a.leadsCount}</Badge>
+                    <span className="text-sm font-mono text-white">{a.leadsCount}</span>
                   </TableCell>
-                  <TableCell className="text-right font-mono text-[hsl(var(--foreground))]">AED {fmt(a.commissionsTotal)}</TableCell>
-                  <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{new Date(a.created_at).toLocaleDateString("fr-FR")}</TableCell>
+                  <TableCell className="text-right font-mono text-white text-sm">AED {fmt(a.commissionsTotal)}</TableCell>
+                  <TableCell className="text-[hsl(228,10%,45%)] text-xs">{new Date(a.created_at).toLocaleDateString("fr-FR")}</TableCell>
                   <TableCell className="text-center">
                     <div className="flex items-center justify-center gap-1">
                       <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/.1)]" onClick={() => navigate(`/admin/ambassadors/${a.id}`)}>
@@ -175,16 +175,16 @@ const AdminAmbassadors = () => {
                       </Button>
                       {(a.status === "onboarding" || a.status === "pending") && (
                         <>
-                          <Button size="sm" variant="ghost" className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
+                          <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(160,70%,50%)] hover:bg-[hsl(160,70%,50%/.1)]" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
                             {actionLoading === a.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
                           </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2 text-destructive hover:text-destructive hover:bg-destructive/10" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "rejected")}>
+                          <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(var(--destructive))] hover:bg-[hsl(var(--destructive)/.1)]" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "rejected")}>
                             <XCircle className="w-3.5 h-3.5" />
                           </Button>
                         </>
                       )}
                       {a.status === "rejected" && (
-                        <Button size="sm" variant="ghost" className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
+                        <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(160,70%,50%)] hover:bg-[hsl(160,70%,50%/.1)]" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
                           <CheckCircle2 className="w-3.5 h-3.5" />
                         </Button>
                       )}
@@ -194,7 +194,7 @@ const AdminAmbassadors = () => {
               );
             })}
             {filtered.length === 0 && (
-              <TableRow><TableCell colSpan={8} className="text-center py-8 text-[hsl(var(--muted-foreground))]">Aucun ambassadeur trouvé</TableCell></TableRow>
+              <TableRow><TableCell colSpan={9} className="text-center py-8 text-[hsl(228,10%,40%)]">Aucun ambassadeur trouvé</TableCell></TableRow>
             )}
           </TableBody>
         </Table>
@@ -202,5 +202,17 @@ const AdminAmbassadors = () => {
     </div>
   );
 };
+
+const MiniCard = ({ icon: Icon, label, value, color }: { icon: any; label: string; value: number; color: string }) => (
+  <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl p-4 flex items-center gap-3">
+    <div className="p-2 rounded-lg" style={{ backgroundColor: color + "12" }}>
+      <Icon className="w-4 h-4" style={{ color }} />
+    </div>
+    <div>
+      <p className="text-xl font-bold font-mono text-white">{value}</p>
+      <p className="text-[10px] text-[hsl(228,10%,45%)] uppercase tracking-wider">{label}</p>
+    </div>
+  </div>
+);
 
 export default AdminAmbassadors;
