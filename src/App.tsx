@@ -25,6 +25,7 @@ const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
 const AdminPayments = lazy(() => import("./pages/admin/AdminPayments"));
 const AdminCourses = lazy(() => import("./pages/admin/AdminCourses"));
 const AdminLibrary = lazy(() => import("./pages/admin/AdminLibrary"));
+const AdminAmbassadorDetail = lazy(() => import("./pages/admin/AdminAmbassadorDetail"));
 const Pipeline = lazy(() => import("./pages/dashboard/Pipeline"));
 const ImportLeads = lazy(() => import("./pages/dashboard/ImportLeads"));
 const Commissions = lazy(() => import("./pages/dashboard/Commissions"));
@@ -96,6 +97,7 @@ const App = () => (
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
                   <Route path="ambassadors" element={<AdminAmbassadors />} />
+                  <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
                   <Route path="leads" element={<AdminLeads />} />
                   <Route path="payments" element={<AdminPayments />} />
                   <Route path="courses" element={<AdminCourses />} />

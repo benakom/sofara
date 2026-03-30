@@ -3,8 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, Search, CheckCircle2, XCircle, Clock } from "lucide-react";
+import { Loader2, Search, CheckCircle2, XCircle, Clock, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface Ambassador {
   id: string;
@@ -26,6 +27,7 @@ const statusConfig: Record<string, { label: string; variant: "default" | "second
 };
 
 const AdminAmbassadors = () => {
+  const navigate = useNavigate();
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -144,7 +146,7 @@ const AdminAmbassadors = () => {
               <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Leads</TableHead>
               <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Commissions</TableHead>
               <TableHead className="text-[hsl(var(--muted-foreground))]">Inscrit le</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Actions</TableHead>
+              <TableHead className="text-[hsl(var(--muted-foreground))] text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -166,40 +168,27 @@ const AdminAmbassadors = () => {
                   </TableCell>
                   <TableCell className="text-right font-mono text-[hsl(var(--foreground))]">AED {fmt(a.commissionsTotal)}</TableCell>
                   <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{new Date(a.created_at).toLocaleDateString("fr-FR")}</TableCell>
-                  <TableCell className="text-right">
-                    {(a.status === "onboarding" || a.status === "pending") && (
-                      <div className="flex items-center justify-end gap-1">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
-                          disabled={actionLoading === a.id}
-                          onClick={() => handleStatusChange(a.id, "approved")}
-                        >
-                          {actionLoading === a.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-7 px-2 text-destructive hover:text-destructive hover:bg-destructive/10"
-                          disabled={actionLoading === a.id}
-                          onClick={() => handleStatusChange(a.id, "rejected")}
-                        >
-                          <XCircle className="w-3.5 h-3.5" />
-                        </Button>
-                      </div>
-                    )}
-                    {a.status === "rejected" && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
-                        disabled={actionLoading === a.id}
-                        onClick={() => handleStatusChange(a.id, "approved")}
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5" />
+                  <TableCell className="text-center">
+                    <div className="flex items-center justify-center gap-1">
+                      <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/.1)]" onClick={() => navigate(`/admin/ambassadors/${a.id}`)}>
+                        <Eye className="w-3.5 h-3.5" />
                       </Button>
-                    )}
+                      {(a.status === "onboarding" || a.status === "pending") && (
+                        <>
+                          <Button size="sm" variant="ghost" className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
+                            {actionLoading === a.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />}
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2 text-destructive hover:text-destructive hover:bg-destructive/10" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "rejected")}>
+                            <XCircle className="w-3.5 h-3.5" />
+                          </Button>
+                        </>
+                      )}
+                      {a.status === "rejected" && (
+                        <Button size="sm" variant="ghost" className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50" disabled={actionLoading === a.id} onClick={() => handleStatusChange(a.id, "approved")}>
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                        </Button>
+                      )}
+                    </div>
                   </TableCell>
                 </TableRow>
               );
