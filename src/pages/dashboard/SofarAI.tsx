@@ -140,19 +140,19 @@ const SofarAI = () => {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Header */}
         <div className="flex items-center gap-3 mb-3 px-1">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center">
-            <Bot className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 rounded-full bg-[hsl(var(--dash-accent))] flex items-center justify-center">
+            <Bot className="w-5 h-5 text-[hsl(var(--dash-accent-fg))]" />
           </div>
           <div className="flex-1">
-            <h1 className="text-base font-display font-bold dash-text">SofarAI Qualifier</h1>
-            <p className="text-[11px] dash-muted-text">
+            <h1 className="text-base font-display font-bold text-[hsl(var(--dash-fg))]">SofarAI Qualifier</h1>
+            <p className="text-[11px] text-[hsl(var(--dash-muted-fg))]">
               {lang === "ar" ? "Agent de qualification de leads" : "Lead qualification agent"}
             </p>
           </div>
           {messages.length > 0 && (
             <button
               onClick={handleNewConversation}
-              className="text-[11px] px-3 py-1.5 rounded-lg border border-[hsl(var(--dash-border))] dash-muted-text hover:bg-[hsl(var(--dash-muted))] transition-colors"
+              className="text-[11px] px-3 py-1.5 rounded-lg border border-[hsl(var(--dash-border))] text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-muted))] transition-colors"
             >
               {lang === "ar" ? "Nouvelle conversation" : "New conversation"}
             </button>
@@ -176,7 +176,7 @@ const SofarAI = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={lang === "ar" ? "Posez une question sur ce lead…" : "Ask about this lead…"}
-            className="flex-1 min-w-0 h-10 px-4 rounded-full bg-white border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/.3)]"
+            className="flex-1 min-w-0 h-10 px-4 rounded-full bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)]"
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading || !input.trim()}

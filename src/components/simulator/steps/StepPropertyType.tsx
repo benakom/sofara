@@ -27,21 +27,21 @@ const StepPropertyType = ({ value, onChange, lang }: Props) => (
             onClick={() => onChange(pt.value as SimulationData["propertyType"])}
             className={`flex items-center gap-4 px-5 py-4 rounded-2xl border-2 text-left transition-all ${
               value === pt.value
-                ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.06)] shadow-md"
-                : "border-[hsl(var(--dash-border))] bg-white hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
+                ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.08)] shadow-md"
+                : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
             }`}
           >
             <span className="text-2xl">{pt.emoji}</span>
             <div className="flex-1">
               <span className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{pt.label}</span>
               {isVip && (
-                <span className="ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">VIP</span>
+                <span className="ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">VIP</span>
               )}
               <p className="text-xs text-[hsl(var(--dash-muted-fg))] mt-0.5">~{pt.sqft} sqft</p>
             </div>
             {value === pt.value && (
               <div className="w-6 h-6 rounded-full bg-[hsl(var(--dash-accent))] flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <svg className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-fg))]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
