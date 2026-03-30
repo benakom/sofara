@@ -25,17 +25,17 @@ const Commissions = () => {
   const paidPct = total > 0 ? Math.round((paidTotal / total) * 100) : 0;
 
   const stats = [
-    { labelAr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp, accent: "bg-violet-100 text-violet-600" },
-    { labelAr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle, accent: "bg-blue-100 text-blue-600" },
-    { labelAr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign, accent: "bg-emerald-100 text-emerald-600" },
-    { labelAr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock, accent: "bg-amber-100 text-amber-600" },
+    { labelAr: "Estimées", labelEn: "Estimated", value: sumOf(byStatus("estimated")), icon: TrendingUp },
+    { labelAr: "Validées", labelEn: "Validated", value: sumOf(byStatus("validated")), icon: CheckCircle },
+    { labelAr: "Payées", labelEn: "Paid", value: sumOf(byStatus("paid")), icon: DollarSign },
+    { labelAr: "En attente", labelEn: "Pending", value: sumOf(byStatus("pending")), icon: Clock },
   ];
 
   const statusConfig: Record<string, { badge: string; labelAr: string }> = {
-    estimated: { badge: "bg-violet-100 text-violet-700", labelAr: "Estimée" },
-    validated: { badge: "bg-blue-100 text-blue-700", labelAr: "Validée" },
-    paid: { badge: "bg-emerald-100 text-emerald-700", labelAr: "Payée" },
-    pending: { badge: "bg-amber-100 text-amber-700", labelAr: "En attente" },
+    estimated: { badge: "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]", labelAr: "Estimée" },
+    validated: { badge: "bg-[hsl(var(--dash-accent)/.25)] text-[hsl(var(--dash-accent))]", labelAr: "Validée" },
+    paid: { badge: "bg-[hsl(var(--dash-accent))] text-black", labelAr: "Payée" },
+    pending: { badge: "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]", labelAr: "En attente" },
   };
 
   return (
@@ -49,7 +49,7 @@ const Commissions = () => {
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">AED {s.value.toLocaleString()}</p>
@@ -70,7 +70,7 @@ const Commissions = () => {
                 </div>
                 <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
                   <div className={`h-full rounded-full transition-all ${
-                    i === 0 ? "bg-violet-500" : i === 1 ? "bg-blue-500" : i === 2 ? "bg-emerald-500" : "bg-amber-400"
+                    i === 2 ? "bg-[hsl(var(--dash-accent))]" : "bg-[hsl(var(--dash-accent)/.5)]"
                   }`} style={{ width: `${total > 0 ? (s.value / total) * 100 : 0}%` }} />
                 </div>
               </div>
@@ -85,10 +85,10 @@ const Commissions = () => {
           <div className="mt-3 pt-3 border-t dash-border-color">
             <div className="flex items-center justify-between text-sm sm:text-xs">
               <span className="dash-muted-text">{lang === "ar" ? "Taux encaissé" : "Collection rate"}</span>
-              <span className="font-bold text-emerald-600">{paidPct}%</span>
+              <span className="font-bold text-[hsl(var(--dash-accent))]">{paidPct}%</span>
             </div>
             <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mt-1.5">
-              <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${paidPct}%` }} />
+              <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${paidPct}%` }} />
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2">

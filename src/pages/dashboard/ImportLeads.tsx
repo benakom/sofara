@@ -22,21 +22,21 @@ const ImportLeads = () => {
       <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight mb-1">{lang === "ar" ? "استيراد العملاء" : "Import Leads"}</h1>
       <p className="dash-muted-text text-xs mt-0.5 mb-6">{lang === "ar" ? "قم بتحميل عملائك بطرق مختلفة" : "Upload your leads through different methods"}</p>
 
-      <div className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-5 mb-6">
+      <div className="bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.25)] rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 shrink-0" />
+          <AlertTriangle className="w-5 h-5 text-[hsl(var(--dash-accent))] mt-0.5 shrink-0" />
           <div>
-            <h3 className="font-semibold text-yellow-900 text-sm flex items-center gap-2">
+            <h3 className="font-semibold text-[hsl(var(--dash-accent))] text-sm flex items-center gap-2">
               ⚠️ {lang === "ar" ? "Déclaration obligatoire" : "Mandatory Declaration"}
             </h3>
-            <p className="text-sm text-yellow-800 mt-2">
+            <p className="text-sm text-[hsl(var(--dash-fg))] mt-2 leading-relaxed">
               {lang === "ar"
                 ? "En uploadant ces leads, j'atteste sur l'honneur qu'il s'agit de mes propres leads, obtenus de manière licite et conforme aux réglementations en vigueur (RGPD, PDPL). Je certifie disposer du consentement explicite de chaque contact pour le partage de leurs informations. Je reconnais également que Sofara se réserve le droit de contacter directement les leads afin de vérifier que le consentement a bien été donné pour l'ambassadeur."
                 : "By uploading these leads, I certify on my honor that these are my own leads, obtained lawfully and in compliance with current regulations (GDPR, PDPL). I certify that I have the explicit consent of each contact for sharing their information. I also acknowledge that Sofara reserves the right to directly contact the leads to verify that consent has been properly given for the ambassador."}
             </p>
             <div className="flex items-center gap-2 mt-4">
               <Checkbox id="accept" checked={accepted} onCheckedChange={(v) => setAccepted(!!v)} />
-              <label htmlFor="accept" className="text-sm text-yellow-900 font-medium cursor-pointer">
+              <label htmlFor="accept" className="text-sm text-[hsl(var(--dash-accent))] font-medium cursor-pointer">
                 {lang === "ar" ? "J'accepte les conditions ci-dessus" : "I accept the above conditions"}
               </label>
             </div>
@@ -53,15 +53,15 @@ const ImportLeads = () => {
             transition={{ delay: i * 0.05 }}
             onClick={() => accepted && m.path && navigate(m.path)}
             className={`dash-card rounded-2xl p-6 transition-all cursor-pointer group ${
-              accepted ? "hover:shadow-md hover:border-primary/30" : "opacity-50 pointer-events-none"
+              accepted ? "hover:shadow-md hover:border-[hsl(var(--dash-accent)/.3)]" : "opacity-50 pointer-events-none"
             }`}
           >
-            <div className="p-3 rounded-xl bg-[hsl(var(--dash-muted))] w-fit mb-4">
-              <m.icon className="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" />
+            <div className="p-3 rounded-xl bg-[hsl(var(--dash-accent)/.12)] w-fit mb-4">
+              <m.icon className="w-6 h-6 text-[hsl(var(--dash-accent))] group-hover:text-[hsl(var(--dash-accent))] transition-colors" />
             </div>
             <h3 className="font-display font-semibold dash-text">{lang === "ar" ? m.titleFr : m.titleEn}</h3>
             <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "ar" ? m.descFr : m.descEn}</p>
-            <p className="text-base sm:text-sm dash-muted-text mt-3 group-hover:text-primary transition-colors">
+            <p className="text-base sm:text-sm text-[hsl(var(--dash-accent))] mt-3 group-hover:text-[hsl(var(--dash-accent))] transition-colors font-medium">
               {lang === "ar" ? "Commencer →" : "Start →"}
             </p>
           </motion.div>
