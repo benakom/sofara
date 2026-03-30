@@ -41,36 +41,39 @@ const StepArea = ({ value, onChange, lang }: Props) => {
         />
       </div>
 
-      {/* Area list */}
-      <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1">
+      {/* Area grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[400px] overflow-y-auto pr-1">
         {filtered.map((area) => (
           <button
             key={area.value}
             onClick={() => onChange(area.value, area.label, area.avgPriceSqft, area.avgRoi)}
-            className={`w-full flex items-center justify-between px-5 py-4 rounded-2xl border-2 text-left transition-all ${
+            className={`relative flex flex-col items-center gap-1.5 px-3 py-4 rounded-2xl border-2 text-center transition-all ${
               value === area.value
                 ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.08)] shadow-md"
                 : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
             }`}
           >
-            <div>
-              <span className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{area.label}</span>
-              {area.popular && (
-                <span className="ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">
-                  {lang === "ar" ? "Populaire" : "Popular"}
-                </span>
-              )}
-            </div>
-            <div className="text-right">
-              <p className="text-xs font-medium text-[hsl(var(--dash-fg))]">
-                {area.avgPriceSqft.toLocaleString()} AED/sqft
-              </p>
-              <p className="text-[11px] text-[hsl(var(--dash-accent))] font-semibold">{area.avgRoi}% ROI</p>
-            </div>
+            <span className="text-sm font-semibold text-[hsl(var(--dash-fg))]">{area.label}</span>
+            <p className="text-xs font-medium text-[hsl(var(--dash-muted-fg))]">
+              {area.avgPriceSqft.toLocaleString()} AED/sqft
+            </p>
+            <p className="text-[11px] text-[hsl(var(--dash-accent))] font-semibold">{area.avgRoi}% ROI</p>
+            {area.popular && (
+              <span className="absolute top-1.5 right-1.5 text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">
+                ★
+              </span>
+            )}
+            {value === area.value && (
+              <div className="absolute top-1.5 left-1.5 w-4 h-4 rounded-full bg-[hsl(var(--dash-accent))] flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-[hsl(var(--dash-accent-fg))]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            )}
           </button>
         ))}
         {filtered.length === 0 && (
-          <p className="text-center text-sm text-[hsl(var(--dash-muted-fg))] py-8">
+          <p className="col-span-full text-center text-sm text-[hsl(var(--dash-muted-fg))] py-8">
             {lang === "ar" ? "Aucune zone trouvée" : "No areas found"}
           </p>
         )}
