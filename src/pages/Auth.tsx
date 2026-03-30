@@ -102,7 +102,14 @@ const Auth = () => {
   };
 
   useEffect(() => {
-    if (!authLoading && user) navigate("/dashboard");
+    if (!authLoading && user) {
+      // Check if superadmin → redirect to admin panel
+      const checkAdmin = async () => {
+        const { data } = await supabase.rpc("is_superadmin");
+        navigate(data ? "/admin" : "/dashboard");
+      };
+      checkAdmin();
+    }
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
