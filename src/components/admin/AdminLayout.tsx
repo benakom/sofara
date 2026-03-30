@@ -40,7 +40,7 @@ const AdminLayout = () => {
   if (authLoading || adminLoading) {
     return (
       <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-[#1A1A1E]" />
+        <Loader2 className="w-6 h-6 animate-spin text-[#154B3B]" />
       </div>
     );
   }
@@ -60,14 +60,14 @@ const AdminLayout = () => {
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[#1A1A1E]">
+    <div className="flex flex-col h-full bg-[#154B3B]">
       {/* Logo */}
       <div className="px-5 pt-6 pb-6 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-[#D2F34C] flex items-center justify-center font-bold text-[#1A1A1E] text-sm">
+        <div className="w-9 h-9 rounded-xl bg-[#D2F34C] flex items-center justify-center font-bold text-[#154B3B] text-sm">
           S
         </div>
         <div>
-          <span className="text-base font-bold text-white tracking-tight block leading-tight font-['Inter']">
+          <span className="text-base font-bold text-white tracking-tight block leading-tight font-['Poppins']">
             Sofara
           </span>
           <span className="text-[10px] font-bold text-[#D2F34C] uppercase tracking-[0.2em]">
@@ -86,8 +86,8 @@ const AdminLayout = () => {
               onClick={() => { navigate(item.path); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all relative ${
                 active
-                  ? "bg-[#2C2C2E] text-[#D2F34C]"
-                  : "text-[#9CA3AF] hover:bg-[#2C2C2E] hover:text-white"
+                  ? "bg-[#1B5E4A] text-[#D2F34C]"
+                  : "text-[#9CC5B5] hover:bg-[#1B5E4A] hover:text-white"
               }`}
             >
               {active && (
@@ -101,9 +101,9 @@ const AdminLayout = () => {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-[#2C2C2E] mt-auto">
+      <div className="p-4 border-t border-[#1B5E4A] mt-auto">
         <div className="flex items-center gap-3 px-2 py-2 mb-2">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D2F34C] to-[#BDE040] flex items-center justify-center text-xs font-bold text-[#1A1A1E]">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D2F34C] to-[#BDE040] flex items-center justify-center text-xs font-bold text-[#154B3B]">
             AB
           </div>
           <div className="flex-1 min-w-0">
@@ -113,7 +113,7 @@ const AdminLayout = () => {
         </div>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-xs text-[#9CA3AF] hover:text-white transition-colors w-full px-2 py-2 rounded-lg hover:bg-[#2C2C2E]"
+          className="flex items-center gap-2 text-xs text-[#9CC5B5] hover:text-white transition-colors w-full px-2 py-2 rounded-lg hover:bg-[#1B5E4A]"
         >
           <LogOut className="w-4 h-4" />
           Logout
@@ -146,7 +146,7 @@ const AdminLayout = () => {
               <SidebarContent />
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="absolute top-5 right-4 text-[#9CA3AF] hover:text-white"
+                className="absolute top-5 right-4 text-[#9CC5B5] hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -163,7 +163,7 @@ const AdminLayout = () => {
             <Menu className="w-5 h-5" />
           </button>
 
-          <h1 className="text-lg font-bold text-[#1A1A1E] font-['Inter'] hidden sm:block">{pageTitle}</h1>
+          <h1 className="text-lg font-bold text-[#154B3B] font-['Poppins'] hidden sm:block">{pageTitle}</h1>
 
           <div className="flex-1" />
 
@@ -175,7 +175,7 @@ const AdminLayout = () => {
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-60 h-9 pl-9 pr-3 rounded-lg bg-[#F5F5F7] border-none text-sm text-[#1A1A1E] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50 font-['Inter']"
+              className="w-60 h-9 pl-9 pr-3 rounded-lg bg-[#F5F5F7] border-none text-sm text-[#154B3B] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50 font-['Poppins']"
             />
           </div>
 
@@ -186,7 +186,7 @@ const AdminLayout = () => {
           </button>
 
           {/* Admin avatar */}
-          <div className="w-8 h-8 rounded-full bg-[#1A1A1E] flex items-center justify-center text-[10px] font-bold text-[#D2F34C]">
+          <div className="w-8 h-8 rounded-full bg-[#154B3B] flex items-center justify-center text-[10px] font-bold text-[#D2F34C]">
             AB
           </div>
         </header>

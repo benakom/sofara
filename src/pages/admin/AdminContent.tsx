@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { GraduationCap, Plus, Edit, Trash2, Eye, EyeOff, FileText } from "lucide-react";
+import { GraduationCap, Plus, Edit, Trash2, FileText } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 
@@ -29,22 +29,21 @@ const AdminContent = () => {
     toast({ title: !current ? "Course published" : "Course unpublished" });
   };
 
-  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" /></div>;
 
   return (
-    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+    <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-[#1A1A1E]">Content & Academy</h1>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-[#1A1A1E] rounded-lg text-xs font-bold hover:bg-[#BDE040]">
+        <h1 className="text-xl font-bold text-[#154B3B]">Content & Academy</h1>
+        <button className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">
           <Plus className="w-3.5 h-3.5" /> {tab === "courses" ? "Add Course" : "Upload Content"}
         </button>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-1 bg-[#F5F5F7] p-1 rounded-lg w-fit">
         {(["courses", "library"] as const).map(t => (
           <button key={t} onClick={() => setTab(t)}
-            className={`px-4 py-2 rounded-md text-xs font-medium ${tab === t ? "bg-white text-[#1A1A1E] shadow-sm" : "text-[#6B7280]"}`}>
+            className={`px-4 py-2 rounded-md text-xs font-medium ${tab === t ? "bg-white text-[#154B3B] shadow-sm" : "text-[#6B7280]"}`}>
             {t === "courses" ? "Academy Courses" : "Content Library"}
           </button>
         ))}
@@ -69,7 +68,7 @@ const AdminContent = () => {
                 {courses.map(c => (
                   <tr key={c.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
                     <td className="px-4 py-3">
-                      <p className="text-sm font-medium text-[#1A1A1E]">{c.title_en}</p>
+                      <p className="text-sm font-medium text-[#154B3B]">{c.title_en}</p>
                       <p className="text-[10px] text-[#9CA3AF]">{c.title_fr}</p>
                     </td>
                     <td className="px-4 py-3 text-xs text-[#6B7280]">{c.category}</td>
@@ -95,7 +94,7 @@ const AdminContent = () => {
           {courses.length === 0 && (
             <div className="text-center py-16">
               <GraduationCap className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" />
-              <h3 className="text-sm font-semibold text-[#1A1A1E]">No courses yet</h3>
+              <h3 className="text-sm font-semibold text-[#154B3B]">No courses yet</h3>
               <p className="text-xs text-[#9CA3AF]">Create your first academy course.</p>
             </div>
           )}
@@ -117,7 +116,7 @@ const AdminContent = () => {
               <tbody>
                 {assets.map(a => (
                   <tr key={a.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
-                    <td className="px-4 py-3 text-sm font-medium text-[#1A1A1E]">{a.title}</td>
+                    <td className="px-4 py-3 text-sm font-medium text-[#154B3B]">{a.title}</td>
                     <td className="px-4 py-3 text-xs text-[#6B7280]">{a.asset_type}</td>
                     <td className="px-4 py-3 text-xs text-[#9CA3AF]">{a.file_format || "—"}</td>
                     <td className="px-4 py-3">
@@ -135,7 +134,7 @@ const AdminContent = () => {
           {assets.length === 0 && (
             <div className="text-center py-16">
               <FileText className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" />
-              <h3 className="text-sm font-semibold text-[#1A1A1E]">No content yet</h3>
+              <h3 className="text-sm font-semibold text-[#154B3B]">No content yet</h3>
             </div>
           )}
         </div>

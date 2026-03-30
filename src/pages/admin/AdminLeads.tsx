@@ -38,12 +38,12 @@ const AdminLeads = () => {
   const scoreBadge = (s: string|null) => { const c: Record<string,string> = {A:"#22C55E",B:"#D2F34C",C:"#F59E0B",D:"#EF4444"}; const color = c[s||"C"]||"#9CA3AF"; return <div className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold" style={{borderColor:color,color}}>{s||"C"}</div>; };
   const uniqueAmbs = Array.from(new Set(leads.map(l => l.user_id))).map(uid => ({ id: uid, name: getAmbName(uid) }));
 
-  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" /></div>;
 
   return (
-    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+    <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-3"><h1 className="text-xl font-bold text-[#1A1A1E]">All Leads</h1><span className="bg-[#D2F34C] text-[#1A1A1E] text-xs font-bold px-2.5 py-0.5 rounded-full">{filtered.length}</span></div>
+        <div className="flex items-center gap-3"><h1 className="text-xl font-bold text-[#154B3B]">All Leads</h1><span className="bg-[#D2F34C] text-black text-xs font-bold px-2.5 py-0.5 rounded-full">{filtered.length}</span></div>
         <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export CSV</button>
       </div>
       <div className="flex flex-wrap items-center gap-3">
@@ -66,7 +66,7 @@ const AdminLeads = () => {
             </tr></thead>
             <tbody>{paginated.map(l=>(
               <tr key={l.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
-                <td className="px-4 py-3 text-sm font-medium text-[#1A1A1E]">{l.first_name} {l.last_name}</td>
+                <td className="px-4 py-3 text-sm font-medium text-[#154B3B]">{l.first_name} {l.last_name}</td>
                 <td className="px-4 py-3"><button onClick={()=>navigate(`/admin/ambassadors/${l.user_id}`)} className="text-xs text-[#6B7280] hover:text-[#D2F34C] hover:underline">{getAmbName(l.user_id)}</button></td>
                 <td className="px-4 py-3"><select value={l.stage||"nouveau"} onChange={e=>handleStageChange(l.id,e.target.value)} className="text-[10px] font-semibold border-none bg-transparent cursor-pointer">{stages.map(s=><option key={s} value={s}>{s}</option>)}</select></td>
                 <td className="px-4 py-3">{scoreBadge(l.score)}</td>
@@ -78,7 +78,7 @@ const AdminLeads = () => {
             ))}</tbody>
           </table>
         </div>
-        {paginated.length===0&&<div className="text-center py-16"><Target className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" /><h3 className="text-sm font-semibold text-[#1A1A1E] mb-1">No leads found</h3></div>}
+        {paginated.length===0&&<div className="text-center py-16"><Target className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" /><h3 className="text-sm font-semibold text-[#154B3B] mb-1">No leads found</h3></div>}
         {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[#E5E7EB]"><p className="text-xs text-[#9CA3AF]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronLeft className="w-4 h-4" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronRight className="w-4 h-4" /></button></div></div>}
       </div>
     </div>

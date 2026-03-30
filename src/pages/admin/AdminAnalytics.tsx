@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Funnel, FunnelChart } from "recharts";
 import { Download } from "lucide-react";
 
-const COLORS = ["#D2F34C", "#1A1A1E", "#22C55E", "#F59E0B", "#3B82F6", "#8B5CF6", "#EF4444"];
+const COLORS = ["#D2F34C", "#154B3B", "#22C55E", "#F59E0B", "#3B82F6", "#8B5CF6", "#EF4444"];
 
 const AdminAnalytics = () => {
   const [stats, setStats] = useState({ ambassadors: 0, leads: 0, deals: 0, gmv: 0, activeRate: 0, qualifiedRate: 0, conversionRate: 0 });
@@ -35,7 +34,6 @@ const AdminAnalytics = () => {
         conversionRate: leads.length > 0 ? Math.round(closed / leads.length * 100) : 0,
       });
 
-      // Top performers
       const leadsPerUser: Record<string, number> = {};
       leads.forEach(l => { leadsPerUser[l.user_id] = (leadsPerUser[l.user_id] || 0) + 1; });
       const commPerUser: Record<string, number> = {};
@@ -47,7 +45,6 @@ const AdminAnalytics = () => {
       }));
       setTopPerformers(top);
 
-      // Leads by country (via ambassador country)
       const countryMap: Record<string, number> = {};
       leads.forEach(l => {
         const country = profiles.find(p => p.id === l.user_id)?.country || "Unknown";
@@ -62,31 +59,29 @@ const AdminAnalytics = () => {
 
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
 
-  // Funnel data
   const funnelData = [
-    { name: "New", value: stats.leads, fill: "#1A1A1E" },
+    { name: "New", value: stats.leads, fill: "#154B3B" },
     { name: "Qualified", value: Math.round(stats.leads * stats.qualifiedRate / 100), fill: "#D2F34C" },
     { name: "Negotiation", value: Math.round(stats.leads * 0.15), fill: "#F59E0B" },
     { name: "Closed", value: stats.deals, fill: "#22C55E" },
   ];
 
-  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" /></div>;
 
   return (
-    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+    <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-[#1A1A1E]">Analytics</h1>
+        <h1 className="text-xl font-bold text-[#154B3B]">Analytics</h1>
         <div className="flex items-center gap-2">
           {["7", "30", "90", "365"].map(d => (
             <button key={d} onClick={() => setDateRange(d)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium ${dateRange === d ? "bg-[#1A1A1E] text-white" : "bg-white border border-[#E5E7EB] text-[#6B7280]"}`}>
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium ${dateRange === d ? "bg-[#154B3B] text-white" : "bg-white border border-[#E5E7EB] text-[#6B7280]"}`}>
               {d === "7" ? "7d" : d === "30" ? "30d" : d === "90" ? "90d" : "1y"}
             </button>
           ))}
         </div>
       </div>
 
-      {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
         {[
           { label: "Ambassadors", value: stats.ambassadors, sub: `${stats.activeRate}% active` },
@@ -97,18 +92,16 @@ const AdminAnalytics = () => {
           { label: "NPS", value: "72", sub: "ambassador sat." },
         ].map(k => (
           <div key={k.label} className="bg-white rounded-xl border border-[#E5E7EB] p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <p className="text-lg font-bold text-[#1A1A1E]">{k.value}</p>
+            <p className="text-lg font-bold text-[#154B3B]">{k.value}</p>
             <p className="text-[10px] text-[#6B7280] mt-0.5">{k.label}</p>
             <p className="text-[9px] text-[#9CA3AF]">{k.sub}</p>
           </div>
         ))}
       </div>
 
-      {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Lead Funnel */}
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Lead Funnel</h2>
+          <h2 className="text-sm font-bold text-[#154B3B] mb-4">Lead Funnel</h2>
           <div className="space-y-3">
             {funnelData.map((d, i) => {
               const maxVal = funnelData[0].value || 1;
@@ -131,9 +124,8 @@ const AdminAnalytics = () => {
           </div>
         </div>
 
-        {/* Leads by Country */}
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Leads by Country</h2>
+          <h2 className="text-sm font-bold text-[#154B3B] mb-4">Leads by Country</h2>
           <div className="space-y-2">
             {leadsByCountry.map((c, i) => {
               const maxVal = leadsByCountry[0]?.value || 1;
@@ -143,7 +135,7 @@ const AdminAnalytics = () => {
                   <div className="flex-1 h-6 bg-[#F5F5F7] rounded overflow-hidden">
                     <div className="h-full rounded transition-all" style={{ width: `${(c.value / maxVal) * 100}%`, backgroundColor: COLORS[i % COLORS.length] }} />
                   </div>
-                  <span className="text-xs font-bold text-[#1A1A1E] w-8 text-right">{c.value}</span>
+                  <span className="text-xs font-bold text-[#154B3B] w-8 text-right">{c.value}</span>
                 </div>
               );
             })}
@@ -152,11 +144,10 @@ const AdminAnalytics = () => {
         </div>
       </div>
 
-      {/* Top Performers */}
       <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-sm font-bold text-[#1A1A1E]">Top 10 Ambassadors</h2>
-          <button className="flex items-center gap-2 text-xs text-[#6B7280] hover:text-[#1A1A1E]"><Download className="w-3.5 h-3.5" /> Export</button>
+          <h2 className="text-sm font-bold text-[#154B3B]">Top 10 Ambassadors</h2>
+          <button className="flex items-center gap-2 text-xs text-[#6B7280] hover:text-[#154B3B]"><Download className="w-3.5 h-3.5" /> Export</button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -173,12 +164,12 @@ const AdminAnalytics = () => {
               {topPerformers.map(p => (
                 <tr key={p.rank} className="border-b border-[#F5F5F7]">
                   <td className="py-2">
-                    <span className={`w-6 h-6 rounded-full inline-flex items-center justify-center text-[10px] font-bold ${p.rank <= 3 ? "bg-[#D2F34C] text-[#1A1A1E]" : "bg-[#F5F5F7] text-[#6B7280]"}`}>{p.rank}</span>
+                    <span className={`w-6 h-6 rounded-full inline-flex items-center justify-center text-[10px] font-bold ${p.rank <= 3 ? "bg-[#D2F34C] text-black" : "bg-[#F5F5F7] text-[#6B7280]"}`}>{p.rank}</span>
                   </td>
-                  <td className="py-2 text-sm font-medium text-[#1A1A1E]">{p.name}</td>
+                  <td className="py-2 text-sm font-medium text-[#154B3B]">{p.name}</td>
                   <td className="py-2 text-xs text-[#6B7280]">{p.leads}</td>
                   <td className="py-2 text-xs text-[#6B7280]">{p.deals}</td>
-                  <td className="py-2 text-xs font-bold text-[#1A1A1E]">AED {fmt(p.commission)}</td>
+                  <td className="py-2 text-xs font-bold text-[#154B3B]">AED {fmt(p.commission)}</td>
                 </tr>
               ))}
             </tbody>

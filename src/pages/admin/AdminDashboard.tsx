@@ -59,14 +59,12 @@ const AdminDashboard = () => {
 
       setRecentSignups(profiles.slice(0, 8));
 
-      // Pending commission approvals
       const pendingComm = estimated.slice(0, 5).map(c => ({
         ...c,
         ambassadorName: profiles.find(p => p.id === c.user_id)?.full_name || "—",
       }));
       setPendingApprovals(pendingComm);
 
-      // Leads needing action (stuck > 7 days)
       const now = Date.now();
       const stuckLeads = leads
         .filter(l => l.stage !== "closing" && l.stage !== "perdu")
@@ -86,7 +84,6 @@ const AdminDashboard = () => {
 
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
 
-  // Mock monthly data for charts
   const monthlyData = [
     { month: "Jul", gmv: 2400000, revenue: 72000 },
     { month: "Aug", gmv: 3100000, revenue: 93000 },
@@ -118,7 +115,7 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" />
+        <div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -150,7 +147,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+    <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         {kpis.map((kpi, i) => (
@@ -159,8 +156,8 @@ const AdminDashboard = () => {
             className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] relative overflow-hidden"
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-lg bg-[#F5F5F7]">
-                <kpi.icon className="w-4 h-4 text-[#6B7280]" />
+              <div className="p-2 rounded-lg bg-[#154B3B]/5">
+                <kpi.icon className="w-4 h-4 text-[#154B3B]" />
               </div>
               {kpi.warn && (
                 <span className="text-[9px] font-bold bg-[#F59E0B]/10 text-[#F59E0B] px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -168,7 +165,7 @@ const AdminDashboard = () => {
                 </span>
               )}
             </div>
-            <p className="text-2xl font-bold text-[#1A1A1E] font-['Inter']">{kpi.value}</p>
+            <p className="text-2xl font-bold text-[#154B3B]">{kpi.value}</p>
             <div className="flex items-center justify-between mt-1">
               <p className="text-[11px] text-[#6B7280] font-medium">{kpi.label}</p>
               {kpi.change !== 0 && (
@@ -185,33 +182,31 @@ const AdminDashboard = () => {
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-        {/* Revenue & GMV */}
         <div className="lg:col-span-3 bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Revenue & GMV Trend</h2>
+          <h2 className="text-sm font-bold text-[#154B3B] mb-4">Revenue & GMV Trend</h2>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={monthlyData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
               <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#9CA3AF" }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: "#9CA3AF" }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v / 1000000).toFixed(1)}M`} />
               <Tooltip
-                contentStyle={{ background: "#1A1A1E", border: "none", borderRadius: 8, fontSize: 12, color: "#fff" }}
+                contentStyle={{ background: "#154B3B", border: "none", borderRadius: 8, fontSize: 12, color: "#fff" }}
                 formatter={(value: number) => [`AED ${fmt(value)}`, ""]}
               />
-              <Bar dataKey="gmv" fill="#1A1A1E" radius={[4, 4, 0, 0]} name="GMV" />
+              <Bar dataKey="gmv" fill="#154B3B" radius={[4, 4, 0, 0]} name="GMV" />
               <Bar dataKey="revenue" fill="#D2F34C" radius={[4, 4, 0, 0]} name="Revenue" />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Ambassador Growth */}
         <div className="lg:col-span-2 bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Ambassador Growth</h2>
+          <h2 className="text-sm font-bold text-[#154B3B] mb-4">Ambassador Growth</h2>
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={ambassadorGrowth}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
               <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#9CA3AF" }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: "#9CA3AF" }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: "#1A1A1E", border: "none", borderRadius: 8, fontSize: 12, color: "#fff" }} />
+              <Tooltip contentStyle={{ background: "#154B3B", border: "none", borderRadius: 8, fontSize: 12, color: "#fff" }} />
               <Line type="monotone" dataKey="count" stroke="#D2F34C" strokeWidth={2.5} dot={{ fill: "#D2F34C", r: 3 }} name="Ambassadors" />
             </LineChart>
           </ResponsiveContainer>
@@ -220,10 +215,9 @@ const AdminDashboard = () => {
 
       {/* Bottom Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* Recent Signups */}
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-[#1A1A1E]">Recent Signups</h2>
+            <h2 className="text-sm font-bold text-[#154B3B]">Recent Signups</h2>
             <button onClick={() => navigate("/admin/ambassadors")} className="text-[11px] font-semibold text-[#D2F34C] hover:underline flex items-center gap-1">
               View all <ChevronRight className="w-3 h-3" />
             </button>
@@ -235,11 +229,11 @@ const AdminDashboard = () => {
                 onClick={() => navigate(`/admin/ambassadors/${p.id}`)}
                 className={`flex items-center gap-3 py-2.5 cursor-pointer hover:bg-[#F9FAFB] -mx-2 px-2 rounded-lg ${i < 5 ? "border-b border-[#F5F5F7]" : ""}`}
               >
-                <div className="w-8 h-8 rounded-full bg-[#F5F5F7] flex items-center justify-center text-[10px] font-bold text-[#6B7280]">
+                <div className="w-8 h-8 rounded-full bg-[#154B3B]/10 flex items-center justify-center text-[10px] font-bold text-[#154B3B]">
                   {(p.full_name || "?")[0]}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-[#1A1A1E] truncate">{p.full_name || "—"}</p>
+                  <p className="text-xs font-medium text-[#154B3B] truncate">{p.full_name || "—"}</p>
                   <p className="text-[10px] text-[#9CA3AF]">{p.country || "—"} · {new Date(p.created_at).toLocaleDateString("en-GB", { day: "2-digit", month: "short" })}</p>
                 </div>
                 {statusPill(p.status)}
@@ -254,10 +248,9 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Leads Requiring Action */}
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-[#1A1A1E]">Leads Requiring Action</h2>
+            <h2 className="text-sm font-bold text-[#154B3B]">Leads Requiring Action</h2>
             <button onClick={() => navigate("/admin/leads")} className="text-[11px] font-semibold text-[#D2F34C] hover:underline flex items-center gap-1">
               View all <ChevronRight className="w-3 h-3" />
             </button>
@@ -269,7 +262,7 @@ const AdminDashboard = () => {
                   <Clock className="w-3.5 h-3.5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-[#1A1A1E] truncate">{l.first_name} {l.last_name}</p>
+                  <p className="text-xs font-medium text-[#154B3B] truncate">{l.first_name} {l.last_name}</p>
                   <p className="text-[10px] text-[#9CA3AF]">by {l.ambassadorName} · {l.daysStuck}d stuck</p>
                 </div>
                 <span className={`text-[10px] font-semibold ${l.daysStuck > 14 ? "text-[#EF4444]" : "text-[#F59E0B]"}`}>
@@ -286,10 +279,9 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Pending Commission Approvals */}
         <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-[#1A1A1E]">Pending Approvals</h2>
+            <h2 className="text-sm font-bold text-[#154B3B]">Pending Approvals</h2>
             <button onClick={() => navigate("/admin/commissions")} className="text-[11px] font-semibold text-[#D2F34C] hover:underline flex items-center gap-1">
               View all <ChevronRight className="w-3 h-3" />
             </button>
@@ -298,15 +290,15 @@ const AdminDashboard = () => {
             {pendingApprovals.map((c, i) => (
               <div key={c.id} className={`flex items-center gap-3 py-2.5 ${i < pendingApprovals.length - 1 ? "border-b border-[#F5F5F7]" : ""}`}>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-[#1A1A1E] truncate">{c.ambassadorName}</p>
+                  <p className="text-xs font-medium text-[#154B3B] truncate">{c.ambassadorName}</p>
                   <p className="text-[10px] text-[#9CA3AF] truncate">{c.deal_name}</p>
                 </div>
-                <span className="text-xs font-bold text-[#1A1A1E] mr-2">AED {fmt(c.amount)}</span>
+                <span className="text-xs font-bold text-[#154B3B] mr-2">AED {fmt(c.amount)}</span>
                 <button
                   onClick={() => handleApproveCommission(c.id)}
                   className="w-7 h-7 rounded-lg bg-[#D2F34C] flex items-center justify-center hover:bg-[#BDE040] transition-colors"
                 >
-                  <Check className="w-3.5 h-3.5 text-[#1A1A1E]" />
+                  <Check className="w-3.5 h-3.5 text-black" />
                 </button>
                 <button
                   onClick={() => handleRejectCommission(c.id)}
