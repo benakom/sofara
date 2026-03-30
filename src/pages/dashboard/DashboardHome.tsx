@@ -50,25 +50,25 @@ const DashboardHome = () => {
       labelAr: "إجمالي العملاء", labelEn: "Total Leads",
       subAr: `+0 ${lang === "ar" ? "اليوم" : "today"}`, subEn: `+0 today · ${totalLeads} this week`,
       value: totalLeads, icon: Users, path: "/dashboard/pipeline",
-      gradient: "from-[#D2F34C] to-[#b8d940]", textColor: "text-black",
+      variant: "lime" as const,
     },
     {
       labelAr: "عملاء مؤهلون", labelEn: "Hot Leads",
       subAr: `${qualified} في خط الأنابيب`, subEn: `${qualified} warm leads in pipeline`,
       value: qualified, icon: Zap, path: "/dashboard/pipeline",
-      gradient: "from-[#1a1a1a] to-[#2a2a2a]", textColor: "text-white",
+      variant: "dark" as const,
     },
     {
       labelAr: "قيمة خط الأنابيب", labelEn: "Pipeline Value",
       subAr: `${accepted} صفقات مغلقة`, subEn: `${accepted} won deals closed`,
       value: `AED ${totalComm > 0 ? (totalComm / 1000).toFixed(0) + "K" : "0"}`, icon: DollarSign, path: "/dashboard/commissions",
-      gradient: "from-[#D2F34C] to-[#a8c438]", textColor: "text-black",
+      variant: "lime" as const,
     },
     {
       labelAr: "نقاط العميل", labelEn: "Lead Score",
       subAr: `${convRate}% معدل التحويل`, subEn: `${convRate}% conversion rate`,
       value: `${convRate}/100`, icon: Target, path: "/dashboard/pipeline",
-      gradient: "from-[#111111] to-[#1f1f1f]", textColor: "text-white",
+      variant: "dark" as const,
     },
   ];
 
@@ -92,8 +92,8 @@ const DashboardHome = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-[#D2F34C] shadow-lg">
-            <Send className="w-5 h-5 text-black" />
+          <div className="p-2.5 rounded-2xl bg-[hsl(0,0%,7%)] shadow-lg">
+            <Send className="w-5 h-5 text-[#D2F34C]" />
           </div>
           <div>
             <h1 className="text-2xl font-display font-extrabold text-[hsl(var(--dash-fg))] tracking-tight">
@@ -107,7 +107,7 @@ const DashboardHome = () => {
 
         <button
           onClick={() => navigate("/dashboard/pipeline")}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D2F34C] text-black text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[hsl(0,0%,7%)] text-white text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           {lang === "ar" ? "عرض كل العملاء" : "View All Leads"} <ArrowUpRight className="w-4 h-4" />
         </button>
@@ -115,32 +115,37 @@ const DashboardHome = () => {
 
       {/* Main KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
-        {kpis.map((kpi, i) => (
-          <motion.button
-            key={i}
-            onClick={() => navigate(kpi.path)}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.06, duration: 0.35 }}
-            className={`relative overflow-hidden rounded-3xl p-6 text-left cursor-pointer border-0 shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 bg-gradient-to-br ${kpi.gradient}`}
-          >
-            {/* Glass overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/5 pointer-events-none rounded-3xl" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-5">
-                <div className={`p-2.5 rounded-2xl backdrop-blur-sm shadow-sm ${kpi.textColor === "text-black" ? "bg-black/10" : "bg-white/10"}`}>
-                  <kpi.icon className={`w-5 h-5 ${kpi.textColor}`} />
+        {kpis.map((kpi, i) => {
+          const isLime = kpi.variant === "lime";
+          return (
+            <motion.button
+              key={i}
+              onClick={() => navigate(kpi.path)}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.06, duration: 0.35 }}
+              className={`relative overflow-hidden rounded-3xl p-6 text-left cursor-pointer border-0 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 ${
+                isLime
+                  ? "bg-[#D2F34C]"
+                  : "bg-[hsl(0,0%,7%)]"
+              }`}
+            >
+              <div className="relative">
+                <div className="flex items-center justify-between mb-5">
+                  <div className={`p-2.5 rounded-2xl ${isLime ? "bg-black/10" : "bg-white/10"}`}>
+                    <kpi.icon className={`w-5 h-5 ${isLime ? "text-black" : "text-white"}`} />
+                  </div>
+                  <TrendingUp className={`w-4 h-4 ${isLime ? "text-black/30" : "text-white/30"}`} />
                 </div>
-                <TrendingUp className={`w-4 h-4 ${kpi.textColor} opacity-40`} />
+                <p className={`text-4xl font-display font-black tracking-tight leading-none mb-1 ${isLime ? "text-black" : "text-white"}`}>
+                  {kpi.value}
+                </p>
+                <p className={`text-sm font-semibold mt-1 ${isLime ? "text-black/80" : "text-white/80"}`}>{lang === "ar" ? kpi.labelAr : kpi.labelEn}</p>
+                <p className={`text-xs mt-0.5 ${isLime ? "text-black/50" : "text-white/50"}`}>{lang === "ar" ? kpi.subAr : kpi.subEn}</p>
               </div>
-              <p className={`text-4xl font-display font-black ${kpi.textColor} tracking-tight drop-shadow-sm leading-none mb-1`}>
-                {kpi.value}
-              </p>
-              <p className={`text-sm font-semibold ${kpi.textColor} opacity-90 mt-1`}>{lang === "ar" ? kpi.labelAr : kpi.labelEn}</p>
-              <p className={`text-xs ${kpi.textColor} opacity-55 mt-0.5`}>{lang === "ar" ? kpi.subAr : kpi.subEn}</p>
-            </div>
-          </motion.button>
-        ))}
+            </motion.button>
+          );
+        })}
       </div>
 
       {/* Secondary KPI Cards */}
@@ -152,7 +157,7 @@ const DashboardHome = () => {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 + i * 0.06 }}
-            className="dash-card rounded-2xl p-5 flex items-center gap-4 text-left hover:shadow-lg hover:border-[hsl(var(--dash-accent)/.2)] transition-all group cursor-pointer"
+            className="dash-card rounded-3xl p-5 flex items-center gap-4 text-left hover:shadow-lg transition-all group cursor-pointer"
           >
             <div className="p-2.5 rounded-xl dash-icon-b shadow-sm">
               <kpi.icon className="w-5 h-5" />
@@ -169,7 +174,7 @@ const DashboardHome = () => {
       {/* Two columns */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-5">
         {/* Commission breakdown */}
-        <div className="lg:col-span-2 dash-card rounded-2xl p-6">
+        <div className="lg:col-span-2 dash-card rounded-3xl p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-sm font-display font-bold dash-text flex items-center gap-2.5">
               <div className="p-2 rounded-xl dash-icon-b shadow-sm">
@@ -177,7 +182,7 @@ const DashboardHome = () => {
               </div>
               {lang === "ar" ? "العمولات" : "Commissions"}
             </h2>
-            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-semibold text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.7)] flex items-center gap-1 transition-colors">
+            <button onClick={() => navigate("/dashboard/commissions")} className="text-xs font-semibold text-[hsl(var(--dash-accent))] hover:opacity-70 flex items-center gap-1 transition-colors">
               {lang === "ar" ? "التفاصيل" : "Details"} <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -206,7 +211,7 @@ const DashboardHome = () => {
         </div>
 
         {/* Recent leads */}
-        <div className="lg:col-span-3 dash-card rounded-2xl p-6">
+        <div className="lg:col-span-3 dash-card rounded-3xl p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-sm font-display font-bold dash-text flex items-center gap-2.5">
               <div className="p-2 rounded-xl dash-icon-a shadow-sm">
@@ -214,7 +219,7 @@ const DashboardHome = () => {
               </div>
               {lang === "ar" ? "العملاء الأخيرون" : "Recent Leads"}
             </h2>
-            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-semibold text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent)/.7)] flex items-center gap-1 transition-colors">
+            <button onClick={() => navigate("/dashboard/pipeline")} className="text-xs font-semibold text-[hsl(var(--dash-accent))] hover:opacity-70 flex items-center gap-1 transition-colors">
               Pipeline <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -228,7 +233,7 @@ const DashboardHome = () => {
               {recentLeads.map((lead: any, i: number) => (
                 <div key={lead.id} className={`flex items-center justify-between py-3 ${i < recentLeads.length - 1 ? "border-b border-[hsl(var(--dash-border))]" : ""}`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#D2F34C] flex items-center justify-center text-[11px] font-bold text-black shadow-sm">
+                    <div className="w-9 h-9 rounded-full bg-[hsl(0,0%,7%)] flex items-center justify-center text-[11px] font-bold text-[#D2F34C] shadow-sm">
                       {lead.first_name?.charAt(0)}{lead.last_name?.charAt(0)}
                     </div>
                     <div>
@@ -250,11 +255,11 @@ const DashboardHome = () => {
           { labelAr: "إضافة عميل", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", iconClass: "dash-icon-a" },
           { labelAr: "الأكاديمية", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", iconClass: "dash-icon-d" },
           { labelAr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", iconClass: "dash-icon-b" },
-          { labelAr: "المكافآت", labelEn: "Bonus", icon: DollarSign, path: "/dashboard/bonus", iconClass: "dash-icon-c" },
+          { labelAr: "إحالات", labelEn: "Referrals", icon: DollarSign, path: "/dashboard/referrals", iconClass: "dash-icon-c" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 + i * 0.05 }}
-            className="dash-card rounded-2xl p-4 flex items-center gap-3 text-left group cursor-pointer hover:shadow-lg hover:border-[hsl(var(--dash-accent)/.2)] transition-all">
+            className="dash-card rounded-2xl p-4 flex items-center gap-3 text-left group cursor-pointer hover:shadow-lg transition-all">
             <div className={`p-2.5 rounded-xl ${action.iconClass} shadow-sm`}>
               <action.icon className="w-4 h-4" />
             </div>
