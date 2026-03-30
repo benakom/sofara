@@ -27,6 +27,7 @@ const statusConfig: Record<string, { label: string; variant: "default" | "second
 };
 
 const AdminAmbassadors = () => {
+  const navigate = useNavigate();
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
