@@ -3,8 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, Search, CheckCircle2, XCircle, Clock } from "lucide-react";
+import { Loader2, Search, CheckCircle2, XCircle, Clock, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface Ambassador {
   id: string;
