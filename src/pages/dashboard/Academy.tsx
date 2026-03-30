@@ -31,9 +31,9 @@ const categories = [
 ];
 
 const levelConfig: Record<string, { color: string; bg: string; labelAr: string; labelEn: string }> = {
-  beginner: { color: "text-emerald-700", bg: "bg-emerald-100", labelAr: "Débutant", labelEn: "Beginner" },
-  intermediate: { color: "text-amber-700", bg: "bg-amber-100", labelAr: "Intermédiaire", labelEn: "Intermediate" },
-  advanced: { color: "text-rose-700", bg: "bg-rose-100", labelAr: "Avancé", labelEn: "Advanced" },
+  beginner: { color: "text-[hsl(var(--dash-accent))]", bg: "bg-[hsl(var(--dash-accent)/.15)]", labelAr: "Débutant", labelEn: "Beginner" },
+  intermediate: { color: "text-[hsl(var(--dash-fg))]", bg: "bg-[hsl(var(--dash-muted))]", labelAr: "Intermédiaire", labelEn: "Intermediate" },
+  advanced: { color: "text-black", bg: "bg-[hsl(var(--dash-accent))]", labelAr: "Avancé", labelEn: "Advanced" },
 };
 
 // Simulated data for Udemy feel
@@ -202,7 +202,7 @@ const Academy = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {Array.from({ length: Math.min(selectedCourse.lessons_count, 6) }).map((_, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[hsl(var(--dash-accent))] mt-0.5 shrink-0" />
                     <span className="text-sm dash-muted-text">
                       {lang === "ar" ? `Module ${i + 1} — Leçon interactive` : `Module ${i + 1} — Interactive lesson`}
                     </span>
@@ -217,8 +217,8 @@ const Academy = () => {
             {/* CTA card */}
             <div className="bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] rounded-xl p-5 sticky top-20">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-2xl font-display font-bold text-emerald-500">{lang === "ar" ? "Gratuit" : "Free"}</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-semibold">{lang === "ar" ? "Inclus dans votre plan" : "Included in your plan"}</span>
+                <span className="text-2xl font-display font-bold text-[hsl(var(--dash-accent))]">{lang === "ar" ? "Gratuit" : "Free"}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))] font-semibold">{lang === "ar" ? "Inclus dans votre plan" : "Included in your plan"}</span>
               </div>
               <button className="w-full py-3 rounded-xl dash-btn-accent text-base">
                 {lang === "ar" ? "Commencer le cours" : "Start course"}
@@ -270,10 +270,10 @@ const Academy = () => {
       {/* Stats banner */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
         {[
-          { labelAr: "Cours", labelEn: "Courses", value: courses.length, icon: BookOpen, accent: "bg-blue-100 text-blue-600" },
-          { labelAr: "Heures +", labelEn: "Hours +", value: `${totalHours}h`, icon: Clock, accent: "bg-violet-100 text-violet-600" },
-          { labelAr: "Leçons", labelEn: "Lessons", value: totalLessons, icon: GraduationCap, accent: "bg-emerald-100 text-emerald-600" },
-          { labelAr: "Votre XP", labelEn: "Your XP", value: `${userXP}/${nextLevelXP}`, icon: Zap, accent: "bg-amber-100 text-amber-600" },
+          { labelAr: "Cours", labelEn: "Courses", value: courses.length, icon: BookOpen, accent: "bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]" },
+          { labelAr: "Heures +", labelEn: "Hours +", value: `${totalHours}h`, icon: Clock, accent: "bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]" },
+          { labelAr: "Leçons", labelEn: "Lessons", value: totalLessons, icon: GraduationCap, accent: "bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]" },
+          { labelAr: "Votre XP", labelEn: "Your XP", value: `${userXP}/${nextLevelXP}`, icon: Zap, accent: "bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]" },
         ].map((s, i) => (
           <div key={i} className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-1.5">
@@ -446,27 +446,27 @@ const Academy = () => {
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="dash-card rounded-2xl p-5">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-amber-50"><Trophy className="w-5 h-5 text-amber-500" /></div>
+            <div className="p-2 rounded-lg bg-[hsl(var(--dash-accent)/.12)]"><Trophy className="w-5 h-5 text-[hsl(var(--dash-accent))]" /></div>
             <div>
               <p className="text-sm font-semibold dash-text">{lang === "ar" ? "Niveau" : "Level"} {userLevel}</p>
               <p className="text-xs dash-muted-text">{userXP}/{nextLevelXP} XP</p>
             </div>
           </div>
-          <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full transition-all" style={{ width: `${(userXP / nextLevelXP) * 100}%` }} />
+            <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
+            <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${(userXP / nextLevelXP) * 100}%` }} />
           </div>
         </div>
 
         <div className="dash-card rounded-2xl p-5">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-emerald-50"><Award className="w-5 h-5 text-emerald-500" /></div>
+            <div className="p-2 rounded-lg bg-[hsl(var(--dash-accent)/.12)]"><Award className="w-5 h-5 text-[hsl(var(--dash-accent))]" /></div>
             <div>
               <p className="text-sm font-semibold dash-text">{lang === "ar" ? "Cours terminés" : "Completed"}</p>
               <p className="text-xs dash-muted-text">{completedCourses}/{courses.length}</p>
             </div>
           </div>
-          <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all" style={{ width: `${courses.length > 0 ? (completedCourses / courses.length) * 100 : 0}%` }} />
+            <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
+            <div className="h-full bg-[hsl(var(--dash-accent)/.7)] rounded-full transition-all" style={{ width: `${courses.length > 0 ? (completedCourses / courses.length) * 100 : 0}%` }} />
           </div>
         </div>
 
