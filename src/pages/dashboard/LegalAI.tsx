@@ -115,13 +115,13 @@ const LegalAI = () => {
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
-          <Scale className="w-5 h-5 text-white" />
+        <div className="w-10 h-10 rounded-xl bg-[hsl(var(--dash-accent))] flex items-center justify-center shadow-lg">
+          <Scale className="w-5 h-5 text-black" />
         </div>
         <div>
           <h1 className="text-lg font-display font-bold dash-text flex items-center gap-2">
             LegalAI
-            <span className="text-[10px] font-bold bg-amber-500/20 text-amber-600 px-2 py-0.5 rounded-full">PRO</span>
+            <span className="text-[10px] font-bold bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent))] px-2 py-0.5 rounded-full">PRO</span>
           </h1>
           <p className="text-xs dash-muted-text">
             {lang === "ar" ? "Analysez vos contrats immobiliers Dubai & EAU" : "Analyze your Dubai & UAE real estate contracts"}
@@ -130,9 +130,9 @@ const LegalAI = () => {
       </div>
 
       {/* Accepted documents info */}
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+      <div className="rounded-xl border border-[hsl(var(--dash-accent)/.2)] bg-[hsl(var(--dash-accent)/.06)] p-4">
         <div className="flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
+          <AlertTriangle className="w-4 h-4 text-[hsl(var(--dash-accent))] mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-medium dash-text mb-1.5">
               {lang === "ar" ? "Documents acceptés (immobilier Dubai & EAU uniquement)" : "Accepted documents (Dubai & UAE real estate only)"}
@@ -154,10 +154,10 @@ const LegalAI = () => {
         onClick={() => inputRef.current?.click()}
         className={`relative rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200 ${
           dragOver
-            ? "border-amber-500 bg-amber-500/10"
+            ? "border-[hsl(var(--dash-accent))] bg-[hsl(var(--dash-accent)/.1)]"
             : file
-              ? "border-emerald-500/40 bg-emerald-500/5"
-              : "border-[hsl(var(--dash-border))] hover:border-amber-500/40 hover:bg-amber-500/5"
+              ? "border-[hsl(var(--dash-accent)/.4)] bg-[hsl(var(--dash-accent)/.05)]"
+              : "border-[hsl(var(--dash-border))] hover:border-[hsl(var(--dash-accent)/.4)] hover:bg-[hsl(var(--dash-accent)/.05)]"
         }`}
       >
         <input
@@ -170,7 +170,7 @@ const LegalAI = () => {
 
         {file ? (
           <div className="flex items-center justify-center gap-3">
-            <FileText className="w-8 h-8 text-emerald-500" />
+            <FileText className="w-8 h-8 text-[hsl(var(--dash-accent))]" />
             <div className="text-left">
               <p className="text-sm font-medium dash-text">{file.name}</p>
               <p className="text-xs dash-muted-text">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
@@ -201,13 +201,13 @@ const LegalAI = () => {
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder={lang === "ar" ? "Question spécifique (optionnel) : ex. Y a-t-il des pénalités de retard ?" : "Specific question (optional): e.g. Are there late payment penalties?"}
-              className="flex-1 h-10 px-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+              className="flex-1 h-10 px-4 rounded-xl bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm dash-text placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)]"
               disabled={isLoading}
             />
             <button
               onClick={handleAnalyze}
               disabled={isLoading}
-              className="h-10 px-5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 shrink-0"
+              className="h-10 px-5 rounded-xl bg-[hsl(var(--dash-accent))] text-black text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 shrink-0"
             >
               {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               {lang === "ar" ? "Analyser" : "Analyze"}
@@ -226,14 +226,14 @@ const LegalAI = () => {
             className="rounded-xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-6"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Scale className="w-4 h-4 text-amber-500" />
+              <Scale className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
               <h2 className="text-sm font-semibold dash-text">
                 {lang === "ar" ? "Analyse juridique" : "Legal analysis"}
               </h2>
-              {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-500 ml-auto" />}
+              {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--dash-accent))] ml-auto" />}
             </div>
             {analysis ? (
-              <div className="prose prose-sm max-w-none dark:prose-invert prose-headings:text-[hsl(var(--dash-fg))] prose-p:text-[hsl(var(--dash-muted-fg))] prose-strong:text-amber-600 prose-li:text-[hsl(var(--dash-muted-fg))] [&_p]:text-sm [&_li]:text-sm">
+              <div className="prose prose-sm max-w-none dark:prose-invert prose-headings:text-[hsl(var(--dash-fg))] prose-p:text-[hsl(var(--dash-muted-fg))] prose-strong:text-[hsl(var(--dash-accent))] prose-li:text-[hsl(var(--dash-muted-fg))] [&_p]:text-sm [&_li]:text-sm">
                 <ReactMarkdown>{analysis}</ReactMarkdown>
               </div>
             ) : (
@@ -243,7 +243,6 @@ const LegalAI = () => {
               </div>
             )}
 
-            {/* Disclaimer */}
             {analysis && !isLoading && (
               <div className="mt-6 pt-4 border-t border-[hsl(var(--dash-border))]">
                 <p className="text-[10px] dash-muted-text leading-relaxed">

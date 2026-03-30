@@ -38,15 +38,15 @@ const KycAml = () => {
       {/* Overview stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
-          { labelAr: "Documents", labelEn: "Documents", value: `${checkedCount}/${totalDocs}`, icon: FileText, accent: "bg-blue-50 text-blue-600" },
-          { labelAr: "AML Score", labelEn: "AML Score", value: `${earnedPts}/${totalPts}`, icon: ShieldCheck, accent: "bg-violet-50 text-violet-600" },
-          { labelAr: "Certification", labelEn: "Certification", value: earnedPts >= totalPts ? "✅" : "🔒", icon: Award, accent: "bg-amber-50 text-amber-600" },
-          { labelAr: "XP gagnés", labelEn: "XP Earned", value: `${earnedPts}`, icon: Zap, accent: "bg-emerald-50 text-emerald-600" },
+          { labelAr: "Documents", labelEn: "Documents", value: `${checkedCount}/${totalDocs}`, icon: FileText },
+          { labelAr: "AML Score", labelEn: "AML Score", value: `${earnedPts}/${totalPts}`, icon: ShieldCheck },
+          { labelAr: "Certification", labelEn: "Certification", value: earnedPts >= totalPts ? "✅" : "🔒", icon: Award },
+          { labelAr: "XP gagnés", labelEn: "XP Earned", value: `${earnedPts}`, icon: Zap },
         ].map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className={`p-1.5 rounded-lg ${s.accent}`}><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
@@ -61,14 +61,13 @@ const KycAml = () => {
             <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> Checklist KYC</h2>
             <span className="text-xs dash-muted-text">{checkedCount}/{totalDocs}</span>
           </div>
-          {/* Progress */}
           <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-4">
-            <div className="h-full bg-blue-500 rounded-full transition-all" style={{ width: `${totalDocs > 0 ? (checkedCount / totalDocs) * 100 : 0}%` }} />
+            <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${totalDocs > 0 ? (checkedCount / totalDocs) * 100 : 0}%` }} />
           </div>
           <div className="space-y-2">
             {kycDocs.map((doc, i) => (
               <div key={i} className={`flex items-start gap-3 p-3 rounded-lg border transition-all ${
-                checkedDocs[i] ? "bg-emerald-50 border-emerald-200" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))]"
+                checkedDocs[i] ? "bg-[hsl(var(--dash-accent)/.08)] border-[hsl(var(--dash-accent)/.25)]" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))]"
               }`}>
                 <Checkbox
                   checked={!!checkedDocs[i]}
@@ -78,7 +77,7 @@ const KycAml = () => {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium dash-text">{lang === "ar" ? doc.titleFr : doc.titleEn}</span>
-                    {doc.required && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-50 text-red-600 font-medium">{lang === "ar" ? "Requis" : "Required"}</span>}
+                    {doc.required && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[hsl(0,72%,51%/.15)] text-[hsl(0,72%,60%)] font-medium">{lang === "ar" ? "Requis" : "Required"}</span>}
                   </div>
                   <p className="text-[11px] dash-muted-text mt-0.5">{doc.desc}</p>
                 </div>
@@ -100,26 +99,26 @@ const KycAml = () => {
             <div className="space-y-2">
               {amlModules.map((mod, i) => (
                 <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer hover:shadow-sm ${
-                  mod.completed ? "bg-emerald-50 border-emerald-200" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))]"
+                  mod.completed ? "bg-[hsl(var(--dash-accent)/.08)] border-[hsl(var(--dash-accent)/.25)]" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))]"
                 }`}>
-                  <div className={`p-1.5 rounded-lg ${mod.completed ? "bg-emerald-100" : "bg-gray-100"}`}>
-                    {mod.completed ? <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> : <mod.icon className="w-3.5 h-3.5 text-gray-400" />}
+                  <div className={`p-1.5 rounded-lg ${mod.completed ? "bg-[hsl(var(--dash-accent)/.15)]" : "bg-[hsl(var(--dash-muted))]"}`}>
+                    {mod.completed ? <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" /> : <mod.icon className="w-3.5 h-3.5 dash-muted-text" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium dash-text truncate">{lang === "ar" ? mod.titleFr : mod.titleEn}</p>
                     <p className="text-[11px] dash-muted-text">+{mod.pts} XP</p>
                   </div>
-                  {!mod.completed && <Lock className="w-3.5 h-3.5 text-gray-300 shrink-0" />}
+                  {!mod.completed && <Lock className="w-3.5 h-3.5 dash-muted-text shrink-0" />}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Certification card */}
-          <div className="dash-card rounded-2xl p-5 border-[hsl(var(--primary)/.2)]" style={{ borderColor: "hsl(var(--primary) / 0.2)" }}>
+          <div className="dash-card rounded-2xl p-5 border-[hsl(var(--dash-accent)/.2)]" style={{ borderColor: "hsl(var(--dash-accent) / 0.2)" }}>
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-amber-50">
-                <Award className="w-5 h-5 text-amber-500" />
+              <div className="p-2 rounded-lg bg-[hsl(var(--dash-accent)/.12)]">
+                <Award className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
               </div>
               <div>
                 <h3 className="text-sm font-semibold dash-text">{lang === "ar" ? "Certification AML Sofara" : "Sofara AML Certification"}</h3>
@@ -127,14 +126,13 @@ const KycAml = () => {
               </div>
             </div>
             <div className="mt-3 flex items-center gap-2 text-xs dash-muted-text">
-              <Star className="w-3.5 h-3.5 text-amber-400" />
+              <Star className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
               <span>{lang === "ar" ? `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules complétés` : `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules completed`}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* KYC Upload Form */}
       <div className="mt-5">
         <KycUploadForm />
       </div>
