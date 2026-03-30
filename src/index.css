@@ -63,42 +63,42 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar — dark */
-    --dash-sidebar-bg: 0 0% 9%;
-    --dash-sidebar-fg: 0 0% 60%;
+    /* Dashboard sidebar — dark grey */
+    --dash-sidebar-bg: 220 6% 15%;
+    --dash-sidebar-fg: 220 5% 55%;
     --dash-sidebar-active: 68 88% 62%;
-    --dash-sidebar-hover: 0 0% 14%;
-    --dash-sidebar-border: 0 0% 16%;
+    --dash-sidebar-hover: 220 6% 20%;
+    --dash-sidebar-border: 220 5% 20%;
 
-    /* Dashboard content — very dark */
-    --dash-bg: 0 0% 7%;
+    /* Dashboard content — dark grey */
+    --dash-bg: 220 6% 13%;
     --dash-fg: 0 0% 92%;
-    --dash-card: 0 0% 11%;
+    --dash-card: 220 6% 17%;
     --dash-card-fg: 0 0% 92%;
-    --dash-border: 0 0% 16%;
-    --dash-muted: 0 0% 14%;
-    --dash-muted-fg: 0 0% 55%;
+    --dash-border: 220 5% 22%;
+    --dash-muted: 220 5% 20%;
+    --dash-muted-fg: 220 5% 55%;
 
     /* Dashboard form inputs */
-    --dash-input-bg: 0 0% 14%;
-    --dash-input-border: 0 0% 20%;
+    --dash-input-bg: 220 6% 20%;
+    --dash-input-border: 220 5% 25%;
 
     /* Dashboard accent tokens — lime #D2F34C */
     --dash-accent: 68 88% 62%;
     --dash-accent-fg: 0 0% 4%;
     --dash-accent-gradient: linear-gradient(135deg, hsl(68, 88%, 62%), hsl(80, 80%, 52%));
     --dash-accent-glow: 0 6px 20px -6px hsl(68, 88%, 62%, 0.35);
-    --dash-card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
-    --dash-card-shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2);
-    --dash-card-ring: 0 0% 20%;
+    --dash-card-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+    --dash-card-shadow-hover: 0 8px 24px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.15);
+    --dash-card-ring: 220 5% 25%;
     --dash-success: 68 88% 62%;
     --dash-warning: 38 92% 50%;
     --dash-info: 68 88% 62%;
 
-    /* Dashboard topbar — dark */
-    --dash-topbar-bg: 0 0% 5%;
+    /* Dashboard topbar — slightly darker */
+    --dash-topbar-bg: 220 6% 10%;
     --dash-topbar-fg: 0 0% 92%;
-    --dash-topbar-border: 0 0% 14%;
+    --dash-topbar-border: 220 5% 18%;
   }
 }
 
