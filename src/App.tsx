@@ -26,6 +26,11 @@ const AdminPipeline = lazy(() => import("./pages/admin/AdminPipeline"));
 const AdminCommissions = lazy(() => import("./pages/admin/AdminCommissions"));
 const AdminPayments = lazy(() => import("./pages/admin/AdminPayments"));
 const AdminSettings = lazy(() => import("./pages/admin/AdminSettings"));
+const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
+const AdminProjects = lazy(() => import("./pages/admin/AdminProjects"));
+const AdminAIConfig = lazy(() => import("./pages/admin/AdminAIConfig"));
+const AdminAnalytics = lazy(() => import("./pages/admin/AdminAnalytics"));
+const AdminContent = lazy(() => import("./pages/admin/AdminContent"));
 const Pipeline = lazy(() => import("./pages/dashboard/Pipeline"));
 const ImportLeads = lazy(() => import("./pages/dashboard/ImportLeads"));
 const Commissions = lazy(() => import("./pages/dashboard/Commissions"));
@@ -98,9 +103,14 @@ const App = () => (
                   <Route index element={<AdminDashboard />} />
                   <Route path="ambassadors" element={<AdminAmbassadors />} />
                   <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
+                  <Route path="leads" element={<AdminLeads />} />
                   <Route path="pipeline" element={<AdminPipeline />} />
                   <Route path="commissions" element={<AdminCommissions />} />
                   <Route path="payments" element={<AdminPayments />} />
+                  <Route path="projects" element={<AdminProjects />} />
+                  <Route path="ai-config" element={<AdminAIConfig />} />
+                  <Route path="analytics" element={<AdminAnalytics />} />
+                  <Route path="content" element={<AdminContent />} />
                   <Route path="settings" element={<AdminSettings />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
