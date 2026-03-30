@@ -261,19 +261,19 @@
 .dash-theme {
   --primary: 68 88% 62%;
   --primary-foreground: 0 0% 4%;
-  --background: 220 10% 96%;
-  --foreground: 0 0% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --border: 220 10% 90%;
-  --input: 220 10% 88%;
+  --background: 0 0% 7%;
+  --foreground: 0 0% 92%;
+  --card: 0 0% 11%;
+  --card-foreground: 0 0% 92%;
+  --border: 0 0% 16%;
+  --input: 0 0% 14%;
   --ring: 68 88% 62%;
-  --muted: 220 10% 94%;
-  --muted-foreground: 0 0% 50%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 55%;
   --accent: 68 88% 62%;
   --accent-foreground: 0 0% 4%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
+  --popover: 0 0% 11%;
+  --popover-foreground: 0 0% 92%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 }
