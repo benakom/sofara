@@ -152,41 +152,32 @@ const DashboardLayout = () => {
       </div>
 
       {/* Nav groups */}
-      <nav className="flex-1 px-3 pt-4 pb-2 flex flex-col overflow-y-auto gap-5">
-        {filteredGroups.map((group, gi) => (
-          <div key={gi}>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[hsl(var(--dash-muted-fg))] px-3 mb-1.5">
-              {lang === "ar" ? group.labelAr : group.labelEn}
-            </p>
-            <div className="flex flex-col gap-0.5">
-              {group.items.map((item) => {
-                const active = isActive(item.path, item.exact);
-                return (
-                  <button
-                    key={item.path}
-                    onClick={() => {
-                      navigate(item.path);
-                      setSidebarOpen(false);
-                    }}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-medium transition-all duration-150 ${
-                      active
-                        ? "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-fg))] shadow-sm"
-                        : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))]"
-                    }`}
-                  >
-                    <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-accent))]" : ""}`} />
-                    <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
-                    {item.badge && (
-                      <span className="ml-auto text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]">
-                        {item.badge}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+      <nav className="flex-1 px-3 pt-4 pb-2 flex flex-col overflow-y-auto gap-0.5">
+        {filteredGroups.flatMap((group) => group.items).map((item) => {
+          const active = isActive(item.path, item.exact);
+          return (
+            <button
+              key={item.path}
+              onClick={() => {
+                navigate(item.path);
+                setSidebarOpen(false);
+              }}
+              className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-medium transition-all duration-150 ${
+                active
+                  ? "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-fg))] shadow-sm"
+                  : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))]"
+              }`}
+            >
+              <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-accent))]" : ""}`} />
+              <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
+              {item.badge && (
+                <span className="ml-auto text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]">
+                  {item.badge}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </nav>
 
       {/* Upgrade CTA for non-pro users */}
