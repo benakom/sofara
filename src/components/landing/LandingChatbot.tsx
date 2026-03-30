@@ -141,20 +141,17 @@ export default function LandingChatbot() {
         className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group"
         aria-label="Open chat"
       >
-        <div className="relative">
-          {/* Pulsing ring */}
-          <div className="absolute -inset-2 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse" style={{ background: "radial-gradient(circle, #CCFF00 0%, transparent 70%)" }} />
-          {/* Ping ring animation */}
-          <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ border: "2px solid #CCFF00" }} />
+          <div className="relative">
+          <div className="absolute -inset-2 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse" style={{ background: "radial-gradient(circle, #D3F34B 0%, transparent 70%)" }} />
+          <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ border: "2px solid #D3F34B" }} />
           <div
             className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
-            style={{ background: "#134830", border: "2px solid #CCFF00", boxShadow: "0 0 16px #CCFF0040, 0 0 4px #CCFF0060 inset" }}
+            style={{ background: "#154B3B", border: "2px solid #D3F34B", boxShadow: "0 0 16px #D3F34B40, 0 0 4px #D3F34B60 inset" }}
           >
             <img src={avatarImg} alt="Sofara" className="w-9 h-9 object-contain" />
           </div>
-          {/* Green online dot with ping */}
-          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-background" />
-          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping opacity-60" />
+          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2" style={{ background: "#D3F34B", borderColor: "#154B3B" }} />
+          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full animate-ping opacity-60" style={{ background: "#D3F34B" }} />
         </div>
       </button>
     );
@@ -170,19 +167,19 @@ export default function LandingChatbot() {
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 w-[90vw] sm:w-[360px] h-[500px] max-h-[calc(100dvh-5rem)] flex flex-col rounded-2xl shadow-2xl overflow-hidden"
-        style={{ background: "hsl(228, 12%, 6%)", border: "1px solid hsl(228, 8%, 16%)" }}
+        style={{ background: "#154B3B", border: "1px solid #1a5c48" }}
       >
         {/* Header */}
-        <div className="px-4 py-3 flex items-center gap-3 shrink-0" style={{ background: "hsl(228, 12%, 4%)", borderBottom: "1px solid hsl(228, 8%, 14%)" }}>
-          <img src={avatarImg} alt="Sara" className="w-9 h-9 rounded-full object-cover border border-foreground/10" />
+        <div className="px-4 py-3 flex items-center gap-3 shrink-0" style={{ background: "#0f3d2e", borderBottom: "1px solid #1a5c48" }}>
+          <img src={avatarImg} alt="Sara" className="w-9 h-9 rounded-full object-cover" style={{ border: "1px solid #D3F34B40" }} />
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-foreground" style={{ fontFamily: "var(--font-display)" }}>Sara</h3>
-            <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+            <h3 className="text-sm font-semibold" style={{ fontFamily: "var(--font-display)", color: "#D3F34B" }}>Sara</h3>
+            <p className="text-[10px] flex items-center gap-1" style={{ color: "#D3F34B99" }}>
+              <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#D3F34B" }} />
               {i18n.online[lang]}
             </p>
           </div>
-          <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground p-1.5 hover:bg-secondary rounded-lg transition-colors">
+          <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-lg transition-colors" style={{ color: "#D3F34B99" }}>
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -201,11 +198,11 @@ export default function LandingChatbot() {
                     : "rounded-bl-sm text-foreground/90"
                 }`}
                 style={msg.role === "user"
-                  ? { background: "var(--gradient-primary)" }
-                  : { background: "hsl(228, 8%, 12%)", border: "1px solid hsl(228, 8%, 18%)" }}
+                  ? { background: "#D3F34B", color: "#0a0a0a" }
+                  : { background: "#0f3d2e", border: "1px solid #1a5c48", color: "#D3F34Bdd" }}
               >
                 {msg.role === "assistant" ? (
-                  <div className="prose prose-invert prose-xs max-w-none break-words [&_p]:text-[13px] [&_p]:my-0.5 [&_li]:text-[13px] [&_li]:my-0 prose-strong:text-primary [&_p]:text-foreground/90 [&_li]:text-foreground/90"
+                  <div className="prose prose-invert prose-xs max-w-none break-words [&_p]:text-[13px] [&_p]:my-0.5 [&_li]:text-[13px] [&_li]:my-0 [&_strong]:text-[#D3F34B] [&_p]:text-[#D3F34Bdd] [&_li]:text-[#D3F34Bdd]"
                     style={{ fontFamily: "var(--font-body)" }}>
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
@@ -219,11 +216,11 @@ export default function LandingChatbot() {
           {isLoading && messages[messages.length - 1]?.role === "user" && (
             <div className="flex justify-start">
               <img src={avatarImg} alt="Sara" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" />
-              <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: "hsl(228, 8%, 12%)", border: "1px solid hsl(228, 8%, 18%)" }}>
+              <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: "#0f3d2e", border: "1px solid #1a5c48" }}>
                 <div className="flex gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#D3F34B", animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#D3F34B80", animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: "#D3F34B", animationDelay: "300ms" }} />
                 </div>
               </div>
             </div>
@@ -235,33 +232,33 @@ export default function LandingChatbot() {
         <form
           onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
           className="p-2.5 shrink-0"
-          style={{ borderTop: "1px solid hsl(228, 8%, 14%)" }}
+          style={{ borderTop: "1px solid #1a5c48" }}
         >
           {limitReached ? (
-            <p className="text-[11px] text-muted-foreground text-center py-1">
+            <p className="text-[11px] text-center py-1" style={{ color: "#D3F34B99" }}>
               {i18n.limitReached[lang]}
             </p>
           ) : (
             <div className="flex gap-2 items-center">
-              <input
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                placeholder={i18n.placeholder[lang]}
-                className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] text-foreground placeholder:text-muted-foreground/60 bg-secondary border border-border focus:outline-none focus:ring-2 focus:ring-primary/40"
-                style={{ fontFamily: "var(--font-body)" }}
-                disabled={isLoading}
-              />
-              <button
-                type="submit"
-                disabled={isLoading || !input.trim()}
-                className="w-9 h-9 rounded-xl text-primary-foreground flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity"
-                style={{ background: "var(--gradient-primary)" }}
+               <input
+                 value={input}
+                 onChange={e => setInput(e.target.value)}
+                 placeholder={i18n.placeholder[lang]}
+                 className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] focus:outline-none focus:ring-2"
+                 style={{ fontFamily: "var(--font-body)", background: "#0f3d2e", border: "1px solid #1a5c48", color: "#D3F34B", "--tw-ring-color": "#D3F34B40" } as React.CSSProperties}
+                 disabled={isLoading}
+               />
+               <button
+                 type="submit"
+                 disabled={isLoading || !input.trim()}
+                 className="w-9 h-9 rounded-xl flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity"
+                 style={{ background: "#D3F34B", color: "#0a0a0a" }}
               >
                 <Send className="w-3.5 h-3.5" />
               </button>
             </div>
           )}
-          <p className="text-[9px] text-muted-foreground/40 text-center mt-1.5">Powered by Sofara</p>
+          <p className="text-[9px] text-center mt-1.5" style={{ color: "#D3F34B40" }}>Powered by Sofara</p>
         </form>
       </motion.div>
     </AnimatePresence>
