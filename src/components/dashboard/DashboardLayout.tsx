@@ -51,7 +51,7 @@ const navGroups: NavGroup[] = [
       { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
       { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
       { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
-      { path: "/dashboard/community", icon: MessageCircle, labelAr: "المجتمع", labelEn: "Community" },
+      
     ],
   },
   {
