@@ -203,7 +203,8 @@ const Auth = () => {
         title: lang === "ar" ? "Compte vérifié !" : "Account verified!",
         description: lang === "ar" ? "Bienvenue chez Sofara." : "Welcome to Sofara.",
       });
-      navigate("/dashboard");
+      const { data: isAdmin } = await supabase.rpc("is_superadmin");
+      navigate(isAdmin ? "/admin" : "/dashboard");
     }
   };
 
