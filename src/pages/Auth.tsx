@@ -137,7 +137,9 @@ const Auth = () => {
           : error.message,
       });
     } else {
-      navigate("/dashboard");
+      // Check if superadmin → redirect to admin panel
+      const { data } = await supabase.rpc("is_superadmin");
+      navigate(data ? "/admin" : "/dashboard");
     }
   };
 
