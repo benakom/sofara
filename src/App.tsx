@@ -103,9 +103,14 @@ const App = () => (
                   <Route index element={<AdminDashboard />} />
                   <Route path="ambassadors" element={<AdminAmbassadors />} />
                   <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
+                  <Route path="leads" element={<AdminLeads />} />
                   <Route path="pipeline" element={<AdminPipeline />} />
                   <Route path="commissions" element={<AdminCommissions />} />
                   <Route path="payments" element={<AdminPayments />} />
+                  <Route path="projects" element={<AdminProjects />} />
+                  <Route path="ai-config" element={<AdminAIConfig />} />
+                  <Route path="analytics" element={<AdminAnalytics />} />
+                  <Route path="content" element={<AdminContent />} />
                   <Route path="settings" element={<AdminSettings />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
