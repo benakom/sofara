@@ -98,10 +98,10 @@ const App = () => (
                   <Route index element={<AdminDashboard />} />
                   <Route path="ambassadors" element={<AdminAmbassadors />} />
                   <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
-                  <Route path="leads" element={<AdminLeads />} />
+                  <Route path="pipeline" element={<AdminPipeline />} />
+                  <Route path="commissions" element={<AdminCommissions />} />
                   <Route path="payments" element={<AdminPayments />} />
-                  <Route path="courses" element={<AdminCourses />} />
-                  <Route path="library" element={<AdminLibrary />} />
+                  <Route path="settings" element={<AdminSettings />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
