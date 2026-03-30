@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AvatarChat from "@/components/sofar-ai/AvatarChat";
+
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -120,7 +120,7 @@ const DashboardLayout = () => {
 
   if (!user) return null;
 
-  const shouldHideFloatingChat = location.pathname.startsWith("/dashboard/ai-hub");
+  
 
   const isActive = (path: string, exact?: boolean) => {
     if (exact) return location.pathname === path;
@@ -306,9 +306,6 @@ const DashboardLayout = () => {
 
       {/* Mobile bottom nav */}
       <MobileBottomNav />
-
-      {/* SofarAI Avatar Chat — only for approved users */}
-      {isApproved && !sidebarOpen && !shouldHideFloatingChat && <AvatarChat />}
 
       {/* Upgrade dialog */}
       <UpgradeToProDialog
