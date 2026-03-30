@@ -63,42 +63,42 @@
     --sidebar-border: 228 22% 18%;
     --sidebar-ring: 246 80% 60%;
 
-    /* Dashboard sidebar — medium grey */
-    --dash-sidebar-bg: 220 4% 32%;
-    --dash-sidebar-fg: 220 4% 65%;
+    /* Dashboard sidebar — dark green #154B3B */
+    --dash-sidebar-bg: 152 57% 15%;
+    --dash-sidebar-fg: 80 20% 75%;
     --dash-sidebar-active: 68 88% 62%;
-    --dash-sidebar-hover: 220 4% 37%;
-    --dash-sidebar-border: 220 4% 37%;
+    --dash-sidebar-hover: 152 50% 20%;
+    --dash-sidebar-border: 152 45% 20%;
 
-    /* Dashboard content — medium grey */
-    --dash-bg: 220 4% 30%;
-    --dash-fg: 0 0% 95%;
-    --dash-card: 220 4% 35%;
-    --dash-card-fg: 0 0% 95%;
-    --dash-border: 220 4% 40%;
-    --dash-muted: 220 4% 38%;
-    --dash-muted-fg: 220 4% 62%;
+    /* Dashboard content — dark green #154B3B */
+    --dash-bg: 152 57% 19%;
+    --dash-fg: 80 20% 95%;
+    --dash-card: 152 50% 23%;
+    --dash-card-fg: 80 20% 95%;
+    --dash-border: 152 40% 27%;
+    --dash-muted: 152 40% 25%;
+    --dash-muted-fg: 150 15% 62%;
 
     /* Dashboard form inputs */
-    --dash-input-bg: 220 4% 38%;
-    --dash-input-border: 220 4% 43%;
+    --dash-input-bg: 152 45% 23%;
+    --dash-input-border: 152 35% 30%;
 
-    /* Dashboard accent tokens — lime #D2F34C */
+    /* Dashboard accent tokens — lime #D3F34B */
     --dash-accent: 68 88% 62%;
     --dash-accent-fg: 0 0% 4%;
     --dash-accent-gradient: linear-gradient(135deg, hsl(68, 88%, 62%), hsl(80, 80%, 52%));
     --dash-accent-glow: 0 6px 20px -6px hsl(68, 88%, 62%, 0.35);
-    --dash-card-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
-    --dash-card-shadow-hover: 0 8px 24px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.1);
-    --dash-card-ring: 220 4% 43%;
+    --dash-card-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.12);
+    --dash-card-shadow-hover: 0 8px 24px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.15);
+    --dash-card-ring: 152 35% 30%;
     --dash-success: 68 88% 62%;
     --dash-warning: 38 92% 50%;
     --dash-info: 68 88% 62%;
 
-    /* Dashboard topbar — slightly darker grey */
-    --dash-topbar-bg: 220 4% 25%;
-    --dash-topbar-fg: 0 0% 95%;
-    --dash-topbar-border: 220 4% 33%;
+    /* Dashboard topbar — darker green */
+    --dash-topbar-bg: 152 57% 14%;
+    --dash-topbar-fg: 80 20% 95%;
+    --dash-topbar-border: 152 45% 22%;
   }
 }
 
@@ -261,19 +261,19 @@
 .dash-theme {
   --primary: 68 88% 62%;
   --primary-foreground: 0 0% 4%;
-  --background: 220 4% 30%;
-  --foreground: 0 0% 95%;
-  --card: 220 4% 35%;
-  --card-foreground: 0 0% 95%;
-  --border: 220 4% 40%;
-  --input: 220 4% 43%;
+  --background: 152 57% 19%;
+  --foreground: 80 20% 95%;
+  --card: 152 50% 23%;
+  --card-foreground: 80 20% 95%;
+  --border: 152 40% 27%;
+  --input: 152 35% 30%;
   --ring: 68 88% 62%;
-  --muted: 220 4% 38%;
-  --muted-foreground: 220 4% 62%;
+  --muted: 152 40% 25%;
+  --muted-foreground: 150 15% 62%;
   --accent: 68 88% 62%;
   --accent-foreground: 0 0% 4%;
-  --popover: 220 4% 35%;
-  --popover-foreground: 0 0% 95%;
+  --popover: 152 50% 23%;
+  --popover-foreground: 80 20% 95%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 }
