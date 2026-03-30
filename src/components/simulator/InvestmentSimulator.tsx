@@ -210,19 +210,20 @@ const InvestmentSimulator = () => {
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.25 }}
         >
-          {step === 0 && <StepPropertyType value={data.propertyType} onChange={(v) => update("propertyType", v)} lang={lang} />}
+          {step === 0 && <StepPropertyType value={data.propertyType} onChange={(v) => { update("propertyType", v); autoAdvance(1); }} lang={lang} />}
           {step === 1 && <StepBudget value={data.budget} onChange={(v) => update("budget", v)} lang={lang} />}
           {step === 2 && (
             <StepArea
               value={data.area}
               onChange={(area, label, priceSqft, roi) => {
                 setData((prev) => ({ ...prev, area, areaLabel: label, avgPriceSqft: priceSqft, avgRoi: roi }));
+                autoAdvance(3);
               }}
               lang={lang}
             />
           )}
-          {step === 3 && <StepPaymentPlan value={data.paymentPlan} onChange={(v) => update("paymentPlan", v)} lang={lang} />}
-          {step === 4 && <StepHandover value={data.handoverYear} onChange={(v) => update("handoverYear", v)} lang={lang} />}
+          {step === 3 && <StepPaymentPlan value={data.paymentPlan} onChange={(v) => { update("paymentPlan", v); autoAdvance(4); }} lang={lang} />}
+          {step === 4 && <StepHandover value={data.handoverYear} onChange={(v) => { update("handoverYear", v); autoAdvance(5); }} lang={lang} />}
         </motion.div>
       </AnimatePresence>
 
