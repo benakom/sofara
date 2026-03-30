@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -74,6 +75,10 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  // OTP state
+  const [otpValue, setOtpValue] = useState("");
+  const [otpVerifying, setOtpVerifying] = useState(false);
+
   // Signup-specific fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -131,7 +136,6 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate phone
     const digits = phone.replace(/\D/g, "");
     const pErr = validatePhone(digits, phoneCode);
     if (pErr) {
@@ -166,6 +170,31 @@ const Auth = () => {
       localStorage.removeItem("sofara_ref");
       setSignupEmail(email);
       setSignupComplete(true);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    if (otpValue.length !== 6) return;
+    setOtpVerifying(true);
+    const { error } = await supabase.auth.verifyOtp({
+      email: signupEmail,
+      token: otpValue,
+      type: "signup",
+    });
+    setOtpVerifying(false);
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: lang === "ar" ? "Code invalide" : "Invalid code",
+        description: lang === "ar" ? "Vérifiez le code et réessayez." : "Check the code and try again.",
+      });
+      setOtpValue("");
+    } else {
+      toast({
+        title: lang === "ar" ? "Compte vérifié !" : "Account verified!",
+        description: lang === "ar" ? "Bienvenue chez Sofara." : "Welcome to Sofara.",
+      });
+      navigate("/dashboard");
     }
   };
 
@@ -238,7 +267,7 @@ const Auth = () => {
     );
   }
 
-  // Email verification screen after signup
+  // ─── OTP Verification Screen ───
   if (signupComplete) {
     const handleResend = async () => {
       setLoading(true);
@@ -247,13 +276,13 @@ const Auth = () => {
       if (error) {
         toast({ variant: "destructive", title: "Error", description: error.message });
       } else {
-        toast({ title: lang === "ar" ? "Email renvoyé !" : "Email resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
+        toast({ title: lang === "ar" ? "Code renvoyé !" : "Code resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
       }
     };
 
     return (
       <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
-        {/* Left panel — same hero */}
+        {/* Left panel */}
         <div className="relative lg:w-[55%] h-52 sm:h-64 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
           <img src={authHero} alt="Dubai business networking" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0a] via-[#0a0f0a]/50 to-transparent lg:bg-gradient-to-r lg:from-[#0a0f0a]/80 lg:via-[#0a0f0a]/40 lg:to-transparent" />
@@ -265,7 +294,7 @@ const Auth = () => {
           </div>
         </div>
 
-        {/* Right panel — Verification message */}
+        {/* Right panel — OTP */}
         <div className="flex-1 flex items-center justify-center px-5 sm:px-8 lg:px-12 py-10 lg:py-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -274,7 +303,6 @@ const Auth = () => {
             className="w-full max-w-sm mx-auto text-center"
           >
             <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-8 sm:p-10 shadow-2xl">
-              {/* Animated envelope */}
               <motion.div
                 initial={{ y: -10 }}
                 animate={{ y: [0, -8, 0] }}
@@ -285,20 +313,47 @@ const Auth = () => {
               </motion.div>
 
               <h2 className="text-xl font-bold text-foreground mb-2">
-                {lang === "ar" ? "Vérifiez votre email" : "Check your email"}
+                {lang === "ar" ? "Vérifiez votre email" : "Verify your email"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
                 {lang === "ar"
-                  ? "Un lien de confirmation a été envoyé à :"
-                  : "A confirmation link has been sent to:"}
+                  ? "Un code de vérification a été envoyé à :"
+                  : "A verification code has been sent to:"}
               </p>
               <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
+
+              {/* OTP Input */}
+              <div className="flex justify-center mb-6">
+                <InputOTP
+                  maxLength={6}
+                  value={otpValue}
+                  onChange={(value) => setOtpValue(value)}
+                >
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    <InputOTPSlot index={1} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    <InputOTPSlot index={2} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    <InputOTPSlot index={3} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    <InputOTPSlot index={4} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    <InputOTPSlot index={5} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                  </InputOTPGroup>
+                </InputOTP>
+              </div>
+
+              <Button
+                variant="hero"
+                className="w-full rounded-xl py-5 text-sm font-semibold mb-4"
+                onClick={handleVerifyOtp}
+                disabled={otpVerifying || otpValue.length !== 6}
+              >
+                {otpVerifying ? <Loader2 className="w-4 h-4 animate-spin" /> : (lang === "ar" ? "Vérifier mon compte" : "Verify my account")}
+              </Button>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {lang === "ar"
-                    ? "Cliquez sur le lien dans l'email pour activer votre compte et accéder à votre espace ambassadeur Sofara."
-                    : "Click the link in the email to activate your account and access your Sofara ambassador dashboard."}
+                    ? "Entrez le code à 6 chiffres reçu par email pour activer votre compte ambassadeur Sofara."
+                    : "Enter the 6-digit code received by email to activate your Sofara ambassador account."}
                 </p>
               </div>
 
@@ -310,11 +365,11 @@ const Auth = () => {
                   disabled={loading}
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                  {lang === "ar" ? "Renvoyer l'email" : "Resend email"}
+                  {lang === "ar" ? "Renvoyer le code" : "Resend code"}
                 </Button>
 
                 <button
-                  onClick={() => { setSignupComplete(false); setMode("login"); }}
+                  onClick={() => { setSignupComplete(false); setMode("login"); setOtpValue(""); }}
                   className="text-xs text-muted-foreground hover:text-primary transition-colors"
                 >
                   {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
@@ -322,11 +377,10 @@ const Auth = () => {
               </div>
             </div>
 
-            {/* Tips */}
             <div className="mt-6 space-y-2">
               {[
                 lang === "ar" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
-                lang === "ar" ? "Le lien expire après 24h" : "The link expires after 24h",
+                lang === "ar" ? "Le code expire après 1h" : "The code expires after 1h",
               ].map((tip, i) => (
                 <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
                   <CheckCircle2 className="w-3 h-3 text-primary/50" />
@@ -349,7 +403,6 @@ const Auth = () => {
           alt="Dubai business networking event with Burj Khalifa skyline"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0a] via-[#0a0f0a]/50 to-transparent lg:bg-gradient-to-r lg:from-[#0a0f0a]/80 lg:via-[#0a0f0a]/40 lg:to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0a]/60 via-transparent to-[#0a0f0a]/90 lg:bg-gradient-to-t lg:from-[#0a0f0a]/70 lg:via-transparent lg:to-[#0a0f0a]/50" />
 
@@ -360,27 +413,21 @@ const Auth = () => {
             transition={{ duration: 0.7 }}
             className="max-w-lg"
           >
-            {/* Logo */}
             <a href="/" className="inline-block mb-6 lg:mb-10">
-              <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
-                sofara
-              </span>
+              <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">sofara</span>
             </a>
 
-            {/* Headline */}
             <h2 className="font-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-[1.15] mb-2 lg:mb-4">
               {lang === "ar"
                 ? "Le réseau ambassadeur immobilier #1 propulsé par l'IA"
                 : "The #1 AI Real Estate Ambassadors Network"}
             </h2>
 
-            {/* AI badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 mb-4 lg:mb-6">
               <Sparkles className="w-3.5 h-3.5 text-primary" />
               <span className="text-primary text-xs sm:text-sm font-semibold">Full AI powered process</span>
             </div>
 
-            {/* Metrics row */}
             <div className="hidden sm:flex items-center gap-3 lg:gap-4 mb-5 lg:mb-8">
               {metrics.map((m, i) => (
                 <motion.div
@@ -399,7 +446,6 @@ const Auth = () => {
               ))}
             </div>
 
-            {/* Trust points */}
             <ul className="space-y-2 lg:space-y-2.5 hidden sm:block">
               {trustPoints.map((point, i) => (
                 <motion.li
@@ -415,7 +461,6 @@ const Auth = () => {
               ))}
             </ul>
 
-            {/* VC credibility bar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -451,54 +496,28 @@ const Auth = () => {
 
           <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-6 sm:p-8 shadow-2xl">
             <div className="text-center mb-6">
-              {/* Mobile logo */}
-              <span className="font-display text-3xl lg:hidden font-bold text-primary tracking-tight block mb-4">
-                sofara
-              </span>
+              <span className="font-display text-3xl lg:hidden font-bold text-primary tracking-tight block mb-4">sofara</span>
               <h1 className="text-xl font-bold text-foreground">{l.title}</h1>
               <p className="text-sm text-muted-foreground mt-1">{l.subtitle}</p>
             </div>
 
             <form onSubmit={onSubmit} className="space-y-3.5">
-              {/* Signup fields: Nom + Prénom */}
               {mode === "signup" && (
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
                     <Label htmlFor="lastName" className="text-sm">{lang === "ar" ? "الاسم العائلي" : "Last Name"} <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="lastName"
-                      placeholder={lang === "ar" ? "Dupont" : "Smith"}
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      required
-                      className="bg-background/50 h-11 rounded-xl"
-                    />
+                    <Input id="lastName" placeholder={lang === "ar" ? "Dupont" : "Smith"} value={lastName} onChange={(e) => setLastName(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="firstName" className="text-sm">{lang === "ar" ? "الاسم الأول" : "First Name"} <span className="text-destructive">*</span></Label>
-                    <Input
-                      id="firstName"
-                      placeholder={lang === "ar" ? "Jean" : "John"}
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      required
-                      className="bg-background/50 h-11 rounded-xl"
-                    />
+                    <Input id="firstName" placeholder={lang === "ar" ? "Jean" : "John"} value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
                   </div>
                 </div>
               )}
 
               <div className="space-y-1.5">
                 <Label htmlFor="email" className="text-sm">Email {mode === "signup" && <span className="text-destructive">*</span>}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="bg-background/50 h-11 rounded-xl"
-                />
+                <Input id="email" type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
               </div>
 
               {mode !== "forgot" && (
@@ -507,29 +526,14 @@ const Auth = () => {
                     {lang === "ar" ? "كلمة المرور" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
                   <div className="relative">
-                    <Input
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      minLength={6}
-                      className="bg-background/50 h-11 rounded-xl pr-11"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
-                      aria-label={showPassword ? (lang === "ar" ? "Masquer le mot de passe" : "Hide password") : (lang === "ar" ? "Afficher le mot de passe" : "Show password")}
-                    >
+                    <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="bg-background/50 h-11 rounded-xl pr-11" />
+                    <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors" aria-label={showPassword ? "Hide password" : "Show password"}>
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
               )}
 
-              {/* Signup: Phone */}
               {mode === "signup" && (
                 <div className="space-y-1.5">
                   <Label className="text-sm">{lang === "ar" ? "الهاتف" : "Phone"} <span className="text-destructive">*</span></Label>
@@ -557,23 +561,12 @@ const Auth = () => {
                         ))}
                       </SelectContent>
                     </Select>
-                    <Input
-                      value={phone}
-                      onChange={(e) => {
-                        const v = e.target.value.replace(/[^\d\s]/g, "");
-                        setPhone(v);
-                        setPhoneError(validatePhone(v, phoneCode));
-                      }}
-                      placeholder={selectedPhoneEntry ? `${selectedPhoneEntry.digits} chiffres` : ""}
-                      className="bg-background/50 h-11 rounded-xl"
-                      required
-                    />
+                    <Input value={phone} onChange={(e) => { const v = e.target.value.replace(/[^\d\s]/g, ""); setPhone(v); setPhoneError(validatePhone(v, phoneCode)); }} placeholder={selectedPhoneEntry ? `${selectedPhoneEntry.digits} chiffres` : ""} className="bg-background/50 h-11 rounded-xl" required />
                   </div>
                   {phoneError && <p className="text-xs text-destructive mt-1">{phoneError}</p>}
                 </div>
               )}
 
-              {/* Signup: Occupation */}
               {mode === "signup" && (
                 <div className="space-y-1.5">
                   <Label className="text-sm">{lang === "ar" ? "Occupation" : "Occupation"} <span className="text-destructive">*</span></Label>
@@ -593,11 +586,7 @@ const Auth = () => {
               )}
 
               {mode === "login" && (
-                <button
-                  type="button"
-                  onClick={() => setMode("forgot")}
-                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
+                <button type="button" onClick={() => setMode("forgot")} className="text-xs text-muted-foreground hover:text-primary transition-colors">
                   {lang === "ar" ? "نسيت كلمة المرور؟" : "Forgot password?"}
                 </button>
               )}
@@ -609,16 +598,12 @@ const Auth = () => {
 
             <p className="text-center text-xs text-muted-foreground mt-5">
               {l.switch}{" "}
-              <button
-                onClick={() => setMode(mode === "login" ? "signup" : "login")}
-                className="text-primary hover:underline font-semibold"
-              >
+              <button onClick={() => setMode(mode === "login" ? "signup" : "login")} className="text-primary hover:underline font-semibold">
                 {l.switchAction}
               </button>
             </p>
           </div>
 
-          {/* Mobile trust points */}
           <ul className="mt-4 space-y-2 sm:hidden">
             {trustPoints.map((point, i) => (
               <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -628,7 +613,6 @@ const Auth = () => {
             ))}
           </ul>
 
-          {/* Mobile AI badge */}
           <div className="flex items-center justify-center gap-2 mt-4 sm:hidden">
             <Sparkles className="w-3 h-3 text-primary" />
             <span className="text-xs text-primary font-semibold">Full AI powered process</span>
