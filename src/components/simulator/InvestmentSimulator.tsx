@@ -124,6 +124,14 @@ const InvestmentSimulator = () => {
   const update = <K extends keyof SimulationData>(key: K, value: SimulationData[K]) =>
     setData((prev) => ({ ...prev, [key]: value }));
 
+  // Auto-advance for selection steps (not budget which needs manual input)
+  const autoAdvance = (nextStep: number) => {
+    setTimeout(() => {
+      if (nextStep < 5) setStep(nextStep);
+      else setShowResults(true);
+    }, 350);
+  };
+
   const canContinue = useMemo(() => {
     if (step === 0) return !!data.propertyType;
     if (step === 1) return data.budget > 0;
