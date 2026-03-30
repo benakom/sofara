@@ -1,59 +1,32 @@
-import { Crown, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { Globe, DollarSign, Users, Bell, Key, Database, Download } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "@/hooks/use-toast";
+
+const tabs = [{id:"general",label:"General",icon:Globe},{id:"commissions",label:"Commission Rules",icon:DollarSign},{id:"tiers",label:"Tier Management",icon:Users},{id:"notifications",label:"Notifications",icon:Bell},{id:"integrations",label:"API & Integrations",icon:Key},{id:"data",label:"Data & Export",icon:Database}];
 
 const AdminSettings = () => {
+  const [activeTab, setActiveTab] = useState("general");
+  const renderContent = () => {
+    switch(activeTab){
+      case "general": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">General Settings</h2>{[{l:"Platform Name",v:"Sofara",t:"text"},{l:"Default Currency",v:"AED",t:"text"},{l:"Contact Email",v:"support@sofara.io",t:"email"},{l:"WhatsApp Number",v:"+971XXXXXXXXX",t:"tel"}].map(f=>(<div key={f.l}><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">{f.l}</label><input type={f.t} defaultValue={f.v} className="w-full h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>))}<button onClick={()=>toast({title:"Settings saved"})} className="px-4 py-2 bg-[#D2F34C] text-[#1A1A1E] rounded-lg text-xs font-bold hover:bg-[#BDE040]">Save</button></div>;
+      case "commissions": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">Commission Rules</h2><div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Default Rate (%)</label><input type="number" defaultValue={3} className="w-32 h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm" /></div><div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Cooptation Bonus (AED)</label><input type="number" defaultValue={2000} className="w-32 h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm" /></div><div className="flex items-center justify-between py-2"><span className="text-xs text-[#6B7280]">Auto-approve commissions</span><Switch defaultChecked={false} /></div><button onClick={()=>toast({title:"Saved"})} className="px-4 py-2 bg-[#D2F34C] text-[#1A1A1E] rounded-lg text-xs font-bold hover:bg-[#BDE040]">Save</button></div>;
+      case "tiers": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">Tier Management</h2>{["Lite","Pro"].map(tier=>(<div key={tier} className="bg-[#F9FAFB] rounded-xl p-4 space-y-3"><h3 className="text-sm font-bold text-[#1A1A1E]">{tier}</h3>{tier==="Pro"&&<div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Price ($/mo)</label><input type="number" defaultValue={49} className="w-24 h-8 px-2 mt-1 rounded border border-[#E5E7EB] text-xs" /></div>}{["Lead submission","Pipeline","Academy","AI Tools","WhatsApp Copilot","Referrals"].map(f=>(<div key={f} className="flex items-center justify-between"><span className="text-xs text-[#6B7280]">{f}</span><Switch defaultChecked={tier==="Pro"} /></div>))}</div>))}</div>;
+      case "notifications": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">Notifications</h2>{["New signup","New lead","Deal closed","Commission pending","Inactive >7d"].map(n=>(<div key={n} className="flex items-center justify-between py-2 border-b border-[#F5F5F7]"><span className="text-xs text-[#6B7280]">{n}</span><div className="flex gap-3">{["Email","WhatsApp","Dashboard"].map(ch=>(<label key={ch} className="flex items-center gap-1.5"><input type="checkbox" defaultChecked className="rounded" /><span className="text-[10px] text-[#9CA3AF]">{ch}</span></label>))}</div></div>))}</div>;
+      case "integrations": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">API & Integrations</h2>{[{l:"AI API Key",s:"Connected",c:true},{l:"WhatsApp API",s:"Not configured",c:false},{l:"Payment Gateway",s:"Not configured",c:false}].map(i=>(<div key={i.l} className="flex items-center justify-between py-3 border-b border-[#F5F5F7]"><div><p className="text-sm font-medium text-[#1A1A1E]">{i.l}</p><p className={`text-[10px] ${i.c?"text-[#22C55E]":"text-[#9CA3AF]"}`}>{i.s}</p></div><button className="px-3 py-1.5 rounded-lg border border-[#E5E7EB] text-xs text-[#6B7280] hover:bg-[#F9FAFB]">{i.c?"Configure":"Connect"}</button></div>))}</div>;
+      case "data": return <div className="space-y-5"><h2 className="text-sm font-bold text-[#1A1A1E]">Data & Export</h2>{["Export ambassadors (CSV)","Export leads (CSV)","Export commissions (CSV)","Full database backup"].map(e=>(<div key={e} className="flex items-center justify-between py-3 border-b border-[#F5F5F7]"><p className="text-sm font-medium text-[#1A1A1E]">{e}</p><button className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#E5E7EB] text-xs text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export</button></div>))}</div>;
+      default: return null;
+    }
+  };
   return (
-    <div className="space-y-6 max-w-[800px]">
-      <div>
-        <h1 className="text-2xl font-display font-bold text-white">Paramètres</h1>
-        <p className="text-sm text-[hsl(228,10%,50%)] mt-1">Configuration de votre plateforme Sofara</p>
-      </div>
-
-      <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl p-6 space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-[hsl(var(--primary)/.1)]">
-            <Crown className="w-5 h-5 text-[hsl(var(--primary))]" />
-          </div>
-          <div>
-            <h2 className="text-sm font-bold text-white">Sofara Business</h2>
-            <p className="text-[11px] text-[hsl(228,10%,45%)]">Plan actif : Sofara Lite</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-          <InfoRow label="Domaine email" value="notify.sofara.io" />
-          <InfoRow label="Plateforme" value="sofara.lovable.app" />
-          <InfoRow label="Rôle" value="Super Admin (Owner)" />
-          <InfoRow label="Version" value="Sofara Lite v1.0" />
-        </div>
-      </div>
-
-      <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl p-6">
-        <h2 className="text-sm font-bold text-white mb-3">Fonctionnalités actives</h2>
-        <div className="space-y-2">
-          {[
-            "Inscription & vérification email ambassadeurs",
-            "Pipeline de leads avec suivi des stages",
-            "Gestion des commissions (estimées → confirmées → payées)",
-            "Système de paiements avec validation",
-            "Profils ambassadeurs avec code de parrainage",
-            "Dashboard KPI en temps réel",
-          ].map((f, i) => (
-            <div key={i} className="flex items-center gap-2 text-sm text-[hsl(228,10%,60%)]">
-              <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))]" />
-              {f}
-            </div>
-          ))}
-        </div>
+    <div className="max-w-[1400px] font-['Inter']">
+      <h1 className="text-xl font-bold text-[#1A1A1E] mb-6">Settings</h1>
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="lg:w-56 shrink-0 space-y-1">{tabs.map(t=>(<button key={t.id} onClick={()=>setActiveTab(t.id)} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium ${activeTab===t.id?"bg-[#1A1A1E] text-white":"text-[#6B7280] hover:bg-[#F5F5F7]"}`}><t.icon className="w-4 h-4" />{t.label}</button>))}</div>
+        <div className="flex-1 bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">{renderContent()}</div>
       </div>
     </div>
   );
 };
-
-const InfoRow = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex flex-col gap-1">
-    <span className="text-[10px] font-medium text-[hsl(228,10%,40%)] uppercase tracking-wider">{label}</span>
-    <span className="text-sm text-white font-medium">{value}</span>
-  </div>
-);
 
 export default AdminSettings;
