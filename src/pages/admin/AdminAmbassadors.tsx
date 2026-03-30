@@ -146,7 +146,7 @@ const AdminAmbassadors = () => {
               <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Leads</TableHead>
               <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Commissions</TableHead>
               <TableHead className="text-[hsl(var(--muted-foreground))]">Inscrit le</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Actions</TableHead>
+              <TableHead className="text-[hsl(var(--muted-foreground))] text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
