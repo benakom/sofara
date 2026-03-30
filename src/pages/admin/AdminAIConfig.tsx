@@ -31,9 +31,9 @@ const AdminAIConfig = () => {
   const tool = tools.find(t => t.id === selectedTool);
 
   return (
-    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+    <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div>
-        <h1 className="text-xl font-bold text-[#1A1A1E]">AI Tools Configuration</h1>
+        <h1 className="text-xl font-bold text-[#154B3B]">AI Tools Configuration</h1>
         <p className="text-xs text-[#9CA3AF] mt-1">Manage AI tools available to Pro ambassadors. Control prompts, knowledge base, and access.</p>
       </div>
 
@@ -43,19 +43,19 @@ const AdminAIConfig = () => {
             <div key={t.id} className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-[#D2F34C]/15 flex items-center justify-center">
-                  <t.icon className="w-5 h-5 text-[#1A1A1E]" />
+                  <t.icon className="w-5 h-5 text-[#154B3B]" />
                 </div>
                 <Switch checked={enabled[t.id]} onCheckedChange={v => { setEnabled({ ...enabled, [t.id]: v }); toast({ title: `${t.name} ${v ? "enabled" : "disabled"}` }); }} />
               </div>
-              <h3 className="text-sm font-bold text-[#1A1A1E]">{t.name}</h3>
+              <h3 className="text-sm font-bold text-[#154B3B]">{t.name}</h3>
               <p className="text-xs text-[#9CA3AF] mt-1">{t.desc}</p>
               <div className="flex items-center gap-4 mt-4 pt-3 border-t border-[#F5F5F7]">
-                <span className="text-[10px] text-[#6B7280]"><strong className="text-[#1A1A1E]">{t.uses}</strong> uses/mo</span>
-                <span className="text-[10px] text-[#6B7280]">Avg: <strong className="text-[#1A1A1E]">{t.avgTime}</strong></span>
+                <span className="text-[10px] text-[#6B7280]"><strong className="text-[#154B3B]">{t.uses}</strong> uses/mo</span>
+                <span className="text-[10px] text-[#6B7280]">Avg: <strong className="text-[#154B3B]">{t.avgTime}</strong></span>
               </div>
               <button
                 onClick={() => setSelectedTool(t.id)}
-                className="mt-3 w-full py-2 rounded-lg border border-[#E5E7EB] text-xs font-semibold text-[#1A1A1E] hover:bg-[#F9FAFB] transition-colors"
+                className="mt-3 w-full py-2 rounded-lg border border-[#E5E7EB] text-xs font-semibold text-[#154B3B] hover:bg-[#F9FAFB] transition-colors"
               >
                 Configure →
               </button>
@@ -64,44 +64,42 @@ const AdminAIConfig = () => {
         </div>
       ) : (
         <div className="space-y-5">
-          <button onClick={() => setSelectedTool(null)} className="text-xs font-medium text-[#6B7280] hover:text-[#1A1A1E]">← Back to all tools</button>
+          <button onClick={() => setSelectedTool(null)} className="text-xs font-medium text-[#6B7280] hover:text-[#154B3B]">← Back to all tools</button>
 
           <div className="flex items-center gap-3">
-            {tool && <div className="w-10 h-10 rounded-xl bg-[#D2F34C]/15 flex items-center justify-center"><tool.icon className="w-5 h-5 text-[#1A1A1E]" /></div>}
+            {tool && <div className="w-10 h-10 rounded-xl bg-[#D2F34C]/15 flex items-center justify-center"><tool.icon className="w-5 h-5 text-[#154B3B]" /></div>}
             <div>
-              <h2 className="text-lg font-bold text-[#1A1A1E]">{tool?.name}</h2>
+              <h2 className="text-lg font-bold text-[#154B3B]">{tool?.name}</h2>
               <p className="text-xs text-[#9CA3AF]">{tool?.desc}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            {/* System Prompt */}
             <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <h3 className="text-sm font-bold text-[#1A1A1E] mb-3">System Prompt</h3>
+              <h3 className="text-sm font-bold text-[#154B3B] mb-3">System Prompt</h3>
               <textarea
                 value={prompts[selectedTool] || ""}
                 onChange={e => setPrompts({ ...prompts, [selectedTool]: e.target.value })}
                 rows={12}
-                className="w-full rounded-lg border border-[#E5E7EB] p-3 text-xs text-[#1A1A1E] font-mono resize-none focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50"
+                className="w-full rounded-lg border border-[#E5E7EB] p-3 text-xs text-[#154B3B] font-mono resize-none focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50"
               />
-              <button onClick={() => toast({ title: "Prompt saved" })} className="mt-3 px-4 py-2 bg-[#D2F34C] text-[#1A1A1E] rounded-lg text-xs font-bold hover:bg-[#BDE040]">
+              <button onClick={() => toast({ title: "Prompt saved" })} className="mt-3 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">
                 Save Prompt
               </button>
             </div>
 
-            {/* Test Area */}
             <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <h3 className="text-sm font-bold text-[#1A1A1E] mb-3">Response Preview</h3>
+              <h3 className="text-sm font-bold text-[#154B3B] mb-3">Response Preview</h3>
               <textarea
                 value={testInput}
                 onChange={e => setTestInput(e.target.value)}
                 rows={3}
                 placeholder="Type a test question..."
-                className="w-full rounded-lg border border-[#E5E7EB] p-3 text-xs text-[#1A1A1E] resize-none focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50 mb-3"
+                className="w-full rounded-lg border border-[#E5E7EB] p-3 text-xs text-[#154B3B] resize-none focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50 mb-3"
               />
               <button
                 onClick={() => { setTestOutput("This is a simulated AI response based on the current system prompt. In production, this would call the actual AI model."); toast({ title: "Test sent" }); }}
-                className="flex items-center gap-2 px-3 py-2 bg-[#1A1A1E] text-white rounded-lg text-xs font-bold hover:bg-[#2C2C2E]"
+                className="flex items-center gap-2 px-3 py-2 bg-[#154B3B] text-white rounded-lg text-xs font-bold hover:bg-[#1B5E4A]"
               >
                 <Play className="w-3.5 h-3.5" /> Test Response
               </button>
@@ -112,7 +110,7 @@ const AdminAIConfig = () => {
               )}
 
               <div className="mt-5 pt-4 border-t border-[#F5F5F7]">
-                <h4 className="text-xs font-bold text-[#1A1A1E] mb-3">Usage Limits</h4>
+                <h4 className="text-xs font-bold text-[#154B3B] mb-3">Usage Limits</h4>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] text-[#6B7280]">Max per day per ambassador</span>
