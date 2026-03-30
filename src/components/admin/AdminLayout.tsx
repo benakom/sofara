@@ -2,36 +2,23 @@ import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
-import { useLanguage } from "@/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  BarChart3, Users, GitBranch, DollarSign,
-  CreditCard, LogOut, Menu, Crown, Loader2,
-  ChevronRight, X, Settings, Bell
+  LayoutDashboard, Users, Target, DollarSign,
+  Building2, Bot, BarChart3, GraduationCap,
+  Settings, LogOut, Menu, X, Bell, Search, Loader2
 } from "lucide-react";
 
-const navSections = [
-  {
-    title: "BUSINESS",
-    items: [
-      { path: "/admin", icon: BarChart3, label: "Dashboard", exact: true },
-      { path: "/admin/ambassadors", icon: Users, label: "Ambassadeurs" },
-      { path: "/admin/pipeline", icon: GitBranch, label: "Pipeline" },
-    ],
-  },
-  {
-    title: "FINANCIER",
-    items: [
-      { path: "/admin/commissions", icon: DollarSign, label: "Commissions" },
-      { path: "/admin/payments", icon: CreditCard, label: "Paiements" },
-    ],
-  },
-  {
-    title: "CONFIGURATION",
-    items: [
-      { path: "/admin/settings", icon: Settings, label: "Paramètres" },
-    ],
-  },
+const navItems = [
+  { path: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
+  { path: "/admin/ambassadors", icon: Users, label: "Ambassadors" },
+  { path: "/admin/leads", icon: Target, label: "Leads" },
+  { path: "/admin/commissions", icon: DollarSign, label: "Commissions" },
+  { path: "/admin/projects", icon: Building2, label: "Projects" },
+  { path: "/admin/ai-config", icon: Bot, label: "AI Tools Config" },
+  { path: "/admin/analytics", icon: BarChart3, label: "Analytics" },
+  { path: "/admin/content", icon: GraduationCap, label: "Content & Academy" },
+  { path: "/admin/settings", icon: Settings, label: "Settings" },
 ];
 
 const AdminLayout = () => {
@@ -39,8 +26,9 @@ const AdminLayout = () => {
   const { isSuperAdmin, loading: adminLoading } = useAdmin();
   const navigate = useNavigate();
   const location = useLocation();
-  const { lang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (!authLoading && !adminLoading) {
@@ -51,8 +39,8 @@ const AdminLayout = () => {
 
   if (authLoading || adminLoading) {
     return (
-      <div className="min-h-screen bg-[hsl(228,20%,8%)] flex items-center justify-center">
-        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" />
+      <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-[#1A1A1E]" />
       </div>
     );
   }
@@ -62,83 +50,80 @@ const AdminLayout = () => {
   const isActive = (path: string, exact?: boolean) =>
     exact ? location.pathname === path : location.pathname.startsWith(path);
 
+  const pageTitle = navItems.find(item =>
+    item.exact ? location.pathname === item.path : location.pathname.startsWith(item.path)
+  )?.label || "Admin";
+
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[hsl(228,22%,10%)] border-r border-[hsl(228,18%,16%)]">
+    <div className="flex flex-col h-full bg-[#1A1A1E]">
       {/* Logo */}
-      <div className="px-5 pt-6 pb-5 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(80,80%,40%)] flex items-center justify-center">
-          <Crown className="w-4.5 h-4.5 text-[hsl(0,0%,5%)]" />
+      <div className="px-5 pt-6 pb-6 flex items-center gap-3">
+        <div className="w-9 h-9 rounded-xl bg-[#D2F34C] flex items-center justify-center font-bold text-[#1A1A1E] text-sm">
+          S
         </div>
         <div>
-          <span className="font-display text-base font-bold text-white tracking-tight block leading-tight">
+          <span className="text-base font-bold text-white tracking-tight block leading-tight font-['Inter']">
             Sofara
           </span>
-          <span className="text-[10px] font-semibold text-[hsl(var(--primary))] uppercase tracking-widest">
-            Business Owner
+          <span className="text-[10px] font-bold text-[#D2F34C] uppercase tracking-[0.2em]">
+            ADMIN
           </span>
         </div>
       </div>
 
-      {/* Nav sections */}
-      <nav className="flex-1 px-3 space-y-5 overflow-y-auto pt-2">
-        {navSections.map((section) => (
-          <div key={section.title}>
-            <p className="px-3 mb-1.5 text-[10px] font-bold text-[hsl(228,10%,45%)] uppercase tracking-[0.15em]">
-              {section.title}
-            </p>
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const active = isActive(item.path, item.exact);
-                return (
-                  <button
-                    key={item.path}
-                    onClick={() => { navigate(item.path); setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-150 group ${
-                      active
-                        ? "bg-[hsl(var(--primary)/.1)] text-white"
-                        : "text-[hsl(228,10%,55%)] hover:text-white hover:bg-[hsl(228,18%,14%)]"
-                    }`}
-                  >
-                    <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--primary))]" : "group-hover:text-[hsl(228,10%,70%)]"}`} />
-                    <span className="flex-1 text-left">{item.label}</span>
-                    {active && <ChevronRight className="w-3.5 h-3.5 text-[hsl(var(--primary)/.5)]" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+      {/* Nav items */}
+      <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+        {navItems.map((item) => {
+          const active = isActive(item.path, item.exact);
+          return (
+            <button
+              key={item.path}
+              onClick={() => { navigate(item.path); setSidebarOpen(false); }}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all relative ${
+                active
+                  ? "bg-[#2C2C2E] text-[#D2F34C]"
+                  : "text-[#9CA3AF] hover:bg-[#2C2C2E] hover:text-white"
+              }`}
+            >
+              {active && (
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-[#D2F34C] rounded-r-full" />
+              )}
+              <item.icon className="w-[18px] h-[18px] shrink-0" />
+              <span>{item.label}</span>
+            </button>
+          );
+        })}
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-[hsl(228,18%,14%)] mt-auto space-y-2">
-        <div className="flex items-center gap-3 px-2 py-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(80,80%,40%)] flex items-center justify-center text-[11px] font-bold text-[hsl(0,0%,5%)]">
-            S
+      <div className="p-4 border-t border-[#2C2C2E] mt-auto">
+        <div className="flex items-center gap-3 px-2 py-2 mb-2">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D2F34C] to-[#BDE040] flex items-center justify-center text-xs font-bold text-[#1A1A1E]">
+            AB
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-white truncate">Sofara Admin</p>
-            <p className="text-[10px] text-[hsl(228,10%,45%)] truncate">{user.email}</p>
+            <p className="text-sm font-semibold text-white truncate">Ahmed Benjas</p>
+            <p className="text-[11px] text-[#D2F34C] font-medium">Super Admin</p>
           </div>
         </div>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-xs text-[hsl(228,10%,45%)] hover:text-white transition-colors w-full px-2 py-1.5 rounded-md hover:bg-[hsl(228,18%,14%)]"
+          className="flex items-center gap-2 text-xs text-[#9CA3AF] hover:text-white transition-colors w-full px-2 py-2 rounded-lg hover:bg-[#2C2C2E]"
         >
-          <LogOut className="w-3.5 h-3.5" />
-          Déconnexion
+          <LogOut className="w-4 h-4" />
+          Logout
         </button>
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen flex bg-[hsl(228,18%,7%)]">
+    <div className="min-h-screen flex bg-[#F5F5F7]">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-[260px] fixed inset-y-0 left-0 z-40">
         <SidebarContent />
@@ -150,7 +135,7 @@ const AdminLayout = () => {
           <>
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setSidebarOpen(false)}
             />
             <motion.aside
@@ -159,6 +144,12 @@ const AdminLayout = () => {
               className="fixed inset-y-0 left-0 w-[260px] z-50 flex flex-col lg:hidden"
             >
               <SidebarContent />
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="absolute top-5 right-4 text-[#9CA3AF] hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </motion.aside>
           </>
         )}
@@ -166,24 +157,41 @@ const AdminLayout = () => {
 
       {/* Main content */}
       <div className="flex-1 lg:ml-[260px] flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 h-14 border-b border-[hsl(228,18%,12%)] bg-[hsl(228,18%,7%/.9)] backdrop-blur-xl flex items-center px-4 sm:px-6 gap-3">
-          <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-[hsl(228,10%,50%)] p-1.5 rounded-lg hover:bg-[hsl(228,18%,12%)] transition-colors">
+        {/* Top bar */}
+        <header className="sticky top-0 z-30 h-14 border-b border-[#E5E7EB] bg-white flex items-center px-4 sm:px-6 gap-3">
+          <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-[#6B7280] p-1.5 rounded-lg hover:bg-[#F5F5F7] transition-colors">
             <Menu className="w-5 h-5" />
           </button>
-          
+
+          <h1 className="text-lg font-bold text-[#1A1A1E] font-['Inter'] hidden sm:block">{pageTitle}</h1>
+
           <div className="flex-1" />
-          
-          <button className="relative text-[hsl(228,10%,50%)] p-2 rounded-lg hover:bg-[hsl(228,18%,12%)] transition-colors">
-            <Bell className="w-4.5 h-4.5" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[hsl(var(--primary))] rounded-full" />
+
+          {/* Search */}
+          <div className="relative hidden md:block">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-60 h-9 pl-9 pr-3 rounded-lg bg-[#F5F5F7] border-none text-sm text-[#1A1A1E] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50 font-['Inter']"
+            />
+          </div>
+
+          {/* Notification */}
+          <button className="relative text-[#6B7280] p-2 rounded-lg hover:bg-[#F5F5F7] transition-colors">
+            <Bell className="w-[18px] h-[18px]" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#D2F34C] rounded-full border-2 border-white" />
           </button>
-          
-          <span className="text-[10px] font-bold text-[hsl(var(--primary))] bg-[hsl(var(--primary)/.08)] border border-[hsl(var(--primary)/.2)] px-2.5 py-1 rounded-md uppercase tracking-wider">
-            Owner
-          </span>
+
+          {/* Admin avatar */}
+          <div className="w-8 h-8 rounded-full bg-[#1A1A1E] flex items-center justify-center text-[10px] font-bold text-[#D2F34C]">
+            AB
+          </div>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
           <Outlet />
         </main>
       </div>
