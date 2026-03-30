@@ -193,9 +193,9 @@ export default function AvatarChat() {
             <img src={sofaraAvatar} alt="AI" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" />
             <div className="rounded-2xl rounded-bl-sm px-4 py-3 bg-white/8 border border-white/10">
               <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "0ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C] animate-bounce" style={{ animationDelay: "0ms" }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C]/60 animate-bounce" style={{ animationDelay: "150ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--dash-accent))] animate-bounce" style={{ animationDelay: "300ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D2F34C] animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           </div>
