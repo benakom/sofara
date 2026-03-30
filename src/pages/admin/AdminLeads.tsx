@@ -1,241 +1,85 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Search, CheckCircle2, Eye } from "lucide-react";
-import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { Search, Download, Target, ChevronLeft, ChevronRight, MoreHorizontal, Eye, Edit, Trash2 } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { toast } from "@/hooks/use-toast";
 
-const STAGES = [
-  { value: "nouveau", label: "Nouveau", color: "bg-[hsl(var(--primary)/.1)] text-[hsl(var(--primary))]" },
-  { value: "contacté", label: "Contacté", color: "bg-[hsl(45,90%,55%,.1)] text-[hsl(45,90%,55%)]" },
-  { value: "qualifié", label: "Qualifié", color: "bg-[hsl(var(--accent)/.1)] text-[hsl(var(--accent))]" },
-  { value: "négociation", label: "Négociation", color: "bg-[hsl(280,70%,60%,.1)] text-[hsl(280,70%,60%)]" },
-  { value: "closing", label: "Closing", color: "bg-[hsl(160,70%,50%,.1)] text-[hsl(160,70%,50%)]" },
-  { value: "perdu", label: "Perdu", color: "bg-[hsl(var(--destructive)/.1)] text-[hsl(var(--destructive))]" },
-];
-
-const COMMISSION_STATUSES = [
-  { value: "estimated", label: "Estimée" },
-  { value: "confirmed", label: "Confirmée" },
-  { value: "paid", label: "Payée" },
-];
-
-interface Profile { id: string; full_name: string | null; }
+const stages = ["nouveau", "contacté", "qualifié", "négociation", "closing", "perdu"];
 
 const AdminLeads = () => {
+  const navigate = useNavigate();
   const [leads, setLeads] = useState<any[]>([]);
-  const [commissions, setCommissions] = useState<any[]>([]);
-  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profiles, setProfiles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [tab, setTab] = useState<"leads" | "commissions">("leads");
-  const [filterAmbassador, setFilterAmbassador] = useState("all");
+  const [stageFilter, setStageFilter] = useState("all");
+  const [ambassadorFilter, setAmbassadorFilter] = useState("all");
+  const [page, setPage] = useState(1);
+  const perPage = 25;
 
-  const fetchData = async () => {
-    const [leadsRes, commissionsRes, profilesRes] = await Promise.all([
-      supabase.from("leads").select("*").order("created_at", { ascending: false }),
-      supabase.from("commissions").select("*").order("date", { ascending: false }),
-      supabase.from("profiles").select("id, full_name"),
-    ]);
-    setLeads(leadsRes.data ?? []);
-    setCommissions(commissionsRes.data ?? []);
-    setProfiles(profilesRes.data ?? []);
-    setLoading(false);
-  };
+  useEffect(() => {
+    const fetch = async () => {
+      const [lRes, pRes] = await Promise.all([
+        supabase.from("leads").select("*").order("created_at", { ascending: false }),
+        supabase.from("profiles").select("id, full_name"),
+      ]);
+      setLeads(lRes.data ?? []); setProfiles(pRes.data ?? []); setLoading(false);
+    };
+    fetch();
+  }, []);
 
-  useEffect(() => { fetchData(); }, []);
+  const getAmbName = (uid: string) => profiles.find(p => p.id === uid)?.full_name || "—";
+  const filtered = leads.filter(l => { const ms = !search || `${l.first_name} ${l.last_name}`.toLowerCase().includes(search.toLowerCase()); const mst = stageFilter === "all" || l.stage === stageFilter; const ma = ambassadorFilter === "all" || l.user_id === ambassadorFilter; return ms && mst && ma; });
+  const totalPages = Math.ceil(filtered.length / perPage);
+  const paginated = filtered.slice((page - 1) * perPage, page * perPage);
+  const handleStageChange = async (id: string, stage: string) => { await supabase.from("leads").update({ stage }).eq("id", id); setLeads(prev => prev.map(l => l.id === id ? { ...l, stage } : l)); toast({ title: `Lead → ${stage}` }); };
+  const exportCSV = () => { const h = ["Name","Ambassador","Stage","Score","Email","Phone","Source","Created"]; const r = filtered.map(l => [`${l.first_name} ${l.last_name}`,getAmbName(l.user_id),l.stage,l.score,l.email,l.phone,l.source,new Date(l.created_at).toLocaleDateString()]); const csv = [h,...r].map(r=>r.join(",")).join("\n"); const b = new Blob([csv],{type:"text/csv"}); const u = URL.createObjectURL(b); const a = document.createElement("a"); a.href=u; a.download="leads.csv"; a.click(); };
+  const scoreBadge = (s: string|null) => { const c: Record<string,string> = {A:"#22C55E",B:"#D2F34C",C:"#F59E0B",D:"#EF4444"}; const color = c[s||"C"]||"#9CA3AF"; return <div className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold" style={{borderColor:color,color}}>{s||"C"}</div>; };
+  const uniqueAmbs = Array.from(new Set(leads.map(l => l.user_id))).map(uid => ({ id: uid, name: getAmbName(uid) }));
 
-  const getAmbassadorName = (userId: string) => {
-    const p = profiles.find(pr => pr.id === userId);
-    return p?.full_name || userId.slice(0, 8) + "…";
-  };
-
-  const handleStageChange = async (leadId: string, newStage: string) => {
-    const { error } = await supabase.from("leads").update({ stage: newStage, updated_at: new Date().toISOString() }).eq("id", leadId);
-    if (error) { toast.error("Erreur"); return; }
-    toast.success(`Stage → ${newStage}`);
-    fetchData();
-  };
-
-  const handleCommissionStatus = async (commissionId: string, newStatus: string) => {
-    const { error } = await supabase.from("commissions").update({ status: newStatus }).eq("id", commissionId);
-    if (error) { toast.error("Erreur"); return; }
-    toast.success(`Commission → ${newStatus}`);
-    fetchData();
-  };
-
-  const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
-
-  // Get unique ambassadors who have leads
-  const ambassadorsWithLeads = [...new Set(leads.map(l => l.user_id))];
-
-  const filteredLeads = leads
-    .filter(l => filterAmbassador === "all" || l.user_id === filterAmbassador)
-    .filter(l => `${l.first_name} ${l.last_name}`.toLowerCase().includes(search.toLowerCase()));
-
-  const filteredCommissions = commissions
-    .filter(c => filterAmbassador === "all" || c.user_id === filterAmbassador)
-    .filter(c => c.deal_name.toLowerCase().includes(search.toLowerCase()));
-
-  if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" /></div>;
-  }
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-display font-bold text-[hsl(var(--foreground))]">Leads & Commissions</h1>
-        <p className="text-sm text-[hsl(var(--muted-foreground))] mt-1">{leads.length} leads · {commissions.length} commissions · {ambassadorsWithLeads.length} ambassadeurs actifs</p>
+    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3"><h1 className="text-xl font-bold text-[#1A1A1E]">All Leads</h1><span className="bg-[#D2F34C] text-[#1A1A1E] text-xs font-bold px-2.5 py-0.5 rounded-full">{filtered.length}</span></div>
+        <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export CSV</button>
       </div>
-
-      <div className="flex flex-wrap gap-2 items-center">
-        {(["leads", "commissions"] as const).map((t) => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              tab === t
-                ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
-                : "bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
-            }`}
-          >
-            {t === "leads" ? `Leads (${leads.length})` : `Commissions (${commissions.length})`}
-          </button>
-        ))}
-
-        {/* Ambassador filter */}
-        <Select value={filterAmbassador} onValueChange={setFilterAmbassador}>
-          <SelectTrigger className="w-[200px] bg-[hsl(var(--card))] border-[hsl(var(--border))] text-sm h-9">
-            <SelectValue placeholder="Tous les ambassadeurs" />
-          </SelectTrigger>
-          <SelectContent className="bg-[hsl(var(--popover))] border-[hsl(var(--border))]">
-            <SelectItem value="all">Tous les ambassadeurs</SelectItem>
-            {ambassadorsWithLeads.map(uid => (
-              <SelectItem key={uid} value={uid}>{getAmbassadorName(uid)}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative flex-1 min-w-[200px] max-w-sm"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" /><input type="text" placeholder="Search leads..." value={search} onChange={e=>{setSearch(e.target.value);setPage(1)}} className="w-full h-9 pl-9 pr-3 rounded-lg bg-white border border-[#E5E7EB] text-sm placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>
+        <select value={stageFilter} onChange={e=>{setStageFilter(e.target.value);setPage(1)}} className="h-9 px-3 rounded-lg bg-white border border-[#E5E7EB] text-xs text-[#6B7280]"><option value="all">All Stages</option>{stages.map(s=><option key={s} value={s}>{s}</option>)}</select>
+        <select value={ambassadorFilter} onChange={e=>{setAmbassadorFilter(e.target.value);setPage(1)}} className="h-9 px-3 rounded-lg bg-white border border-[#E5E7EB] text-xs text-[#6B7280]"><option value="all">All Ambassadors</option>{uniqueAmbs.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}</select>
       </div>
-
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--muted-foreground))]" />
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2 rounded-lg bg-[hsl(var(--card))] border border-[hsl(var(--border))] text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary))]"
-        />
-      </div>
-
-      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-x-auto">
-        {tab === "leads" ? (
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[hsl(var(--border))]">
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Ambassadeur</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Lead</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Email</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Téléphone</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Stage</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Score</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Date</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredLeads.map((l) => {
-                const stageObj = STAGES.find(s => s.value === l.stage) ?? STAGES[0];
-                return (
-                  <TableRow key={l.id} className="border-[hsl(var(--border))]">
-                    <TableCell className="text-xs font-medium text-[hsl(var(--primary))]">{getAmbassadorName(l.user_id)}</TableCell>
-                    <TableCell className="font-medium text-[hsl(var(--foreground))]">{l.first_name} {l.last_name}</TableCell>
-                    <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{l.email || "—"}</TableCell>
-                    <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{l.phone || "—"}</TableCell>
-                    <TableCell>
-                      <Select value={l.stage ?? "nouveau"} onValueChange={(v) => handleStageChange(l.id, v)}>
-                        <SelectTrigger className={`h-7 text-xs border-0 ${stageObj.color} font-semibold w-[120px]`}>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-[hsl(var(--popover))] border-[hsl(var(--border))]">
-                          {STAGES.map(s => (
-                            <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary" className="bg-[hsl(var(--muted))] text-[hsl(var(--foreground))]">{l.score ?? "C"}</Badge>
-                    </TableCell>
-                    <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{new Date(l.created_at).toLocaleDateString("fr-FR")}</TableCell>
-                    <TableCell>
-                      <span className="text-xs text-[hsl(var(--muted-foreground))]">{l.notes ? "📝" : ""}</span>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-              {filteredLeads.length === 0 && (
-                <TableRow><TableCell colSpan={8} className="text-center py-8 text-[hsl(var(--muted-foreground))]">Aucun lead trouvé</TableCell></TableRow>
-              )}
-            </TableBody>
-          </Table>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[hsl(var(--border))]">
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Ambassadeur</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Deal</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Montant (AED)</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Statut</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Date</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredCommissions.map((c) => (
-                <TableRow key={c.id} className="border-[hsl(var(--border))]">
-                  <TableCell className="text-xs font-medium text-[hsl(var(--primary))]">{getAmbassadorName(c.user_id)}</TableCell>
-                  <TableCell className="font-medium text-[hsl(var(--foreground))]">{c.deal_name}</TableCell>
-                  <TableCell className="text-right font-mono text-[hsl(var(--foreground))]">AED {fmt(c.amount)}</TableCell>
-                  <TableCell>
-                    <Select value={c.status ?? "estimated"} onValueChange={(v) => handleCommissionStatus(c.id, v)}>
-                      <SelectTrigger className={`h-7 text-xs border-0 font-semibold w-[120px] ${
-                        c.status === "confirmed" ? "bg-[hsl(160,70%,50%,.1)] text-[hsl(160,70%,50%)]" :
-                        c.status === "paid" ? "bg-[hsl(var(--primary)/.1)] text-[hsl(var(--primary))]" :
-                        "bg-[hsl(45,90%,55%,.1)] text-[hsl(45,90%,55%)]"
-                      }`}>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[hsl(var(--popover))] border-[hsl(var(--border))]">
-                        {COMMISSION_STATUSES.map(s => (
-                          <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell className="text-[hsl(var(--muted-foreground))] text-xs">{new Date(c.date).toLocaleDateString("fr-FR")}</TableCell>
-                  <TableCell>
-                    {c.status !== "paid" && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-emerald-500 hover:text-emerald-400 hover:bg-emerald-500/10"
-                        onClick={() => handleCommissionStatus(c.id, "confirmed")}
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                      </Button>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-              {filteredCommissions.length === 0 && (
-                <TableRow><TableCell colSpan={6} className="text-center py-8 text-[hsl(var(--muted-foreground))]">Aucune commission</TableCell></TableRow>
-              )}
-            </TableBody>
-          </Table>
-        )}
+      <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b border-[#E5E7EB] bg-[#F9FAFB]">
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Lead</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Ambassador</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Stage</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Score</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Contact</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Source</th>
+              <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Created</th>
+              <th className="w-12"></th>
+            </tr></thead>
+            <tbody>{paginated.map(l=>(
+              <tr key={l.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
+                <td className="px-4 py-3 text-sm font-medium text-[#1A1A1E]">{l.first_name} {l.last_name}</td>
+                <td className="px-4 py-3"><button onClick={()=>navigate(`/admin/ambassadors/${l.user_id}`)} className="text-xs text-[#6B7280] hover:text-[#D2F34C] hover:underline">{getAmbName(l.user_id)}</button></td>
+                <td className="px-4 py-3"><select value={l.stage||"nouveau"} onChange={e=>handleStageChange(l.id,e.target.value)} className="text-[10px] font-semibold border-none bg-transparent cursor-pointer">{stages.map(s=><option key={s} value={s}>{s}</option>)}</select></td>
+                <td className="px-4 py-3">{scoreBadge(l.score)}</td>
+                <td className="px-4 py-3"><p className="text-[10px] text-[#6B7280]">{l.email||"—"}</p><p className="text-[10px] text-[#9CA3AF]">{l.phone||"—"}</p></td>
+                <td className="px-4 py-3 text-xs text-[#9CA3AF]">{l.source||"—"}</td>
+                <td className="px-4 py-3 text-[11px] text-[#9CA3AF]">{new Date(l.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}</td>
+                <td className="px-4 py-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><MoreHorizontal className="w-4 h-4 text-[#9CA3AF]" /></button></DropdownMenuTrigger><DropdownMenuContent align="end"><DropdownMenuItem><Eye className="w-3.5 h-3.5 mr-2" /> View</DropdownMenuItem><DropdownMenuItem onClick={()=>handleStageChange(l.id,"perdu")} className="text-[#EF4444]"><Trash2 className="w-3.5 h-3.5 mr-2" /> Mark Lost</DropdownMenuItem></DropdownMenuContent></DropdownMenu></td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+        {paginated.length===0&&<div className="text-center py-16"><Target className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" /><h3 className="text-sm font-semibold text-[#1A1A1E] mb-1">No leads found</h3></div>}
+        {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[#E5E7EB]"><p className="text-xs text-[#9CA3AF]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronLeft className="w-4 h-4" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronRight className="w-4 h-4" /></button></div></div>}
       </div>
     </div>
   );

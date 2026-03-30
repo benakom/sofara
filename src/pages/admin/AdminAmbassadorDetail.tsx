@@ -1,30 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import {
-  ArrowLeft, Loader2, User, Phone, MapPin, Calendar, GitBranch,
-  DollarSign, CreditCard, CheckCircle2, Clock, XCircle, Users, Copy
-} from "lucide-react";
-import { toast } from "sonner";
-
-const STAGES = [
-  { value: "nouveau", label: "Nouveau" },
-  { value: "contacté", label: "Contacté" },
-  { value: "qualifié", label: "Qualifié" },
-  { value: "négociation", label: "Négociation" },
-  { value: "closing", label: "Closing" },
-  { value: "perdu", label: "Perdu" },
-];
-
-const COMMISSION_STATUSES = [
-  { value: "estimated", label: "Estimée" },
-  { value: "confirmed", label: "Confirmée" },
-  { value: "paid", label: "Payée" },
-];
+import { ArrowLeft, Save, ShieldOff, Copy } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "@/hooks/use-toast";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 const AdminAmbassadorDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,283 +12,97 @@ const AdminAmbassadorDetail = () => {
   const [profile, setProfile] = useState<any>(null);
   const [leads, setLeads] = useState<any[]>([]);
   const [commissions, setCommissions] = useState<any[]>([]);
-  const [payments, setPayments] = useState<any[]>([]);
-  const [godchildren, setGodchildren] = useState<any[]>([]);
+  const [referrals, setReferrals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchAll = async () => {
+  useEffect(() => {
     if (!id) return;
-    const [profileRes, leadsRes, commissionsRes, paymentsRes, godchildrenRes] = await Promise.all([
-      supabase.from("profiles").select("*").eq("id", id).single(),
-      supabase.from("leads").select("*").eq("user_id", id).order("created_at", { ascending: false }),
-      supabase.from("commissions").select("*").eq("user_id", id).order("date", { ascending: false }),
-      supabase.from("payments").select("*").eq("user_id", id).order("date", { ascending: false }),
-      supabase.from("profiles").select("id, full_name, created_at, status").eq("referred_by", id),
-    ]);
-    setProfile(profileRes.data);
-    setLeads(leadsRes.data ?? []);
-    setCommissions(commissionsRes.data ?? []);
-    setPayments(paymentsRes.data ?? []);
-    setGodchildren(godchildrenRes.data ?? []);
-    setLoading(false);
-  };
-
-  useEffect(() => { fetchAll(); }, [id]);
+    const fetch = async () => {
+      const [pRes, lRes, cRes, refRes] = await Promise.all([
+        supabase.from("profiles").select("*").eq("id", id).single(),
+        supabase.from("leads").select("*").eq("user_id", id).order("created_at", { ascending: false }),
+        supabase.from("commissions").select("*").eq("user_id", id).order("created_at", { ascending: false }),
+        supabase.from("profiles").select("id, full_name, created_at, status").eq("referred_by", id),
+      ]);
+      setProfile(pRes.data); setLeads(lRes.data ?? []); setCommissions(cRes.data ?? []); setReferrals(refRes.data ?? []); setLoading(false);
+    };
+    fetch();
+  }, [id]);
 
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
+  const handleStatusChange = async (s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setProfile((p: any) => ({ ...p, status: s })); toast({ title: `Status → ${s}` }); };
+  const handleSave = async () => { if (!profile) return; await supabase.from("profiles").update({ full_name: profile.full_name, phone: profile.phone, country: profile.country }).eq("id", id); toast({ title: "Saved" }); };
 
-  const handleStatusChange = async (newStatus: string) => {
-    await supabase.from("profiles").update({ status: newStatus, reviewed_at: new Date().toISOString() }).eq("id", id);
-    toast.success(`Statut → ${newStatus}`);
-    fetchAll();
-  };
+  if (loading || !profile) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
 
-  const handleStageChange = async (leadId: string, stage: string) => {
-    await supabase.from("leads").update({ stage, updated_at: new Date().toISOString() }).eq("id", leadId);
-    toast.success(`Lead → ${stage}`);
-    fetchAll();
-  };
-
-  const handleCommissionStatus = async (commId: string, status: string) => {
-    await supabase.from("commissions").update({ status }).eq("id", commId);
-    toast.success(`Commission → ${status}`);
-    fetchAll();
-  };
-
-  if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" /></div>;
-  }
-
-  if (!profile) {
-    return <div className="text-center py-20 text-[hsl(var(--muted-foreground))]">Ambassadeur introuvable</div>;
-  }
-
-  const totalEstimated = commissions.filter(c => c.status === "estimated").reduce((s, c) => s + Number(c.amount), 0);
-  const totalConfirmed = commissions.filter(c => c.status === "confirmed").reduce((s, c) => s + Number(c.amount), 0);
-  const totalPaid = commissions.filter(c => c.status === "paid").reduce((s, c) => s + Number(c.amount), 0);
-
-  const statusBadge = (s: string) => {
-    if (s === "approved") return <Badge variant="default" className="gap-1"><CheckCircle2 className="w-3 h-3" />Actif</Badge>;
-    if (s === "pending" || s === "onboarding") return <Badge variant="secondary" className="gap-1"><Clock className="w-3 h-3" />En attente</Badge>;
-    if (s === "rejected") return <Badge variant="destructive" className="gap-1"><XCircle className="w-3 h-3" />Refusé</Badge>;
-    return <Badge variant="outline">{s}</Badge>;
-  };
+  const totalComm = commissions.reduce((s, c) => s + Number(c.amount), 0);
+  const qualifiedLeads = leads.filter(l => ["qualifié", "négociation", "closing"].includes(l.stage || ""));
+  const qualifiedRate = leads.length > 0 ? Math.round(qualifiedLeads.length / leads.length * 100) : 0;
+  const closedDeals = leads.filter(l => l.stage === "closing").length;
+  const monthlyLeads: Record<string, number> = {};
+  leads.forEach(l => { const m = new Date(l.created_at).toLocaleDateString("en-US", { month: "short", year: "2-digit" }); monthlyLeads[m] = (monthlyLeads[m] || 0) + 1; });
+  const leadsChart = Object.entries(monthlyLeads).reverse().slice(-8).map(([month, count]) => ({ month, count }));
+  const statusPill = (s: string) => { const m: Record<string,string> = { approved:"bg-[#22C55E]/10 text-[#22C55E]", pending:"bg-[#F59E0B]/10 text-[#F59E0B]", suspended:"bg-[#EF4444]/10 text-[#EF4444]" }; return <span className={`text-xs font-semibold px-3 py-1 rounded-full ${m[s]||"bg-[#9CA3AF]/10 text-[#9CA3AF]"}`}>{s}</span>; };
+  const stagePill = (s: string) => { const c: Record<string,string> = { nouveau:"bg-[#6B7280]/10 text-[#6B7280]", contacté:"bg-[#F59E0B]/10 text-[#F59E0B]", qualifié:"bg-[#22C55E]/10 text-[#22C55E]", négociation:"bg-[#8B5CF6]/10 text-[#8B5CF6]", closing:"bg-[#D2F34C]/20 text-[#1A1A1E]", perdu:"bg-[#EF4444]/10 text-[#EF4444]" }; return <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${c[s]||c.nouveau}`}>{s}</span>; };
 
   return (
-    <div className="space-y-6">
-      {/* Back + header */}
-      <div className="flex items-center gap-3">
-        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => navigate("/admin/ambassadors")}>
-          <ArrowLeft className="w-4 h-4" />
-        </Button>
-        <div className="flex-1">
-          <h1 className="text-xl font-display font-bold text-[hsl(var(--foreground))]">{profile.full_name || "Sans nom"}</h1>
-          <p className="text-xs text-[hsl(var(--muted-foreground))]">ID: {profile.id.slice(0, 8)}… · Inscrit le {new Date(profile.created_at).toLocaleDateString("fr-FR")}</p>
+    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <button onClick={() => navigate("/admin/ambassadors")} className="p-2 rounded-lg hover:bg-[#F5F5F7]"><ArrowLeft className="w-5 h-5 text-[#6B7280]" /></button>
+          <div><div className="flex items-center gap-3"><h1 className="text-xl font-bold text-[#1A1A1E]">{profile.full_name || "—"}</h1>{statusPill(profile.status)}</div><p className="text-xs text-[#9CA3AF] mt-0.5">Joined {new Date(profile.created_at).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}</p></div>
         </div>
-        {statusBadge(profile.status)}
+        <div className="flex items-center gap-2">
+          <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-[#1A1A1E] rounded-lg text-xs font-bold hover:bg-[#BDE040]"><Save className="w-3.5 h-3.5" /> Save</button>
+          {profile.status === "approved" ? <button onClick={() => handleStatusChange("suspended")} className="flex items-center gap-2 px-3 py-2 border border-[#EF4444]/30 text-[#EF4444] rounded-lg text-xs font-medium hover:bg-[#EF4444]/5"><ShieldOff className="w-3.5 h-3.5" /> Suspend</button> : <button onClick={() => handleStatusChange("approved")} className="px-3 py-2 bg-[#22C55E] text-white rounded-lg text-xs font-bold">Activate</button>}
+        </div>
       </div>
-
-      {/* Profile card + Stats */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Profile info */}
-        <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-5 space-y-4">
-          <h2 className="text-sm font-bold text-[hsl(var(--foreground))]">Informations</h2>
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-sm"><User className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /><span className="text-[hsl(var(--foreground))]">{profile.full_name || "—"}</span></div>
-            <div className="flex items-center gap-2 text-sm"><Phone className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /><span className="text-[hsl(var(--foreground))]">{profile.phone || "—"}</span></div>
-            <div className="flex items-center gap-2 text-sm"><MapPin className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /><span className="text-[hsl(var(--foreground))]">{profile.country || "—"}</span></div>
-            <div className="flex items-center gap-2 text-sm"><Calendar className="w-4 h-4 text-[hsl(var(--muted-foreground))]" /><span className="text-[hsl(var(--foreground))]">{new Date(profile.created_at).toLocaleDateString("fr-FR")}</span></div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-xs text-[hsl(var(--muted-foreground))]">Type:</span>
-              <Badge variant="outline" className="text-xs capitalize">{profile.profile_type || "referrer"}</Badge>
-            </div>
-            {profile.referral_code && (
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-[hsl(var(--muted-foreground))]">Code:</span>
-                <code className="text-xs font-mono bg-[hsl(var(--muted))] px-2 py-0.5 rounded text-[hsl(var(--foreground))]">{profile.referral_code}</code>
-                <button onClick={() => { navigator.clipboard.writeText(profile.referral_code); toast.success("Copié"); }}>
-                  <Copy className="w-3 h-3 text-[hsl(var(--muted-foreground))]" />
-                </button>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        <div className="lg:col-span-3 space-y-5">
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Profile Information</h2>
+            <div className="flex items-start gap-5 mb-5">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#D2F34C] to-[#BDE040] flex items-center justify-center text-2xl font-bold text-[#1A1A1E]">{(profile.full_name||"?")[0]}</div>
+              <div className="flex-1 space-y-3">
+                <div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Full Name</label><input value={profile.full_name||""} onChange={e=>setProfile({...profile,full_name:e.target.value})} className="w-full h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Phone</label><input value={profile.phone||""} onChange={e=>setProfile({...profile,phone:e.target.value})} className="w-full h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>
+                  <div><label className="text-[10px] font-semibold text-[#9CA3AF] uppercase">Country</label><input value={profile.country||""} onChange={e=>setProfile({...profile,country:e.target.value})} className="w-full h-9 px-3 mt-1 rounded-lg border border-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>
+                </div>
               </div>
-            )}
-          </div>
-          {/* Actions */}
-          <div className="pt-3 border-t border-[hsl(var(--border))] flex gap-2">
-            {profile.status !== "approved" && (
-              <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white" onClick={() => handleStatusChange("approved")}>
-                <CheckCircle2 className="w-3.5 h-3.5 mr-1" />Activer
-              </Button>
-            )}
-            {profile.status !== "rejected" && profile.status === "approved" && (
-              <Button size="sm" variant="destructive" onClick={() => handleStatusChange("rejected")}>
-                <XCircle className="w-3.5 h-3.5 mr-1" />Suspendre
-              </Button>
-            )}
-          </div>
-        </div>
-
-        {/* Stats cards */}
-        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { label: "Leads", value: leads.length, icon: GitBranch, color: "hsl(var(--primary))" },
-            { label: "Estimé", value: `AED ${fmt(totalEstimated)}`, icon: DollarSign, color: "hsl(45, 90%, 55%)" },
-            { label: "Confirmé", value: `AED ${fmt(totalConfirmed)}`, icon: DollarSign, color: "hsl(160, 70%, 50%)" },
-            { label: "Payé", value: `AED ${fmt(totalPaid)}`, icon: CreditCard, color: "hsl(var(--primary))" },
-            { label: "Paiements", value: payments.length, icon: CreditCard, color: "hsl(280, 70%, 60%)" },
-            { label: "Filleuls", value: godchildren.length, icon: Users, color: "hsl(var(--accent))" },
-            { label: "Pipeline", value: `AED ${fmt(totalEstimated + totalConfirmed + totalPaid)}`, icon: DollarSign, color: "hsl(var(--destructive))" },
-            { label: "Closing", value: leads.filter(l => l.stage === "closing").length, icon: CheckCircle2, color: "hsl(160, 70%, 50%)" },
-          ].map(card => (
-            <div key={card.label} className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <card.icon className="w-4 h-4" style={{ color: card.color }} />
-                <span className="text-[10px] uppercase font-medium text-[hsl(var(--muted-foreground))] tracking-wider">{card.label}</span>
-              </div>
-              <p className="text-lg font-bold text-[hsl(var(--foreground))]">{card.value}</p>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Leads table */}
-      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-[hsl(var(--border))]">
-          <h2 className="text-sm font-bold text-[hsl(var(--foreground))]">Leads ({leads.length})</h2>
-        </div>
-        <Table>
-          <TableHeader>
-            <TableRow className="border-[hsl(var(--border))]">
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Nom</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Email</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Téléphone</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Stage</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Score</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Date</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {leads.map(l => (
-              <TableRow key={l.id} className="border-[hsl(var(--border))]">
-                <TableCell className="font-medium text-[hsl(var(--foreground))]">{l.first_name} {l.last_name}</TableCell>
-                <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{l.email || "—"}</TableCell>
-                <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{l.phone || "—"}</TableCell>
-                <TableCell>
-                  <Select value={l.stage ?? "nouveau"} onValueChange={(v) => handleStageChange(l.id, v)}>
-                    <SelectTrigger className="h-7 text-xs border-0 font-semibold w-[120px] bg-[hsl(var(--muted))]">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-[hsl(var(--popover))] border-[hsl(var(--border))]">
-                      {STAGES.map(s => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </TableCell>
-                <TableCell><Badge variant="secondary">{l.score ?? "C"}</Badge></TableCell>
-                <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{new Date(l.created_at).toLocaleDateString("fr-FR")}</TableCell>
-              </TableRow>
-            ))}
-            {leads.length === 0 && <TableRow><TableCell colSpan={6} className="text-center py-6 text-[hsl(var(--muted-foreground))]">Aucun lead</TableCell></TableRow>}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Commissions table */}
-      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-[hsl(var(--border))]">
-          <h2 className="text-sm font-bold text-[hsl(var(--foreground))]">Commissions ({commissions.length})</h2>
-        </div>
-        <Table>
-          <TableHeader>
-            <TableRow className="border-[hsl(var(--border))]">
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Deal</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Montant</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Statut</TableHead>
-              <TableHead className="text-[hsl(var(--muted-foreground))]">Date</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {commissions.map(c => (
-              <TableRow key={c.id} className="border-[hsl(var(--border))]">
-                <TableCell className="font-medium text-[hsl(var(--foreground))]">{c.deal_name}</TableCell>
-                <TableCell className="text-right font-mono text-[hsl(var(--foreground))]">AED {fmt(c.amount)}</TableCell>
-                <TableCell>
-                  <Select value={c.status ?? "estimated"} onValueChange={(v) => handleCommissionStatus(c.id, v)}>
-                    <SelectTrigger className="h-7 text-xs border-0 font-semibold w-[120px] bg-[hsl(var(--muted))]">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-[hsl(var(--popover))] border-[hsl(var(--border))]">
-                      {COMMISSION_STATUSES.map(s => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </TableCell>
-                <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{new Date(c.date).toLocaleDateString("fr-FR")}</TableCell>
-              </TableRow>
-            ))}
-            {commissions.length === 0 && <TableRow><TableCell colSpan={4} className="text-center py-6 text-[hsl(var(--muted-foreground))]">Aucune commission</TableCell></TableRow>}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Payments */}
-      {payments.length > 0 && (
-        <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-hidden">
-          <div className="px-5 py-3 border-b border-[hsl(var(--border))]">
-            <h2 className="text-sm font-bold text-[hsl(var(--foreground))]">Paiements ({payments.length})</h2>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-[#F9FAFB] rounded-lg p-3 flex items-center gap-2"><span className="text-[10px] font-semibold text-[#9CA3AF]">Referral Code:</span><span className="text-xs font-mono font-bold text-[#1A1A1E]">{profile.referral_code||"—"}</span>{profile.referral_code&&<button onClick={()=>{navigator.clipboard.writeText(profile.referral_code);toast({title:"Copied!"})}}><Copy className="w-3 h-3 text-[#9CA3AF]" /></button>}</div>
+              <div className="bg-[#F9FAFB] rounded-lg p-3"><span className="text-[10px] font-semibold text-[#9CA3AF]">Type: </span><span className="text-xs font-bold text-[#1A1A1E]">{profile.profile_type||"—"}</span></div>
+            </div>
           </div>
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[hsl(var(--border))]">
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Référence</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Deal</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))] text-right">Montant</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Statut</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Date</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {payments.map(p => (
-                <TableRow key={p.id} className="border-[hsl(var(--border))]">
-                  <TableCell className="font-mono text-xs text-[hsl(var(--foreground))]">{p.reference}</TableCell>
-                  <TableCell className="text-[hsl(var(--foreground))]">{p.deal_name || "—"}</TableCell>
-                  <TableCell className="text-right font-mono font-medium text-[hsl(var(--foreground))]">AED {fmt(p.amount)}</TableCell>
-                  <TableCell>
-                    <Badge variant={p.status === "paid" ? "default" : "secondary"} className="text-xs">
-                      {p.status === "paid" ? "Payé" : p.status === "processing" ? "En cours" : "En attente"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{new Date(p.date).toLocaleDateString("fr-FR")}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      )}
-
-      {/* Godchildren / Referrals */}
-      {godchildren.length > 0 && (
-        <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl overflow-hidden">
-          <div className="px-5 py-3 border-b border-[hsl(var(--border))]">
-            <h2 className="text-sm font-bold text-[hsl(var(--foreground))]">Filleuls ({godchildren.length})</h2>
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Performance Metrics</h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+              {[{l:"Total Leads",v:leads.length},{l:"Qualified",v:`${qualifiedLeads.length} (${qualifiedRate}%)`},{l:"Deals Closed",v:closedDeals},{l:"Commission",v:`AED ${fmt(totalComm)}`}].map(m=>(<div key={m.l} className="bg-[#F9FAFB] rounded-xl p-3"><p className="text-lg font-bold text-[#1A1A1E]">{m.v}</p><p className="text-[10px] text-[#9CA3AF]">{m.l}</p></div>))}
+            </div>
+            {leadsChart.length>0&&<ResponsiveContainer width="100%" height={160}><LineChart data={leadsChart}><CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" /><XAxis dataKey="month" tick={{fontSize:10,fill:"#9CA3AF"}} axisLine={false} tickLine={false} /><YAxis tick={{fontSize:10,fill:"#9CA3AF"}} axisLine={false} tickLine={false} /><Tooltip contentStyle={{background:"#1A1A1E",border:"none",borderRadius:8,fontSize:11,color:"#fff"}} /><Line type="monotone" dataKey="count" stroke="#D2F34C" strokeWidth={2} dot={{fill:"#D2F34C",r:3}} /></LineChart></ResponsiveContainer>}
           </div>
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[hsl(var(--border))]">
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Nom</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Statut</TableHead>
-                <TableHead className="text-[hsl(var(--muted-foreground))]">Inscrit le</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {godchildren.map(g => (
-                <TableRow key={g.id} className="border-[hsl(var(--border))] cursor-pointer hover:bg-[hsl(var(--muted)/.5)]" onClick={() => navigate(`/admin/ambassadors/${g.id}`)}>
-                  <TableCell className="font-medium text-[hsl(var(--foreground))]">{g.full_name || "—"}</TableCell>
-                  <TableCell>{statusBadge(g.status)}</TableCell>
-                  <TableCell className="text-xs text-[hsl(var(--muted-foreground))]">{new Date(g.created_at).toLocaleDateString("fr-FR")}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Commission History</h2>
+            {commissions.length>0?<div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b border-[#E5E7EB]"><th className="text-left py-2 text-[10px] font-semibold text-[#9CA3AF] uppercase">Date</th><th className="text-left py-2 text-[10px] font-semibold text-[#9CA3AF] uppercase">Deal</th><th className="text-left py-2 text-[10px] font-semibold text-[#9CA3AF] uppercase">Amount</th><th className="text-left py-2 text-[10px] font-semibold text-[#9CA3AF] uppercase">Status</th></tr></thead><tbody>{commissions.map(c=>(<tr key={c.id} className="border-b border-[#F5F5F7]"><td className="py-2 text-xs text-[#6B7280]">{new Date(c.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}</td><td className="py-2 text-xs font-medium text-[#1A1A1E]">{c.deal_name}</td><td className="py-2 text-xs font-bold text-[#1A1A1E]">AED {fmt(c.amount)}</td><td className="py-2">{statusPill(c.status)}</td></tr>))}</tbody></table></div>:<p className="text-xs text-[#9CA3AF] text-center py-6">No commissions yet</p>}
+          </div>
         </div>
-      )}
+        <div className="lg:col-span-2 space-y-5">
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-3">Lead Activity</h2>
+            <div className="space-y-0 max-h-[300px] overflow-y-auto">{leads.slice(0,15).map((l,i)=>(<div key={l.id} className={`flex items-center gap-3 py-2.5 ${i<leads.length-1?"border-b border-[#F5F5F7]":""}`}><div className="flex-1 min-w-0"><p className="text-xs font-medium text-[#1A1A1E] truncate">{l.first_name} {l.last_name}</p><p className="text-[10px] text-[#9CA3AF]">{new Date(l.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}</p></div>{stagePill(l.stage||"nouveau")}</div>))}{leads.length===0&&<p className="text-xs text-[#9CA3AF] text-center py-6">No leads yet</p>}</div>
+          </div>
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-3">Referrals ({referrals.length})</h2>
+            <div className="space-y-0">{referrals.map((r,i)=>(<div key={r.id} className={`flex items-center gap-3 py-2.5 ${i<referrals.length-1?"border-b border-[#F5F5F7]":""}`}><div className="w-7 h-7 rounded-full bg-[#F5F5F7] flex items-center justify-center text-[9px] font-bold text-[#6B7280]">{(r.full_name||"?")[0]}</div><div className="flex-1 min-w-0"><p className="text-xs font-medium text-[#1A1A1E] truncate">{r.full_name||"—"}</p></div>{statusPill(r.status)}</div>))}{referrals.length===0&&<p className="text-xs text-[#9CA3AF] text-center py-6">No referrals</p>}</div>
+          </div>
+          <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="text-sm font-bold text-[#1A1A1E] mb-4">Admin Controls</h2>
+            <div className="space-y-3">{["Pro Access","Can Submit Leads","Commission Payouts","WhatsApp AI Copilot","Qualify Lead AI","Project Matching AI","Scripts & Objections AI","Academy Access","Referral Program"].map(label=>(<div key={label} className="flex items-center justify-between py-1"><span className="text-xs text-[#6B7280]">{label}</span><Switch defaultChecked={profile.status==="approved"} onCheckedChange={checked=>toast({title:`${label} ${checked?"enabled":"disabled"}`})} /></div>))}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

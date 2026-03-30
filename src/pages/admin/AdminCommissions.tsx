@@ -1,172 +1,80 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Search, CheckCircle2, DollarSign, TrendingUp, Clock } from "lucide-react";
-import { toast } from "sonner";
-
-interface Profile { id: string; full_name: string | null; }
-
-const STATUSES = [
-  { value: "estimated", label: "Estimée", color: "bg-[hsl(45,90%,55%/.12)] text-[hsl(45,90%,55%)]" },
-  { value: "confirmed", label: "Confirmée", color: "bg-[hsl(80,70%,55%/.12)] text-[hsl(80,70%,55%)]" },
-  { value: "paid", label: "Payée", color: "bg-[hsl(var(--primary)/.12)] text-[hsl(var(--primary))]" },
-];
+import { Search, Download, DollarSign, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const AdminCommissions = () => {
   const [commissions, setCommissions] = useState<any[]>([]);
-  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profiles, setProfiles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filterStatus, setFilterStatus] = useState("all");
+  const [tab, setTab] = useState("all");
+  const [page, setPage] = useState(1);
+  const perPage = 25;
 
-  const fetchData = async () => {
-    const [commissionsRes, profilesRes] = await Promise.all([
-      supabase.from("commissions").select("*").order("date", { ascending: false }),
-      supabase.from("profiles").select("id, full_name"),
-    ]);
-    setCommissions(commissionsRes.data ?? []);
-    setProfiles(profilesRes.data ?? []);
-    setLoading(false);
-  };
+  useEffect(() => {
+    const fetch = async () => {
+      const [cRes, pRes] = await Promise.all([
+        supabase.from("commissions").select("*").order("created_at", { ascending: false }),
+        supabase.from("profiles").select("id, full_name"),
+      ]);
+      setCommissions(cRes.data ?? []); setProfiles(pRes.data ?? []); setLoading(false);
+    };
+    fetch();
+  }, []);
 
-  useEffect(() => { fetchData(); }, []);
-
-  const getName = (uid: string) => profiles.find(p => p.id === uid)?.full_name || uid.slice(0, 8) + "…";
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
+  const getName = (uid: string) => profiles.find(p => p.id === uid)?.full_name || "—";
+  const tabs = ["all", "estimated", "confirmed", "paid", "rejected"];
+  const filtered = commissions.filter(c => { const mt = tab === "all" || c.status === tab; const ms = !search || c.deal_name.toLowerCase().includes(search.toLowerCase()) || getName(c.user_id).toLowerCase().includes(search.toLowerCase()); return mt && ms; });
+  const totalPages = Math.ceil(filtered.length / perPage);
+  const paginated = filtered.slice((page - 1) * perPage, page * perPage);
+  const handleStatus = async (id: string, status: string) => { await supabase.from("commissions").update({ status }).eq("id", id); setCommissions(prev => prev.map(c => c.id === id ? { ...c, status } : c)); toast({ title: `Commission ${status}` }); };
+  const totalPaid = commissions.filter(c => c.status === "paid").reduce((s, c) => s + Number(c.amount), 0);
+  const totalPending = commissions.filter(c => c.status === "estimated").reduce((s, c) => s + Number(c.amount), 0);
+  const totalApproved = commissions.filter(c => c.status === "confirmed").reduce((s, c) => s + Number(c.amount), 0);
+  const thisMonth = commissions.filter(c => { const d = new Date(c.created_at); const n = new Date(); return d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear(); }).reduce((s, c) => s + Number(c.amount), 0);
+  const statusPill = (s: string) => { const m: Record<string,string> = { estimated:"bg-[#F59E0B]/10 text-[#F59E0B]", confirmed:"bg-[#3B82F6]/10 text-[#3B82F6]", paid:"bg-[#22C55E]/10 text-[#22C55E]", rejected:"bg-[#EF4444]/10 text-[#EF4444]" }; return <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${m[s]||"bg-[#9CA3AF]/10 text-[#9CA3AF]"}`}>{s}</span>; };
+  const exportCSV = () => { const h = ["Ambassador","Deal","Amount","Status","Date"]; const r = filtered.map(c => [getName(c.user_id),c.deal_name,c.amount,c.status,new Date(c.created_at).toLocaleDateString()]); const csv = [h,...r].map(r=>r.join(",")).join("\n"); const b = new Blob([csv],{type:"text/csv"}); const u = URL.createObjectURL(b); const a = document.createElement("a"); a.href=u; a.download="commissions.csv"; a.click(); };
 
-  const handleStatusChange = async (id: string, newStatus: string) => {
-    const { error } = await supabase.from("commissions").update({ status: newStatus }).eq("id", id);
-    if (error) { toast.error("Erreur"); return; }
-    toast.success(`Commission → ${newStatus}`);
-    fetchData();
-  };
-
-  const filtered = commissions
-    .filter(c => filterStatus === "all" || c.status === filterStatus)
-    .filter(c => `${c.deal_name} ${getName(c.user_id)}`.toLowerCase().includes(search.toLowerCase()));
-
-  const estimated = commissions.filter(c => c.status === "estimated").reduce((s, c) => s + Number(c.amount), 0);
-  const confirmed = commissions.filter(c => c.status === "confirmed").reduce((s, c) => s + Number(c.amount), 0);
-  const paid = commissions.filter(c => c.status === "paid").reduce((s, c) => s + Number(c.amount), 0);
-
-  if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--primary))]" /></div>;
-  }
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#1A1A1E] border-t-transparent animate-spin" /></div>;
 
   return (
-    <div className="space-y-6 max-w-[1400px]">
-      <div>
-        <h1 className="text-2xl font-display font-bold text-white">Commissions</h1>
-        <p className="text-sm text-[hsl(228,10%,50%)] mt-1">{commissions.length} commissions au total</p>
+    <div className="space-y-6 max-w-[1400px] font-['Inter']">
+      <div className="flex items-center justify-between"><h1 className="text-xl font-bold text-[#1A1A1E]">Commissions</h1><button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export</button></div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {[{l:"Total Paid",v:`AED ${fmt(totalPaid)}`,c:"#22C55E"},{l:"Pending Approval",v:`AED ${fmt(totalPending)}`,c:"#F59E0B"},{l:"Approved",v:`AED ${fmt(totalApproved)}`,c:"#3B82F6"},{l:"This Month",v:`AED ${fmt(thisMonth)}`,c:"#1A1A1E"}].map(s=>(<div key={s.l} className="bg-white rounded-xl border border-[#E5E7EB] p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"><p className="text-lg font-bold text-[#1A1A1E]">{s.v}</p><p className="text-[11px] font-medium mt-0.5" style={{color:s.c}}>{s.l}</p></div>))}
       </div>
-
-      {/* Summary cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <SummaryCard icon={Clock} label="Estimées" value={`AED ${fmt(estimated)}`} count={commissions.filter(c => c.status === "estimated").length} color="hsl(45,90%,55%)" />
-        <SummaryCard icon={CheckCircle2} label="Confirmées" value={`AED ${fmt(confirmed)}`} count={commissions.filter(c => c.status === "confirmed").length} color="hsl(80,70%,55%)" />
-        <SummaryCard icon={DollarSign} label="Payées" value={`AED ${fmt(paid)}`} count={commissions.filter(c => c.status === "paid").length} color="hsl(var(--primary))" />
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="flex gap-1 bg-[#F5F5F7] p-1 rounded-lg">{tabs.map(t=>(<button key={t} onClick={()=>{setTab(t);setPage(1)}} className={`px-3 py-1.5 rounded-md text-xs font-medium ${tab===t?"bg-white text-[#1A1A1E] shadow-sm":"text-[#6B7280]"}`}>{t==="all"?"All":t.charAt(0).toUpperCase()+t.slice(1)}</button>))}</div>
+        <div className="relative flex-1 max-w-sm"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" /><input type="text" placeholder="Search..." value={search} onChange={e=>{setSearch(e.target.value);setPage(1)}} className="w-full h-9 pl-9 pr-3 rounded-lg bg-white border border-[#E5E7EB] text-sm placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" /></div>
       </div>
-
-      {/* Filters */}
-      <div className="flex flex-wrap gap-2 items-center">
-        {[{ key: "all", label: "Toutes" }, ...STATUSES.map(s => ({ key: s.value, label: s.label }))].map(tab => (
-          <button
-            key={tab.key}
-            onClick={() => setFilterStatus(tab.key)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              filterStatus === tab.key ? "bg-white/10 text-white" : "bg-[hsl(228,18%,12%)] text-[hsl(228,10%,50%)] hover:text-white"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-        <div className="flex-1" />
-        <div className="relative max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(228,10%,35%)]" />
-          <input
-            type="text" placeholder="Rechercher..."
-            value={search} onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 rounded-lg bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] text-sm text-white placeholder:text-[hsl(228,10%,35%)] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--primary)/.5)]"
-          />
+      <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b border-[#E5E7EB] bg-[#F9FAFB]"><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Ambassador</th><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Deal</th><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Amount</th><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Status</th><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Date</th><th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Actions</th></tr></thead>
+            <tbody>{paginated.map(c=>(
+              <tr key={c.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
+                <td className="px-4 py-3 text-sm font-medium text-[#1A1A1E]">{getName(c.user_id)}</td>
+                <td className="px-4 py-3 text-xs text-[#6B7280]">{c.deal_name}</td>
+                <td className="px-4 py-3 text-sm font-bold text-[#1A1A1E]">AED {fmt(c.amount)}</td>
+                <td className="px-4 py-3">{statusPill(c.status)}</td>
+                <td className="px-4 py-3 text-[11px] text-[#9CA3AF]">{new Date(c.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}</td>
+                <td className="px-4 py-3"><div className="flex items-center gap-1">
+                  {c.status==="estimated"&&<><button onClick={()=>handleStatus(c.id,"confirmed")} className="px-2.5 py-1 rounded-md bg-[#D2F34C] text-[10px] font-bold text-[#1A1A1E] hover:bg-[#BDE040]">Approve</button><button onClick={()=>handleStatus(c.id,"rejected")} className="px-2.5 py-1 rounded-md border border-[#EF4444]/30 text-[10px] font-bold text-[#EF4444]">Reject</button></>}
+                  {c.status==="confirmed"&&<button onClick={()=>handleStatus(c.id,"paid")} className="px-2.5 py-1 rounded-md bg-[#22C55E] text-[10px] font-bold text-white">Mark Paid</button>}
+                  {c.status==="rejected"&&<button onClick={()=>handleStatus(c.id,"estimated")} className="px-2.5 py-1 rounded-md border border-[#E5E7EB] text-[10px] text-[#6B7280] flex items-center gap-1"><RotateCcw className="w-3 h-3" /> Reopen</button>}
+                  {c.status==="paid"&&<span className="text-[10px] text-[#9CA3AF]">Done</span>}
+                </div></td>
+              </tr>
+            ))}</tbody>
+          </table>
         </div>
-      </div>
-
-      {/* Table */}
-      <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow className="border-[hsl(228,18%,14%)] hover:bg-transparent">
-              <TableHead className="text-[hsl(228,10%,45%)]">Ambassadeur</TableHead>
-              <TableHead className="text-[hsl(228,10%,45%)]">Deal</TableHead>
-              <TableHead className="text-[hsl(228,10%,45%)] text-right">Montant</TableHead>
-              <TableHead className="text-[hsl(228,10%,45%)]">Statut</TableHead>
-              <TableHead className="text-[hsl(228,10%,45%)]">Date</TableHead>
-              <TableHead className="text-[hsl(228,10%,45%)] text-center">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.map((c) => {
-              const statusObj = STATUSES.find(s => s.value === c.status) ?? STATUSES[0];
-              return (
-                <TableRow key={c.id} className="border-[hsl(228,18%,12%)] hover:bg-[hsl(228,18%,12%)]">
-                  <TableCell className="text-xs font-medium text-[hsl(var(--primary))]">{getName(c.user_id)}</TableCell>
-                  <TableCell className="font-medium text-white">{c.deal_name}</TableCell>
-                  <TableCell className="text-right font-mono font-semibold text-white">AED {fmt(c.amount)}</TableCell>
-                  <TableCell>
-                    <Select value={c.status ?? "estimated"} onValueChange={(v) => handleStatusChange(c.id, v)}>
-                      <SelectTrigger className={`h-7 text-xs border-0 ${statusObj.color} font-semibold w-[120px]`}>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[hsl(228,20%,12%)] border-[hsl(228,18%,18%)]">
-                        {STATUSES.map(s => (
-                          <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell className="text-[hsl(228,10%,45%)] text-xs">{new Date(c.date).toLocaleDateString("fr-FR")}</TableCell>
-                  <TableCell className="text-center">
-                    {c.status === "estimated" && (
-                      <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(80,70%,55%)] hover:bg-[hsl(80,70%,55%/.1)]"
-                        onClick={() => handleStatusChange(c.id, "confirmed")}>
-                        <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Confirmer
-                      </Button>
-                    )}
-                    {c.status === "confirmed" && (
-                      <Button size="sm" variant="ghost" className="h-7 px-2 text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/.1)]"
-                        onClick={() => handleStatusChange(c.id, "paid")}>
-                        <DollarSign className="w-3.5 h-3.5 mr-1" /> Marquer payée
-                      </Button>
-                    )}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-            {filtered.length === 0 && (
-              <TableRow><TableCell colSpan={6} className="text-center py-8 text-[hsl(228,10%,40%)]">Aucune commission</TableCell></TableRow>
-            )}
-          </TableBody>
-        </Table>
+        {paginated.length===0&&<div className="text-center py-16"><DollarSign className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" /><h3 className="text-sm font-semibold text-[#1A1A1E]">No commissions found</h3></div>}
+        {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[#E5E7EB]"><p className="text-xs text-[#9CA3AF]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronLeft className="w-4 h-4" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronRight className="w-4 h-4" /></button></div></div>}
       </div>
     </div>
   );
 };
-
-const SummaryCard = ({ icon: Icon, label, value, count, color }: {
-  icon: any; label: string; value: string; count: number; color: string;
-}) => (
-  <div className="bg-[hsl(228,20%,11%)] border border-[hsl(228,18%,16%)] rounded-xl p-4 flex items-center gap-4">
-    <div className="p-2.5 rounded-lg" style={{ backgroundColor: color + "12" }}>
-      <Icon className="w-4.5 h-4.5" style={{ color }} />
-    </div>
-    <div>
-      <p className="text-lg font-bold font-mono text-white">{value}</p>
-      <p className="text-[11px] text-[hsl(228,10%,45%)]">{count} {label.toLowerCase()}</p>
-    </div>
-  </div>
-);
 
 export default AdminCommissions;
