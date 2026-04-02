@@ -75,6 +75,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <CookieConsent />
             <Suspense fallback={<RouteLoading />}>
               <Routes>
                 <Route path="/" element={<Index />} />
