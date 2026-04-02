@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
+import CookieConsent from "./components/CookieConsent";
 
 // Lazy load all non-landing pages
 const Legal = lazy(() => import("./pages/Legal"));
@@ -74,6 +75,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <CookieConsent />
             <Suspense fallback={<RouteLoading />}>
               <Routes>
                 <Route path="/" element={<Index />} />
