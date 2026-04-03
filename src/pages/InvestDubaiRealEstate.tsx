@@ -146,7 +146,7 @@ const InvestDubaiPage = () => {
                       <MapPin className="w-4 h-4 text-primary" /> {a.name}
                     </td>
                     <td className="p-4 text-center text-primary font-semibold">{a.yield}</td>
-                    <td className="p-4 text-center text-green-400 font-semibold">{a.growth}</td>
+                    <td className="p-4 text-center text-emerald-500 font-semibold">{a.growth}</td>
                     <td className="p-4 text-center text-muted-foreground">{a.price}</td>
                   </tr>
                 ))}
