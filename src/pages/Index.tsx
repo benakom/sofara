@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
 import LandingChatbot from "@/components/landing/LandingChatbot";
+import SEO from "@/components/SEO";
 
 // Lazy load below-fold sections
 const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
