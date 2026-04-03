@@ -27,6 +27,12 @@ const Legal = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={`${currentSection === "terms" ? "Terms of Service" : currentSection === "privacy" ? "Privacy Policy" : "Cookie Policy"} | Sofara`}
+        description={`Read Sofara's ${currentSection === "terms" ? "terms of service" : currentSection === "privacy" ? "privacy policy" : "cookie policy"} for the Dubai real estate ambassador platform.`}
+        canonical={`https://www.sofara.io/legal/${currentSection}`}
+        noindex
+      />
       {/* Header */}
       <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-2xl border-b border-border/40">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
