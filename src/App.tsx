@@ -89,6 +89,9 @@ const App = () => (
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/legal/:section" element={<Legal />} />
+                <Route path="/invest-dubai-real-estate" element={<InvestDubaiRealEstate />} />
+                <Route path="/buy-property-dubai" element={<BuyPropertyDubai />} />
+                <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
                   <Route path="academy" element={<Academy />} />
