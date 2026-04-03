@@ -24,6 +24,30 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={article.title}
+        description={article.excerpt}
+        canonical={`https://www.sofara.io/blog/${article.slug}`}
+        ogType="article"
+        ogImage={article.image}
+        article={{
+          publishedTime: article.date,
+          author: article.author,
+          section: article.category,
+          tags: article.tags,
+        }}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.excerpt,
+          image: article.image,
+          datePublished: article.date,
+          author: { "@type": "Organization", name: article.author, url: "https://www.sofara.io" },
+          publisher: { "@type": "Organization", name: "Sofara", url: "https://www.sofara.io", logo: { "@type": "ImageObject", url: "https://www.sofara.io/favicon.png" } },
+          mainEntityOfPage: `https://www.sofara.io/blog/${article.slug}`,
+        }}
+      />
       <Navbar />
       <main className="pt-24 sm:pt-28 pb-16">
         {/* Back */}
