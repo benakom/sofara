@@ -203,8 +203,11 @@ const BlogPost = () => {
         </section>
       </main>
       <FooterSection />
+    </div>
+  );
+};
 
-      {/* Article JSON-LD */}
+export default BlogPost;
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
