@@ -46,6 +46,9 @@ const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
 const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
 const Library = lazy(() => import("./pages/dashboard/Library"));
 const Referrals = lazy(() => import("./pages/dashboard/Referrals"));
+const InvestDubaiRealEstate = lazy(() => import("./pages/InvestDubaiRealEstate"));
+const BuyPropertyDubai = lazy(() => import("./pages/BuyPropertyDubai"));
+const DubaiOffPlanProperties = lazy(() => import("./pages/DubaiOffPlanProperties"));
 
 const queryClient = new QueryClient();
 
