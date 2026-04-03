@@ -69,6 +69,7 @@ const RouteLoading = () => {
 };
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <AuthProvider>
