@@ -215,11 +215,11 @@
     background: conic-gradient(
       from 180deg at 50% 50%,
       hsl(72, 100%, 50%, 0.04) 0deg,
-      hsl(140, 50%, 40%, 0.06) 60deg,
+      hsl(72, 100%, 50%, 0.06) 60deg,
       hsl(90, 80%, 45%, 0.04) 120deg,
       transparent 180deg,
       hsl(72, 100%, 50%, 0.03) 240deg,
-      hsl(140, 50%, 40%, 0.05) 300deg,
+      hsl(72, 100%, 50%, 0.05) 300deg,
       hsl(72, 100%, 50%, 0.04) 360deg
     );
     animation: aurora-rotate 20s linear infinite;
