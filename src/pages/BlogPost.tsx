@@ -207,7 +207,7 @@ const BlogPost = () => {
   );
 };
 
-        type="application/ld+json"
+export default BlogPost;
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
