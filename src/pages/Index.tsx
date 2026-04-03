@@ -31,6 +31,41 @@ const Loader = () => (
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Sofara | Dubai Real Estate Ambassador Network — Earn 3% Commission"
+        description="Join Sofara, the #1 Dubai real estate ambassador network. Earn 3% commission on Emaar, Damac, Sobha & top UAE developers. No license needed. Free to join. AI-powered platform."
+        canonical="https://www.sofara.io/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Sofara",
+            url: "https://www.sofara.io",
+            logo: "https://www.sofara.io/favicon.png",
+            description: "The #1 Dubai real estate ambassador network. Earn commissions on Emaar, Damac, Sobha and top UAE property developers.",
+            parentOrganization: {
+              "@type": "Organization",
+              name: "Cevitas Real Estate LLC",
+              address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+            },
+            areaServed: { "@type": "City", name: "Dubai", containedIn: { "@type": "Country", name: "United Arab Emirates" } },
+            knowsAbout: ["Dubai Real Estate", "UAE Property Investment", "Emaar Properties", "Damac Properties", "Sobha Realty", "Off-Plan Properties Dubai"],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Sofara",
+            url: "https://www.sofara.io",
+            description: "Dubai real estate ambassador network — earn 3% commission on every property sale",
+            inLanguage: ["en", "fr", "ar", "es", "ru"],
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://www.sofara.io/blog?search={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          },
+        ]}
+      />
       <Navbar />
       <main>
         <HeroSection />
