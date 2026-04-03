@@ -407,6 +407,12 @@ const Auth = () => {
 
   return (
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
+      <SEO
+        title="Join Sofara — Become a Dubai Real Estate Ambassador | Earn 3% Commission"
+        description="Sign up free to become a Dubai real estate ambassador. Earn 3% commission on every sale from Emaar, Damac, Sobha. No license needed. AI-powered platform."
+        canonical="https://www.sofara.io/auth"
+        noindex
+      />
       {/* Left panel — Immersive hero */}
       <div className="relative lg:w-[55%] h-52 sm:h-64 lg:h-auto lg:min-h-[100svh] flex-shrink-0 overflow-hidden">
         <img

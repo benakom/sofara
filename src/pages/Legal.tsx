@@ -3,6 +3,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import SEO from "@/components/SEO";
 
 type LegalSection = "terms" | "privacy" | "cookies";
 
