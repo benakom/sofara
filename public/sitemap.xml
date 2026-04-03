@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Main pages -->
   <url>
     <loc>https://www.sofara.io/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sofara.io/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sofara.io/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sofara.io/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sofara.io/" />
   </url>
+
+  <!-- SEO Landing Pages -->
+  <url>
+    <loc>https://www.sofara.io/invest-dubai-real-estate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.sofara.io/buy-property-dubai</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.sofara.io/dubai-off-plan-properties</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Blog -->
   <url>
     <loc>https://www.sofara.io/blog</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Auth -->
   <url>
     <loc>https://www.sofara.io/auth</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Legal -->
   <url>
     <loc>https://www.sofara.io/legal/privacy</loc>
     <changefreq>yearly</changefreq>
@@ -30,45 +59,47 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+  <!-- Blog articles -->
   <url>
     <loc>https://www.sofara.io/blog/dubai-real-estate-market-2026-overview</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/why-invest-dubai-property-2026</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/top-dubai-areas-investment-2026</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/dubai-off-plan-vs-ready-properties</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/emaar-properties-guide</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/damac-properties-guide</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/sobha-realty-quality-investment</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/how-to-become-dubai-real-estate-ambassador</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/sofara-commission-structure-explained</loc>
@@ -108,7 +139,7 @@
   <url>
     <loc>https://www.sofara.io/blog/dubai-golden-visa-real-estate</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/dubai-dld-fees-explained</loc>
@@ -133,7 +164,7 @@
   <url>
     <loc>https://www.sofara.io/blog/foreigners-buying-dubai-property</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.sofara.io/blog/ai-real-estate-future-dubai</loc>

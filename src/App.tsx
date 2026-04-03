@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
+import { HelmetProvider } from "react-helmet-async";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import CookieConsent from "./components/CookieConsent";
@@ -45,6 +46,9 @@ const CalendarPage = lazy(() => import("./pages/dashboard/Calendar"));
 const LegalAI = lazy(() => import("./pages/dashboard/LegalAI"));
 const Library = lazy(() => import("./pages/dashboard/Library"));
 const Referrals = lazy(() => import("./pages/dashboard/Referrals"));
+const InvestDubaiRealEstate = lazy(() => import("./pages/InvestDubaiRealEstate"));
+const BuyPropertyDubai = lazy(() => import("./pages/BuyPropertyDubai"));
+const DubaiOffPlanProperties = lazy(() => import("./pages/DubaiOffPlanProperties"));
 
 const queryClient = new QueryClient();
 
@@ -68,6 +72,7 @@ const RouteLoading = () => {
 };
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <AuthProvider>
@@ -84,6 +89,9 @@ const App = () => (
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/legal/:section" element={<Legal />} />
+                <Route path="/invest-dubai-real-estate" element={<InvestDubaiRealEstate />} />
+                <Route path="/buy-property-dubai" element={<BuyPropertyDubai />} />
+                <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
                   <Route path="academy" element={<Academy />} />
@@ -123,6 +131,7 @@ const App = () => (
       </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
