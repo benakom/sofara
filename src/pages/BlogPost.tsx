@@ -207,31 +207,3 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.excerpt,
-            image: article.image,
-            datePublished: article.date,
-            author: {
-              "@type": "Organization",
-              name: article.author,
-              url: "https://www.sofara.io",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "Sofara",
-              url: "https://www.sofara.io",
-            },
-            mainEntityOfPage: `https://www.sofara.io/blog/${article.slug}`,
-          }),
-        }}
-      />
-    </div>
-  );
-};
-
-export default BlogPost;
