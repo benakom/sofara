@@ -234,7 +234,7 @@
   }
 
   .dot-pattern {
-    background-image: radial-gradient(hsl(150, 15%, 20%) 1px, transparent 1px);
+    background-image: radial-gradient(hsl(0, 0%, 18%) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
