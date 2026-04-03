@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Calendar, Tag, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
+import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
