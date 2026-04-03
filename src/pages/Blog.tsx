@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
+import SEO from "@/components/SEO";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
 
 const Blog = () => {
