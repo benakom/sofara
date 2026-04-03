@@ -207,8 +207,6 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
-      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
