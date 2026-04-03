@@ -31,10 +31,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[100svh] overflow-hidden flex flex-col" aria-label="Sofara Dubai Real Estate Ambassador Program">
       {/* Background */}
-      <div className="absolute inset-0">
-        <img src={dubaiHero} alt="Dubai skyline at night — luxury real estate market" className="w-full h-full object-cover opacity-30" loading="eager" fetchPriority="high" decoding="async" />
-      </div>
-      <div className="absolute inset-0 bg-background/60" />
+      <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 bg-gradient-mesh" />
       <div className="absolute inset-0 grid-pattern opacity-10 hidden sm:block" />
 
