@@ -27,7 +27,7 @@ const BlogPost = () => {
       <SEO
         title={article.title}
         description={article.excerpt}
-        canonical={`https://www.sofara.io/blog/${article.slug}`}
+        canonical={`https://sofara.io/blog/${article.slug}`}
         ogType="article"
         ogImage={article.image}
         article={{
@@ -43,9 +43,9 @@ const BlogPost = () => {
           description: article.excerpt,
           image: article.image,
           datePublished: article.date,
-          author: { "@type": "Organization", name: article.author, url: "https://www.sofara.io" },
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://www.sofara.io", logo: { "@type": "ImageObject", url: "https://www.sofara.io/favicon.png" } },
-          mainEntityOfPage: `https://www.sofara.io/blog/${article.slug}`,
+          author: { "@type": "Organization", name: article.author, url: "https://sofara.io" },
+          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon.png" } },
+          mainEntityOfPage: `https://sofara.io/blog/${article.slug}`,
         }}
       />
       <Navbar />

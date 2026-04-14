@@ -18,7 +18,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Sofara";
-const BASE_URL = "https://www.sofara.io";
+const BASE_URL = "https://sofara.io";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-sofara.png`;
 
 const SEO = ({

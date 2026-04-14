@@ -34,14 +34,14 @@ const Index = () => {
       <SEO
         title="Sofara | Dubai Real Estate Ambassador Network — Earn 3% Commission"
         description="Join Sofara, the #1 Dubai real estate ambassador network. Earn 3% commission on Emaar, Damac, Sobha & top UAE developers. No license needed. Free to join. AI-powered platform."
-        canonical="https://www.sofara.io/"
+        canonical="https://sofara.io/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Sofara",
-            url: "https://www.sofara.io",
-            logo: "https://www.sofara.io/favicon.png",
+            url: "https://sofara.io",
+            logo: "https://sofara.io/favicon.png",
             description: "The #1 Dubai real estate ambassador network. Earn commissions on Emaar, Damac, Sobha and top UAE property developers.",
             parentOrganization: {
               "@type": "Organization",
@@ -55,12 +55,12 @@ const Index = () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Sofara",
-            url: "https://www.sofara.io",
+            url: "https://sofara.io",
             description: "Dubai real estate ambassador network — earn 3% commission on every property sale",
             inLanguage: ["en", "fr", "ar", "es", "ru"],
             potentialAction: {
               "@type": "SearchAction",
-              target: "https://www.sofara.io/blog?search={search_term_string}",
+              target: "https://sofara.io/blog?search={search_term_string}",
               "query-input": "required name=search_term_string",
             },
           },

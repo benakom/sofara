@@ -29,18 +29,18 @@ const Blog = () => {
       <SEO
         title="Dubai Real Estate Blog — Market Analysis, Investment Guides & AI Tools | Sofara"
         description="Expert insights on Dubai real estate: market trends 2026, investment guides, off-plan analysis, Emaar/Damac/Sobha reviews, Golden Visa tips, and AI tools for ambassadors."
-        canonical="https://www.sofara.io/blog"
+        canonical="https://sofara.io/blog"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Blog",
           name: "Sofara Dubai Real Estate Blog",
-          url: "https://www.sofara.io/blog",
+          url: "https://sofara.io/blog",
           description: "Expert insights on Dubai real estate investment, market trends, and ambassador resources.",
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://www.sofara.io" },
+          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           blogPost: blogArticles.slice(0, 10).map(a => ({
             "@type": "BlogPosting",
             headline: a.title,
-            url: `https://www.sofara.io/blog/${a.slug}`,
+            url: `https://sofara.io/blog/${a.slug}`,
             datePublished: a.date,
             description: a.excerpt,
           })),

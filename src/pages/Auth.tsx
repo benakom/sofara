@@ -410,7 +410,7 @@ const Auth = () => {
       <SEO
         title="Join Sofara — Become a Dubai Real Estate Ambassador | Earn 3% Commission"
         description="Sign up free to become a Dubai real estate ambassador. Earn 3% commission on every sale from Emaar, Damac, Sobha. No license needed. AI-powered platform."
-        canonical="https://www.sofara.io/auth"
+        canonical="https://sofara.io/auth"
         noindex
       />
       {/* Left panel — Immersive hero */}
