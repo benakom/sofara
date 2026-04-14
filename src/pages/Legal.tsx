@@ -30,7 +30,7 @@ const Legal = () => {
       <SEO
         title={`${currentSection === "terms" ? "Terms of Service" : currentSection === "privacy" ? "Privacy Policy" : "Cookie Policy"} | Sofara`}
         description={`Read Sofara's ${currentSection === "terms" ? "terms of service" : currentSection === "privacy" ? "privacy policy" : "cookie policy"} for the Dubai real estate ambassador platform.`}
-        canonical={`https://www.sofara.io/legal/${currentSection}`}
+        canonical={`https://sofara.io/legal/${currentSection}`}
         noindex
       />
       {/* Header */}

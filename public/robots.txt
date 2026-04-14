@@ -19,4 +19,4 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /admin/
 
-Sitemap: https://www.sofara.io/sitemap.xml
+Sitemap: https://sofara.io/sitemap.xml

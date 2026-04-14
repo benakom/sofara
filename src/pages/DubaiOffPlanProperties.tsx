@@ -36,17 +36,17 @@ const DubaiOffPlanPage = () => {
       <SEO
         title="Dubai Off-Plan Properties 2026 — Best Projects, Developers & Payment Plans | Sofara"
         description="Discover the best off-plan properties in Dubai for 2026. Compare Emaar, Damac, Sobha projects. Understand payment plans, appreciation potential, and RERA protections."
-        canonical="https://www.sofara.io/dubai-off-plan-properties"
+        canonical="https://sofara.io/dubai-off-plan-properties"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Article",
           headline: "Dubai Off-Plan Properties 2026 — Complete Guide",
           description: "Comprehensive guide to off-plan real estate investment in Dubai for 2026.",
-          author: { "@type": "Organization", name: "Sofara", url: "https://www.sofara.io" },
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://www.sofara.io" },
+          author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           datePublished: "2026-03-01",
           dateModified: "2026-04-01",
-          mainEntityOfPage: "https://www.sofara.io/dubai-off-plan-properties",
+          mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
         }}
       />
       <Navbar />

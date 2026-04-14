@@ -36,7 +36,7 @@ const BuyPropertyDubaiPage = () => {
       <SEO
         title="Buy Property in Dubai 2026 — Step-by-Step Guide for Foreign Investors | Sofara"
         description="Complete step-by-step guide to buying property in Dubai as a foreigner in 2026. DLD fees, payment plans, Golden Visa, and freehold zones explained. Expert guidance by Sofara."
-        canonical="https://www.sofara.io/buy-property-dubai"
+        canonical="https://sofara.io/buy-property-dubai"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "HowTo",
