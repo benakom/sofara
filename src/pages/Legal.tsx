@@ -47,17 +47,17 @@ const Legal = () => {
             sofara
           </a>
           <div className="flex items-center gap-0.5">
-            {(["en", "ar"] as const).map((l) => (
+            {(["en", "fr", "es", "ru"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-2 py-1 rounded-md text-sm transition-all duration-200 ${
+                className={`px-2 py-1 rounded-md text-xs uppercase font-semibold transition-all duration-200 ${
                   lang === l
                     ? "bg-secondary text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {l === "ar" ? "🇦🇪" : "🇬🇧"}
+                {l}
               </button>
             ))}
           </div>

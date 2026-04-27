@@ -39,7 +39,8 @@ const SEO = ({
   const defaultHreflang: SEOProps["hreflang"] = [
     { lang: "en", href: canonicalUrl },
     { lang: "fr", href: canonicalUrl },
-    { lang: "ar", href: canonicalUrl },
+    { lang: "es", href: canonicalUrl },
+    { lang: "ru", href: canonicalUrl },
     { lang: "x-default", href: canonicalUrl },
   ];
 
@@ -62,7 +63,8 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:locale" content="en_US" />
       <meta property="og:locale:alternate" content="fr_FR" />
-      <meta property="og:locale:alternate" content="ar_AE" />
+      <meta property="og:locale:alternate" content="es_ES" />
+      <meta property="og:locale:alternate" content="ru_RU" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
