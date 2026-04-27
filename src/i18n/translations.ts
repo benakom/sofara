@@ -1728,4 +1728,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Sofara. Все права защищены.",
     "footer.regulated": "Sofara — платформа, принадлежащая Cevitas Real Estate LLC. Сделки с недвижимостью обрабатываются агентами, лицензированными RERA.",
   },
+  // Deprecated alias kept for legacy dashboard/admin code paths.
+  get ar() { return this.en; },
 };
