@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      chatbot_leads: {
+        Row: {
+          country_code: string
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          language: string | null
+          last_name: string
+          phone: string
+          source_page: string | null
+        }
+        Insert: {
+          country_code: string
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          language?: string | null
+          last_name: string
+          phone: string
+          source_page?: string | null
+        }
+        Update: {
+          country_code?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          language?: string | null
+          last_name?: string
+          phone?: string
+          source_page?: string | null
+        }
+        Relationships: []
+      }
       commissions: {
         Row: {
           amount: number
