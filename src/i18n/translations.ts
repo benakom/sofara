@@ -1,4 +1,7 @@
-export type Lang = "en" | "fr" | "es" | "ru";
+// "ar" is kept as a deprecated alias (mapped to "en") to avoid breaking
+// legacy dashboard/admin components that still inline-check `lang === "ar"`.
+// Public-facing surfaces use en | fr | es | ru.
+export type Lang = "en" | "fr" | "es" | "ru" | "ar";
 
 export const translations: Record<Lang, Record<string, string>> = {
 
