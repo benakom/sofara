@@ -30,21 +30,31 @@ const Blog = () => {
         title="Dubai Real Estate Blog — Market Analysis, Investment Guides & AI Tools | Sofara"
         description="Expert insights on Dubai real estate: market trends 2026, investment guides, off-plan analysis, Emaar/Damac/Sobha reviews, Golden Visa tips, and AI tools for ambassadors."
         canonical="https://sofara.io/blog"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Blog",
-          name: "Sofara Dubai Real Estate Blog",
-          url: "https://sofara.io/blog",
-          description: "Expert insights on Dubai real estate investment, market trends, and ambassador resources.",
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-          blogPost: blogArticles.slice(0, 10).map(a => ({
-            "@type": "BlogPosting",
-            headline: a.title,
-            url: `https://sofara.io/blog/${a.slug}`,
-            datePublished: a.date,
-            description: a.excerpt,
-          })),
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Sofara Dubai Real Estate Blog",
+            url: "https://sofara.io/blog",
+            description: "Expert insights on Dubai real estate investment, market trends, and ambassador resources.",
+            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+            blogPost: blogArticles.slice(0, 10).map(a => ({
+              "@type": "BlogPosting",
+              headline: a.title,
+              url: `https://sofara.io/blog/${a.slug}`,
+              datePublished: a.date,
+              description: a.excerpt,
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://sofara.io/blog" },
+            ],
+          },
+        ]}
       />
       <Navbar />
       <main className="pt-24 sm:pt-28 pb-16">
