@@ -37,17 +37,27 @@ const DubaiOffPlanPage = () => {
         title="Dubai Off-Plan Properties 2026 — Best Projects, Developers & Payment Plans | Sofara"
         description="Discover the best off-plan properties in Dubai for 2026. Compare Emaar, Damac, Sobha projects. Understand payment plans, appreciation potential, and RERA protections."
         canonical="https://sofara.io/dubai-off-plan-properties"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: "Dubai Off-Plan Properties 2026 — Complete Guide",
-          description: "Comprehensive guide to off-plan real estate investment in Dubai for 2026.",
-          author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-          datePublished: "2026-03-01",
-          dateModified: "2026-04-01",
-          mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "Dubai Off-Plan Properties 2026 — Complete Guide",
+            description: "Comprehensive guide to off-plan real estate investment in Dubai for 2026.",
+            author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+            datePublished: "2026-03-01",
+            dateModified: "2026-04-01",
+            mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+              { "@type": "ListItem", position: 2, name: "Dubai Off-Plan Properties", item: "https://sofara.io/dubai-off-plan-properties" },
+            ],
+          },
+        ]}
       />
       <Navbar />
 

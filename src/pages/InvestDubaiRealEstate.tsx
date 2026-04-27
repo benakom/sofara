@@ -40,17 +40,27 @@ const InvestDubaiPage = () => {
         title="Invest in Dubai Real Estate 2026 — Complete Guide | ROI, Areas, Golden Visa | Sofara"
         description="Complete guide to investing in Dubai real estate in 2026. Compare rental yields by area, understand Golden Visa requirements, payment plans, and zero-tax benefits. Expert analysis by Sofara."
         canonical="https://sofara.io/invest-dubai-real-estate"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: "Invest in Dubai Real Estate 2026 — Complete Guide",
-          description: "Complete guide to investing in Dubai real estate in 2026 with ROI analysis, area comparisons, and Golden Visa information.",
-          author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-          datePublished: "2026-03-01",
-          dateModified: "2026-04-01",
-          mainEntityOfPage: "https://sofara.io/invest-dubai-real-estate",
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "Invest in Dubai Real Estate 2026 — Complete Guide",
+            description: "Complete guide to investing in Dubai real estate in 2026 with ROI analysis, area comparisons, and Golden Visa information.",
+            author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+            datePublished: "2026-03-01",
+            dateModified: "2026-04-01",
+            mainEntityOfPage: "https://sofara.io/invest-dubai-real-estate",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+              { "@type": "ListItem", position: 2, name: "Invest in Dubai Real Estate", item: "https://sofara.io/invest-dubai-real-estate" },
+            ],
+          },
+        ]}
       />
       <Navbar />
 

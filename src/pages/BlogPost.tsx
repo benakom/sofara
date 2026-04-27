@@ -36,17 +36,31 @@ const BlogPost = () => {
           section: article.category,
           tags: article.tags,
         }}
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: article.title,
-          description: article.excerpt,
-          image: article.image,
-          datePublished: article.date,
-          author: { "@type": "Organization", name: article.author, url: "https://sofara.io" },
-          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon.png" } },
-          mainEntityOfPage: `https://sofara.io/blog/${article.slug}`,
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            image: article.image,
+            datePublished: article.date,
+            dateModified: article.date,
+            author: { "@type": "Organization", name: article.author, url: "https://sofara.io" },
+            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon.png" } },
+            mainEntityOfPage: `https://sofara.io/blog/${article.slug}`,
+            keywords: article.tags?.join(", "),
+            articleSection: article.category,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://sofara.io/blog" },
+              { "@type": "ListItem", position: 3, name: article.title, item: `https://sofara.io/blog/${article.slug}` },
+            ],
+          },
+        ]}
       />
       <Navbar />
       <main className="pt-24 sm:pt-28 pb-16">

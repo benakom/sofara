@@ -37,18 +37,28 @@ const BuyPropertyDubaiPage = () => {
         title="Buy Property in Dubai 2026 — Step-by-Step Guide for Foreign Investors | Sofara"
         description="Complete step-by-step guide to buying property in Dubai as a foreigner in 2026. DLD fees, payment plans, Golden Visa, and freehold zones explained. Expert guidance by Sofara."
         canonical="https://sofara.io/buy-property-dubai"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "HowTo",
-          name: "How to Buy Property in Dubai",
-          description: "Step-by-step guide for foreign investors buying property in Dubai in 2026.",
-          step: steps.map((s, i) => ({
-            "@type": "HowToStep",
-            position: i + 1,
-            name: s.title,
-            text: s.desc,
-          })),
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "How to Buy Property in Dubai",
+            description: "Step-by-step guide for foreign investors buying property in Dubai in 2026.",
+            step: steps.map((s, i) => ({
+              "@type": "HowToStep",
+              position: i + 1,
+              name: s.title,
+              text: s.desc,
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+              { "@type": "ListItem", position: 2, name: "Buy Property in Dubai", item: "https://sofara.io/buy-property-dubai" },
+            ],
+          },
+        ]}
       />
       <Navbar />
 
