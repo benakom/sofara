@@ -8,7 +8,8 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sofara.io/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://sofara.io/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://sofara.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sofara.io/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sofara.io/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sofara.io/" />
   </url>
 

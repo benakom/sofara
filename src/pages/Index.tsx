@@ -57,7 +57,7 @@ const Index = () => {
             name: "Sofara",
             url: "https://sofara.io",
             description: "Dubai real estate ambassador network — earn 3% commission on every property sale",
-            inLanguage: ["en", "fr", "ar", "es", "ru"],
+            inLanguage: ["en", "fr", "es", "ru"],
             potentialAction: {
               "@type": "SearchAction",
               target: "https://sofara.io/blog?search={search_term_string}",
