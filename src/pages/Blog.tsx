@@ -207,7 +207,7 @@ const Blog = () => {
               <a
                 href="https://www.cevitas.ae"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl bg-secondary border border-border hover:border-primary/30 transition-colors text-sm font-medium text-foreground"
               >
                 Cevitas Real Estate →
@@ -215,7 +215,7 @@ const Blog = () => {
               <a
                 href="https://www.offplansimulator.com"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl bg-secondary border border-border hover:border-primary/30 transition-colors text-sm font-medium text-foreground"
               >
                 Off-Plan Investment Simulator →
