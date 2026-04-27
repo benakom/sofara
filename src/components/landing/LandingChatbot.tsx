@@ -14,19 +14,31 @@ type Msg = { role: "user" | "assistant"; content: string };
 const i18n: Record<string, Record<Lang, string>> = {
   welcome: {
     en: "Hi! I'm Sara, your Sofara assistant 👋 Ask me anything about investing in Dubai or the ambassador program.",
-    ar: "مرحباً! أنا سارة، مساعدة Sofara 👋 اسألني عن الاستثمار في دبي أو برنامج السفراء.",
+    fr: "Bonjour ! Je suis Sara, votre assistante Sofara 👋 Posez-moi vos questions sur l'investissement à Dubaï ou le programme ambassadeur.",
+    es: "¡Hola! Soy Sara, tu asistente Sofara 👋 Pregúntame lo que quieras sobre invertir en Dubái o el programa de embajadores.",
+    ru: "Привет! Я Сара, ваша помощница Sofara 👋 Спрашивайте что угодно об инвестициях в Дубае или программе амбассадоров.",
+    ar: "Hi! I'm Sara, your Sofara assistant 👋 Ask me anything about investing in Dubai or the ambassador program.",
   },
   placeholder: {
     en: "Ask your question…",
-    ar: "اطرح سؤالك…",
+    fr: "Posez votre question…",
+    es: "Haz tu pregunta…",
+    ru: "Задайте ваш вопрос…",
+    ar: "Ask your question…",
   },
   limitReached: {
     en: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
-    ar: "لقد وصلت إلى حد الأسئلة لهذه الجلسة. تواصل معنا على hello@sofara.io!",
+    fr: "Vous avez atteint la limite de questions pour cette session. Contactez-nous à hello@sofara.io pour continuer !",
+    es: "Has alcanzado el límite de preguntas de esta sesión. ¡Contáctanos en hello@sofara.io para continuar!",
+    ru: "Вы достигли лимита вопросов для этой сессии. Напишите нам на hello@sofara.io, чтобы продолжить!",
+    ar: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
   },
   online: {
     en: "Online",
-    ar: "متصل",
+    fr: "En ligne",
+    es: "En línea",
+    ru: "В сети",
+    ar: "Online",
   },
 };
 

@@ -8,7 +8,9 @@ import { useAuth } from "@/hooks/useAuth";
 
 const languages: { code: Lang; label: string }[] = [
   { code: "en", label: "English" },
-  { code: "ar", label: "العربية" },
+  { code: "fr", label: "Français" },
+  { code: "es", label: "Español" },
+  { code: "ru", label: "Русский" },
 ];
 
 const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) => {
@@ -110,7 +112,7 @@ const Navbar = () => {
               <a href="/auth">
                 <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
                   <LogIn className="w-4 h-4" />
-                  {lang === "ar" ? "تسجيل الدخول" : "Sign In"}
+                  {t("nav.signIn")}
                 </Button>
               </a>
             )
@@ -163,7 +165,7 @@ const Navbar = () => {
                     <a href="/auth" onClick={() => setMobileOpen(false)} className="block">
                       <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
                         <LogIn className="w-4 h-4" />
-                        {lang === "ar" ? "تسجيل الدخول" : "Sign In"}
+                        {t("nav.signIn")}
                       </Button>
                     </a>
                   )

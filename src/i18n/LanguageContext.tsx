@@ -12,13 +12,14 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Lang>(() => {
     const saved = localStorage.getItem("sofara-lang");
-    return saved === "ar" ? "ar" : "en";
+    if (saved === "fr" || saved === "es" || saved === "ru" || saved === "en") return saved;
+    return "en";
   });
 
   const changeLang = (l: Lang) => {
     setLang(l);
     localStorage.setItem("sofara-lang", l);
-    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = "ltr";
     document.documentElement.lang = l;
   };
 
