@@ -7,8 +7,8 @@ const InvestorMetrics = () => {
   const { t } = useLanguage();
 
   const metrics = [
-    { value: "AED 720K+", label: t("investor.paid"), trend: t("investor.paidTrend") },
-    { value: "60+", label: t("investor.ambassadors"), trend: t("investor.ambassadorsTrend") },
+    { value: "AED 1M+", label: t("investor.paid"), trend: t("investor.paidTrend") },
+    { value: "200+", label: t("investor.ambassadors"), trend: t("investor.ambassadorsTrend") },
     { value: "12", label: t("investor.countries"), trend: t("investor.countriesTrend") },
     { value: "AED 50,000", label: t("investor.mrr"), trend: t("investor.mrrTrend") },
     { value: "3.8x", label: t("investor.ltv"), trend: t("investor.ltvTrend") },

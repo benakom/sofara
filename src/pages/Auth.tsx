@@ -249,8 +249,8 @@ const Auth = () => {
   const onSubmit = mode === "login" ? handleLogin : mode === "signup" ? handleSignup : handleForgot;
 
   const metrics = [
-    { icon: TrendingUp, value: "3%", label: lang === "ar" ? "Commission par vente" : "Commission per sale" },
-    { icon: Users, value: "60+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
+    { icon: TrendingUp, value: "Up to 3%", label: lang === "ar" ? "Commission par vente" : "Commission per sale" },
+    { icon: Users, value: "200+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
     { icon: Globe, value: "12", label: lang === "ar" ? "Pays représentés" : "Countries represented" },
   ];
 
@@ -408,8 +408,8 @@ const Auth = () => {
   return (
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
       <SEO
-        title="Join Sofara — Become a Dubai Real Estate Ambassador | Earn 3% Commission"
-        description="Sign up free to become a Dubai real estate ambassador. Earn 3% commission on every sale from Emaar, Damac, Sobha. No license needed. AI-powered platform."
+        title="Join Sofara — Become a Dubai Real Estate Ambassador | Earn Up to 3% Commission"
+        description="Sign up free to become a Dubai real estate ambassador. Earn up to 3% commission on every sale from Emaar, Damac, Sobha. No license needed. AI-powered platform."
         canonical="https://sofara.io/auth"
         noindex
       />
