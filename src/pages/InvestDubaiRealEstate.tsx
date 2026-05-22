@@ -176,13 +176,13 @@ const InvestDubaiPage = () => {
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               With Sofara, you don't need to invest money to profit from Dubai's real estate boom.
-              Simply refer buyers to our licensed team and earn <strong>3% commission</strong> on every successful sale.
+              Simply refer buyers to our licensed team and earn <strong>up to 3% commission</strong> on every successful sale.
             </p>
             <div className="grid sm:grid-cols-3 gap-6 mb-8">
               {[
                 { step: "01", title: "You Refer", desc: "Share your unique link with potential Dubai property buyers" },
                 { step: "02", title: "We Close", desc: "Our RERA-licensed team handles everything from qualification to closing" },
-                { step: "03", title: "You Earn", desc: "Receive 3% commission automatically — tracked in real-time" },
+                { step: "03", title: "You Earn", desc: "Receive up to 3% commission automatically — tracked in real-time" },
               ].map((s) => (
                 <div key={s.step} className="text-center">
                   <span className="text-3xl font-bold text-primary">{s.step}</span>

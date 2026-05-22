@@ -151,7 +151,7 @@ const BuyPropertyDubaiPage = () => {
               Know Someone Interested in Dubai Property?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Earn <strong>3% commission</strong> by referring property buyers to our RERA-licensed team.
+              Earn <strong>up to 3% commission</strong> by referring property buyers to our RERA-licensed team.
               No license required. Free to join. AI-powered platform.
             </p>
             <Link

@@ -139,11 +139,11 @@ const DubaiOffPlanPage = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-16">
           <div className="rounded-3xl border border-primary/20 bg-primary/5 p-8 sm:p-12 text-center">
             <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">
-              Earn 3% Commission on Every Off-Plan Sale
+              Earn Up to 3% Commission on Every Off-Plan Sale
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Refer buyers interested in Dubai off-plan properties. Our team handles qualification, viewings, and closing.
-              You earn <strong>3% commission</strong> — automatically.
+              You earn <strong>up to 3% commission</strong> — automatically.
             </p>
             <Link
               to="/auth"
