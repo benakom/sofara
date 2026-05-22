@@ -32,8 +32,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Sofara | Dubai Real Estate Ambassador Network — Earn Up to 3% Commission"
-        description="Join Sofara, the #1 Dubai real estate ambassador network. Earn up to 3% commission on Emaar, Damac, Sobha & top UAE developers. No license needed. Free to join. AI-powered platform."
+        title="Dubai Real Estate Ambassadors | Earn Up to 3% on Dubai Off-Plan — Sofara"
+        description="Sofara is the #1 network of Dubai real estate ambassadors. Refer buyers for Dubai off-plan properties from Emaar, Damac, Sobha & top UAE developers and earn up to 3% commission. No license needed. Free to join. AI-powered platform."
         canonical="https://sofara.io/"
         jsonLd={[
           {
@@ -42,21 +42,21 @@ const Index = () => {
             name: "Sofara",
             url: "https://sofara.io",
             logo: "https://sofara.io/favicon.png",
-            description: "The #1 Dubai real estate ambassador network. Earn commissions on Emaar, Damac, Sobha and top UAE property developers.",
+            description: "The #1 network of Dubai real estate ambassadors. Earn up to 3% commission on Dubai off-plan properties from Emaar, Damac, Sobha and other top UAE developers.",
             parentOrganization: {
               "@type": "Organization",
               name: "Cevitas Real Estate LLC",
               address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
             },
             areaServed: { "@type": "City", name: "Dubai", containedIn: { "@type": "Country", name: "United Arab Emirates" } },
-            knowsAbout: ["Dubai Real Estate", "UAE Property Investment", "Emaar Properties", "Damac Properties", "Sobha Realty", "Off-Plan Properties Dubai"],
+            knowsAbout: ["Dubai Real Estate", "Dubai Real Estate Ambassadors", "Dubai Off-Plan", "Dubai Off-Plan Properties", "UAE Property Investment", "Emaar Properties", "Damac Properties", "Sobha Realty"],
           },
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Sofara",
             url: "https://sofara.io",
-            description: "Dubai real estate ambassador network — earn up to 3% commission on every property sale",
+            description: "Dubai real estate ambassadors network — earn up to 3% commission on Dubai off-plan property sales",
             inLanguage: ["en", "fr", "es", "ru"],
             potentialAction: {
               "@type": "SearchAction",
