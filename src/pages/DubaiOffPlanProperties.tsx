@@ -34,30 +34,18 @@ const DubaiOffPlanPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Dubai Off-Plan Properties 2026 | Best Off-Plan Dubai Projects, Developers & Payment Plans — Sofara"
-        description="Dubai off-plan properties 2026: the complete guide. Compare Emaar, Damac, Sobha Dubai off-plan projects, payment plans, capital appreciation and RERA protections. Refer buyers as a Dubai real estate ambassador and earn up to 3% commission."
-        canonical="https://sofara.io/dubai-off-plan-properties"
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "Dubai Off-Plan Properties 2026 — Complete Guide for Investors & Ambassadors",
-            description: "Comprehensive guide to Dubai off-plan real estate investment for 2026, with developer comparisons, payment plans, capital appreciation and ambassador opportunities.",
-            author: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-            datePublished: "2026-03-01",
-            dateModified: "2026-04-01",
-            mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
-              { "@type": "ListItem", position: 2, name: "Dubai Off-Plan Properties", item: "https://sofara.io/dubai-off-plan-properties" },
-            ],
-          },
-        ]}
+        route="/dubai-off-plan-properties"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Dubai Off-Plan Properties 2026 — Complete Guide for Investors & Ambassadors",
+          description: "Comprehensive guide to Dubai off-plan real estate investment for 2026, with developer comparisons, payment plans, capital appreciation and ambassador opportunities.",
+          author: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
+          publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
+          datePublished: "2026-03-01",
+          dateModified: "2026-05-22",
+          mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
+        }}
       />
       <Navbar />
 
