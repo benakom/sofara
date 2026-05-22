@@ -46,7 +46,7 @@ const BlogPost = () => {
             datePublished: article.date,
             dateModified: article.date,
             author: { "@type": "Organization", name: article.author, url: "https://sofara.io" },
-            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon.png" } },
+            publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon-512x512.png" } },
             mainEntityOfPage: `https://sofara.io/blog/${article.slug}`,
             keywords: article.tags?.join(", "),
             articleSection: article.category,
