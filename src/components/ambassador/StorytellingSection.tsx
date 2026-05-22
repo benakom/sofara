@@ -67,7 +67,7 @@ const StorytellingSection = () => {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden border border-border/30">
-              <img src={dubaiNetwork} alt="Sofara network" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" />
+              <img src={dubaiNetwork} alt="Sofara network" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" loading="lazy" decoding="async" />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
