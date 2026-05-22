@@ -32,8 +32,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Sofara | Dubai Real Estate Ambassador Network — Earn 3% Commission"
-        description="Join Sofara, the #1 Dubai real estate ambassador network. Earn 3% commission on Emaar, Damac, Sobha & top UAE developers. No license needed. Free to join. AI-powered platform."
+        title="Sofara | Dubai Real Estate Ambassador Network — Earn Up to 3% Commission"
+        description="Join Sofara, the #1 Dubai real estate ambassador network. Earn up to 3% commission on Emaar, Damac, Sobha & top UAE developers. No license needed. Free to join. AI-powered platform."
         canonical="https://sofara.io/"
         jsonLd={[
           {
@@ -56,7 +56,7 @@ const Index = () => {
             "@type": "WebSite",
             name: "Sofara",
             url: "https://sofara.io",
-            description: "Dubai real estate ambassador network — earn 3% commission on every property sale",
+            description: "Dubai real estate ambassador network — earn up to 3% commission on every property sale",
             inLanguage: ["en", "fr", "es", "ru"],
             potentialAction: {
               "@type": "SearchAction",

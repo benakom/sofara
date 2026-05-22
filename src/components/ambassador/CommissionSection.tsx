@@ -41,8 +41,8 @@ const CommissionSection = () => {
             </div>
             
             <div className="mt-4 mb-2">
-              <span className="font-display text-8xl sm:text-8xl lg:text-9xl font-bold text-gradient-primary">
-                3%
+              <span className="font-display text-7xl sm:text-7xl lg:text-8xl font-bold text-gradient-primary">
+                Up to 3%
               </span>
             </div>
             <p className="text-sm sm:text-base text-muted-foreground uppercase tracking-widest mb-6 sm:mb-8">

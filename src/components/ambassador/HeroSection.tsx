@@ -154,7 +154,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-base sm:text-base font-bold text-foreground font-display">3%</div>
+                <div className="text-base sm:text-base font-bold text-foreground font-display">Up to 3%</div>
                 <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric3Label")}</div>
               </div>
             </div>
