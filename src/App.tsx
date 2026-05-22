@@ -49,6 +49,8 @@ const Referrals = lazy(() => import("./pages/dashboard/Referrals"));
 const InvestDubaiRealEstate = lazy(() => import("./pages/InvestDubaiRealEstate"));
 const BuyPropertyDubai = lazy(() => import("./pages/BuyPropertyDubai"));
 const DubaiOffPlanProperties = lazy(() => import("./pages/DubaiOffPlanProperties"));
+const AmbassadorProgram = lazy(() => import("./pages/AmbassadorProgram"));
+const About = lazy(() => import("./pages/About"));
 
 const queryClient = new QueryClient();
 
@@ -92,6 +94,8 @@ const App = () => (
                 <Route path="/invest-dubai-real-estate" element={<InvestDubaiRealEstate />} />
                 <Route path="/buy-property-dubai" element={<BuyPropertyDubai />} />
                 <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
+                <Route path="/ambassador-program" element={<AmbassadorProgram />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
                   <Route path="academy" element={<Academy />} />
