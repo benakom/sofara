@@ -41,7 +41,7 @@ const Index = () => {
             "@type": "Organization",
             name: "Sofara",
             url: "https://sofara.io",
-            logo: "https://sofara.io/favicon.png",
+            logo: "https://sofara.io/favicon-512x512.png",
             description: "The #1 network of Dubai real estate ambassadors. Earn up to 3% commission on Dubai off-plan properties from Emaar, Damac, Sobha and other top UAE developers.",
             parentOrganization: {
               "@type": "Organization",
