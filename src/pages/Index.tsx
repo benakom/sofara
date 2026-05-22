@@ -31,41 +31,7 @@ const Loader = () => (
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO
-        title="Dubai Real Estate Ambassadors | Earn Up to 3% on Dubai Off-Plan — Sofara"
-        description="Sofara is the #1 network of Dubai real estate ambassadors. Refer buyers for Dubai off-plan properties from Emaar, Damac, Sobha & top UAE developers and earn up to 3% commission. No license needed. Free to join. AI-powered platform."
-        canonical="https://sofara.io/"
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Sofara",
-            url: "https://sofara.io",
-            logo: "https://sofara.io/favicon-512x512.png",
-            description: "The #1 network of Dubai real estate ambassadors. Earn up to 3% commission on Dubai off-plan properties from Emaar, Damac, Sobha and other top UAE developers.",
-            parentOrganization: {
-              "@type": "Organization",
-              name: "Cevitas Real Estate LLC",
-              address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-            },
-            areaServed: { "@type": "City", name: "Dubai", containedIn: { "@type": "Country", name: "United Arab Emirates" } },
-            knowsAbout: ["Dubai Real Estate", "Dubai Real Estate Ambassadors", "Dubai Off-Plan", "Dubai Off-Plan Properties", "UAE Property Investment", "Emaar Properties", "Damac Properties", "Sobha Realty"],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "Sofara",
-            url: "https://sofara.io",
-            description: "Dubai real estate ambassadors network — earn up to 3% commission on Dubai off-plan property sales",
-            inLanguage: ["en", "fr", "es", "ru"],
-            potentialAction: {
-              "@type": "SearchAction",
-              target: "https://sofara.io/blog?search={search_term_string}",
-              "query-input": "required name=search_term_string",
-            },
-          },
-        ]}
-      />
+      <SEO route="/" />
       <Navbar />
       <main>
         <HeroSection />
