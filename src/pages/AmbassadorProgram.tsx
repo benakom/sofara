@@ -39,7 +39,7 @@ const faqs = [
   { q: "Do I need a real estate license?", a: "No. You're a business introducer. All transactions close under Cevitas Real Estate LLC (RERA-licensed in Dubai)." },
   { q: "How fast am I paid?", a: "Within 7 days of transaction closing — via international bank transfer." },
   { q: "Is it really free?", a: "100% free. No signup fees, no subscription. Sofara only earns from closed deals." },
-  { q: "Are my leads protected?", a: "Yes. Each lead is cryptographically tied to your referral link for 12 months." },
+  { q: "Are my leads protected?", a: "Yes. Each lead is securely tied to your referral link for 12 months." },
   { q: "Is this legal in my country?", a: "Yes — you act as a business introducer, not as a real estate agent in your jurisdiction." },
 ];
 
