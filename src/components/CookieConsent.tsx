@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "@/i18n/LanguageContext";
+import { useContext } from "react";
+import { LanguageContext } from "@/i18n/LanguageContext";
 
 const COOKIE_KEY = "sofara-cookie-consent";
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
-  const { lang } = useLanguage();
+  const ctx = useContext(LanguageContext);
+  const lang = ctx?.lang ?? "en";
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_KEY);
