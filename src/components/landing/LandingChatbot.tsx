@@ -143,6 +143,9 @@ export default function LandingChatbot() {
   const [countryQuery, setCountryQuery] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Anti-bot: honeypot field + minimum time-to-submit
+  const [honeypot, setHoneypot] = useState("");
+  const formMountedAt = useRef<number>(Date.now());
 
   // Chat state
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -187,6 +190,12 @@ export default function LandingChatbot() {
   const submitLead = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
+    // Anti-bot: silently drop if honeypot filled or form submitted too fast (< 1.5s)
+    if (honeypot.trim() !== "" || Date.now() - formMountedAt.current < 1500) {
+      setSubmitting(true);
+      setTimeout(() => { setSubmitting(false); setFormError(i18n.required[lang]); }, 800);
+      return;
+    }
     const cleanPhone = phone.replace(/\D/g, "");
     const parsed = leadSchema.safeParse({
       first_name: firstName, last_name: lastName, email, phone: cleanPhone,
@@ -335,7 +344,15 @@ export default function LandingChatbot() {
 
         {/* ── Lead capture form (always shown first) ── */}
         {!hasLead ? (
-          <form onSubmit={submitLead} className="flex-1 overflow-y-auto p-4 space-y-3" style={{ scrollbarWidth: "thin" }}>
+          <form onSubmit={submitLead} className="flex-1 overflow-y-auto p-4 space-y-3" style={{ scrollbarWidth: "thin" }} autoComplete="off">
+            {/* Honeypot — hidden from humans, irresistible to bots */}
+            <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+              <label htmlFor="website-url">Website</label>
+              <input
+                id="website-url" name="website" type="text" tabIndex={-1} autoComplete="off"
+                value={honeypot} onChange={e => setHoneypot(e.target.value)}
+              />
+            </div>
             <div className="flex items-start gap-2 mb-1">
               <img src={avatarImg} alt="" className="w-7 h-7 rounded-full object-cover shrink-0 mt-0.5" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
               <div className="rounded-2xl rounded-bl-sm px-3 py-2 text-[12.5px] leading-snug" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}`, color: BRAND.text }}>
