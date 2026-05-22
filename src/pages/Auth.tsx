@@ -266,14 +266,14 @@ const Auth = () => {
   const trustPoints = lang === "ar"
     ? [
         "Processus 100% propulsé par l'IA",
-        "Commission moyenne : AED 37 000+ par deal",
+        "Commission moyenne : AED 65 000+ par deal",
         "Transparence totale — suivi en temps réel",
         "Formation & accompagnement premium",
         "Aucune licence immobilière requise",
       ]
     : [
         "Full AI powered process",
-        "Average commission: AED 37,000+ per deal",
+        "Average commission: AED 65,000+ per deal",
         "Full transparency — real-time tracking",
         "Premium training & dedicated support",
         "No real estate license required",
