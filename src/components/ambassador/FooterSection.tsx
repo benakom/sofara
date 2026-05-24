@@ -27,6 +27,7 @@ const FooterSection = () => {
               <a href="#avantages" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.benefits")}</a>
               <a href="#dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.whyDubai")}</a>
               <a href="#comment" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.howItWorks")}</a>
+              <Link to="/about" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">About</Link>
               <Link to="/blog" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Blog</Link>
             </div>
           </div>
