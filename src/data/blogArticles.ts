@@ -3734,9 +3734,9 @@ This article answers the most common question we get: **"What is Sofara?"** — 
 
 ## How Sofara Works
 
-```
+\`\`\`
 You refer → Sofara closes → You get paid (7 days)
-```
+\`\`\`
 
 That's the entire model. Sofara's team handles:
 - Buyer viewings
