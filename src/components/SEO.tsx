@@ -115,6 +115,9 @@ const SEO = ({
     <Helmet>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
+      {cfg?.keywords && cfg.keywords.length > 0 && (
+        <meta name="keywords" content={cfg.keywords.join(", ")} />
+      )}
       <link rel="canonical" href={finalCanonical} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 
