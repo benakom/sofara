@@ -73,12 +73,26 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/about": {
-    title: "About Sofara — Dubai Real Estate Ambassadors Network by Ahmed Benjas",
+    title: "Sofara Dubai & Sofara Real Estate — About the UAE Ambassadors Network",
     description:
-      "Sofara is built by Ahmed Benjas, founder of Cevitas Real Estate LLC (RERA-licensed). Stanford GSB, 20+ years finance, AED 100M+ Dubai property transactions facilitated. The story behind Sofara Real Estate.",
+      "Sofara Dubai and Sofara Real Estate: discover the UAE's leading real estate ambassadors network. Built by Ahmed Benjas, founder of Cevitas Real Estate LLC (RERA-licensed). Refer buyers to Emaar, DAMAC, Sobha and earn up to 3%.",
     canonical: "https://sofara.io/about",
-    h1: "About Sofara — Operator-Built Dubai Real Estate Ambassadors Network",
-    keywords: ["Sofara", "Sofara Dubai", "Sofara Real Estate", "Ahmed Benjas", "Cevitas Real Estate"],
+    h1: "About Sofara — the Operator-Built Dubai Real Estate Ambassadors Network",
+    keywords: [
+      "Sofara",
+      "Sofara Dubai",
+      "Sofara Real Estate",
+      "Sofara UAE",
+      "Sofara network",
+      "Sofara ambassador",
+      "Sofara referral",
+      "Dubai Real Estate Ambassadors",
+      "Dubai Real Estate Ambassadors Network",
+      "UAE Real Estate Ambassadors Network",
+      "Abu Dhabi Real Estate Ambassadors Network",
+      "Ahmed Benjas",
+      "Cevitas Real Estate",
+    ],
     schemaType: "Person",
   },
   "/blog": {
@@ -176,7 +190,7 @@ export const FAQ_JSONLD = {
       name: "How are my leads protected?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Each lead is cryptographically tied to your unique referral link for 12 months — even if the buyer contacts Sofara directly afterwards.",
+        text: "Each lead is securely tied to your unique referral link for 12 months — even if the buyer contacts Sofara directly afterwards.",
       },
     },
     {
