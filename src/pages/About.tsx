@@ -79,7 +79,7 @@ const About = () => {
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. His background spans 20+ years in finance, an MBA, and Executive Education at <strong>Stanford Graduate School of Business</strong>. Recognized as a LinkedIn Top Voice, Ahmed has facilitated <strong>AED 100M+ in Dubai property transactions</strong> and built a community of 95,000+ followers around Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. His background spans 20+ years in finance, an MBA, and Executive Education at <strong>Stanford Graduate School of Business</strong>. Recognized as a LinkedIn Top Voice, Ahmed has facilitated <strong>AED 100M+ in Dubai property transactions</strong> and built a community of 100,000+ followers around Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 He started Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
