@@ -22,13 +22,117 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
 
-    <!-- SEO defaults — overridden per-route by <SEO /> (react-helmet-async) -->
-    <title>Sofara — Dubai Real Estate Ambassador Program</title>
-    <meta name="description" content="Refer Dubai property buyers for Emaar, DAMAC, Sobha and earn up to 3% commission per closed deal. Free to join, no license needed. Built by Cevitas (RERA-licensed)." />
+    <!-- SEO — homepage defaults (per-route overrides via react-helmet-async) -->
+    <title>Sofara — Sofara Dubai & Sofara Real Estate | UAE Ambassadors Network</title>
+    <meta name="description" content="Sofara is the leading Sofara Dubai & Sofara Real Estate Ambassadors Network in the UAE. Refer buyers to Emaar, DAMAC, Sobha and earn up to 3% commission (AED 37K–120K per deal). Free, no license. By Cevitas Real Estate LLC (RERA-licensed)." />
+    <meta name="keywords" content="Sofara, Sofara Dubai, Sofara Real Estate, Sofara UAE, Sofara ambassador, Sofara network, Dubai Real Estate Ambassadors, Dubai Real Estate Ambassadors Network, UAE Real Estate Ambassadors Network, Abu Dhabi Real Estate Ambassadors Network, Cevitas Real Estate" />
+    <link rel="canonical" href="https://sofara.io/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sofara" />
+    <meta property="og:title" content="Sofara — Sofara Dubai & Sofara Real Estate | UAE Ambassadors Network" />
+    <meta property="og:description" content="Sofara Dubai & Sofara Real Estate — the UAE's leading real estate ambassadors network. Earn up to 3% on Emaar, DAMAC, Sobha." />
+    <meta property="og:url" content="https://sofara.io/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AE" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SofaraDubai" />
+    <meta name="twitter:title" content="Sofara Dubai — Real Estate Ambassadors Network" />
+    <meta name="twitter:description" content="Refer Dubai property buyers, earn up to 3% commission. Powered by Cevitas Real Estate LLC (RERA-licensed)." />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hrefLang="en" href="https://sofara.io/" />
+    <link rel="alternate" hrefLang="ar" href="https://sofara.io/" />
+    <link rel="alternate" hrefLang="x-default" href="https://sofara.io/" />
+
+    <!-- Sitewide JSON-LD (static, crawlable without JS) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sofara",
+      "alternateName": ["Sofara Dubai", "Sofara Real Estate", "Sofara UAE"],
+      "url": "https://sofara.io",
+      "logo": "https://sofara.io/favicon-512x512.png",
+      "description": "Sofara is the leading Dubai & UAE Real Estate Ambassadors Network. Refer buyers to Emaar, DAMAC and Sobha and earn up to 3% commission per closed transaction.",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Cevitas Real Estate LLC",
+        "url": "https://www.cevitas.ae",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/sofara-io",
+        "https://www.linkedin.com/in/ahmedbenjas",
+        "https://www.instagram.com/ahmed.benjas",
+        "https://twitter.com/SofaraDubai",
+        "https://www.cevitas.ae"
+      ],
+      "founder": { "@type": "Person", "name": "Ahmed Benjas", "url": "https://sofara.io/about" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sofara",
+      "alternateName": ["Sofara Dubai", "Sofara Real Estate"],
+      "url": "https://sofara.io",
+      "inLanguage": ["en", "ar"],
+      "publisher": { "@type": "Organization", "name": "Sofara" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://sofara.io/blog?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
 
   <body oncontextmenu="return false">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static, crawlable SEO fallback. Replaced by React after hydration. -->
+      <header>
+        <h1>Sofara — Sofara Dubai &amp; Sofara Real Estate Ambassadors Network</h1>
+        <p>
+          <strong>Sofara</strong> (also known as <strong>Sofara Dubai</strong> and
+          <strong>Sofara Real Estate</strong>) is the leading
+          <strong>Dubai Real Estate Ambassadors Network</strong> and
+          <strong>UAE Real Estate Ambassadors Network</strong>, with coverage in Dubai and the
+          <strong>Abu Dhabi Real Estate Ambassadors Network</strong>. Refer Dubai property buyers
+          to top developers (Emaar, DAMAC, Sobha, Aldar, Binghatti) and earn up to
+          <strong>3% commission</strong> — typically <strong>AED 37,000–120,000 per closed deal</strong>.
+          Free to join. No real estate license required. All transactions closed under
+          <a href="https://www.cevitas.ae" rel="noopener">Cevitas Real Estate LLC</a> (RERA-licensed in Dubai).
+        </p>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="/">Sofara Home</a></li>
+            <li><a href="/about">About Sofara</a></li>
+            <li><a href="/ambassador-program">Dubai Real Estate Ambassadors Program</a></li>
+            <li><a href="/invest-dubai-real-estate">Invest in Dubai Real Estate 2026</a></li>
+            <li><a href="/buy-property-dubai">Buy Property in Dubai</a></li>
+            <li><a href="/dubai-off-plan-properties">Dubai Off-Plan Properties</a></li>
+            <li><a href="/blog">Sofara Blog</a></li>
+            <li><a href="https://www.cevitas.ae" rel="noopener">Cevitas Real Estate</a></li>
+          </ul>
+        </nav>
+        <p>Loading the Sofara Dubai Real Estate Ambassadors platform…</p>
+      </header>
+    </div>
+    <noscript>
+      <h2>Sofara Dubai Real Estate Ambassadors Network</h2>
+      <p>
+        Sofara is a Dubai real estate ambassador platform operated by Cevitas Real Estate LLC.
+        JavaScript is required to use the application. Visit
+        <a href="/about">About Sofara</a>,
+        <a href="/ambassador-program">the Ambassador Program</a>, or
+        <a href="/blog">the Sofara Blog</a> for more information.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
