@@ -15,6 +15,7 @@ import {
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import ahmedPortrait from "@/assets/ahmed-portrait.png";
 
 const About = () => {
   return (
@@ -70,13 +71,10 @@ const About = () => {
           <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start">
             <div className="rounded-2xl overflow-hidden aspect-square border border-border/50 bg-secondary/20">
               <img
-                src="/team/ahmed-benjas.jpg"
+                src={ahmedPortrait}
                 alt="Ahmed Benjas, Founder and CEO of Sofara and Cevitas Real Estate LLC"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 loading="eager"
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
               />
             </div>
             <div className="space-y-4">
