@@ -888,7 +888,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Unirse",
     "nav.signIn": "Iniciar sesión",
 
-    "hero.badge": "La red #1 de embajadores inmobiliarios IA",
+    "hero.badge": "Red de embajadores inmobiliarios de Dubái y EAU",
     "hero.topStrip": "El programa #1 de embajadores inmobiliarios en Dubái",
     "hero.slide1.headline": "Tú refieres.\nNosotros cerramos. Tú ganas.",
     "hero.slide1.highlight": "Tú ganas.",
