@@ -10,15 +10,15 @@ export type SeoMeta = {
 
 export const SITE_NAME = "Sofara";
 export const SITE_URL = "https://sofara.io";
-export const DEFAULT_OG_IMAGE = "https://sofara.io/og-image-default.jpg";
+export const DEFAULT_OG_IMAGE = "https://sofara.io/favicon-512x512.png";
 
 export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/": {
-    title: "Sofara — Dubai Real Estate Ambassadors Network | Earn Up to 3%",
+    title: "Sofara | Dubai Real Estate Ambassadors Network",
     description:
-      "Sofara is the #1 Dubai Real Estate Ambassadors Network. Refer property buyers for Emaar, DAMAC, Sobha and earn AED 37K–120K per closed deal. Free, no license. Powered by Cevitas Real Estate (RERA-licensed).",
+      "Sofara is a Dubai real estate ambassadors network by Cevitas Real Estate LLC. Refer UAE property buyers and earn up to 3% commission in AED.",
     canonical: "https://sofara.io/",
-    h1: "Sofara — Dubai Real Estate Ambassadors. Earn Up to 3% Commission.",
+    h1: "Sofara — Dubai Real Estate Ambassadors Network",
     keywords: [
       "Sofara",
       "Sofara Dubai",
@@ -229,7 +229,7 @@ export function buildPersonJsonLd() {
     "@type": "Person",
     name: "Ahmed Benjas",
     url: "https://sofara.io/about",
-    image: "https://sofara.io/team/ahmed-benjas.jpg",
+    image: "https://sofara.io/team/ahmed-benjas.png",
     jobTitle: "Founder & CEO",
     worksFor: [
       { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
