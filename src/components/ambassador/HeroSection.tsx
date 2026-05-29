@@ -75,7 +75,18 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 sm:mb-10 leading-relaxed px-2">
-              {t("hero.slide1.sub")}
+              {(() => {
+                const sub = t("hero.slide1.sub");
+                const highlights = ["3%", "no license", "from anywhere"];
+                // Build a regex matching any highlight, case-insensitive
+                const regex = new RegExp(`(${highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
+                const parts = sub.split(regex);
+                return parts.map((part, i) =>
+                  regex.test(part) || highlights.some(h => h.toLowerCase() === part.toLowerCase())
+                    ? <span key={i} className="text-primary font-semibold">{part}</span>
+                    : <span key={i}>{part}</span>
+                );
+              })()}
             </p>
           </motion.div>
 
