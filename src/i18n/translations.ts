@@ -19,7 +19,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.badge": "Dubai & UAE Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "You refer.\nWe close. You earn.",
-    "hero.slide1.highlight": "Sofara",
+    "hero.slide1.highlight": "You earn.",
     "hero.slide1.sub": "You refer. We close. You earn. Join Sofara, the Dubai real estate ambassador program by Cevitas Real Estate LLC. Earn up to 3% commission on every sale — no license, no cold calling, from anywhere in the world.",
     "hero.slide2.headline": "Luxury real estate, accessible to your network.",
     "hero.slide2.sub": "Penthouses, Palm villas — give your contacts access to the world's most dynamic real estate market.",
