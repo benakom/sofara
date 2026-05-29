@@ -10,7 +10,7 @@ export type SeoMeta = {
 
 export const SITE_NAME = "Sofara";
 export const SITE_URL = "https://sofara.io";
-export const DEFAULT_OG_IMAGE = "https://sofara.io/og-image-default.jpg";
+export const DEFAULT_OG_IMAGE = "https://sofara.io/favicon-512x512.png";
 
 export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/": {
@@ -229,7 +229,7 @@ export function buildPersonJsonLd() {
     "@type": "Person",
     name: "Ahmed Benjas",
     url: "https://sofara.io/about",
-    image: "https://sofara.io/team/ahmed-benjas.jpg",
+    image: "https://sofara.io/team/ahmed-benjas.png",
     jobTitle: "Founder & CEO",
     worksFor: [
       { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
