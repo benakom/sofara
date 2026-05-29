@@ -463,7 +463,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Rejoindre",
     "nav.signIn": "Connexion",
 
-    "hero.badge": "Le réseau #1 d'ambassadeurs immobiliers IA",
+    "hero.badge": "Réseau d'ambassadeurs immobiliers Dubaï & EAU",
     "hero.topStrip": "Le programme #1 d'ambassadeurs immobiliers à Dubaï",
     "hero.slide1.headline": "Vous référez.\nNous closons. Vous gagnez.",
     "hero.slide1.highlight": "Vous gagnez.",
