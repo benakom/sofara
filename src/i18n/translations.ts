@@ -20,7 +20,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "You refer.\nWe close. You earn.",
     "hero.slide1.highlight": "You earn.",
-    "hero.slide1.sub": "Join Sofara and earn up to 3% commission on every sale, no license and from anywhere in the world.",
+    "hero.slide1.sub": "Join Sofara and earn up to 3% commission on every closing, no license and from anywhere in the world.",
     "hero.slide2.headline": "Luxury real estate, accessible to your network.",
     "hero.slide2.sub": "Penthouses, Palm villas — give your contacts access to the world's most dynamic real estate market.",
     "hero.slide3.headline": "Dubai: the #1 investment destination worldwide in 2025.",
