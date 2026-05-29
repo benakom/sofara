@@ -16,7 +16,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.signIn": "Sign In",
 
     // Hero
-    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
+    "hero.badge": "Dubai & UAE Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Sofara Dubai Real Estate\nAmbassadors Network",
     "hero.slide1.highlight": "Sofara",
