@@ -1313,7 +1313,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Присоединиться",
     "nav.signIn": "Войти",
 
-    "hero.badge": "Сеть AI-амбассадоров недвижимости №1",
+    "hero.badge": "Сеть амбассадоров недвижимости Дубая и ОАЭ",
     "hero.topStrip": "Программа №1 амбассадоров недвижимости Дубая",
     "hero.slide1.headline": "Вы рекомендуете.\nМы закрываем сделку. Вы зарабатываете.",
     "hero.slide1.highlight": "Вы зарабатываете.",
