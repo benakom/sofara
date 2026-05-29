@@ -16,7 +16,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.signIn": "Sign In",
 
     // Hero
-    "hero.badge": "The #1 AI Real Estate Ambassadors Network",
+    "hero.badge": "Dubai & UAE Real Estate Ambassadors Network",
     "hero.topStrip": "The #1 Dubai Real Estate Ambassadors Program",
     "hero.slide1.headline": "Sofara Dubai Real Estate\nAmbassadors Network",
     "hero.slide1.highlight": "Sofara",
@@ -463,7 +463,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Rejoindre",
     "nav.signIn": "Connexion",
 
-    "hero.badge": "Le réseau #1 d'ambassadeurs immobiliers IA",
+    "hero.badge": "Réseau d'ambassadeurs immobiliers Dubaï & EAU",
     "hero.topStrip": "Le programme #1 d'ambassadeurs immobiliers à Dubaï",
     "hero.slide1.headline": "Vous référez.\nNous closons. Vous gagnez.",
     "hero.slide1.highlight": "Vous gagnez.",
@@ -888,7 +888,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Unirse",
     "nav.signIn": "Iniciar sesión",
 
-    "hero.badge": "La red #1 de embajadores inmobiliarios IA",
+    "hero.badge": "Red de embajadores inmobiliarios de Dubái y EAU",
     "hero.topStrip": "El programa #1 de embajadores inmobiliarios en Dubái",
     "hero.slide1.headline": "Tú refieres.\nNosotros cerramos. Tú ganas.",
     "hero.slide1.highlight": "Tú ganas.",
@@ -1313,7 +1313,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.join": "Присоединиться",
     "nav.signIn": "Войти",
 
-    "hero.badge": "Сеть AI-амбассадоров недвижимости №1",
+    "hero.badge": "Сеть амбассадоров недвижимости Дубая и ОАЭ",
     "hero.topStrip": "Программа №1 амбассадоров недвижимости Дубая",
     "hero.slide1.headline": "Вы рекомендуете.\nМы закрываем сделку. Вы зарабатываете.",
     "hero.slide1.highlight": "Вы зарабатываете.",
