@@ -41,6 +41,14 @@ const AdminAmbassadors = () => {
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+    const { error } = await supabase.functions.invoke("admin-delete-ambassador", { body: { user_id: id } });
+    if (error) { toast({ title: "Delete failed", description: error.message, variant: "destructive" }); return; }
+    setAmbassadors(prev => prev.filter(a => a.id !== id));
+    setSelected(prev => { const n = new Set(prev); n.delete(id); return n; });
+    toast({ title: "Ambassador deleted" });
+  };
   const toggleSelect = (id: string) => { setSelected(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; }); };
   const toggleAll = () => { selected.size === paginated.length ? setSelected(new Set()) : setSelected(new Set(paginated.map(a => a.id))); };
   const exportCSV = () => { const h = ["Name","Country","Status","Leads","Deals","Commission","Joined"]; const r = filtered.map(a => [a.full_name||"",a.country||"",a.status,a.leadCount,a.dealsClosed,a.totalCommission,new Date(a.created_at).toLocaleDateString()]); const csv = [h,...r].map(r=>r.join(",")).join("\n"); const b = new Blob([csv],{type:"text/csv"}); const u = URL.createObjectURL(b); const a = document.createElement("a"); a.href=u; a.download="ambassadors.csv"; a.click(); toast({title:"CSV exported"}); };
@@ -95,7 +103,7 @@ const AdminAmbassadors = () => {
                 <td className="px-4 py-3 text-xs font-bold text-[#154B3B]">AED {fmt(a.totalCommission)}</td>
                 <td className="px-4 py-3 text-xs font-medium" style={{color:a.pendingCommission>0?"#F59E0B":"#9CA3AF"}}>{a.pendingCommission>0?`AED ${fmt(a.pendingCommission)}`:"—"}</td>
                 <td className="px-4 py-3 text-[11px] text-[#9CA3AF]">{new Date(a.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"2-digit"})}</td>
-                <td className="px-4 py-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><MoreHorizontal className="w-4 h-4 text-[#9CA3AF]" /></button></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-48"><DropdownMenuItem onClick={()=>navigate(`/admin/ambassadors/${a.id}`)}><Eye className="w-3.5 h-3.5 mr-2" /> View profile</DropdownMenuItem>{a.status!=="approved"&&<DropdownMenuItem onClick={()=>handleStatusChange(a.id,"approved")}><Shield className="w-3.5 h-3.5 mr-2" /> Activate</DropdownMenuItem>}{a.status==="approved"&&<DropdownMenuItem onClick={()=>handleStatusChange(a.id,"suspended")}><ShieldOff className="w-3.5 h-3.5 mr-2" /> Suspend</DropdownMenuItem>}<DropdownMenuItem onClick={()=>handleStatusChange(a.id,"suspended")} className="text-[#EF4444]"><Trash2 className="w-3.5 h-3.5 mr-2" /> Delete</DropdownMenuItem></DropdownMenuContent></DropdownMenu></td>
+                <td className="px-4 py-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><MoreHorizontal className="w-4 h-4 text-[#9CA3AF]" /></button></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-48"><DropdownMenuItem onClick={()=>navigate(`/admin/ambassadors/${a.id}`)}><Eye className="w-3.5 h-3.5 mr-2" /> View profile</DropdownMenuItem>{a.status!=="approved"&&<DropdownMenuItem onClick={()=>handleStatusChange(a.id,"approved")}><Shield className="w-3.5 h-3.5 mr-2" /> Activate</DropdownMenuItem>}{a.status==="approved"&&<DropdownMenuItem onClick={()=>handleStatusChange(a.id,"suspended")}><ShieldOff className="w-3.5 h-3.5 mr-2" /> Suspend</DropdownMenuItem>}<DropdownMenuItem onClick={()=>handleDelete(a.id,a.full_name)} className="text-[#EF4444]"><Trash2 className="w-3.5 h-3.5 mr-2" /> Delete permanently</DropdownMenuItem></DropdownMenuContent></DropdownMenu></td>
               </tr>
             ))}</tbody>
           </table>
