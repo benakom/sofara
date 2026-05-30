@@ -45,7 +45,6 @@ const AdminAmbassadors = () => {
     if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
     const { error } = await supabase.functions.invoke("admin-delete-ambassador", {
       body: JSON.stringify({ user_id: id }),
-      headers: { "Content-Type": "application/json" },
     });
     if (error) { toast({ title: "Delete failed", description: error.message || "Please try again.", variant: "destructive" }); return; }
     setAmbassadors(prev => prev.filter(a => a.id !== id));
