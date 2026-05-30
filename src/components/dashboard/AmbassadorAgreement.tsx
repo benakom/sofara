@@ -200,7 +200,7 @@ const CLAUSES: Clause[] = [
 ];
 
 interface AmbassadorAgreementProps {
-  lang: "en" | "ar";
+  lang: string;
   accepted: boolean;
   onAcceptedChange: (v: boolean) => void;
 }
