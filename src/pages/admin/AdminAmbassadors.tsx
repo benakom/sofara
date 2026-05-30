@@ -41,6 +41,14 @@ const AdminAmbassadors = () => {
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+    const { error } = await supabase.functions.invoke("admin-delete-ambassador", { body: { user_id: id } });
+    if (error) { toast({ title: "Delete failed", description: error.message, variant: "destructive" }); return; }
+    setAmbassadors(prev => prev.filter(a => a.id !== id));
+    setSelected(prev => { const n = new Set(prev); n.delete(id); return n; });
+    toast({ title: "Ambassador deleted" });
+  };
   const toggleSelect = (id: string) => { setSelected(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; }); };
   const toggleAll = () => { selected.size === paginated.length ? setSelected(new Set()) : setSelected(new Set(paginated.map(a => a.id))); };
   const exportCSV = () => { const h = ["Name","Country","Status","Leads","Deals","Commission","Joined"]; const r = filtered.map(a => [a.full_name||"",a.country||"",a.status,a.leadCount,a.dealsClosed,a.totalCommission,new Date(a.created_at).toLocaleDateString()]); const csv = [h,...r].map(r=>r.join(",")).join("\n"); const b = new Blob([csv],{type:"text/csv"}); const u = URL.createObjectURL(b); const a = document.createElement("a"); a.href=u; a.download="ambassadors.csv"; a.click(); toast({title:"CSV exported"}); };
