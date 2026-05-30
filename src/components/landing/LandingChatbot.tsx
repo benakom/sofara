@@ -306,7 +306,7 @@ export default function LandingChatbot() {
             className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
             style={{ background: BRAND.bg, border: `2px solid ${BRAND.accent}`, boxShadow: `0 0 16px ${BRAND.accent}40, 0 0 4px ${BRAND.accent}60 inset` }}
           >
-            <img src={avatarImg} alt="Sofara" className="w-9 h-9 object-contain" />
+            <span className="font-bold text-2xl leading-none" style={{ color: BRAND.accent, fontFamily: "var(--font-display, 'Poppins', sans-serif)" }}>S</span>
           </div>
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2" style={{ background: BRAND.accent, borderColor: BRAND.bg }} />
           <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full animate-ping opacity-60" style={{ background: BRAND.accent }} />
