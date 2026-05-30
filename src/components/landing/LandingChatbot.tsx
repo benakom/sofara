@@ -396,10 +396,13 @@ export default function LandingChatbot() {
         <div className="px-4 py-3 flex items-center gap-3 shrink-0" style={{ background: BRAND.bgSoft, borderBottom: `1px solid ${BRAND.border}` }}>
           <img src={avatarImg} alt="Sara" className="w-9 h-9 rounded-full object-cover" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold" style={{ fontFamily: "var(--font-display, 'Poppins', sans-serif)", color: BRAND.accent }}>Sara</h3>
-            <p className="text-[10px] flex items-center gap-1" style={{ color: BRAND.textDim }}>
-              <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: BRAND.accent }} />
-              {i18n.online[lang]}
+            <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ fontFamily: "var(--font-display, 'Poppins', sans-serif)", color: BRAND.accent }}>
+              Sara
+              <span className="text-[8.5px] font-semibold tracking-wide px-1.5 py-0.5 rounded" style={{ background: BRAND.accentFaint, color: BRAND.accent, border: `1px solid ${BRAND.borderAccent}` }}>AI</span>
+            </h3>
+            <p className="text-[10px] flex items-center gap-1 truncate" style={{ color: BRAND.textDim }} title={i18n.aiBadge[lang]}>
+              <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse shrink-0" style={{ background: BRAND.accent }} />
+              <span className="truncate">{i18n.aiBadge[lang]}</span>
             </p>
           </div>
           <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-lg transition-colors hover:bg-white/5" style={{ color: BRAND.textDim }} aria-label="Close">
