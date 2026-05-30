@@ -558,6 +558,32 @@ export default function LandingChatbot() {
                   </div>
                 </div>
               )}
+
+              {/* FAQ quick-pick chips — shown only before first user question */}
+              {!isLoading && messages.length >= 1 && !messages.some(m => m.role === "user") && (
+                <div className="pt-1">
+                  <p className="text-[10.5px] uppercase tracking-wider mb-2 font-semibold" style={{ color: BRAND.accent }}>
+                    {i18n.faqTitle[lang]}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(FAQ[lang] || FAQ.en).map((f, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => sendMessage(f.q)}
+                        className="text-[12px] px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity text-left"
+                        style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.borderAccent}`, color: BRAND.text }}
+                      >
+                        {f.q}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[10.5px] mt-2 italic" style={{ color: BRAND.textDim }}>
+                    {i18n.faqOrAsk[lang]}
+                  </p>
+                </div>
+              )}
+
               <div ref={endRef} />
             </div>
 
