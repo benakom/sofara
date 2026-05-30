@@ -43,10 +43,18 @@ const AdminAmbassadors = () => {
   const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
-    const { error } = await supabase.functions.invoke("admin-delete-ambassador", {
+    const { data: { session } } = await supabase.auth.getSession();
+    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-delete-ambassador`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${session?.access_token}`,
+      },
       body: JSON.stringify({ user_id: id }),
     });
-    if (error) { toast({ title: "Delete failed", description: error.message || "Please try again.", variant: "destructive" }); return; }
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok) { toast({ title: "Delete failed", description: payload?.error || "Please try again.", variant: "destructive" }); return; }
     setAmbassadors(prev => prev.filter(a => a.id !== id));
     setSelected(prev => { const n = new Set(prev); n.delete(id); return n; });
     toast({ title: "Ambassador deleted" });
