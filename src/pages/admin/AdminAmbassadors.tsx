@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { Search, Download, Users, ChevronLeft, ChevronRight, MoreHorizontal, Eye, Shield, ShieldOff, Trash2, UserPlus } from "lucide-react";
+import { Search, Download, Users, ChevronLeft, ChevronRight, MoreHorizontal, Eye, Shield, ShieldOff, Trash2, UserPlus, Loader2 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
 
 const AdminAmbassadors = () => {
@@ -13,16 +14,21 @@ const AdminAmbassadors = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [createOpen, setCreateOpen] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createForm, setCreateForm] = useState({ full_name: "", email: "", password: "", phone: "", country: "" });
   const perPage = 25;
 
   useEffect(() => {
     const fetch = async () => {
-      const [profilesRes, leadsRes, commissionsRes] = await Promise.all([
+      const [profilesRes, leadsRes, commissionsRes, rolesRes] = await Promise.all([
         supabase.from("profiles").select("id, full_name, phone, country, status, profile_type, created_at").order("created_at", { ascending: false }),
         supabase.from("leads").select("user_id, stage"),
         supabase.from("commissions").select("user_id, amount, status"),
+        supabase.from("user_roles").select("user_id, role"),
       ]);
-      const profiles = profilesRes.data ?? [];
+      const superAdminIds = new Set((rolesRes.data ?? []).filter(r => r.role === "superadmin").map(r => r.user_id));
+      const profiles = (profilesRes.data ?? []).filter(p => !superAdminIds.has(p.id));
       const leads = leadsRes.data ?? [];
       const commissions = commissionsRes.data ?? [];
       const leadsMap: Record<string, { total: number; closed: number }> = {};
@@ -40,24 +46,41 @@ const AdminAmbassadors = () => {
   const totalPages = Math.ceil(filtered.length / perPage);
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
-  const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
-  const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+  const callAdminFunction = async (name: string, body: Record<string, unknown>) => {
     const { data: { session } } = await supabase.auth.getSession();
-    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-delete-ambassador`, {
+    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         Authorization: `Bearer ${session?.access_token}`,
       },
-      body: JSON.stringify({ user_id: id }),
+      body: JSON.stringify(body),
     });
     const payload = await res.json().catch(() => ({}));
-    if (!res.ok) { toast({ title: "Delete failed", description: payload?.error || "Please try again.", variant: "destructive" }); return; }
+    if (!res.ok) throw new Error(payload?.error || "Please try again.");
+    return payload;
+  };
+
+  const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+    try { await callAdminFunction("admin-delete-ambassador", { user_id: id }); }
+    catch (error) { toast({ title: "Delete failed", description: (error as Error).message, variant: "destructive" }); return; }
     setAmbassadors(prev => prev.filter(a => a.id !== id));
     setSelected(prev => { const n = new Set(prev); n.delete(id); return n; });
     toast({ title: "Ambassador deleted" });
+  };
+  const handleCreate = async () => {
+    setCreateLoading(true);
+    try {
+      const payload = await callAdminFunction("admin-create-ambassador", createForm);
+      setAmbassadors(prev => [{ ...payload.ambassador, leadCount: 0, dealsClosed: 0, totalCommission: 0, pendingCommission: 0, created_at: new Date().toISOString() }, ...prev]);
+      setCreateForm({ full_name: "", email: "", password: "", phone: "", country: "" });
+      setCreateOpen(false);
+      toast({ title: "Ambassador created" });
+    } catch (error) { toast({ title: "Create failed", description: (error as Error).message, variant: "destructive" }); }
+    finally { setCreateLoading(false); }
   };
   const toggleSelect = (id: string) => { setSelected(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; }); };
   const toggleAll = () => { selected.size === paginated.length ? setSelected(new Set()) : setSelected(new Set(paginated.map(a => a.id))); };
@@ -75,7 +98,7 @@ const AdminAmbassadors = () => {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export CSV</button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]"><UserPlus className="w-3.5 h-3.5" /> Add Ambassador</button>
+          <button onClick={()=>setCreateOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]"><UserPlus className="w-3.5 h-3.5" /> Add Ambassador</button>
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -122,6 +145,19 @@ const AdminAmbassadors = () => {
         {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[#E5E7EB]"><p className="text-xs text-[#9CA3AF]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex items-center gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronLeft className="w-4 h-4 text-[#6B7280]" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronRight className="w-4 h-4 text-[#6B7280]" /></button></div></div>}
       </div>
       {selected.size>0&&<div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#154B3B] text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-4 z-50"><span className="text-sm font-medium">{selected.size} selected</span><button onClick={()=>{selected.forEach(id=>handleStatusChange(id,"approved"));setSelected(new Set())}} className="text-xs font-semibold bg-[#D2F34C] text-black px-3 py-1.5 rounded-lg hover:bg-[#BDE040]">Activate</button><button onClick={()=>{selected.forEach(id=>handleStatusChange(id,"suspended"));setSelected(new Set())}} className="text-xs font-semibold bg-[#EF4444] text-white px-3 py-1.5 rounded-lg">Suspend</button></div>}
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader><DialogTitle className="text-[#154B3B]">Add Ambassador</DialogTitle><DialogDescription>Create a verified ambassador account that can sign in immediately.</DialogDescription></DialogHeader>
+          <div className="space-y-3 py-2">
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Full name" value={createForm.full_name} onChange={e=>setCreateForm(f=>({...f,full_name:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Email" type="email" value={createForm.email} onChange={e=>setCreateForm(f=>({...f,email:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Temporary password" type="password" value={createForm.password} onChange={e=>setCreateForm(f=>({...f,password:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Phone" value={createForm.phone} onChange={e=>setCreateForm(f=>({...f,phone:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Country" value={createForm.country} onChange={e=>setCreateForm(f=>({...f,country:e.target.value}))} />
+          </div>
+          <DialogFooter><button onClick={()=>setCreateOpen(false)} className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-xs font-semibold text-[#6B7280]">Cancel</button><button onClick={handleCreate} disabled={createLoading} className="px-4 py-2 rounded-lg bg-[#D2F34C] text-black text-xs font-bold disabled:opacity-60">{createLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Create account"}</button></DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

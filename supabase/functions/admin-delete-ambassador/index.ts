@@ -7,7 +7,10 @@ const corsHeaders = {
 };
 
 const isUuid = (value: unknown): value is string =>
-  typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+  typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+
+const json = (body: Record<string, unknown>, status = 200) =>
+  new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
 const readTargetId = async (req: Request) => {
   const fromQuery = new URL(req.url).searchParams.get("user_id");
@@ -38,7 +41,7 @@ Deno.serve(async (req) => {
     });
     const { data: userData, error: userErr } = await userClient.auth.getUser();
     if (userErr || !userData?.user) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return json({ error: "Unauthorized" }, 401);
     }
 
     const admin = createClient(SUPABASE_URL, SERVICE_KEY);
@@ -49,17 +52,20 @@ Deno.serve(async (req) => {
       .eq("role", "superadmin")
       .maybeSingle();
     if (!isSuper) {
-      return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return json({ error: "Forbidden" }, 403);
     }
 
     const targetId = await readTargetId(req);
     if (!isUuid(targetId)) {
       console.error("Invalid or missing ambassador id", { targetId });
-      return new Response(JSON.stringify({ error: "Invalid or missing ambassador id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return json({ error: "Invalid or missing ambassador id" }, 400);
     }
     if (targetId === userData.user.id) {
-      return new Response(JSON.stringify({ error: "Cannot delete yourself" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return json({ error: "Cannot delete yourself" }, 400);
     }
+
+    const { data: targetRole } = await admin.from("user_roles").select("role").eq("user_id", targetId).eq("role", "superadmin").maybeSingle();
+    if (targetRole) return json({ error: "Cannot delete a super admin account" }, 400);
 
     // Clean public data first (no FK cascades)
     await admin.from("community_likes").delete().eq("user_id", targetId);
@@ -75,14 +81,16 @@ Deno.serve(async (req) => {
     await admin.from("user_roles").delete().eq("user_id", targetId);
     await admin.from("profiles").delete().eq("id", targetId);
 
-    const { error: delErr } = await admin.auth.admin.deleteUser(targetId);
+    const { data: authUser } = await admin.auth.admin.getUserById(targetId);
+    const { error: delErr } = authUser?.user ? await admin.auth.admin.deleteUser(targetId) : { error: null };
     if (delErr && !/not found/i.test(delErr.message)) {
       console.error("Auth user deletion failed", delErr.message);
-      return new Response(JSON.stringify({ error: delErr.message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return json({ error: delErr.message }, 500);
     }
 
-    return new Response(JSON.stringify({ ok: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    return json({ ok: true });
   } catch (e) {
-    return new Response(JSON.stringify({ error: (e as Error).message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    console.error("admin-delete-ambassador failed", e);
+    return json({ error: (e as Error).message }, 500);
   }
 });
