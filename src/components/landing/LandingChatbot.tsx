@@ -90,31 +90,96 @@ const i18n: Record<string, Record<Lang, string>> = {
     ar: "By continuing you accept our privacy policy.",
   },
   welcome: {
-    en: "Hi {name}! I'm Sara, your Sofara assistant 👋 Ask me anything about investing in Dubai or the ambassador program.",
-    fr: "Bonjour {name} ! Je suis Sara, votre assistante Sofara 👋 Posez-moi vos questions sur l'investissement à Dubaï ou le programme ambassadeur.",
-    es: "¡Hola {name}! Soy Sara, tu asistente Sofara 👋 Pregúntame lo que quieras sobre invertir en Dubái o el programa de embajadores.",
-    ru: "Привет, {name}! Я Сара, ваша помощница Sofara 👋 Спрашивайте что угодно об инвестициях в Дубае или программе амбассадоров.",
-    ar: "Hi {name}! I'm Sara, your Sofara assistant 👋 Ask me anything about investing in Dubai or the ambassador program.",
+    en: "Hi {name}! I'm Sara, the Sofara AI assistant 🤖 I can answer any question about Sofara, Dubai real estate or our ambassador program. Pick a topic below or ask me anything.",
+    fr: "Bonjour {name} ! Je suis Sara, l'assistante IA de Sofara 🤖 Je réponds à toutes vos questions sur Sofara, l'immobilier à Dubaï ou notre programme ambassadeur. Choisissez un sujet ou posez-moi votre question.",
+    es: "¡Hola {name}! Soy Sara, la asistente IA de Sofara 🤖 Respondo cualquier pregunta sobre Sofara, el inmobiliario de Dubái o el programa de embajadores. Elige un tema o hazme tu pregunta.",
+    ru: "Привет, {name}! Я Сара, ИИ-ассистент Sofara 🤖 Отвечу на любой вопрос о Sofara, недвижимости Дубая и программе амбассадоров. Выберите тему ниже или задайте вопрос.",
+    ar: "مرحباً {name}! أنا سارة، مساعدة Sofara بالذكاء الاصطناعي 🤖 أجيب عن أي سؤال حول Sofara والعقارات في دبي وبرنامج السفراء. اختر موضوعاً أو اطرح سؤالك.",
+  },
+  aiBadge: {
+    en: "AI assistant · answers all your questions",
+    fr: "Assistante IA · répond à toutes vos questions",
+    es: "Asistente IA · responde todas tus preguntas",
+    ru: "ИИ-ассистент · ответит на любые вопросы",
+    ar: "مساعدة ذكاء اصطناعي · تجيب عن كل أسئلتك",
+  },
+  faqTitle: {
+    en: "Frequently asked questions",
+    fr: "Questions fréquentes",
+    es: "Preguntas frecuentes",
+    ru: "Частые вопросы",
+    ar: "الأسئلة الشائعة",
+  },
+  faqOrAsk: {
+    en: "…or type your own question below",
+    fr: "…ou tapez votre question ci-dessous",
+    es: "…o escribe tu propia pregunta abajo",
+    ru: "…или задайте свой вопрос ниже",
+    ar: "…أو اكتب سؤالك أدناه",
   },
   placeholder: {
     en: "Ask your question…",
     fr: "Posez votre question…",
     es: "Haz tu pregunta…",
     ru: "Задайте ваш вопрос…",
-    ar: "Ask your question…",
+    ar: "اطرح سؤالك…",
   },
   limitReached: {
     en: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
     fr: "Vous avez atteint la limite de questions pour cette session. Contactez-nous à hello@sofara.io pour continuer !",
     es: "Has alcanzado el límite de preguntas de esta sesión. ¡Contáctanos en hello@sofara.io para continuar!",
     ru: "Вы достигли лимита вопросов для этой сессии. Напишите нам на hello@sofara.io, чтобы продолжить!",
-    ar: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
+    ar: "لقد بلغت الحد الأقصى للأسئلة في هذه الجلسة. تواصل معنا على hello@sofara.io للمتابعة!",
   },
-  online: { en: "Online", fr: "En ligne", es: "En línea", ru: "В сети", ar: "Online" },
-  required: { en: "Required", fr: "Requis", es: "Requerido", ru: "Обязательно", ar: "Required" },
-  invalidEmail: { en: "Invalid email", fr: "Email invalide", es: "Email inválido", ru: "Неверный email", ar: "Invalid email" },
-  invalidPhone: { en: "Invalid phone", fr: "Téléphone invalide", es: "Teléfono inválido", ru: "Неверный телефон", ar: "Invalid phone" },
+  online: { en: "AI · Online", fr: "IA · En ligne", es: "IA · En línea", ru: "ИИ · В сети", ar: "ذكاء اصطناعي · متصلة" },
+  required: { en: "Required", fr: "Requis", es: "Requerido", ru: "Обязательно", ar: "مطلوب" },
+  invalidEmail: { en: "Invalid email", fr: "Email invalide", es: "Email inválido", ru: "Неверный email", ar: "بريد إلكتروني غير صالح" },
+  invalidPhone: { en: "Invalid phone", fr: "Téléphone invalide", es: "Teléfono inválido", ru: "Неверный телефон", ar: "رقم هاتف غير صالح" },
 };
+
+const FAQ: Record<Lang, { q: string; a?: string }[]> = {
+  fr: [
+    { q: "Qui sommes-nous ?" },
+    { q: "Comment gagner de l'argent avec Sofara ?" },
+    { q: "Mes leads sont-ils protégés ?" },
+    { q: "Pourquoi passer par Sofara ?" },
+    { q: "Combien puis-je gagner par vente ?" },
+    { q: "Comment devenir ambassadeur ?" },
+  ],
+  en: [
+    { q: "Who are we?" },
+    { q: "How do I earn money with Sofara?" },
+    { q: "Are my leads protected?" },
+    { q: "Why go through Sofara?" },
+    { q: "How much can I earn per sale?" },
+    { q: "How do I become an ambassador?" },
+  ],
+  es: [
+    { q: "¿Quiénes somos?" },
+    { q: "¿Cómo gano dinero con Sofara?" },
+    { q: "¿Están protegidos mis leads?" },
+    { q: "¿Por qué pasar por Sofara?" },
+    { q: "¿Cuánto puedo ganar por venta?" },
+    { q: "¿Cómo me hago embajador?" },
+  ],
+  ru: [
+    { q: "Кто мы?" },
+    { q: "Как заработать с Sofara?" },
+    { q: "Защищены ли мои лиды?" },
+    { q: "Почему именно Sofara?" },
+    { q: "Сколько я могу заработать с одной продажи?" },
+    { q: "Как стать амбассадором?" },
+  ],
+  ar: [
+    { q: "من نحن؟" },
+    { q: "كيف أربح المال مع Sofara؟" },
+    { q: "هل عملائي المحتملون محميون؟" },
+    { q: "لماذا أمرّ عبر Sofara؟" },
+    { q: "كم يمكنني الربح من كل عملية بيع؟" },
+    { q: "كيف أصبح سفيراً؟" },
+  ],
+};
+
 
 const leadSchema = z.object({
   first_name: z.string().trim().min(1).max(100),
@@ -259,7 +324,7 @@ export default function LandingChatbot() {
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}` },
-        body: JSON.stringify({ messages: updated }),
+        body: JSON.stringify({ messages: updated, lang }),
       });
       if (!resp.ok) { upsert("Sorry, something went wrong. Please try again."); setIsLoading(false); return; }
       const reader = resp.body!.getReader();
@@ -331,10 +396,13 @@ export default function LandingChatbot() {
         <div className="px-4 py-3 flex items-center gap-3 shrink-0" style={{ background: BRAND.bgSoft, borderBottom: `1px solid ${BRAND.border}` }}>
           <img src={avatarImg} alt="Sara" className="w-9 h-9 rounded-full object-cover" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold" style={{ fontFamily: "var(--font-display, 'Poppins', sans-serif)", color: BRAND.accent }}>Sara</h3>
-            <p className="text-[10px] flex items-center gap-1" style={{ color: BRAND.textDim }}>
-              <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: BRAND.accent }} />
-              {i18n.online[lang]}
+            <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ fontFamily: "var(--font-display, 'Poppins', sans-serif)", color: BRAND.accent }}>
+              Sara
+              <span className="text-[8.5px] font-semibold tracking-wide px-1.5 py-0.5 rounded" style={{ background: BRAND.accentFaint, color: BRAND.accent, border: `1px solid ${BRAND.borderAccent}` }}>AI</span>
+            </h3>
+            <p className="text-[10px] flex items-center gap-1 truncate" style={{ color: BRAND.textDim }} title={i18n.aiBadge[lang]}>
+              <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse shrink-0" style={{ background: BRAND.accent }} />
+              <span className="truncate">{i18n.aiBadge[lang]}</span>
             </p>
           </div>
           <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-lg transition-colors hover:bg-white/5" style={{ color: BRAND.textDim }} aria-label="Close">
@@ -490,6 +558,32 @@ export default function LandingChatbot() {
                   </div>
                 </div>
               )}
+
+              {/* FAQ quick-pick chips — shown only before first user question */}
+              {!isLoading && messages.length >= 1 && !messages.some(m => m.role === "user") && (
+                <div className="pt-1">
+                  <p className="text-[10.5px] uppercase tracking-wider mb-2 font-semibold" style={{ color: BRAND.accent }}>
+                    {i18n.faqTitle[lang]}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(FAQ[lang] || FAQ.en).map((f, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => sendMessage(f.q)}
+                        className="text-[12px] px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity text-left"
+                        style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.borderAccent}`, color: BRAND.text }}
+                      >
+                        {f.q}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[10.5px] mt-2 italic" style={{ color: BRAND.textDim }}>
+                    {i18n.faqOrAsk[lang]}
+                  </p>
+                </div>
+              )}
+
               <div ref={endRef} />
             </div>
 
