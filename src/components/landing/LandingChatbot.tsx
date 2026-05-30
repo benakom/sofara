@@ -324,7 +324,7 @@ export default function LandingChatbot() {
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}` },
-        body: JSON.stringify({ messages: updated }),
+        body: JSON.stringify({ messages: updated, lang }),
       });
       if (!resp.ok) { upsert("Sorry, something went wrong. Please try again."); setIsLoading(false); return; }
       const reader = resp.body!.getReader();
