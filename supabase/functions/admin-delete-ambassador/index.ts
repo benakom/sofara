@@ -34,9 +34,14 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const body = await req.json().catch(() => ({}));
+    let body: any = {};
+    try {
+      const raw = await req.text();
+      if (raw) body = JSON.parse(raw);
+    } catch (_) { body = {}; }
     const targetId: string | undefined = body?.user_id;
     if (!targetId || typeof targetId !== "string") {
+      console.error("Missing user_id, body was:", JSON.stringify(body));
       return new Response(JSON.stringify({ error: "Missing user_id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
     if (targetId === userData.user.id) {
