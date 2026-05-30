@@ -96,7 +96,7 @@ const AdminAmbassadors = () => {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#6B7280] hover:bg-[#F9FAFB]"><Download className="w-3.5 h-3.5" /> Export CSV</button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]"><UserPlus className="w-3.5 h-3.5" /> Add Ambassador</button>
+          <button onClick={()=>setCreateOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]"><UserPlus className="w-3.5 h-3.5" /> Add Ambassador</button>
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -143,6 +143,19 @@ const AdminAmbassadors = () => {
         {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[#E5E7EB]"><p className="text-xs text-[#9CA3AF]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex items-center gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronLeft className="w-4 h-4 text-[#6B7280]" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[#F5F5F7] disabled:opacity-30"><ChevronRight className="w-4 h-4 text-[#6B7280]" /></button></div></div>}
       </div>
       {selected.size>0&&<div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#154B3B] text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-4 z-50"><span className="text-sm font-medium">{selected.size} selected</span><button onClick={()=>{selected.forEach(id=>handleStatusChange(id,"approved"));setSelected(new Set())}} className="text-xs font-semibold bg-[#D2F34C] text-black px-3 py-1.5 rounded-lg hover:bg-[#BDE040]">Activate</button><button onClick={()=>{selected.forEach(id=>handleStatusChange(id,"suspended"));setSelected(new Set())}} className="text-xs font-semibold bg-[#EF4444] text-white px-3 py-1.5 rounded-lg">Suspend</button></div>}
+      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader><DialogTitle className="text-[#154B3B]">Add Ambassador</DialogTitle><DialogDescription>Create a verified ambassador account that can sign in immediately.</DialogDescription></DialogHeader>
+          <div className="space-y-3 py-2">
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Full name" value={createForm.full_name} onChange={e=>setCreateForm(f=>({...f,full_name:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Email" type="email" value={createForm.email} onChange={e=>setCreateForm(f=>({...f,email:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Temporary password" type="password" value={createForm.password} onChange={e=>setCreateForm(f=>({...f,password:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Phone" value={createForm.phone} onChange={e=>setCreateForm(f=>({...f,phone:e.target.value}))} />
+            <input className="w-full h-10 rounded-lg border border-[#E5E7EB] px-3 text-sm text-[#154B3B]" placeholder="Country" value={createForm.country} onChange={e=>setCreateForm(f=>({...f,country:e.target.value}))} />
+          </div>
+          <DialogFooter><button onClick={()=>setCreateOpen(false)} className="px-4 py-2 rounded-lg border border-[#E5E7EB] text-xs font-semibold text-[#6B7280]">Cancel</button><button onClick={handleCreate} disabled={createLoading} className="px-4 py-2 rounded-lg bg-[#D2F34C] text-black text-xs font-bold disabled:opacity-60">{createLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Create account"}</button></DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
