@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -87,11 +87,6 @@ const Auth = () => {
   const [phone, setPhone] = useState("");
   const [occupation, setOccupation] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  // Anti-bot: honeypot + minimum time-to-submit (resets each time signup form opens)
-  const [honeypot, setHoneypot] = useState("");
-  const signupMountedAt = useRef<number>(Date.now());
-  useEffect(() => { if (mode === "signup") signupMountedAt.current = Date.now(); }, [mode]);
-
   const selectedPhoneEntry = PHONE_CODES.find(c => c.code === phoneCode);
 
   const validatePhone = (value: string, code: string) => {
@@ -150,11 +145,6 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Anti-bot: silently abort if honeypot filled or form submitted in <2s
-    if (honeypot.trim() !== "" || Date.now() - signupMountedAt.current < 2000) {
-      toast({ variant: "destructive", title: lang === "ar" ? "Erreur" : "Error", description: lang === "ar" ? "Veuillez réessayer." : "Please try again." });
-      return;
-    }
     const digits = phone.replace(/\D/g, "");
     const pErr = validatePhone(digits, phoneCode);
     if (pErr) {
@@ -529,15 +519,6 @@ const Auth = () => {
             </div>
 
             <form onSubmit={onSubmit} className="space-y-3.5" autoComplete="off">
-              {mode === "signup" && (
-                <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
-                  <label htmlFor="company-website">Website</label>
-                  <input
-                    id="company-website" name="company_website" type="text" tabIndex={-1} autoComplete="off"
-                    value={honeypot} onChange={(e) => setHoneypot(e.target.value)}
-                  />
-                </div>
-              )}
               {mode === "signup" && (
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
