@@ -62,7 +62,6 @@ const navGroups: NavGroup[] = [
       { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
       { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
       { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
-      { path: "/dashboard/referrals", icon: Users, labelAr: "إحالاتي", labelEn: "Referrals" },
     ],
   },
 ];
@@ -83,14 +82,14 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-  // Sofara Lite: only show specific menus
+  // Sofara Lite: Academy included, Referrals removed
   const liteAllowedPaths = [
     "/dashboard",
+    "/dashboard/academy",
     "/dashboard/pipeline",
     "/dashboard/import-leads",
     "/dashboard/commissions",
     "/dashboard/payments",
-    "/dashboard/referrals",
   ];
 
   const filteredGroups = navGroups.map((group) => ({
