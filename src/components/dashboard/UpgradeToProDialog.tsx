@@ -10,24 +10,25 @@ import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Loader2, Check, X, Sparkles, GitBranch, Bot, BookOpen,
-  Calculator, CalendarDays, ShieldCheck, Crown
+  Loader2, Sparkles, Crown, Bot, BookOpen,
+  Calculator, CalendarDays, ShieldCheck, BarChart3, Zap
 } from "lucide-react";
 
-const COMPARE_FEATURES = [
-  { labelAr: "Pipeline de leads", labelEn: "Lead Pipeline", lite: true, pro: true },
-  { labelAr: "Suivi des commissions", labelEn: "Commission Tracking", lite: true, pro: true },
-  { labelAr: "Suivi des paiements", labelEn: "Payment Tracking", lite: true, pro: true },
-  { labelAr: "Community", labelEn: "Community", lite: true, pro: true },
-  { labelAr: "Academy (formations)", labelEn: "Academy (courses)", lite: true, pro: true },
-  { labelAr: "Parrainage d'ambassadeurs", labelEn: "Ambassador Referrals", lite: true, pro: true },
-  { labelAr: "SofarAI — Assistant IA", labelEn: "SofarAI — AI Assistant", lite: false, pro: true },
-  { labelAr: "Scoring IA des leads", labelEn: "AI Lead Scoring", lite: false, pro: true },
-  { labelAr: "Bibliothèque de projets", labelEn: "Project Library", lite: false, pro: true },
-  { labelAr: "Simulateurs (DLD, Plans)", labelEn: "Simulators (DLD, Plans)", lite: false, pro: true },
-  { labelAr: "Calendrier intégré", labelEn: "Integrated Calendar", lite: false, pro: true },
-  { labelAr: "KYC & AML", labelEn: "KYC & AML", lite: false, pro: true },
+const PRO_BENEFITS = [
+  { icon: Bot, titleAr: "SofarAI — Assistant IA", titleEn: "SofarAI — AI Assistant",
+    descAr: "Qualification, scoring et roleplay pour closer plus vite.", descEn: "Lead qualification, scoring and roleplay to close faster." },
+  { icon: BarChart3, titleAr: "Scoring IA des leads", titleEn: "AI Lead Scoring",
+    descAr: "Priorisez les leads à plus haut potentiel automatiquement.", descEn: "Automatically prioritize your highest-potential leads." },
+  { icon: BookOpen, titleAr: "Bibliothèque de projets", titleEn: "Project Library",
+    descAr: "Accès complet aux fiches projets, brochures et données vérifiées.", descEn: "Full access to verified project fact sheets and brochures." },
+  { icon: Calculator, titleAr: "Simulateurs (DLD, Plans)", titleEn: "Simulators (DLD, Plans)",
+    descAr: "Simulez les frais DLD et les plans de paiement off-plan.", descEn: "Simulate DLD fees and off-plan payment plans in seconds." },
+  { icon: CalendarDays, titleAr: "Calendrier intégré", titleEn: "Integrated Calendar",
+    descAr: "Centralisez vos rendez-vous et relances clients.", descEn: "Centralize your appointments and client follow-ups." },
+  { icon: ShieldCheck, titleAr: "KYC & AML", titleEn: "KYC & AML",
+    descAr: "Vérification des clients conforme aux normes UAE.", descEn: "UAE-compliant client verification workflow." },
 ];
+
 
 const EXPERIENCE_OPTIONS = [
   { value: "agent", labelAr: "Agent immobilier", labelEn: "Real estate agent" },
@@ -98,27 +99,43 @@ const UpgradeToProDialog = ({ open, onOpenChange, onUpgradeRequested }: UpgradeT
 
         {step === "compare" ? (
           <div className="space-y-5">
-            {/* Comparison table */}
-            <div className="rounded-xl border border-[hsl(var(--dash-border))] overflow-hidden">
-              <div className="grid grid-cols-[1fr_80px_80px] bg-[hsl(var(--dash-muted)/.5)]">
-                <div className="p-3 text-xs font-semibold dash-muted-text uppercase tracking-wider">
-                  {lang === "ar" ? "Fonctionnalité" : "Feature"}
-                </div>
-                <div className="p-3 text-xs font-semibold dash-muted-text text-center uppercase tracking-wider">Lite</div>
-                <div className="p-3 text-xs font-semibold text-[hsl(var(--primary))] text-center uppercase tracking-wider">Pro</div>
+            {/* Pro hero */}
+            <div className="rounded-2xl p-5 bg-gradient-to-br from-[hsl(var(--primary)/.12)] to-[hsl(var(--primary)/.04)] border border-[hsl(var(--primary)/.2)]">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Zap className="w-4 h-4 text-[hsl(var(--primary))]" />
+                <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-[hsl(var(--primary))]">
+                  {lang === "ar" ? "Sofara Pro" : "Sofara Pro"}
+                </span>
               </div>
-              {COMPARE_FEATURES.map((f, i) => (
-                <div key={i} className={`grid grid-cols-[1fr_80px_80px] border-t border-[hsl(var(--dash-border)/.5)] ${!f.lite ? "bg-[hsl(var(--primary)/.03)]" : ""}`}>
-                  <div className="p-3 text-xs dash-text">{lang === "ar" ? f.labelAr : f.labelEn}</div>
-                  <div className="p-3 flex items-center justify-center">
-                    {f.lite ? (
-                      <Check className="w-4 h-4 text-emerald-500" />
-                    ) : (
-                      <X className="w-4 h-4 text-[hsl(var(--dash-muted-fg)/.3)]" />
-                    )}
+              <h3 className="text-base font-display font-bold dash-text">
+                {lang === "ar"
+                  ? "Tous les outils pour qualifier, scorer et closer."
+                  : "Every tool to qualify, score and close."}
+              </h3>
+              <p className="text-xs dash-muted-text mt-1">
+                {lang === "ar"
+                  ? "Réservé aux professionnels de l'immobilier — gratuit après validation."
+                  : "Reserved for real estate professionals — free after approval."}
+              </p>
+            </div>
+
+            {/* Pro benefits */}
+            <div className="space-y-2">
+              {PRO_BENEFITS.map((b, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 p-3 rounded-xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-bg)/.4)]"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-[hsl(var(--primary)/.12)] flex items-center justify-center shrink-0">
+                    <b.icon className="w-4 h-4 text-[hsl(var(--primary))]" />
                   </div>
-                  <div className="p-3 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-[hsl(var(--primary))]" />
+                  <div className="min-w-0">
+                    <p className="text-[13px] font-semibold dash-text leading-tight">
+                      {lang === "ar" ? b.titleAr : b.titleEn}
+                    </p>
+                    <p className="text-[11px] dash-muted-text mt-0.5 leading-relaxed">
+                      {lang === "ar" ? b.descAr : b.descEn}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -144,8 +161,9 @@ const UpgradeToProDialog = ({ open, onOpenChange, onUpgradeRequested }: UpgradeT
         ) : (
           <div className="space-y-4">
             <button onClick={() => setStep("compare")} className="text-xs text-[hsl(var(--primary))] hover:underline">
-              ← {lang === "ar" ? "Retour au comparatif" : "Back to comparison"}
+              ← {lang === "ar" ? "Retour aux avantages" : "Back to benefits"}
             </button>
+
 
             <div>
               <Label className="text-xs dash-muted-text">

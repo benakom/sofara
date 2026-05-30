@@ -255,7 +255,7 @@ const DashboardHome = () => {
           { labelAr: "إضافة عميل", labelEn: "Add a lead", icon: Users, path: "/dashboard/pipeline", iconClass: "dash-icon-a" },
           { labelAr: "الأكاديمية", labelEn: "Academy", icon: Zap, path: "/dashboard/academy", iconClass: "dash-icon-d" },
           { labelAr: "SofarAI", labelEn: "SofarAI", icon: Trophy, path: "/dashboard/ai-hub", iconClass: "dash-icon-b" },
-          { labelAr: "إحالات", labelEn: "Referrals", icon: DollarSign, path: "/dashboard/referrals", iconClass: "dash-icon-c" },
+          { labelAr: "المدفوعات", labelEn: "Payments", icon: DollarSign, path: "/dashboard/payments", iconClass: "dash-icon-c" },
         ].map((action, i) => (
           <motion.button key={i} onClick={() => navigate(action.path)}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 + i * 0.05 }}

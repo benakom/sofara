@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Shield, Lock, Eye, Users, Sparkles } from "lucide-react";
+import { Loader2, Lock, Eye, Users, Sparkles } from "lucide-react";
+import AmbassadorAgreement from "./AmbassadorAgreement";
 
 const PHONE_CODES = [
   { code: "+971", flag: "🇦🇪", name: "UAE" },
@@ -84,15 +84,14 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [profileType, setProfileType] = useState("");
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [acceptedConduct, setAcceptedConduct] = useState(false);
+  const [acceptedAgreement, setAcceptedAgreement] = useState(false);
 
   const selectedPhoneCode = PHONE_CODES.find(c => c.code === phoneCode);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName.trim() || !phone.trim() || !country || !profileType || !acceptedTerms || !acceptedConduct) {
-      toast({ variant: "destructive", title: lang === "ar" ? "Champs requis" : "Required fields", description: lang === "ar" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
+    if (!fullName.trim() || !phone.trim() || !country || !profileType || !acceptedAgreement) {
+      toast({ variant: "destructive", title: lang === "ar" ? "Champs requis" : "Required fields", description: lang === "ar" ? "Veuillez remplir tous les champs et accepter l'accord." : "Please fill all fields and accept the agreement." });
       return;
     }
     setLoading(true);
@@ -239,28 +238,15 @@ const OnboardingGate = ({ onComplete }: OnboardingGateProps) => {
             </div>
           </div>
 
-          <div className="space-y-3 pt-2 border-t border-[hsl(var(--dash-border))]">
-            <div className="flex items-start gap-3">
-              <Checkbox id="terms" checked={acceptedTerms} onCheckedChange={(v) => setAcceptedTerms(!!v)} className="mt-0.5" />
-              <label htmlFor="terms" className="text-xs dash-muted-text leading-relaxed cursor-pointer">
-                {lang === "ar"
-                  ? "J'accepte les conditions générales d'utilisation et la politique de confidentialité de Sofara."
-                  : "I accept Sofara's terms of service and privacy policy."}
-                <span className="text-destructive ml-0.5">*</span>
-              </label>
-            </div>
-            <div className="flex items-start gap-3">
-              <Checkbox id="conduct" checked={acceptedConduct} onCheckedChange={(v) => setAcceptedConduct(!!v)} className="mt-0.5" />
-              <label htmlFor="conduct" className="text-xs dash-muted-text leading-relaxed cursor-pointer">
-                {lang === "ar"
-                  ? "Je m'engage à respecter le code de conduite du programme ambassadeur."
-                  : "I commit to respecting the ambassador program code of conduct."}
-                <span className="text-destructive ml-0.5">*</span>
-              </label>
-            </div>
+          <div className="pt-2 border-t border-[hsl(var(--dash-border))]">
+            <AmbassadorAgreement
+              lang={lang}
+              accepted={acceptedAgreement}
+              onAcceptedChange={setAcceptedAgreement}
+            />
           </div>
 
-          <Button type="submit" variant="hero" className="w-full rounded-xl py-5 text-sm" disabled={loading || !acceptedTerms || !acceptedConduct}>
+          <Button type="submit" variant="hero" className="w-full rounded-xl py-5 text-sm" disabled={loading || !acceptedAgreement}>
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : lang === "ar" ? "Activer mon compte" : "Activate my account"}
           </Button>
         </form>
