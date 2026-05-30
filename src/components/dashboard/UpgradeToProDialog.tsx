@@ -10,24 +10,25 @@ import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Loader2, Check, X, Sparkles, GitBranch, Bot, BookOpen,
-  Calculator, CalendarDays, ShieldCheck, Crown
+  Loader2, Sparkles, Crown, Bot, BookOpen,
+  Calculator, CalendarDays, ShieldCheck, BarChart3, Zap
 } from "lucide-react";
 
-const COMPARE_FEATURES = [
-  { labelAr: "Pipeline de leads", labelEn: "Lead Pipeline", lite: true, pro: true },
-  { labelAr: "Suivi des commissions", labelEn: "Commission Tracking", lite: true, pro: true },
-  { labelAr: "Suivi des paiements", labelEn: "Payment Tracking", lite: true, pro: true },
-  { labelAr: "Community", labelEn: "Community", lite: true, pro: true },
-  { labelAr: "Academy (formations)", labelEn: "Academy (courses)", lite: true, pro: true },
-  { labelAr: "Parrainage d'ambassadeurs", labelEn: "Ambassador Referrals", lite: true, pro: true },
-  { labelAr: "SofarAI — Assistant IA", labelEn: "SofarAI — AI Assistant", lite: false, pro: true },
-  { labelAr: "Scoring IA des leads", labelEn: "AI Lead Scoring", lite: false, pro: true },
-  { labelAr: "Bibliothèque de projets", labelEn: "Project Library", lite: false, pro: true },
-  { labelAr: "Simulateurs (DLD, Plans)", labelEn: "Simulators (DLD, Plans)", lite: false, pro: true },
-  { labelAr: "Calendrier intégré", labelEn: "Integrated Calendar", lite: false, pro: true },
-  { labelAr: "KYC & AML", labelEn: "KYC & AML", lite: false, pro: true },
+const PRO_BENEFITS = [
+  { icon: Bot, titleAr: "SofarAI — Assistant IA", titleEn: "SofarAI — AI Assistant",
+    descAr: "Qualification, scoring et roleplay pour closer plus vite.", descEn: "Lead qualification, scoring and roleplay to close faster." },
+  { icon: BarChart3, titleAr: "Scoring IA des leads", titleEn: "AI Lead Scoring",
+    descAr: "Priorisez les leads à plus haut potentiel automatiquement.", descEn: "Automatically prioritize your highest-potential leads." },
+  { icon: BookOpen, titleAr: "Bibliothèque de projets", titleEn: "Project Library",
+    descAr: "Accès complet aux fiches projets, brochures et données vérifiées.", descEn: "Full access to verified project fact sheets and brochures." },
+  { icon: Calculator, titleAr: "Simulateurs (DLD, Plans)", titleEn: "Simulators (DLD, Plans)",
+    descAr: "Simulez les frais DLD et les plans de paiement off-plan.", descEn: "Simulate DLD fees and off-plan payment plans in seconds." },
+  { icon: CalendarDays, titleAr: "Calendrier intégré", titleEn: "Integrated Calendar",
+    descAr: "Centralisez vos rendez-vous et relances clients.", descEn: "Centralize your appointments and client follow-ups." },
+  { icon: ShieldCheck, titleAr: "KYC & AML", titleEn: "KYC & AML",
+    descAr: "Vérification des clients conforme aux normes UAE.", descEn: "UAE-compliant client verification workflow." },
 ];
+
 
 const EXPERIENCE_OPTIONS = [
   { value: "agent", labelAr: "Agent immobilier", labelEn: "Real estate agent" },
