@@ -68,7 +68,7 @@ serve(async (req) => {
       });
     }
 
-    const { messages } = await req.json();
+    const { messages, lang } = await req.json();
     if (!Array.isArray(messages) || messages.length === 0 || messages.length > 20) {
       return new Response(JSON.stringify({ error: "Invalid input" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -86,6 +86,12 @@ serve(async (req) => {
       });
     }
 
+    const LANG_NAMES: Record<string, string> = {
+      en: "English", fr: "French", es: "Spanish", ru: "Russian", ar: "Arabic",
+    };
+    const langName = LANG_NAMES[String(lang || "").toLowerCase()] || "the visitor's language";
+    const langDirective = `\n\n## LANGUE DE RÉPONSE (PRIORITAIRE)\nRéponds TOUJOURS et UNIQUEMENT en ${langName}, quelle que soit la langue de la question. Ne mélange jamais les langues.`;
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -95,7 +101,7 @@ serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: SYSTEM_PROMPT + langDirective },
           ...safeMsgs,
         ],
         stream: true,
