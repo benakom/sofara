@@ -21,12 +21,14 @@ const AdminAmbassadors = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const [profilesRes, leadsRes, commissionsRes] = await Promise.all([
+      const [profilesRes, leadsRes, commissionsRes, rolesRes] = await Promise.all([
         supabase.from("profiles").select("id, full_name, phone, country, status, profile_type, created_at").order("created_at", { ascending: false }),
         supabase.from("leads").select("user_id, stage"),
         supabase.from("commissions").select("user_id, amount, status"),
+        supabase.from("user_roles").select("user_id, role"),
       ]);
-      const profiles = profilesRes.data ?? [];
+      const superAdminIds = new Set((rolesRes.data ?? []).filter(r => r.role === "superadmin").map(r => r.user_id));
+      const profiles = (profilesRes.data ?? []).filter(p => !superAdminIds.has(p.id));
       const leads = leadsRes.data ?? [];
       const commissions = commissionsRes.data ?? [];
       const leadsMap: Record<string, { total: number; closed: number }> = {};
