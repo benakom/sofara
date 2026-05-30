@@ -6,12 +6,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Users, Target, DollarSign,
   Building2, Bot, BarChart3, GraduationCap,
-  Settings, LogOut, Menu, X, Bell, Search, Loader2
+  Settings, LogOut, Menu, X, Bell, Search, Loader2,
+  UserCheck, MessageCircle
 } from "lucide-react";
 
 const navItems = [
   { path: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
+  { path: "/admin/applications", icon: UserCheck, label: "Applications" },
   { path: "/admin/ambassadors", icon: Users, label: "Ambassadors" },
+  { path: "/admin/chatbot-leads", icon: MessageCircle, label: "Chatbot Leads" },
   { path: "/admin/leads", icon: Target, label: "Leads" },
   { path: "/admin/commissions", icon: DollarSign, label: "Commissions" },
   { path: "/admin/projects", icon: Building2, label: "Projects" },
