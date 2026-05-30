@@ -260,7 +260,6 @@ const Auth = () => {
   const metrics = [
     { icon: TrendingUp, value: "Up to 3%", label: lang === "ar" ? "Commission par vente" : "Commission per sale" },
     { icon: Users, value: "200+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
-    { icon: Globe, value: "12", label: lang === "ar" ? "Pays représentés" : "Countries represented" },
   ];
 
   const trustPoints = lang === "ar"
