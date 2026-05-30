@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { Search, Download, Users, ChevronLeft, ChevronRight, MoreHorizontal, Eye, Shield, ShieldOff, Trash2, UserPlus } from "lucide-react";
+import { Search, Download, Users, ChevronLeft, ChevronRight, MoreHorizontal, Eye, Shield, ShieldOff, Trash2, UserPlus, Loader2 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
 
 const AdminAmbassadors = () => {
@@ -13,6 +14,9 @@ const AdminAmbassadors = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [createOpen, setCreateOpen] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createForm, setCreateForm] = useState({ full_name: "", email: "", password: "", phone: "", country: "" });
   const perPage = 25;
 
   useEffect(() => {
@@ -40,24 +44,41 @@ const AdminAmbassadors = () => {
   const totalPages = Math.ceil(filtered.length / perPage);
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
-  const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
-  const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+  const callAdminFunction = async (name: string, body: Record<string, unknown>) => {
     const { data: { session } } = await supabase.auth.getSession();
-    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-delete-ambassador`, {
+    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         Authorization: `Bearer ${session?.access_token}`,
       },
-      body: JSON.stringify({ user_id: id }),
+      body: JSON.stringify(body),
     });
     const payload = await res.json().catch(() => ({}));
-    if (!res.ok) { toast({ title: "Delete failed", description: payload?.error || "Please try again.", variant: "destructive" }); return; }
+    if (!res.ok) throw new Error(payload?.error || "Please try again.");
+    return payload;
+  };
+
+  const handleStatusChange = async (id: string, s: string) => { await supabase.from("profiles").update({ status: s }).eq("id", id); setAmbassadors(prev => prev.map(a => a.id === id ? { ...a, status: s } : a)); toast({ title: `Ambassador ${s}` }); };
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Permanently delete ${name || "this ambassador"}? This removes the account, leads, commissions and all related data. This cannot be undone.`)) return;
+    try { await callAdminFunction("admin-delete-ambassador", { user_id: id }); }
+    catch (error) { toast({ title: "Delete failed", description: (error as Error).message, variant: "destructive" }); return; }
     setAmbassadors(prev => prev.filter(a => a.id !== id));
     setSelected(prev => { const n = new Set(prev); n.delete(id); return n; });
     toast({ title: "Ambassador deleted" });
+  };
+  const handleCreate = async () => {
+    setCreateLoading(true);
+    try {
+      const payload = await callAdminFunction("admin-create-ambassador", createForm);
+      setAmbassadors(prev => [{ ...payload.ambassador, leadCount: 0, dealsClosed: 0, totalCommission: 0, pendingCommission: 0, created_at: new Date().toISOString() }, ...prev]);
+      setCreateForm({ full_name: "", email: "", password: "", phone: "", country: "" });
+      setCreateOpen(false);
+      toast({ title: "Ambassador created" });
+    } catch (error) { toast({ title: "Create failed", description: (error as Error).message, variant: "destructive" }); }
+    finally { setCreateLoading(false); }
   };
   const toggleSelect = (id: string) => { setSelected(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; }); };
   const toggleAll = () => { selected.size === paginated.length ? setSelected(new Set()) : setSelected(new Set(paginated.map(a => a.id))); };
