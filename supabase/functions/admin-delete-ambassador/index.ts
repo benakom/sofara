@@ -6,6 +6,24 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
+const isUuid = (value: unknown): value is string =>
+  typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+
+const readTargetId = async (req: Request) => {
+  const fromQuery = new URL(req.url).searchParams.get("user_id");
+  if (fromQuery) return fromQuery;
+
+  const raw = await req.text().catch(() => "");
+  if (!raw) return undefined;
+
+  try {
+    const body = JSON.parse(raw);
+    return body?.user_id ?? body?.id;
+  } catch (_) {
+    return new URLSearchParams(raw).get("user_id") ?? undefined;
+  }
+};
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
@@ -34,15 +52,10 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    let body: any = {};
-    try {
-      const raw = await req.text();
-      if (raw) body = JSON.parse(raw);
-    } catch (_) { body = {}; }
-    const targetId: string | undefined = body?.user_id;
-    if (!targetId || typeof targetId !== "string") {
-      console.error("Missing user_id, body was:", JSON.stringify(body));
-      return new Response(JSON.stringify({ error: "Missing user_id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    const targetId = await readTargetId(req);
+    if (!isUuid(targetId)) {
+      console.error("Invalid or missing ambassador id", { targetId });
+      return new Response(JSON.stringify({ error: "Invalid or missing ambassador id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
     if (targetId === userData.user.id) {
       return new Response(JSON.stringify({ error: "Cannot delete yourself" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -63,7 +76,8 @@ Deno.serve(async (req) => {
     await admin.from("profiles").delete().eq("id", targetId);
 
     const { error: delErr } = await admin.auth.admin.deleteUser(targetId);
-    if (delErr) {
+    if (delErr && !/not found/i.test(delErr.message)) {
+      console.error("Auth user deletion failed", delErr.message);
       return new Response(JSON.stringify({ error: delErr.message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
