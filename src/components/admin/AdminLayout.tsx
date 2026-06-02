@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Users, Target, DollarSign,
   Building2, Bot, BarChart3, GraduationCap,
   Settings, LogOut, Menu, X, Bell, Search, Loader2,
-  UserCheck, MessageCircle
+  UserCheck, MessageCircle, TrendingUp
 } from "lucide-react";
 
 const navItems = [
@@ -20,6 +20,7 @@ const navItems = [
   { path: "/admin/projects", icon: Building2, label: "Projects" },
   { path: "/admin/ai-config", icon: Bot, label: "AI Tools Config" },
   { path: "/admin/analytics", icon: BarChart3, label: "Analytics" },
+  { path: "/admin/seo", icon: TrendingUp, label: "SEO" },
   { path: "/admin/content", icon: GraduationCap, label: "Content & Academy" },
   { path: "/admin/settings", icon: Settings, label: "Settings" },
 ];
