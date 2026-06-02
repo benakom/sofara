@@ -57,6 +57,13 @@ const FooterSection = () => {
           </h4>
           <ul className="flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs text-muted-foreground/70 leading-relaxed">
             {[
+              { label: "How to Be a Dubai Real Estate Agent", to: "/blog/how-to-be-dubai-real-estate-agent" },
+              { label: "How Long to Become a Dubai Real Estate Agent", to: "/blog/how-long-become-real-estate-agent-dubai" },
+              { label: "Qualifications for a Dubai Estate Agent", to: "/blog/qualifications-real-estate-agent-dubai" },
+              { label: "Cost to Become a Dubai Real Estate Agent", to: "/blog/cost-become-real-estate-agent-dubai" },
+              { label: "How Much Dubai Real Estate Agents Earn", to: "/blog/how-much-money-real-estate-agents-make-dubai" },
+              { label: "Comment devenir agent immobilier à Dubai", to: "/blog/comment-devenir-agent-immobilier-dubai" },
+              { label: "Agent immobilier Dubai sans licence", to: "/blog/devenir-agent-immobilier-dubai-sans-licence" },
               { label: "Sofara Dubai", to: "/blog/sofara-dubai-real-estate-ambassador-platform" },
               { label: "Sofara Real Estate", to: "/blog/sofara-real-estate-explained" },
               { label: "What is Sofara", to: "/blog/what-is-sofara" },
