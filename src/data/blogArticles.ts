@@ -3088,7 +3088,6 @@ ${internalLink("**→ Join Sofara and present affordable Dubai investment option
 *Related: ${internalLink("Market Overview 2026", "/blog/dubai-real-estate-market-2026-overview")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")}*
 `
   },
-  ,
 
   // ── BRAND + KEYWORD PILLAR ARTICLES (SEO Priority) ──
   {
