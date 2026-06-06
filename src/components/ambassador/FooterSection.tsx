@@ -16,13 +16,13 @@ const FooterSection = () => {
             <p className="text-sm sm:text-base text-muted-foreground max-w-sm leading-relaxed mb-4">
               {t("footer.description")}
             </p>
-            <a href="https://www.instagram.com/sofaradubai/" target="_blank" rel="noopener" className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+            <a href="https://www.instagram.com/sofaradubai/" target="_blank" rel="noopener" aria-label="Follow Sofara Dubai on Instagram" className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
               <Instagram size={18} />
             </a>
           </div>
 
           <div>
-            <h4 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.platform")}</h4>
+            <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.platform")}</h3>
             <div className="space-y-2.5">
               <a href="#avantages" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.benefits")}</a>
               <a href="#dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.whyDubai")}</a>
@@ -33,7 +33,7 @@ const FooterSection = () => {
           </div>
 
           <div>
-            <h4 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.legal")}</h4>
+            <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.legal")}</h3>
             <div className="space-y-2.5">
               <Link to="/legal/privacy" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
               <Link to="/legal/terms" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("footer.terms")}</Link>
@@ -42,7 +42,7 @@ const FooterSection = () => {
           </div>
 
           <div>
-            <h4 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">Partners</h4>
+            <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">Partners</h3>
             <div className="space-y-2.5">
               <a href="https://www.cevitas.ae" target="_blank" rel="noopener" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Cevitas Real Estate</a>
               <a href="https://www.offplansimulator.com" target="_blank" rel="noopener" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Off-Plan Simulator</a>
@@ -52,9 +52,9 @@ const FooterSection = () => {
 
         {/* SEO internal-link cloud — keyword anchors to deepen blog crawling */}
         <nav aria-label="Explore Sofara" className="border-t border-border/30 pt-6 sm:pt-8 mb-6 sm:mb-8">
-          <h4 className="font-display text-xs uppercase tracking-[0.18em] text-primary/70 mb-3 sm:mb-4">
+          <h3 className="font-display text-xs uppercase tracking-[0.18em] text-primary/70 mb-3 sm:mb-4">
             Explore Sofara
-          </h4>
+          </h3>
           <ul className="flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs text-muted-foreground/70 leading-relaxed">
             {[
               { label: "How to Be a Dubai Real Estate Agent", to: "/blog/how-to-be-dubai-real-estate-agent" },

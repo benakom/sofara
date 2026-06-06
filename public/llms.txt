@@ -1,0 +1,27 @@
+# Sofara
+
+> Sofara is a Dubai and UAE real estate ambassador platform for people who refer qualified property buyers and earn commission in AED.
+
+Sofara connects ambassadors with Dubai real estate opportunities operated with Cevitas Real Estate LLC. The platform focuses on Dubai off-plan property, referral commissions, investor education, and ambassador training.
+
+## Pages
+
+- [Sofara homepage](/): Dubai real estate ambassador platform overview.
+- [Ambassador Program](/ambassador-program): How the Sofara ambassador model works.
+- [About Sofara](/about): Company background and operating model.
+- [Invest in Dubai Real Estate](/invest-dubai-real-estate): 2026 investor guide for Dubai property.
+- [Buy Property in Dubai](/buy-property-dubai): Step-by-step guide for foreign buyers.
+- [Dubai Off-Plan Properties](/dubai-off-plan-properties): Off-plan property investment guide.
+- [Sofara Blog](/blog): Dubai real estate, ambassador and market guides.
+
+## Key Blog Guides
+
+- [How to Be a Dubai Real Estate Agent](/blog/how-to-be-dubai-real-estate-agent): Guide to becoming active in Dubai real estate.
+- [Comment devenir agent immobilier à Dubai](/blog/comment-devenir-agent-immobilier-dubai): French guide for the Dubai real estate agent keyword.
+- [Sofara Dubai](/blog/sofara-dubai-real-estate-ambassador-platform): Sofara brand and platform explainer.
+- [Dubai Real Estate Ambassadors Network](/blog/dubai-real-estate-ambassadors-network): Ambassador network strategy and positioning.
+
+## External References
+
+- [Cevitas Real Estate](https://www.cevitas.ae): Licensed Dubai real estate brokerage partner.
+- [Off-Plan Simulator](https://www.offplansimulator.com): Dubai off-plan investment simulation tool.

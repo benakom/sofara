@@ -59,6 +59,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             <h1 className="font-hero text-[2.25rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-3 sm:mb-8 whitespace-pre-line capitalize text-white">
+              <span className="sr-only">Sofara Dubai Real Estate Ambassador Program — </span>
               {(() => {
                 const headline = t("hero.slide1.headline");
                 const highlight = t("hero.slide1.highlight");
