@@ -21,6 +21,8 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
+        aria-label={`Change language, current language ${current.label}`}
+        aria-expanded={open}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 border border-border/30 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <Globe className="w-3.5 h-3.5" />
@@ -122,7 +124,12 @@ const Navbar = () => {
         {/* Mobile: language + hamburger */}
         <div className="flex md:hidden items-center gap-2">
           <LangSwitcher lang={lang} setLang={setLang} />
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground p-1">
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close mobile menu" : "Open mobile menu"}
+            aria-expanded={mobileOpen}
+            className="text-foreground p-1"
+          >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>

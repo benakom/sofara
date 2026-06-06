@@ -14,9 +14,9 @@ export const DEFAULT_OG_IMAGE = "https://sofara.io/favicon-512x512.png";
 
 export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/": {
-    title: "Sofara | Dubai Real Estate Ambassadors Network — Earn in AED",
+    title: "Sofara | Dubai Real Estate Ambassadors",
     description:
-      "Sofara is the #1 Dubai & UAE real estate ambassadors network by Cevitas Real Estate LLC (RERA). Refer buyers for Emaar, DAMAC, Sobha — earn up to 3% commission (AED 37K–120K per deal). Free, legal, paid in 7 days.",
+      "Sofara is a Dubai real estate ambassador platform. Refer UAE property buyers and earn up to 3% commission in AED.",
     canonical: "https://sofara.io/",
     h1: "Sofara — Dubai Real Estate Ambassadors Network",
     keywords: [
@@ -44,9 +44,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/invest-dubai-real-estate": {
-    title: "Invest in Dubai Real Estate 2026 — Foreigner Investor Guide | Sofara",
+    title: "Invest in Dubai Real Estate 2026 | Sofara",
     description:
-      "Complete 2026 guide to investing in Dubai real estate as a foreigner: ROI, rental yields, payment plans, Golden Visa, top developers. Insights from RERA-licensed Cevitas brokers & the Sofara ambassador network.",
+      "Dubai real estate investment guide for 2026: ROI, rental yields, payment plans, Golden Visa and top developer insights.",
     canonical: "https://sofara.io/invest-dubai-real-estate",
     h1: "How to Invest in Dubai Real Estate in 2026 (Investor Guide)",
     keywords: [
@@ -65,9 +65,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "WebPage",
   },
   "/buy-property-dubai": {
-    title: "Buy Property in Dubai 2026 — Foreigner's Step-by-Step Guide | Sofara",
+    title: "Buy Property in Dubai 2026 | Sofara",
     description:
-      "How to buy property in Dubai as a foreigner in 2026: best areas, Emaar/DAMAC/Sobha developers, payment plans, DLD fees, Golden Visa. Free RERA-licensed advisory by Cevitas Real Estate via Sofara.",
+      "How foreigners can buy property in Dubai in 2026: areas, developers, payment plans, DLD fees and Golden Visa options.",
     canonical: "https://sofara.io/buy-property-dubai",
     h1: "Buy Property in Dubai — The Complete 2026 Foreigner Guide",
     keywords: [
@@ -89,18 +89,18 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "WebPage",
   },
   "/dubai-off-plan-properties": {
-    title: "Dubai Off-Plan Properties 2026 — Best Developers & ROI | Sofara",
+    title: "Dubai Off-Plan Properties 2026 | Sofara",
     description:
-      "Top Dubai off-plan projects 2026: Emaar, DAMAC, Sobha, Aldar, Binghatti. Payment plans, ROI analysis, handover dates. Live broker data from Cevitas Real Estate and Sofara ambassadors.",
+      "Explore Dubai off-plan properties for 2026: developers, payment plans, ROI, handover dates and broker-backed insights.",
     canonical: "https://sofara.io/dubai-off-plan-properties",
     h1: "Dubai Off-Plan Properties — Top Investments for 2026",
     keywords: ["Dubai off-plan", "Emaar off-plan", "DAMAC off-plan", "Sofara Real Estate"],
     schemaType: "WebPage",
   },
   "/ambassador-program": {
-    title: "Dubai Real Estate Ambassadors Network — Earn Up to 3% | Sofara",
+    title: "Dubai Real Estate Ambassadors | Sofara",
     description:
-      "Join Sofara, the leading Dubai Real Estate Ambassadors Network. Refer buyers to Emaar, DAMAC, Sobha and earn AED 37K–120K per closed deal. Free, legal, paid in 7 days. Backed by Cevitas Real Estate.",
+      "Join Sofara, refer Dubai property buyers and earn up to 3% commission in AED through a licensed real estate partner.",
     canonical: "https://sofara.io/ambassador-program",
     h1: "The Sofara Dubai Real Estate Ambassadors Network",
     keywords: [
@@ -114,9 +114,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/about": {
-    title: "Sofara Dubai & Sofara Real Estate — About the UAE Ambassadors Network",
+    title: "About Sofara Dubai Real Estate",
     description:
-      "Sofara Dubai and Sofara Real Estate: discover the UAE's leading real estate ambassadors network. Built by Ahmed Benjas, founder of Cevitas Real Estate LLC (RERA-licensed). Refer buyers to Emaar, DAMAC, Sobha and earn up to 3%.",
+      "Learn about Sofara, the Dubai real estate ambassador platform operated with Cevitas Real Estate LLC.",
     canonical: "https://sofara.io/about",
     h1: "About Sofara — the Operator-Built Dubai Real Estate Ambassadors Network",
     keywords: [
@@ -137,9 +137,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Person",
   },
   "/blog": {
-    title: "Sofara Blog — Dubai Real Estate Ambassadors Insights & Guides 2026",
+    title: "Sofara Blog | Dubai Real Estate Guides",
     description:
-      "Expert Dubai real estate insights from Sofara: ambassador strategy, off-plan analysis, developer reviews, Golden Visa, payment plans, success stories. Updated weekly by RERA-licensed brokers.",
+      "Dubai real estate guides from Sofara: ambassador strategy, off-plan analysis, payment plans and market insights.",
     canonical: "https://sofara.io/blog",
     h1: "Sofara Blog — Dubai Real Estate Ambassadors Insights",
     keywords: ["Sofara blog", "Dubai Real Estate Ambassadors", "Dubai property blog", "Sofara Dubai"],

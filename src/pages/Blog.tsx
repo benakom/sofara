@@ -174,7 +174,7 @@ const Blog = () => {
                         {article.excerpt}
                       </p>
                       <span className="text-primary text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                        Read more <ArrowRight className="w-3 h-3" />
+                        Read full article: {article.title} <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
                   </article>
