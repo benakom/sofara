@@ -35,33 +35,20 @@ type NavGroup = {
 
 const navGroups: NavGroup[] = [
   {
-    labelEn: "Preparation",
-    labelAr: "التحضير",
+    labelEn: "Leads",
+    labelAr: "العملاء",
     items: [
       { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
-      { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
-      { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", tier: "pro" },
-      { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulator", tier: "pro" },
-      { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Submit Lead" },
+      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "My Leads" },
     ],
   },
   {
-    labelEn: "Lead Process",
-    labelAr: "إدارة العملاء",
-    items: [
-      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
-      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
-      { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
-      
-    ],
-  },
-  {
-    labelEn: "Admin",
-    labelAr: "الإدارة",
+    labelEn: "Earnings",
+    labelAr: "الأرباح",
     items: [
       { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
       { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
-      { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
     ],
   },
 ];
@@ -82,24 +69,7 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-  // Sofara Lite: Academy included, Referrals removed
-  const liteAllowedPaths = [
-    "/dashboard",
-    "/dashboard/academy",
-    "/dashboard/pipeline",
-    "/dashboard/import-leads",
-    "/dashboard/commissions",
-    "/dashboard/payments",
-  ];
-
-  const filteredGroups = navGroups.map((group) => ({
-    ...group,
-    items: group.items.filter((item) => {
-      if (item.tier === "pro" && profileType !== "pro") return false;
-      if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
-      return true;
-    }),
-  })).filter((group) => group.items.length > 0);
+  const filteredGroups = navGroups;
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
@@ -141,9 +111,6 @@ const DashboardLayout = () => {
           <a href="/" className="font-display text-3xl font-bold text-[#D2F34C] tracking-tight">
             sofara
           </a>
-          {profileType === "pro" && (
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#D2F34C]/20 text-[#D2F34C] border border-[#D2F34C]/30">PRO</span>
-          )}
           {ambassadorTier === "ambassador_plus" && (
             <Crown className="w-3.5 h-3.5 text-[#D2F34C]" />
           )}
@@ -180,23 +147,8 @@ const DashboardLayout = () => {
         })}
       </nav>
 
-      {/* Upgrade CTA for non-pro users */}
-      {profileType !== "pro" && (
-        <div className="px-3 pb-2">
-          <button
-            onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)] hover:bg-[hsl(var(--dash-accent)/.15)] transition-colors"
-          >
-            <div className="w-8 h-8 rounded-lg bg-[#D2F34C] flex items-center justify-center shrink-0 text-black">
-              <ArrowUpCircle className="w-4 h-4" />
-            </div>
-            <div className="flex-1 text-left">
-              <p className="text-[11px] font-semibold text-[hsl(var(--dash-fg))]">{lang === "ar" ? "الترقية إلى Pro" : "Upgrade to Pro"}</p>
-              <p className="text-[9px] text-[hsl(var(--dash-muted-fg))]">{lang === "ar" ? "مجاني • أدوات متقدمة" : "Free • Advanced tools"}</p>
-            </div>
-          </button>
-        </div>
-      )}
+      {/* Upgrade CTA removed for launch */}
+
 
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
@@ -306,12 +258,6 @@ const DashboardLayout = () => {
       {/* Mobile bottom nav */}
       <MobileBottomNav />
 
-      {/* Upgrade dialog */}
-      <UpgradeToProDialog
-        open={upgradeOpen}
-        onOpenChange={setUpgradeOpen}
-        onUpgradeRequested={() => window.location.reload()}
-      />
     </div>
   );
 };
