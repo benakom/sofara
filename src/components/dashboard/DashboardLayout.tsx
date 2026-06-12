@@ -147,23 +147,8 @@ const DashboardLayout = () => {
         })}
       </nav>
 
-      {/* Upgrade CTA for non-pro users */}
-      {profileType !== "pro" && (
-        <div className="px-3 pb-2">
-          <button
-            onClick={() => setUpgradeOpen(true)}
-            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)] hover:bg-[hsl(var(--dash-accent)/.15)] transition-colors"
-          >
-            <div className="w-8 h-8 rounded-lg bg-[#D2F34C] flex items-center justify-center shrink-0 text-black">
-              <ArrowUpCircle className="w-4 h-4" />
-            </div>
-            <div className="flex-1 text-left">
-              <p className="text-[11px] font-semibold text-[hsl(var(--dash-fg))]">{lang === "ar" ? "الترقية إلى Pro" : "Upgrade to Pro"}</p>
-              <p className="text-[9px] text-[hsl(var(--dash-muted-fg))]">{lang === "ar" ? "مجاني • أدوات متقدمة" : "Free • Advanced tools"}</p>
-            </div>
-          </button>
-        </div>
-      )}
+      {/* Upgrade CTA removed for launch */}
+
 
       {/* User footer */}
       <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
