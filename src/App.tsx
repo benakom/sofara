@@ -20,7 +20,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const DashboardLayout = lazy(() => import("./components/dashboard/DashboardLayout"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
 const DashboardHome = lazy(() => import("./pages/dashboard/DashboardHome"));
-const Academy = lazy(() => import("./pages/dashboard/Academy"));
+
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminAmbassadors = lazy(() => import("./pages/admin/AdminAmbassadors"));
 const AdminAmbassadorDetail = lazy(() => import("./pages/admin/AdminAmbassadorDetail"));
