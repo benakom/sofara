@@ -20,7 +20,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const DashboardLayout = lazy(() => import("./components/dashboard/DashboardLayout"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
 const DashboardHome = lazy(() => import("./pages/dashboard/DashboardHome"));
-const Academy = lazy(() => import("./pages/dashboard/Academy"));
+
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminAmbassadors = lazy(() => import("./pages/admin/AdminAmbassadors"));
 const AdminAmbassadorDetail = lazy(() => import("./pages/admin/AdminAmbassadorDetail"));
@@ -101,7 +101,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
-                  <Route path="academy" element={<Academy />} />
+                  
                   <Route path="pipeline" element={<Pipeline />} />
                   <Route path="import-leads" element={<ImportLeads />} />
                   <Route path="commissions" element={<Commissions />} />
