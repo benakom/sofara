@@ -35,71 +35,25 @@ type NavGroup = {
 
 const navGroups: NavGroup[] = [
   {
-    labelEn: "Preparation",
-    labelAr: "التحضير",
+    labelEn: "Leads",
+    labelAr: "العملاء",
     items: [
       { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
-      { path: "/dashboard/academy", icon: GraduationCap, labelAr: "الأكاديمية", labelEn: "Academy" },
-      { path: "/dashboard/library", icon: BookOpen, labelAr: "المكتبة", labelEn: "Library", tier: "pro" },
-      { path: "/dashboard/simulator", icon: Calculator, labelAr: "المحاكي", labelEn: "Simulator", tier: "pro" },
-      { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI", labelEn: "SofarAI", badge: "AI", tier: "pro" },
+      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Submit Lead" },
+      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "My Leads" },
     ],
   },
   {
-    labelEn: "Lead Process",
-    labelAr: "إدارة العملاء",
-    items: [
-      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Import Leads" },
-      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "Pipeline" },
-      { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "التقويم", labelEn: "Calendar", tier: "pro" },
-      
-    ],
-  },
-  {
-    labelEn: "Admin",
-    labelAr: "الإدارة",
+    labelEn: "Earnings",
+    labelAr: "الأرباح",
     items: [
       { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
       { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
-      { path: "/dashboard/kyc", icon: ShieldCheck, labelAr: "KYC & AML", labelEn: "KYC & AML", tier: "pro" },
     ],
   },
 ];
 
-const langs: { code: "en" | "ar"; flag: string }[] = [
-  { code: "en", flag: "🇬🇧" },
-  { code: "ar", flag: "🇦🇪" },
-];
-
-const DashboardLayout = () => {
-  const { user, loading, signOut } = useAuth();
-  const { isSuperAdmin } = useAdmin();
-  const { isApproved, loading: profileLoading } = useProfileStatus();
-  const { profileType, ambassadorTier } = useUserTier();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { lang, setLang } = useLanguage();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
-
-  // Sofara Lite: Academy included, Referrals removed
-  const liteAllowedPaths = [
-    "/dashboard",
-    "/dashboard/academy",
-    "/dashboard/pipeline",
-    "/dashboard/import-leads",
-    "/dashboard/commissions",
-    "/dashboard/payments",
-  ];
-
-  const filteredGroups = navGroups.map((group) => ({
-    ...group,
-    items: group.items.filter((item) => {
-      if (item.tier === "pro" && profileType !== "pro") return false;
-      if (profileType !== "pro" && !liteAllowedPaths.includes(item.path)) return false;
-      return true;
-    }),
-  })).filter((group) => group.items.length > 0);
+  const filteredGroups = navGroups;
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
