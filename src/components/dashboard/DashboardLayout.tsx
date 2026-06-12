@@ -258,12 +258,6 @@ const DashboardLayout = () => {
       {/* Mobile bottom nav */}
       <MobileBottomNav />
 
-      {/* Upgrade dialog */}
-      <UpgradeToProDialog
-        open={upgradeOpen}
-        onOpenChange={setUpgradeOpen}
-        onUpgradeRequested={() => window.location.reload()}
-      />
     </div>
   );
 };
