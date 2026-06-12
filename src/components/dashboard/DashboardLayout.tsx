@@ -53,6 +53,11 @@ const navGroups: NavGroup[] = [
   },
 ];
 
+const langs: { code: "en" | "ar"; flag: string }[] = [
+  { code: "en", flag: "🇬🇧" },
+  { code: "ar", flag: "🇦🇪" },
+];
+
 const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
