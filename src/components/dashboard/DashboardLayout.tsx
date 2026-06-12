@@ -111,9 +111,6 @@ const DashboardLayout = () => {
           <a href="/" className="font-display text-3xl font-bold text-[#D2F34C] tracking-tight">
             sofara
           </a>
-          {profileType === "pro" && (
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#D2F34C]/20 text-[#D2F34C] border border-[#D2F34C]/30">PRO</span>
-          )}
           {ambassadorTier === "ambassador_plus" && (
             <Crown className="w-3.5 h-3.5 text-[#D2F34C]" />
           )}
