@@ -101,7 +101,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
-                  <Route path="academy" element={<Academy />} />
+                  
                   <Route path="pipeline" element={<Pipeline />} />
                   <Route path="import-leads" element={<ImportLeads />} />
                   <Route path="commissions" element={<Commissions />} />
