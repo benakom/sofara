@@ -32,7 +32,6 @@ const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
 const AdminProjects = lazy(() => import("./pages/admin/AdminProjects"));
 const AdminAIConfig = lazy(() => import("./pages/admin/AdminAIConfig"));
 const AdminAnalytics = lazy(() => import("./pages/admin/AdminAnalytics"));
-const AdminChatbotLeads = lazy(() => import("./pages/admin/AdminChatbotLeads"));
 const AdminApplications = lazy(() => import("./pages/admin/AdminApplications"));
 const AdminChatbotLeads = lazy(() => import("./pages/admin/AdminChatbotLeads"));
 const AdminSEO = lazy(() => import("./pages/admin/AdminSEO"));
