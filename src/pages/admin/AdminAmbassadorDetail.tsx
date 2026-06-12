@@ -99,7 +99,7 @@ const AdminAmbassadorDetail = () => {
           </div>
           <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
             <h2 className="text-sm font-bold text-[#154B3B] mb-4">Admin Controls</h2>
-            <div className="space-y-3">{["Pro Access","Can Submit Leads","Commission Payouts","WhatsApp AI Copilot","Qualify Lead AI","Project Matching AI","Scripts & Objections AI","Academy Access","Referral Program"].map(label=>(<div key={label} className="flex items-center justify-between py-1"><span className="text-xs text-[#6B7280]">{label}</span><Switch defaultChecked={profile.status==="approved"} onCheckedChange={checked=>toast({title:`${label} ${checked?"enabled":"disabled"}`})} /></div>))}</div>
+            <div className="space-y-3">{["Can Submit Leads","Commission Payouts","WhatsApp AI Copilot","Qualify Lead AI","Project Matching AI","Scripts & Objections AI","Referral Program"].map(label=>(<div key={label} className="flex items-center justify-between py-1"><span className="text-xs text-[#6B7280]">{label}</span><Switch defaultChecked={profile.status==="approved"} onCheckedChange={checked=>toast({title:`${label} ${checked?"enabled":"disabled"}`})} /></div>))}</div>
           </div>
         </div>
       </div>

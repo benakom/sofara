@@ -21,7 +21,7 @@ const navItems = [
   { path: "/admin/ai-config", icon: Bot, label: "AI Tools Config" },
   { path: "/admin/analytics", icon: BarChart3, label: "Analytics" },
   { path: "/admin/seo", icon: TrendingUp, label: "SEO" },
-  { path: "/admin/content", icon: GraduationCap, label: "Content & Academy" },
+  { path: "/admin/settings", icon: Settings, label: "Settings" },
   { path: "/admin/settings", icon: Settings, label: "Settings" },
 ];
 

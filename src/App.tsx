@@ -32,7 +32,6 @@ const AdminLeads = lazy(() => import("./pages/admin/AdminLeads"));
 const AdminProjects = lazy(() => import("./pages/admin/AdminProjects"));
 const AdminAIConfig = lazy(() => import("./pages/admin/AdminAIConfig"));
 const AdminAnalytics = lazy(() => import("./pages/admin/AdminAnalytics"));
-const AdminContent = lazy(() => import("./pages/admin/AdminContent"));
 const AdminApplications = lazy(() => import("./pages/admin/AdminApplications"));
 const AdminChatbotLeads = lazy(() => import("./pages/admin/AdminChatbotLeads"));
 const AdminSEO = lazy(() => import("./pages/admin/AdminSEO"));
@@ -130,7 +129,7 @@ const App = () => (
                   <Route path="ai-config" element={<AdminAIConfig />} />
                   <Route path="analytics" element={<AdminAnalytics />} />
                   <Route path="seo" element={<AdminSEO />} />
-                  <Route path="content" element={<AdminContent />} />
+                  <Route path="settings" element={<AdminSettings />} />
                   <Route path="settings" element={<AdminSettings />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
