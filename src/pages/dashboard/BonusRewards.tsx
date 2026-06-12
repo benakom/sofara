@@ -10,7 +10,6 @@ const tiers = [
 ];
 
 const perks = [
-  { icon: "🎓", titleFr: "Academy Premium", titleEn: "Premium Academy", descFr: "Accès aux cours avancés", descEn: "Access to advanced courses", tier: 1 },
   { icon: "🎟️", titleFr: "Events VIP", titleEn: "VIP Events", descFr: "Invitations aux événements exclusifs", descEn: "Invitations to exclusive events", tier: 2 },
   { icon: "✈️", titleFr: "Trip Dubai", titleEn: "Dubai Trip", descFr: "Voyage offert à Dubai", descEn: "Free trip to Dubai", tier: 3 },
   { icon: "👑", titleFr: "Commission boost", titleEn: "Commission Boost", descFr: "+2% sur toutes vos commissions", descEn: "+2% on all your commissions", tier: 4 },
@@ -19,7 +18,6 @@ const perks = [
 const challenges = [
   { titleFr: "Closez 3 deals ce mois", titleEn: "Close 3 deals this month", reward: "AED 2,000", progress: 0, target: 3, icon: Target },
   { titleFr: "Ajoutez 10 leads qualifiés", titleEn: "Add 10 qualified leads", reward: "500 XP", progress: 0, target: 10, icon: Zap },
-  { titleFr: "Complétez l'Academy AML", titleEn: "Complete AML Academy", reward: "Badge 🛡️", progress: 0, target: 1, icon: Star },
 ];
 
 const BonusRewards = () => {
