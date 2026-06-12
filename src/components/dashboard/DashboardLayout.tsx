@@ -53,6 +53,17 @@ const navGroups: NavGroup[] = [
   },
 ];
 
+const DashboardLayout = () => {
+  const { user, loading, signOut } = useAuth();
+  const { isSuperAdmin } = useAdmin();
+  const { isApproved, loading: profileLoading } = useProfileStatus();
+  const { profileType, ambassadorTier } = useUserTier();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { lang, setLang } = useLanguage();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+
   const filteredGroups = navGroups;
 
   useEffect(() => {
