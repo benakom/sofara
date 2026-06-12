@@ -4,7 +4,7 @@ project_id = "ecimeextrtqousziglgy"
   [functions.auth-email-hook]
     verify_jwt = false
   [functions.elevenlabs-tts]
-    verify_jwt = false
+    verify_jwt = true
   [functions.legal-ai-analyze]
     verify_jwt = false
   [functions.library-scrape-project]
