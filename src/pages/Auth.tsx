@@ -157,24 +157,17 @@ const Auth = () => {
     }
     setLoading(true);
     const refCode = localStorage.getItem("sofara_ref");
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: window.location.origin,
-        data: {
-          first_name: firstName.trim(),
-          last_name: lastName.trim(),
-          full_name: `${firstName.trim()} ${lastName.trim()}`,
-          phone: `${phoneCode}${digits}`,
-          occupation,
-          ...(refCode ? { ref_code: refCode } : {}),
-        },
-      },
+    const { error } = await supabase.from("ambassador_applications").insert({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: `${phoneCode}${digits}`,
+      occupation,
+      ref_code: refCode || null,
     });
     setLoading(false);
     if (error) {
-      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Signup error", description: error.message });
+      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Submission error", description: error.message });
     } else {
       localStorage.removeItem("sofara_ref");
       setSignupEmail(email);
@@ -220,21 +213,8 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleAuth = async () => {
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth` },
-    });
-    setLoading(false);
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: lang === "ar" ? "Connexion Google indisponible" : "Google sign-in unavailable",
-        description: error.message,
-      });
-    }
-  };
+
+
 
   const labels = {
     login: {
@@ -245,9 +225,9 @@ const Auth = () => {
       switchAction: lang === "ar" ? "إنشاء حساب" : "Create account",
     },
     signup: {
-      title: lang === "ar" ? "إنشاء حساب" : "Create Account",
-      subtitle: lang === "ar" ? "Rejoignez le réseau ambassadeur #1" : "Join the #1 ambassador network",
-      button: lang === "ar" ? "S'inscrire" : "Sign Up",
+      title: lang === "ar" ? "Postuler comme ambassadeur" : "Apply as Ambassador",
+      subtitle: lang === "ar" ? "Notre équipe vous contactera sous 48h" : "Our team will contact you within 48h",
+      button: lang === "ar" ? "Envoyer ma candidature" : "Submit application",
       switch: lang === "ar" ? "لديك حساب بالفعل؟" : "Already have an account?",
       switchAction: lang === "ar" ? "تسجيل الدخول" : "Sign In",
     },
@@ -292,19 +272,8 @@ const Auth = () => {
     );
   }
 
-  // ─── OTP Verification Screen ───
+  // ─── Application Submitted Screen ───
   if (signupComplete) {
-    const handleResend = async () => {
-      setLoading(true);
-      const { error } = await supabase.auth.resend({ type: "signup", email: signupEmail });
-      setLoading(false);
-      if (error) {
-        toast({ variant: "destructive", title: "Error", description: error.message });
-      } else {
-        toast({ title: lang === "ar" ? "Code renvoyé !" : "Code resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
-      }
-    };
-
     return (
       <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
         {/* Left panel */}
@@ -319,7 +288,7 @@ const Auth = () => {
           </div>
         </div>
 
-        {/* Right panel — OTP */}
+        {/* Right panel — Confirmation */}
         <div className="flex-1 flex items-center justify-center px-5 sm:px-8 lg:px-12 py-10 lg:py-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -328,90 +297,34 @@ const Auth = () => {
             className="w-full max-w-sm mx-auto text-center"
           >
             <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-8 sm:p-10 shadow-2xl">
-              <motion.div
-                initial={{ y: -10 }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center"
-              >
-                <Mail className="w-9 h-9 text-primary" />
-              </motion.div>
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <CheckCircle2 className="w-10 h-10 text-primary" />
+              </div>
 
-              <h2 className="text-xl font-bold text-foreground mb-2">
-                {lang === "ar" ? "Vérifiez votre email" : "Verify your email"}
+              <h2 className="text-xl font-bold text-foreground mb-3">
+                {lang === "ar" ? "Candidature reçue !" : "Application received!"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
                 {lang === "ar"
-                  ? "Un code de vérification a été envoyé à :"
-                  : "A verification code has been sent to:"}
+                  ? "Merci, votre candidature a bien été envoyée."
+                  : "Thank you, your application has been submitted."}
               </p>
               <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
-
-              {/* OTP Input */}
-              <div className="flex justify-center mb-6">
-                <InputOTP
-                  maxLength={6}
-                  value={otpValue}
-                  onChange={(value) => setOtpValue(value)}
-                >
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                    <InputOTPSlot index={1} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                    <InputOTPSlot index={2} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                    <InputOTPSlot index={3} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                    <InputOTPSlot index={4} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                    <InputOTPSlot index={5} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
-                  </InputOTPGroup>
-                </InputOTP>
-              </div>
-
-              <Button
-                variant="hero"
-                className="w-full rounded-xl py-5 text-sm font-semibold mb-4"
-                onClick={handleVerifyOtp}
-                disabled={otpVerifying || otpValue.length !== 6}
-              >
-                {otpVerifying ? <Loader2 className="w-4 h-4 animate-spin" /> : (lang === "ar" ? "Vérifier mon compte" : "Verify my account")}
-              </Button>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {lang === "ar"
-                    ? "Entrez le code à 6 chiffres reçu par email pour activer votre compte ambassadeur Sofara."
-                    : "Enter the 6-digit code received by email to activate your Sofara ambassador account."}
+                    ? "Notre équipe examine votre candidature et vous contactera par email sous 48h pour finaliser votre intégration en tant qu'ambassadeur Sofara."
+                    : "Our team is reviewing your application and will contact you by email within 48h to finalize your onboarding as a Sofara ambassador."}
                 </p>
               </div>
 
-              <div className="space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full rounded-xl py-5 text-sm gap-2"
-                  onClick={handleResend}
-                  disabled={loading}
-                >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                  {lang === "ar" ? "Renvoyer le code" : "Resend code"}
-                </Button>
-
-                <button
-                  onClick={() => { setSignupComplete(false); setMode("login"); setOtpValue(""); }}
-                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-6 space-y-2">
-              {[
-                lang === "ar" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
-                lang === "ar" ? "Le code expire après 1h" : "The code expires after 1h",
-              ].map((tip, i) => (
-                <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
-                  <CheckCircle2 className="w-3 h-3 text-primary/50" />
-                  {tip}
-                </p>
-              ))}
+              <button
+                onClick={() => { setSignupComplete(false); setMode("login"); }}
+                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
+              </button>
             </div>
           </motion.div>
         </div>
@@ -553,10 +466,10 @@ const Auth = () => {
                 <Input id="email" type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
               </div>
 
-              {mode !== "forgot" && (
+              {mode === "login" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "ar" ? "كلمة المرور" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
+                    {lang === "ar" ? "كلمة المرور" : "Password"}
                   </Label>
                   <div className="relative">
                     <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="bg-background/50 h-11 rounded-xl pr-11" />
@@ -629,28 +542,6 @@ const Auth = () => {
               </Button>
             </form>
 
-            {mode !== "forgot" && (
-              <div className="mt-4">
-                <div className="relative my-4">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-border/60" />
-                  </div>
-                  <div className="relative flex justify-center text-[11px] uppercase">
-                    <span className="bg-card px-3 text-muted-foreground">{lang === "ar" ? "ou" : "or"}</span>
-                  </div>
-                </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="w-full rounded-xl py-5 text-sm font-semibold"
-                  onClick={handleGoogleAuth}
-                  disabled={loading}
-                >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                  {lang === "ar" ? "Continuer avec Google" : "Continue with Google"}
-                </Button>
-              </div>
-            )}
 
             <p className="text-center text-xs text-muted-foreground mt-5">
               {l.switch}{" "}
