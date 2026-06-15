@@ -157,24 +157,17 @@ const Auth = () => {
     }
     setLoading(true);
     const refCode = localStorage.getItem("sofara_ref");
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: window.location.origin,
-        data: {
-          first_name: firstName.trim(),
-          last_name: lastName.trim(),
-          full_name: `${firstName.trim()} ${lastName.trim()}`,
-          phone: `${phoneCode}${digits}`,
-          occupation,
-          ...(refCode ? { ref_code: refCode } : {}),
-        },
-      },
+    const { error } = await supabase.from("ambassador_applications").insert({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: `${phoneCode}${digits}`,
+      occupation,
+      ref_code: refCode || null,
     });
     setLoading(false);
     if (error) {
-      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Signup error", description: error.message });
+      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Submission error", description: error.message });
     } else {
       localStorage.removeItem("sofara_ref");
       setSignupEmail(email);
