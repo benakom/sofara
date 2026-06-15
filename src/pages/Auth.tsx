@@ -213,21 +213,8 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleAuth = async () => {
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth` },
-    });
-    setLoading(false);
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: lang === "ar" ? "Connexion Google indisponible" : "Google sign-in unavailable",
-        description: error.message,
-      });
-    }
-  };
+
+
 
   const labels = {
     login: {
