@@ -225,9 +225,9 @@ const Auth = () => {
       switchAction: lang === "ar" ? "إنشاء حساب" : "Create account",
     },
     signup: {
-      title: lang === "ar" ? "إنشاء حساب" : "Create Account",
-      subtitle: lang === "ar" ? "Rejoignez le réseau ambassadeur #1" : "Join the #1 ambassador network",
-      button: lang === "ar" ? "S'inscrire" : "Sign Up",
+      title: lang === "ar" ? "Postuler comme ambassadeur" : "Apply as Ambassador",
+      subtitle: lang === "ar" ? "Notre équipe vous contactera sous 48h" : "Our team will contact you within 48h",
+      button: lang === "ar" ? "Envoyer ma candidature" : "Submit application",
       switch: lang === "ar" ? "لديك حساب بالفعل؟" : "Already have an account?",
       switchAction: lang === "ar" ? "تسجيل الدخول" : "Sign In",
     },
