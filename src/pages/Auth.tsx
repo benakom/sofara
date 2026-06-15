@@ -555,28 +555,6 @@ const Auth = () => {
               </Button>
             </form>
 
-            {mode !== "forgot" && (
-              <div className="mt-4">
-                <div className="relative my-4">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-border/60" />
-                  </div>
-                  <div className="relative flex justify-center text-[11px] uppercase">
-                    <span className="bg-card px-3 text-muted-foreground">{lang === "ar" ? "ou" : "or"}</span>
-                  </div>
-                </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="w-full rounded-xl py-5 text-sm font-semibold"
-                  onClick={handleGoogleAuth}
-                  disabled={loading}
-                >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                  {lang === "ar" ? "Continuer avec Google" : "Continue with Google"}
-                </Button>
-              </div>
-            )}
 
             <p className="text-center text-xs text-muted-foreground mt-5">
               {l.switch}{" "}
