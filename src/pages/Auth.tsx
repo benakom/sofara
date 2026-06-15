@@ -479,10 +479,10 @@ const Auth = () => {
                 <Input id="email" type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
               </div>
 
-              {mode !== "forgot" && (
+              {mode === "login" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "ar" ? "كلمة المرور" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
+                    {lang === "ar" ? "كلمة المرور" : "Password"}
                   </Label>
                   <div className="relative">
                     <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="bg-background/50 h-11 rounded-xl pr-11" />
