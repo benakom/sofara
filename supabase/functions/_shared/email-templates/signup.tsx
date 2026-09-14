@@ -21,6 +21,7 @@ interface SignupEmailProps {
   siteUrl: string
   recipient: string
   confirmationUrl: string
+  token?: string
 }
 
 export const SignupEmail = ({
@@ -28,6 +29,7 @@ export const SignupEmail = ({
   siteUrl,
   recipient,
   confirmationUrl,
+  token,
 }: SignupEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
@@ -55,6 +57,16 @@ export const SignupEmail = ({
             Verify my email
           </Button>
         </Section>
+        {token && (
+          <>
+            <Text style={text}>
+              Or enter this verification code on the sign-up page:
+            </Text>
+            <Section style={codeBox}>
+              <Text style={codeText}>{token}</Text>
+            </Section>
+          </>
+        )}
         <Text style={footer}>
           If you didn't create an account on Sofara, you can safely ignore this
           email.
@@ -101,3 +113,17 @@ const button = {
   textDecoration: 'none',
 }
 const footer = { fontSize: '12px', color: '#9ca3af', margin: '20px 0 0' }
+const codeBox = {
+  backgroundColor: '#f3f4f6',
+  borderRadius: '10px',
+  padding: '14px 20px',
+  margin: '8px 0 24px',
+  textAlign: 'center' as const,
+}
+const codeText = {
+  fontSize: '28px',
+  fontWeight: 'bold' as const,
+  letterSpacing: '8px',
+  color: '#0d3a2b',
+  margin: '0',
+}

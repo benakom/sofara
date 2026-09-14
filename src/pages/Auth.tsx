@@ -155,24 +155,65 @@ const Auth = () => {
       toast({ variant: "destructive", title: lang === "ar" ? "Champs requis" : "Required fields", description: lang === "ar" ? "Veuillez remplir tous les champs." : "Please fill all fields." });
       return;
     }
+    if (password.length < 8) {
+      toast({ variant: "destructive", title: lang === "ar" ? "Mot de passe trop court" : "Password too short", description: lang === "ar" ? "8 caractères minimum." : "At least 8 characters." });
+      return;
+    }
     setLoading(true);
     const refCode = localStorage.getItem("sofara_ref");
-    const { error } = await supabase.from("ambassador_applications").insert({
-      first_name: firstName.trim(),
-      last_name: lastName.trim(),
-      email: email.trim().toLowerCase(),
-      phone: `${phoneCode}${digits}`,
-      occupation,
-      ref_code: refCode || null,
+    const cleanEmail = email.trim().toLowerCase();
+    const { data, error } = await supabase.auth.signUp({
+      email: cleanEmail,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth`,
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          full_name: `${firstName.trim()} ${lastName.trim()}`,
+          phone: `${phoneCode}${digits}`,
+          occupation,
+          ...(refCode ? { ref_code: refCode } : {}),
+        },
+      },
     });
     setLoading(false);
+
+    const existsTitle = lang === "ar" ? "Compte existant" : "Account already exists";
+    const existsDesc = lang === "ar" ? "Un compte existe déjà avec cet email. Connectez-vous." : "An account already exists with this email. Please sign in.";
+
     if (error) {
-      toast({ variant: "destructive", title: lang === "ar" ? "خطأ في التسجيل" : "Submission error", description: error.message });
-    } else {
-      localStorage.removeItem("sofara_ref");
-      setSignupEmail(email);
-      setSignupComplete(true);
+      const exists = /already registered|already exists|already been registered/i.test(error.message);
+      toast({
+        variant: "destructive",
+        title: exists ? existsTitle : (lang === "ar" ? "Erreur d'inscription" : "Signup error"),
+        description: exists ? existsDesc : error.message,
+      });
+      if (exists) setMode("login");
+      return;
     }
+
+    // With email confirmation enabled, Supabase returns a user with no identities when the email is already taken.
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      toast({ variant: "destructive", title: existsTitle, description: existsDesc });
+      setMode("login");
+      return;
+    }
+
+    localStorage.removeItem("sofara_ref");
+
+    if (data.session) {
+      // Email confirmation is off: the ambassador space is live right away.
+      toast({
+        title: lang === "ar" ? "Bienvenue chez Sofara !" : "Welcome to Sofara!",
+        description: lang === "ar" ? "Votre espace ambassadeur est prêt." : "Your ambassador space is ready.",
+      });
+      navigate("/dashboard");
+      return;
+    }
+
+    setSignupEmail(cleanEmail);
+    setSignupComplete(true);
   };
 
   const handleVerifyOtp = async () => {
@@ -225,9 +266,9 @@ const Auth = () => {
       switchAction: lang === "ar" ? "إنشاء حساب" : "Create account",
     },
     signup: {
-      title: lang === "ar" ? "Postuler comme ambassadeur" : "Apply as Ambassador",
-      subtitle: lang === "ar" ? "Notre équipe vous contactera sous 48h" : "Our team will contact you within 48h",
-      button: lang === "ar" ? "Envoyer ma candidature" : "Submit application",
+      title: lang === "ar" ? "Créer mon compte ambassadeur" : "Create your ambassador account",
+      subtitle: lang === "ar" ? "Votre espace est prêt en 30 secondes" : "Your space is ready in 30 seconds",
+      button: lang === "ar" ? "Créer mon compte" : "Create my account",
       switch: lang === "ar" ? "لديك حساب بالفعل؟" : "Already have an account?",
       switchAction: lang === "ar" ? "تسجيل الدخول" : "Sign In",
     },
@@ -272,8 +313,19 @@ const Auth = () => {
     );
   }
 
-  // ─── Application Submitted Screen ───
+  // ─── Email Verification Screen ───
   if (signupComplete) {
+    const handleResend = async () => {
+      setLoading(true);
+      const { error } = await supabase.auth.resend({ type: "signup", email: signupEmail, options: { emailRedirectTo: `${window.location.origin}/auth` } });
+      setLoading(false);
+      if (error) {
+        toast({ variant: "destructive", title: "Error", description: error.message });
+      } else {
+        toast({ title: lang === "ar" ? "Email renvoyé !" : "Email resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
+      }
+    };
+
     return (
       <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
         {/* Left panel */}
@@ -288,7 +340,7 @@ const Auth = () => {
           </div>
         </div>
 
-        {/* Right panel — Confirmation */}
+        {/* Right panel — Verification */}
         <div className="flex-1 flex items-center justify-center px-5 sm:px-8 lg:px-12 py-10 lg:py-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -297,34 +349,74 @@ const Auth = () => {
             className="w-full max-w-sm mx-auto text-center"
           >
             <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-8 sm:p-10 shadow-2xl">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <CheckCircle2 className="w-10 h-10 text-primary" />
-              </div>
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center"
+              >
+                <Mail className="w-9 h-9 text-primary" />
+              </motion.div>
 
-              <h2 className="text-xl font-bold text-foreground mb-3">
-                {lang === "ar" ? "Candidature reçue !" : "Application received!"}
+              <h2 className="text-xl font-bold text-foreground mb-2">
+                {lang === "ar" ? "Vérifiez votre email" : "Verify your email"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                {lang === "ar"
-                  ? "Merci, votre candidature a bien été envoyée."
-                  : "Thank you, your application has been submitted."}
+                {lang === "ar" ? "Votre compte est créé. Un email de vérification a été envoyé à :" : "Your account is created. A verification email was sent to:"}
               </p>
               <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {lang === "ar"
-                    ? "Notre équipe examine votre candidature et vous contactera par email sous 48h pour finaliser votre intégration en tant qu'ambassadeur Sofara."
-                    : "Our team is reviewing your application and will contact you by email within 48h to finalize your onboarding as a Sofara ambassador."}
+                    ? "Cliquez sur le lien dans l'email, ou saisissez le code à 6 chiffres ci-dessous pour activer votre espace ambassadeur."
+                    : "Click the link in the email, or enter the 6-digit code below to activate your ambassador space."}
                 </p>
               </div>
 
-              <button
-                onClick={() => { setSignupComplete(false); setMode("login"); }}
-                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              {/* OTP Input */}
+              <div className="flex justify-center mb-6">
+                <InputOTP maxLength={6} value={otpValue} onChange={(value) => setOtpValue(value)}>
+                  <InputOTPGroup>
+                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                      <InputOTPSlot key={i} index={i} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    ))}
+                  </InputOTPGroup>
+                </InputOTP>
+              </div>
+
+              <Button
+                variant="hero"
+                className="w-full rounded-xl py-5 text-sm font-semibold mb-4"
+                onClick={handleVerifyOtp}
+                disabled={otpVerifying || otpValue.length !== 6}
               >
-                {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
-              </button>
+                {otpVerifying ? <Loader2 className="w-4 h-4 animate-spin" /> : (lang === "ar" ? "Activer mon espace" : "Activate my space")}
+              </Button>
+
+              <div className="space-y-3">
+                <Button variant="outline" className="w-full rounded-xl py-5 text-sm gap-2" onClick={handleResend} disabled={loading}>
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+                  {lang === "ar" ? "Renvoyer l'email" : "Resend email"}
+                </Button>
+
+                <button
+                  onClick={() => { setSignupComplete(false); setMode("login"); setOtpValue(""); }}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {lang === "ar" ? "← Retour à la connexion" : "← Back to sign in"}
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-6 space-y-2">
+              {[
+                lang === "ar" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
+                lang === "ar" ? "Le lien et le code expirent après 1h" : "The link and code expire after 1h",
+              ].map((tip, i) => (
+                <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
+                  <CheckCircle2 className="w-3 h-3" /> {tip}
+                </p>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -466,13 +558,13 @@ const Auth = () => {
                 <Input id="email" type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="bg-background/50 h-11 rounded-xl" />
               </div>
 
-              {mode === "login" && (
+              {mode !== "forgot" && (
                 <div className="space-y-1.5">
                   <Label htmlFor="password" className="text-sm">
-                    {lang === "ar" ? "كلمة المرور" : "Password"}
+                    {lang === "ar" ? "كلمة المرور" : "Password"} {mode === "signup" && <span className="text-destructive">*</span>}
                   </Label>
                   <div className="relative">
-                    <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="bg-background/50 h-11 rounded-xl pr-11" />
+                    <Input id="password" type={showPassword ? "text" : "password"} placeholder={mode === "signup" ? (lang === "ar" ? "8 caractères minimum" : "At least 8 characters") : "••••••••"} value={password} onChange={(e) => setPassword(e.target.value)} required minLength={mode === "signup" ? 8 : 6} autoComplete={mode === "signup" ? "new-password" : "current-password"} className="bg-background/50 h-11 rounded-xl pr-11" />
                     <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute inset-y-0 right-0 w-11 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors" aria-label={showPassword ? "Hide password" : "Show password"}>
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>

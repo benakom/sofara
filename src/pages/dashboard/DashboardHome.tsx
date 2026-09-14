@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight, TrendingUp, Zap, Target, BarChart3, CalendarDays, Send } from "lucide-react";
+import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight, TrendingUp, Zap, Target, BarChart3, CalendarDays, Send, ShieldCheck, Link2, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,7 +11,7 @@ const DashboardHome = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const { data: leads = [] } = useQuery({
+  const { data: leads = [], isLoading: leadsLoading } = useQuery({
     queryKey: ["leads", user?.id],
     queryFn: async () => {
       const { data } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
@@ -87,6 +87,19 @@ const DashboardHome = () => {
 
   const recentLeads = leads.slice(0, 5);
 
+  const meta = (user?.user_metadata ?? {}) as Record<string, unknown>;
+  const firstName =
+    (typeof meta.first_name === "string" && meta.first_name.trim()) ||
+    (typeof meta.full_name === "string" && meta.full_name.trim().split(" ")[0]) ||
+    "";
+  const isNewAmbassador = !leadsLoading && totalLeads === 0;
+
+  const onboardingSteps = [
+    { labelAr: "Soumettez votre premier lead", labelEn: "Submit your first lead", descAr: "Un client intéressé par Dubai ? Envoyez-le, on s'occupe du reste.", descEn: "Know someone interested in Dubai? Send them, we handle the rest.", icon: Send, path: "/dashboard/import-leads" },
+    { labelAr: "Vérifiez votre identité", labelEn: "Verify your identity", descAr: "KYC requis pour recevoir vos commissions.", descEn: "KYC is required to receive your commissions.", icon: ShieldCheck, path: "/dashboard/kyc" },
+    { labelAr: "Partagez votre lien", labelEn: "Share your referral link", descAr: "Invitez d'autres ambassadeurs et gagnez des bonus.", descEn: "Invite other ambassadors and earn bonuses.", icon: Link2, path: "/dashboard/referrals" },
+  ];
+
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
       {/* Header */}
@@ -112,6 +125,53 @@ const DashboardHome = () => {
           {lang === "ar" ? "عرض كل العملاء" : "View All Leads"} <ArrowUpRight className="w-4 h-4" />
         </button>
       </div>
+
+      {/* Welcome panel — shown until the first lead is submitted */}
+      {isNewAmbassador && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="relative overflow-hidden rounded-3xl bg-[hsl(0,0%,7%)] p-6 sm:p-8 mb-5 shadow-lg"
+        >
+          <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#D2F34C]/10 blur-3xl pointer-events-none" />
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D2F34C]/15 border border-[#D2F34C]/30 mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-[#D2F34C]" />
+              <span className="text-[#D2F34C] text-[11px] font-semibold uppercase tracking-wider">
+                {lang === "ar" ? "Espace activé" : "Space activated"}
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-2">
+              {lang === "ar" ? `Bienvenue${firstName ? ` ${firstName}` : ""} !` : `Welcome${firstName ? `, ${firstName}` : ""}!`}
+            </h2>
+            <p className="text-sm text-white/60 max-w-xl mb-6">
+              {lang === "ar"
+                ? "Votre espace ambassadeur Sofara est prêt. Voici les 3 étapes pour commencer à gagner des commissions."
+                : "Your Sofara ambassador space is ready. Here are the 3 steps to start earning commissions."}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {onboardingSteps.map((step, i) => (
+                <button
+                  key={step.path}
+                  onClick={() => navigate(step.path)}
+                  className="group text-left rounded-2xl bg-white/5 border border-white/10 hover:border-[#D2F34C]/50 hover:bg-white/[0.08] p-4 transition-all"
+                >
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <span className="w-6 h-6 rounded-full bg-[#D2F34C] text-black text-[11px] font-black flex items-center justify-center">{i + 1}</span>
+                    <step.icon className="w-4 h-4 text-[#D2F34C]" />
+                  </div>
+                  <p className="text-sm font-semibold text-white mb-1">{lang === "ar" ? step.labelAr : step.labelEn}</p>
+                  <p className="text-xs text-white/50 leading-relaxed">{lang === "ar" ? step.descAr : step.descEn}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-[#D2F34C] opacity-0 group-hover:opacity-100 transition-opacity">
+                    {lang === "ar" ? "Commencer" : "Start"} <ArrowUpRight className="w-3 h-3" />
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* Main KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
