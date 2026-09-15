@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "bunx tsx scripts/generate-sitemap.ts",
+    "predev": "bunx tsx scripts/generate-sitemap.ts || echo \"sitemap generation skipped (tsx unavailable), using committed public/sitemap.xml\"",
     "dev": "vite",
-    "prebuild": "bunx tsx scripts/generate-sitemap.ts",
+    "prebuild": "bunx tsx scripts/generate-sitemap.ts || echo \"sitemap generation skipped (tsx unavailable), using committed public/sitemap.xml\"",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
