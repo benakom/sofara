@@ -28,7 +28,7 @@ export const useSubscription = () => {
   const [checkoutLoading] = useState<ProPlan | null>(null);
   const [portalLoading] = useState(false);
 
-  const notConfigured = useCallback(async () => {
+  const notConfigured = useCallback(async (_plan?: ProPlan) => {
     throw new Error("Paid plans are not available yet.");
   }, []);
 
