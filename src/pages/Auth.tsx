@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -229,7 +230,9 @@ const Auth = () => {
       toast({
         variant: "destructive",
         title: lang === "ar" ? "Code invalide" : "Invalid code",
-        description: lang === "ar" ? "Vérifiez le code et réessayez." : "Check the code and try again.",
+        description: /expired|invalid/i.test(error.message)
+          ? (lang === "ar" ? "Code expiré ou déjà utilisé. Cliquez sur « Renvoyer un code » et utilisez le nouveau." : "Code expired or already used. Click \"Resend code\" and use the new one.")
+          : error.message,
       });
       setOtpValue("");
     } else {
@@ -322,7 +325,8 @@ const Auth = () => {
       if (error) {
         toast({ variant: "destructive", title: "Error", description: error.message });
       } else {
-        toast({ title: lang === "ar" ? "Email renvoyé !" : "Email resent!", description: lang === "ar" ? "Vérifiez votre boîte mail." : "Check your inbox." });
+        setOtpValue("");
+        toast({ title: lang === "ar" ? "Nouveau code envoyé !" : "New code sent!", description: lang === "ar" ? "Utilisez le code du dernier email reçu." : "Use the code from the latest email." });
       }
     };
 
@@ -361,21 +365,21 @@ const Auth = () => {
                 {lang === "ar" ? "Vérifiez votre email" : "Verify your email"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                {lang === "ar" ? "Votre compte est créé. Un email de vérification a été envoyé à :" : "Your account is created. A verification email was sent to:"}
+                {lang === "ar" ? "Votre compte est créé. Un code à 6 chiffres a été envoyé à :" : "Your account is created. A 6-digit code was sent to:"}
               </p>
               <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {lang === "ar"
-                    ? "Cliquez sur le lien dans l'email, ou saisissez le code à 6 chiffres ci-dessous pour activer votre espace ambassadeur."
-                    : "Click the link in the email, or enter the 6-digit code below to activate your ambassador space."}
+                    ? "Copiez le code à 6 chiffres reçu par email et collez-le ci-dessous pour activer votre espace ambassadeur."
+                    : "Copy the 6-digit code from the email and paste it below to activate your ambassador space."}
                 </p>
               </div>
 
               {/* OTP Input */}
               <div className="flex justify-center mb-6">
-                <InputOTP maxLength={6} value={otpValue} onChange={(value) => setOtpValue(value)}>
+                <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} inputMode="numeric" autoComplete="one-time-code" value={otpValue} onChange={(value) => setOtpValue(value.replace(/\D/g, "").slice(0, 6))}>
                   <InputOTPGroup>
                     {[0, 1, 2, 3, 4, 5].map((i) => (
                       <InputOTPSlot key={i} index={i} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
@@ -396,7 +400,7 @@ const Auth = () => {
               <div className="space-y-3">
                 <Button variant="outline" className="w-full rounded-xl py-5 text-sm gap-2" onClick={handleResend} disabled={loading}>
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                  {lang === "ar" ? "Renvoyer l'email" : "Resend email"}
+                  {lang === "ar" ? "Renvoyer un code" : "Resend code"}
                 </Button>
 
                 <button
@@ -411,7 +415,7 @@ const Auth = () => {
             <div className="mt-6 space-y-2">
               {[
                 lang === "ar" ? "Vérifiez vos spams si vous ne trouvez pas l'email" : "Check your spam folder if you can't find the email",
-                lang === "ar" ? "Le lien et le code expirent après 1h" : "The link and code expire after 1h",
+                lang === "ar" ? "Le code expire après 1h. Utilisez toujours le dernier email reçu." : "The code expires after 1h. Always use the most recent email.",
               ].map((tip, i) => (
                 <p key={i} className="text-[11px] text-muted-foreground/60 flex items-center justify-center gap-1.5">
                   <CheckCircle2 className="w-3 h-3" /> {tip}
