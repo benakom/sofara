@@ -1,78 +1,78 @@
-// Shared helpers for the Sofara Pro subscription edge functions.
-import Stripe from "https://esm.sh/stripe@14.21.0?target=deno";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+// Shared Stripe access for Sofara — all calls are routed through the Lovable connector gateway.
+import { encode } from "https://deno.land/std@0.168.0/encoding/hex.ts";
+import Stripe from "https://esm.sh/stripe@22.0.2";
 
-export const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+const getEnv = (key: string): string => {
+  const value = Deno.env.get(key);
+  if (!value) throw new Error(`${key} is not configured`);
+  return value;
 };
 
-export const json = (body: Record<string, unknown>, status = 200) =>
-  new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+export type StripeEnv = "sandbox" | "live";
 
-export type Plan = "monthly" | "yearly";
+const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
 
-// Sofara Pro pricing (USD cents). Yearly = 10 months → 2 months free.
-export const PLANS: Record<Plan, { lookupKey: string; unitAmount: number; interval: "month" | "year"; nickname: string }> = {
-  monthly: { lookupKey: "sofara_pro_monthly", unitAmount: 9900, interval: "month", nickname: "Sofara Pro — Monthly" },
-  yearly: { lookupKey: "sofara_pro_yearly", unitAmount: 99000, interval: "year", nickname: "Sofara Pro — Yearly (2 months free)" },
-};
-
-export const PRODUCT_NAME = "Sofara Pro";
-
-export function getStripe() {
-  const key = Deno.env.get("STRIPE_SECRET_KEY");
-  if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-  return new Stripe(key, { apiVersion: "2023-10-16", httpClient: Stripe.createFetchHttpClient() });
+export function getConnectionApiKey(env: StripeEnv): string {
+  return env === "sandbox"
+    ? getEnv("STRIPE_SANDBOX_API_KEY")
+    : getEnv("STRIPE_LIVE_API_KEY");
 }
 
-/** Resolves the calling user from the Authorization header. */
-export async function getAuthUser(req: Request) {
-  const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-  const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
-  const authHeader = req.headers.get("Authorization") ?? "";
-  const client = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: authHeader } } });
-  const { data, error } = await client.auth.getUser();
-  if (error || !data?.user?.email) return null;
-  return data.user;
-}
+export function createStripeClient(env: StripeEnv): Stripe {
+  const connectionApiKey = getConnectionApiKey(env);
+  const lovableApiKey = getEnv("LOVABLE_API_KEY");
 
-export function getAdminClient() {
-  return createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-}
-
-/** Finds the Stripe customer for an email, if any. */
-export async function findCustomer(stripe: Stripe, email: string) {
-  const list = await stripe.customers.list({ email, limit: 1 });
-  return list.data[0] ?? null;
-}
-
-/** Finds (or creates once) the recurring price for a plan, identified by a stable lookup key. */
-export async function getOrCreatePrice(stripe: Stripe, plan: Plan) {
-  const cfg = PLANS[plan];
-  const existing = await stripe.prices.list({ lookup_keys: [cfg.lookupKey], active: true, limit: 1 });
-  if (existing.data[0]) return existing.data[0];
-
-  // Reuse the Sofara Pro product if it exists, otherwise create it.
-  const products = await stripe.products.search({ query: `name:'${PRODUCT_NAME}' AND active:'true'`, limit: 1 });
-  const product = products.data[0] ?? await stripe.products.create({
-    name: PRODUCT_NAME,
-    description: "Oleadoo CRM, WhatsApp AI, AI marketing campaigns, AI agent, lead qualification and boosted commissions for Sofara ambassadors.",
-  });
-
-  return await stripe.prices.create({
-    product: product.id,
-    currency: "usd",
-    unit_amount: cfg.unitAmount,
-    recurring: { interval: cfg.interval },
-    lookup_key: cfg.lookupKey,
-    nickname: cfg.nickname,
+  return new Stripe(connectionApiKey, {
+    apiVersion: "2026-03-25.dahlia",
+    httpClient: Stripe.createFetchHttpClient((input, init) => {
+      const stripeUrl = input instanceof Request ? input.url : input.toString();
+      const gatewayUrl = stripeUrl.replace("https://api.stripe.com", GATEWAY_STRIPE_BASE);
+      return fetch(gatewayUrl, {
+        ...init,
+        headers: {
+          ...Object.fromEntries(
+            new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined)).entries(),
+          ),
+          "X-Connection-Api-Key": connectionApiKey,
+          "Lovable-API-Key": lovableApiKey,
+        },
+      });
+    }),
   });
 }
 
-export function originFrom(req: Request) {
-  const origin = req.headers.get("origin");
-  if (origin && /^https?:\/\//.test(origin)) return origin;
-  return "https://www.sofara.io";
+export async function verifyWebhook(req: Request, env: StripeEnv): Promise<{ type: string; data: { object: any } }> {
+  const signature = req.headers.get("stripe-signature");
+  const body = await req.text();
+  const secret = env === "sandbox"
+    ? getEnv("PAYMENTS_SANDBOX_WEBHOOK_SECRET")
+    : getEnv("PAYMENTS_LIVE_WEBHOOK_SECRET");
+
+  if (!signature || !body) throw new Error("Missing signature or body");
+
+  let timestamp: string | undefined;
+  const v1Signatures: string[] = [];
+  for (const part of signature.split(",")) {
+    const [key, value] = part.split("=", 2);
+    if (key === "t") timestamp = value;
+    if (key === "v1") v1Signatures.push(value);
+  }
+  if (!timestamp || v1Signatures.length === 0) throw new Error("Invalid signature format");
+
+  const age = Math.abs(Date.now() / 1000 - Number(timestamp));
+  if (age > 300) throw new Error("Webhook timestamp too old");
+
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const signed = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(`${timestamp}.${body}`));
+  const expected = new TextDecoder().decode(encode(new Uint8Array(signed)));
+
+  if (!v1Signatures.includes(expected)) throw new Error("Invalid webhook signature");
+
+  return JSON.parse(body);
 }

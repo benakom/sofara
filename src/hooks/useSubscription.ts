@@ -1,7 +1,4 @@
 import { useCallback, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
 
@@ -21,66 +18,35 @@ export const PRO_PRICING = {
 };
 
 /**
- * Sofara Pro subscription state, synced from Stripe through the check-subscription edge function.
- * Superadmins always have Pro access.
+ * Legacy Sofara Pro subscription state. The paid Pro plan is currently disabled:
+ * access is derived from the profile tier / superadmin role only. Built-in payments
+ * are enabled at the project level and will drive this hook once products exist.
  */
 export const useSubscription = () => {
-  const { user } = useAuth();
   const { isSuperAdmin } = useAdmin();
   const { profileType, loading: tierLoading } = useUserTier();
-  const queryClient = useQueryClient();
-  const [checkoutLoading, setCheckoutLoading] = useState<ProPlan | null>(null);
-  const [portalLoading, setPortalLoading] = useState(false);
+  const [checkoutLoading] = useState<ProPlan | null>(null);
+  const [portalLoading] = useState(false);
 
-  const query = useQuery({
-    queryKey: ["subscription", user?.id],
-    queryFn: async (): Promise<SubscriptionState> => {
-      const { data, error } = await supabase.functions.invoke("check-subscription");
-      if (error) throw error;
-      return data as SubscriptionState;
-    },
-    enabled: !!user,
-    staleTime: 60_000,
-    retry: 1,
-  });
-
-  const startCheckout = useCallback(async (plan: ProPlan) => {
-    setCheckoutLoading(plan);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-checkout", { body: { plan } });
-      if (error) throw error;
-      if (!data?.url) throw new Error("No checkout URL returned");
-      window.location.href = data.url as string;
-    } finally {
-      setCheckoutLoading(null);
-    }
+  const notConfigured = useCallback(async (_plan?: ProPlan) => {
+    throw new Error("Paid plans are not available yet.");
   }, []);
 
-  const openPortal = useCallback(async () => {
-    setPortalLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("customer-portal");
-      if (error) throw error;
-      if (!data?.url) throw new Error("No portal URL returned");
-      window.location.href = data.url as string;
-    } finally {
-      setPortalLoading(false);
-    }
-  }, []);
-
-  const refresh = useCallback(() => queryClient.invalidateQueries({ queryKey: ["subscription", user?.id] }), [queryClient, user?.id]);
-
-  const isPro = isSuperAdmin || !!query.data?.subscribed || profileType === "pro";
+  const isPro = isSuperAdmin || profileType === "pro";
 
   return {
-    ...(query.data ?? { subscribed: false, plan: null, subscription_end: null, source: null }),
+    subscribed: false,
+    plan: null as ProPlan | null,
+    subscription_end: null as string | null,
+    cancel_at_period_end: false,
+    source: null as "stripe" | "manual" | null,
     isPro,
-    loading: query.isLoading || tierLoading,
-    error: query.error as Error | null,
-    refresh,
-    startCheckout,
+    loading: tierLoading,
+    error: null as Error | null,
+    refresh: () => {},
+    startCheckout: notConfigured,
     checkoutLoading,
-    openPortal,
+    openPortal: notConfigured,
     portalLoading,
   };
 };
