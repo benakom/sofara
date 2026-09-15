@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight, TrendingUp, Zap, Target, BarChart3, CalendarDays, Send, ShieldCheck, Link2, Sparkles } from "lucide-react";
+import { Users, GitBranch, CheckCircle, DollarSign, Trophy, ArrowUpRight, TrendingUp, Zap, Target, BarChart3, CalendarDays, Send, ShieldCheck, Link2, Sparkles, Crown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useSubscription } from "@/hooks/useSubscription";
+import { PRO_BENEFITS } from "@/components/dashboard/ProBenefits";
 
 const DashboardHome = () => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { isPro, loading: subLoading } = useSubscription();
 
   const { data: leads = [], isLoading: leadsLoading } = useQuery({
     queryKey: ["leads", user?.id],
@@ -169,6 +172,46 @@ const DashboardHome = () => {
                 </button>
               ))}
             </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Sofara Pro upsell — basic members only */}
+      {!subLoading && !isPro && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.05 }}
+          className="relative overflow-hidden rounded-3xl bg-[#D2F34C] p-6 sm:p-7 mb-5 shadow-lg"
+        >
+          <div className="relative flex flex-col lg:flex-row lg:items-center gap-5">
+            <div className="flex-1 min-w-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/10 mb-3">
+                <Crown className="w-3.5 h-3.5 text-black" />
+                <span className="text-black text-[11px] font-bold uppercase tracking-wider">Sofara Pro</span>
+              </div>
+              <h2 className="text-2xl font-display font-extrabold text-black tracking-tight mb-2">
+                {lang === "ar" ? "Qualifiez vos leads, présentez les projets, gagnez plus." : "Qualify your leads, present projects, earn more."}
+              </h2>
+              <p className="text-sm text-black/70 mb-4 max-w-xl">
+                {lang === "ar"
+                  ? "CRM Oleadoo, WhatsApp AI, campagnes marketing IA, agent IA et commission majorée. 99 $ / mois, ou 990 $ / an avec 2 mois offerts."
+                  : "Oleadoo CRM, WhatsApp AI, AI marketing campaigns, AI agent and boosted commission. $99 / month, or $990 / year with 2 months free."}
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+                {PRO_BENEFITS.slice(0, 6).map((b) => (
+                  <span key={b.titleEn} className="inline-flex items-center gap-1.5 text-xs font-semibold text-black/80">
+                    <b.icon className="w-3.5 h-3.5" /> {lang === "ar" ? b.titleAr : b.titleEn}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={() => navigate("/dashboard/pro")}
+              className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[hsl(0,0%,7%)] text-white text-sm font-bold shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              {lang === "ar" ? "Découvrir Sofara Pro" : "Discover Sofara Pro"} <ArrowUpRight className="w-4 h-4" />
+            </button>
           </div>
         </motion.div>
       )}

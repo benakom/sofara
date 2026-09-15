@@ -20,6 +20,8 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const DashboardLayout = lazy(() => import("./components/dashboard/DashboardLayout"));
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
 const DashboardHome = lazy(() => import("./pages/dashboard/DashboardHome"));
+const SofaraPro = lazy(() => import("./pages/dashboard/SofaraPro"));
+const RequirePro = lazy(() => import("./components/dashboard/RequirePro"));
 
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminAmbassadors = lazy(() => import("./pages/admin/AdminAmbassadors"));
@@ -106,14 +108,15 @@ const App = () => (
                   <Route path="commissions" element={<Commissions />} />
                   <Route path="payments" element={<Payments />} />
                   <Route path="kyc" element={<KycAml />} />
-                  <Route path="ai-hub" element={<AIHub />} />
-                  <Route path="simulator" element={<Simulator />} />
-                  <Route path="calendar" element={<CalendarPage />} />
-                  <Route path="legal-ai" element={<LegalAI />} />
+                  <Route path="ai-hub" element={<RequirePro><AIHub /></RequirePro>} />
+                  <Route path="simulator" element={<RequirePro><Simulator /></RequirePro>} />
+                  <Route path="calendar" element={<RequirePro><CalendarPage /></RequirePro>} />
+                  <Route path="legal-ai" element={<RequirePro><LegalAI /></RequirePro>} />
                   
-                  <Route path="community" element={<Community />} />
-                  <Route path="library" element={<Library />} />
+                  <Route path="community" element={<RequirePro><Community /></RequirePro>} />
+                  <Route path="library" element={<RequirePro><Library /></RequirePro>} />
                   <Route path="referrals" element={<Referrals />} />
+                  <Route path="pro" element={<SofaraPro />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<AdminDashboard />} />
