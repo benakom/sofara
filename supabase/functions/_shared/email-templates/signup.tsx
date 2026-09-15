@@ -4,7 +4,6 @@ import * as React from 'npm:react@18.3.1'
 
 import {
   Body,
-  Button,
   Container,
   Head,
   Heading,
@@ -26,47 +25,34 @@ interface SignupEmailProps {
 
 export const SignupEmail = ({
   siteName,
-  siteUrl,
   recipient,
-  confirmationUrl,
   token,
 }: SignupEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>Verify your email to join Sofara</Preview>
+    <Preview>Your Sofara verification code</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
           <Text style={logoText}>SOFARA</Text>
         </Section>
         <Hr style={divider} />
-        <Heading style={h1}>Welcome to Sofara 🎉</Heading>
+        <Heading style={h1}>Your verification code</Heading>
         <Text style={text}>
-          Thanks for signing up! You're one step away from accessing the
-          ambassador platform.
-        </Text>
-        <Text style={text}>
-          Please confirm your email address (
+          Thanks for signing up! Copy the 6-digit code below and paste it on
+          the Sofara sign-up page to activate your ambassador space for{' '}
           <Link href={`mailto:${recipient}`} style={link}>
             {recipient}
           </Link>
-          ) by clicking the button below:
+          .
         </Text>
-        <Section style={buttonContainer}>
-          <Button style={button} href={confirmationUrl}>
-            Verify my email
-          </Button>
+        <Section style={codeBox}>
+          <Text style={codeText}>{token}</Text>
         </Section>
-        {token && (
-          <>
-            <Text style={text}>
-              Or enter this verification code on the sign-up page:
-            </Text>
-            <Section style={codeBox}>
-              <Text style={codeText}>{token}</Text>
-            </Section>
-          </>
-        )}
+        <Text style={text}>
+          The code expires in 1 hour. If you requested several codes, only the
+          one from the most recent email works.
+        </Text>
         <Text style={footer}>
           If you didn't create an account on Sofara, you can safely ignore this
           email.
@@ -102,16 +88,6 @@ const text = {
   margin: '0 0 20px',
 }
 const link = { color: '#0d3a2b', textDecoration: 'underline' }
-const buttonContainer = { textAlign: 'center' as const, margin: '8px 0 28px' }
-const button = {
-  backgroundColor: '#D3F34B',
-  color: '#0d3a2b',
-  fontSize: '14px',
-  fontWeight: 'bold' as const,
-  borderRadius: '12px',
-  padding: '14px 28px',
-  textDecoration: 'none',
-}
 const footer = { fontSize: '12px', color: '#9ca3af', margin: '20px 0 0' }
 const codeBox = {
   backgroundColor: '#f3f4f6',
