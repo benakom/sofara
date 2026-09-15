@@ -12,8 +12,6 @@ import {
   Link,
   Preview,
   Text,
-  Section,
-  Hr,
 } from 'npm:@react-email/components@0.0.22'
 
 interface InviteEmailProps {
@@ -28,28 +26,24 @@ export const InviteEmail = ({
   confirmationUrl,
 }: InviteEmailProps) => (
   <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>You've been invited to join Sofara</Preview>
+    <Head>
+      <style>{darkModeCss}</style>
+    </Head>
+    <Preview>You've been invited to join {siteName}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Section style={header}>
-          <Text style={logoText}>SOFARA</Text>
-        </Section>
-        <Hr style={divider} />
         <Heading style={h1}>You've been invited</Heading>
         <Text style={text}>
           You've been invited to join{' '}
           <Link href={siteUrl} style={link}>
-            <strong>Sofara</strong>
+            <strong>{siteName}</strong>
           </Link>
-          , the Dubai real estate ambassador platform. Click below to accept and
-          create your account.
+          . Click the button below to accept the invitation and create your
+          account.
         </Text>
-        <Section style={buttonContainer}>
-          <Button style={button} href={confirmationUrl}>
-            Accept Invitation
-          </Button>
-        </Section>
+        <Button className="dm-btn" style={button} href={confirmationUrl}>
+          Accept Invitation
+        </Button>
         <Text style={footer}>
           If you weren't expecting this invitation, you can safely ignore this
           email.
@@ -61,38 +55,36 @@ export const InviteEmail = ({
 
 export default InviteEmail
 
-const main = { backgroundColor: '#ffffff', fontFamily: "'Poppins', Arial, sans-serif" }
-const container = { padding: '40px 25px', maxWidth: '520px', margin: '0 auto' }
-const header = { textAlign: 'center' as const, marginBottom: '10px' }
-const logoText = {
-  fontSize: '28px',
-  fontWeight: 'bold' as const,
-  color: '#0d3a2b',
-  letterSpacing: '3px',
-  margin: '0',
-}
-const divider = { borderColor: '#e5e7eb', margin: '16px 0 28px' }
+const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
+const container = { padding: '20px 25px' }
 const h1 = {
   fontSize: '22px',
   fontWeight: 'bold' as const,
-  color: '#0d3a2b',
-  margin: '0 0 16px',
+  color: '#000000',
+  margin: '0 0 20px',
 }
 const text = {
   fontSize: '14px',
-  color: '#4b5563',
-  lineHeight: '1.6',
-  margin: '0 0 20px',
+  color: '#55575d',
+  lineHeight: '1.5',
+  margin: '0 0 25px',
 }
-const link = { color: '#0d3a2b', textDecoration: 'underline' }
-const buttonContainer = { textAlign: 'center' as const, margin: '8px 0 28px' }
+const link = { color: 'inherit', textDecoration: 'underline' }
 const button = {
-  backgroundColor: '#D3F34B',
-  color: '#0d3a2b',
+  backgroundColor: '#000000',
+  color: '#ffffff',
   fontSize: '14px',
-  fontWeight: 'bold' as const,
-  borderRadius: '12px',
-  padding: '14px 28px',
+  border: '1px solid #000000',
+  borderRadius: '8px',
+  padding: '12px 20px',
   textDecoration: 'none',
 }
-const footer = { fontSize: '12px', color: '#9ca3af', margin: '20px 0 0' }
+const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
+// Rendered as a text child, which React may HTML-escape: keep this CSS free of >, &, and quotes.
+const darkModeCss = `
+  @media (prefers-color-scheme: dark) {
+    .dm-btn { background-color: #ffffff !important; color: #000000 !important; }
+  }
+  [data-ogsc] .dm-btn { background-color: #ffffff !important; color: #000000 !important; }
+  [data-ogsb] .dm-btn { background-color: #ffffff !important; color: #000000 !important; }
+`
