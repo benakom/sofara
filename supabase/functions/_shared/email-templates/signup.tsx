@@ -39,7 +39,7 @@ export const SignupEmail = ({
         <Hr style={divider} />
         <Heading style={h1}>Your verification code</Heading>
         <Text style={text}>
-          Thanks for signing up! Copy the 6-digit code below and paste it on
+          Thanks for signing up! Copy the code below and paste it on
           the Sofara sign-up page to activate your ambassador space for{' '}
           <Link href={`mailto:${recipient}`} style={link}>
             {recipient}

@@ -52,6 +52,10 @@ const PHONE_CODES = [
   { code: "+1", flag: "🇨🇦", name: "Canada", digits: 10 },
 ];
 
+// Supabase/Lovable issues 8-digit verification codes for this project; accept 6 to 8 to stay tolerant.
+const OTP_LENGTH = 8;
+const OTP_MIN_LENGTH = 6;
+
 const OCCUPATIONS = [
   { value: "real_estate_agent", labelAr: "Agent immobilier", labelEn: "Real Estate Agent" },
   { value: "influencer", labelAr: "Influenceur / Créateur de contenu", labelEn: "Influencer / Content Creator" },
@@ -218,7 +222,7 @@ const Auth = () => {
   };
 
   const handleVerifyOtp = async () => {
-    if (otpValue.length !== 6) return;
+    if (otpValue.length < OTP_MIN_LENGTH) return;
     setOtpVerifying(true);
     const { error } = await supabase.auth.verifyOtp({
       email: signupEmail,
@@ -365,24 +369,24 @@ const Auth = () => {
                 {lang === "ar" ? "Vérifiez votre email" : "Verify your email"}
               </h2>
               <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
-                {lang === "ar" ? "Votre compte est créé. Un code à 6 chiffres a été envoyé à :" : "Your account is created. A 6-digit code was sent to:"}
+                {lang === "ar" ? "Votre compte est créé. Un code de vérification a été envoyé à :" : "Your account is created. A verification code was sent to:"}
               </p>
               <p className="text-sm font-semibold text-primary mb-6 break-all">{signupEmail}</p>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 mb-6">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {lang === "ar"
-                    ? "Copiez le code à 6 chiffres reçu par email et collez-le ci-dessous pour activer votre espace ambassadeur."
-                    : "Copy the 6-digit code from the email and paste it below to activate your ambassador space."}
+                    ? "Copiez le code reçu par email et collez-le ci-dessous pour activer votre espace ambassadeur."
+                    : "Copy the code from the email and paste it below to activate your ambassador space."}
                 </p>
               </div>
 
               {/* OTP Input */}
               <div className="flex justify-center mb-6">
-                <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} inputMode="numeric" autoComplete="one-time-code" value={otpValue} onChange={(value) => setOtpValue(value.replace(/\D/g, "").slice(0, 6))}>
+                <InputOTP maxLength={OTP_LENGTH} pattern={REGEXP_ONLY_DIGITS} inputMode="numeric" autoComplete="one-time-code" value={otpValue} onChange={(value) => setOtpValue(value.replace(/\D/g, "").slice(0, OTP_LENGTH))}>
                   <InputOTPGroup>
-                    {[0, 1, 2, 3, 4, 5].map((i) => (
-                      <InputOTPSlot key={i} index={i} className="w-12 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
+                    {Array.from({ length: OTP_LENGTH }, (_, i) => i).map((i) => (
+                      <InputOTPSlot key={i} index={i} className="w-9 sm:w-10 h-14 text-lg font-bold border-border/50 bg-background/50 text-foreground" />
                     ))}
                   </InputOTPGroup>
                 </InputOTP>
@@ -392,7 +396,7 @@ const Auth = () => {
                 variant="hero"
                 className="w-full rounded-xl py-5 text-sm font-semibold mb-4"
                 onClick={handleVerifyOtp}
-                disabled={otpVerifying || otpValue.length !== 6}
+                disabled={otpVerifying || otpValue.length < OTP_MIN_LENGTH}
               >
                 {otpVerifying ? <Loader2 className="w-4 h-4 animate-spin" /> : (lang === "ar" ? "Activer mon espace" : "Activate my space")}
               </Button>
