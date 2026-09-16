@@ -157,14 +157,62 @@ const Pipeline = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[820px]">
+      {/* Mobile: lead cards */}
+      <div className="md:hidden space-y-2">
+        {isLoading ? null : visible.length === 0 ? (
+          <div className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] py-12 text-center">
+            <Users className="w-8 h-8 mx-auto mb-2 text-[hsl(var(--dash-muted-fg))] opacity-40" />
+            <p className="text-[13px] text-[hsl(var(--dash-muted-fg))]">{hasFilter ? (isFr ? "Aucun lead ne correspond." : "No lead matches.") : (isFr ? "Aucun lead pour l'instant." : "No leads yet.")}</p>
+          </div>
+        ) : visible.map((lead) => {
+          const st = stageByKey(lead.stage);
+          const stale = isStale(lead);
+          const lx = lead as LeadLike & { email?: string | null; phone?: string | null };
+          return (
+            <div key={lead.id} className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-4">
+              <div className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-full bg-[hsl(var(--dash-muted))] text-[11px] font-semibold text-[hsl(var(--dash-fg))] flex items-center justify-center shrink-0">{initials(lead.first_name, lead.last_name)}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[14px] font-medium text-[hsl(var(--dash-fg))] truncate">{lead.first_name} {lead.last_name}</p>
+                  <p className="text-[12px] text-[hsl(var(--dash-muted-fg))] truncate">{lx.email || lx.phone || "—"}</p>
+                </div>
+                {lead.score && <span className="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[hsl(var(--dash-muted))] text-[12px] font-semibold text-[hsl(var(--dash-fg))] shrink-0">{lead.score}</span>}
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-2">
+                <Select value={st.key} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
+                  <SelectTrigger className="h-8 w-auto gap-1.5 rounded-md border border-[hsl(var(--dash-border))] bg-transparent px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] focus:ring-0">
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STAGE_RAMP[st.step] }} />
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>{STAGES.map((s) => <SelectItem key={s.key} value={s.key}>{isFr ? s.fr : s.en}</SelectItem>)}</SelectContent>
+                </Select>
+                <span className={`inline-flex items-center gap-1 text-[12px] ${stale ? "text-[hsl(var(--dash-warning))] font-medium" : "text-[hsl(var(--dash-muted-fg))]"}`}>
+                  {stale && <AlertCircle className="w-3.5 h-3.5" />} {relativeTime(lead.updated_at, lang)}
+                </span>
+              </div>
+              {(lead.next_action || lead.source) && (
+                <p className="mt-2 text-[12px] text-[hsl(var(--dash-muted-fg))] truncate">
+                  {lead.next_action ? <span className="text-[hsl(var(--dash-fg))]">{lead.next_action}</span> : null}
+                  {lead.next_action && lead.source ? " · " : ""}
+                  {lead.source ? (SOURCES[lead.source] ? (isFr ? SOURCES[lead.source].fr : SOURCES[lead.source].en) : lead.source) : ""}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop: table (no inner scrolling; columns share the width) */}
+      <div className="hidden md:block rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] overflow-hidden">
+        <div>
+          <table className="w-full table-fixed">
+            <colgroup>
+              <col className="w-[26%]" /><col className="w-[11%]" /><col className="w-[17%]" /><col className="w-[8%]" /><col className="w-[16%]" /><col className="w-[13%]" /><col className="w-[9%]" />
+            </colgroup>
             <thead>
               <tr className="border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-muted)/.4)]">
                 {[isFr ? "Lead" : "Lead", "Source", isFr ? "Étape" : "Stage", "Score", isFr ? "Prochaine action" : "Next action", isFr ? "Dernière activité" : "Last activity", "KYC"].map((h) => (
-                  <th key={h} className="text-left text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider px-4 py-2.5 whitespace-nowrap">{h}</th>
+                  <th key={h} className="text-left text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider px-3 py-2.5 truncate">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -192,7 +240,7 @@ const Pipeline = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] whitespace-nowrap">{SOURCES[lead.source ?? ""] ? (isFr ? SOURCES[lead.source!].fr : SOURCES[lead.source!].en) : (lead.source ?? "—")}</td>
+                      <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] truncate">{SOURCES[lead.source ?? ""] ? (isFr ? SOURCES[lead.source!].fr : SOURCES[lead.source!].en) : (lead.source ?? "—")}</td>
                       <td className="px-4 py-3">
                         <Select value={st.key} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
                           <SelectTrigger className="h-7 w-auto gap-1.5 rounded-md border border-[hsl(var(--dash-border))] bg-transparent px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] hover:border-[hsl(var(--dash-card-ring))] focus:ring-0">
@@ -203,13 +251,13 @@ const Pipeline = () => {
                         </Select>
                       </td>
                       <td className="px-4 py-3">{lead.score ? <span className="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[hsl(var(--dash-muted))] text-[12px] font-semibold text-[hsl(var(--dash-fg))]">{lead.score}</span> : <span className="text-[hsl(var(--dash-muted-fg))]">—</span>}</td>
-                      <td className="px-4 py-3 text-[12px] text-[hsl(var(--dash-fg))] max-w-[200px] truncate">{lead.next_action || <span className="text-[hsl(var(--dash-muted-fg))]">—</span>}</td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <span className={`inline-flex items-center gap-1 text-[12px] ${stale ? "text-[hsl(var(--dash-warning))] font-medium" : "text-[hsl(var(--dash-muted-fg))]"}`}>
+                      <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-fg))] truncate">{lead.next_action || <span className="text-[hsl(var(--dash-muted-fg))]">—</span>}</td>
+                      <td className="px-3 py-3">
+                        <span className={`inline-flex items-center gap-1 text-[12px] truncate max-w-full ${stale ? "text-[hsl(var(--dash-warning))] font-medium" : "text-[hsl(var(--dash-muted-fg))]"}`}>
                           {stale && <AlertCircle className="w-3.5 h-3.5" />} {relativeTime(lead.updated_at, lang)}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] capitalize whitespace-nowrap">{lead.kyc_status?.replace(/_/g, " ") ?? "—"}</td>
+                      <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] capitalize truncate">{lead.kyc_status?.replace(/_/g, " ") ?? "—"}</td>
                     </tr>
                   );
                 })

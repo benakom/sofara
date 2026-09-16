@@ -127,7 +127,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 pb-3 overflow-y-auto">
+      <nav className="flex-1 px-3 pb-3 overflow-hidden">
         {NAV.map((group) => (
           <div key={group.labelEn} className="mb-4">
             <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/30">{fr(lang) ? group.labelFr : group.labelEn}</p>
