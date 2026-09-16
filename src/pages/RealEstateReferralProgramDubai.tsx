@@ -1,21 +1,14 @@
 import { Link } from "react-router-dom";
+import { PILLAR_FAQS } from "@/data/pillarFaqs";
 import PillarPage from "@/components/seo/PillarPage";
 
-const faqs = [
-  { q: "How much is a real estate referral fee in Dubai?", a: "Classic referral fees paid by agencies or developers range from 0.5% to 1.5% of the property price, sometimes a fixed amount. Sofara's referral program pays up to 3% because the referrer is treated as an ambassador with a protected lead and full visibility on the deal, not as an anonymous introducer." },
-  { q: "Do I need to be in Dubai to refer buyers?", a: "No. Referrals are submitted online through your dashboard or your personal link, and the licensed brokerage in Dubai handles the buyer. Ambassadors refer from more than 40 countries." },
-  { q: "When is the referral commission paid?", a: "Within 7 days of the transaction closing, in AED, by international bank transfer. Before that, you can follow the commission in your dashboard as it moves from estimated to validated." },
-  { q: "Is a referral program legal for someone without a license?", a: "Yes, as long as the referrer only introduces the buyer and a licensed brokerage conducts the transaction. That is how the Sofara program is structured, with Cevitas Real Estate LLC as the RERA-licensed closing party." },
-  { q: "Can real estate agents from other countries join?", a: "Yes. Agents in Europe, Africa, Asia and the Gulf use Sofara to serve clients who want to buy in Dubai, keeping their local business and earning Dubai commissions on top." },
-  { q: "What happens if my referral buys later?", a: "Each lead is attached to your referral for 12 months. If the buyer completes within that window, the commission is yours, even if the sale happens months after the introduction." },
-];
 
 const RealEstateReferralProgramDubai = () => (
   <PillarPage
     route="/real-estate-referral-program-dubai"
     eyebrow="Referral program · up to 3% commission"
     intro="Most Dubai referral programs pay a small one-off fee and leave you in the dark. Sofara's real estate referral program pays up to 3% of the property price on Emaar, DAMAC, Sobha and other developer projects, shows you every step of the deal, and pays in AED within 7 days of closing. Free to join, no license required."
-    faqs={faqs}
+    faqs={PILLAR_FAQS["/real-estate-referral-program-dubai"]}
     related={[
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: the network explained" },
       { to: "/ambassador-program", label: "Sofara ambassador program" },

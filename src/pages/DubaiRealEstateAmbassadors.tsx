@@ -1,21 +1,14 @@
 import { Link } from "react-router-dom";
+import { PILLAR_FAQS } from "@/data/pillarFaqs";
 import PillarPage from "@/components/seo/PillarPage";
 
-const faqs = [
-  { q: "What is a Dubai real estate ambassador?", a: "A real estate ambassador is a person who introduces potential property buyers to a licensed Dubai brokerage and earns a commission when a sale completes. Ambassadors do not need a RERA license because they never negotiate or sign on behalf of the buyer: the licensed brokerage does. Sofara ambassadors work with Cevitas Real Estate LLC, RERA-licensed in Dubai." },
-  { q: "How much do Dubai real estate ambassadors earn?", a: "Sofara pays up to 3% of the property price, typically AED 37,000 to AED 120,000 per closed deal on Emaar, DAMAC, Sobha and other developer projects. Commissions are paid in AED by international bank transfer within 7 days of closing." },
-  { q: "Who can become an ambassador?", a: "Anyone with a network of people interested in Dubai property: expatriates, diaspora community leaders, financial advisors, content creators, real estate agents based abroad, entrepreneurs. There is no age, nationality or residency requirement, and no license or fee." },
-  { q: "Is the ambassador model legal?", a: "Yes. The ambassador acts as a business introducer. The brokerage that closes the transaction, Cevitas Real Estate LLC, holds the RERA license and complies with Dubai Land Department rules. You are not acting as a real estate agent in your own country." },
-  { q: "How is the ambassadors network different from an agency?", a: "An agency employs licensed agents based in Dubai. An ambassadors network connects independent people worldwide, each bringing buyers from their own community, to one licensed closing team. Sofara adds a shared platform: referral links, AI lead qualification, WhatsApp automation, CRM and real-time commission tracking." },
-  { q: "How do I track my leads and commissions?", a: "Every ambassador has a dashboard showing each lead's qualification stage, updated by the Sofara team, plus a commission tracker that moves from estimated to validated to paid." },
-];
 
 const DubaiRealEstateAmbassadors = () => (
   <PillarPage
     route="/dubai-real-estate-ambassadors"
     eyebrow="The ambassadors network · Dubai & UAE"
     intro="Dubai real estate ambassadors are the people who bring buyers to Dubai property from every corner of the world, without holding a license themselves. This page explains how the ambassadors network works, what an ambassador does day to day, how the commission is calculated and paid, and how to join Sofara, the network built by Cevitas Real Estate."
-    faqs={faqs}
+    faqs={PILLAR_FAQS["/dubai-real-estate-ambassadors"]}
     related={[
       { to: "/ambassador-program", label: "Sofara ambassador program: steps, commissions, tools" },
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program explained" },

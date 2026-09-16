@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, join } from "path";
 import { SEO_CONFIG, SITE_URL, DEFAULT_OG_IMAGE } from "../src/config/seo";
 import { blogArticles } from "../src/data/blogArticles";
+import { PILLAR_FAQS } from "../src/data/pillarFaqs";
 
 const dist = resolve(process.cwd(), "dist");
 const indexPath = join(dist, "index.html");
@@ -48,13 +49,24 @@ const breadcrumb = (path: string, name: string) => ({
   ],
 });
 
+
+const faqHtml = (path: string) => {
+  const faqs = PILLAR_FAQS[path]; if (!faqs) return "";
+  return `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}</section>`;
+};
+const faqJsonLd = (path: string) => {
+  const faqs = PILLAR_FAQS[path]; if (!faqs) return [];
+  return [{ "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }];
+};
+
 const pages: Page[] = [];
 for (const [path, cfg] of Object.entries(SEO_CONFIG)) {
   if (path === "/") continue;
   pages.push({
     path, title: cfg.title, description: cfg.description, canonical: cfg.canonical, ogType: "website",
-    body: `<h1>${esc(cfg.h1)}</h1><p>${esc(cfg.description)}</p>${cfg.keywords ? `<p>${esc(cfg.keywords.slice(0, 8).join(" · "))}</p>` : ""}`,
-    jsonLd: [breadcrumb(path, cfg.h1)],
+    body: `<h1>${esc(cfg.h1)}</h1><p>${esc(cfg.description)}</p>${cfg.keywords ? `<p>${esc(cfg.keywords.slice(0, 8).join(" · "))}</p>` : ""}${faqHtml(path)}`,
+    jsonLd: [breadcrumb(path, cfg.h1), ...faqJsonLd(path)],
   });
 }
 for (const a of blogArticles) {

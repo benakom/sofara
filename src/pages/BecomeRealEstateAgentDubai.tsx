@@ -1,21 +1,14 @@
 import { Link } from "react-router-dom";
+import { PILLAR_FAQS } from "@/data/pillarFaqs";
 import PillarPage from "@/components/seo/PillarPage";
 
-const faqs = [
-  { q: "Do I need a license to sell real estate in Dubai?", a: "To act as a broker you need a RERA broker card issued by the Dubai Land Department, which requires a UAE residency visa, the DREI certification course and passing the RERA exam. To earn from Dubai real estate without a license, you can refer buyers as a Sofara ambassador: the transaction closes under Cevitas Real Estate LLC, a RERA-licensed brokerage, and you receive up to 3% commission." },
-  { q: "How much does it cost to become a real estate agent in Dubai?", a: "Budget roughly AED 4,000 to 7,000 for the DREI course, the RERA exam and the broker card, plus visa, medical and Emirates ID costs if a brokerage sponsors you. Figures change, so confirm current fees with the Dubai Land Department before enrolling." },
-  { q: "How long does it take to become a real estate agent in Dubai?", a: "Between four and eight weeks in most cases: a few days for the DREI course, one to two weeks to sit and receive the RERA exam result, and the remaining time for visa processing and the broker card. The ambassador route takes minutes: you apply online and can start referring the same day." },
-  { q: "How much do real estate agents earn in Dubai?", a: "Most agents work on commission only. On a resale, the agency typically earns 2% of the price and the agent keeps 40% to 70% of that after the split. On off-plan sales, developers pay the brokerage 2% to 5%. Income is therefore uncapped but irregular, especially in the first year." },
-  { q: "Can I become a Dubai real estate agent from abroad?", a: "Not as a licensed broker: the RERA card requires a UAE residency visa. From abroad, the practical option is to refer buyers to a licensed brokerage. Sofara ambassadors do exactly that from more than 40 countries and are paid by international bank transfer." },
-  { q: "Is real estate a good career in Dubai in 2026?", a: "Dubai recorded record transaction volumes in 2025 and 2026, driven by foreign investors, the Golden Visa and new off-plan launches. Demand for people who can bring qualified buyers is strong, whether as licensed brokers or as ambassadors who refer clients." },
-];
 
 const BecomeRealEstateAgentDubai = () => (
   <PillarPage
     route="/become-real-estate-agent-dubai"
     eyebrow="Career guide · updated for 2026"
     intro="Dubai is one of the few property markets where a motivated newcomer can earn six figures in AED within a year. This guide explains the two ways in: the licensed real estate agent route through RERA, and the ambassador route that lets you earn commissions on Dubai property sales with no license, from anywhere in the world."
-    faqs={faqs}
+    faqs={PILLAR_FAQS["/become-real-estate-agent-dubai"]}
     related={[
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: how the network works" },
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program: earn up to 3%" },
