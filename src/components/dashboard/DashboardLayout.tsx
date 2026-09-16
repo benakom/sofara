@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -8,76 +7,71 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { useUserTier } from "@/hooks/useUserTier";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
-  LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
-  CreditCard, ShieldCheck, MessageCircle, LogOut,
-  Menu, Bell, HelpCircle, Loader2, Calculator, Shield, CalendarDays,
-  Sparkles, BookOpen, Users, Crown, ArrowUpCircle, Search, ChevronDown
+  LayoutDashboard, GitBranch, Upload, DollarSign, CreditCard, ShieldCheck, LogOut, Menu, Bell,
+  Loader2, Shield, Search, ChevronRight, Plus, Crown, Link2, HelpCircle, type LucideIcon,
 } from "lucide-react";
-
-import UpgradeToProDialog from "./UpgradeToProDialog";
 import MobileBottomNav from "./MobileBottomNav";
+import { fr, initials } from "@/lib/dashboard-data";
 
-type NavItem = {
-  path: string;
-  icon: typeof LayoutDashboard;
-  labelAr: string;
-  labelEn: string;
-  exact?: boolean;
-  badge?: string;
-  tier?: "pro";
-};
+type NavItem = { path: string; icon: LucideIcon; labelFr: string; labelEn: string; exact?: boolean };
+type NavGroup = { labelFr: string; labelEn: string; items: NavItem[] };
 
-type NavGroup = {
-  labelEn: string;
-  labelAr: string;
-  items: NavItem[];
-};
-
-const navGroups: NavGroup[] = [
+const NAV: NavGroup[] = [
   {
-    labelEn: "Leads",
-    labelAr: "العملاء",
+    labelFr: "Espace de travail", labelEn: "Workspace",
     items: [
-      { path: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم", labelEn: "Dashboard", exact: true },
-      { path: "/dashboard/import-leads", icon: Upload, labelAr: "استيراد العملاء", labelEn: "Submit Lead" },
-      { path: "/dashboard/pipeline", icon: GitBranch, labelAr: "العملاء", labelEn: "My Leads" },
+      { path: "/dashboard", icon: LayoutDashboard, labelFr: "Vue d'ensemble", labelEn: "Overview", exact: true },
+      { path: "/dashboard/pipeline", icon: GitBranch, labelFr: "Suivi des leads", labelEn: "Lead tracking" },
+      { path: "/dashboard/import-leads", icon: Upload, labelFr: "Soumettre un lead", labelEn: "Submit a lead" },
     ],
   },
   {
-    labelEn: "Earnings",
-    labelAr: "الأرباح",
+    labelFr: "Revenus", labelEn: "Earnings",
     items: [
-      { path: "/dashboard/commissions", icon: DollarSign, labelAr: "العمولات", labelEn: "Commissions" },
-      { path: "/dashboard/payments", icon: CreditCard, labelAr: "المدفوعات", labelEn: "Payments" },
+      { path: "/dashboard/commissions", icon: DollarSign, labelFr: "Commissions", labelEn: "Commissions" },
+      { path: "/dashboard/payments", icon: CreditCard, labelFr: "Paiements", labelEn: "Payments" },
+    ],
+  },
+  {
+    labelFr: "Compte", labelEn: "Account",
+    items: [
+      { path: "/dashboard/kyc", icon: ShieldCheck, labelFr: "Vérification KYC", labelEn: "KYC verification" },
+      { path: "/dashboard/referrals", icon: Link2, labelFr: "Parrainage", labelEn: "Referrals" },
     ],
   },
 ];
 
-const langs: { code: "en" | "ar"; flag: string }[] = [
-  { code: "en", flag: "🇬🇧" },
-  { code: "ar", flag: "🇦🇪" },
+const ALL_ITEMS = NAV.flatMap((g) => g.items);
+
+const langs: { code: "en" | "ar"; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "ar", label: "FR" },
 ];
 
 const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
-  const { isApproved, loading: profileLoading } = useProfileStatus();
-  const { profileType, ambassadorTier } = useUserTier();
+  const { loading: profileLoading, profile } = useProfileStatus();
+  const { ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-  const filteredGroups = navGroups;
+  useEffect(() => { if (!loading && !user) navigate("/auth"); }, [user, loading, navigate]);
+  useEffect(() => { setSidebarOpen(false); }, [location.pathname]);
 
+  // ⌘K / Ctrl+K jumps to lead tracking (search lives there).
   useEffect(() => {
-    if (!loading && !user) navigate("/auth");
-  }, [user, loading, navigate]);
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); navigate("/dashboard/pipeline?focus=search"); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navigate]);
 
-  useEffect(() => {
-    setSidebarOpen(false);
-  }, [location.pathname]);
+  const isActive = (path: string, exact?: boolean) => (exact ? location.pathname === path : location.pathname.startsWith(path));
+  const current = useMemo(() => ALL_ITEMS.find((i) => isActive(i.path, i.exact)) ?? ALL_ITEMS[0], [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading || profileLoading) {
     return (
@@ -86,178 +80,157 @@ const DashboardLayout = () => {
       </div>
     );
   }
-
   if (!user) return null;
 
-  
+  const meta = (user.user_metadata ?? {}) as Record<string, unknown>;
+  const fullName = (profile?.full_name as string | null) || (typeof meta.full_name === "string" ? meta.full_name : "") || user.email?.split("@")[0] || "";
+  const [firstName, lastName] = fullName.split(" ");
+  const avatar = initials(firstName, lastName);
+  const isRtl = false;
 
-  const isActive = (path: string, exact?: boolean) => {
-    if (exact) return location.pathname === path;
-    return location.pathname.startsWith(path);
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
-  };
-
-  const userInitials = user.email?.substring(0, 2).toUpperCase() || "AB";
+  const handleSignOut = async () => { await signOut(); navigate("/"); };
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
-      {/* Logo — dark block */}
-      <div className="px-5 pt-5 pb-4 bg-[hsl(0,0%,7%)] rounded-b-2xl mx-2 mt-2">
-        <div className="flex items-center gap-2">
-          <a href="/" className="font-display text-3xl font-bold text-[#D2F34C] tracking-tight">
-            sofara
+      {/* Workspace */}
+      <div className="px-4 pt-5 pb-4">
+        <div className="flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-lg bg-[hsl(var(--dash-accent))] text-black font-display font-black text-sm flex items-center justify-center">s</span>
+            <span className="leading-tight">
+              <span className="block font-display text-[15px] font-bold text-white tracking-tight">sofara</span>
+              <span className="block text-[10px] uppercase tracking-[0.14em] text-white/40">Ambassador</span>
+            </span>
           </a>
           {ambassadorTier === "ambassador_plus" && (
-            <Crown className="w-3.5 h-3.5 text-[#D2F34C]" />
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]">
+              <Crown className="w-3 h-3" /> PLUS
+            </span>
           )}
         </div>
-        <p className="text-[9px] uppercase tracking-[0.15em] text-white/40 mt-0.5 font-medium">Ambassador Platform</p>
+
+        <button
+          onClick={() => navigate("/dashboard/import-leads")}
+          className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(var(--dash-accent))] text-black text-[13px] font-semibold py-2.5 hover:brightness-95 active:scale-[0.99] transition-all shadow-[var(--dash-accent-glow)]"
+        >
+          <Plus className="w-4 h-4" strokeWidth={2.5} /> {fr(lang) ? "Nouveau lead" : "New lead"}
+        </button>
+
+        <button
+          onClick={() => navigate("/dashboard/pipeline?focus=search")}
+          className="mt-2 w-full flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-[12px] text-white/45 hover:border-white/20 hover:text-white/70 transition-colors"
+        >
+          <Search className="w-3.5 h-3.5" />
+          <span className="flex-1 text-left">{fr(lang) ? "Rechercher un lead" : "Search leads"}</span>
+          <kbd className="text-[10px] font-medium px-1.5 py-0.5 rounded border border-white/10 bg-white/5 text-white/40">⌘K</kbd>
+        </button>
       </div>
 
-      {/* Nav groups */}
-      <nav className="flex-1 px-3 pt-4 pb-2 flex flex-col overflow-y-auto gap-0.5">
-        {filteredGroups.flatMap((group) => group.items).map((item) => {
-          const active = isActive(item.path, item.exact);
-          return (
-            <button
-              key={item.path}
-              onClick={() => {
-                navigate(item.path);
-                setSidebarOpen(false);
-              }}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-medium transition-all duration-150 ${
-                active
-                  ? "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-fg))] shadow-sm"
-                  : "text-[hsl(var(--dash-sidebar-fg))] hover:text-[hsl(var(--dash-fg))] hover:bg-[hsl(var(--dash-sidebar-hover))]"
-              }`}
-            >
-              <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-accent))]" : ""}`} />
-              <span>{lang === "ar" ? item.labelAr : item.labelEn}</span>
-              {item.badge && (
-                <span className="ml-auto text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]">
-                  {item.badge}
-                </span>
-              )}
-            </button>
-          );
-        })}
+      {/* Navigation */}
+      <nav className="flex-1 px-3 pb-3 overflow-y-auto">
+        {NAV.map((group) => (
+          <div key={group.labelEn} className="mb-4">
+            <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/30">{fr(lang) ? group.labelFr : group.labelEn}</p>
+            <div className="space-y-0.5">
+              {group.items.map((item) => {
+                const active = isActive(item.path, item.exact);
+                return (
+                  <button
+                    key={item.path}
+                    onClick={() => navigate(item.path)}
+                    className={`relative w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] transition-colors ${
+                      active
+                        ? "bg-white/[0.07] text-white font-semibold"
+                        : "text-white/60 hover:text-white hover:bg-white/[0.04] font-medium"
+                    }`}
+                  >
+                    {active && <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-r bg-[hsl(var(--dash-accent))]" />}
+                    <item.icon className={`w-4 h-4 shrink-0 ${active ? "text-[hsl(var(--dash-accent))]" : ""}`} strokeWidth={active ? 2.25 : 2} />
+                    <span className="truncate">{fr(lang) ? item.labelFr : item.labelEn}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
 
-      {/* Upgrade CTA removed for launch */}
-
-
-      {/* User footer */}
-      <div className="p-4 border-t border-[hsl(var(--dash-sidebar-border))] mt-auto">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-black shadow-sm bg-[#D2F34C]">
-            {userInitials}
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-[hsl(var(--dash-fg))] truncate">{user.email?.split("@")[0]}</p>
-            <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] truncate">{user.email}</p>
-          </div>
-        </div>
+      {/* Footer: user */}
+      <div className="p-3 border-t border-white/[0.06]">
         {isSuperAdmin && (
-          <button
-            onClick={() => navigate("/admin")}
-            className="flex items-center gap-2 text-sm text-[hsl(var(--dash-accent))] hover:text-[hsl(var(--dash-accent))] transition-colors w-full px-1 mb-2 font-semibold"
-          >
-            <Shield className="w-4 h-4" />
-            Super Admin
+          <button onClick={() => navigate("/admin")} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium text-[hsl(var(--dash-accent))] hover:bg-white/[0.04] transition-colors mb-1">
+            <Shield className="w-4 h-4" /> Super Admin
           </button>
         )}
-        <button
-          onClick={handleSignOut}
-          className="flex items-center gap-2 text-[13px] text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] transition-colors w-full px-1"
-        >
-          <LogOut className="w-4 h-4" />
-          {lang === "ar" ? "تسجيل الخروج" : "Sign Out"}
-        </button>
+        <div className="flex items-center gap-3 px-2 py-2">
+          <div className="w-8 h-8 rounded-full bg-[hsl(var(--dash-accent))] text-black text-[11px] font-bold flex items-center justify-center shrink-0">{avatar}</div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[13px] font-medium text-white truncate">{fullName}</p>
+            <p className="text-[11px] text-white/40 truncate">{user.email}</p>
+          </div>
+          <button onClick={handleSignOut} title={fr(lang) ? "Se déconnecter" : "Sign out"} className="p-1.5 rounded-md text-white/40 hover:text-white hover:bg-white/[0.06] transition-colors">
+            <LogOut className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
 
-  const isRtl = lang === "ar";
-
   return (
     <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden" dir={isRtl ? "rtl" : "ltr"}>
-      {/* Desktop sidebar */}
-      <aside className={`hidden lg:flex flex-col w-[240px] bg-[hsl(var(--dash-sidebar-bg))] fixed inset-y-0 z-40 ${
-        isRtl ? "right-0 border-l" : "left-0 border-r"
-      } border-[hsl(var(--dash-sidebar-border))] shadow-[2px_0_12px_rgba(0,0,0,0.04)]`}>
+      <aside className="hidden lg:flex flex-col w-[248px] fixed inset-y-0 left-0 z-40 border-r border-white/[0.06]">
         <SidebarContent />
       </aside>
 
-      {/* Mobile sidebar */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent
-          side={isRtl ? "right" : "left"}
-          className="w-[280px] max-w-[85vw] p-0 border-[hsl(var(--dash-sidebar-border))] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-[hsl(var(--dash-muted-fg))] [&>button]:hover:text-[hsl(var(--dash-fg))] [&>button]:hover:bg-[hsl(var(--dash-sidebar-hover))]"
-        >
+        <SheetContent side="left" className="w-[280px] max-w-[85vw] p-0 border-white/[0.08] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-white/50">
           <SidebarContent />
         </SheetContent>
       </Sheet>
 
-      {/* Main content */}
-      <div className={`flex-1 ${isRtl ? "lg:mr-[240px]" : "lg:ml-[240px]"} flex flex-col min-h-screen min-w-0 overflow-x-hidden`}>
-        {/* Top bar — dark */}
-        <header className="sticky top-0 z-30 h-14 border-b border-[hsl(var(--dash-topbar-border))] bg-[hsl(var(--dash-topbar-bg))] flex items-center justify-between px-4 sm:px-6">
-          <button
-            onClick={() => setSidebarOpen((prev) => !prev)}
-            className="lg:hidden text-white/60 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors"
-            aria-label={lang === "ar" ? "فتح أو إغلاق القائمة" : "Toggle menu"}
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-
-          {/* Search bar in topbar */}
-          <div className="hidden sm:flex items-center gap-2 flex-1 max-w-md mx-4">
-            <div className="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg bg-white/8 border border-white/10">
-              <Search className="w-3.5 h-3.5 text-white/40" />
-              <span className="text-[12px] text-white/30">{lang === "ar" ? "بحث..." : "Search..."}</span>
-            </div>
+      <div className="flex-1 lg:ml-[248px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
+        {/* Top bar */}
+        <header className="sticky top-0 z-30 h-14 border-b border-white/[0.06] bg-[hsl(var(--dash-bg)/.85)] backdrop-blur-md flex items-center justify-between px-4 sm:px-6">
+          <div className="flex items-center gap-2 min-w-0">
+            <button onClick={() => setSidebarOpen((v) => !v)} className="lg:hidden text-white/60 hover:text-white p-1.5 -ml-1.5 rounded-lg hover:bg-white/[0.06]" aria-label="Menu">
+              <Menu className="w-5 h-5" />
+            </button>
+            <nav className="flex items-center gap-1.5 text-[13px] min-w-0">
+              <span className="text-white/40 hidden sm:inline">Sofara</span>
+              <ChevronRight className="w-3.5 h-3.5 text-white/25 hidden sm:inline" />
+              <span className="font-semibold text-white truncate">{fr(lang) ? current.labelFr : current.labelEn}</span>
+            </nav>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <div className="flex items-center gap-0.5 bg-white/8 rounded-lg p-0.5">
+            <button onClick={() => navigate("/dashboard/import-leads")} className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 px-3 py-1.5 text-[12px] font-semibold text-white transition-colors">
+              <Plus className="w-3.5 h-3.5" /> {fr(lang) ? "Lead" : "Lead"}
+            </button>
+            <div className="flex items-center rounded-lg bg-white/[0.06] p-0.5 ml-1">
               {langs.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => setLang(l.code)}
-                  className={`px-2 py-1 rounded-md text-sm transition-all ${
-                    lang === l.code ? "bg-white/15 shadow-sm opacity-100" : "opacity-40 hover:opacity-70"
-                  }`}
-                >
-                  {l.flag}
+                <button key={l.code} onClick={() => setLang(l.code)} className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${lang === l.code ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"}`}>
+                  {l.label}
                 </button>
               ))}
             </div>
-
-            <div className="w-px h-5 bg-white/10 mx-1" />
-
-            <button className="text-white/50 hover:text-white/80 transition-colors p-2 rounded-lg hover:bg-white/8">
+            <button className="text-white/50 hover:text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors" aria-label="Help">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="text-white/50 hover:text-white/80 transition-colors p-2 rounded-lg hover:bg-white/8 relative">
+            <button className="relative text-white/50 hover:text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors" aria-label="Notifications">
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#D2F34C] rounded-full" />
             </button>
+            <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-black text-[11px] font-bold items-center justify-center">{avatar}</div>
           </div>
         </header>
 
-        {/* Page content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 overflow-x-hidden">
-          <Outlet />
+          <div className="max-w-[1240px] mx-auto">
+            <Outlet />
+          </div>
         </main>
       </div>
 
-      {/* Mobile bottom nav */}
       <MobileBottomNav />
-
     </div>
   );
 };
