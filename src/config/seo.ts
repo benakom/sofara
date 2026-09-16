@@ -222,10 +222,9 @@ export const ORGANIZATION_JSONLD = {
     },
   },
   sameAs: [
-    "https://www.linkedin.com/company/sofara-io",
+    "https://www.instagram.com/sofaradubai/",
     "https://www.linkedin.com/in/ahmedbenjas",
     "https://www.instagram.com/ahmed.benjas",
-    "https://twitter.com/SofaraDubai",
   ],
   founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
 };
