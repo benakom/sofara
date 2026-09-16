@@ -17,7 +17,7 @@ const FunnelBar = ({ counts, lang, onSelect, selected }: FunnelBarProps) => {
 
   return (
     <div>
-      <div className="overflow-x-auto -mx-2 px-2 pb-1">
+      <div className="overflow-x-auto overflow-y-hidden -mx-2 px-2 pt-2 pb-1 [scrollbar-width:thin]">
       <div className="grid gap-2 min-w-[520px]" style={{ gridTemplateColumns: `repeat(${ordered.length}, minmax(0, 1fr))` }}>
         {ordered.map((s, i) => {
           const c = counts[s.key] ?? 0;
@@ -30,7 +30,7 @@ const FunnelBar = ({ counts, lang, onSelect, selected }: FunnelBarProps) => {
               type="button"
               onClick={() => onSelect?.(s.key)}
               title={`${fr(lang) ? s.fr : s.en}: ${c}`}
-              className={`group text-left rounded-xl p-2 -m-2 transition-colors ${onSelect ? "hover:bg-[hsl(var(--dash-muted)/.5)]" : "cursor-default"} ${active ? "bg-[hsl(var(--dash-muted)/.7)]" : ""}`}
+              className={`group text-left rounded-xl p-2 -mx-2 -mt-2 transition-colors ${onSelect ? "hover:bg-[hsl(var(--dash-muted)/.5)]" : "cursor-default"} ${active ? "bg-[hsl(var(--dash-muted)/.7)]" : ""}`}
             >
               <div className="h-16 flex items-end">
                 <div
