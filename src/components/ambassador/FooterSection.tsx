@@ -29,6 +29,10 @@ const FooterSection = () => {
               <a href="#comment" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.howItWorks")}</a>
               <Link to="/about" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">About</Link>
               <Link to="/blog" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Blog</Link>
+              <Link to="/ambassador-program" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Ambassador program</Link>
+              <Link to="/dubai-real-estate-ambassadors" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Dubai real estate ambassadors</Link>
+              <Link to="/become-real-estate-agent-dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Become a real estate agent in Dubai</Link>
+              <Link to="/real-estate-referral-program-dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Real estate referral program</Link>
             </div>
           </div>
 

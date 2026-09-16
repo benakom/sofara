@@ -16,6 +16,9 @@ interface Entry {
 const staticEntries: Entry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/ambassador-program", changefreq: "weekly", priority: "0.95" },
+  { path: "/become-real-estate-agent-dubai", changefreq: "weekly", priority: "0.95" },
+  { path: "/dubai-real-estate-ambassadors", changefreq: "weekly", priority: "0.95" },
+  { path: "/real-estate-referral-program-dubai", changefreq: "weekly", priority: "0.95" },
   { path: "/about", changefreq: "monthly", priority: "0.9" },
   { path: "/invest-dubai-real-estate", changefreq: "weekly", priority: "0.9" },
   { path: "/buy-property-dubai", changefreq: "weekly", priority: "0.9" },

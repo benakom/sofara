@@ -1072,6 +1072,15 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — takes 2 
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — DLD licensed, RERA certified, escrow protected.*
 
 *Read more: ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")} | ${internalLink("AI Tools for Ambassadors", "/blog/ai-tools-real-estate-ambassadors")}*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   {
@@ -1195,6 +1204,15 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")}
 *Read more: ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
 
 *All commissions paid by ${cevitasLink("Cevitas Real Estate LLC")} — licensed, regulated, transparent.*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   {
@@ -1293,6 +1311,15 @@ Every Sofara ambassador receives a unique referral code automatically upon signu
 ${internalLink("**→ Create your account now**", "/auth")}
 
 *Related: ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")}*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   {
@@ -1419,6 +1446,15 @@ Every one of these ambassadors started with the same step: ${internalLink("**cre
 Your network is your asset. Start earning from it today.
 
 *Read more: ${internalLink("How to Join", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Details", "/blog/sofara-commission-structure-explained")} | ${internalLink("AI Tools", "/blog/ai-tools-real-estate-ambassadors")}*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   // ── CATEGORY: AI & Technology ──
@@ -1910,6 +1946,15 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — start wi
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — whether you're Lite or Pro.*
 
 *Related: ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("AI Tools Guide", "/blog/ai-tools-real-estate-ambassadors")}*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   // ── CATEGORY: Legal & Finance ──
@@ -3182,6 +3227,15 @@ ${internalLink("**→ Join Sofara Dubai (Free)**", "/auth")}
 *Related reading: ${internalLink("What is Sofara?", "/blog/what-is-sofara")} | ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("How to Become a Dubai Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")} (RERA-licensed Dubai brokerage).*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3279,6 +3333,15 @@ ${internalLink("**→ Join Sofara Real Estate (Free)**", "/auth")}
 *Related reading: ${internalLink("Sofara Dubai Platform Explained", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("UAE Real Estate Ambassadors Network", "/blog/uae-real-estate-ambassadors-network")} | ${internalLink("Ambassador Success Stories", "/blog/ambassador-success-stories")}*
 
 *Brokerage: ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed.*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3393,6 +3456,15 @@ There isn't one — Sofara only earns when ambassadors earn (purely transactiona
 ${internalLink("**→ Become a Dubai Real Estate Ambassador (Free)**", "/auth")}
 
 *Related: ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("Sofara Real Estate", "/blog/sofara-real-estate-explained")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")}*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3492,6 +3564,15 @@ ${internalLink("**→ Join the Dubai Real Estate Ambassadors Network**", "/auth"
 *Related: ${internalLink("Dubai Real Estate Ambassadors Guide", "/blog/dubai-real-estate-ambassadors-guide")} | ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("Sofara Real Estate Overview", "/blog/sofara-real-estate-explained")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")}.*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3588,6 +3669,15 @@ ${internalLink("**→ Join the Abu Dhabi Real Estate Ambassadors Network**", "/a
 *Related: ${internalLink("UAE Real Estate Ambassadors Network", "/blog/uae-real-estate-ambassadors-network")} | ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")}*
 
 *All transactions through ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed for the UAE.*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3684,6 +3774,15 @@ ${internalLink("**→ Join the UAE Real Estate Ambassadors Network (Free)**", "/
 *Related: ${internalLink("Dubai Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("Abu Dhabi Network", "/blog/abu-dhabi-real-estate-ambassadors-network")} | ${internalLink("Sofara Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")}*
 
 *Brokerage: ${cevitasLink("Cevitas Real Estate LLC")} (RERA-licensed for the UAE).*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
 
@@ -3793,6 +3892,15 @@ ${internalLink("**→ Join Sofara (Free)**", "/auth")}
 *Related: ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("Sofara Real Estate Explained", "/blog/sofara-real-estate-explained")} | ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")}.*
+
+
+---
+
+**Go further**
+
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
+- [The Sofara ambassador program](/ambassador-program)
 `
   },
   // ── SEO TARGET: "Comment devenir agent immobilier à Dubai" (FR) ──
@@ -3955,6 +4063,15 @@ ${internalLink("**→ Rejoindre Sofara gratuitement**", "/auth")}
 *À lire aussi : ${internalLink("Devenir agent immobilier à Dubai sans licence", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("How to become a Dubai real estate agent (EN)", "/blog/how-to-become-real-estate-agent-dubai")} | ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed Dubai brokerage.*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4090,6 +4207,15 @@ ${internalLink("**→ Devenir ambassadeur Sofara (gratuit)**", "/auth")}
 *À lire aussi : ${internalLink("Guide complet : comment devenir agent immobilier à Dubai", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Structure des commissions Sofara", "/blog/sofara-commission-structure-explained")} | ${internalLink("How to become a Dubai real estate agent (EN)", "/blog/how-to-become-real-estate-agent-dubai")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed Dubai brokerage.*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4249,6 +4375,15 @@ ${internalLink("**→ Join Sofara for free**", "/auth")}
 *Read next: ${internalLink("Comment devenir agent immobilier à Dubai (FR)", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Devenir agent immobilier à Dubai sans licence (FR)", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("Sofara commission structure explained", "/blog/sofara-commission-structure-explained")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed Dubai brokerage.*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   // ── SEO BATCH: Google "Autres questions" cluster — Dubai real estate agent ──
@@ -4330,6 +4465,15 @@ Want to model a realistic deal before referring it? Use the free [Off-Plan Simul
 ${internalLink("**→ Join Sofara for free**", "/auth")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Run the numbers with the [Off-Plan Simulator](https://www.offplansimulator.com).*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4406,6 +4550,15 @@ If you don't want to wait 4 months, the [Sofara](/) ambassador route is built fo
 ${internalLink("**→ Start in 24 h with Sofara (free)**", "/auth")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Model your first deal with the [Off-Plan Simulator](https://www.offplansimulator.com).*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4480,6 +4633,15 @@ That's it. No visa, no DREI, no RERA exam, no Broker Card.
 ${internalLink("**→ Become a Sofara Ambassador (no license required)**", "/auth")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Run deal scenarios at [Off-Plan Simulator](https://www.offplansimulator.com).*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4569,6 +4731,15 @@ A new licensed Dubai agent typically breaks even after **1 to 2 off-plan closing
 ${internalLink("**→ Start earning with AED 0 upfront — join Sofara**", "/auth")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae) — RERA-licensed Dubai brokerage.*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
   {
@@ -4656,6 +4827,15 @@ More stories in ${internalLink("Ambassador Success Stories", "/blog/ambassador-s
 ${internalLink("**→ Start earning AED commissions today — join Sofara free**", "/auth")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae) — RERA-licensed. Run deal-by-deal math at [Off-Plan Simulator](https://www.offplansimulator.com).*
+
+
+---
+
+**Go further**
+
+- [How to become a real estate agent in Dubai in 2026: licensed route vs ambassador route](/become-real-estate-agent-dubai)
+- [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
+- [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 `
   },
 ];

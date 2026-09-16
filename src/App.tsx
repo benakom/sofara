@@ -53,6 +53,9 @@ const BuyPropertyDubai = lazy(() => import("./pages/BuyPropertyDubai"));
 const DubaiOffPlanProperties = lazy(() => import("./pages/DubaiOffPlanProperties"));
 const AmbassadorProgram = lazy(() => import("./pages/AmbassadorProgram"));
 const About = lazy(() => import("./pages/About"));
+const BecomeRealEstateAgentDubai = lazy(() => import("./pages/BecomeRealEstateAgentDubai"));
+const DubaiRealEstateAmbassadors = lazy(() => import("./pages/DubaiRealEstateAmbassadors"));
+const RealEstateReferralProgramDubai = lazy(() => import("./pages/RealEstateReferralProgramDubai"));
 
 const queryClient = new QueryClient();
 
@@ -98,6 +101,9 @@ const App = () => (
                 <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
                 <Route path="/ambassador-program" element={<AmbassadorProgram />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/become-real-estate-agent-dubai" element={<BecomeRealEstateAgentDubai />} />
+                <Route path="/dubai-real-estate-ambassadors" element={<DubaiRealEstateAmbassadors />} />
+                <Route path="/real-estate-referral-program-dubai" element={<RealEstateReferralProgramDubai />} />
                 <Route path="/dashboard" element={<DashboardLayout />}>
                   <Route index element={<DashboardHome />} />
                   

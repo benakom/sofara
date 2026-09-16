@@ -10,7 +10,7 @@ export type SeoMeta = {
 
 export const SITE_NAME = "Sofara";
 export const SITE_URL = "https://sofara.io";
-export const DEFAULT_OG_IMAGE = "https://sofara.io/favicon-512x512.png";
+export const DEFAULT_OG_IMAGE = "https://sofara.io/og-sofara.png";
 
 export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/": {
@@ -40,6 +40,61 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
       "DAMAC referral program",
       "Sobha referral program",
       "Cevitas Real Estate",
+    ],
+    schemaType: "Service",
+  },
+  "/become-real-estate-agent-dubai": {
+    title: "How to Become a Real Estate Agent in Dubai (2026 Guide) | Sofara",
+    description:
+      "Step-by-step guide to becoming a real estate agent in Dubai in 2026: RERA license, DREI course, costs, timeline, salary and commission, plus the no-license ambassador route that pays up to 3%.",
+    canonical: "https://sofara.io/become-real-estate-agent-dubai",
+    h1: "How to Become a Real Estate Agent in Dubai in 2026",
+    keywords: [
+      "become real estate agent Dubai",
+      "how to become a real estate agent in Dubai",
+      "real estate agent Dubai requirements",
+      "RERA license Dubai",
+      "DREI course Dubai",
+      "real estate agent Dubai salary",
+      "real estate agent Dubai commission",
+      "real estate jobs Dubai no experience",
+      "become property agent Dubai without license",
+    ],
+    schemaType: "WebPage",
+  },
+  "/dubai-real-estate-ambassadors": {
+    title: "Dubai Real Estate Ambassadors: Network, Earnings & How to Join | Sofara",
+    description:
+      "What a Dubai real estate ambassador does, how the ambassadors network works, how much ambassadors earn per referral (up to 3% commission) and how to join Sofara for free from anywhere in the world.",
+    canonical: "https://sofara.io/dubai-real-estate-ambassadors",
+    h1: "Dubai Real Estate Ambassadors: the Network Explained",
+    keywords: [
+      "Dubai real estate ambassadors",
+      "ambassadors of Dubai real estate",
+      "real estate ambassadors network Dubai",
+      "ambassadors network real estate Dubai",
+      "Dubai property ambassador",
+      "real estate ambassador program Dubai",
+      "UAE real estate ambassadors",
+      "Sofara ambassadors",
+    ],
+    schemaType: "Service",
+  },
+  "/real-estate-referral-program-dubai": {
+    title: "Dubai Real Estate Referral Program: Earn up to 3% per Deal | Sofara",
+    description:
+      "Join the Dubai real estate referral program that pays up to 3% commission on Emaar, DAMAC and Sobha deals. No license, no fees, paid in AED within 7 days of closing. Free to join.",
+    canonical: "https://sofara.io/real-estate-referral-program-dubai",
+    h1: "Dubai Real Estate Referral Program: Refer Buyers, Earn up to 3%",
+    keywords: [
+      "real estate referral program Dubai",
+      "Dubai property referral program",
+      "Dubai real estate referral commission",
+      "refer property buyers Dubai",
+      "real estate referral fee Dubai",
+      "Emaar referral program",
+      "DAMAC referral program",
+      "earn commission Dubai real estate",
     ],
     schemaType: "Service",
   },
