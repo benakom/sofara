@@ -21,13 +21,13 @@ const call = async (body: any) => {
 };
 
 const Kpi = ({ icon: Icon, label, value, hint }: any) => (
-  <Card className="p-5 rounded-2xl border border-[#E5E7EB] bg-white">
+  <Card className="p-5 rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))]">
     <div className="flex items-center justify-between mb-3">
-      <span className="text-xs font-semibold uppercase tracking-wider text-[#6B7280]">{label}</span>
-      <Icon className="w-4 h-4 text-[#154B3B]" />
+      <span className="text-xs font-semibold uppercase tracking-wider text-[hsl(var(--dash-muted-fg))]">{label}</span>
+      <Icon className="w-4 h-4 text-[hsl(var(--dash-fg))]" />
     </div>
-    <div className="text-3xl font-extrabold text-[#154B3B] font-['Poppins']">{value}</div>
-    {hint && <div className="text-xs text-[#6B7280] mt-1">{hint}</div>}
+    <div className="text-3xl font-extrabold text-[hsl(var(--dash-fg))] font-['Poppins']">{value}</div>
+    {hint && <div className="text-xs text-[hsl(var(--dash-muted-fg))] mt-1">{hint}</div>}
   </Card>
 );
 
@@ -99,12 +99,12 @@ export default function AdminSEO() {
     <div className="space-y-6 font-['Poppins']">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#154B3B]">SEO Dashboard</h1>
-          <p className="text-sm text-[#6B7280]">Google Search Console — sofara.io</p>
+          <h1 className="text-2xl font-extrabold text-[hsl(var(--dash-fg))]">SEO Dashboard</h1>
+          <p className="text-sm text-[hsl(var(--dash-muted-fg))]">Google Search Console — sofara.io</p>
         </div>
         <div className="flex items-center gap-2">
           {[7, 28, 90].map((d) => (
-            <button key={d} onClick={() => setDays(d)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${days === d ? "bg-[#154B3B] text-[#D2F34C]" : "bg-white border border-[#E5E7EB] text-[#6B7280]"}`}>
+            <button key={d} onClick={() => setDays(d)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${days === d ? "bg-[hsl(var(--dash-accent))] text-black" : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-[hsl(var(--dash-muted-fg))]"}`}>
               {d}j
             </button>
           ))}
@@ -113,7 +113,7 @@ export default function AdminSEO() {
       </div>
 
       {loading && !overview ? (
-        <div className="flex items-center justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-[#154B3B]" /></div>
+        <div className="flex items-center justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-fg))]" /></div>
       ) : (
         <>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -123,17 +123,17 @@ export default function AdminSEO() {
             <Kpi icon={BarChart3} label="Position moy." value={fmt(totals?.position ?? 0, 1)} />
           </div>
 
-          <Card className="p-5 rounded-2xl border border-[#E5E7EB] bg-white">
-            <h3 className="text-sm font-bold text-[#154B3B] mb-4">Performance journalière</h3>
+          <Card className="p-5 rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))]">
+            <h3 className="text-sm font-bold text-[hsl(var(--dash-fg))] mb-4">Performance journalière</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
                   <CartesianGrid stroke="#F0F0F0" vertical={false} />
-                  <XAxis dataKey="date" tick={{ fontSize: 10, fill: "#6B7280" }} />
-                  <YAxis yAxisId="l" tick={{ fontSize: 10, fill: "#6B7280" }} />
-                  <YAxis yAxisId="r" orientation="right" tick={{ fontSize: 10, fill: "#6B7280" }} />
+                  <XAxis dataKey="date" tick={{ fontSize: 10, fill: "#8a8a8a" }} />
+                  <YAxis yAxisId="l" tick={{ fontSize: 10, fill: "#8a8a8a" }} />
+                  <YAxis yAxisId="r" orientation="right" tick={{ fontSize: 10, fill: "#8a8a8a" }} />
                   <Tooltip />
-                  <Line yAxisId="l" type="monotone" dataKey="clicks" stroke="#154B3B" strokeWidth={2} dot={false} />
+                  <Line yAxisId="l" type="monotone" dataKey="clicks" stroke="#D2F34C" strokeWidth={2} dot={false} />
                   <Line yAxisId="r" type="monotone" dataKey="impressions" stroke="#D2F34C" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
@@ -141,7 +141,7 @@ export default function AdminSEO() {
           </Card>
 
           <Tabs defaultValue="pages">
-            <TabsList className="bg-white border border-[#E5E7EB]">
+            <TabsList className="bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))]">
               <TabsTrigger value="pages">Pages</TabsTrigger>
               <TabsTrigger value="queries">Requêtes</TabsTrigger>
               <TabsTrigger value="countries">Pays</TabsTrigger>
@@ -157,7 +157,7 @@ export default function AdminSEO() {
               ["devices", "Appareil", devices],
             ] as const).map(([key, label, rows]) => (
               <TabsContent key={key} value={key}>
-                <Card className="rounded-2xl border border-[#E5E7EB] bg-white overflow-hidden">
+                <Card className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] overflow-hidden">
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -170,7 +170,7 @@ export default function AdminSEO() {
                     </TableHeader>
                     <TableBody>
                       {rows.length === 0 && (
-                        <TableRow><TableCell colSpan={5} className="text-center text-[#6B7280] py-8">Aucune donnée</TableCell></TableRow>
+                        <TableRow><TableCell colSpan={5} className="text-center text-[hsl(var(--dash-muted-fg))] py-8">Aucune donnée</TableCell></TableRow>
                       )}
                       {rows.map((r, i) => (
                         <TableRow key={i}>
@@ -188,10 +188,10 @@ export default function AdminSEO() {
             ))}
 
             <TabsContent value="sitemaps">
-              <Card className="rounded-2xl border border-[#E5E7EB] bg-white p-5">
+              <Card className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-5">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-bold text-[#154B3B]">Sitemaps soumis</h3>
-                  <Button onClick={resubmit} size="sm" className="bg-[#154B3B] text-[#D2F34C] hover:bg-[#1B5E4A]">Resoumettre sitemap.xml</Button>
+                  <h3 className="font-bold text-[hsl(var(--dash-fg))]">Sitemaps soumis</h3>
+                  <Button onClick={resubmit} size="sm" className="bg-[hsl(var(--dash-accent))] text-black hover:brightness-95">Resoumettre sitemap.xml</Button>
                 </div>
                 <Table>
                   <TableHeader>
@@ -219,27 +219,27 @@ export default function AdminSEO() {
             </TabsContent>
 
             <TabsContent value="inspect">
-              <Card className="rounded-2xl border border-[#E5E7EB] bg-white p-5 space-y-4">
+              <Card className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-5 space-y-4">
                 <div className="flex gap-2">
                   <Input value={inspectUrl} onChange={(e) => setInspectUrl(e.target.value)} placeholder="https://sofara.io/..." />
-                  <Button onClick={inspect} disabled={inspecting} className="bg-[#154B3B] text-[#D2F34C] hover:bg-[#1B5E4A] gap-1.5">
+                  <Button onClick={inspect} disabled={inspecting} className="bg-[hsl(var(--dash-accent))] text-black hover:brightness-95 gap-1.5">
                     {inspecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />} Inspecter
                   </Button>
                 </div>
                 {inspectResult && (
                   <div className="space-y-3 text-sm">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="p-3 rounded-lg bg-[#F5F5F7]">
-                        <div className="text-xs text-[#6B7280] uppercase font-semibold">Indexation</div>
-                        <div className="font-bold text-[#154B3B]">{inspectResult.indexStatusResult?.verdict ?? "—"}</div>
-                        <div className="text-xs text-[#6B7280]">{inspectResult.indexStatusResult?.coverageState}</div>
+                      <div className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.4)]">
+                        <div className="text-xs text-[hsl(var(--dash-muted-fg))] uppercase font-semibold">Indexation</div>
+                        <div className="font-bold text-[hsl(var(--dash-fg))]">{inspectResult.indexStatusResult?.verdict ?? "—"}</div>
+                        <div className="text-xs text-[hsl(var(--dash-muted-fg))]">{inspectResult.indexStatusResult?.coverageState}</div>
                       </div>
-                      <div className="p-3 rounded-lg bg-[#F5F5F7]">
-                        <div className="text-xs text-[#6B7280] uppercase font-semibold">Mobile</div>
-                        <div className="font-bold text-[#154B3B]">{inspectResult.mobileUsabilityResult?.verdict ?? "—"}</div>
+                      <div className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.4)]">
+                        <div className="text-xs text-[hsl(var(--dash-muted-fg))] uppercase font-semibold">Mobile</div>
+                        <div className="font-bold text-[hsl(var(--dash-fg))]">{inspectResult.mobileUsabilityResult?.verdict ?? "—"}</div>
                       </div>
                     </div>
-                    <pre className="text-xs bg-[#0F172A] text-[#D2F34C] p-3 rounded-lg overflow-auto max-h-80">{JSON.stringify(inspectResult, null, 2)}</pre>
+                    <pre className="text-xs bg-[#0F172A] text-[hsl(var(--dash-accent))] p-3 rounded-lg overflow-auto max-h-80">{JSON.stringify(inspectResult, null, 2)}</pre>
                   </div>
                 )}
               </Card>

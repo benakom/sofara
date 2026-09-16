@@ -107,58 +107,58 @@ const AdminProjects = () => {
     setDeleteTarget(null);
   };
 
-  const inputCls = "w-full h-9 px-3 rounded-lg bg-white border border-[#E5E7EB] text-sm text-[#154B3B] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50";
+  const inputCls = "w-full h-9 px-3 rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)] focus:border-[hsl(var(--dash-accent)/.6)]";
   const selectCls = inputCls;
-  const labelCls = "text-[11px] font-semibold text-[#6B7280] uppercase mb-1";
+  const labelCls = "text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase mb-1";
 
-  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[#154B3B] border-t-transparent animate-spin" /></div>;
+  if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 rounded-full border-2 border-[hsl(var(--dash-accent))] border-t-transparent animate-spin" /></div>;
 
   return (
     <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h1 className="text-xl font-bold text-[#154B3B]">Projects Database</h1>
+        <h1 className="text-xl font-bold text-[hsl(var(--dash-fg))]">Projects Database</h1>
         <div className="flex items-center gap-2">
-          <div className="flex bg-[#F5F5F7] p-1 rounded-lg">
-            <button onClick={() => setViewMode("grid")} className={`p-1.5 rounded-md ${viewMode === "grid" ? "bg-white shadow-sm" : ""}`}><LayoutGrid className="w-4 h-4 text-[#6B7280]" /></button>
-            <button onClick={() => setViewMode("table")} className={`p-1.5 rounded-md ${viewMode === "table" ? "bg-white shadow-sm" : ""}`}><List className="w-4 h-4 text-[#6B7280]" /></button>
+          <div className="flex bg-[hsl(var(--dash-muted)/.4)] p-1 rounded-lg">
+            <button onClick={() => setViewMode("grid")} className={`p-1.5 rounded-md ${viewMode === "grid" ? "bg-[hsl(var(--dash-card))] shadow-sm" : ""}`}><LayoutGrid className="w-4 h-4 text-[hsl(var(--dash-muted-fg))]" /></button>
+            <button onClick={() => setViewMode("table")} className={`p-1.5 rounded-md ${viewMode === "table" ? "bg-[hsl(var(--dash-card))] shadow-sm" : ""}`}><List className="w-4 h-4 text-[hsl(var(--dash-muted-fg))]" /></button>
           </div>
-          <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">
+          <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--dash-accent))] text-black rounded-lg text-xs font-bold hover:brightness-95">
             <Plus className="w-3.5 h-3.5" /> Add Project
           </button>
         </div>
       </div>
 
       <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--dash-muted-fg))]" />
         <input type="text" placeholder="Search projects..." value={search} onChange={e => setSearch(e.target.value)}
-          className="w-full h-9 pl-9 pr-3 rounded-lg bg-white border border-[#E5E7EB] text-sm text-[#154B3B] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50" />
+          className="w-full h-9 pl-9 pr-3 rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)] focus:border-[hsl(var(--dash-accent)/.6)]" />
       </div>
 
       {viewMode === "grid" ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map(p => (
-            <div key={p.id} className="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <div className="h-32 bg-gradient-to-br from-[#154B3B] to-[#1B5E4A] flex items-center justify-center">
+            <div key={p.id} className="bg-[hsl(var(--dash-card))] rounded-2xl border border-[hsl(var(--dash-border))] overflow-hidden ">
+              <div className="h-32 bg-gradient-to-br from-[#0d3a2b] to-[#154B3B] flex items-center justify-center">
                 {p.hero_image_url ? <img src={p.hero_image_url} alt={p.name} className="w-full h-full object-cover" /> : <Building2 className="w-8 h-8 text-[#9CC5B5]" />}
               </div>
               <div className="p-4">
-                <p className="text-[10px] text-[#9CA3AF] font-medium">{getDevName(p.developer_id)}</p>
-                <h3 className="text-sm font-bold text-[#154B3B] mt-0.5">{p.name}</h3>
-                <p className="text-xs text-[#6B7280] mt-0.5">{getAreaName(p.area_id)}</p>
+                <p className="text-[10px] text-[hsl(var(--dash-muted-fg))] font-medium">{getDevName(p.developer_id)}</p>
+                <h3 className="text-sm font-bold text-[hsl(var(--dash-fg))] mt-0.5">{p.name}</h3>
+                <p className="text-xs text-[hsl(var(--dash-muted-fg))] mt-0.5">{getAreaName(p.area_id)}</p>
                 <div className="flex items-center justify-between mt-3">
-                  <span className="text-xs font-bold text-[#154B3B]">
+                  <span className="text-xs font-bold text-[hsl(var(--dash-fg))]">
                     {p.price_from ? `AED ${fmt(p.price_from)}` : "—"} {p.price_to ? `- ${fmt(p.price_to)}` : ""}
                   </span>
-                  {p.handover_date && <span className="text-[10px] text-[#9CA3AF]">{p.handover_date}</span>}
+                  {p.handover_date && <span className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{p.handover_date}</span>}
                 </div>
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#F5F5F7]">
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-[hsl(var(--dash-border))]">
                   <div className="flex items-center gap-2">
                     <Switch checked={p.status === "active" || p.status === "under_construction"} onCheckedChange={() => toggleStatus(p.id, p.status)} />
-                    <span className="text-[10px] text-[#9CA3AF]">{p.status}</span>
+                    <span className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{p.status}</span>
                   </div>
                   <div className="flex gap-1">
-                    <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button>
-                    <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
+                    <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><Edit className="w-3.5 h-3.5 text-[hsl(var(--dash-muted-fg))]" /></button>
+                    <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
                   </div>
                 </div>
               </div>
@@ -166,31 +166,31 @@ const AdminProjects = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div className="bg-[hsl(var(--dash-card))] rounded-2xl border border-[hsl(var(--dash-border))]  overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB]">
-                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Project</th>
-                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Developer</th>
-                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Zone</th>
-                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Price</th>
-                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase">Status</th>
+                <tr className="border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-muted)/.4)]">
+                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase">Project</th>
+                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase">Developer</th>
+                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase">Zone</th>
+                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase">Price</th>
+                  <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase">Status</th>
                   <th className="w-20"></th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map(p => (
-                  <tr key={p.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
-                    <td className="px-4 py-3 text-sm font-medium text-[#154B3B]">{p.name}</td>
-                    <td className="px-4 py-3 text-xs text-[#6B7280]">{getDevName(p.developer_id)}</td>
-                    <td className="px-4 py-3 text-xs text-[#6B7280]">{getAreaName(p.area_id)}</td>
-                    <td className="px-4 py-3 text-xs font-bold text-[#154B3B]">{p.price_from ? `AED ${fmt(p.price_from)}` : "—"}</td>
+                  <tr key={p.id} className="border-b border-[hsl(var(--dash-border))] hover:bg-[hsl(var(--dash-muted)/.5)]">
+                    <td className="px-4 py-3 text-sm font-medium text-[hsl(var(--dash-fg))]">{p.name}</td>
+                    <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))]">{getDevName(p.developer_id)}</td>
+                    <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))]">{getAreaName(p.area_id)}</td>
+                    <td className="px-4 py-3 text-xs font-bold text-[hsl(var(--dash-fg))]">{p.price_from ? `AED ${fmt(p.price_from)}` : "—"}</td>
                     <td className="px-4 py-3"><Switch checked={p.status === "active" || p.status === "under_construction"} onCheckedChange={() => toggleStatus(p.id, p.status)} /></td>
                     <td className="px-4 py-3">
                       <div className="flex gap-1">
-                        <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Edit className="w-3.5 h-3.5 text-[#9CA3AF]" /></button>
-                        <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[#F5F5F7]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
+                        <button onClick={() => openEdit(p)} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><Edit className="w-3.5 h-3.5 text-[hsl(var(--dash-muted-fg))]" /></button>
+                        <button onClick={() => setDeleteTarget(p)} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><Trash2 className="w-3.5 h-3.5 text-[#EF4444]" /></button>
                       </div>
                     </td>
                   </tr>
@@ -203,10 +203,10 @@ const AdminProjects = () => {
 
       {filtered.length === 0 && (
         <div className="text-center py-16">
-          <Building2 className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" />
-          <h3 className="text-sm font-semibold text-[#154B3B] mb-1">No projects found</h3>
-          <p className="text-xs text-[#9CA3AF]">Add your first project to get started.</p>
-          <button onClick={openAdd} className="mt-4 px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040]">Add Project</button>
+          <Building2 className="w-10 h-10 text-[hsl(var(--dash-muted-fg))] mx-auto mb-3" />
+          <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-1">No projects found</h3>
+          <p className="text-xs text-[hsl(var(--dash-muted-fg))]">Add your first project to get started.</p>
+          <button onClick={openAdd} className="mt-4 px-4 py-2 bg-[hsl(var(--dash-accent))] text-black rounded-lg text-xs font-bold hover:brightness-95">Add Project</button>
         </div>
       )}
 
@@ -214,8 +214,8 @@ const AdminProjects = () => {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-[#154B3B]">{editing ? "Edit Project" : "Add Project"}</DialogTitle>
-            <DialogDescription className="text-xs text-[#9CA3AF]">
+            <DialogTitle className="text-[hsl(var(--dash-fg))]">{editing ? "Edit Project" : "Add Project"}</DialogTitle>
+            <DialogDescription className="text-xs text-[hsl(var(--dash-muted-fg))]">
               {editing ? "Update the project details below." : "Fill in the project details to create a new listing."}
             </DialogDescription>
           </DialogHeader>
@@ -263,8 +263,8 @@ const AdminProjects = () => {
             <div><label className={labelCls}>Description</label><textarea className={inputCls + " h-20 resize-none"} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} /></div>
           </div>
           <DialogFooter>
-            <button onClick={() => setDialogOpen(false)} className="px-4 py-2 text-xs text-[#6B7280] hover:bg-[#F5F5F7] rounded-lg">Cancel</button>
-            <button onClick={handleSave} disabled={saving} className="px-4 py-2 bg-[#D2F34C] text-black rounded-lg text-xs font-bold hover:bg-[#BDE040] disabled:opacity-50">
+            <button onClick={() => setDialogOpen(false)} className="px-4 py-2 text-xs text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-muted)/.5)] rounded-lg">Cancel</button>
+            <button onClick={handleSave} disabled={saving} className="px-4 py-2 bg-[hsl(var(--dash-accent))] text-black rounded-lg text-xs font-bold hover:brightness-95 disabled:opacity-50">
               {saving ? "Saving..." : editing ? "Update" : "Create"}
             </button>
           </DialogFooter>

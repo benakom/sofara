@@ -69,63 +69,63 @@ const AdminApplications = () => {
   });
 
   if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-[#154B3B]" /></div>;
+    return <div className="flex justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-fg))]" /></div>;
   }
 
   return (
     <div className="space-y-6 max-w-[1400px] font-['Poppins']">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold text-[#154B3B]">Ambassador Applications</h1>
-          <span className="bg-[#D2F34C] text-black text-xs font-bold px-2.5 py-0.5 rounded-full">{visible.length}</span>
+          <h1 className="text-xl font-bold text-[hsl(var(--dash-fg))]">Ambassador Applications</h1>
+          <span className="bg-[hsl(var(--dash-accent))] text-black text-xs font-bold px-2.5 py-0.5 rounded-full">{visible.length}</span>
         </div>
         <div className="relative max-w-sm w-full">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[hsl(var(--dash-muted-fg))]" />
           <input
             value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search by name, email or phone..."
-            className="w-full h-9 pl-9 pr-3 rounded-lg bg-white border border-[#E5E7EB] text-sm text-[#154B3B] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#D2F34C]/50"
+            className="w-full h-9 pl-9 pr-3 rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-sm text-[hsl(var(--dash-fg))] placeholder:text-[hsl(var(--dash-muted-fg))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--dash-accent)/.3)] focus:border-[hsl(var(--dash-accent)/.6)]"
           />
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+      <div className="bg-[hsl(var(--dash-card))] rounded-2xl border border-[hsl(var(--dash-border))]  overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB]">
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Applicant</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Email</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Phone</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Occupation</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Applied</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Contact</th>
-                <th className="text-right px-4 py-3 text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider">Decision</th>
+              <tr className="border-b border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-muted)/.4)]">
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Applicant</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Email</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Phone</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Occupation</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Applied</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Contact</th>
+                <th className="text-right px-4 py-3 text-[11px] font-semibold text-[hsl(var(--dash-muted-fg))] uppercase tracking-wider">Decision</th>
               </tr>
             </thead>
             <tbody>
               {visible.map(a => (
-                <tr key={a.id} className="border-b border-[#F5F5F7] hover:bg-[#F9FAFB]">
+                <tr key={a.id} className="border-b border-[hsl(var(--dash-border))] hover:bg-[hsl(var(--dash-muted)/.5)]">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#154B3B]/10 flex items-center justify-center text-[10px] font-bold text-[#154B3B]">
+                      <div className="w-8 h-8 rounded-full bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center text-[10px] font-bold text-[hsl(var(--dash-fg))]">
                         {(a.first_name || "?")[0]}{(a.last_name || "")[0]}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-[#154B3B]">{a.first_name} {a.last_name}</p>
+                        <p className="text-sm font-medium text-[hsl(var(--dash-fg))]">{a.first_name} {a.last_name}</p>
                         <p className="text-[10px] text-[#F59E0B] font-semibold uppercase">{a.status}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-xs text-[#6B7280]">{a.email}</td>
-                  <td className="px-4 py-3 text-xs text-[#6B7280]">{a.phone}</td>
-                  <td className="px-4 py-3 text-xs text-[#6B7280] capitalize">{a.occupation.replace(/_/g, " ")}</td>
-                  <td className="px-4 py-3 text-[11px] text-[#9CA3AF]">
+                  <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))]">{a.email}</td>
+                  <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))]">{a.phone}</td>
+                  <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))] capitalize">{a.occupation.replace(/_/g, " ")}</td>
+                  <td className="px-4 py-3 text-[11px] text-[hsl(var(--dash-muted-fg))]">
                     {new Date(a.created_at).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit" })}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <a href={mailLink(a.email)} className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#154B3B]/10 text-[#154B3B] text-[11px] font-medium hover:bg-[#154B3B]/20">
+                      <a href={mailLink(a.email)} className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-fg))] text-[11px] font-medium hover:bg-[hsl(var(--dash-accent)/.2)]">
                         <Mail className="w-3 h-3" /> Email
                       </a>
                       <a href={waLink(a.phone)!} target="_blank" rel="noreferrer"
@@ -139,7 +139,7 @@ const AdminApplications = () => {
                       <button
                         disabled={acting === a.id}
                         onClick={() => updateStatus(a.id, "contacted")}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#D2F34C] text-black text-[11px] font-bold hover:bg-[#BDE040] disabled:opacity-50"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[hsl(var(--dash-accent))] text-black text-[11px] font-bold hover:brightness-95 disabled:opacity-50"
                       >
                         <Check className="w-3 h-3" /> Contacted
                       </button>
@@ -159,9 +159,9 @@ const AdminApplications = () => {
         </div>
         {visible.length === 0 && (
           <div className="text-center py-16">
-            <UserCheck className="w-10 h-10 text-[#E5E7EB] mx-auto mb-3" />
-            <h3 className="text-sm font-semibold text-[#154B3B] mb-1">No pending applications</h3>
-            <p className="text-xs text-[#9CA3AF]">New ambassador applications will appear here for review.</p>
+            <UserCheck className="w-10 h-10 text-[hsl(var(--dash-muted-fg))] mx-auto mb-3" />
+            <h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-1">No pending applications</h3>
+            <p className="text-xs text-[hsl(var(--dash-muted-fg))]">New ambassador applications will appear here for review.</p>
           </div>
         )}
       </div>

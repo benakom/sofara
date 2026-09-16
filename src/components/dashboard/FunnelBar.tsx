@@ -6,13 +6,15 @@ interface FunnelBarProps {
   lang: string;
   onSelect?: (stageKey: string) => void;
   selected?: string | null;
+  /** "auto": columns from the sm breakpoint up, bars below. "bars": always stacked bars (narrow containers). */
+  variant?: "auto" | "bars";
 }
 
 /**
  * Pipeline funnel: one lime ramp (light → dark) for progression, warning tone + icon for "unreachable".
  * Columns on wide screens, stacked horizontal bars on narrow screens. Never scrolls.
  */
-const FunnelBar = ({ counts, lang, onSelect, selected }: FunnelBarProps) => {
+const FunnelBar = ({ counts, lang, onSelect, selected, variant = "auto" }: FunnelBarProps) => {
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
   const ordered = STAGES.filter((s) => s.kind !== "lost");
   const lost = STAGES.find((s) => s.kind === "lost")!;
@@ -28,7 +30,7 @@ const FunnelBar = ({ counts, lang, onSelect, selected }: FunnelBarProps) => {
   return (
     <div>
       {/* Wide: columns */}
-      <div className="hidden sm:grid gap-2" style={{ gridTemplateColumns: `repeat(${ordered.length}, minmax(0, 1fr))` }}>
+      <div className={`${variant === "bars" ? "hidden" : "hidden sm:grid"} gap-2`} style={{ gridTemplateColumns: `repeat(${ordered.length}, minmax(0, 1fr))` }}>
         {ordered.map((s, i) => {
           const c = counts[s.key] ?? 0;
           const active = selected === s.key;
@@ -52,7 +54,7 @@ const FunnelBar = ({ counts, lang, onSelect, selected }: FunnelBarProps) => {
       </div>
 
       {/* Narrow: stacked bars */}
-      <ul className="sm:hidden space-y-2">
+      <ul className={`${variant === "bars" ? "" : "sm:hidden"} space-y-2`}>
         {ordered.map((s, i) => {
           const c = counts[s.key] ?? 0;
           const active = selected === s.key;

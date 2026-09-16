@@ -490,6 +490,39 @@ export type Database = {
           },
         ]
       }
+      lead_stage_events: {
+        Row: {
+          changed_by: string | null
+          created_at: string
+          from_stage: string | null
+          id: string
+          lead_id: string
+          note: string | null
+          to_stage: string
+          user_id: string
+        }
+        Insert: {
+          changed_by?: string | null
+          created_at?: string
+          from_stage?: string | null
+          id?: string
+          lead_id: string
+          note?: string | null
+          to_stage: string
+          user_id: string
+        }
+        Update: {
+          changed_by?: string | null
+          created_at?: string
+          from_stage?: string | null
+          id?: string
+          lead_id?: string
+          note?: string | null
+          to_stage?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string

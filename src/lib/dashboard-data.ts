@@ -17,7 +17,26 @@ export const STAGES: StageDef[] = [
   { key: "injoignable", fr: "Injoignable", en: "Unreachable", step: 0, kind: "lost" },
 ];
 
-export const stageByKey = (key?: string | null) => STAGES.find((s) => s.key === key) ?? STAGES[0];
+/** Legacy values still present in older rows / admin screens → canonical stage keys. */
+export const LEGACY_STAGE: Record<string, string> = {
+  "contacté": "prequalifie", contacte: "prequalifie", "qualifié": "qualifie", "négociation": "offre_envoyee", negociation: "offre_envoyee",
+  closing: "dp_paye", perdu: "injoignable", lost: "injoignable", new: "nouveau",
+};
+export const normalizeStage = (key?: string | null) => (key && (LEGACY_STAGE[key] ?? key)) || "nouveau";
+export const stageByKey = (key?: string | null) => STAGES.find((s) => s.key === normalizeStage(key)) ?? STAGES[0];
+
+/** Commission lifecycle. `step` is the lime ramp step; rejected uses the warning status color. */
+export interface CommissionStatusDef { key: string; fr: string; en: string; step: number; order: number }
+export const COMMISSION_STATUSES: CommissionStatusDef[] = [
+  { key: "estimated", fr: "Estimée", en: "Estimated", step: 3, order: 1 },
+  { key: "validated", fr: "Validée", en: "Validated", step: 5, order: 2 },
+  { key: "paid", fr: "Payée", en: "Paid", step: 7, order: 3 },
+  { key: "rejected", fr: "Rejetée", en: "Rejected", step: 0, order: 0 },
+];
+export const LEGACY_COMMISSION_STATUS: Record<string, string> = { confirmed: "validated", approved: "validated", pending: "estimated" };
+export const normalizeCommissionStatus = (s?: string | null) => (s && (LEGACY_COMMISSION_STATUS[s] ?? s)) || "estimated";
+export const commissionStatusByKey = (s?: string | null) => COMMISSION_STATUSES.find((c) => c.key === normalizeCommissionStatus(s)) ?? COMMISSION_STATUSES[0];
+export const commissionStatusLabel = (s: string | null | undefined, lang: string) => (fr(lang) ? commissionStatusByKey(s).fr : commissionStatusByKey(s).en);
 export const stageLabel = (key: string | null | undefined, lang: string) => (fr(lang) ? stageByKey(key).fr : stageByKey(key).en);
 
 /** Sequential lime ramp (one hue, light → dark) for stage progression. Text stays in text tokens. */

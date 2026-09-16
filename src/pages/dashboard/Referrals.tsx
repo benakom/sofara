@@ -46,7 +46,7 @@ const Referrals = () => {
               .from("commissions")
               .select("id", { count: "exact", head: true })
               .eq("user_id", p.id)
-              .eq("status", "confirmed");
+              .eq("status", "validated");
 
             return { ...p, leads_count: leadsCount ?? 0, deals_closed: dealsCount ?? 0 };
           })

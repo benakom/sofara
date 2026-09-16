@@ -11,8 +11,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Plus, AlertCircle, X, Users } from "lucide-react";
+import { Search, Plus, AlertCircle, X, Users, ChevronRight } from "lucide-react";
 import FunnelBar from "@/components/dashboard/FunnelBar";
+import LeadDetailSheet from "@/components/dashboard/LeadDetailSheet";
 import { fr, STAGES, stageByKey, stageLabel, STAGE_RAMP, isStale, relativeTime, initials, type LeadLike } from "@/lib/dashboard-data";
 
 const SOURCES: Record<string, { fr: string; en: string }> = {
@@ -32,6 +33,7 @@ const Pipeline = () => {
   const [newLeadOpen, setNewLeadOpen] = useState(false);
   const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", source: "manual" });
   const [q, setQ] = useState("");
+  const [selected, setSelected] = useState<LeadLike | null>(null);
   const stageFilter = params.get("stage");
   const attentionOnly = params.get("filter") === "attention";
 
@@ -55,14 +57,6 @@ const Pipeline = () => {
       toast({ title: isFr ? "Lead ajouté !" : "Lead added!" });
     },
     onError: (e: Error) => toast({ variant: "destructive", title: "Error", description: e.message }),
-  });
-
-  const updateStage = useMutation({
-    mutationFn: async ({ id, stage }: { id: string; stage: string }) => {
-      const { error } = await supabase.from("leads").update({ stage, updated_at: new Date().toISOString() }).eq("id", id);
-      if (error) throw error;
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["leads"] }),
   });
 
   const counts = useMemo(() => {
@@ -89,6 +83,16 @@ const Pipeline = () => {
   const attentionCount = leads.filter((l) => stageByKey(l.stage).kind === "open" && (isStale(l) || !!l.next_action)).length;
   const hasFilter = !!stageFilter || attentionOnly || q.trim().length > 0;
 
+  const StageBadge = ({ stageKey }: { stageKey?: string | null }) => {
+    const st = stageByKey(stageKey);
+    return (
+      <span className="inline-flex items-center gap-1.5 h-7 rounded-md border border-[hsl(var(--dash-border))] px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] whitespace-nowrap">
+        <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STAGE_RAMP[st.step] }} />
+        {stageLabel(stageKey, lang)}
+      </span>
+    );
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
       {/* Header */}
@@ -96,7 +100,7 @@ const Pipeline = () => {
         <div>
           <h1 className="text-[26px] leading-tight font-semibold tracking-tight text-[hsl(var(--dash-fg))]">{isFr ? "Suivi des leads" : "Lead tracking"}</h1>
           <p className="mt-1 text-[13px] text-[hsl(var(--dash-muted-fg))]">
-            {leads.length} {isFr ? "leads" : "leads"} · {attentionCount} {isFr ? "à relancer" : "need follow-up"}
+            {leads.length} {isFr ? "leads" : "leads"} · {attentionCount} {isFr ? "à relancer" : "need follow-up"} · <span className="text-[hsl(var(--dash-muted-fg))]">{isFr ? "Les étapes sont mises à jour par l'équipe Sofara. Cliquez un lead pour voir son avancement." : "Stages are updated by the Sofara team. Click a lead to see its progress."}</span>
           </p>
         </div>
         <Dialog open={newLeadOpen} onOpenChange={setNewLeadOpen}>
@@ -165,11 +169,10 @@ const Pipeline = () => {
             <p className="text-[13px] text-[hsl(var(--dash-muted-fg))]">{hasFilter ? (isFr ? "Aucun lead ne correspond." : "No lead matches.") : (isFr ? "Aucun lead pour l'instant." : "No leads yet.")}</p>
           </div>
         ) : visible.map((lead) => {
-          const st = stageByKey(lead.stage);
           const stale = isStale(lead);
           const lx = lead as LeadLike & { email?: string | null; phone?: string | null };
           return (
-            <div key={lead.id} className="rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-4">
+            <button type="button" key={lead.id} onClick={() => setSelected(lead)} className="w-full text-left rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-4 active:bg-[hsl(var(--dash-muted)/.4)]">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-[hsl(var(--dash-muted))] text-[11px] font-semibold text-[hsl(var(--dash-fg))] flex items-center justify-center shrink-0">{initials(lead.first_name, lead.last_name)}</span>
                 <div className="min-w-0 flex-1">
@@ -179,13 +182,7 @@ const Pipeline = () => {
                 {lead.score && <span className="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[hsl(var(--dash-muted))] text-[12px] font-semibold text-[hsl(var(--dash-fg))] shrink-0">{lead.score}</span>}
               </div>
               <div className="mt-3 flex items-center justify-between gap-2">
-                <Select value={st.key} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
-                  <SelectTrigger className="h-8 w-auto gap-1.5 rounded-md border border-[hsl(var(--dash-border))] bg-transparent px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] focus:ring-0">
-                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STAGE_RAMP[st.step] }} />
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>{STAGES.map((s) => <SelectItem key={s.key} value={s.key}>{isFr ? s.fr : s.en}</SelectItem>)}</SelectContent>
-                </Select>
+                <StageBadge stageKey={lead.stage} />
                 <span className={`inline-flex items-center gap-1 text-[12px] ${stale ? "text-[hsl(var(--dash-warning))] font-medium" : "text-[hsl(var(--dash-muted-fg))]"}`}>
                   {stale && <AlertCircle className="w-3.5 h-3.5" />} {relativeTime(lead.updated_at, lang)}
                 </span>
@@ -197,7 +194,7 @@ const Pipeline = () => {
                   {lead.source ? (SOURCES[lead.source] ? (isFr ? SOURCES[lead.source].fr : SOURCES[lead.source].en) : lead.source) : ""}
                 </p>
               )}
-            </div>
+            </button>
           );
         })}
       </div>
@@ -226,11 +223,10 @@ const Pipeline = () => {
                 </td></tr>
               ) : (
                 visible.map((lead) => {
-                  const st = stageByKey(lead.stage);
                   const stale = isStale(lead);
                   const lx = lead as LeadLike & { email?: string | null };
                   return (
-                    <tr key={lead.id} className="border-b border-[hsl(var(--dash-border))] last:border-0 hover:bg-[hsl(var(--dash-muted)/.35)] transition-colors">
+                    <tr key={lead.id} onClick={() => setSelected(lead)} className="border-b border-[hsl(var(--dash-border))] last:border-0 hover:bg-[hsl(var(--dash-muted)/.35)] transition-colors cursor-pointer">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3 min-w-0">
                           <span className="w-8 h-8 rounded-full bg-[hsl(var(--dash-muted))] text-[11px] font-semibold text-[hsl(var(--dash-fg))] flex items-center justify-center shrink-0">{initials(lead.first_name, lead.last_name)}</span>
@@ -242,13 +238,7 @@ const Pipeline = () => {
                       </td>
                       <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] truncate">{SOURCES[lead.source ?? ""] ? (isFr ? SOURCES[lead.source!].fr : SOURCES[lead.source!].en) : (lead.source ?? "—")}</td>
                       <td className="px-4 py-3">
-                        <Select value={st.key} onValueChange={(v) => updateStage.mutate({ id: lead.id, stage: v })}>
-                          <SelectTrigger className="h-7 w-auto gap-1.5 rounded-md border border-[hsl(var(--dash-border))] bg-transparent px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] hover:border-[hsl(var(--dash-card-ring))] focus:ring-0">
-                            <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STAGE_RAMP[st.step] }} />
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>{STAGES.map((s) => <SelectItem key={s.key} value={s.key}>{isFr ? s.fr : s.en}</SelectItem>)}</SelectContent>
-                        </Select>
+                        <StageBadge stageKey={lead.stage} />
                       </td>
                       <td className="px-4 py-3">{lead.score ? <span className="inline-flex w-7 h-7 items-center justify-center rounded-md bg-[hsl(var(--dash-muted))] text-[12px] font-semibold text-[hsl(var(--dash-fg))]">{lead.score}</span> : <span className="text-[hsl(var(--dash-muted-fg))]">—</span>}</td>
                       <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-fg))] truncate">{lead.next_action || <span className="text-[hsl(var(--dash-muted-fg))]">—</span>}</td>
@@ -257,7 +247,7 @@ const Pipeline = () => {
                           {stale && <AlertCircle className="w-3.5 h-3.5" />} {relativeTime(lead.updated_at, lang)}
                         </span>
                       </td>
-                      <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] capitalize truncate">{lead.kyc_status?.replace(/_/g, " ") ?? "—"}</td>
+                      <td className="px-3 py-3 text-[12px] text-[hsl(var(--dash-muted-fg))] capitalize truncate"><span className="inline-flex items-center gap-1">{lead.kyc_status?.replace(/_/g, " ") ?? "—"}<ChevronRight className="w-3.5 h-3.5 opacity-50" /></span></td>
                     </tr>
                   );
                 })
@@ -266,6 +256,8 @@ const Pipeline = () => {
           </table>
         </div>
       </div>
+      <LeadDetailSheet lead={selected as never} open={!!selected} onOpenChange={(o) => { if (!o) setSelected(null); }} />
+
       {leads.length > 0 && visible.length > 0 && (
         <p className="mt-3 text-[11px] text-[hsl(var(--dash-muted-fg))]">{visible.length} / {leads.length} · <button onClick={() => navigate("/dashboard")} className="hover:text-[hsl(var(--dash-fg))]">{isFr ? "Retour à la vue d'ensemble" : "Back to overview"}</button></p>
       )}
