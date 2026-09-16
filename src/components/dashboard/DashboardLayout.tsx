@@ -6,7 +6,6 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useProfileStatus } from "@/hooks/useProfileStatus";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useUserTier } from "@/hooks/useUserTier";
-import { useSubscription } from "@/hooks/useSubscription";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, GraduationCap, GitBranch, Upload, DollarSign,
@@ -54,19 +53,6 @@ const navGroups: NavGroup[] = [
   },
 ];
 
-const proGroup: NavGroup = {
-  labelEn: "Pro tools",
-  labelAr: "أدوات Pro",
-  items: [
-    { path: "/dashboard/ai-hub", icon: Sparkles, labelAr: "SofarAI & WhatsApp AI", labelEn: "SofarAI & WhatsApp AI", tier: "pro" },
-    { path: "/dashboard/library", icon: BookOpen, labelAr: "Projets & brochures", labelEn: "Projects & brochures", tier: "pro" },
-    { path: "/dashboard/simulator", icon: Calculator, labelAr: "Simulateurs", labelEn: "Simulators", tier: "pro" },
-    { path: "/dashboard/calendar", icon: CalendarDays, labelAr: "Calendrier", labelEn: "Calendar", tier: "pro" },
-    { path: "/dashboard/legal-ai", icon: ShieldCheck, labelAr: "Legal AI", labelEn: "Legal AI", tier: "pro" },
-    { path: "/dashboard/community", icon: Users, labelAr: "Communauté Pro", labelEn: "Pro community", tier: "pro" },
-  ],
-};
-
 const langs: { code: "en" | "ar"; flag: string }[] = [
   { code: "en", flag: "🇬🇧" },
   { code: "ar", flag: "🇦🇪" },
@@ -76,15 +62,14 @@ const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const { isSuperAdmin } = useAdmin();
   const { isApproved, loading: profileLoading } = useProfileStatus();
-  const { ambassadorTier } = useUserTier();
-  const { isPro, loading: subLoading } = useSubscription();
+  const { profileType, ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
 
-  const filteredGroups = [...navGroups, proGroup];
+  const filteredGroups = navGroups;
 
   useEffect(() => {
     if (!loading && !user) navigate("/auth");
@@ -93,8 +78,6 @@ const DashboardLayout = () => {
   useEffect(() => {
     setSidebarOpen(false);
   }, [location.pathname]);
-
-  const isProUser = isPro;
 
   if (loading || profileLoading) {
     return (
@@ -139,12 +122,10 @@ const DashboardLayout = () => {
       <nav className="flex-1 px-3 pt-4 pb-2 flex flex-col overflow-y-auto gap-0.5">
         {filteredGroups.flatMap((group) => group.items).map((item) => {
           const active = isActive(item.path, item.exact);
-          const locked = item.tier === "pro" && !isProUser && !subLoading;
           return (
             <button
               key={item.path}
               onClick={() => {
-                if (locked) { setUpgradeOpen(true); setSidebarOpen(false); return; }
                 navigate(item.path);
                 setSidebarOpen(false);
               }}
@@ -161,44 +142,12 @@ const DashboardLayout = () => {
                   {item.badge}
                 </span>
               )}
-              {locked && (
-                <span className="ml-auto text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[#D2F34C]/15 text-[#D2F34C] inline-flex items-center gap-1">
-                  <Crown className="w-2.5 h-2.5" /> PRO
-                </span>
-              )}
             </button>
           );
         })}
       </nav>
 
-      {/* Sofara Pro CTA */}
-      <div className="px-3 pb-2">
-        {isProUser ? (
-          <button
-            onClick={() => navigate("/dashboard/pro")}
-            className="w-full flex items-center gap-2 rounded-xl px-3 py-2.5 bg-[#D2F34C]/10 border border-[#D2F34C]/30 text-[12px] font-semibold text-[hsl(var(--dash-fg))] hover:bg-[#D2F34C]/15 transition-colors"
-          >
-            <Crown className="w-4 h-4 text-[#D2F34C]" />
-            {lang === "ar" ? "Sofara Pro actif" : "Sofara Pro active"}
-          </button>
-        ) : (
-          <button
-            onClick={() => setUpgradeOpen(true)}
-            className="w-full text-left rounded-2xl p-3.5 bg-[hsl(0,0%,7%)] text-white shadow-lg hover:shadow-xl transition-all"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <Crown className="w-4 h-4 text-[#D2F34C]" />
-              <span className="text-[13px] font-bold">{lang === "ar" ? "Passer Sofara Pro" : "Go Sofara Pro"}</span>
-            </div>
-            <p className="text-[11px] text-white/60 leading-snug mb-2">
-              {lang === "ar" ? "CRM Oleadoo, WhatsApp AI, campagnes IA, commission majorée." : "Oleadoo CRM, WhatsApp AI, AI campaigns, boosted commission."}
-            </p>
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#D2F34C]">
-              {lang === "ar" ? "Dès 82,50 $ / mois" : "From $82.50 / month"} <ArrowUpCircle className="w-3.5 h-3.5" />
-            </span>
-          </button>
-        )}
-      </div>
+      {/* Upgrade CTA removed for launch */}
 
 
       {/* User footer */}
@@ -308,8 +257,6 @@ const DashboardLayout = () => {
 
       {/* Mobile bottom nav */}
       <MobileBottomNav />
-
-      <UpgradeToProDialog open={upgradeOpen} onOpenChange={setUpgradeOpen} />
 
     </div>
   );
