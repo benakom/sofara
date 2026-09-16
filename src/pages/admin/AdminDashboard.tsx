@@ -57,7 +57,7 @@ const AdminDashboard = () => {
     <section className={`rounded-2xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] ${className}`}>
       <header className="flex items-center justify-between px-5 pt-4 pb-3">
         <h2 className="text-[13px] font-semibold text-[hsl(var(--dash-fg))]">{title}</h2>
-        {action && <button onClick={() => navigate(action.path)} className="inline-flex items-center gap-1 text-[12px] font-medium text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent))]">{action.label} <ArrowUpRight className="w-3.5 h-3.5" /></button>}
+        {action && <button onClick={() => navigate(action.path)} className="inline-flex items-center gap-1 text-[12px] font-medium text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent-ink))]">{action.label} <ArrowUpRight className="w-3.5 h-3.5" /></button>}
       </header>
       <div className="px-5 pb-5">{children}</div>
     </section>
@@ -95,7 +95,7 @@ const AdminDashboard = () => {
               <BarChart data={m.weeks} margin={{ top: 8, right: 4, left: -20, bottom: 0 }} barCategoryGap={6}>
                 <XAxis dataKey="label" tick={{ fontSize: 10, fill: "#8a8a8a" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 10, fill: "#8a8a8a" }} axisLine={false} tickLine={false} allowDecimals={false} />
-                <Tooltip cursor={{ fill: "rgba(255,255,255,0.04)" }} contentStyle={{ background: "#1a1a1a", border: "1px solid #2a2a2a", borderRadius: 8, fontSize: 12, color: "#f2f2f2" }} formatter={(v: number) => [v, "leads"]} labelFormatter={(l) => `Week ${l}`} />
+                <Tooltip cursor={{ fill: "rgba(255,255,255,0.04)" }} contentStyle={{ background: "#0d3a2b", border: "none", borderRadius: 8, fontSize: 12, color: "#f2f2f2" }} formatter={(v: number) => [v, "leads"]} labelFormatter={(l) => `Week ${l}`} />
                 <Bar dataKey="count" radius={[4, 4, 2, 2]}>
                   {m.weeks.map((w, i) => <Cell key={w.label} fill={i === m.weeks.length - 1 ? "hsl(68 88% 62%)" : "hsl(68 40% 40%)"} />)}
                 </Bar>
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
             <ul className="divide-y divide-[hsl(var(--dash-border))]">
               {m.signups.map((p) => { const [f, l] = (p.full_name || "?").split(" "); return (
                 <li key={p.id} className="py-2.5 flex items-center gap-3 cursor-pointer" onClick={() => navigate(`/admin/ambassadors/${p.id}`)}>
-                  <span className="w-8 h-8 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))] text-[11px] font-semibold flex items-center justify-center shrink-0">{initials(f, l)}</span>
+                  <span className="w-8 h-8 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))] text-[11px] font-semibold flex items-center justify-center shrink-0">{initials(f, l)}</span>
                   <div className="min-w-0 flex-1">
                     <p className="text-[13px] font-medium truncate">{p.full_name || "—"}</p>
                     <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] truncate">{p.country || "—"} · <span className="capitalize">{p.status}</span></p>

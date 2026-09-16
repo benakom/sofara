@@ -259,24 +259,65 @@
 /* ======= DASHBOARD SCOPED THEME ======= */
 /* Overrides --primary inside dashboard so ALL components automatically pick up the new accent */
 .dash-theme {
+  /* Backend palette — bottle green + lime fluo on a light surface */
+  --dash-sidebar-bg: 160 64% 14%;        /* #0d3a2b bottle green */
+  --dash-sidebar-fg: 150 25% 80%;
+  --dash-sidebar-active: 68 88% 62%;
+  --dash-sidebar-hover: 160 45% 20%;
+  --dash-sidebar-border: 160 40% 22%;
+
+  --dash-bg: 96 30% 97%;                 /* off-white with a green tint */
+  --dash-fg: 160 60% 12%;                /* bottle green ink */
+  --dash-card: 0 0% 100%;
+  --dash-card-fg: 160 60% 12%;
+  --dash-border: 150 14% 88%;
+  --dash-muted: 120 16% 94%;
+  --dash-muted-fg: 160 10% 42%;
+
+  --dash-input-bg: 0 0% 100%;
+  --dash-input-border: 150 14% 84%;
+
+  --dash-accent: 68 88% 62%;             /* lime fluo #D2F34C — fills, buttons, bars */
+  --dash-accent-fg: 160 60% 12%;
+  --dash-accent-ink: 78 70% 30%;         /* olive lime for text and icons on light surfaces */
+  --dash-accent-gradient: linear-gradient(135deg, hsl(68, 88%, 62%), hsl(80, 80%, 52%));
+  --dash-accent-glow: 0 8px 22px -8px hsl(68, 88%, 40%, 0.45);
+  --dash-card-shadow: 0 1px 2px rgba(13, 58, 43, 0.06), 0 1px 3px rgba(13, 58, 43, 0.04);
+  --dash-card-shadow-hover: 0 10px 28px rgba(13, 58, 43, 0.12), 0 2px 6px rgba(13, 58, 43, 0.06);
+  --dash-card-ring: 150 14% 78%;
+  --dash-success: 78 70% 30%;
+  --dash-warning: 32 95% 42%;
+  --dash-info: 78 70% 30%;
+
+  --dash-topbar-bg: 0 0% 100%;
+  --dash-topbar-fg: 160 60% 12%;
+  --dash-topbar-border: 150 14% 88%;
+
+  /* shadcn tokens inside the backend (dialogs, selects, sheets) */
   --primary: 68 88% 62%;
-  --primary-foreground: 0 0% 4%;
-  --background: 0 0% 6%;
-  --foreground: 0 0% 95%;
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 95%;
-  --border: 0 0% 16%;
-  --input: 0 0% 20%;
-  --ring: 68 88% 62%;
-  --muted: 0 0% 14%;
-  --muted-foreground: 0 0% 55%;
+  --primary-foreground: 160 60% 12%;
+  --background: 0 0% 100%;
+  --foreground: 160 60% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 160 60% 12%;
+  --border: 150 14% 88%;
+  --input: 150 14% 84%;
+  --ring: 78 70% 30%;
+  --muted: 120 16% 94%;
+  --muted-foreground: 160 10% 42%;
   --accent: 68 88% 62%;
-  --accent-foreground: 0 0% 4%;
-  --popover: 0 0% 10%;
-  --popover-foreground: 0 0% 95%;
+  --accent-foreground: 160 60% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 160 60% 12%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
+
+  font-family: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
 }
+.dash-theme .font-display, .dash-theme .font-body, .dash-theme .font-hero { font-family: inherit; letter-spacing: -0.01em; }
 
 /* Dashboard content area */
 .dash-content {

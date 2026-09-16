@@ -69,7 +69,7 @@ const DashboardHome = () => {
       <header className="flex items-center justify-between px-5 pt-4 pb-3">
         <h2 className="text-[13px] font-semibold text-[hsl(var(--dash-fg))]">{title}</h2>
         {action && (
-          <button onClick={() => navigate(action.path)} className="inline-flex items-center gap-1 text-[12px] font-medium text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent))] transition-colors">
+          <button onClick={() => navigate(action.path)} className="inline-flex items-center gap-1 text-[12px] font-medium text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent-ink))] transition-colors">
             {action.label} <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         )}
@@ -88,14 +88,14 @@ const DashboardHome = () => {
             {greeting(lang)}{firstName ? `, ${firstName}` : ""}
           </h1>
         </div>
-        <button onClick={() => navigate("/dashboard/import-leads")} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(var(--dash-accent))] text-black text-[13px] font-semibold px-4 py-2.5 hover:brightness-95 transition-all shadow-[var(--dash-accent-glow)]">
+        <button onClick={() => navigate("/dashboard/import-leads")} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[13px] font-semibold px-4 py-2.5 hover:brightness-95 transition-all shadow-[var(--dash-accent-glow)]">
           <Send className="w-4 h-4" /> {isFr ? "Soumettre un lead" : "Submit a lead"}
         </button>
       </div>
 
       {/* Onboarding for new ambassadors */}
       {isNew && (
-        <div className="relative overflow-hidden rounded-2xl bg-[hsl(0,0%,7%)] border border-white/[0.06] p-6 mb-6">
+        <div className="relative overflow-hidden rounded-2xl bg-[hsl(var(--dash-sidebar-bg))] p-6 mb-6 shadow-[var(--dash-card-shadow-hover)]">
           <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[hsl(var(--dash-accent)/.1)] blur-3xl pointer-events-none" />
           <div className="relative">
             <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--dash-accent))]"><Sparkles className="w-3.5 h-3.5" /> {isFr ? "Espace activé" : "Space activated"}</span>
@@ -103,7 +103,7 @@ const DashboardHome = () => {
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
               {onboarding.map((s, i) => (
                 <button key={s.path} onClick={() => navigate(s.path)} className="group text-left rounded-xl border border-white/10 bg-white/[0.03] hover:border-[hsl(var(--dash-accent)/.5)] p-4 transition-colors">
-                  <div className="flex items-center gap-2 mb-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent))] text-black text-[10px] font-bold flex items-center justify-center">{i + 1}</span><s.icon className="w-4 h-4 text-[hsl(var(--dash-accent))]" /></div>
+                  <div className="flex items-center gap-2 mb-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[10px] font-bold flex items-center justify-center">{i + 1}</span><s.icon className="w-4 h-4 text-[hsl(var(--dash-accent))]" /></div>
                   <p className="text-[13px] font-medium text-white">{isFr ? s.fr : s.en}</p>
                 </button>
               ))}
@@ -140,7 +140,7 @@ const DashboardHome = () => {
         <Card title={isFr ? "À relancer" : "Needs attention"} action={{ label: isFr ? "Tout voir" : "View all", path: "/dashboard/pipeline?filter=attention" }} className="xl:col-span-2">
           {m.attention.length === 0 ? (
             <div className="py-8 flex flex-col items-center text-center">
-              <CheckCircle2 className="w-6 h-6 text-[hsl(var(--dash-accent))] mb-2" />
+              <CheckCircle2 className="w-6 h-6 text-[hsl(var(--dash-accent-ink))] mb-2" />
               <p className="text-[13px] text-[hsl(var(--dash-muted-fg))]">{isFr ? "Tout est à jour. Rien à relancer." : "All caught up. Nothing to follow up."}</p>
             </div>
           ) : (
@@ -219,7 +219,7 @@ const DashboardHome = () => {
               { icon: Phone, label: isFr ? "Soumettre un lead" : "Submit a lead", path: "/dashboard/import-leads" },
               { icon: ShieldCheck, label: "KYC", path: "/dashboard/kyc" },
             ].map((a) => (
-              <button key={a.path} onClick={() => navigate(a.path)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[hsl(var(--dash-border))] px-3 py-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] hover:border-[hsl(var(--dash-accent)/.5)] hover:text-[hsl(var(--dash-accent))] transition-colors">
+              <button key={a.path} onClick={() => navigate(a.path)} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[hsl(var(--dash-border))] px-3 py-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] hover:border-[hsl(var(--dash-accent)/.5)] hover:text-[hsl(var(--dash-accent-ink))] transition-colors">
                 <a.icon className="w-3.5 h-3.5" /> {a.label}
               </button>
             ))}

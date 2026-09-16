@@ -239,7 +239,7 @@ export default function AdminSEO() {
                         <div className="font-bold text-[hsl(var(--dash-fg))]">{inspectResult.mobileUsabilityResult?.verdict ?? "—"}</div>
                       </div>
                     </div>
-                    <pre className="text-xs bg-[#0F172A] text-[hsl(var(--dash-accent))] p-3 rounded-lg overflow-auto max-h-80">{JSON.stringify(inspectResult, null, 2)}</pre>
+                    <pre className="text-xs bg-[#0F172A] text-[hsl(var(--dash-accent-ink))] p-3 rounded-lg overflow-auto max-h-80">{JSON.stringify(inspectResult, null, 2)}</pre>
                   </div>
                 )}
               </Card>

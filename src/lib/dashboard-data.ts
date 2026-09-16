@@ -41,14 +41,14 @@ export const stageLabel = (key: string | null | undefined, lang: string) => (fr(
 
 /** Sequential lime ramp (one hue, light → dark) for stage progression. Text stays in text tokens. */
 export const STAGE_RAMP: Record<number, string> = {
-  0: "hsl(38 92% 50%)",   // lost: warning status color (reserved), shown with icon+label
-  1: "hsl(68 90% 84%)",
-  2: "hsl(68 88% 74%)",
-  3: "hsl(68 88% 62%)",
-  4: "hsl(68 78% 52%)",
-  5: "hsl(72 64% 42%)",
-  6: "hsl(76 55% 34%)",
-  7: "hsl(80 50% 26%)",
+  0: "hsl(32 95% 46%)",   // lost: warning status color (reserved), shown with icon+label
+  1: "hsl(68 85% 68%)",
+  2: "hsl(68 88% 58%)",
+  3: "hsl(72 80% 48%)",
+  4: "hsl(76 70% 40%)",
+  5: "hsl(80 60% 33%)",
+  6: "hsl(120 45% 26%)",
+  7: "hsl(160 64% 18%)",
 };
 
 export interface LeadLike {

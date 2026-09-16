@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { STAGES as CANON, stageByKey } from "@/lib/dashboard-data";
 const STAGES = CANON.map((s) => ({
   value: s.key, label: s.en,
-  color: s.kind === "lost" ? "bg-[hsl(38,92%,50%/.12)] text-[hsl(38,92%,60%)]" : s.kind === "won" ? "bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent))]" : "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-fg))]",
+  color: s.kind === "lost" ? "bg-[hsl(38,92%,50%/.12)] text-[hsl(38,92%,60%)]" : s.kind === "won" ? "bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent-ink))]" : "bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-fg))]",
 }));
 
 interface Profile { id: string; full_name: string | null; }

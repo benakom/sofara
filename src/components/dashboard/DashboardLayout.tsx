@@ -178,7 +178,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] overflow-x-hidden" dir={isRtl ? "rtl" : "ltr"}>
-      <aside className="hidden lg:flex flex-col w-[248px] fixed inset-y-0 left-0 z-40 border-r border-white/[0.06]">
+      <aside className="hidden lg:flex flex-col w-[248px] fixed inset-y-0 left-0 z-40 border-r border-[hsl(var(--dash-sidebar-border))]">
         <SidebarContent />
       </aside>
 
@@ -190,36 +190,36 @@ const DashboardLayout = () => {
 
       <div className="flex-1 lg:ml-[248px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* Top bar */}
-        <header className="sticky top-0 z-30 h-14 border-b border-white/[0.06] bg-[hsl(var(--dash-bg)/.85)] backdrop-blur-md flex items-center justify-between px-4 sm:px-6">
+        <header className="sticky top-0 z-30 h-14 border-b border-[hsl(var(--dash-topbar-border))] bg-[hsl(var(--dash-topbar-bg)/.9)] backdrop-blur-md flex items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2 min-w-0">
-            <button onClick={() => setSidebarOpen((v) => !v)} className="lg:hidden text-white/60 hover:text-white p-1.5 -ml-1.5 rounded-lg hover:bg-white/[0.06]" aria-label="Menu">
+            <button onClick={() => setSidebarOpen((v) => !v)} className="lg:hidden text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-1.5 -ml-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))]" aria-label="Menu">
               <Menu className="w-5 h-5" />
             </button>
             <nav className="flex items-center gap-1.5 text-[13px] min-w-0">
-              <span className="text-white/40 hidden sm:inline">Sofara</span>
-              <ChevronRight className="w-3.5 h-3.5 text-white/25 hidden sm:inline" />
-              <span className="font-semibold text-white truncate">{fr(lang) ? current.labelFr : current.labelEn}</span>
+              <span className="text-[hsl(var(--dash-muted-fg))] hidden sm:inline">Sofara</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[hsl(var(--dash-border))] hidden sm:inline" />
+              <span className="font-semibold text-[hsl(var(--dash-fg))] truncate">{fr(lang) ? current.labelFr : current.labelEn}</span>
             </nav>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <button onClick={() => navigate("/dashboard/import-leads")} className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 px-3 py-1.5 text-[12px] font-semibold text-white transition-colors">
+            <button onClick={() => navigate("/dashboard/import-leads")} className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-[hsl(var(--dash-card))] hover:bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--dash-fg))] transition-colors">
               <Plus className="w-3.5 h-3.5" /> {fr(lang) ? "Lead" : "Lead"}
             </button>
-            <div className="flex items-center rounded-lg bg-white/[0.06] p-0.5 ml-1">
+            <div className="flex items-center rounded-lg bg-[hsl(var(--dash-muted))] p-0.5 ml-1">
               {langs.map((l) => (
-                <button key={l.code} onClick={() => setLang(l.code)} className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${lang === l.code ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"}`}>
+                <button key={l.code} onClick={() => setLang(l.code)} className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${lang === l.code ? "bg-[hsl(var(--dash-card))] shadow-sm text-[hsl(var(--dash-fg))]" : "text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))]"}`}>
                   {l.label}
                 </button>
               ))}
             </div>
-            <button className="text-white/50 hover:text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors" aria-label="Help">
+            <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Help">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="relative text-white/50 hover:text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors" aria-label="Notifications">
+            <button className="relative text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Notifications">
               <Bell className="w-4 h-4" />
             </button>
-            <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-black text-[11px] font-bold items-center justify-center">{avatar}</div>
+            <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[11px] font-bold items-center justify-center">{avatar}</div>
           </div>
         </header>
 

@@ -9,7 +9,7 @@ interface SparklineProps {
 }
 
 /** 12–14 point sparkline: 2px line, area tint, accent dot on the current period. */
-const Sparkline = ({ points, width = 96, height = 32, stroke = "hsl(68 40% 45%)", accent = "hsl(68 88% 62%)", className }: SparklineProps) => {
+const Sparkline = ({ points, width = 96, height = 32, stroke = "hsl(78 45% 45%)", accent = "hsl(68 88% 62%)", className }: SparklineProps) => {
   if (points.length < 2) return null;
   const max = Math.max(...points, 1);
   const padX = 4;
@@ -22,7 +22,7 @@ const Sparkline = ({ points, width = 96, height = 32, stroke = "hsl(68 40% 45%)"
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className={className} style={{ overflow: "visible" }} aria-hidden="true">
       <path d={d} fill="none" stroke={stroke} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-      <circle cx={lx} cy={ly} r="3.5" fill={accent} stroke="hsl(0 0% 10%)" strokeWidth="2" />
+      <circle cx={lx} cy={ly} r="3.5" fill={accent} stroke="hsl(var(--dash-card))" strokeWidth="2" />
     </svg>
   );
 };

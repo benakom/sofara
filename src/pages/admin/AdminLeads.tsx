@@ -68,7 +68,7 @@ const AdminLeads = () => {
             <tbody>{paginated.map(l=>(
               <tr key={l.id} className="border-b border-[hsl(var(--dash-border))] hover:bg-[hsl(var(--dash-muted)/.5)]">
                 <td className="px-4 py-3 text-sm font-medium text-[hsl(var(--dash-fg))]">{l.first_name} {l.last_name}</td>
-                <td className="px-4 py-3"><button onClick={()=>navigate(`/admin/ambassadors/${l.user_id}`)} className="text-xs text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent))] hover:underline">{getAmbName(l.user_id)}</button></td>
+                <td className="px-4 py-3"><button onClick={()=>navigate(`/admin/ambassadors/${l.user_id}`)} className="text-xs text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent-ink))] hover:underline">{getAmbName(l.user_id)}</button></td>
                 <td className="px-4 py-3"><select value={stageByKey(l.stage).key} onChange={e=>handleStageChange(l.id,e.target.value)} className="text-[10px] font-semibold border-none bg-transparent cursor-pointer">{stages.map(s=><option key={s} value={s}>{stageLabel(s, "en")}</option>)}</select></td>
                 <td className="px-4 py-3">{scoreBadge(l.score)}</td>
                 <td className="px-4 py-3"><p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{l.email||"—"}</p><p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{l.phone||"—"}</p></td>

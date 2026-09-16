@@ -71,7 +71,7 @@ const AdminLayout = () => {
   const handleSignOut = async () => { await signOut(); navigate("/"); };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[#0d3a2b]">
+    <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
       {/* Workspace */}
       <div className="px-4 pt-4 pb-3 border-b border-white/[0.08]">
         <a href="/" className="flex items-center gap-2.5">
@@ -130,37 +130,37 @@ const AdminLayout = () => {
   );
 
   return (
-    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] text-[hsl(var(--dash-fg))] overflow-x-hidden font-['Poppins']">
+    <div className="dash-theme min-h-screen flex bg-[hsl(var(--dash-bg))] text-[hsl(var(--dash-fg))] overflow-x-hidden">
       <aside className="hidden lg:flex flex-col w-[248px] fixed inset-y-0 left-0 z-40">
         <SidebarContent />
       </aside>
 
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="w-[280px] max-w-[85vw] p-0 border-white/[0.08] bg-[#0d3a2b] lg:hidden [&>button]:text-white/60">
+        <SheetContent side="left" className="w-[280px] max-w-[85vw] p-0 border-white/[0.08] bg-[hsl(var(--dash-sidebar-bg))] lg:hidden [&>button]:text-white/60">
           <SidebarContent />
         </SheetContent>
       </Sheet>
 
       <div className="flex-1 lg:ml-[248px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
-        <header className="sticky top-0 z-30 h-14 border-b border-white/[0.06] bg-[hsl(var(--dash-bg)/.85)] backdrop-blur-md flex items-center justify-between px-4 sm:px-6">
+        <header className="sticky top-0 z-30 h-14 border-b border-[hsl(var(--dash-topbar-border))] bg-[hsl(var(--dash-topbar-bg)/.9)] backdrop-blur-md flex items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2 min-w-0">
-            <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-white/60 hover:text-white p-1.5 -ml-1.5 rounded-lg hover:bg-white/[0.06]" aria-label="Menu">
+            <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-1.5 -ml-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted))]" aria-label="Menu">
               <Menu className="w-5 h-5" />
             </button>
             <nav className="flex items-center gap-1.5 text-[13px] min-w-0">
-              <span className="text-white/40 hidden sm:inline">Admin</span>
-              <ChevronRight className="w-3.5 h-3.5 text-white/25 hidden sm:inline" />
-              <span className="font-semibold text-white truncate">{current.label}</span>
+              <span className="text-[hsl(var(--dash-muted-fg))] hidden sm:inline">Admin</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[hsl(var(--dash-border))] hidden sm:inline" />
+              <span className="font-semibold text-[hsl(var(--dash-fg))] truncate">{current.label}</span>
             </nav>
           </div>
           <div className="flex items-center gap-1.5">
-            <a href="https://www.sofara.io" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 px-3 py-1.5 text-[12px] font-semibold text-white transition-colors">
+            <a href="https://www.sofara.io" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-[hsl(var(--dash-card))] hover:bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--dash-fg))] transition-colors">
               <ExternalLink className="w-3.5 h-3.5" /> sofara.io
             </a>
-            <button className="relative text-white/50 hover:text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors" aria-label="Notifications">
+            <button className="relative text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Notifications">
               <Bell className="w-4 h-4" />
             </button>
-            <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-black text-[11px] font-bold items-center justify-center">{avatar}</div>
+            <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[11px] font-bold items-center justify-center">{avatar}</div>
           </div>
         </header>
 

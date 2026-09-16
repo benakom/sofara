@@ -44,7 +44,7 @@ const AdminAmbassadorDetail = () => {
   leads.forEach(l => { const m = new Date(l.created_at).toLocaleDateString("en-US", { month: "short", year: "2-digit" }); monthlyLeads[m] = (monthlyLeads[m] || 0) + 1; });
   const leadsChart = Object.entries(monthlyLeads).reverse().slice(-8).map(([month, count]) => ({ month, count }));
   const statusPill = (s: string) => { const m: Record<string,string> = { approved:"bg-[#22C55E]/10 text-[#22C55E]", pending:"bg-[#F59E0B]/10 text-[#F59E0B]", suspended:"bg-[#EF4444]/10 text-[#EF4444]" }; return <span className={`text-xs font-semibold px-3 py-1 rounded-full ${m[s]||"bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]"}`}>{s}</span>; };
-  const stagePill = (s: string) => { const st = stageByKey(s); const c = st.kind === "lost" ? "bg-[hsl(38,92%,50%/.12)] text-[hsl(38,92%,60%)]" : st.kind === "won" ? "bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent))]" : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-fg))]"; return <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${c}`}>{stageLabel(s, "en")}</span>; };
+  const stagePill = (s: string) => { const st = stageByKey(s); const c = st.kind === "lost" ? "bg-[hsl(38,92%,50%/.12)] text-[hsl(38,92%,60%)]" : st.kind === "won" ? "bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent-ink))]" : "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-fg))]"; return <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${c}`}>{stageLabel(s, "en")}</span>; };
 
   return (
     <div className="space-y-6 max-w-[1400px] font-['Poppins']">
@@ -82,7 +82,7 @@ const AdminAmbassadorDetail = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
               {[{l:"Total Leads",v:leads.length},{l:"Qualified",v:`${qualifiedLeads.length} (${qualifiedRate}%)`},{l:"Deals Closed",v:closedDeals},{l:"Commission",v:`AED ${fmt(totalComm)}`}].map(m=>(<div key={m.l} className="bg-[hsl(var(--dash-muted)/.4)] rounded-xl p-3"><p className="text-lg font-bold text-[hsl(var(--dash-fg))]">{m.v}</p><p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{m.l}</p></div>))}
             </div>
-            {leadsChart.length>0&&<ResponsiveContainer width="100%" height={160}><LineChart data={leadsChart}><CartesianGrid strokeDasharray="3 3" stroke="#262626" /><XAxis dataKey="month" tick={{fontSize:10,fill:"#8a8a8a"}} axisLine={false} tickLine={false} /><YAxis tick={{fontSize:10,fill:"#8a8a8a"}} axisLine={false} tickLine={false} /><Tooltip contentStyle={{background:"#1a1a1a",border:"none",borderRadius:8,fontSize:11,color:"#fff"}} /><Line type="monotone" dataKey="count" stroke="#D2F34C" strokeWidth={2} dot={{fill:"#D2F34C",r:3}} /></LineChart></ResponsiveContainer>}
+            {leadsChart.length>0&&<ResponsiveContainer width="100%" height={160}><LineChart data={leadsChart}><CartesianGrid strokeDasharray="3 3" stroke="#262626" /><XAxis dataKey="month" tick={{fontSize:10,fill:"#8a8a8a"}} axisLine={false} tickLine={false} /><YAxis tick={{fontSize:10,fill:"#8a8a8a"}} axisLine={false} tickLine={false} /><Tooltip contentStyle={{background:"#0d3a2b",border:"none",borderRadius:8,fontSize:11,color:"#fff"}} /><Line type="monotone" dataKey="count" stroke="#D2F34C" strokeWidth={2} dot={{fill:"#D2F34C",r:3}} /></LineChart></ResponsiveContainer>}
           </div>
           <div className="bg-[hsl(var(--dash-card))] rounded-2xl border border-[hsl(var(--dash-border))] p-6 ">
             <h2 className="text-sm font-bold text-[hsl(var(--dash-fg))] mb-4">Commission History</h2>
