@@ -163,7 +163,7 @@ export default function AutoScoreTool() {
   if (loadingLeads) {
     return (
       <div className="h-full flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-accent))]" />
+        <Loader2 className="w-6 h-6 animate-spin text-[hsl(var(--dash-accent-ink))]" />
       </div>
     );
   }
@@ -238,14 +238,14 @@ export default function AutoScoreTool() {
                     )}
                   </div>
                   <div className="flex items-center gap-1">
-                    <TrendingUp className="w-3 h-3 text-[hsl(var(--dash-accent))]" />
-                    <span className="text-xs font-bold text-[hsl(var(--dash-accent))]">{r.probability}%</span>
+                    <TrendingUp className="w-3 h-3 text-[hsl(var(--dash-accent-ink))]" />
+                    <span className="text-xs font-bold text-[hsl(var(--dash-accent-ink))]">{r.probability}%</span>
                   </div>
                 </div>
                 <p className="text-xs dash-muted-text mb-1">{r.reasoning}</p>
                 <div className="flex items-center gap-1.5 mt-2">
-                  <CheckCircle className="w-3 h-3 text-[hsl(var(--dash-accent))]" />
-                  <p className="text-[11px] text-[hsl(var(--dash-accent))] font-medium">{r.priority_action}</p>
+                  <CheckCircle className="w-3 h-3 text-[hsl(var(--dash-accent-ink))]" />
+                  <p className="text-[11px] text-[hsl(var(--dash-accent-ink))] font-medium">{r.priority_action}</p>
                 </div>
               </div>
             ))}

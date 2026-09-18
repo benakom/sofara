@@ -101,7 +101,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
         className="lg:hidden w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl dash-card"
       >
         <div className="flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
+          <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" />
           <span className="text-xs font-semibold text-[hsl(var(--dash-fg))] uppercase tracking-wider">
             {lang === "ar" ? "Outils Agent" : "Agent Tools"}
           </span>
@@ -111,7 +111,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
 
       {/* Desktop header */}
       <div className="hidden lg:flex items-center gap-2 px-1 mb-3">
-        <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
+        <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" />
         <h3 className="text-xs font-semibold text-[hsl(var(--dash-fg))] uppercase tracking-wider">
           {lang === "ar" ? "Outils Agent" : "Agent Tools"}
         </h3>
@@ -137,7 +137,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
               } ${disabled ? "opacity-40 cursor-not-allowed" : "hover:shadow-sm cursor-pointer hover:border-[hsl(var(--dash-accent)/.3)]"}`}
             >
               <div className="flex items-center gap-2 mb-1">
-                <div className="p-1.5 rounded-lg transition-colors bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-accent))]">
+                <div className="p-1.5 rounded-lg transition-colors bg-[hsl(var(--dash-accent)/.1)] text-[hsl(var(--dash-accent-ink))]">
                   <tool.icon className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-xs font-medium text-[hsl(var(--dash-fg))]">{lang === "ar" ? tool.labelAr : tool.labelEn}</span>
@@ -146,7 +146,7 @@ export default function AgentToolsSidebar({ activeMode, onSelectMode, hasSelecte
                 {lang === "ar" ? tool.descFr : tool.descEn}
               </p>
               {disabled && (
-                <p className="text-[9px] text-[hsl(var(--dash-accent))] mt-1 italic">
+                <p className="text-[9px] text-[hsl(var(--dash-accent-ink))] mt-1 italic">
                   {lang === "ar" ? "↑ Sélectionnez un lead d'abord" : "↑ Select a lead first"}
                 </p>
               )}

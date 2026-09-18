@@ -24,9 +24,9 @@ const ImportLeads = () => {
 
       <div className="bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.25)] rounded-2xl p-5 mb-6">
         <div className="flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-[hsl(var(--dash-accent))] mt-0.5 shrink-0" />
+          <AlertTriangle className="w-5 h-5 text-[hsl(var(--dash-accent-ink))] mt-0.5 shrink-0" />
           <div>
-            <h3 className="font-semibold text-[hsl(var(--dash-accent))] text-sm flex items-center gap-2">
+            <h3 className="font-semibold text-[hsl(var(--dash-accent-ink))] text-sm flex items-center gap-2">
               ⚠️ {lang === "ar" ? "Déclaration obligatoire" : "Mandatory Declaration"}
             </h3>
             <p className="text-sm text-[hsl(var(--dash-fg))] mt-2 leading-relaxed">
@@ -36,7 +36,7 @@ const ImportLeads = () => {
             </p>
             <div className="flex items-center gap-2 mt-4">
               <Checkbox id="accept" checked={accepted} onCheckedChange={(v) => setAccepted(!!v)} />
-              <label htmlFor="accept" className="text-sm text-[hsl(var(--dash-accent))] font-medium cursor-pointer">
+              <label htmlFor="accept" className="text-sm text-[hsl(var(--dash-accent-ink))] font-medium cursor-pointer">
                 {lang === "ar" ? "J'accepte les conditions ci-dessus" : "I accept the above conditions"}
               </label>
             </div>
@@ -57,11 +57,11 @@ const ImportLeads = () => {
             }`}
           >
             <div className="p-3 rounded-xl bg-[hsl(var(--dash-accent)/.12)] w-fit mb-4">
-              <m.icon className="w-6 h-6 text-[hsl(var(--dash-accent))] group-hover:text-[hsl(var(--dash-accent))] transition-colors" />
+              <m.icon className="w-6 h-6 text-[hsl(var(--dash-accent-ink))] group-hover:text-[hsl(var(--dash-accent-ink))] transition-colors" />
             </div>
             <h3 className="font-display font-semibold dash-text">{lang === "ar" ? m.titleFr : m.titleEn}</h3>
             <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "ar" ? m.descFr : m.descEn}</p>
-            <p className="text-base sm:text-sm text-[hsl(var(--dash-accent))] mt-3 group-hover:text-[hsl(var(--dash-accent))] transition-colors font-medium">
+            <p className="text-base sm:text-sm text-[hsl(var(--dash-accent-ink))] mt-3 group-hover:text-[hsl(var(--dash-accent-ink))] transition-colors font-medium">
               {lang === "ar" ? "Commencer →" : "Start →"}
             </p>
           </motion.div>

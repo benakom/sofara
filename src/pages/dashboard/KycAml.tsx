@@ -46,7 +46,7 @@ const KycAml = () => {
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent-ink))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
@@ -90,8 +90,8 @@ const KycAml = () => {
         <div className="space-y-4">
           <div className="dash-card rounded-2xl p-5">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "Formation AML" : "AML Training"}</h2>
-              <span className="text-xs font-medium text-[hsl(var(--dash-accent))]">{earnedPts}/{totalPts} pts</span>
+              <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" /> {lang === "ar" ? "Formation AML" : "AML Training"}</h2>
+              <span className="text-xs font-medium text-[hsl(var(--dash-accent-ink))]">{earnedPts}/{totalPts} pts</span>
             </div>
             <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-4">
               <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${(earnedPts / totalPts) * 100}%` }} />
@@ -102,7 +102,7 @@ const KycAml = () => {
                   mod.completed ? "bg-[hsl(var(--dash-accent)/.08)] border-[hsl(var(--dash-accent)/.25)]" : "bg-[hsl(var(--dash-muted)/.3)] border-[hsl(var(--dash-border))]"
                 }`}>
                   <div className={`p-1.5 rounded-lg ${mod.completed ? "bg-[hsl(var(--dash-accent)/.15)]" : "bg-[hsl(var(--dash-muted))]"}`}>
-                    {mod.completed ? <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" /> : <mod.icon className="w-3.5 h-3.5 dash-muted-text" />}
+                    {mod.completed ? <CheckCircle className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" /> : <mod.icon className="w-3.5 h-3.5 dash-muted-text" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium dash-text truncate">{lang === "ar" ? mod.titleFr : mod.titleEn}</p>
@@ -118,7 +118,7 @@ const KycAml = () => {
           <div className="dash-card rounded-2xl p-5 border-[hsl(var(--dash-accent)/.2)]" style={{ borderColor: "hsl(var(--dash-accent) / 0.2)" }}>
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-[hsl(var(--dash-accent)/.12)]">
-                <Award className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
+                <Award className="w-5 h-5 text-[hsl(var(--dash-accent-ink))]" />
               </div>
               <div>
                 <h3 className="text-sm font-semibold dash-text">{lang === "ar" ? "Certification AML Sofara" : "Sofara AML Certification"}</h3>
@@ -126,7 +126,7 @@ const KycAml = () => {
               </div>
             </div>
             <div className="mt-3 flex items-center gap-2 text-xs dash-muted-text">
-              <Star className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
+              <Star className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" />
               <span>{lang === "ar" ? `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules complétés` : `${amlModules.filter(m => m.completed).length}/${amlModules.length} modules completed`}</span>
             </div>
           </div>

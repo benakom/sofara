@@ -167,7 +167,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           <div key={i} className="dash-card rounded-2xl p-4 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[hsl(var(--dash-accent)/.12)]">
-                <kpi.icon className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
+                <kpi.icon className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" />
               </div>
             </div>
             <p className="text-[11px] text-[hsl(var(--dash-muted-fg))] leading-tight mb-1">{kpi.label}</p>
@@ -197,7 +197,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
                 contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', color: '#fff' }}
                 formatter={(v: number) => [`AED ${fmt(v)}`, ""]}
               />
-              <Area type="monotone" dataKey="value" stroke="#D2F34C" fill="url(#colorValue)" strokeWidth={2} />
+              <Area type="monotone" dataKey="value" stroke="#6B8F1F" fill="url(#colorValue)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -263,7 +263,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
               <span className="text-[hsl(var(--dash-fg))]">{lang === "ar" ? "Revenu net annuel" : "Net Annual Income"}</span>
-              <span className={results.netAnnualIncome > 0 ? "text-[hsl(var(--dash-accent))]" : "text-red-400"}>AED {fmt(results.netAnnualIncome)}</span>
+              <span className={results.netAnnualIncome > 0 ? "text-[hsl(var(--dash-accent-ink))]" : "text-red-400"}>AED {fmt(results.netAnnualIncome)}</span>
             </div>
           </div>
         </div>
@@ -286,7 +286,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
           <div className="mt-4 pt-3 border-t border-[hsl(var(--dash-border))]">
             <div className="flex justify-between text-sm font-semibold">
               <span>{lang === "ar" ? "Coût total" : "Total Acquisition"}</span>
-              <span className="text-[hsl(var(--dash-accent))]">AED {fmt(results.totalAcquisition)}</span>
+              <span className="text-[hsl(var(--dash-accent-ink))]">AED {fmt(results.totalAcquisition)}</span>
             </div>
           </div>
         </div>

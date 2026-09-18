@@ -244,7 +244,7 @@ export default function VoiceAgentTool() {
               }
             >
               {msg.role === "assistant" ? (
-                <div className="prose prose-sm prose-invert max-w-none prose-strong:text-[hsl(var(--dash-accent))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
+                <div className="prose prose-sm prose-invert max-w-none prose-strong:text-[hsl(var(--dash-accent-ink))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (
@@ -265,7 +265,7 @@ export default function VoiceAgentTool() {
               <Bot className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-fg))]" />
             </div>
             <div className="bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] rounded-2xl rounded-bl-md px-4 py-3">
-              <Loader2 className="w-4 h-4 animate-spin text-[hsl(var(--dash-accent))]" />
+              <Loader2 className="w-4 h-4 animate-spin text-[hsl(var(--dash-accent-ink))]" />
             </div>
           </div>
         )}

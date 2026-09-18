@@ -184,7 +184,7 @@ export default function SequencesTool() {
                             <p className="text-[10px] font-semibold dash-muted-text uppercase">{lang === "ar" ? "Contenu" : "Content"}</p>
                             <button
                               onClick={() => copyContent(step.content, i)}
-                              className="flex items-center gap-1 text-[10px] text-[hsl(var(--dash-accent))] hover:underline"
+                              className="flex items-center gap-1 text-[10px] text-[hsl(var(--dash-accent-ink))] hover:underline"
                             >
                               {copiedIdx === i ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                               {copiedIdx === i ? (lang === "ar" ? "Copié" : "Copied") : lang === "ar" ? "Copier" : "Copy"}
@@ -197,7 +197,7 @@ export default function SequencesTool() {
 
                         {step.tips && (
                           <div className="bg-[hsl(var(--dash-muted)/.25)] border border-[hsl(var(--dash-border))] rounded-lg p-3">
-                            <p className="text-[10px] font-semibold mb-0.5 text-[hsl(var(--dash-accent))]">💡 Pro tip</p>
+                            <p className="text-[10px] font-semibold mb-0.5 text-[hsl(var(--dash-accent-ink))]">💡 Pro tip</p>
                             <p className="text-xs text-[hsl(var(--dash-muted-fg))]">{step.tips}</p>
                           </div>
                         )}

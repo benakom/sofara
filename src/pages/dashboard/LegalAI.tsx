@@ -121,7 +121,7 @@ const LegalAI = () => {
         <div>
           <h1 className="text-lg font-display font-bold dash-text flex items-center gap-2">
             LegalAI
-            <span className="text-[10px] font-bold bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent))] px-2 py-0.5 rounded-full">PRO</span>
+            <span className="text-[10px] font-bold bg-[hsl(var(--dash-accent)/.2)] text-[hsl(var(--dash-accent-ink))] px-2 py-0.5 rounded-full">PRO</span>
           </h1>
           <p className="text-xs dash-muted-text">
             {lang === "ar" ? "Analysez vos contrats immobiliers Dubai & EAU" : "Analyze your Dubai & UAE real estate contracts"}
@@ -132,7 +132,7 @@ const LegalAI = () => {
       {/* Accepted documents info */}
       <div className="rounded-xl border border-[hsl(var(--dash-accent)/.2)] bg-[hsl(var(--dash-accent)/.06)] p-4">
         <div className="flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 text-[hsl(var(--dash-accent))] mt-0.5 shrink-0" />
+          <AlertTriangle className="w-4 h-4 text-[hsl(var(--dash-accent-ink))] mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-medium dash-text mb-1.5">
               {lang === "ar" ? "Documents acceptés (immobilier Dubai & EAU uniquement)" : "Accepted documents (Dubai & UAE real estate only)"}
@@ -170,7 +170,7 @@ const LegalAI = () => {
 
         {file ? (
           <div className="flex items-center justify-center gap-3">
-            <FileText className="w-8 h-8 text-[hsl(var(--dash-accent))]" />
+            <FileText className="w-8 h-8 text-[hsl(var(--dash-accent-ink))]" />
             <div className="text-left">
               <p className="text-sm font-medium dash-text">{file.name}</p>
               <p className="text-xs dash-muted-text">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
@@ -226,14 +226,14 @@ const LegalAI = () => {
             className="rounded-xl border border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] p-6"
           >
             <div className="flex items-center gap-2 mb-4">
-              <Scale className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
+              <Scale className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" />
               <h2 className="text-sm font-semibold dash-text">
                 {lang === "ar" ? "Analyse juridique" : "Legal analysis"}
               </h2>
-              {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--dash-accent))] ml-auto" />}
+              {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--dash-accent-ink))] ml-auto" />}
             </div>
             {analysis ? (
-              <div className="prose prose-sm max-w-none dark:prose-invert prose-headings:text-[hsl(var(--dash-fg))] prose-p:text-[hsl(var(--dash-muted-fg))] prose-strong:text-[hsl(var(--dash-accent))] prose-li:text-[hsl(var(--dash-muted-fg))] [&_p]:text-sm [&_li]:text-sm">
+              <div className="prose prose-sm max-w-none dark:prose-invert prose-headings:text-[hsl(var(--dash-fg))] prose-p:text-[hsl(var(--dash-muted-fg))] prose-strong:text-[hsl(var(--dash-accent-ink))] prose-li:text-[hsl(var(--dash-muted-fg))] [&_p]:text-sm [&_li]:text-sm">
                 <ReactMarkdown>{analysis}</ReactMarkdown>
               </div>
             ) : (

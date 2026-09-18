@@ -30,7 +30,7 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
               : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
           }`}
         >
-          <span className={`text-sm font-bold ${value === b.value ? "text-[hsl(var(--dash-accent))]" : "text-[hsl(var(--dash-fg))]"}`}>
+          <span className={`text-sm font-bold ${value === b.value ? "text-[hsl(var(--dash-accent-ink))]" : "text-[hsl(var(--dash-fg))]"}`}>
             {b.label}
           </span>
         </button>
@@ -57,7 +57,7 @@ const StepBudget = ({ value, onChange, lang }: Props) => (
 
     {/* Info box */}
     <div className="mt-6 p-4 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)]">
-      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent-ink))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-[hsl(var(--dash-muted-fg))] leading-relaxed">
         {lang === "ar"
           ? "Votre budget détermine les types de biens et zones accessibles. Le simulateur calculera le meilleur scénario d'investissement en fonction de ce montant."

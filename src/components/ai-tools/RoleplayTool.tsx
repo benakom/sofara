@@ -143,7 +143,7 @@ export default function RoleplayTool() {
               onClick={() => startRoleplay(s.id)}
               className="dash-card rounded-xl p-5 text-left hover:shadow-md transition-all hover:-translate-y-0.5 border border-[hsl(var(--dash-border))] group"
             >
-              <h3 className="text-sm font-semibold dash-text mb-1 group-hover:text-[hsl(var(--dash-accent))] transition-colors">{lang === "ar" ? s.labelAr : s.labelEn}</h3>
+              <h3 className="text-sm font-semibold dash-text mb-1 group-hover:text-[hsl(var(--dash-accent-ink))] transition-colors">{lang === "ar" ? s.labelAr : s.labelEn}</h3>
               <p className="text-xs dash-muted-text">{lang === "ar" ? s.descFr : s.descEn}</p>
             </button>
           ))}
@@ -193,7 +193,7 @@ export default function RoleplayTool() {
               }
             >
               {msg.role === "assistant" ? (
-                <div className="prose prose-sm prose-invert max-w-none prose-strong:text-[hsl(var(--dash-accent))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
+                <div className="prose prose-sm prose-invert max-w-none prose-strong:text-[hsl(var(--dash-accent-ink))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               ) : (

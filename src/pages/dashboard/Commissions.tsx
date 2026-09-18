@@ -32,8 +32,8 @@ const Commissions = () => {
   ];
 
   const statusConfig: Record<string, { badge: string; labelAr: string }> = {
-    estimated: { badge: "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]", labelAr: "Estimée" },
-    validated: { badge: "bg-[hsl(var(--dash-accent)/.25)] text-[hsl(var(--dash-accent))]", labelAr: "Validée" },
+    estimated: { badge: "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))]", labelAr: "Estimée" },
+    validated: { badge: "bg-[hsl(var(--dash-accent)/.25)] text-[hsl(var(--dash-accent-ink))]", labelAr: "Validée" },
     paid: { badge: "bg-[hsl(var(--dash-accent))] text-black", labelAr: "Payée" },
     pending: { badge: "bg-[hsl(var(--dash-muted))] text-[hsl(var(--dash-muted-fg))]", labelAr: "En attente" },
   };
@@ -49,7 +49,7 @@ const Commissions = () => {
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent-ink))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">AED {s.value.toLocaleString()}</p>
@@ -85,7 +85,7 @@ const Commissions = () => {
           <div className="mt-3 pt-3 border-t dash-border-color">
             <div className="flex items-center justify-between text-sm sm:text-xs">
               <span className="dash-muted-text">{lang === "ar" ? "Taux encaissé" : "Collection rate"}</span>
-              <span className="font-bold text-[hsl(var(--dash-accent))]">{paidPct}%</span>
+              <span className="font-bold text-[hsl(var(--dash-accent-ink))]">{paidPct}%</span>
             </div>
             <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mt-1.5">
               <div className="h-full bg-[hsl(var(--dash-accent))] rounded-full transition-all" style={{ width: `${paidPct}%` }} />

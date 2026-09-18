@@ -76,7 +76,7 @@ const DashboardLayout = () => {
   if (loading || profileLoading) {
     return (
       <div className="dash-theme min-h-screen bg-[hsl(var(--dash-bg))] flex items-center justify-center">
-        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" />
+        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent-ink))]" />
       </div>
     );
   }

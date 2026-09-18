@@ -22,7 +22,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="p-4 rounded-2xl bg-[hsl(var(--dash-accent)/.1)] mb-4">
-          <Sparkles className="w-8 h-8 text-[hsl(var(--dash-accent))]" />
+          <Sparkles className="w-8 h-8 text-[hsl(var(--dash-accent-ink))]" />
         </div>
         <h2 className="text-base font-display font-bold text-[hsl(var(--dash-fg))] mb-1">
           {lang === "ar" ? "Agent de Qualification" : "Lead Qualification Agent"}
@@ -65,7 +65,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
               : "bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] text-[hsl(var(--dash-fg))] rounded-bl-md"
           }`}>
             {msg.role === "assistant" ? (
-              <div className="prose prose-sm max-w-none break-words overflow-x-auto prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--dash-accent))] [&_pre]:overflow-x-auto [&_table]:text-xs [&_code]:break-all [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
+              <div className="prose prose-sm max-w-none break-words overflow-x-auto prose-headings:text-[hsl(var(--dash-fg))] prose-headings:font-display prose-headings:mt-3 prose-headings:mb-1 prose-p:my-1 prose-li:my-0.5 prose-strong:text-[hsl(var(--dash-accent-ink))] [&_pre]:overflow-x-auto [&_table]:text-xs [&_code]:break-all [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))]">
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ) : (
@@ -81,7 +81,7 @@ export default function ChatArea({ messages, isLoading }: ChatAreaProps) {
           </div>
           <div className="bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] rounded-2xl rounded-bl-md px-4 py-3">
             <div className="flex items-center gap-2">
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--dash-accent))]" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-[hsl(var(--dash-accent-ink))]" />
               <span className="text-xs text-[hsl(var(--dash-muted-fg))]">
                 {lang === "ar" ? "Analyse en cours…" : "Analyzing…"}
               </span>

@@ -108,7 +108,7 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
-            <Bot className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
+            <Bot className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" />
           </div>
           <h3 className="text-lg font-semibold text-[hsl(var(--dash-fg))] font-display">
             {lang === "ar" ? "تحليل ذكي" : "AI Analysis"}
@@ -129,7 +129,7 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
         </p>
       )}
       {analysis && (
-        <div className="prose prose-sm prose-invert max-w-none text-[hsl(var(--dash-fg))] prose-headings:text-[hsl(var(--dash-fg))] prose-strong:text-[hsl(var(--dash-accent))]">
+        <div className="prose prose-sm prose-invert max-w-none text-[hsl(var(--dash-fg))] prose-headings:text-[hsl(var(--dash-fg))] prose-strong:text-[hsl(var(--dash-accent-ink))]">
           <ReactMarkdown>{analysis}</ReactMarkdown>
         </div>
       )}

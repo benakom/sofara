@@ -40,7 +40,7 @@ const BonusRewards = () => {
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent-ink))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{s.value}</p>
@@ -65,7 +65,7 @@ const BonusRewards = () => {
                     <div className="h-full bg-[hsl(var(--dash-accent)/.3)] rounded-full" style={{ width: "0%" }} />
                   </div>
                 </div>
-                <span className="text-sm font-bold text-[hsl(var(--dash-accent))]">AED {tier.bonus.toLocaleString()}</span>
+                <span className="text-sm font-bold text-[hsl(var(--dash-accent-ink))]">AED {tier.bonus.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -73,12 +73,12 @@ const BonusRewards = () => {
 
         {/* Challenges */}
         <div className="dash-card rounded-2xl p-5">
-          <h2 className="text-sm font-display font-bold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "التحديات النشطة" : "Active Challenges"}</h2>
+          <h2 className="text-sm font-display font-bold dash-text mb-3 flex items-center gap-2"><Zap className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" /> {lang === "ar" ? "التحديات النشطة" : "Active Challenges"}</h2>
           <div className="space-y-3">
             {challenges.map((ch, i) => (
               <div key={i} className="p-3 rounded-lg bg-[hsl(var(--dash-muted)/.3)] border border-[hsl(var(--dash-border))]">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <ch.icon className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" />
+                  <ch.icon className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" />
                   <span className="text-xs font-medium dash-text">{lang === "ar" ? ch.titleFr : ch.titleEn}</span>
                 </div>
                 <div className="h-1.5 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden mb-1">
@@ -86,7 +86,7 @@ const BonusRewards = () => {
                 </div>
                 <div className="flex justify-between text-[10px]">
                   <span className="dash-muted-text">{ch.progress}/{ch.target}</span>
-                  <span className="font-medium text-[hsl(var(--dash-accent))]">{ch.reward}</span>
+                  <span className="font-medium text-[hsl(var(--dash-accent-ink))]">{ch.reward}</span>
                 </div>
               </div>
             ))}
@@ -103,7 +103,7 @@ const BonusRewards = () => {
               <span className="text-2xl">{perk.icon}</span>
               <p className="text-sm font-medium dash-text mt-2">{lang === "ar" ? perk.titleFr : perk.titleEn}</p>
               <p className="text-[11px] dash-muted-text mt-0.5">{lang === "ar" ? perk.descFr : perk.descEn}</p>
-              <p className="text-[10px] font-medium mt-2 text-[hsl(var(--dash-accent))]">Tier {perk.tier}+</p>
+              <p className="text-[10px] font-medium mt-2 text-[hsl(var(--dash-accent-ink))]">Tier {perk.tier}+</p>
             </div>
           ))}
         </div>

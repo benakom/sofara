@@ -166,7 +166,7 @@ export default function PhoneChat() {
                   <div className="grid grid-cols-2 gap-1.5 w-full">
                     {quickPrompts.map(q => (
                       <button key={q} onClick={() => sendMessage(q)}
-                        className="text-[10px] px-2 py-2 rounded-xl border border-[hsl(var(--dash-border))] text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-accent)/.08)] hover:text-[hsl(var(--dash-accent))] hover:border-[hsl(var(--dash-accent)/.3)] transition-all leading-tight text-left">
+                        className="text-[10px] px-2 py-2 rounded-xl border border-[hsl(var(--dash-border))] text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-accent)/.08)] hover:text-[hsl(var(--dash-accent-ink))] hover:border-[hsl(var(--dash-accent)/.3)] transition-all leading-tight text-left">
                         {q}
                       </button>
                     ))}
@@ -185,7 +185,7 @@ export default function PhoneChat() {
                       : "bg-[hsl(var(--dash-card))] text-[hsl(var(--dash-fg))] rounded-bl-sm border border-[hsl(var(--dash-border))] shadow-sm"
                   }`}>
                     {msg.role === "assistant" ? (
-                      <div className="prose prose-sm prose-invert max-w-none prose-p:my-0.5 prose-li:my-0 prose-headings:mt-1.5 prose-headings:mb-0.5 prose-strong:text-[hsl(var(--dash-accent))] prose-table:text-[10px] [&_p]:text-[12px] [&_li]:text-[12px]">
+                      <div className="prose prose-sm prose-invert max-w-none prose-p:my-0.5 prose-li:my-0 prose-headings:mt-1.5 prose-headings:mb-0.5 prose-strong:text-[hsl(var(--dash-accent-ink))] prose-table:text-[10px] [&_p]:text-[12px] [&_li]:text-[12px]">
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     ) : (

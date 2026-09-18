@@ -304,7 +304,7 @@ const AIHub = () => {
                 }
               >
                 {msg.role === "assistant" ? (
-                  <div className="prose prose-invert prose-sm max-w-none break-words overflow-x-auto prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-headings:text-[hsl(var(--dash-fg))] prose-strong:text-[hsl(var(--dash-accent))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))] [&_hr]:border-[hsl(var(--dash-border))] [&_pre]:overflow-x-auto [&_code]:break-all">
+                  <div className="prose prose-invert prose-sm max-w-none break-words overflow-x-auto prose-p:my-1 prose-li:my-0.5 prose-headings:mt-2 prose-headings:mb-1 prose-headings:text-[hsl(var(--dash-fg))] prose-strong:text-[hsl(var(--dash-accent-ink))] [&_p]:text-[hsl(var(--dash-fg))] [&_li]:text-[hsl(var(--dash-fg))] [&_hr]:border-[hsl(var(--dash-border))] [&_pre]:overflow-x-auto [&_code]:break-all">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                 ) : (
@@ -352,7 +352,6 @@ const AIHub = () => {
                 background: "hsl(var(--dash-card))",
                 border: "1px solid hsl(var(--dash-border))",
                 color: "hsl(var(--dash-fg))",
-                fontFamily: "var(--font-body)",
                 // Tailwind ring color override
                 "--tw-ring-color": "hsl(var(--dash-accent) / .35)",
               } as React.CSSProperties}

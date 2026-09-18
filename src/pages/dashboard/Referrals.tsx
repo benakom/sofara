@@ -77,7 +77,7 @@ const Referrals = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[40vh]">
-        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent))]" />
+        <Loader2 className="w-5 h-5 animate-spin text-[hsl(var(--dash-accent-ink))]" />
       </div>
     );
   }
@@ -90,7 +90,7 @@ const Referrals = () => {
             {lang === "ar" ? "إحالاتي" : "My Referrals"}
           </h1>
           {ambassadorTier === "ambassador_plus" && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))]">
               <Crown className="w-3 h-3" />
               Ambassadeur+
             </span>
@@ -107,7 +107,7 @@ const Referrals = () => {
       <div className="dash-card rounded-2xl p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
-            <UserPlus className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
+            <UserPlus className="w-5 h-5 text-[hsl(var(--dash-accent-ink))]" />
           </div>
           <div>
             <p className="text-sm font-semibold dash-text">
@@ -123,13 +123,13 @@ const Referrals = () => {
             {referralLink}
           </div>
           <Button variant="outline" size="sm" onClick={handleCopy} className="shrink-0 gap-1.5">
-            {copied ? <CheckCircle2 className="w-4 h-4 text-[hsl(var(--dash-accent))]" /> : <Copy className="w-4 h-4" />}
+            {copied ? <CheckCircle2 className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" /> : <Copy className="w-4 h-4" />}
             {copied ? (lang === "ar" ? "Copié" : "Copied") : (lang === "ar" ? "Copier" : "Copy")}
           </Button>
         </div>
         {referralCode && (
           <p className="text-xs dash-muted-text mt-2">
-            {lang === "ar" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--dash-accent))]">{referralCode}</span>
+            {lang === "ar" ? "Code :" : "Code:"} <span className="font-mono font-bold text-[hsl(var(--dash-accent-ink))]">{referralCode}</span>
           </p>
         )}
       </div>
@@ -143,7 +143,7 @@ const Referrals = () => {
         ].map((kpi, i) => (
           <div key={i} className="dash-card rounded-2xl p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-[hsl(var(--dash-accent)/.12)] flex items-center justify-center">
-              <kpi.icon className="w-5 h-5 text-[hsl(var(--dash-accent))]" />
+              <kpi.icon className="w-5 h-5 text-[hsl(var(--dash-accent-ink))]" />
             </div>
             <div>
               <p className="text-lg font-bold dash-text">{kpi.value}</p>
@@ -179,7 +179,7 @@ const Referrals = () => {
                     <td className="px-4 py-3">
                       <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
                         g.status === "approved"
-                          ? "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent))]"
+                          ? "bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))]"
                           : g.status === "rejected"
                           ? "bg-[hsl(0,72%,51%/.15)] text-[hsl(0,72%,60%)]"
                           : "bg-[hsl(var(--dash-muted))] dash-muted-text"

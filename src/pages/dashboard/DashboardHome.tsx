@@ -98,12 +98,12 @@ const DashboardHome = () => {
         <div className="relative overflow-hidden rounded-2xl bg-[hsl(var(--dash-sidebar-bg))] p-6 mb-6 shadow-[var(--dash-card-shadow-hover)]">
           <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[hsl(var(--dash-accent)/.1)] blur-3xl pointer-events-none" />
           <div className="relative">
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--dash-accent))]"><Sparkles className="w-3.5 h-3.5" /> {isFr ? "Espace activé" : "Space activated"}</span>
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[hsl(var(--dash-accent-ink))]"><Sparkles className="w-3.5 h-3.5" /> {isFr ? "Espace activé" : "Space activated"}</span>
             <h2 className="mt-2 text-xl font-semibold text-white">{isFr ? "Bienvenue chez Sofara. Trois étapes pour commencer." : "Welcome to Sofara. Three steps to get started."}</h2>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
               {onboarding.map((s, i) => (
                 <button key={s.path} onClick={() => navigate(s.path)} className="group text-left rounded-xl border border-white/10 bg-white/[0.03] hover:border-[hsl(var(--dash-accent)/.5)] p-4 transition-colors">
-                  <div className="flex items-center gap-2 mb-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[10px] font-bold flex items-center justify-center">{i + 1}</span><s.icon className="w-4 h-4 text-[hsl(var(--dash-accent))]" /></div>
+                  <div className="flex items-center gap-2 mb-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[10px] font-bold flex items-center justify-center">{i + 1}</span><s.icon className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" /></div>
                   <p className="text-[13px] font-medium text-white">{isFr ? s.fr : s.en}</p>
                 </button>
               ))}

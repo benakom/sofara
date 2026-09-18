@@ -109,7 +109,7 @@ const KycUploadForm = () => {
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
         className="dash-card rounded-xl p-6 text-center">
         <div className="p-3 rounded-full bg-[hsl(var(--dash-accent)/.12)] w-fit mx-auto mb-3">
-          <CheckCircle className="w-8 h-8 text-[hsl(var(--dash-accent))]" />
+          <CheckCircle className="w-8 h-8 text-[hsl(var(--dash-accent-ink))]" />
         </div>
         <h3 className="text-lg font-display font-bold dash-text mb-1">
           {lang === "ar" ? "Documents KYC soumis !" : "KYC Documents Submitted!"}
@@ -128,7 +128,7 @@ const KycUploadForm = () => {
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
       className="dash-card rounded-xl p-4">
       <h2 className="text-sm font-display font-semibold dash-text flex items-center gap-2 mb-4">
-        <Upload className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
+        <Upload className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" />
         {lang === "ar" ? "Soumettre les documents KYC" : "Submit KYC Documents"}
       </h2>
 
@@ -217,7 +217,7 @@ const FileUploadField = ({ label, file, onFileChange, required }: {
     }`}>
       {file ? (
         <>
-          <CheckCircle className="w-4 h-4 text-[hsl(var(--dash-accent))] shrink-0" />
+          <CheckCircle className="w-4 h-4 text-[hsl(var(--dash-accent-ink))] shrink-0" />
           <span className="text-sm dash-text truncate">{file.name}</span>
         </>
       ) : (

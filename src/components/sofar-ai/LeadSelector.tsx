@@ -52,7 +52,7 @@ export default function LeadSelector({ selectedLead, onSelectLead }: LeadSelecto
   if (selectedLead) {
     return (
       <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[hsl(var(--dash-accent)/.1)] border border-[hsl(var(--dash-accent)/.25)]">
-        <User className="w-4 h-4 text-[hsl(var(--dash-accent))]" />
+        <User className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" />
         <span className="text-sm font-medium text-[hsl(var(--dash-fg))] truncate">
           {selectedLead.first_name} {selectedLead.last_name}
         </span>
@@ -106,7 +106,7 @@ export default function LeadSelector({ selectedLead, onSelectLead }: LeadSelecto
                   className="w-full flex items-center gap-2 px-3 py-2 hover:bg-[hsl(var(--dash-accent)/.08)] transition-colors text-left"
                 >
                   <div className="w-7 h-7 rounded-full bg-[hsl(var(--dash-accent)/.15)] flex items-center justify-center shrink-0">
-                    <span className="text-[10px] font-bold text-[hsl(var(--dash-accent))]">
+                    <span className="text-[10px] font-bold text-[hsl(var(--dash-accent-ink))]">
                       {lead.first_name[0]}{lead.last_name[0]}
                     </span>
                   </div>

@@ -133,8 +133,8 @@ export default function AdminSEO() {
                   <YAxis yAxisId="l" tick={{ fontSize: 10, fill: "#8a8a8a" }} />
                   <YAxis yAxisId="r" orientation="right" tick={{ fontSize: 10, fill: "#8a8a8a" }} />
                   <Tooltip />
-                  <Line yAxisId="l" type="monotone" dataKey="clicks" stroke="#D2F34C" strokeWidth={2} dot={false} />
-                  <Line yAxisId="r" type="monotone" dataKey="impressions" stroke="#D2F34C" strokeWidth={2} dot={false} />
+                  <Line yAxisId="l" type="monotone" dataKey="clicks" stroke="#6B8F1F" strokeWidth={2} dot={false} />
+                  <Line yAxisId="r" type="monotone" dataKey="impressions" stroke="#6B8F1F" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>

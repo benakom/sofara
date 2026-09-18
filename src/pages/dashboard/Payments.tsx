@@ -40,7 +40,7 @@ const Payments = () => {
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
             className="dash-card rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent))]"><s.icon className="w-3.5 h-3.5" /></div>
+              <div className="p-1.5 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[hsl(var(--dash-accent-ink))]"><s.icon className="w-3.5 h-3.5" /></div>
               <span className="text-xs font-medium dash-muted-text uppercase tracking-wider">{lang === "ar" ? s.labelAr : s.labelEn}</span>
             </div>
             <p className="text-xl sm:text-lg font-display font-bold dash-text">{(s as any).noPrefix ? s.value : `AED ${s.value.toLocaleString()}`}</p>
@@ -72,7 +72,7 @@ const Payments = () => {
               <div key={p.id} className="flex items-center justify-between py-2.5 border-b dash-border-color last:border-0">
                 <div className="flex items-center gap-3">
                   <div className={`p-1.5 rounded-lg ${p.status === "paid" ? "bg-[hsl(var(--dash-accent)/.12)]" : "bg-[hsl(var(--dash-muted))]"}`}>
-                    {p.status === "paid" ? <ArrowDownRight className="w-3.5 h-3.5 text-[hsl(var(--dash-accent))]" /> : <Clock className="w-3.5 h-3.5 dash-muted-text" />}
+                    {p.status === "paid" ? <ArrowDownRight className="w-3.5 h-3.5 text-[hsl(var(--dash-accent-ink))]" /> : <Clock className="w-3.5 h-3.5 dash-muted-text" />}
                   </div>
                   <div>
                     <p className="text-base sm:text-sm font-medium dash-text">{p.reference}</p>

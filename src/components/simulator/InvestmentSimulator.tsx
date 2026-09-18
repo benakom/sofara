@@ -172,7 +172,7 @@ const InvestmentSimulator = () => {
         <SimulatorResults results={results} data={data} lang={lang} onBack={handleReset} />
         <SimulatorAIAnalysis results={results} data={data} lang={lang} />
         <div className="p-4 rounded-xl border border-[hsl(var(--dash-accent)/.2)] bg-[hsl(var(--dash-accent)/.06)] text-[hsl(var(--dash-muted-fg))] text-xs leading-relaxed">
-          <span className="font-semibold text-[hsl(var(--dash-accent))]">⚠️ Disclaimer :</span>{" "}
+          <span className="font-semibold text-[hsl(var(--dash-accent-ink))]">⚠️ Disclaimer :</span>{" "}
           {lang === "ar"
             ? "Résultats donnés à titre indicatif. Ils peuvent varier selon le projet, le promoteur et les frais réels."
             : "Results are indicative. They may vary depending on the project, developer, and actual fees."}
@@ -189,7 +189,7 @@ const InvestmentSimulator = () => {
           <span className="text-sm font-medium text-[hsl(var(--dash-muted-fg))]">
             {lang === "ar" ? `Étape ${step + 1} sur 5` : `Step ${step + 1} of 5`}
           </span>
-          <span className="text-sm font-semibold text-[hsl(var(--dash-accent))]">{Math.round(progress)}%</span>
+          <span className="text-sm font-semibold text-[hsl(var(--dash-accent-ink))]">{Math.round(progress)}%</span>
         </div>
         <div className="h-2 bg-[hsl(var(--dash-muted))] rounded-full overflow-hidden">
           <motion.div

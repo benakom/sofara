@@ -57,7 +57,7 @@ const StepPaymentPlan = ({ value, onChange, lang }: Props) => (
     </div>
 
     <div className="mt-6 p-4 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)]">
-      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent-ink))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-[hsl(var(--dash-muted-fg))] leading-relaxed">
         {lang === "ar"
           ? "Le plan de paiement détermine combien vous payez pendant la construction et combien à la remise des clés. Un plan 60/40 est le plus courant à Dubaï."

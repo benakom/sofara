@@ -312,12 +312,19 @@
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  font-family: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  font-feature-settings: "cv11", "ss01", "ss03";
+  /* Same humanist grotesque family ChatGPT and Claude use for their UI (Inter = open equivalent of Söhne / Anthropic Sans) */
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03", "cv01";
+  letter-spacing: -0.005em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   color-scheme: light;
 }
 .dash-theme .font-display, .dash-theme .font-body, .dash-theme .font-hero { font-family: inherit; letter-spacing: -0.01em; }
+/* Headings inside the backend: Inter too (base layer sets Poppins on h1-h6) */
+.dash-theme h1, .dash-theme h2, .dash-theme h3, .dash-theme h4, .dash-theme h5, .dash-theme h6 { font-family: inherit; letter-spacing: -0.02em; }
+.dash-theme input, .dash-theme textarea, .dash-theme select, .dash-theme button { font-family: inherit; }
 
 /* Dashboard content area */
 .dash-content {
@@ -400,7 +407,7 @@
   font-weight: 600;
   border: none;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px -2px hsl(246, 80%, 60%, 0.3);
+  box-shadow: 0 2px 8px -2px hsl(68, 88%, 40%, 0.3);
 }
 
 .dash-btn-accent:hover {
@@ -432,21 +439,21 @@
 .dash-block-e { background: linear-gradient(135deg, hsl(0 0% 10%), hsl(68 88% 62%)); color: hsl(0 0% 96%); border-color: transparent; }
 .dash-block-f { background: hsl(68 70% 50%); color: hsl(0 0% 4%); border-color: transparent; }
 
-.dash-icon-a { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
-.dash-icon-b { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
-.dash-icon-c { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
-.dash-icon-d { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
-.dash-icon-e { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
-.dash-icon-f { background: hsl(68 88% 62% / 0.12); color: hsl(68 60% 38%); }
+.dash-icon-a { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
+.dash-icon-b { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
+.dash-icon-c { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
+.dash-icon-d { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
+.dash-icon-e { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
+.dash-icon-f { background: hsl(68 88% 62% / 0.12); color: hsl(var(--dash-accent-ink)); }
 
-.dash-chip-a { background: hsl(68 88% 62% / 0.1); color: hsl(68 60% 38%); }
+.dash-chip-a { background: hsl(68 88% 62% / 0.1); color: hsl(var(--dash-accent-ink)); }
 .dash-chip-b { background: hsl(0 0% 94%); color: hsl(0 0% 40%); }
-.dash-chip-c { background: hsl(68 88% 62% / 0.1); color: hsl(68 60% 38%); }
+.dash-chip-c { background: hsl(68 88% 62% / 0.1); color: hsl(var(--dash-accent-ink)); }
 .dash-chip-d { background: hsl(0 0% 94%); color: hsl(0 0% 40%); }
 .dash-chip-e { background: hsl(0 72% 45% / 0.1); color: hsl(0 72% 50%); }
-.dash-chip-f { background: hsl(68 88% 62% / 0.1); color: hsl(68 60% 38%); }
+.dash-chip-f { background: hsl(68 88% 62% / 0.1); color: hsl(var(--dash-accent-ink)); }
 .dash-chip-g { background: hsl(0 0% 94%); color: hsl(0 0% 40%); }
-.dash-chip-h { background: hsl(68 88% 62% / 0.1); color: hsl(68 60% 38%); }
+.dash-chip-h { background: hsl(68 88% 62% / 0.1); color: hsl(var(--dash-accent-ink)); }
 
 .dash-bar-a { background: hsl(68 88% 62%); }
 .dash-bar-b { background: hsl(68 60% 48%); }

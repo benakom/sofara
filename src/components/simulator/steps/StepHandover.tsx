@@ -28,7 +28,7 @@ const StepHandover = ({ value, onChange, lang }: Props) => (
               : "border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-card))] hover:border-[hsl(var(--dash-accent)/.3)] hover:shadow-sm"
           }`}
         >
-          <span className={`text-xl font-black ${value === year ? "text-[hsl(var(--dash-accent))]" : "text-[hsl(var(--dash-fg))]"}`}>
+          <span className={`text-xl font-black ${value === year ? "text-[hsl(var(--dash-accent-ink))]" : "text-[hsl(var(--dash-fg))]"}`}>
             {year}
           </span>
         </button>
@@ -36,7 +36,7 @@ const StepHandover = ({ value, onChange, lang }: Props) => (
     </div>
 
     <div className="mt-6 p-4 rounded-xl bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.2)]">
-      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
+      <h3 className="text-xs font-bold text-[hsl(var(--dash-accent-ink))] mb-1">💡 {lang === "ar" ? "لماذا هذا مهم؟" : "WHY DOES THIS MATTER?"}</h3>
       <p className="text-xs text-[hsl(var(--dash-muted-fg))] leading-relaxed">
         {lang === "ar"
           ? "La date de livraison détermine quand vous commencerez à percevoir des revenus locatifs. Jusque-là, votre capital est investi pendant la construction sans rendement. Cela aide à calculer votre rendement réel plus précisément."

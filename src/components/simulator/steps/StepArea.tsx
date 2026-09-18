@@ -57,7 +57,7 @@ const StepArea = ({ value, onChange, lang }: Props) => {
             <p className="text-xs font-medium text-[hsl(var(--dash-muted-fg))]">
               {area.avgPriceSqft.toLocaleString()} AED/sqft
             </p>
-            <p className="text-[11px] text-[hsl(var(--dash-accent))] font-semibold">{area.avgRoi}% ROI</p>
+            <p className="text-[11px] text-[hsl(var(--dash-accent-ink))] font-semibold">{area.avgRoi}% ROI</p>
             {area.popular && (
               <span className="absolute top-1.5 right-1.5 text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-accent-fg))]">
                 ★
