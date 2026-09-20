@@ -49,7 +49,7 @@ BEGIN
   END IF;
 
   INSERT INTO public.profiles (
-    id, email, full_name, first_name, last_name, phone, occupation, language,
+    id, email, full_name, first_name, last_name, phone, occupation,
     profile_type, status, accepted_terms, accepted_terms_at, referred_by
   ) VALUES (
     NEW.id,
@@ -59,7 +59,6 @@ BEGIN
     NULLIF(NEW.raw_user_meta_data->>'last_name', ''),
     NULLIF(NEW.raw_user_meta_data->>'phone', ''),
     NULLIF(NEW.raw_user_meta_data->>'occupation', ''),
-    CASE WHEN NEW.raw_user_meta_data->>'lang' IN ('en', 'fr') THEN NEW.raw_user_meta_data->>'lang' ELSE NULL END,
     'referrer',
     'pending',
     true,
@@ -73,7 +72,6 @@ BEGIN
     last_name = COALESCE(EXCLUDED.last_name, public.profiles.last_name),
     phone = COALESCE(EXCLUDED.phone, public.profiles.phone),
     occupation = COALESCE(EXCLUDED.occupation, public.profiles.occupation),
-    language = COALESCE(public.profiles.language, EXCLUDED.language),
     profile_type = COALESCE(public.profiles.profile_type, 'referrer'),
     status = COALESCE(public.profiles.status, 'pending'),
     accepted_terms = true,
