@@ -293,7 +293,7 @@ export const FAQ_JSONLD = {
       name: "Can foreigners buy property in Dubai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Any nationality can buy freehold property in designated areas. Properties from AED 750,000 qualify for a 10-year Golden Visa.",
+        text: "Yes. Any nationality can buy freehold property in designated areas. A property investment of AED 2 million or more qualifies for a 10-year Golden Visa.",
       },
     },
   ],
