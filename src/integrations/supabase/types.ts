@@ -496,30 +496,39 @@ export type Database = {
           created_at: string
           from_stage: string | null
           id: string
+          kind: string
           lead_id: string
           note: string | null
+          notified_at: string | null
           to_stage: string
           user_id: string
+          visible_to_ambassador: boolean
         }
         Insert: {
           changed_by?: string | null
           created_at?: string
           from_stage?: string | null
           id?: string
+          kind?: string
           lead_id: string
           note?: string | null
+          notified_at?: string | null
           to_stage: string
           user_id: string
+          visible_to_ambassador?: boolean
         }
         Update: {
           changed_by?: string | null
           created_at?: string
           from_stage?: string | null
           id?: string
+          kind?: string
           lead_id?: string
           note?: string | null
+          notified_at?: string | null
           to_stage?: string
           user_id?: string
+          visible_to_ambassador?: boolean
         }
         Relationships: [
           {
@@ -533,51 +542,66 @@ export type Database = {
       }
       leads: {
         Row: {
+          assigned_to: string | null
           created_at: string
           email: string | null
           first_name: string
           id: string
           kyc_status: string | null
           last_name: string
+          last_stage_at: string | null
+          lost_reason: string | null
           next_action: string | null
+          next_action_at: string | null
           notes: string | null
           phone: string | null
           score: string | null
           source: string | null
           stage: string | null
           updated_at: string
+          updated_by: string | null
           user_id: string
         }
         Insert: {
+          assigned_to?: string | null
           created_at?: string
           email?: string | null
           first_name: string
           id?: string
           kyc_status?: string | null
           last_name: string
+          last_stage_at?: string | null
+          lost_reason?: string | null
           next_action?: string | null
+          next_action_at?: string | null
           notes?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
           updated_at?: string
+          updated_by?: string | null
           user_id: string
         }
         Update: {
+          assigned_to?: string | null
           created_at?: string
           email?: string | null
           first_name?: string
           id?: string
           kyc_status?: string | null
           last_name?: string
+          last_stage_at?: string | null
+          lost_reason?: string | null
           next_action?: string | null
+          next_action_at?: string | null
           notes?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
           updated_at?: string
+          updated_by?: string | null
           user_id?: string
         }
         Relationships: []
@@ -1121,6 +1145,57 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          created_at: string
+          data: Json
+          event_id: string | null
+          id: string
+          lead_id: string | null
+          read_at: string | null
+          type: string
+          url: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          event_id?: string | null
+          id?: string
+          lead_id?: string | null
+          read_at?: string | null
+          type: string
+          url?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          event_id?: string | null
+          id?: string
+          lead_id?: string | null
+          read_at?: string | null
+          type?: string
+          url?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "lead_stage_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       payments: {
         Row: {
           amount: number
@@ -1167,6 +1242,7 @@ export type Database = {
           id: string
           language: string | null
           last_name: string | null
+          notify_email: boolean
           occupation: string | null
           phone: string | null
           profile_type: string | null
@@ -1190,6 +1266,7 @@ export type Database = {
           id: string
           language?: string | null
           last_name?: string | null
+          notify_email?: boolean
           occupation?: string | null
           phone?: string | null
           profile_type?: string | null
@@ -1213,6 +1290,7 @@ export type Database = {
           id?: string
           language?: string | null
           last_name?: string | null
+          notify_email?: boolean
           occupation?: string | null
           phone?: string | null
           profile_type?: string | null
@@ -1336,6 +1414,21 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_update_lead: {
+        Args: {
+          p_assigned_to?: string
+          p_clear_next_action?: boolean
+          p_lead_id: string
+          p_lost_reason?: string
+          p_next_action?: string
+          p_next_action_at?: string
+          p_note?: string
+          p_score?: string
+          p_stage?: string
+          p_visible?: boolean
+        }
+        Returns: Json
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
