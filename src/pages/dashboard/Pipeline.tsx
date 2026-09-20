@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Plus, AlertCircle, X, Users, ChevronRight } from "lucide-react";
 import FunnelBar from "@/components/dashboard/FunnelBar";
 import LeadDetailSheet from "@/components/dashboard/LeadDetailSheet";
+import NewLeadForm from "@/components/dashboard/NewLeadForm";
 import { fr, STAGES, stageByKey, stageLabel, stageColor, isStale, relativeTime, initials, type LeadLike } from "@/lib/dashboard-data";
 import { LEAD_PHASES } from "@/lib/lead-stages";
 
@@ -125,23 +126,9 @@ const Pipeline = () => {
               <Plus className="w-4 h-4" strokeWidth={2.5} /> {isFr ? "Nouveau lead" : "New lead"}
             </Button>
           </DialogTrigger>
-          <DialogContent className="dash-form-bg border-[hsl(var(--dash-border))]">
-            <DialogHeader><DialogTitle className="dash-text">{isFr ? "Ajouter un lead" : "Add a lead"}</DialogTitle></DialogHeader>
-            <form onSubmit={(e) => { e.preventDefault(); addLead.mutate(); }} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div><Label className="dash-text text-xs">{isFr ? "Prénom" : "First name"}</Label><Input required value={form.first_name} onChange={(e) => setForm((p) => ({ ...p, first_name: e.target.value }))} className="mt-1 dash-input" /></div>
-                <div><Label className="dash-text text-xs">{isFr ? "Nom" : "Last name"}</Label><Input required value={form.last_name} onChange={(e) => setForm((p) => ({ ...p, last_name: e.target.value }))} className="mt-1 dash-input" /></div>
-              </div>
-              <div><Label className="dash-text text-xs">Email</Label><Input type="email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} className="mt-1 dash-input" /></div>
-              <div><Label className="dash-text text-xs">{isFr ? "Téléphone" : "Phone"}</Label><Input value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} className="mt-1 dash-input" /></div>
-              <div><Label className="dash-text text-xs">Source</Label>
-                <Select value={form.source} onValueChange={(v) => setForm((p) => ({ ...p, source: v }))}>
-                  <SelectTrigger className="mt-1 dash-input"><SelectValue /></SelectTrigger>
-                  <SelectContent>{Object.entries(SOURCES).map(([k, v]) => <SelectItem key={k} value={k}>{isFr ? v.fr : v.en}</SelectItem>)}</SelectContent>
-                </Select>
-              </div>
-              <Button type="submit" className="w-full dash-btn-accent" disabled={addLead.isPending}>{addLead.isPending ? "..." : isFr ? "Ajouter" : "Add"}</Button>
-            </form>
+          <DialogContent className="dash-form-bg border-[hsl(var(--dash-border))] max-w-2xl max-h-[92vh] overflow-y-auto">
+            <DialogHeader><DialogTitle className="dash-text">{isFr ? "Soumettre un lead" : "Submit a lead"}</DialogTitle></DialogHeader>
+            <NewLeadForm compact onSubmitted={() => setNewLeadOpen(false)} />
           </DialogContent>
         </Dialog>
       </div>

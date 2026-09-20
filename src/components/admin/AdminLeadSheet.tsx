@@ -4,14 +4,18 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, Mail, Phone, MessageCircle, StickyNote, ArrowRight, Check, EyeOff, Save, User, CalendarClock, Sparkles } from "lucide-react";
+import { Loader2, Mail, Phone, MessageCircle, StickyNote, ArrowRight, Check, EyeOff, Save, User, CalendarClock, Sparkles, ShieldCheck, ShieldAlert, ExternalLink } from "lucide-react";
 import { STAGES, stageByKey, stageColor, initials, relativeTime } from "@/lib/dashboard-data";
 import { LEAD_PHASES, LOST_REASONS, leadStageText } from "@/lib/lead-stages";
+import { RELATIONSHIPS, CONSENT_METHODS, BUDGET_RANGES, TIMELINES, PURPOSES, CHANNELS, LEAD_LANGUAGES, CONSENT_STATUS } from "@/lib/lead-intake";
 
 interface Lead {
   id: string; user_id: string; first_name: string; last_name: string | null; email: string | null; phone: string | null; source: string | null;
   stage: string | null; score: string | null; next_action: string | null; next_action_at: string | null; lost_reason: string | null;
   assigned_to: string | null; notes: string | null; kyc_status: string | null; created_at: string; updated_at: string; last_stage_at: string | null;
+  lead_country: string | null; lead_language: string | null; relationship: string | null; relationship_details: string | null; campaign_name: string | null; campaign_link: string | null;
+  consent_method: string | null; consent_date: string | null; consent_evidence_url: string | null; budget_range: string | null; timeline: string | null; purpose: string | null;
+  preferred_channel: string | null; best_time: string | null; attested_at: string | null; consent_status: string | null; consent_note: string | null; consent_checked_at: string | null; consent_checked_by: string | null;
 }
 interface StageEvent { id: string; from_stage: string | null; to_stage: string; created_at: string; note: string | null; kind: "stage" | "note"; visible_to_ambassador: boolean; changed_by: string | null; notified_at: string | null }
 interface Person { id: string; full_name: string | null; email?: string | null; phone?: string | null; language?: string | null }
@@ -122,6 +126,21 @@ const AdminLeadSheet = ({ leadId, open, onOpenChange, onChanged }: Props) => {
 
   const wa = lead?.phone ? `https://wa.me/${lead.phone.replace(/[^\d]/g, "")}` : null;
 
+  const [consentNote, setConsentNote] = useState("");
+  const setConsent = async (status: "verified" | "disputed" | "unverified") => {
+    if (!lead) return;
+    if (status === "disputed" && !confirm("Mark consent as disputed? The ambassador is notified and asked for context.")) return;
+    setSaving(true);
+    const { error } = await supabase.rpc("admin_set_lead_consent", { p_lead_id: lead.id, p_status: status, p_note: consentNote.trim() || null });
+    setSaving(false);
+    if (error) { toast({ title: "Consent update failed", description: error.message, variant: "destructive" }); return; }
+    toast({ title: status === "verified" ? "Consent verified" : status === "disputed" ? "Consent disputed, ambassador notified" : "Consent reset" });
+    setConsentNote("");
+    onChanged?.();
+    await load();
+  };
+  const lbl = (list: { key: string; label: { en: string } }[], key: string | null) => list.find((x) => x.key === key)?.label.en ?? (key || "—");
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full sm:max-w-xl p-0 border-[hsl(var(--dash-border))] bg-[hsl(var(--dash-bg))] text-[hsl(var(--dash-fg))] [&>button]:text-[hsl(var(--dash-muted-fg))] font-['Poppins']">
@@ -216,6 +235,38 @@ const AdminLeadSheet = ({ leadId, open, onOpenChange, onChanged }: Props) => {
                 <button onClick={save} disabled={saving} className="w-full inline-flex items-center justify-center gap-2 h-10 rounded-lg bg-[hsl(var(--dash-accent))] text-black text-[13px] font-bold hover:brightness-95 disabled:opacity-60">
                   {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} {stageChanged ? `Move to "${target.en}"` : note.trim() ? "Add note" : "Save"}
                 </button>
+              </section>
+
+              {/* Source & consent */}
+              <section className={`rounded-2xl border p-4 space-y-3 ${lead.consent_status === "disputed" ? "border-[#EF4444]/50 bg-[#EF4444]/5" : lead.consent_status === "verified" ? "border-[#22C55E]/40 bg-[hsl(var(--dash-card))]" : "border-[hsl(var(--dash-warning)/.5)] bg-[hsl(var(--dash-warning)/.06)]"}`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-[12px] font-semibold uppercase tracking-wider text-[hsl(var(--dash-muted-fg))] flex items-center gap-2">{lead.consent_status === "disputed" ? <ShieldAlert className="w-3.5 h-3.5 text-[#EF4444]" /> : <ShieldCheck className="w-3.5 h-3.5" />} Source & consent</h3>
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${CONSENT_STATUS[lead.consent_status || "unverified"]?.className}`}>{CONSENT_STATUS[lead.consent_status || "unverified"]?.label.en}</span>
+                </div>
+                {!lead.attested_at ? (
+                  <p className="text-[12px] text-[hsl(var(--dash-muted-fg))]">Submitted before the consent-first intake. Confirm on the first call that the person agreed to be contacted through the ambassador.</p>
+                ) : (
+                  <div className="grid grid-cols-2 gap-2 text-[12px]">
+                    <div className="col-span-2 rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Relationship</p><p className="mt-0.5 font-medium">{lbl(RELATIONSHIPS, lead.relationship)}</p><p className="mt-1 whitespace-pre-line text-[hsl(var(--dash-fg))]">{lead.relationship_details}</p></div>
+                    {lead.campaign_name && <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Campaign</p><p className="mt-0.5">{lead.campaign_name}</p></div>}
+                    {lead.campaign_link && <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">{lead.relationship === "content" ? "Profile" : "Form / page"}</p><a href={lead.campaign_link} target="_blank" rel="noreferrer" className="mt-0.5 inline-flex items-center gap-1 text-[hsl(var(--dash-accent-ink))] hover:underline truncate">{lead.campaign_link} <ExternalLink className="w-3 h-3 shrink-0" /></a></div>}
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Consent</p><p className="mt-0.5">{lbl(CONSENT_METHODS, lead.consent_method)}{lead.consent_date ? ` · ${new Date(lead.consent_date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}` : ""}</p></div>
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Evidence</p>{lead.consent_evidence_url ? <a href={lead.consent_evidence_url} target="_blank" rel="noreferrer" className="mt-0.5 inline-flex items-center gap-1 text-[hsl(var(--dash-accent-ink))] hover:underline truncate">Open <ExternalLink className="w-3 h-3" /></a> : <p className="mt-0.5 text-[hsl(var(--dash-muted-fg))]">None provided</p>}</div>
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Budget · timeline</p><p className="mt-0.5">{lbl(BUDGET_RANGES, lead.budget_range)} · {lbl(TIMELINES, lead.timeline)}</p></div>
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Purpose · channel</p><p className="mt-0.5">{lbl(PURPOSES, lead.purpose)} · {lbl(CHANNELS, lead.preferred_channel)}</p></div>
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Language · country</p><p className="mt-0.5">{lbl(LEAD_LANGUAGES, lead.lead_language)} · {lead.lead_country || "—"}</p></div>
+                    <div className="rounded-lg bg-[hsl(var(--dash-card))] border border-[hsl(var(--dash-border))] px-3 py-2"><p className="text-[10px] uppercase tracking-wide text-[hsl(var(--dash-muted-fg))]">Best time</p><p className="mt-0.5">{lead.best_time || "—"}</p></div>
+                    <p className="col-span-2 text-[11px] text-[hsl(var(--dash-muted-fg))]">Declarations accepted {fmt(lead.attested_at)}{lead.consent_checked_at ? ` · checked ${fmt(lead.consent_checked_at)} by ${lead.consent_checked_by ? people[lead.consent_checked_by] || "admin" : "admin"}` : ""}{lead.consent_note ? ` · ${lead.consent_note}` : ""}</p>
+                  </div>
+                )}
+                <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                  <input value={consentNote} onChange={(e) => setConsentNote(e.target.value)} placeholder="Optional note on the consent check (shared with the ambassador)" className={`${inputCls} flex-1`} />
+                  <div className="flex gap-2">
+                    <button onClick={() => setConsent("verified")} disabled={saving} className="inline-flex items-center gap-1.5 px-3 h-9 rounded-lg bg-[#22C55E] text-white text-[12px] font-bold hover:brightness-95 disabled:opacity-60"><ShieldCheck className="w-3.5 h-3.5" /> Verified</button>
+                    <button onClick={() => setConsent("disputed")} disabled={saving} className="inline-flex items-center gap-1.5 px-3 h-9 rounded-lg border border-[#EF4444]/40 text-[#EF4444] text-[12px] font-bold hover:bg-[#EF4444]/5 disabled:opacity-60"><ShieldAlert className="w-3.5 h-3.5" /> Disputed</button>
+                  </div>
+                </div>
+                {lead.consent_status === "disputed" && <p className="text-[11px] text-[#EF4444]">Consent is disputed. If confirmed, move the stage to "Rejected: no consent" above; the ambassador receives the explanation automatically.</p>}
               </section>
 
               {/* Lead details */}

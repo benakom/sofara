@@ -106,6 +106,11 @@ export const LEAD_STAGES: LeadStage[] = [
     msg: { en: "{lead} is not interested at this time. The lead stays attributed to you for 12 months if things change.", fr: "{lead} n'est pas intéressé pour le moment. Le lead vous reste attribué pendant 12 mois si la situation évolue." },
   },
   {
+    key: "refus_consentement", en: "Rejected: no consent", fr: "Refusé : pas de consentement", step: 0, kind: "lost", phase: "closed",
+    msg: { en: "This lead was closed because {lead} told us they had not agreed to be contacted by Sofara. Leads without explicit consent are not eligible for commission.", fr: "Ce lead a été clôturé car {lead} nous a indiqué ne pas avoir accepté d'être contacté par Sofara. Les leads sans consentement explicite ne donnent pas droit à une commission." },
+    hint: { en: "Only submit people who know you and have explicitly agreed that you share their contact with Sofara.", fr: "Ne soumettez que des personnes qui vous connaissent et ont explicitement accepté que vous partagiez leur contact avec Sofara." },
+  },
+  {
     key: "perdu", en: "Lost", fr: "Perdu", step: 0, kind: "lost", phase: "closed",
     msg: { en: "This lead is closed as lost. Thank you for the introduction; the next one may be the right one.", fr: "Ce lead est clôturé comme perdu. Merci pour l'introduction ; le prochain sera peut-être le bon." },
   },

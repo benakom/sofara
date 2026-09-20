@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import AdminLeadSheet from "@/components/admin/AdminLeadSheet";
 import { STAGES, stageByKey, stageColor, relativeTime, daysAgo } from "@/lib/dashboard-data";
 import { LEAD_PHASES } from "@/lib/lead-stages";
+import { CONSENT_STATUS } from "@/lib/lead-intake";
 
 interface Profile { id: string; full_name: string | null }
 
@@ -133,7 +134,9 @@ const AdminPipeline = () => {
               return (
                 <TableRow key={l.id} onClick={() => setOpenLead(l.id)} className="border-[hsl(var(--dash-border))] hover:bg-[hsl(var(--dash-muted)/.4)] cursor-pointer">
                   <TableCell>
-                    <p className="font-medium text-white">{l.first_name} {l.last_name}</p>
+                    <p className="font-medium text-white flex items-center gap-2">{l.first_name} {l.last_name}
+                      {l.consent_status !== "verified" && <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${CONSENT_STATUS[l.consent_status || "unverified"]?.className}`}>{l.consent_status === "disputed" ? "consent disputed" : "consent to verify"}</span>}
+                    </p>
                     <p className="text-[11px] text-[hsl(var(--dash-muted-fg))]">{l.phone || l.email || "—"}</p>
                   </TableCell>
                   <TableCell className="text-xs font-medium text-[hsl(var(--primary))]">{getName(l.user_id)}</TableCell>

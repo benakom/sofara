@@ -1,71 +1,51 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "@/i18n/LanguageContext";
-import { UserPlus, FileSpreadsheet, Link, Facebook, AlertTriangle } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { FileSpreadsheet, Mail } from "lucide-react";
+import NewLeadForm from "@/components/dashboard/NewLeadForm";
+import { fr } from "@/lib/dashboard-data";
 
-const methods = [
-  { icon: UserPlus, titleFr: "Saisie manuelle", titleEn: "Manual Entry", descFr: "Ajoutez un lead à la fois avec un formulaire", descEn: "Add one lead at a time with a form", path: "/dashboard/pipeline" },
-  { icon: FileSpreadsheet, titleFr: "Import CSV/XLSX", titleEn: "Import CSV/XLSX", descFr: "Uploadez un fichier avec vos leads", descEn: "Upload a file with your leads", path: null },
-  { icon: Link, titleFr: "Google Sheets", titleEn: "Google Sheets", descFr: "Connectez votre Google Sheet", descEn: "Connect your Google Sheet", path: null },
-  { icon: Facebook, titleFr: "Facebook Ads", titleEn: "Facebook Ads", descFr: "Importez depuis vos campagnes Facebook", descEn: "Import from your Facebook campaigns", path: null },
-];
-
+/** Submit a lead: consent-first policy, then the full intake form. */
 const ImportLeads = () => {
   const { lang } = useLanguage();
+  const isFr = fr(lang);
   const navigate = useNavigate();
-  const [accepted, setAccepted] = useState(false);
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight mb-1">{lang === "ar" ? "استيراد العملاء" : "Import Leads"}</h1>
-      <p className="dash-muted-text text-xs mt-0.5 mb-6">{lang === "ar" ? "قم بتحميل عملائك بطرق مختلفة" : "Upload your leads through different methods"}</p>
+      <h1 className="text-2xl font-display font-extrabold dash-text tracking-tight mb-1">{isFr ? "Soumettre un lead" : "Submit a lead"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-6">
+        {isFr
+          ? "Un lead complet et consenti est contacté sous 24 heures. Plus vous donnez de contexte, plus vite notre conseiller avance."
+          : "A complete, consented lead is contacted within 24 hours. The more context you give, the faster our advisor moves."}
+      </p>
 
-      <div className="bg-[hsl(var(--dash-accent)/.08)] border border-[hsl(var(--dash-accent)/.25)] rounded-2xl p-5 mb-6">
-        <div className="flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-[hsl(var(--dash-accent-ink))] mt-0.5 shrink-0" />
-          <div>
-            <h3 className="font-semibold text-[hsl(var(--dash-accent-ink))] text-sm flex items-center gap-2">
-              ⚠️ {lang === "ar" ? "Déclaration obligatoire" : "Mandatory Declaration"}
-            </h3>
-            <p className="text-sm text-[hsl(var(--dash-fg))] mt-2 leading-relaxed">
-              {lang === "ar"
-                ? "En uploadant ces leads, j'atteste sur l'honneur qu'il s'agit de mes propres leads, obtenus de manière licite et conforme aux réglementations en vigueur (RGPD, PDPL). Je certifie disposer du consentement explicite de chaque contact pour le partage de leurs informations. Je reconnais également que Sofara se réserve le droit de contacter directement les leads afin de vérifier que le consentement a bien été donné pour l'ambassadeur."
-                : "By uploading these leads, I certify on my honor that these are my own leads, obtained lawfully and in compliance with current regulations (GDPR, PDPL). I certify that I have the explicit consent of each contact for sharing their information. I also acknowledge that Sofara reserves the right to directly contact the leads to verify that consent has been properly given for the ambassador."}
-            </p>
-            <div className="flex items-center gap-2 mt-4">
-              <Checkbox id="accept" checked={accepted} onCheckedChange={(v) => setAccepted(!!v)} />
-              <label htmlFor="accept" className="text-sm text-[hsl(var(--dash-accent-ink))] font-medium cursor-pointer">
-                {lang === "ar" ? "J'accepte les conditions ci-dessus" : "I accept the above conditions"}
-              </label>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
+        <div className="xl:col-span-3">
+          <NewLeadForm onSubmitted={() => navigate("/dashboard/pipeline")} />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {methods.map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            onClick={() => accepted && m.path && navigate(m.path)}
-            className={`dash-card rounded-2xl p-6 transition-all cursor-pointer group ${
-              accepted ? "hover:shadow-md hover:border-[hsl(var(--dash-accent)/.3)]" : "opacity-50 pointer-events-none"
-            }`}
-          >
-            <div className="p-3 rounded-xl bg-[hsl(var(--dash-accent)/.12)] w-fit mb-4">
-              <m.icon className="w-6 h-6 text-[hsl(var(--dash-accent-ink))] group-hover:text-[hsl(var(--dash-accent-ink))] transition-colors" />
-            </div>
-            <h3 className="font-display font-semibold dash-text">{lang === "ar" ? m.titleFr : m.titleEn}</h3>
-            <p className="text-base sm:text-sm dash-muted-text mt-1">{lang === "ar" ? m.descFr : m.descEn}</p>
-            <p className="text-base sm:text-sm text-[hsl(var(--dash-accent-ink))] mt-3 group-hover:text-[hsl(var(--dash-accent-ink))] transition-colors font-medium">
-              {lang === "ar" ? "Commencer →" : "Start →"}
+        <aside className="xl:col-span-2 space-y-4">
+          <div className="dash-card rounded-2xl p-5">
+            <h3 className="font-display font-semibold dash-text text-[14px]">{isFr ? "Ce qui se passe ensuite" : "What happens next"}</h3>
+            <ol className="mt-3 space-y-2 text-[13px] dash-text">
+              {(isFr
+                ? ["Notre conseiller appelle le lead sous 24 heures, dans sa langue.", "Il confirme d'abord que la personne a bien accepté d'être contactée via vous.", "Vous suivez chaque étape dans Suivi des leads et recevez une notification à chaque changement.", "Votre commission apparaît dès l'acceptation de l'offre."]
+                : ["Our advisor calls the lead within 24 hours, in their language.", "They first confirm the person agreed to be contacted through you.", "You follow every step in Lead tracking and get notified at each change.", "Your commission appears as soon as the offer is accepted."]
+              ).map((s, i) => (
+                <li key={i} className="flex gap-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))] text-[11px] font-bold flex items-center justify-center shrink-0">{i + 1}</span><span className="leading-snug">{s}</span></li>
+              ))}
+            </ol>
+          </div>
+          <div className="dash-card rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-2"><FileSpreadsheet className="w-4 h-4 text-[hsl(var(--dash-accent-ink))]" /><h3 className="font-display font-semibold dash-text text-[14px]">{isFr ? "Plusieurs leads à la fois ?" : "Several leads at once?"}</h3></div>
+            <p className="text-[12px] dash-muted-text leading-relaxed">
+              {isFr
+                ? "Les imports en masse (fichier, Google Sheets, campagnes publicitaires) passent par une revue manuelle du consentement. Écrivez-nous avec la source des leads et nous ouvrons l'import pour votre compte."
+                : "Bulk imports (file, Google Sheets, ad campaigns) go through a manual consent review. Write to us with the source of the leads and we open the import for your account."}
             </p>
-          </motion.div>
-        ))}
+            <a href="mailto:hello@sofara.io?subject=Bulk%20lead%20import" className="mt-3 inline-flex items-center gap-2 text-[12px] font-semibold text-[hsl(var(--dash-accent-ink))] hover:underline"><Mail className="w-3.5 h-3.5" /> hello@sofara.io</a>
+          </div>
+        </aside>
       </div>
     </motion.div>
   );
