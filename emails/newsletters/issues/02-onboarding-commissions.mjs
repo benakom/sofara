@@ -27,7 +27,7 @@ export default {
       ["p", "The rate depends on the developer's own commission structure. Indicative rates: **Emaar 3%**, **Sobha 3%**, **DAMAC 2.5%**, Nakheel, Aldar and Binghatti 2.5% to 3%. The exact rate for each deal is visible in your portal before the client signs."],
       ["h2", "When you get paid"],
       ["ul", [
-        "The client signs and pays the booking and the down payment.",
+        "The client signs the Sales and Purchase Agreement (SPA) and pays the down payment with the DLD fees. This is the moment your commission is earned.",
         "The developer pays Cevitas the brokerage commission.",
         "Your share is transferred in AED within 7 days of closing, against an invoice you issue from your dashboard.",
       ]],
@@ -56,7 +56,7 @@ export default {
       ["p", "Le taux dépend de la structure de commission du promoteur. Taux indicatifs : **Emaar 3 %**, **Sobha 3 %**, **DAMAC 2,5 %**, Nakheel, Aldar et Binghatti entre 2,5 % et 3 %. Le taux exact de chaque dossier est visible dans votre portail avant la signature du client."],
       ["h2", "Quand vous êtes payé"],
       ["ul", [
-        "Le client signe et règle la réservation puis l'apport initial.",
+        "Le client signe le contrat de vente (SPA) et règle l'apport avec les frais DLD. C'est à ce moment que votre commission est acquise.",
         "Le promoteur verse à Cevitas la commission d'agence.",
         "Votre part est virée en AED sous 7 jours après le closing, contre une facture que vous émettez depuis votre tableau de bord.",
       ]],

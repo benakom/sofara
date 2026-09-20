@@ -29,8 +29,8 @@ const ImportLeads = () => {
             <h3 className="font-display font-semibold dash-text text-[14px]">{isFr ? "Ce qui se passe ensuite" : "What happens next"}</h3>
             <ol className="mt-3 space-y-2 text-[13px] dash-text">
               {(isFr
-                ? ["Notre conseiller appelle le lead sous 24 heures, dans sa langue.", "Il confirme d'abord que la personne a bien accepté d'être contactée via vous.", "Vous suivez chaque étape dans Suivi des leads et recevez une notification à chaque changement.", "Votre commission apparaît dès l'acceptation de l'offre."]
-                : ["Our advisor calls the lead within 24 hours, in their language.", "They first confirm the person agreed to be contacted through you.", "You follow every step in Lead tracking and get notified at each change.", "Your commission appears as soon as the offer is accepted."]
+                ? ["Notre conseiller appelle le lead sous 24 heures, dans sa langue.", "Il confirme d'abord que la personne a bien accepté d'être contactée via vous.", "Vous suivez chaque étape dans Suivi des leads et recevez une notification à chaque changement.", "Votre commission est acquise une fois le SPA signé et l'apport payé avec les frais DLD, puis versée sous 7 jours après le paiement du promoteur."]
+                : ["Our advisor calls the lead within 24 hours, in their language.", "They first confirm the person agreed to be contacted through you.", "You follow every step in Lead tracking and get notified at each change.", "Your commission is earned once the SPA is signed and the down payment with DLD fees is paid, then transferred within 7 days of the developer's payment."]
               ).map((s, i) => (
                 <li key={i} className="flex gap-2"><span className="w-5 h-5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))] text-[11px] font-bold flex items-center justify-center shrink-0">{i + 1}</span><span className="leading-snug">{s}</span></li>
               ))}

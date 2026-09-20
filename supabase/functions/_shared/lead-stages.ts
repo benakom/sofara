@@ -75,19 +75,19 @@ export const LEAD_STAGES: LeadStage[] = [
   },
   {
     key: "offre_acceptee", en: "Offer accepted", fr: "Offre acceptée", step: 11, kind: "won", phase: "closing",
-    msg: { en: "{lead} accepted the offer. Your commission is being estimated and will appear in your dashboard.", fr: "{lead} a accepté l'offre. Votre commission est en cours d'estimation et apparaîtra dans votre tableau de bord." },
+    msg: { en: "{lead} accepted the offer. Your commission is earned once the SPA is signed and the down payment with DLD fees is paid; an estimate will appear in your dashboard.", fr: "{lead} a accepté l'offre. Votre commission est acquise une fois le SPA signé et l'apport payé avec les frais DLD ; une estimation apparaîtra dans votre tableau de bord." },
   },
   {
     key: "booking", en: "Booking paid", fr: "Réservation payée", step: 12, kind: "won", phase: "closing",
-    msg: { en: "{lead} paid the booking fee. The developer is preparing the sales agreement.", fr: "{lead} a payé les frais de réservation. Le promoteur prépare le contrat de vente." },
+    msg: { en: "{lead} paid the booking fee. The developer is preparing the sales agreement (SPA). Your commission is earned once the SPA is signed and the down payment with DLD fees is paid.", fr: "{lead} a payé les frais de réservation. Le promoteur prépare le contrat de vente (SPA). Votre commission est acquise une fois le SPA signé et l'apport payé avec les frais DLD." },
   },
   {
     key: "spa_signe", en: "SPA signed", fr: "SPA signé", step: 13, kind: "won", phase: "closing",
-    msg: { en: "The Sales and Purchase Agreement is signed. The transaction is now registered with the developer.", fr: "Le contrat de vente (SPA) est signé. La transaction est enregistrée auprès du promoteur." },
+    msg: { en: "The Sales and Purchase Agreement is signed. One step left for your commission: the down payment with DLD fees.", fr: "Le contrat de vente (SPA) est signé. Il ne manque qu'une étape pour votre commission : l'apport avec les frais DLD." },
   },
   {
     key: "dp_paye", en: "Down payment paid", fr: "Apport payé", step: 14, kind: "won", phase: "closing",
-    msg: { en: "The down payment is paid. Your commission moves to validation, payable within 7 days of the developer's payment to Cevitas.", fr: "L'apport est payé. Votre commission passe en validation, payable sous 7 jours après le paiement du promoteur à Cevitas." },
+    msg: { en: "The down payment and DLD fees are paid and the SPA is signed: your commission is now earned. It moves to validation and is paid within 7 days of the developer's payment to Cevitas.", fr: "L'apport et les frais DLD sont payés et le SPA est signé : votre commission est désormais acquise. Elle passe en validation et est versée sous 7 jours après le paiement du promoteur à Cevitas." },
   },
   {
     key: "injoignable", en: "Unreachable", fr: "Injoignable", step: 0, kind: "paused", phase: "closed",
