@@ -45,13 +45,20 @@ Deno.serve(async (req) => {
     });
     if (createErr || !created?.user) return json({ error: createErr?.message ?? "Unable to create ambassador" }, 400);
 
+    const [firstName, ...rest] = String(fullName).trim().split(/\s+/);
     const profilePayload = {
       id: created.user.id,
+      email,
       full_name: fullName,
+      first_name: firstName || null,
+      last_name: rest.join(" ") || null,
       phone,
       country,
       profile_type: "referrer",
+      // Admin-created accounts are validated by definition.
       status: "approved",
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: userData.user.id,
       accepted_terms: true,
       accepted_terms_at: new Date().toISOString(),
     };

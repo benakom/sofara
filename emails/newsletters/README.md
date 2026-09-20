@@ -45,6 +45,18 @@ Sofara for closing by Cevitas Real Estate LLC.
 
 Send 15-monthly-reactivation first to the existing base, then the others monthly.
 
+## Transactional onboarding emails
+
+`emails/transactional/*.mjs` hold the two account emails, rendered by the same
+`build.mjs` into `supabase/functions/_shared/transactional-emails.ts` and sent by the
+`onboarding-emails` edge function (queue `transactional_emails`, purpose transactional,
+no unsubscribe link):
+
+| Id | When | Trigger |
+|---|---|---|
+| `under-review` | Email verified, account pending validation | `Auth.tsx` after the OTP, and the pending screen in the dashboard as fallback. Once per user (`profiles.under_review_email_at`). |
+| `welcome-validated` | Super admin validates the ambassador | `/admin/ambassadors` Validate button (via `src/lib/admin-ambassadors.ts`). Once per user (`profiles.approved_email_at`). |
+
 ## Merge fields
 
 | Field | Value |

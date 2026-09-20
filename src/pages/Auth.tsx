@@ -242,8 +242,12 @@ const Auth = () => {
     } else {
       toast({
         title: lang === "ar" ? "Compte vérifié !" : "Account verified!",
-        description: lang === "ar" ? "Bienvenue chez Sofara." : "Welcome to Sofara.",
+        description: lang === "ar"
+          ? "Votre candidature est en cours de validation par notre équipe."
+          : "Your application is now being reviewed by our team.",
       });
+      // "Application under review" email (idempotent server side).
+      supabase.functions.invoke("onboarding-emails", { body: { event: "verified", lang: lang === "ar" ? "fr" : "en" } }).catch(() => {});
       const { data: isAdmin } = await supabase.rpc("is_superadmin");
       navigate(isAdmin ? "/admin" : "/dashboard");
     }

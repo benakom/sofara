@@ -31,7 +31,8 @@ const AdminDashboard = () => {
 
   const m = useMemo(() => {
     const name = (id: string) => profiles.find((p) => p.id === id)?.full_name || "—";
-    const active = profiles.filter((p) => p.status === "approved");
+    const active = profiles.filter((p) => p.status === "approved" || p.status === "pro_pending");
+    const pendingCount = profiles.filter((p) => p.status === "pending" || p.status === "onboarding").length;
     const counts: Record<string, number> = {}; for (const s of STAGES) counts[s.key] = 0;
     for (const l of leads) counts[stageByKey(l.stage).key] += 1;
     const won = leads.filter((l) => stageByKey(l.stage).kind === "won");
@@ -50,7 +51,7 @@ const AdminDashboard = () => {
     for (const c of commissions) { if (status(c) === "paid" || status(c) === "validated") { per[c.user_id] ??= { leads: 0, won: 0, earned: 0 }; per[c.user_id].earned += Number(c.amount); } }
     const top = Object.entries(per).map(([id, v]) => ({ id, name: name(id), ...v })).sort((a, b) => b.won - a.won || b.leads - a.leads).slice(0, 5);
     const conv = leads.length ? Math.round((won.length / leads.length) * 100) : 0;
-    return { active, counts, won, validated, paid, estimated, weeks, pending, stuck, signups, top, conv, leadSeries: dailySeries(leads, 14), ambSeries: dailySeries(profiles, 14), wonSeries: dailySeries(won, 14), commSeries: dailySeries(commissions, 14) };
+    return { active, pendingCount, counts, won, validated, paid, estimated, weeks, pending, stuck, signups, top, conv, leadSeries: dailySeries(leads, 14), ambSeries: dailySeries(profiles, 14), wonSeries: dailySeries(won, 14), commSeries: dailySeries(commissions, 14) };
   }, [profiles, leads, commissions]);
 
   const Card = ({ title, action, children, className = "" }: { title: string; action?: { label: string; path: string }; children: React.ReactNode; className?: string }) => (
@@ -76,7 +77,7 @@ const AdminDashboard = () => {
           <h1 className="mt-1 text-[26px] leading-tight font-semibold tracking-tight">Command center</h1>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => navigate("/admin/applications")} className="inline-flex items-center gap-2 rounded-lg border border-[hsl(var(--dash-border))] px-3.5 py-2 text-[13px] font-medium hover:border-[hsl(var(--dash-accent)/.5)]"><UserPlus className="w-4 h-4" /> Applications</button>
+          <button onClick={() => navigate("/admin/ambassadors?status=pending")} className="inline-flex items-center gap-2 rounded-lg border border-[hsl(var(--dash-border))] px-3.5 py-2 text-[13px] font-medium hover:border-[hsl(var(--dash-accent)/.5)]"><UserPlus className="w-4 h-4" /> Applications{m.pendingCount > 0 && <span className="ml-1 rounded-full bg-[#F59E0B] text-black text-[11px] font-bold px-1.5 py-0.5 leading-none">{m.pendingCount}</span>}</button>
           <button onClick={() => navigate("/admin/pipeline")} className="inline-flex items-center gap-2 rounded-lg bg-[hsl(var(--dash-accent))] text-black px-3.5 py-2 text-[13px] font-semibold hover:brightness-95 shadow-[var(--dash-accent-glow)]"><Target className="w-4 h-4" /> Pipeline</button>
         </div>
       </div>

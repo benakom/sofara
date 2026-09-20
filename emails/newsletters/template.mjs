@@ -88,8 +88,19 @@ const chrome = {
   },
 };
 
-export function renderEmail({ lang, subject, preview, blocks }) {
+const transactionalWhy = {
+  en: "You receive this email because you created a Sofara ambassador account.",
+  fr: "Vous recevez cet email car vous avez créé un compte ambassadeur Sofara.",
+};
+
+export function renderEmail({ lang, subject, preview, blocks, kind = "newsletter" }) {
   const c = chrome[lang];
+  const whyLine =
+    kind === "transactional"
+      ? `${transactionalWhy[lang]} &nbsp;·&nbsp; © 2026 Sofara. hello@sofara.io`
+      : `${c.why}
+    <a href="{{unsubscribe_url}}" style="color:${MUTED};text-decoration:underline">${c.unsub}</a>
+    &nbsp;·&nbsp; © 2026 Sofara. hello@sofara.io`;
   const body = blocks
     .map((b) => {
       const [type, value] = Array.isArray(b) ? b : [b.type, b.value];
@@ -124,9 +135,7 @@ export function renderEmail({ lang, subject, preview, blocks }) {
     <a href="https://www.instagram.com/sofaradubai/" style="color:${GREEN};text-decoration:underline">Instagram</a>
   </p>
   <p style="margin:0 0 10px;font-size:12px;line-height:1.6;color:${MUTED}">${c.legal}</p>
-  <p style="margin:0 0 40px;font-size:12px;line-height:1.6;color:${MUTED}">${c.why}
-    <a href="{{unsubscribe_url}}" style="color:${MUTED};text-decoration:underline">${c.unsub}</a>
-    &nbsp;·&nbsp; © 2026 Sofara. hello@sofara.io</p>
+  <p style="margin:0 0 40px;font-size:12px;line-height:1.6;color:${MUTED}">${whyLine}</p>
 </td></tr>
 </table>
 </td></tr>

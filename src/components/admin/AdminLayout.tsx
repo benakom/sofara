@@ -5,7 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   LayoutDashboard, Users, Target, DollarSign, Building2, Bot, BarChart3, Settings, LogOut, Menu, Bell, Loader2,
-  UserCheck, MessageCircle, TrendingUp, Mail, GitBranch, CreditCard, ChevronRight, ExternalLink, Shield, type LucideIcon,
+  MessageCircle, TrendingUp, Mail, GitBranch, CreditCard, ChevronRight, ExternalLink, Shield, type LucideIcon,
 } from "lucide-react";
 import { initials } from "@/lib/dashboard-data";
 
@@ -15,7 +15,6 @@ type NavGroup = { label: string; items: NavItem[] };
 const NAV: NavGroup[] = [
   { label: "Overview", items: [{ path: "/admin", icon: LayoutDashboard, label: "Command center", exact: true }] },
   { label: "Growth", items: [
-    { path: "/admin/applications", icon: UserCheck, label: "Applications" },
     { path: "/admin/ambassadors", icon: Users, label: "Ambassadors" },
     { path: "/admin/chatbot-leads", icon: MessageCircle, label: "Chatbot leads" },
     { path: "/admin/newsletters", icon: Mail, label: "Newsletters" },

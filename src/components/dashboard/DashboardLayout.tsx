@@ -11,6 +11,7 @@ import {
   Loader2, Shield, Search, ChevronRight, Plus, Crown, Link2, HelpCircle, type LucideIcon,
 } from "lucide-react";
 import MobileBottomNav from "./MobileBottomNav";
+import AccountStatusScreen from "./AccountStatusScreen";
 import { fr, initials } from "@/lib/dashboard-data";
 
 type NavItem = { path: string; icon: LucideIcon; labelFr: string; labelEn: string; exact?: boolean };
@@ -89,6 +90,19 @@ const DashboardLayout = () => {
   const isRtl = false;
 
   const handleSignOut = async () => { await signOut(); navigate("/"); };
+
+  // Accounts that are not validated by an admin never see the dashboard.
+  if (!isSuperAdmin && profile && (profile.status === "pending" || profile.status === "onboarding" || profile.status === "rejected" || profile.status === "suspended")) {
+    return (
+      <AccountStatusScreen
+        status={profile.status}
+        lang={lang}
+        firstName={profile.first_name || firstName || ""}
+        underReviewEmailSent={!!profile.under_review_email_at}
+        onSignOut={handleSignOut}
+      />
+    );
+  }
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-[hsl(var(--dash-sidebar-bg))]">
