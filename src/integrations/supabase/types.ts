@@ -543,6 +543,18 @@ export type Database = {
       leads: {
         Row: {
           assigned_to: string | null
+          attested_at: string | null
+          best_time: string | null
+          budget_range: string | null
+          campaign_link: string | null
+          campaign_name: string | null
+          consent_checked_at: string | null
+          consent_checked_by: string | null
+          consent_date: string | null
+          consent_evidence_url: string | null
+          consent_method: string | null
+          consent_note: string | null
+          consent_status: string
           created_at: string
           email: string | null
           first_name: string
@@ -550,20 +562,39 @@ export type Database = {
           kyc_status: string | null
           last_name: string
           last_stage_at: string | null
+          lead_country: string | null
+          lead_language: string | null
           lost_reason: string | null
           next_action: string | null
           next_action_at: string | null
           notes: string | null
           phone: string | null
+          preferred_channel: string | null
+          purpose: string | null
+          relationship: string | null
+          relationship_details: string | null
           score: string | null
           source: string | null
           stage: string | null
+          timeline: string | null
           updated_at: string
           updated_by: string | null
           user_id: string
         }
         Insert: {
           assigned_to?: string | null
+          attested_at?: string | null
+          best_time?: string | null
+          budget_range?: string | null
+          campaign_link?: string | null
+          campaign_name?: string | null
+          consent_checked_at?: string | null
+          consent_checked_by?: string | null
+          consent_date?: string | null
+          consent_evidence_url?: string | null
+          consent_method?: string | null
+          consent_note?: string | null
+          consent_status?: string
           created_at?: string
           email?: string | null
           first_name: string
@@ -571,20 +602,39 @@ export type Database = {
           kyc_status?: string | null
           last_name: string
           last_stage_at?: string | null
+          lead_country?: string | null
+          lead_language?: string | null
           lost_reason?: string | null
           next_action?: string | null
           next_action_at?: string | null
           notes?: string | null
           phone?: string | null
+          preferred_channel?: string | null
+          purpose?: string | null
+          relationship?: string | null
+          relationship_details?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
+          timeline?: string | null
           updated_at?: string
           updated_by?: string | null
           user_id: string
         }
         Update: {
           assigned_to?: string | null
+          attested_at?: string | null
+          best_time?: string | null
+          budget_range?: string | null
+          campaign_link?: string | null
+          campaign_name?: string | null
+          consent_checked_at?: string | null
+          consent_checked_by?: string | null
+          consent_date?: string | null
+          consent_evidence_url?: string | null
+          consent_method?: string | null
+          consent_note?: string | null
+          consent_status?: string
           created_at?: string
           email?: string | null
           first_name?: string
@@ -592,14 +642,21 @@ export type Database = {
           kyc_status?: string | null
           last_name?: string
           last_stage_at?: string | null
+          lead_country?: string | null
+          lead_language?: string | null
           lost_reason?: string | null
           next_action?: string | null
           next_action_at?: string | null
           notes?: string | null
           phone?: string | null
+          preferred_channel?: string | null
+          purpose?: string | null
+          relationship?: string | null
+          relationship_details?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
+          timeline?: string | null
           updated_at?: string
           updated_by?: string | null
           user_id?: string
@@ -1414,6 +1471,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_set_lead_consent: {
+        Args: { p_lead_id: string; p_note?: string; p_status: string }
+        Returns: Json
+      }
       admin_update_lead: {
         Args: {
           p_assigned_to?: string
