@@ -1158,11 +1158,16 @@ export type Database = {
         Row: {
           accepted_terms: boolean
           accepted_terms_at: string | null
+          approved_email_at: string | null
           country: string | null
           created_at: string
+          email: string | null
+          first_name: string | null
           full_name: string | null
           id: string
           language: string | null
+          last_name: string | null
+          occupation: string | null
           phone: string | null
           profile_type: string | null
           referral_code: string | null
@@ -1170,16 +1175,22 @@ export type Database = {
           reviewed_at: string | null
           reviewed_by: string | null
           status: string
+          under_review_email_at: string | null
           updated_at: string
         }
         Insert: {
           accepted_terms?: boolean
           accepted_terms_at?: string | null
+          approved_email_at?: string | null
           country?: string | null
           created_at?: string
+          email?: string | null
+          first_name?: string | null
           full_name?: string | null
           id: string
           language?: string | null
+          last_name?: string | null
+          occupation?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
@@ -1187,16 +1198,22 @@ export type Database = {
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
+          under_review_email_at?: string | null
           updated_at?: string
         }
         Update: {
           accepted_terms?: boolean
           accepted_terms_at?: string | null
+          approved_email_at?: string | null
           country?: string | null
           created_at?: string
+          email?: string | null
+          first_name?: string | null
           full_name?: string | null
           id?: string
           language?: string | null
+          last_name?: string | null
+          occupation?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
@@ -1204,6 +1221,7 @@ export type Database = {
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
+          under_review_email_at?: string | null
           updated_at?: string
         }
         Relationships: [
