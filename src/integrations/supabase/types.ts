@@ -1020,107 +1020,6 @@ export type Database = {
           },
         ]
       }
-      newsletter_campaigns: {
-        Row: {
-          audience: string
-          created_at: string
-          created_by: string | null
-          error: string | null
-          finished_at: string | null
-          id: string
-          issue_id: string
-          scheduled_for: string
-          sent_count: number
-          status: string
-        }
-        Insert: {
-          audience?: string
-          created_at?: string
-          created_by?: string | null
-          error?: string | null
-          finished_at?: string | null
-          id?: string
-          issue_id: string
-          scheduled_for?: string
-          sent_count?: number
-          status?: string
-        }
-        Update: {
-          audience?: string
-          created_at?: string
-          created_by?: string | null
-          error?: string | null
-          finished_at?: string | null
-          id?: string
-          issue_id?: string
-          scheduled_for?: string
-          sent_count?: number
-          status?: string
-        }
-        Relationships: []
-      }
-      newsletter_sends: {
-        Row: {
-          campaign_id: string | null
-          email: string
-          id: string
-          issue_id: string
-          lang: string
-          message_id: string | null
-          sent_at: string
-          user_id: string
-        }
-        Insert: {
-          campaign_id?: string | null
-          email: string
-          id?: string
-          issue_id: string
-          lang: string
-          message_id?: string | null
-          sent_at?: string
-          user_id: string
-        }
-        Update: {
-          campaign_id?: string | null
-          email?: string
-          id?: string
-          issue_id?: string
-          lang?: string
-          message_id?: string | null
-          sent_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "newsletter_sends_campaign_id_fkey"
-            columns: ["campaign_id"]
-            isOneToOne: false
-            referencedRelation: "newsletter_campaigns"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      newsletter_settings: {
-        Row: {
-          id: number
-          onboarding_enabled: boolean
-          onboarding_since: string
-          updated_at: string
-        }
-        Insert: {
-          id?: number
-          onboarding_enabled?: boolean
-          onboarding_since?: string
-          updated_at?: string
-        }
-        Update: {
-          id?: number
-          onboarding_enabled?: boolean
-          onboarding_since?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       payments: {
         Row: {
           amount: number
@@ -1162,7 +1061,6 @@ export type Database = {
           created_at: string
           full_name: string | null
           id: string
-          language: string | null
           phone: string | null
           profile_type: string | null
           referral_code: string | null
@@ -1179,7 +1077,6 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id: string
-          language?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
@@ -1196,7 +1093,6 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id?: string
-          language?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
