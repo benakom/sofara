@@ -178,6 +178,7 @@ const Auth = () => {
           full_name: `${firstName.trim()} ${lastName.trim()}`,
           phone: `${phoneCode}${digits}`,
           occupation,
+          lang: lang === "ar" ? "fr" : "en",
           ...(refCode ? { ref_code: refCode } : {}),
         },
       },

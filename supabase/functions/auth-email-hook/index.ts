@@ -9,6 +9,7 @@ import { MagicLinkEmail } from '../_shared/email-templates/magic-link.tsx'
 import { RecoveryEmail } from '../_shared/email-templates/recovery.tsx'
 import { EmailChangeEmail } from '../_shared/email-templates/email-change.tsx'
 import { ReauthenticationEmail } from '../_shared/email-templates/reauthentication.tsx'
+import { subjectFor } from '../_shared/email-templates/i18n.tsx'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -16,13 +17,33 @@ const corsHeaders = {
     'authorization, x-client-info, apikey, content-type, x-lovable-signature, x-lovable-timestamp, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 }
 
-const EMAIL_SUBJECTS: Record<string, string> = {
-  signup: 'Confirm your email',
-  invite: "You've been invited",
-  magiclink: 'Your login link',
-  recovery: 'Reset your password',
-  email_change: 'Confirm your new email',
-  reauthentication: 'Your verification code',
+// Subjects are bilingual, see ../_shared/email-templates/i18n.tsx (subjectFor).
+
+// Countries whose users get French auth emails when no language is stored.
+const FRENCH_COUNTRIES = new Set([
+  'france', 'fr', 'belgium', 'belgique', 'be', 'switzerland', 'suisse', 'ch', 'luxembourg', 'lu', 'monaco', 'mc',
+  'morocco', 'maroc', 'ma', 'algeria', 'algérie', 'algerie', 'dz', 'tunisia', 'tunisie', 'tn', 'senegal', 'sénégal', 'sn',
+  'ivory coast', "côte d'ivoire", "cote d'ivoire", 'ci', 'cameroon', 'cameroun', 'cm', 'mali', 'ml', 'burkina faso', 'bf',
+  'niger', 'ne', 'benin', 'bénin', 'bj', 'togo', 'tg', 'gabon', 'ga', 'congo', 'cg', 'drc', 'rdc', 'cd', 'guinea', 'guinée', 'gn',
+  'madagascar', 'mg', 'mauritius', 'maurice', 'mu', 'haiti', 'haïti', 'ht', 'quebec', 'québec', 'lebanon', 'liban', 'lb',
+  'djibouti', 'dj', 'chad', 'tchad', 'td', 'mauritania', 'mauritanie', 'mr', 'comoros', 'comores', 'km', 'burundi', 'bi', 'rwanda', 'rw',
+])
+
+// 'en' | 'fr' when we know the person's language, 'both' otherwise (email rendered in both).
+async function resolveLang(supabase: ReturnType<typeof createClient>, payload: any): Promise<'en' | 'fr' | 'both'> {
+  const meta = payload?.data?.user?.user_metadata ?? payload?.data?.user_metadata ?? payload?.user?.user_metadata ?? {}
+  if (meta?.lang === 'fr' || meta?.lang === 'en') return meta.lang
+  const email = payload?.data?.email
+  if (!email) return 'both'
+  try {
+    const { data } = await supabase.from('profiles').select('language, country').ilike('email', email).maybeSingle()
+    if (data?.language === 'fr' || data?.language === 'en') return data.language
+    const c = String(data?.country ?? '').trim().toLowerCase()
+    if (c && FRENCH_COUNTRIES.has(c)) return 'fr'
+  } catch (_) {
+    /* fall through */
+  }
+  return 'both'
 }
 
 // Template mapping
@@ -217,6 +238,14 @@ async function handleWebhook(req: Request): Promise<Response> {
     )
   }
 
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL')!,
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+  )
+
+  // EN, FR, or both languages in one email when the recipient's language is unknown.
+  const lang = await resolveLang(supabase, payload)
+
   // Build template props from payload.data (HookData structure)
   const templateProps = {
     siteName: SITE_NAME,
@@ -226,6 +255,7 @@ async function handleWebhook(req: Request): Promise<Response> {
     token: payload.data.token,
     email: payload.data.email,
     newEmail: payload.data.new_email,
+    lang,
   }
 
   // Render React Email to HTML and plain text
@@ -235,10 +265,6 @@ async function handleWebhook(req: Request): Promise<Response> {
   })
 
   // Enqueue email for async processing by the dispatcher (process-email-queue).
-  const supabase = createClient(
-    Deno.env.get('SUPABASE_URL')!,
-    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-  )
 
   const messageId = crypto.randomUUID()
 
@@ -258,7 +284,7 @@ async function handleWebhook(req: Request): Promise<Response> {
       to: payload.data.email,
       from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
       sender_domain: SENDER_DOMAIN,
-      subject: EMAIL_SUBJECTS[emailType] || 'Notification',
+      subject: subjectFor(emailType, lang),
       html,
       text,
       purpose: 'transactional',
