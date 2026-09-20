@@ -12,7 +12,8 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Lang>(() => {
     const saved = localStorage.getItem("sofara-lang");
-    if (saved === "fr" || saved === "es" || saved === "ru" || saved === "en") return saved;
+    // "ar" is the dashboard's code for French (legacy convention); keep it across reloads.
+    if (saved === "fr" || saved === "es" || saved === "ru" || saved === "en" || saved === "ar") return saved;
     return "en";
   });
 

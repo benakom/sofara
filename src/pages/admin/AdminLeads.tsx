@@ -6,10 +6,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { toast } from "@/hooks/use-toast";
 
 import { STAGES as CANON, stageByKey, stageLabel } from "@/lib/dashboard-data";
+import AdminLeadSheet from "@/components/admin/AdminLeadSheet";
 const stages = CANON.map((s) => s.key);
 
 const AdminLeads = () => {
   const navigate = useNavigate();
+  const [openLead, setOpenLead] = useState<string | null>(null);
   const [leads, setLeads] = useState<any[]>([]);
   const [profiles, setProfiles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +36,13 @@ const AdminLeads = () => {
   const filtered = leads.filter(l => { const ms = !search || `${l.first_name} ${l.last_name}`.toLowerCase().includes(search.toLowerCase()); const mst = stageFilter === "all" || stageByKey(l.stage).key === stageFilter; const ma = ambassadorFilter === "all" || l.user_id === ambassadorFilter; return ms && mst && ma; });
   const totalPages = Math.ceil(filtered.length / perPage);
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
-  const handleStageChange = async (id: string, stage: string) => { await supabase.from("leads").update({ stage }).eq("id", id); setLeads(prev => prev.map(l => l.id === id ? { ...l, stage } : l)); toast({ title: `Lead → ${stage}` }); };
+  const reload = async () => { const { data } = await supabase.from("leads").select("*").order("created_at", { ascending: false }); setLeads(data ?? []); };
+  const handleStageChange = async (id: string, stage: string) => {
+    const { error } = await supabase.rpc("admin_update_lead", { p_lead_id: id, p_stage: stage });
+    if (error) { toast({ title: "Update failed", description: error.message, variant: "destructive" }); return; }
+    setLeads(prev => prev.map(l => l.id === id ? { ...l, stage } : l));
+    toast({ title: `Stage → ${stageLabel(stage, "en")}`, description: "Ambassador notified in the app and by email." });
+  };
   const exportCSV = () => { const h = ["Name","Ambassador","Stage","Score","Email","Phone","Source","Created"]; const r = filtered.map(l => [`${l.first_name} ${l.last_name}`,getAmbName(l.user_id),l.stage,l.score,l.email,l.phone,l.source,new Date(l.created_at).toLocaleDateString()]); const csv = [h,...r].map(r=>r.join(",")).join("\n"); const b = new Blob([csv],{type:"text/csv"}); const u = URL.createObjectURL(b); const a = document.createElement("a"); a.href=u; a.download="leads.csv"; a.click(); };
   const scoreBadge = (s: string|null) => { const c: Record<string,string> = {A:"#22C55E",B:"#6B8F1F",C:"#F59E0B",D:"#EF4444"}; const color = c[s||"C"]||"#8a8a8a"; return <div className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold" style={{borderColor:color,color}}>{s||"C"}</div>; };
   const uniqueAmbs = Array.from(new Set(leads.map(l => l.user_id))).map(uid => ({ id: uid, name: getAmbName(uid) }));
@@ -67,18 +75,19 @@ const AdminLeads = () => {
             </tr></thead>
             <tbody>{paginated.map(l=>(
               <tr key={l.id} className="border-b border-[hsl(var(--dash-border))] hover:bg-[hsl(var(--dash-muted)/.5)]">
-                <td className="px-4 py-3 text-sm font-medium text-[hsl(var(--dash-fg))]">{l.first_name} {l.last_name}</td>
+                <td className="px-4 py-3 text-sm font-medium text-[hsl(var(--dash-fg))]"><button onClick={()=>setOpenLead(l.id)} className="text-left hover:underline">{l.first_name} {l.last_name}</button></td>
                 <td className="px-4 py-3"><button onClick={()=>navigate(`/admin/ambassadors/${l.user_id}`)} className="text-xs text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-accent-ink))] hover:underline">{getAmbName(l.user_id)}</button></td>
                 <td className="px-4 py-3"><select value={stageByKey(l.stage).key} onChange={e=>handleStageChange(l.id,e.target.value)} className="text-[10px] font-semibold border-none bg-transparent cursor-pointer">{stages.map(s=><option key={s} value={s}>{stageLabel(s, "en")}</option>)}</select></td>
                 <td className="px-4 py-3">{scoreBadge(l.score)}</td>
                 <td className="px-4 py-3"><p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{l.email||"—"}</p><p className="text-[10px] text-[hsl(var(--dash-muted-fg))]">{l.phone||"—"}</p></td>
                 <td className="px-4 py-3 text-xs text-[hsl(var(--dash-muted-fg))]">{l.source||"—"}</td>
                 <td className="px-4 py-3 text-[11px] text-[hsl(var(--dash-muted-fg))]">{new Date(l.created_at).toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}</td>
-                <td className="px-4 py-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><MoreHorizontal className="w-4 h-4 text-[hsl(var(--dash-muted-fg))]" /></button></DropdownMenuTrigger><DropdownMenuContent align="end"><DropdownMenuItem><Eye className="w-3.5 h-3.5 mr-2" /> View</DropdownMenuItem><DropdownMenuItem onClick={()=>handleStageChange(l.id,"injoignable")} className="text-[#EF4444]"><Trash2 className="w-3.5 h-3.5 mr-2" /> Mark unreachable</DropdownMenuItem></DropdownMenuContent></DropdownMenu></td>
+                <td className="px-4 py-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)]"><MoreHorizontal className="w-4 h-4 text-[hsl(var(--dash-muted-fg))]" /></button></DropdownMenuTrigger><DropdownMenuContent align="end"><DropdownMenuItem onClick={()=>setOpenLead(l.id)}><Eye className="w-3.5 h-3.5 mr-2" /> Open lead file</DropdownMenuItem><DropdownMenuItem onClick={()=>handleStageChange(l.id,"injoignable")} className="text-[#EF4444]"><Trash2 className="w-3.5 h-3.5 mr-2" /> Mark unreachable</DropdownMenuItem></DropdownMenuContent></DropdownMenu></td>
               </tr>
             ))}</tbody>
           </table>
         </div>
+        <AdminLeadSheet leadId={openLead} open={!!openLead} onOpenChange={(o)=>{ if(!o) setOpenLead(null); }} onChanged={reload} />
         {paginated.length===0&&<div className="text-center py-16"><Target className="w-10 h-10 text-[hsl(var(--dash-muted-fg))] mx-auto mb-3" /><h3 className="text-sm font-semibold text-[hsl(var(--dash-fg))] mb-1">No leads found</h3></div>}
         {totalPages>1&&<div className="flex items-center justify-between px-4 py-3 border-t border-[hsl(var(--dash-border))]"><p className="text-xs text-[hsl(var(--dash-muted-fg))]">Showing {((page-1)*perPage)+1}–{Math.min(page*perPage,filtered.length)} of {filtered.length}</p><div className="flex gap-1"><button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)] disabled:opacity-30"><ChevronLeft className="w-4 h-4" /></button><button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="p-1.5 rounded-lg hover:bg-[hsl(var(--dash-muted)/.5)] disabled:opacity-30"><ChevronRight className="w-4 h-4" /></button></div></div>}
       </div>

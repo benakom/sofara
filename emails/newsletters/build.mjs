@@ -156,3 +156,8 @@ export const TRANSACTIONAL_EMAILS: Record<string, TransactionalEmail> = ${JSON.s
 `;
 await writeFile(path.join(repoRoot, "supabase", "functions", "_shared", "transactional-emails.ts"), txModule);
 console.log(`Built ${txFiles.length} transactional emails into supabase/functions/_shared/transactional-emails.ts`);
+
+// Lead stage catalog: one source (src/lib/lead-stages.ts), copied verbatim for edge functions.
+const stagesSrc = await fsp.readFile(path.join(repoRoot, "src", "lib", "lead-stages.ts"), "utf8");
+await writeFile(path.join(repoRoot, "supabase", "functions", "_shared", "lead-stages.ts"), `// GENERATED copy of src/lib/lead-stages.ts by emails/newsletters/build.mjs. Do not edit here.\n${stagesSrc}`);
+console.log("Copied src/lib/lead-stages.ts to supabase/functions/_shared/lead-stages.ts");

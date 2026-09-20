@@ -14,10 +14,11 @@ interface ProfileData {
   profile_type: string | null;
   accepted_terms: boolean;
   under_review_email_at: string | null;
+  notify_email: boolean | null;
   created_at: string;
 }
 
-const PROFILE_SELECT = "status, full_name, first_name, email, phone, country, profile_type, accepted_terms, under_review_email_at, created_at";
+const PROFILE_SELECT = "status, full_name, first_name, email, phone, country, profile_type, accepted_terms, under_review_email_at, notify_email, created_at";
 
 export const useProfileStatus = () => {
   const { user } = useAuth();

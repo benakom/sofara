@@ -65,6 +65,8 @@ const renderers = {
   cta: ({ label, url }) =>
     `<table role="presentation" cellspacing="0" cellpadding="0" style="margin:6px 0 22px"><tr><td style="background:${GREEN};border-radius:10px"><a href="${url}" style="display:inline-block;padding:13px 24px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;font-family:${FONT}">${esc(label)}</a></td></tr></table>`,
   hr: () => `<hr style="border:none;border-top:1px solid ${LINE};margin:22px 0" />`,
+  // Unescaped: for merge fields that carry pre-rendered HTML (may resolve to an empty string).
+  raw: (t) => String(t),
   sig: (lines) =>
     `<p style="${P};margin-top:8px">${lines.map(inline).join("<br />")}</p>`,
 };

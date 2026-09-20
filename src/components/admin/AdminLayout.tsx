@@ -8,6 +8,7 @@ import {
   MessageCircle, TrendingUp, Mail, GitBranch, CreditCard, ChevronRight, ExternalLink, Shield, type LucideIcon,
 } from "lucide-react";
 import { initials } from "@/lib/dashboard-data";
+import NotificationsBell from "@/components/dashboard/NotificationsBell";
 
 type NavItem = { path: string; icon: LucideIcon; label: string; exact?: boolean };
 type NavGroup = { label: string; items: NavItem[] };
@@ -157,9 +158,7 @@ const AdminLayout = () => {
             <a href="https://www.sofara.io" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-[hsl(var(--dash-card))] hover:bg-[hsl(var(--dash-muted))] border border-[hsl(var(--dash-border))] px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--dash-fg))] transition-colors">
               <ExternalLink className="w-3.5 h-3.5" /> sofara.io
             </a>
-            <button className="relative text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Notifications">
-              <Bell className="w-4 h-4" />
-            </button>
+            <NotificationsBell lang="en" variant="admin" />
             <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[11px] font-bold items-center justify-center">{avatar}</div>
           </div>
         </header>

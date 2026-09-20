@@ -497,9 +497,12 @@ export type Database = {
           from_stage: string | null
           id: string
           lead_id: string
+          kind: string
           note: string | null
+          notified_at: string | null
           to_stage: string
           user_id: string
+          visible_to_ambassador: boolean
         }
         Insert: {
           changed_by?: string | null
@@ -507,9 +510,12 @@ export type Database = {
           from_stage?: string | null
           id?: string
           lead_id: string
+          kind?: string
           note?: string | null
+          notified_at?: string | null
           to_stage: string
           user_id: string
+          visible_to_ambassador?: boolean
         }
         Update: {
           changed_by?: string | null
@@ -517,9 +523,12 @@ export type Database = {
           from_stage?: string | null
           id?: string
           lead_id?: string
+          kind?: string
           note?: string | null
+          notified_at?: string | null
           to_stage?: string
           user_id?: string
+          visible_to_ambassador?: boolean
         }
         Relationships: [
           {
@@ -539,8 +548,13 @@ export type Database = {
           id: string
           kyc_status: string | null
           last_name: string
+          assigned_to: string | null
+          last_stage_at: string | null
+          lost_reason: string | null
           next_action: string | null
+          next_action_at: string | null
           notes: string | null
+          updated_by: string | null
           phone: string | null
           score: string | null
           source: string | null
@@ -555,8 +569,13 @@ export type Database = {
           id?: string
           kyc_status?: string | null
           last_name: string
+          assigned_to?: string | null
+          last_stage_at?: string | null
+          lost_reason?: string | null
           next_action?: string | null
+          next_action_at?: string | null
           notes?: string | null
+          updated_by?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
@@ -571,8 +590,13 @@ export type Database = {
           id?: string
           kyc_status?: string | null
           last_name?: string
+          assigned_to?: string | null
+          last_stage_at?: string | null
+          lost_reason?: string | null
           next_action?: string | null
+          next_action_at?: string | null
           notes?: string | null
+          updated_by?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
@@ -1121,6 +1145,57 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          created_at: string
+          data: Json
+          event_id: string | null
+          id: string
+          lead_id: string | null
+          read_at: string | null
+          type: string
+          url: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          event_id?: string | null
+          id?: string
+          lead_id?: string | null
+          read_at?: string | null
+          type: string
+          url?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          event_id?: string | null
+          id?: string
+          lead_id?: string | null
+          read_at?: string | null
+          type?: string
+          url?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "lead_stage_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       payments: {
         Row: {
           amount: number
@@ -1167,6 +1242,7 @@ export type Database = {
           id: string
           language: string | null
           last_name: string | null
+          notify_email: boolean
           occupation: string | null
           phone: string | null
           profile_type: string | null
@@ -1190,6 +1266,7 @@ export type Database = {
           id: string
           language?: string | null
           last_name?: string | null
+          notify_email?: boolean
           occupation?: string | null
           phone?: string | null
           profile_type?: string | null
@@ -1213,6 +1290,7 @@ export type Database = {
           id?: string
           language?: string | null
           last_name?: string | null
+          notify_email?: boolean
           occupation?: string | null
           phone?: string | null
           profile_type?: string | null
@@ -1336,6 +1414,21 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_update_lead: {
+        Args: {
+          p_lead_id: string
+          p_stage?: string | null
+          p_note?: string | null
+          p_visible?: boolean
+          p_next_action?: string | null
+          p_next_action_at?: string | null
+          p_lost_reason?: string | null
+          p_score?: string | null
+          p_assigned_to?: string | null
+          p_clear_next_action?: boolean
+        }
+        Returns: Json
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean

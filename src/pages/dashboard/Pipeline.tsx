@@ -14,7 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Plus, AlertCircle, X, Users, ChevronRight } from "lucide-react";
 import FunnelBar from "@/components/dashboard/FunnelBar";
 import LeadDetailSheet from "@/components/dashboard/LeadDetailSheet";
-import { fr, STAGES, stageByKey, stageLabel, STAGE_RAMP, isStale, relativeTime, initials, type LeadLike } from "@/lib/dashboard-data";
+import { fr, STAGES, stageByKey, stageLabel, stageColor, isStale, relativeTime, initials, type LeadLike } from "@/lib/dashboard-data";
+import { LEAD_PHASES } from "@/lib/lead-stages";
 
 const SOURCES: Record<string, { fr: string; en: string }> = {
   manual: { fr: "Manuel", en: "Manual" }, meta_ads: { fr: "Meta Ads", en: "Meta Ads" }, google_sheet: { fr: "Google Sheet", en: "Google Sheet" }, referral: { fr: "Parrainage", en: "Referral" },
@@ -45,6 +46,16 @@ const Pipeline = () => {
     enabled: !!user,
   });
 
+  // Deep link from notifications and emails: /dashboard/pipeline?lead=<id> opens the lead file.
+  const deepLinkId = params.get("lead");
+  useEffect(() => {
+    if (!deepLinkId || leads.length === 0) return;
+    const found = leads.find((l) => l.id === deepLinkId);
+    if (found) setSelected(found);
+    params.delete("lead");
+    setParams(params, { replace: true });
+  }, [deepLinkId, leads]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const addLead = useMutation({
     mutationFn: async () => {
       const { error } = await supabase.from("leads").insert({ user_id: user!.id, first_name: form.first_name, last_name: form.last_name, email: form.email || null, phone: form.phone || null, source: form.source });
@@ -69,7 +80,12 @@ const Pipeline = () => {
   const visible = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return leads.filter((l) => {
-      if (stageFilter && stageByKey(l.stage).key !== stageFilter) return false;
+      if (stageFilter) {
+        const st = stageByKey(l.stage);
+        if (stageFilter.startsWith("phase:")) { if (st.phase !== stageFilter.slice(6)) return false; }
+        else if (stageFilter.startsWith("kind:")) { if (st.kind !== stageFilter.slice(5)) return false; }
+        else if (st.key !== stageFilter) return false;
+      }
       if (attentionOnly && !(stageByKey(l.stage).kind === "open" && (isStale(l) || !!l.next_action))) return false;
       if (!needle) return true;
       return `${l.first_name} ${l.last_name ?? ""} ${(l as { email?: string | null }).email ?? ""} ${(l as { phone?: string | null }).phone ?? ""}`.toLowerCase().includes(needle);
@@ -87,7 +103,7 @@ const Pipeline = () => {
     const st = stageByKey(stageKey);
     return (
       <span className="inline-flex items-center gap-1.5 h-7 rounded-md border border-[hsl(var(--dash-border))] px-2 text-[12px] font-medium text-[hsl(var(--dash-fg))] whitespace-nowrap">
-        <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STAGE_RAMP[st.step] }} />
+        <span className="w-2 h-2 rounded-full shrink-0" style={{ background: stageColor(st) }} />
         {stageLabel(stageKey, lang)}
       </span>
     );
@@ -153,7 +169,11 @@ const Pipeline = () => {
           </button>
           {stageFilter && (
             <span className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-[hsl(var(--dash-accent)/.12)] text-[12px] font-medium text-[hsl(var(--dash-fg))]">
-              <span className="w-2 h-2 rounded-full" style={{ background: STAGE_RAMP[stageByKey(stageFilter).step] }} /> {stageLabel(stageFilter, lang)}
+              <span className="w-2 h-2 rounded-full" style={{ background: stageFilter.startsWith("kind:lost") ? "hsl(0 72% 51%)" : stageFilter.startsWith("kind:") ? "hsl(32 95% 46%)" : stageFilter.startsWith("phase:") ? "hsl(var(--dash-accent))" : stageColor(stageByKey(stageFilter)) }} /> {
+                stageFilter.startsWith("phase:") ? (LEAD_PHASES.find((p) => p.key === stageFilter.slice(6)) ?? LEAD_PHASES[0])[isFr ? "fr" : "en"]
+                : stageFilter === "kind:paused" ? (isFr ? "En pause / injoignable" : "On hold / unreachable")
+                : stageFilter === "kind:lost" ? (isFr ? "Perdus" : "Lost")
+                : stageLabel(stageFilter, lang)}
               <button onClick={() => setStageFilter(null)} aria-label="clear" className="ml-0.5 text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))]"><X className="w-3.5 h-3.5" /></button>
             </span>
           )}

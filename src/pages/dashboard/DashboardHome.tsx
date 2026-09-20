@@ -36,7 +36,7 @@ const DashboardHome = () => {
     for (const s of STAGES) counts[s.key] = 0;
     for (const l of leads) counts[stageByKey(l.stage).key] += 1;
     const won = leads.filter((l) => stageByKey(l.stage).kind === "won");
-    const hot = leads.filter((l) => ["qualifie", "offre_envoyee"].includes(stageByKey(l.stage).key));
+    const hot = leads.filter((l) => { const s = stageByKey(l.stage); return s.kind === "open" && s.step >= 5; });
     const series = dailySeries(leads, 14);
     const wonSeries = dailySeries(won, 14);
     const sum = (st: string) => commissions.filter((c) => c.status === st).reduce((a, c) => a + Number(c.amount), 0);

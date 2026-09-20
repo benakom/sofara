@@ -3,27 +3,19 @@
 export type Lang = "en" | "ar";
 export const fr = (lang: string) => lang === "ar"; // project convention: "ar" renders French copy
 
-export interface StageDef { key: string; fr: string; en: string; step: number; kind: "open" | "won" | "lost" }
+import { LEAD_STAGES, LEGACY_LEAD_STAGE, normalizeLeadStage, leadStage, type LeadStage, type StageKind } from "@/lib/lead-stages";
 
-/** Pipeline stages in funnel order. `step` is the lime-ramp step used for the funnel (1 = lightest). */
-export const STAGES: StageDef[] = [
-  { key: "nouveau", fr: "Nouveau", en: "New", step: 1, kind: "open" },
-  { key: "prequalifie", fr: "Préqualifié", en: "Prequalified", step: 2, kind: "open" },
-  { key: "qualifie", fr: "Qualifié", en: "Qualified", step: 3, kind: "open" },
-  { key: "offre_envoyee", fr: "Offre envoyée", en: "Offer sent", step: 4, kind: "open" },
-  { key: "offre_acceptee", fr: "Offre acceptée", en: "Offer accepted", step: 5, kind: "won" },
-  { key: "booking", fr: "Booking payé", en: "Booking paid", step: 6, kind: "won" },
-  { key: "dp_paye", fr: "DP payé", en: "DP paid", step: 7, kind: "won" },
-  { key: "injoignable", fr: "Injoignable", en: "Unreachable", step: 0, kind: "lost" },
-];
+export type StageDef = LeadStage;
+
+/** Pipeline stages in funnel order (see src/lib/lead-stages.ts). `step` is the lime-ramp step (1 = lightest, 0 = paused/lost). */
+export const STAGES: StageDef[] = LEAD_STAGES;
 
 /** Legacy values still present in older rows / admin screens → canonical stage keys. */
-export const LEGACY_STAGE: Record<string, string> = {
-  "contacté": "prequalifie", contacte: "prequalifie", "qualifié": "qualifie", "négociation": "offre_envoyee", negociation: "offre_envoyee",
-  closing: "dp_paye", perdu: "injoignable", lost: "injoignable", new: "nouveau",
-};
-export const normalizeStage = (key?: string | null) => (key && (LEGACY_STAGE[key] ?? key)) || "nouveau";
-export const stageByKey = (key?: string | null) => STAGES.find((s) => s.key === normalizeStage(key)) ?? STAGES[0];
+export const LEGACY_STAGE: Record<string, string> = LEGACY_LEAD_STAGE;
+export const normalizeStage = normalizeLeadStage;
+export const stageByKey = (key?: string | null): StageDef => leadStage(key);
+/** Ambassadors' open leads: anything not won, lost or paused. */
+export const isOpenKind = (kind: StageKind) => kind === "open";
 
 /** Commission lifecycle. `step` is the lime ramp step; rejected uses the warning status color. */
 export interface CommissionStatusDef { key: string; fr: string; en: string; step: number; order: number }
@@ -41,15 +33,24 @@ export const stageLabel = (key: string | null | undefined, lang: string) => (fr(
 
 /** Sequential lime ramp (one hue, light → dark) for stage progression. Text stays in text tokens. */
 export const STAGE_RAMP: Record<number, string> = {
-  0: "hsl(32 95% 46%)",   // lost: warning status color (reserved), shown with icon+label
-  1: "hsl(68 85% 68%)",
-  2: "hsl(68 88% 58%)",
-  3: "hsl(72 80% 48%)",
-  4: "hsl(76 70% 40%)",
-  5: "hsl(80 60% 33%)",
-  6: "hsl(120 45% 26%)",
-  7: "hsl(160 64% 18%)",
+  0: "hsl(32 95% 46%)",   // paused/lost: warning status color, shown with icon+label
+  1: "hsl(68 85% 72%)",
+  2: "hsl(68 86% 68%)",
+  3: "hsl(68 88% 62%)",
+  4: "hsl(70 85% 56%)",
+  5: "hsl(72 80% 50%)",
+  6: "hsl(74 76% 45%)",
+  7: "hsl(76 70% 40%)",
+  8: "hsl(78 65% 36%)",
+  9: "hsl(80 60% 33%)",
+  10: "hsl(95 52% 30%)",
+  11: "hsl(120 45% 26%)",
+  12: "hsl(140 52% 23%)",
+  13: "hsl(150 58% 20%)",
+  14: "hsl(160 64% 18%)",
 };
+/** Color for a stage dot/bar: lime ramp for the funnel, amber for paused, red for lost. */
+export const stageColor = (s: StageDef) => (s.kind === "lost" ? "hsl(0 72% 51%)" : s.kind === "paused" ? STAGE_RAMP[0] : STAGE_RAMP[s.step] ?? STAGE_RAMP[1]);
 
 export interface LeadLike {
   id: string; first_name: string; last_name?: string | null; stage?: string | null; source?: string | null;

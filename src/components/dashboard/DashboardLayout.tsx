@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import MobileBottomNav from "./MobileBottomNav";
 import AccountStatusScreen from "./AccountStatusScreen";
+import NotificationsBell from "./NotificationsBell";
+import { supabase } from "@/integrations/supabase/client";
 import { fr, initials } from "@/lib/dashboard-data";
 
 type NavItem = { path: string; icon: LucideIcon; labelFr: string; labelEn: string; exact?: boolean };
@@ -56,8 +58,15 @@ const DashboardLayout = () => {
   const { ambassadorTier } = useUserTier();
   const navigate = useNavigate();
   const location = useLocation();
-  const { lang, setLang } = useLanguage();
+  const { lang, setLang: setLangRaw } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [emailOptIn, setEmailOptIn] = useState<boolean | null>(null);
+  useEffect(() => { setEmailOptIn(profile?.notify_email ?? true); }, [profile?.notify_email]);
+  // Persist the dashboard language so emails follow it ("ar" is the dashboard code for French).
+  const setLang = (code: "en" | "ar") => {
+    setLangRaw(code);
+    if (user) supabase.from("profiles").update({ language: code === "ar" ? "fr" : "en" }).eq("id", user.id).then(() => {});
+  };
 
   useEffect(() => { if (!loading && !user) navigate("/auth"); }, [user, loading, navigate]);
   useEffect(() => { setSidebarOpen(false); }, [location.pathname]);
@@ -230,9 +239,7 @@ const DashboardLayout = () => {
             <button className="text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Help">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="relative text-[hsl(var(--dash-muted-fg))] hover:text-[hsl(var(--dash-fg))] p-2 rounded-lg hover:bg-[hsl(var(--dash-muted))] transition-colors" aria-label="Notifications">
-              <Bell className="w-4 h-4" />
-            </button>
+            <NotificationsBell lang={lang} variant="ambassador" emailOptIn={emailOptIn} onEmailOptInChange={setEmailOptIn} />
             <div className="hidden sm:flex w-8 h-8 ml-1 rounded-full bg-[hsl(var(--dash-accent))] text-[hsl(var(--dash-fg))] text-[11px] font-bold items-center justify-center">{avatar}</div>
           </div>
         </header>
