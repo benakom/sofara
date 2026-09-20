@@ -1158,9 +1158,9 @@ export type Database = {
         Row: {
           accepted_terms: boolean
           accepted_terms_at: string | null
+          approved_email_at: string | null
           country: string | null
           created_at: string
-          approved_email_at: string | null
           email: string | null
           first_name: string | null
           full_name: string | null
@@ -1181,9 +1181,9 @@ export type Database = {
         Insert: {
           accepted_terms?: boolean
           accepted_terms_at?: string | null
+          approved_email_at?: string | null
           country?: string | null
           created_at?: string
-          approved_email_at?: string | null
           email?: string | null
           first_name?: string | null
           full_name?: string | null
@@ -1204,9 +1204,9 @@ export type Database = {
         Update: {
           accepted_terms?: boolean
           accepted_terms_at?: string | null
+          approved_email_at?: string | null
           country?: string | null
           created_at?: string
-          approved_email_at?: string | null
           email?: string | null
           first_name?: string | null
           full_name?: string | null
