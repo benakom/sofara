@@ -496,8 +496,8 @@ export type Database = {
           created_at: string
           from_stage: string | null
           id: string
-          lead_id: string
           kind: string
+          lead_id: string
           note: string | null
           notified_at: string | null
           to_stage: string
@@ -509,8 +509,8 @@ export type Database = {
           created_at?: string
           from_stage?: string | null
           id?: string
-          lead_id: string
           kind?: string
+          lead_id: string
           note?: string | null
           notified_at?: string | null
           to_stage: string
@@ -522,8 +522,8 @@ export type Database = {
           created_at?: string
           from_stage?: string | null
           id?: string
-          lead_id?: string
           kind?: string
+          lead_id?: string
           note?: string | null
           notified_at?: string | null
           to_stage?: string
@@ -542,66 +542,66 @@ export type Database = {
       }
       leads: {
         Row: {
+          assigned_to: string | null
           created_at: string
           email: string | null
           first_name: string
           id: string
           kyc_status: string | null
           last_name: string
-          assigned_to: string | null
           last_stage_at: string | null
           lost_reason: string | null
           next_action: string | null
           next_action_at: string | null
           notes: string | null
-          updated_by: string | null
           phone: string | null
           score: string | null
           source: string | null
           stage: string | null
           updated_at: string
+          updated_by: string | null
           user_id: string
         }
         Insert: {
+          assigned_to?: string | null
           created_at?: string
           email?: string | null
           first_name: string
           id?: string
           kyc_status?: string | null
           last_name: string
-          assigned_to?: string | null
           last_stage_at?: string | null
           lost_reason?: string | null
           next_action?: string | null
           next_action_at?: string | null
           notes?: string | null
-          updated_by?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
           updated_at?: string
+          updated_by?: string | null
           user_id: string
         }
         Update: {
+          assigned_to?: string | null
           created_at?: string
           email?: string | null
           first_name?: string
           id?: string
           kyc_status?: string | null
           last_name?: string
-          assigned_to?: string | null
           last_stage_at?: string | null
           lost_reason?: string | null
           next_action?: string | null
           next_action_at?: string | null
           notes?: string | null
-          updated_by?: string | null
           phone?: string | null
           score?: string | null
           source?: string | null
           stage?: string | null
           updated_at?: string
+          updated_by?: string | null
           user_id?: string
         }
         Relationships: []
@@ -1181,17 +1181,17 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "notifications_lead_id_fkey"
-            columns: ["lead_id"]
-            isOneToOne: false
-            referencedRelation: "leads"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "notifications_event_id_fkey"
             columns: ["event_id"]
             isOneToOne: false
             referencedRelation: "lead_stage_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
             referencedColumns: ["id"]
           },
         ]
@@ -1416,16 +1416,16 @@ export type Database = {
     Functions: {
       admin_update_lead: {
         Args: {
-          p_lead_id: string
-          p_stage?: string | null
-          p_note?: string | null
-          p_visible?: boolean
-          p_next_action?: string | null
-          p_next_action_at?: string | null
-          p_lost_reason?: string | null
-          p_score?: string | null
-          p_assigned_to?: string | null
+          p_assigned_to?: string
           p_clear_next_action?: boolean
+          p_lead_id: string
+          p_lost_reason?: string
+          p_next_action?: string
+          p_next_action_at?: string
+          p_note?: string
+          p_score?: string
+          p_stage?: string
+          p_visible?: boolean
         }
         Returns: Json
       }
