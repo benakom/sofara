@@ -1160,14 +1160,9 @@ export type Database = {
           accepted_terms_at: string | null
           country: string | null
           created_at: string
-          approved_email_at: string | null
-          email: string | null
-          first_name: string | null
           full_name: string | null
           id: string
           language: string | null
-          last_name: string | null
-          occupation: string | null
           phone: string | null
           profile_type: string | null
           referral_code: string | null
@@ -1175,7 +1170,6 @@ export type Database = {
           reviewed_at: string | null
           reviewed_by: string | null
           status: string
-          under_review_email_at: string | null
           updated_at: string
         }
         Insert: {
@@ -1183,14 +1177,9 @@ export type Database = {
           accepted_terms_at?: string | null
           country?: string | null
           created_at?: string
-          approved_email_at?: string | null
-          email?: string | null
-          first_name?: string | null
           full_name?: string | null
           id: string
           language?: string | null
-          last_name?: string | null
-          occupation?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
@@ -1198,7 +1187,6 @@ export type Database = {
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
-          under_review_email_at?: string | null
           updated_at?: string
         }
         Update: {
@@ -1206,14 +1194,9 @@ export type Database = {
           accepted_terms_at?: string | null
           country?: string | null
           created_at?: string
-          approved_email_at?: string | null
-          email?: string | null
-          first_name?: string | null
           full_name?: string | null
           id?: string
           language?: string | null
-          last_name?: string | null
-          occupation?: string | null
           phone?: string | null
           profile_type?: string | null
           referral_code?: string | null
@@ -1221,7 +1204,6 @@ export type Database = {
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
-          under_review_email_at?: string | null
           updated_at?: string
         }
         Relationships: [
