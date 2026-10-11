@@ -1,6 +1,7 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import CevitasGuides from "@/components/CevitasGuides";
 
 const FooterSection = () => {
   const { t } = useLanguage();
@@ -111,6 +112,8 @@ const FooterSection = () => {
             ))}
           </ul>
         </nav>
+
+        <CevitasGuides className="mb-8 text-muted-foreground" />
 
         <div className="border-t border-border/30 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-[10px] sm:text-xs text-primary/60">{t("footer.rights")}</p>
