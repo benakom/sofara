@@ -2,6 +2,8 @@ import * as React from 'npm:react@18.3.1'
 import { renderAsync } from 'npm:@react-email/components@0.0.22'
 import { parseEmailWebhookPayload } from 'npm:@lovable.dev/email-js'
 import { WebhookError, verifyWebhookRequest } from 'npm:@lovable.dev/webhooks-js'
+import { Webhook } from 'npm:standardwebhooks@1.0.0'
+import { hasEmailProvider, nativeAuthPayload } from '../_shared/providers.ts'
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { SignupEmail } from '../_shared/email-templates/signup.tsx'
 import { InviteEmail } from '../_shared/email-templates/invite.tsx'
@@ -111,7 +113,7 @@ async function handlePreview(req: Request): Promise<Response> {
     return new Response(null, { headers: previewCorsHeaders })
   }
 
-  const apiKey = Deno.env.get('LOVABLE_API_KEY')
+  const apiKey = Deno.env.get('LOVABLE_API_KEY') || Deno.env.get('SEND_EMAIL_HOOK_SECRET')
   const authHeader = req.headers.get('Authorization')
 
   if (!apiKey || authHeader !== `Bearer ${apiKey}`) {
@@ -154,8 +156,8 @@ async function handlePreview(req: Request): Promise<Response> {
 async function handleWebhook(req: Request): Promise<Response> {
   const apiKey = Deno.env.get('LOVABLE_API_KEY')
 
-  if (!apiKey) {
-    console.error('LOVABLE_API_KEY not configured')
+  if (!hasEmailProvider() || (!apiKey && !Deno.env.get('SEND_EMAIL_HOOK_SECRET'))) {
+    console.error('Email provider or auth hook verifier not configured')
     return new Response(
       JSON.stringify({ error: 'Server configuration error' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -166,12 +168,18 @@ async function handleWebhook(req: Request): Promise<Response> {
   let payload: any
   let run_id = ''
   try {
-    const verified = await verifyWebhookRequest({
-      req,
-      secret: apiKey,
-      parser: parseEmailWebhookPayload,
-    })
-    payload = verified.payload
+    if (apiKey) {
+      // On Lovable: its webhook relay signs the request.
+      const verified = await verifyWebhookRequest({ req, secret: apiKey, parser: parseEmailWebhookPayload })
+      payload = verified.payload
+    } else {
+      // Off Lovable: Supabase's native Send Email hook (Standard Webhooks signature, secret `v1,whsec_…`).
+      const secret = Deno.env.get('SEND_EMAIL_HOOK_SECRET')
+      const backendUrl = Deno.env.get('SUPABASE_URL')
+      if (!secret || !backendUrl) throw new Error('Native auth hook is not configured')
+      const verified = new Webhook(secret.replace(/^v1,/, '')).verify(await req.text(), Object.fromEntries(req.headers))
+      payload = nativeAuthPayload(verified, backendUrl)
+    }
     run_id = payload.run_id
   } catch (error) {
     if (error instanceof WebhookError) {
