@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { requestChat, selectChatProvider } from "../_shared/chat-provider.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -79,8 +80,8 @@ serve(async (req) => {
       .filter((m: any) => typeof m === "object" && ["user", "assistant"].includes(m.role))
       .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, 2000) }));
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
+    const provider = selectChatProvider(Deno.env.get("LOVABLE_API_KEY"), Deno.env.get("GEMINI_API_KEY"));
+    if (!provider) {
       return new Response(JSON.stringify({ error: "AI service unavailable" }), {
         status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -92,13 +93,7 @@ serve(async (req) => {
     const langName = LANG_NAMES[String(lang || "").toLowerCase()] || "the visitor's language";
     const langDirective = `\n\n## LANGUE DE RÉPONSE (PRIORITAIRE)\nRéponds TOUJOURS et UNIQUEMENT en ${langName}, quelle que soit la langue de la question. Ne mélange jamais les langues.`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const response = await requestChat(provider, {
         model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: SYSTEM_PROMPT + langDirective },
@@ -106,7 +101,6 @@ serve(async (req) => {
         ],
         stream: true,
         max_tokens: 500,
-      }),
     });
 
     if (!response.ok) {
