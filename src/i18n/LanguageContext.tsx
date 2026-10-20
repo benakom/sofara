@@ -1,36 +1,59 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 import { translations, Lang } from "./translations";
+import { isPublicPath, localeFromPath } from "./locales";
 
 interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: (key: string) => string;
+  /** Language forced by the public URL (/fr, /es, /ru or English root pages), if any. */
+  urlLang?: Lang;
+  setUrlLang: (lang: Lang | undefined) => void;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>(() => {
+const readSaved = (): Lang => {
+  try {
     const saved = localStorage.getItem("sofara-lang");
     // "ar" is the dashboard's code for French (legacy convention); keep it across reloads.
     if (saved === "fr" || saved === "es" || saved === "ru" || saved === "en" || saved === "ar") return saved;
-    return "en";
-  });
+  } catch {
+    /* storage unavailable (SSR, private mode) */
+  }
+  return "en";
+};
 
-  const changeLang = (l: Lang) => {
-    setLang(l);
-    localStorage.setItem("sofara-lang", l);
-    document.documentElement.dir = "ltr";
-    document.documentElement.lang = l;
-  };
-
-  const t = useCallback(
-    (key: string) => translations[lang][key] || key,
-    [lang]
+/**
+ * `initialPath` lets the server prerender and the first client render agree on the language:
+ * on public pages the URL decides (so /fr is always French), elsewhere the saved choice applies.
+ */
+export const LanguageProvider = ({ children, initialPath }: { children: ReactNode; initialPath?: string }) => {
+  const startPath = initialPath ?? (typeof window !== "undefined" ? window.location.pathname : "/");
+  const [saved, setSaved] = useState<Lang>(() => (typeof window === "undefined" ? "en" : readSaved()));
+  const [urlLang, setUrlLang] = useState<Lang | undefined>(() =>
+    isPublicPath(startPath) ? localeFromPath(startPath) : undefined,
   );
+  const lang = urlLang ?? saved;
+
+  useEffect(() => {
+    document.documentElement.dir = "ltr";
+    document.documentElement.lang = lang === "ar" ? "fr" : lang;
+  }, [lang]);
+
+  const changeLang = useCallback((l: Lang) => {
+    setSaved(l);
+    try {
+      localStorage.setItem("sofara-lang", l);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const t = useCallback((key: string) => translations[lang][key] || key, [lang]);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang: changeLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: changeLang, t, urlLang, setUrlLang }}>
       {children}
     </LanguageContext.Provider>
   );

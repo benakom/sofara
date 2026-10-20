@@ -207,14 +207,20 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
 export const ORGANIZATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://sofara.io/#organization",
   name: "Sofara",
-  url: "https://sofara.io",
+  alternateName: ["Sofara Dubai", "Sofara Real Estate", "Sofara UAE", "Dubai Real Estate Ambassadors Network"],
+  url: "https://sofara.io/",
   logo: "https://sofara.io/favicon-512x512.png",
+  image: "https://sofara.io/og-sofara.png",
   description:
-    "Dubai real estate ambassador network. Refer buyers for Emaar, DAMAC, Sobha and earn up to 3% commission per closed transaction.",
+    "Sofara is the Dubai and UAE real estate ambassadors and affiliate network. Ambassadors refer property buyers to projects by Emaar, DAMAC, Sobha and other developers and earn up to 3% commission per closed sale.",
+  areaServed: ["AE", "Worldwide"],
+  knowsLanguage: ["en", "fr", "es", "ru"],
   parentOrganization: {
-    "@type": "Organization",
+    "@type": "RealEstateAgent",
     name: "Cevitas Real Estate LLC",
+    url: "https://www.cevitas.ae/",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dubai",
@@ -223,80 +229,22 @@ export const ORGANIZATION_JSONLD = {
   },
   sameAs: [
     "https://www.instagram.com/sofaradubai/",
-    "https://www.linkedin.com/in/ahmedbenjas",
-    "https://www.instagram.com/ahmed.benjas",
+    "https://www.cevitas.ae/",
   ],
-  founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
+  founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about", sameAs: ["https://www.linkedin.com/in/ahmedbenjas", "https://www.instagram.com/ahmed.benjas"] },
 };
 
 export const WEBSITE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://sofara.io/#website",
   name: "Sofara",
-  url: "https://sofara.io",
+  alternateName: ["Sofara Dubai", "sofara.io"],
+  url: "https://sofara.io/",
   description:
-    "Dubai real estate ambassador network — earn up to 3% commission on Dubai off-plan property sales.",
-  inLanguage: ["en", "ar"],
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://sofara.io/blog?search={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
-
-export const FAQ_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much commission can Dubai real estate ambassadors earn on off-plan sales?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Dubai real estate ambassadors earn up to 3% commission per transaction on Dubai off-plan properties from developers like Emaar, DAMAC and Sobha — typically AED 37,000 to AED 120,000 per deal. Top ambassadors exceed AED 90,000 per month.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I need a real estate license to be a Sofara ambassador in Dubai?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. You're a business introducer, not a real estate agent. All transactions are closed under Cevitas Real Estate LLC (RERA-licensed in Dubai), so you don't need a local license.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How are Dubai real estate commissions paid?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Commissions are paid via international bank transfer within 7 days of transaction closing. Status is tracked in real-time on your dashboard.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is the Sofara Dubai real estate ambassador program free?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes — 100% free. No registration fees, no subscription, no hidden costs. Sofara only earns from completed transactions.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How are my leads protected?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Each lead is securely tied to your unique referral link for 12 months — even if the buyer contacts Sofara directly afterwards.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can foreigners buy property in Dubai?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Any nationality can buy freehold property in designated areas. A property investment of AED 2 million or more qualifies for a 10-year Golden Visa.",
-      },
-    },
-  ],
+    "Dubai and UAE real estate ambassadors network: refer property buyers and earn up to 3% commission.",
+  inLanguage: ["en", "fr", "es", "ru"],
+  publisher: { "@id": "https://sofara.io/#organization" },
 };
 
 export function buildServiceJsonLd() {
@@ -305,7 +253,7 @@ export function buildServiceJsonLd() {
     "@type": "Service",
     serviceType: "Real Estate Referral Program",
     name: "Sofara Dubai Real Estate Ambassador Program",
-    provider: { "@type": "Organization", name: "Cevitas Real Estate LLC" },
+    provider: { "@id": "https://sofara.io/#organization" },
     areaServed: "Worldwide",
     description:
       "Earn up to 3% commission referring buyers to Dubai off-plan property from Emaar, DAMAC, Sobha. No real estate license required. Free to join.",
@@ -348,12 +296,13 @@ export function buildPersonJsonLd() {
   };
 }
 
-export function buildBreadcrumbJsonLd(pathname: string, title?: string) {
-  const segments = pathname.split("/").filter(Boolean);
+export function buildBreadcrumbJsonLd(pathname: string, title?: string, home?: { name: string; path: string }) {
+  const homePath = home?.path ?? "/";
+  const segments = pathname.split("/").filter(Boolean).slice(homePath === "/" ? 0 : 1);
   const items: Array<Record<string, unknown>> = [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://sofara.io/" },
+    { "@type": "ListItem", position: 1, name: home?.name ?? "Home", item: `https://sofara.io${homePath}` },
   ];
-  let acc = "";
+  let acc = homePath === "/" ? "" : homePath;
   segments.forEach((seg, i) => {
     acc += `/${seg}`;
     const isLast = i === segments.length - 1;

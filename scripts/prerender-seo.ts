@@ -1,116 +1,81 @@
-// Post-build: writes a static HTML file per public route (dist/<route>/index.html) with the page's own
-// <title>, meta, canonical, Open Graph and JSON-LD, plus a crawlable content snapshot inside #root.
-// The React app still boots normally on top of it. Runs after `vite build`.
+// Post-build static site generation for the public pages.
+// 1. `vite build --ssr src/entry-server.tsx` (run just before this script) produces dist-ssr/entry-server.js.
+// 2. This script renders every public route with React on the server and writes dist/<route>/index.html
+//    with the real page content, <html lang>, title, meta, canonical, hreflang and JSON-LD.
+// 3. The client hydrates those pages (src/main.tsx). App routes keep using the SPA fallback.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, join } from "path";
-import { SEO_CONFIG, SITE_URL, DEFAULT_OG_IMAGE } from "../src/config/seo";
+import { pathToFileURL } from "url";
+import { SEO_CONFIG } from "../src/config/seo";
 import { blogArticles } from "../src/data/blogArticles";
-import { PILLAR_FAQS } from "../src/data/pillarFaqs";
+import { PAGE_PATHS, LOCALES } from "../src/i18n/locales";
 
 const dist = resolve(process.cwd(), "dist");
 const indexPath = join(dist, "index.html");
-if (!existsSync(indexPath)) { console.log("[prerender] dist/index.html not found, skipping"); process.exit(0); }
-const template = readFileSync(indexPath, "utf8");
-
-const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-
-/** Minimal Markdown → HTML for the crawlable snapshot (headings, lists, paragraphs, bold/italic, links). */
-function mdToHtml(md: string): string {
-  const inline = (t: string) => esc(t)
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/`(.+?)`/g, "<code>$1</code>")
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+|\/[^)]*)\)/g, (_m, a, h) => `<a href="${h}">${a}</a>`);
-  const out: string[] = []; let list: "ul" | "ol" | null = null; let para: string[] = [];
-  const flushP = () => { if (para.length) { out.push(`<p>${inline(para.join(" "))}</p>`); para = []; } };
-  const closeList = () => { if (list) { out.push(`</${list}>`); list = null; } };
-  for (const raw of md.split("\n")) {
-    const line = raw.trim();
-    if (!line) { flushP(); closeList(); continue; }
-    if (line.startsWith("---")) { flushP(); closeList(); out.push("<hr/>"); continue; }
-    const h = line.match(/^(#{1,4})\s+(.*)$/);
-    if (h) { flushP(); closeList(); const l = Math.min(h[1].length, 4); out.push(`<h${l}>${inline(h[2])}</h${l}>`); continue; }
-    if (line.startsWith("|")) { flushP(); closeList(); if (!/^\|[\s:-]+\|/.test(line)) out.push(`<p>${inline(line.replace(/\|/g, " · "))}</p>`); continue; }
-    const li = line.match(/^(?:[-*]|\d+\.)\s+(.*)$/);
-    if (li) { flushP(); const kind = /^\d/.test(line) ? "ol" : "ul"; if (list !== kind) { closeList(); out.push(`<${kind}>`); list = kind; } out.push(`<li>${inline(li[1])}</li>`); continue; }
-    closeList(); para.push(line);
-  }
-  flushP(); closeList();
-  return out.join("\n");
+const serverEntry = resolve(process.cwd(), "dist-ssr/entry-server.js");
+if (!existsSync(indexPath) || !existsSync(serverEntry)) {
+  console.log("[prerender] dist/index.html or dist-ssr/entry-server.js missing, skipping");
+  process.exit(0);
 }
 
-interface Page { path: string; title: string; description: string; canonical: string; ogType: string; body: string; jsonLd: Record<string, unknown>[]; image?: string; article?: { published: string; author: string; tags: string[] } }
+// dist/spa.html keeps the untouched SPA shell (also usable as a fallback / 404 page by other hosts);
+// reading from it makes the script safe to re-run on an already prerendered dist/.
+const shellPath = join(dist, "spa.html");
+if (!existsSync(shellPath)) writeFileSync(shellPath, readFileSync(indexPath, "utf8"));
+let template = readFileSync(shellPath, "utf8");
 
-const breadcrumb = (path: string, name: string) => ({
-  "@context": "https://schema.org", "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-    { "@type": "ListItem", position: 2, name, item: `${SITE_URL}${path}` },
-  ],
-});
-
-
-const faqHtml = (path: string) => {
-  const faqs = PILLAR_FAQS[path]; if (!faqs) return "";
-  return `<section><h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}</section>`;
-};
-const faqJsonLd = (path: string) => {
-  const faqs = PILLAR_FAQS[path]; if (!faqs) return [];
-  return [{ "@context": "https://schema.org", "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }];
-};
-
-const pages: Page[] = [];
-for (const [path, cfg] of Object.entries(SEO_CONFIG)) {
-  if (path === "/") continue;
-  pages.push({
-    path, title: cfg.title, description: cfg.description, canonical: cfg.canonical, ogType: "website",
-    body: `<h1>${esc(cfg.h1)}</h1><p>${esc(cfg.description)}</p>${cfg.keywords ? `<p>${esc(cfg.keywords.slice(0, 8).join(" · "))}</p>` : ""}${faqHtml(path)}`,
-    jsonLd: [breadcrumb(path, cfg.h1), ...faqJsonLd(path)],
-  });
+// Inline the stylesheet in prerendered pages: one less render-blocking request before first paint.
+const cssLink = template.match(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/);
+if (cssLink) {
+  const css = readFileSync(join(dist, cssLink[1]), "utf8");
+  template = template.replace(cssLink[0], () => `<style>${css}</style>`);
 }
-for (const a of blogArticles) {
-  const path = `/blog/${a.slug}`;
-  pages.push({
-    path, title: `${a.title} | Sofara Blog`, description: a.excerpt, canonical: `${SITE_URL}${path}`, ogType: "article", image: a.image,
-    body: mdToHtml(a.content), article: { published: a.date, author: a.author, tags: a.tags },
-    jsonLd: [
-      { "@context": "https://schema.org", "@type": "BlogPosting", headline: a.title, description: a.excerpt, image: a.image, datePublished: a.date, dateModified: a.date,
-        author: { "@type": "Organization", name: a.author }, publisher: { "@type": "Organization", name: "Sofara", logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon-512x512.png` } },
-        mainEntityOfPage: `${SITE_URL}${path}`, keywords: a.tags.join(", ") },
-      breadcrumb(path, a.title),
-    ],
-  });
-}
+// Prerendered pages are readable before any JavaScript runs: hydration code is fetched at low priority
+// so it never competes with the HTML, fonts and above-the-fold paint.
+template = template
+  .replace(/<script type="module" crossorigin/g, '<script type="module" fetchpriority="low" crossorigin')
+  .replace(/<link rel="modulepreload" crossorigin/g, '<link rel="modulepreload" fetchpriority="low" crossorigin');
 
-const nav = `<nav><a href="/">Sofara</a> · <a href="/ambassador-program">Ambassador program</a> · <a href="/dubai-real-estate-ambassadors">Dubai real estate ambassadors</a> · <a href="/become-real-estate-agent-dubai">Become a real estate agent in Dubai</a> · <a href="/real-estate-referral-program-dubai">Referral program</a> · <a href="/invest-dubai-real-estate">Invest in Dubai</a> · <a href="/blog">Blog</a></nav>`;
+const routes = new Set<string>();
+for (const p of Object.keys(SEO_CONFIG)) routes.add(p);
+for (const key of Object.keys(PAGE_PATHS) as (keyof typeof PAGE_PATHS)[]) for (const l of LOCALES) routes.add(PAGE_PATHS[key][l]);
+for (const a of blogArticles) routes.add(`/blog/${a.slug}`);
+for (const s of ["privacy", "terms", "cookies"]) routes.add(`/legal/${s}`);
+
+// Removes the template's default SEO tags; the page's own tags come from react-helmet-async.
+const stripDefaultSeo = (html: string) =>
+  html
+    .replace(/<title>[^<]*<\/title>\s*/, "")
+    .replace(/<meta name="description"[^>]*>\s*/, "")
+    .replace(/<meta name="robots"[^>]*>\s*/, "");
+
+// If this file is served for another URL (SPA fallback), drop the prerendered markup before first paint.
+const guard = `<script>(function(){var r=document.getElementById("root"),p=location.pathname.replace(/\\/+$/,"")||"/";if(r&&r.getAttribute("data-ssr")!==p){r.removeAttribute("data-ssr");r.innerHTML="";}})();</script>`;
+
+const { render } = await import(pathToFileURL(serverEntry).href);
 
 let written = 0;
-for (const p of pages) {
-  let html = template;
-  // Head: title, description, canonical, OG/Twitter, hreflang
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(p.title)}</title>`);
-  html = html.replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${esc(p.description)}" />`);
-  html = html.replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${p.canonical}" />`);
-  html = html.replace(/<meta property="og:type" content="[^"]*" \/>/, `<meta property="og:type" content="${p.ogType}" />`);
-  html = html.replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${esc(p.title)}" />`);
-  html = html.replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${esc(p.description)}" />`);
-  html = html.replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${p.canonical}" />`);
-  if (p.image) html = html.replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${p.image}" />`).replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${p.image}" />`);
-  else html = html.replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${DEFAULT_OG_IMAGE}" />`);
-  html = html.replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(p.title)}" />`);
-  html = html.replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(p.description)}" />`);
-  html = html.replace(/<link rel="alternate" hrefLang="en" href="[^"]*" \/>/, `<link rel="alternate" hrefLang="en" href="${p.canonical}" />`);
-  html = html.replace(/<link rel="alternate" hrefLang="x-default" href="[^"]*" \/>/, `<link rel="alternate" hrefLang="x-default" href="${p.canonical}" />`);
-  // Page JSON-LD (in addition to the sitewide Organization block)
-  const ld = p.jsonLd.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join("\n");
-  html = html.replace("</head>", `${ld}\n</head>`);
-  // Crawlable snapshot inside #root (replaced by React on boot)
-  const snapshot = `<div id="root"><div data-prerender style="max-width:860px;margin:0 auto;padding:24px;font-family:system-ui,sans-serif;color:#eaeaea;background:#0a0f0a">${nav}<main>${p.body}</main><footer><p>Sofara · Dubai Real Estate Ambassadors Network · <a href="/auth">Join for free</a></p><nav><p><strong>Dubai &amp; UAE property guides by Cevitas</strong></p><ul><li><a href="https://www.cevitas.ae/">Cevitas, Dubai real estate agency</a></li><li><a href="https://www.cevitas.ae/uae-real-estate">UAE real estate guide 2026</a></li><li><a href="https://www.cevitas.ae/off-plan-properties-dubai">Off-plan properties in Dubai</a></li><li><a href="https://www.cevitas.ae/dubai-rental-yields">Dubai rental yields by area</a></li><li><a href="https://www.cevitas.ae/abu-dhabi-real-estate">Buy property in Abu Dhabi</a></li><li><a href="https://www.cevitas.ae/ras-al-khaimah-real-estate">Ras Al Khaimah real estate</a></li><li><a href="https://www.cevitas.ae/agence-immobiliere-dubai">Agence immobilière à Dubaï</a></li><li><a href="https://www.cevitas.ae/investir-immobilier-dubai">Investir dans l&#39;immobilier à Dubaï</a></li><li><a href="https://www.cevitas.ae/acheter-sur-plan-dubai">Acheter sur plan à Dubaï</a></li><li><a href="https://www.cevitas.ae/immobilier-emirats-arabes-unis">Immobilier aux Émirats</a></li><li><a href="https://www.cevitas.ae/golden-visa-dubai-immobilier">Golden Visa Dubaï par l&#39;immobilier</a></li></ul></nav></footer></div></div>`;
-  html = html.replace(/<div id="root"><\/div>/, snapshot);
-  const dir = join(dist, p.path.replace(/^\//, ""));
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, "index.html"), html);
-  written++;
+let failed = 0;
+for (const route of routes) {
+  try {
+    const { html: body, helmet } = await render(route);
+    if (!body || !body.includes("<h1")) throw new Error("render has no <h1> (page missing or not found)");
+    const head = helmet
+      ? [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString(), helmet.script.toString()].join("\n")
+      : "";
+    const lang = (helmet?.htmlAttributes.toComponent() as { lang?: string })?.lang || "en";
+    let html = stripDefaultSeo(template);
+    html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
+    html = html.replace("</head>", `${head}\n</head>`);
+    html = html.replace('<div id="root"></div>', `<div id="root" data-ssr="${route}">${body}</div>${guard}`);
+    const file = route === "/" ? indexPath : join(dist, route.replace(/^\//, ""), "index.html");
+    mkdirSync(resolve(file, ".."), { recursive: true });
+    writeFileSync(file, html);
+    written++;
+  } catch (err) {
+    failed++;
+    console.error(`[prerender] ${route} failed:`, (err as Error).message);
+  }
 }
-console.log(`[prerender] wrote ${written} static route files`);
+console.log(`[prerender] wrote ${written} prerendered pages${failed ? `, ${failed} failed` : ""}`);
+process.exit(0);

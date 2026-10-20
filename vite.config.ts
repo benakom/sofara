@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -22,22 +22,14 @@ export default defineConfig(({ mode }) => ({
     target: "esnext",
     cssCodeSplit: true,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom"],
-          "vendor-router": ["react-router-dom"],
-          "vendor-motion": ["framer-motion"],
-          "vendor-ui": [
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-select",
-            "@radix-ui/react-tooltip",
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-tabs",
-          ],
-          "vendor-query": ["@tanstack/react-query"],
-          "vendor-charts": ["recharts"],
-        },
-      },
+      // The SSR bundle (build-time prerender only) keeps dependencies external, so no manual chunks there.
+      output: isSsrBuild
+        ? {}
+        : {
+            manualChunks: {
+              "vendor-react": ["react", "react-dom"],
+            },
+          },
     },
   },
 }));

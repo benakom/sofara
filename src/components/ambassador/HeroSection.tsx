@@ -1,9 +1,8 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useState } from "react";
-import dubaiHero from "@/assets/dubai-night-aerial.jpg";
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -19,8 +18,18 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   return <span>{display}</span>;
 };
 
+// Keyword-rich prefix read by screen readers and search engines in front of the visual headline.
+const H1_PREFIX: Record<string, string> = {
+  en: "Sofara, the Dubai & UAE real estate ambassadors network — ",
+  fr: "Sofara, le réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats — ",
+  ar: "Sofara, le réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats — ",
+  es: "Sofara, la red de embajadores inmobiliarios de Dubái y EAU — ",
+  ru: "Sofara — сеть амбассадоров недвижимости Дубая и ОАЭ — ",
+};
+const UP_TO_3: Record<string, string> = { en: "Up to 3%", fr: "Jusqu'à 3 %", ar: "Jusqu'à 3 %", es: "Hasta 3 %", ru: "До 3%" };
+
 const HeroSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const steps = [
     { icon: Send, label: t("hero.step1"), num: "01" },
@@ -29,7 +38,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-[100svh] overflow-hidden flex flex-col" aria-label="Sofara Dubai Real Estate Ambassador Program">
+    <section className="relative min-h-[100svh] overflow-hidden flex flex-col" aria-label={(H1_PREFIX[lang] ?? H1_PREFIX.en).replace(/ — $/, "")}>
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 bg-gradient-mesh" />
@@ -42,24 +51,17 @@ const HeroSection = () => {
       <div className="relative z-10 flex-1 flex items-center w-full px-4 sm:px-6 pt-14 sm:pt-20 pb-6 sm:pb-20">
         <div className="max-w-5xl mx-auto text-center w-full">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs sm:text-sm font-semibold tracking-wide">{t("hero.badge")}</span>
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          >
+          <div>
             <h1 className="font-hero text-[2.25rem] leading-[0.95] sm:text-6xl lg:text-8xl font-extrabold tracking-tight mb-3 sm:mb-8 whitespace-pre-line capitalize text-white">
-              <span className="sr-only">Sofara Dubai Real Estate Ambassador Program — </span>
+              <span className="sr-only">{H1_PREFIX[lang] ?? H1_PREFIX.en}</span>
               {(() => {
                 const headline = t("hero.slide1.headline");
                 const highlight = t("hero.slide1.highlight");
@@ -78,7 +80,7 @@ const HeroSection = () => {
             <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 sm:mb-10 leading-relaxed px-2">
               {(() => {
                 const sub = t("hero.slide1.sub");
-                const highlights = ["3%", "no license", "from anywhere"];
+                const highlights = ["3%", "no license", "from anywhere", "sans licence", "depuis n'importe où dans le monde", "sin licencia", "desde cualquier parte del mundo", "без лицензии", "из любой точки мира"];
                 // Build a regex matching any highlight, case-insensitive
                 const regex = new RegExp(`(${highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
                 const parts = sub.split(regex);
@@ -89,21 +91,15 @@ const HeroSection = () => {
                 );
               })()}
             </p>
-          </motion.div>
+          </div>
 
           {/* 3-Step Process Visual */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
+          <div
             className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 mb-5 sm:mb-10"
           >
             {steps.map((step, i) => (
               <div key={i} className="flex items-center gap-0">
-                <motion.div
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.4 + i * 0.15 }}
+                <div
                   className="flex items-center gap-2.5 px-4 sm:px-6 py-2 sm:py-4 rounded-2xl bg-secondary/50 border border-border/40 backdrop-blur-sm"
                 >
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/15 flex items-center justify-center">
@@ -113,7 +109,7 @@ const HeroSection = () => {
                     <div className="text-[10px] sm:text-[11px] text-muted-foreground font-mono">{step.num}</div>
                     <div className="text-sm sm:text-base font-bold text-foreground whitespace-nowrap">{step.label}</div>
                   </div>
-                </motion.div>
+                </div>
                 {i < steps.length - 1 && (
                   <div className="hidden sm:flex items-center px-2">
                     <ArrowRight className="w-4 h-4 text-primary/40" />
@@ -121,13 +117,10 @@ const HeroSection = () => {
                 )}
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+          <div
             className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mb-5 sm:mb-14"
           >
             <a href="/auth">
@@ -141,13 +134,10 @@ const HeroSection = () => {
                 {t("hero.ctaSecondaryNew")}
               </Button>
             </a>
-          </motion.div>
+          </div>
 
           {/* AI + Metrics strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+          <div
             className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
             {/* AI badge */}
@@ -166,7 +156,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-secondary/40 border border-border/30 backdrop-blur-sm">
               <div className="text-left">
-                <div className="text-base sm:text-base font-bold text-foreground font-display">Up to 3%</div>
+                <div className="text-base sm:text-base font-bold text-foreground font-display">{UP_TO_3[lang] ?? UP_TO_3.en}</div>
                 <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric3Label")}</div>
               </div>
             </div>
@@ -176,7 +166,7 @@ const HeroSection = () => {
                 <div className="text-xs sm:text-xs text-muted-foreground">{t("hero.metric2Short")}</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

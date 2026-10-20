@@ -6,12 +6,12 @@ import {
   SITE_URL,
   ORGANIZATION_JSONLD,
   WEBSITE_JSONLD,
-  FAQ_JSONLD,
   buildServiceJsonLd,
   buildPersonJsonLd,
   buildBreadcrumbJsonLd,
   type SeoMeta,
 } from "@/config/seo";
+import { alternatesFor, localeFromPath, LOCALES, OG_LOCALES, PAGE_PATHS, UI, type Locale } from "@/i18n/locales";
 
 interface SEOProps {
   /** Route key in SEO_CONFIG (e.g. "/", "/about"). Auto-fills meta. */
@@ -25,6 +25,12 @@ interface SEOProps {
   ogType?: string;
   schemaType?: SeoMeta["schemaType"];
   noindex?: boolean;
+  /** Page language (defaults to English). */
+  locale?: Locale;
+  /** Absolute URLs of the same page in every language, for hreflang. */
+  alternates?: Partial<Record<Locale, string>>;
+  /** Breadcrumb label of the current page (defaults to the title before " | "). */
+  breadcrumbName?: string;
   article?: {
     publishedTime?: string;
     author?: string;
@@ -46,6 +52,9 @@ const SEO = ({
   ogType = "website",
   schemaType,
   noindex = false,
+  locale: localeProp,
+  alternates: alternatesProp,
+  breadcrumbName,
   article,
   jsonLd,
 }: SEOProps) => {
@@ -53,12 +62,12 @@ const SEO = ({
 
   const finalTitle = title || cfg?.title || `${SITE_NAME} — Dubai Real Estate Ambassadors`;
   const finalDesc = description || cfg?.description || "";
-  const finalCanonical = canonical || cfg?.canonical || SITE_URL;
+  const finalCanonical = canonical || cfg?.canonical || `${SITE_URL}/`;
   const finalOgImage = ogImage || cfg?.ogImage || DEFAULT_OG_IMAGE;
   const finalSchemaType = schemaType || cfg?.schemaType;
-  const isHomepage = finalCanonical === SITE_URL || finalCanonical === `${SITE_URL}/`;
+  const homeUrls = LOCALES.map((l) => `${SITE_URL}${PAGE_PATHS.home[l]}`);
+  const isHomepage = homeUrls.includes(finalCanonical) || finalCanonical === SITE_URL;
 
-  // Path for breadcrumb derivation
   const pathname = (() => {
     try {
       return new URL(finalCanonical).pathname;
@@ -67,15 +76,23 @@ const SEO = ({
     }
   })();
 
+  // Language and hreflang equivalents are derived from the URL unless given explicitly.
+  const locale: Locale = localeProp ?? localeFromPath(pathname);
+  const alternates = alternatesProp ?? alternatesFor(pathname);
+
   // ── Build JSON-LD stack ────────────────────────────────────
   const jsonLdBlocks: Record<string, unknown>[] = [];
 
   if (isHomepage) {
     jsonLdBlocks.push(ORGANIZATION_JSONLD);
-    jsonLdBlocks.push(WEBSITE_JSONLD);
-    jsonLdBlocks.push(FAQ_JSONLD);
+    jsonLdBlocks.push({ ...WEBSITE_JSONLD, inLanguage: locale });
   } else {
-    jsonLdBlocks.push(buildBreadcrumbJsonLd(pathname, finalTitle.split(" | ")[0].split(" — ")[0]));
+    jsonLdBlocks.push(
+      buildBreadcrumbJsonLd(pathname, breadcrumbName || finalTitle.split(" | ")[0].split(" — ")[0], {
+        name: UI[locale].breadcrumbHome,
+        path: PAGE_PATHS.home[locale],
+      }),
+    );
   }
 
   if (finalSchemaType === "Service") jsonLdBlocks.push(buildServiceJsonLd());
@@ -89,19 +106,13 @@ const SEO = ({
       image: article.image || finalOgImage,
       datePublished: article.publishedTime,
       dateModified: article.modifiedTime || article.publishedTime,
+      inLanguage: locale,
       author: {
         "@type": "Person",
         name: article.author || "Ahmed Benjas",
         url: "https://sofara.io/about",
       },
-      publisher: {
-        "@type": "Organization",
-        name: "Sofara",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://sofara.io/favicon-512x512.png",
-        },
-      },
+      publisher: { "@id": "https://sofara.io/#organization" },
       mainEntityOfPage: { "@type": "WebPage", "@id": finalCanonical },
     });
   }
@@ -111,15 +122,17 @@ const SEO = ({
     jsonLdBlocks.push(...extras);
   }
 
+  const hreflangs = alternates
+    ? (Object.entries(alternates) as [Locale, string][])
+    : ([[locale, finalCanonical]] as [Locale, string][]);
+  const xDefault = alternates?.en ?? (locale === "en" ? finalCanonical : undefined);
+
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang: locale }}>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
-      {cfg?.keywords && cfg.keywords.length > 0 && (
-        <meta name="keywords" content={cfg.keywords.join(", ")} />
-      )}
       <link rel="canonical" href={finalCanonical} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1"} />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
@@ -128,18 +141,21 @@ const SEO = ({
       <meta property="og:url" content={finalCanonical} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={finalOgImage} />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content={OG_LOCALES[locale]} />
+      {alternates &&
+        (Object.keys(alternates) as Locale[])
+          .filter((l) => l !== locale)
+          .map((l) => <meta key={`ogl-${l}`} property="og:locale:alternate" content={OG_LOCALES[l]} />)}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@SofaraDubai" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDesc} />
       <meta name="twitter:image" content={finalOgImage} />
 
-      {/* Hreflang (EN canonical) */}
-      <link rel="alternate" hrefLang="en" href={finalCanonical} />
-      <link rel="alternate" hrefLang="x-default" href={finalCanonical} />
+      {/* Hreflang: every language version of this page, plus x-default on the English one */}
+      {!noindex && hreflangs.map(([l, href]) => <link key={`hl-${l}`} rel="alternate" hrefLang={l} href={href} />)}
+      {!noindex && xDefault && <link rel="alternate" hrefLang="x-default" href={xDefault} />}
 
       {/* Article meta */}
       {article?.publishedTime && (

@@ -1,10 +1,17 @@
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import CevitasGuides from "@/components/CevitasGuides";
+import { LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS } from "@/i18n/locales";
+
+const linkCls = "block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors";
 
 const FooterSection = () => {
   const { t } = useLanguage();
+  const { pathname } = useLocation();
+  const locale = localeFromPath(pathname);
+  const home = PAGE_PATHS.home[locale];
+  const anchor = (id: string) => (pathname === home ? id : `${home}${id}`);
 
   return (
     <footer className="border-t border-border/30 py-10 sm:py-16" itemScope itemType="https://schema.org/WPFooter">
@@ -25,15 +32,20 @@ const FooterSection = () => {
           <div>
             <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.platform")}</h3>
             <div className="space-y-2.5">
-              <a href="#avantages" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.benefits")}</a>
-              <a href="#dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.whyDubai")}</a>
-              <a href="#comment" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">{t("nav.howItWorks")}</a>
-              <Link to="/about" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">About</Link>
-              <Link to="/blog" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Blog</Link>
-              <Link to="/ambassador-program" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Ambassador program</Link>
-              <Link to="/dubai-real-estate-ambassadors" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Dubai real estate ambassadors</Link>
-              <Link to="/become-real-estate-agent-dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Become a real estate agent in Dubai</Link>
-              <Link to="/real-estate-referral-program-dubai" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Real estate referral program</Link>
+              <a href={anchor("#avantages")} className={linkCls}>{t("nav.benefits")}</a>
+              <a href={anchor("#dubai")} className={linkCls}>{t("nav.whyDubai")}</a>
+              <a href={anchor("#comment")} className={linkCls}>{t("nav.howItWorks")}</a>
+              {(["ambassadors", "affiliate", "agent", "invest"] as const).map((k) => (
+                <Link key={k} to={PAGE_PATHS[k][locale]} className={linkCls}>{PAGE_LABELS[k][locale]}</Link>
+              ))}
+              {locale === "en" && (
+                <>
+                  <Link to="/ambassador-program" className={linkCls}>Ambassador program</Link>
+                  <Link to="/real-estate-referral-program-dubai" className={linkCls}>Real estate referral program</Link>
+                  <Link to="/about" className={linkCls}>About</Link>
+                  <Link to="/blog" className={linkCls}>Blog</Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -47,7 +59,7 @@ const FooterSection = () => {
           </div>
 
           <div>
-            <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">Partners</h3>
+            <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{locale === "fr" ? "Partenaires" : locale === "es" ? "Socios" : locale === "ru" ? "Партнёры" : "Partners"}</h3>
             <div className="space-y-2.5">
               <a href="https://www.cevitas.ae" target="_blank" rel="noopener" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Cevitas Real Estate</a>
               <a href="https://www.offplansimulator.com" target="_blank" rel="noopener" className="block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">Off-Plan Simulator</a>
@@ -55,12 +67,21 @@ const FooterSection = () => {
           </div>
         </div>
 
-        {/* SEO internal-link cloud — keyword anchors to deepen blog crawling */}
-        <nav aria-label="Explore Sofara" className="border-t border-border/30 pt-6 sm:pt-8 mb-6 sm:mb-8">
+        {/* Language versions of the site */}
+        <nav aria-label="Languages" className="border-t border-border/30 pt-6 mb-6 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          {LOCALES.map((l) => (
+            <a key={l} href={PAGE_PATHS.home[l]} hrefLang={l} lang={l} className={l === locale ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"}>
+              {LOCALE_LABELS[l]}
+            </a>
+          ))}
+        </nav>
+
+        {/* SEO internal-link cloud — keyword anchors to deepen blog crawling (English pages only) */}
+        {locale === "en" && <nav aria-label="Explore Sofara" className="border-t border-border/30 pt-6 sm:pt-8 mb-6 sm:mb-8">
           <h3 className="font-display text-xs uppercase tracking-[0.18em] text-primary/70 mb-3 sm:mb-4">
             Explore Sofara
           </h3>
-          <ul className="flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs text-muted-foreground/70 leading-relaxed">
+          <ul className="flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
             {[
               { label: "How to Be a Dubai Real Estate Agent", to: "/blog/how-to-be-dubai-real-estate-agent" },
               { label: "How Long to Become a Dubai Real Estate Agent", to: "/blog/how-long-become-real-estate-agent-dubai" },
@@ -111,9 +132,9 @@ const FooterSection = () => {
               </li>
             ))}
           </ul>
-        </nav>
+        </nav>}
 
-        <CevitasGuides className="mb-8 text-muted-foreground" />
+        {locale === "en" && <CevitasGuides className="mb-8 text-muted-foreground" />}
 
         <div className="border-t border-border/30 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-[10px] sm:text-xs text-primary/60">{t("footer.rights")}</p>

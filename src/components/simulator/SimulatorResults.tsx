@@ -122,7 +122,7 @@ const SimulatorResults = ({ results, data, lang, onBack }: Props) => {
       });
 
       const fy2 = (doc as any).lastAutoTable?.finalY || ty + 40;
-      let dy = fy2 + 10;
+      const dy = fy2 + 10;
       doc.setFontSize(7);
       doc.setFont("helvetica", "italic");
       doc.setTextColor(130, 130, 130);

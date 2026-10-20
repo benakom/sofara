@@ -1,5 +1,4 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, Tag, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/ambassador/Navbar";
@@ -9,6 +8,12 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
 import { useEffect } from "react";
+
+/** Responsive widths for Unsplash images (their CDN resizes on the fly); other URLs are left as is. */
+const unsplashSrcSet = (url: string) =>
+  url.includes("images.unsplash.com")
+    ? [480, 800, 1200].map((w) => `${url.replace(/([?&])w=\d+/, `$1w=${w}`)} ${w}w`).join(", ")
+    : undefined;
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -53,11 +58,7 @@ const BlogPost = () => {
         </div>
 
         {/* Header */}
-        <motion.header
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="px-5 sm:px-6 max-w-4xl mx-auto mb-8"
-        >
+        <header className="px-5 sm:px-6 max-w-4xl mx-auto mb-8">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <Badge variant="outline" className="text-primary border-primary/30">
               {article.category}
@@ -76,16 +77,22 @@ const BlogPost = () => {
             {article.excerpt}
           </p>
           <p className="text-xs text-muted-foreground mt-3">By {article.author}</p>
-        </motion.header>
+        </header>
 
         {/* Hero image */}
         <div className="px-5 sm:px-6 max-w-5xl mx-auto mb-10">
           <div className="rounded-2xl overflow-hidden aspect-[21/9] shadow-card-dark">
             <img
               src={article.image}
+              srcSet={unsplashSrcSet(article.image)}
+              sizes="(max-width: 1024px) 100vw, 1024px"
               alt={article.title}
+              width={1200}
+              height={514}
               className="w-full h-full object-cover"
               loading="eager"
+              {...{ fetchpriority: "high" }}
+              decoding="async"
             />
           </div>
         </div>

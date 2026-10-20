@@ -1,8 +1,10 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
-import LandingChatbot from "@/components/landing/LandingChatbot";
+import DeferredChatbot from "@/components/landing/DeferredChatbot";
 import SEO from "@/components/SEO";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { HOME_META, PAGE_PATHS, SITE_URL, type Locale } from "@/i18n/locales";
 
 // Lazy load below-fold sections
 const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
@@ -28,10 +30,24 @@ const Loader = () => (
   </div>
 );
 
-const Index = () => {
+const Index = ({ locale = "en" }: { locale?: Locale }) => {
+  const { t } = useLanguage();
+  const meta = HOME_META[locale];
+  const canonical = `${SITE_URL}${PAGE_PATHS.home[locale]}`;
+  // FAQPage schema mirrors the FAQ rendered on the page, in the page's language.
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale,
+    mainEntity: [1, 2, 3, 4, 5, 6].map((i) => ({
+      "@type": "Question",
+      name: t(`faq.q${i}`),
+      acceptedAnswer: { "@type": "Answer", text: t(`faq.a${i}`) },
+    })),
+  };
   return (
     <div className="min-h-screen bg-background">
-      <SEO route="/" />
+      <SEO route="/" title={meta.title} description={meta.description} canonical={canonical} locale={locale} jsonLd={faqJsonLd} />
       <Navbar />
       <main>
         <HeroSection />
@@ -82,7 +98,7 @@ const Index = () => {
           <FooterSection />
         </Suspense>
       </main>
-      <LandingChatbot />
+      <DeferredChatbot />
     </div>
   );
 };

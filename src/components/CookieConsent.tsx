@@ -30,21 +30,14 @@ const CookieConsent = () => {
     setVisible(false);
   };
 
-  const text = lang === "ar"
-    ? {
-        title: "نستخدم ملفات تعريف الارتباط 🍪",
-        body: "نستخدم ملفات تعريف الارتباط لتحسين تجربتك. يمكنك قبولها أو رفضها.",
-        accept: "قبول الكل",
-        decline: "رفض",
-        link: "سياسة ملفات تعريف الارتباط",
-      }
-    : {
-        title: "We use cookies 🍪",
-        body: "We use cookies to enhance your experience and analyze site traffic. You can accept or decline non-essential cookies.",
-        accept: "Accept All",
-        decline: "Decline",
-        link: "Cookie Policy",
-      };
+  // "ar" is the dashboard's legacy code for French.
+  const COPY = {
+    en: { title: "We use cookies 🍪", body: "We use cookies to enhance your experience and analyze site traffic. You can accept or decline non-essential cookies.", accept: "Accept all", decline: "Decline", link: "Cookie policy", close: "Close" },
+    fr: { title: "Nous utilisons des cookies 🍪", body: "Nous utilisons des cookies pour améliorer votre expérience et mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels.", accept: "Tout accepter", decline: "Refuser", link: "Politique cookies", close: "Fermer" },
+    es: { title: "Usamos cookies 🍪", body: "Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Puedes aceptar o rechazar las cookies no esenciales.", accept: "Aceptar todo", decline: "Rechazar", link: "Política de cookies", close: "Cerrar" },
+    ru: { title: "Мы используем cookie 🍪", body: "Мы используем файлы cookie, чтобы улучшить работу сайта и анализировать трафик. Вы можете принять или отклонить необязательные cookie.", accept: "Принять все", decline: "Отклонить", link: "Политика cookie", close: "Закрыть" },
+  };
+  const text = COPY[lang === "ar" ? "fr" : lang] ?? COPY.en;
 
   return (
     <AnimatePresence>
@@ -60,7 +53,7 @@ const CookieConsent = () => {
             <button
               onClick={decline}
               className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Close"
+              aria-label={text.close}
             >
               <X size={16} />
             </button>

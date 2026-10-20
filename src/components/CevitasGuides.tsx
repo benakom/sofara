@@ -18,7 +18,7 @@ const GUIDES_FR = [
 const CevitasGuides = ({ className = "", title = "Dubai & UAE property guides by Cevitas" }: { className?: string; title?: string }) => (
   <nav aria-label={title} className={className}>
     <p style={{ fontWeight: 600, marginBottom: 8 }}>{title}</p>
-    <ul style={{ display: "flex", flexWrap: "wrap", gap: "6px 18px", listStyle: "none", padding: 0, margin: 0, fontSize: 13, opacity: 0.8 }}>
+    <ul style={{ display: "flex", flexWrap: "wrap", gap: "6px 18px", listStyle: "none", padding: 0, margin: 0, fontSize: 13 }}>
       {[...GUIDES_EN, ...GUIDES_FR].map((g) => (
         <li key={g.href}><a href={g.href} style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>{g.label}</a></li>
       ))}

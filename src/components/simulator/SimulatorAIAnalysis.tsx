@@ -90,7 +90,7 @@ Be specific, use real Dubai market data (2024-2025 benchmarks), and be direct.`;
             const parsed = JSON.parse(jsonStr);
             const content = parsed.choices?.[0]?.delta?.content;
             if (content) { fullText += content; setAnalysis(fullText); }
-          } catch {}
+          } catch { /* ignore malformed stream chunk */ }
         }
       }
       setDone(true);

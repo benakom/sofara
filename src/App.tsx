@@ -3,6 +3,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { ReactNode } from "react";
+import LocaleSync from "@/components/LocaleSync";
+import { PAGE_PATHS, type Locale, type PageKey } from "@/i18n/locales";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
@@ -56,6 +59,15 @@ const About = lazy(() => import("./pages/About"));
 const BecomeRealEstateAgentDubai = lazy(() => import("./pages/BecomeRealEstateAgentDubai"));
 const DubaiRealEstateAmbassadors = lazy(() => import("./pages/DubaiRealEstateAmbassadors"));
 const RealEstateReferralProgramDubai = lazy(() => import("./pages/RealEstateReferralProgramDubai"));
+const LocalizedPillar = lazy(() => import("./pages/LocalizedPillar"));
+
+// Localized landing pages (FR/ES/RU, plus the English affiliate page) rendered from src/data/localizedPillars.
+const LOCALIZED_ROUTES: { path: string; pageKey: PageKey; locale: Locale }[] = [
+  { path: PAGE_PATHS.affiliate.en, pageKey: "affiliate", locale: "en" },
+  ...(["fr", "es", "ru"] as const).flatMap((locale) =>
+    (["ambassadors", "affiliate", "agent", "invest"] as const).map((pageKey) => ({ path: PAGE_PATHS[pageKey][locale], pageKey, locale })),
+  ),
+];
 
 const queryClient = new QueryClient();
 
@@ -78,75 +90,92 @@ const RouteLoading = () => {
   );
 };
 
-const App = () => (
-  <HelmetProvider>
+export const AppProviders = ({ children, initialPath, helmetContext }: { children: ReactNode; initialPath?: string; helmetContext?: object }) => (
+  <HelmetProvider context={helmetContext}>
   <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
+    <LanguageProvider initialPath={initialPath}>
       <AuthProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <CookieConsent />
-            <Suspense fallback={<RouteLoading />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="/legal/:section" element={<Legal />} />
-                <Route path="/invest-dubai-real-estate" element={<InvestDubaiRealEstate />} />
-                <Route path="/buy-property-dubai" element={<BuyPropertyDubai />} />
-                <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
-                <Route path="/ambassador-program" element={<AmbassadorProgram />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/become-real-estate-agent-dubai" element={<BecomeRealEstateAgentDubai />} />
-                <Route path="/dubai-real-estate-ambassadors" element={<DubaiRealEstateAmbassadors />} />
-                <Route path="/real-estate-referral-program-dubai" element={<RealEstateReferralProgramDubai />} />
-                <Route path="/dashboard" element={<DashboardLayout />}>
-                  <Route index element={<DashboardHome />} />
-                  
-                  <Route path="pipeline" element={<Pipeline />} />
-                  <Route path="import-leads" element={<ImportLeads />} />
-                  <Route path="commissions" element={<Commissions />} />
-                  <Route path="payments" element={<Payments />} />
-                  <Route path="kyc" element={<KycAml />} />
-                  <Route path="ai-hub" element={<AIHub />} />
-                  <Route path="simulator" element={<Simulator />} />
-                  <Route path="calendar" element={<CalendarPage />} />
-                  <Route path="legal-ai" element={<LegalAI />} />
-                  
-                  <Route path="community" element={<Community />} />
-                  <Route path="library" element={<Library />} />
-                  <Route path="referrals" element={<Referrals />} />
-                </Route>
-                <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<AdminDashboard />} />
-                  <Route path="ambassadors" element={<AdminAmbassadors />} />
-                  <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
-                  <Route path="leads" element={<AdminLeads />} />
-                  <Route path="chatbot-leads" element={<AdminChatbotLeads />} />
-                  <Route path="pipeline" element={<AdminPipeline />} />
-                  <Route path="commissions" element={<AdminCommissions />} />
-                  <Route path="payments" element={<AdminPayments />} />
-                  <Route path="projects" element={<AdminProjects />} />
-                  <Route path="ai-config" element={<AdminAIConfig />} />
-                  <Route path="analytics" element={<AdminAnalytics />} />
-                  <Route path="seo" element={<AdminSEO />} />
-                  <Route path="newsletters" element={<AdminNewsletters />} />
-                  <Route path="settings" element={<AdminSettings />} />
-                  <Route path="settings" element={<AdminSettings />} />
-                </Route>
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
+          {children}
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
   </HelmetProvider>
+);
+
+export const AppRoutes = () => (
+  <>
+    <LocaleSync />
+    <CookieConsent />
+    <Suspense fallback={<RouteLoading />}>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/fr" element={<Index locale="fr" />} />
+        <Route path="/es" element={<Index locale="es" />} />
+        <Route path="/ru" element={<Index locale="ru" />} />
+        {LOCALIZED_ROUTES.map((r) => (
+          <Route key={r.path} path={r.path} element={<LocalizedPillar pageKey={r.pageKey} locale={r.locale} />} />
+        ))}
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/legal/:section" element={<Legal />} />
+        <Route path="/invest-dubai-real-estate" element={<InvestDubaiRealEstate />} />
+        <Route path="/buy-property-dubai" element={<BuyPropertyDubai />} />
+        <Route path="/dubai-off-plan-properties" element={<DubaiOffPlanProperties />} />
+        <Route path="/ambassador-program" element={<AmbassadorProgram />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/become-real-estate-agent-dubai" element={<BecomeRealEstateAgentDubai />} />
+        <Route path="/dubai-real-estate-ambassadors" element={<DubaiRealEstateAmbassadors />} />
+        <Route path="/real-estate-referral-program-dubai" element={<RealEstateReferralProgramDubai />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+
+          <Route path="pipeline" element={<Pipeline />} />
+          <Route path="import-leads" element={<ImportLeads />} />
+          <Route path="commissions" element={<Commissions />} />
+          <Route path="payments" element={<Payments />} />
+          <Route path="kyc" element={<KycAml />} />
+          <Route path="ai-hub" element={<AIHub />} />
+          <Route path="simulator" element={<Simulator />} />
+          <Route path="calendar" element={<CalendarPage />} />
+          <Route path="legal-ai" element={<LegalAI />} />
+          <Route path="community" element={<Community />} />
+          <Route path="library" element={<Library />} />
+          <Route path="referrals" element={<Referrals />} />
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="ambassadors" element={<AdminAmbassadors />} />
+          <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
+          <Route path="leads" element={<AdminLeads />} />
+          <Route path="chatbot-leads" element={<AdminChatbotLeads />} />
+          <Route path="pipeline" element={<AdminPipeline />} />
+          <Route path="commissions" element={<AdminCommissions />} />
+          <Route path="payments" element={<AdminPayments />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="ai-config" element={<AdminAIConfig />} />
+          <Route path="analytics" element={<AdminAnalytics />} />
+          <Route path="seo" element={<AdminSEO />} />
+          <Route path="newsletters" element={<AdminNewsletters />} />
+          <Route path="settings" element={<AdminSettings />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
+  </>
+);
+
+const App = () => (
+  <AppProviders>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  </AppProviders>
 );
 
 export default App;

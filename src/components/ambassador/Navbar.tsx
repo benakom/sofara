@@ -5,6 +5,8 @@ import { Menu, X, LogIn, LayoutDashboard, Globe, ChevronDown } from "lucide-reac
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { alternatesFor, isPublicPath, localeFromPath, PAGE_PATHS, SITE_URL, UI, type Locale } from "@/i18n/locales";
 
 const languages: { code: Lang; label: string }[] = [
   { code: "en", label: "English" },
@@ -16,6 +18,20 @@ const languages: { code: Lang; label: string }[] = [
 const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) => {
   const [open, setOpen] = useState(false);
   const current = languages.find(l => l.code === lang) || languages[0];
+  const { pathname, hash } = useLocation();
+  const navigate = useNavigate();
+
+  // On public pages the language lives in the URL: go to the same page in the chosen language
+  // (or that language's homepage when the page exists in English only).
+  const choose = (code: Lang) => {
+    setLang(code);
+    setOpen(false);
+    if (!isPublicPath(pathname)) return;
+    const target = code as Locale;
+    const alt = alternatesFor(pathname);
+    const to = alt ? alt[target].replace(SITE_URL, "") || "/" : PAGE_PATHS.home[target];
+    if (to !== pathname) navigate(to + (alt ? hash : ""));
+  };
 
   return (
     <div className="relative">
@@ -36,7 +52,7 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
             {languages.map(l => (
               <button
                 key={l.code}
-                onClick={() => { setLang(l.code); setOpen(false); }}
+                onClick={() => choose(l.code)}
                 className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                   lang === l.code
                     ? "bg-primary/10 text-primary font-semibold"
@@ -56,6 +72,11 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
   const { user, loading } = useAuth();
+  const { pathname } = useLocation();
+  const locale = localeFromPath(pathname);
+  const home = PAGE_PATHS.home[locale];
+  // Section anchors live on the homepage: prefix them when the navbar is shown on another page.
+  const anchor = (id: string) => (pathname === home ? id : `${home}${id}`);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -66,10 +87,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-background/80 backdrop-blur-2xl border-b border-border/40 shadow-lg shadow-background/50"
@@ -77,23 +95,23 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between max-w-7xl">
-        <a href="/" className="font-display text-4xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-tight">
+        <a href={home} aria-label="Sofara" className="font-display text-4xl sm:text-4xl lg:text-5xl font-bold text-primary tracking-tight">
           sofara
         </a>
 
         <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-1 py-1">
           {[
-            { href: "#platform", label: t("nav.platform") },
-            { href: "#dubai", label: t("nav.whyDubai") },
-            { href: "#avantages", label: t("nav.benefits") },
-            { href: "#comment", label: t("nav.howItWorks") },
-            { href: "/dubai-real-estate-ambassadors", label: "Ambassadors" },
-            { href: "/blog", label: "Blog" },
+            { href: anchor("#platform"), label: t("nav.platform") },
+            { href: anchor("#dubai"), label: t("nav.whyDubai") },
+            { href: anchor("#avantages"), label: t("nav.benefits") },
+            { href: anchor("#comment"), label: t("nav.howItWorks") },
+            { href: PAGE_PATHS.ambassadors[locale], label: UI[locale].ambassadors, wide: true },
+            { href: "/blog", label: "Blog", wide: true },
           ].map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground hover:bg-secondary px-4 py-1.5 rounded-full transition-all duration-200"
+              className={`${link.wide ? "hidden lg:inline-block" : ""} whitespace-nowrap text-sm text-muted-foreground hover:text-foreground hover:bg-secondary px-3 lg:px-4 py-1.5 rounded-full transition-all duration-200`}
             >
               {link.label}
             </a>
@@ -146,10 +164,12 @@ const Navbar = () => {
           >
             <div className="px-5 py-4 flex flex-col gap-0.5">
               {[
-                { href: "#platform", label: t("nav.platform") },
-                { href: "#dubai", label: t("nav.whyDubai") },
-                { href: "#avantages", label: t("nav.benefits") },
-                { href: "#comment", label: t("nav.howItWorks") },
+                { href: anchor("#platform"), label: t("nav.platform") },
+                { href: anchor("#dubai"), label: t("nav.whyDubai") },
+                { href: anchor("#avantages"), label: t("nav.benefits") },
+                { href: anchor("#comment"), label: t("nav.howItWorks") },
+                { href: PAGE_PATHS.ambassadors[locale], label: UI[locale].ambassadors },
+                { href: "/blog", label: "Blog" },
               ].map((link) => (
                 <a
                   key={link.href}
@@ -183,7 +203,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 

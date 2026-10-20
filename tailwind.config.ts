@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -14,9 +16,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Poppins', 'Plus Jakarta Sans', 'sans-serif'],
-        body: ['Poppins', 'Plus Jakarta Sans', 'sans-serif'],
-        hero: ['Poppins', 'Plus Jakarta Sans', 'sans-serif'],
+        display: ['Poppins', 'Poppins Fallback', 'sans-serif'],
+        body: ['Poppins', 'Poppins Fallback', 'sans-serif'],
+        hero: ['Poppins', 'Poppins Fallback', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -84,5 +86,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [tailwindcssAnimate, typography],
 } satisfies Config;

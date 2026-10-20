@@ -169,7 +169,7 @@ const AdminAmbassadors = () => {
     } catch (error) { toast({ title: "Create failed", description: (error as Error).message, variant: "destructive" }); }
     finally { setCreateLoading(false); }
   };
-  const toggleSelect = (id: string) => setSelected((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const toggleSelect = (id: string) => setSelected((prev) => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   const toggleAll = () => (selected.size === paginated.length ? setSelected(new Set()) : setSelected(new Set(paginated.map((a) => a.id))));
   const exportCSV = () => {
     const h = ["Name", "Email", "Phone", "Occupation", "Country", "Sponsor", "Status", "Leads", "Deals", "Commission", "Signed up", "Reviewed"];
