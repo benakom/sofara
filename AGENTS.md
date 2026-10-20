@@ -1,0 +1,2 @@
+# Architecture rules
+- Chat provider portability belongs in a shared server-only request selector; use the existing Lovable request unchanged when its key is present, so migration does not alter hosted behavior.
