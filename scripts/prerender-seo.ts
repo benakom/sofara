@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, join } from "path";
 import { pathToFileURL } from "url";
+import Beasties from "beasties";
 import { SEO_CONFIG } from "../src/config/seo";
 import { blogArticles } from "../src/data/blogArticles";
 import { EN_GUIDES, PAGE_PATHS, LOCALES } from "../src/i18n/locales";
@@ -24,12 +25,18 @@ const shellPath = join(dist, "spa.html");
 if (!existsSync(shellPath)) writeFileSync(shellPath, readFileSync(indexPath, "utf8"));
 let template = readFileSync(shellPath, "utf8");
 
-// Inline the stylesheet in prerendered pages: one less render-blocking request before first paint.
-const cssLink = template.match(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/);
-if (cssLink) {
-  const css = readFileSync(join(dist, cssLink[1]), "utf8");
-  template = template.replace(cssLink[0], () => `<style>${css}</style>`);
-}
+// Critical CSS: each prerendered page inlines only the rules its own HTML uses (Beasties); the full stylesheet
+// still loads without blocking paint, for elements rendered later (mobile menu, chat, accordions, app routes).
+const beasties = new Beasties({
+  path: dist,
+  publicPath: "/",
+  preload: "swap",
+  pruneSource: false,
+  inlineFonts: false,
+  preloadFonts: false,
+  keyframes: "critical",
+  logLevel: "error",
+});
 // Prerendered pages are readable before any JavaScript runs: hydration code is fetched at low priority
 // so it never competes with the HTML, fonts and above-the-fold paint.
 template = template
@@ -76,6 +83,7 @@ for (const route of routes) {
     html = html.replace('<div id="root"></div>', `<div id="root" data-ssr="${route}">${body}</div>${guard}`);
     const file = route === "/" ? indexPath : join(dist, route.replace(/^\//, ""), "index.html");
     mkdirSync(resolve(file, ".."), { recursive: true });
+    html = await beasties.process(html);
     writeFileSync(file, html);
     written++;
   } catch (err) {
