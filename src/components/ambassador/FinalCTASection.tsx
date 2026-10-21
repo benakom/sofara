@@ -20,7 +20,7 @@ const FinalCTASection = () => {
         >
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
             {t("finalcta.title")}{" "}
-            <span className="text-gradient-primary">{t("finalcta.titleHighlight")}</span>
+            <span className="marker-fluo">{t("finalcta.titleHighlight")}</span>
           </h2>
           
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">

@@ -28,7 +28,7 @@ const PlatformSection = () => {
           </span>
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("platform.title")}{" "}
-            <span className="text-gradient-primary">{t("platform.titleHighlight")}</span>
+            <span className="marker-fluo">{t("platform.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("platform.description")}

@@ -26,7 +26,7 @@ const TestimonialsSection = () => {
           </span>
           <h2 className="font-display text-[2rem] sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4 leading-tight">
             {t("testimonials.title")}{" "}
-            <span className="text-gradient-primary">{t("testimonials.titleHighlight")}</span>
+            <span className="marker-fluo">{t("testimonials.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
         </motion.div>

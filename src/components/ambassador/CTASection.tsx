@@ -108,7 +108,7 @@ const CTASection = () => {
         >
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("cta.title")}{" "}
-            <span className="text-gradient-primary">{t("cta.titleHighlight")}</span> ?
+            <span className="marker-fluo">{t("cta.titleHighlight")}</span> ?
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg mb-8 sm:mb-12">{t("cta.description")}</p>
 

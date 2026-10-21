@@ -70,7 +70,7 @@ const HeroSection = () => {
                 return (
                   <>
                     {headline.slice(0, idx)}
-                    <span className="text-primary">{headline.slice(idx, idx + highlight.length)}</span>
+                    <span className="marker-fluo">{headline.slice(idx, idx + highlight.length)}</span>
                     {headline.slice(idx + highlight.length)}
                   </>
                 );

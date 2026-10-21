@@ -30,7 +30,7 @@ const InvestorMetrics = () => {
             </span>
             <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("investor.title")}{" "}
-              <span className="text-gradient-primary">{t("investor.titleHighlight")}</span>
+              <span className="marker-fluo">{t("investor.titleHighlight")}</span>
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t("investor.description")}

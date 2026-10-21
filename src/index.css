@@ -696,3 +696,12 @@
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+/* Fluo highlighter on title key words (2026-10-21): lime band behind the word, dark ink on top. */
+.marker-fluo {
+  background-image: linear-gradient(transparent 14%, hsl(var(--primary)) 14%, hsl(var(--primary)) 90%, transparent 90%);
+  color: hsl(var(--primary-foreground));
+  padding: 0 0.14em;
+  margin: 0 -0.04em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
