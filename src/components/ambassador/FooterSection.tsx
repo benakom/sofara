@@ -2,7 +2,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Instagram } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import CevitasGuides from "@/components/CevitasGuides";
-import { LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS } from "@/i18n/locales";
+import { EN_GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS } from "@/i18n/locales";
 
 const linkCls = "block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors";
 
@@ -42,6 +42,9 @@ const FooterSection = () => {
                 <>
                   <Link to="/ambassador-program" className={linkCls}>Ambassador program</Link>
                   <Link to="/real-estate-referral-program-dubai" className={linkCls}>Real estate referral program</Link>
+                  {Object.values(EN_GUIDES).map((g) => (
+                    <Link key={g.path} to={g.path} className={linkCls}>{g.label}</Link>
+                  ))}
                   <Link to="/about" className={linkCls}>About</Link>
                   <Link to="/blog" className={linkCls}>Blog</Link>
                 </>

@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
-import { PAGE_LABELS, PAGE_PATHS, SITE_URL, UI, type Locale, type PageKey } from "@/i18n/locales";
+import { isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
 import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
 import type { Block } from "@/data/localizedPillars/types";
 
@@ -49,11 +49,11 @@ const renderBlock = (b: Block, i: number) => {
 };
 
 /** Long-form localized landing page (FR/ES/RU guides and the English affiliate page). */
-const LocalizedPillar = ({ pageKey, locale }: { pageKey: PageKey; locale: Locale }) => {
+const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Locale }) => {
   const c = LOCALIZED_PILLARS[locale]?.[pageKey];
   if (!c) return null;
   const ui = UI[locale];
-  const path = PAGE_PATHS[pageKey][locale];
+  const path = pathOf(pageKey, locale);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -79,7 +79,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: PageKey; locale: Locale
         description={c.description}
         canonical={`${SITE_URL}${path}`}
         locale={locale}
-        breadcrumbName={PAGE_LABELS[pageKey][locale]}
+        breadcrumbName={labelOf(pageKey, locale)}
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
       <Navbar />
@@ -88,7 +88,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: PageKey; locale: Locale
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-5">
             <Link to={PAGE_PATHS.home[locale]} className="hover:text-foreground">{ui.breadcrumbHome}</Link>
             <span className="mx-2">/</span>
-            <span>{PAGE_LABELS[pageKey][locale]}</span>
+            <span>{labelOf(pageKey, locale)}</span>
           </nav>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">{c.eyebrow}</span>
           <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight mb-5">{c.h1}</h1>
@@ -146,10 +146,10 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: PageKey; locale: Locale
         <section className="px-5 sm:px-6 max-w-4xl mx-auto pb-20">
           <h2 className="font-display text-xl font-bold mb-4">{ui.related}</h2>
           <ul className="grid sm:grid-cols-2 gap-3">
-            {c.related.map((k) => (
+            {c.related.filter((k) => locale === "en" || !isGuideKey(k)).map((k) => (
               <li key={k}>
-                <Link to={PAGE_PATHS[k][locale]} className="flex items-center justify-between rounded-xl border border-border px-4 py-3 text-sm font-medium hover:border-primary/50 hover:text-primary transition-colors">
-                  {k === "home" ? ui.home : PAGE_LABELS[k][locale]} <ArrowRight className="w-4 h-4 shrink-0" />
+                <Link to={pathOf(k, locale)} className="flex items-center justify-between rounded-xl border border-border px-4 py-3 text-sm font-medium hover:border-primary/50 hover:text-primary transition-colors">
+                  {k === "home" ? ui.home : labelOf(k, locale)} <ArrowRight className="w-4 h-4 shrink-0" />
                 </Link>
               </li>
             ))}

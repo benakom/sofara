@@ -11,6 +11,8 @@ const RealEstateReferralProgramDubai = () => (
     faqs={PILLAR_FAQS["/real-estate-referral-program-dubai"]}
     related={[
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: the network explained" },
+      { to: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai: how much and who pays" },
+      { to: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
       { to: "/ambassador-program", label: "Sofara ambassador program" },
       { to: "/become-real-estate-agent-dubai", label: "Become a real estate agent in Dubai" },
       { to: "/blog/sofara-commission-structure-explained", label: "Commission structure explained" },

@@ -3,7 +3,7 @@
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 import { blogArticles } from "../src/data/blogArticles";
-import { LOCALES, PAGE_PATHS, SITE_URL, type PageKey } from "../src/i18n/locales";
+import { EN_GUIDES, LOCALES, PAGE_PATHS, SITE_URL, type PageKey } from "../src/i18n/locales";
 
 const today = new Date().toISOString().slice(0, 10);
 
@@ -34,6 +34,7 @@ for (const { key, priority } of localized) {
 
 // English-only pages
 const englishOnly: Omit<Entry, "alternates">[] = [
+  ...Object.values(EN_GUIDES).map((g) => ({ path: g.path, changefreq: "weekly" as const, priority: "0.9" })),
   { path: "/ambassador-program", changefreq: "weekly", priority: "0.95" },
   { path: "/real-estate-referral-program-dubai", changefreq: "weekly", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.8" },

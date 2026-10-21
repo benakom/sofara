@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
 import LocaleSync from "@/components/LocaleSync";
-import { PAGE_PATHS, type Locale, type PageKey } from "@/i18n/locales";
+import { EN_GUIDES, PAGE_PATHS, type AnyPageKey, type GuideKey, type Locale } from "@/i18n/locales";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
@@ -62,8 +62,9 @@ const RealEstateReferralProgramDubai = lazy(() => import("./pages/RealEstateRefe
 const LocalizedPillar = lazy(() => import("./pages/LocalizedPillar"));
 
 // Localized landing pages (FR/ES/RU, plus the English affiliate page) rendered from src/data/localizedPillars.
-const LOCALIZED_ROUTES: { path: string; pageKey: PageKey; locale: Locale }[] = [
+const LOCALIZED_ROUTES: { path: string; pageKey: AnyPageKey; locale: Locale }[] = [
   { path: PAGE_PATHS.affiliate.en, pageKey: "affiliate", locale: "en" },
+  ...(Object.keys(EN_GUIDES) as GuideKey[]).map((pageKey) => ({ path: EN_GUIDES[pageKey].path, pageKey, locale: "en" as const })),
   ...(["fr", "es", "ru"] as const).flatMap((locale) =>
     (["ambassadors", "affiliate", "agent", "invest"] as const).map((pageKey) => ({ path: PAGE_PATHS[pageKey][locale], pageKey, locale })),
   ),

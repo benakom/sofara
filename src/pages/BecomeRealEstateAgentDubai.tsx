@@ -10,6 +10,8 @@ const BecomeRealEstateAgentDubai = () => (
     intro="Dubai is one of the few property markets where a motivated newcomer can earn six figures in AED within a year. This guide explains the two ways in: the licensed real estate agent route through RERA, and the ambassador route that lets you earn commissions on Dubai property sales with no license, from anywhere in the world."
     faqs={PILLAR_FAQS["/become-real-estate-agent-dubai"]}
     related={[
+      { to: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai: rules and options" },
+      { to: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: how the network works" },
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program: earn up to 3%" },
       { to: "/blog/cost-become-real-estate-agent-dubai", label: "Detailed cost breakdown to become an agent in Dubai" },

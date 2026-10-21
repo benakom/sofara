@@ -127,6 +127,17 @@ export const UI: Record<Locale, {
   },
 };
 
+/** English-only guides aimed at people searching from the UAE (freelance, part-time, referral fees, side income). */
+export type GuideKey = "freelance" | "partTime" | "referralFee" | "sideIncome";
+export const EN_GUIDES: Record<GuideKey, { path: string; label: string }> = {
+  freelance: { path: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai" },
+  partTime: { path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
+  referralFee: { path: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
+  sideIncome: { path: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
+};
+export type AnyPageKey = PageKey | GuideKey;
+export const isGuideKey = (k: AnyPageKey): k is GuideKey => k in EN_GUIDES;
+
 /** Short link labels for each localized page, used in navigation and footers. */
 export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
   home: { en: "Sofara", fr: "Sofara", es: "Sofara", ru: "Sofara" },
@@ -155,3 +166,8 @@ export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
     ru: "Инвестиции в недвижимость Дубая",
   },
 };
+
+/** URL of any page key in a locale (English guides exist in English only). */
+export const pathOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? EN_GUIDES[k].path : PAGE_PATHS[k][l]);
+/** Link label of any page key in a locale. */
+export const labelOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? EN_GUIDES[k].label : PAGE_LABELS[k][l]);

@@ -8,7 +8,7 @@ import { resolve, join } from "path";
 import { pathToFileURL } from "url";
 import { SEO_CONFIG } from "../src/config/seo";
 import { blogArticles } from "../src/data/blogArticles";
-import { PAGE_PATHS, LOCALES } from "../src/i18n/locales";
+import { EN_GUIDES, PAGE_PATHS, LOCALES } from "../src/i18n/locales";
 
 const dist = resolve(process.cwd(), "dist");
 const indexPath = join(dist, "index.html");
@@ -39,6 +39,7 @@ template = template
 const routes = new Set<string>();
 for (const p of Object.keys(SEO_CONFIG)) routes.add(p);
 for (const key of Object.keys(PAGE_PATHS) as (keyof typeof PAGE_PATHS)[]) for (const l of LOCALES) routes.add(PAGE_PATHS[key][l]);
+for (const g of Object.values(EN_GUIDES)) routes.add(g.path);
 for (const a of blogArticles) routes.add(`/blog/${a.slug}`);
 for (const s of ["privacy", "terms", "cookies"]) routes.add(`/legal/${s}`);
 

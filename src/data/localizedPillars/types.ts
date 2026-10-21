@@ -1,4 +1,4 @@
-import type { PageKey } from "@/i18n/locales";
+import type { AnyPageKey } from "@/i18n/locales";
 
 /** Text supports **bold** and [label](/path) links. */
 export type Block =
@@ -17,5 +17,5 @@ export interface PillarContent {
   sections: { h2: string; blocks: Block[] }[];
   faqs: { q: string; a: string }[];
   cta: { title: string; text: string };
-  related: PageKey[];
+  related: AnyPageKey[];
 }

@@ -12,6 +12,8 @@ const DubaiRealEstateAmbassadors = () => (
     related={[
       { to: "/ambassador-program", label: "Sofara ambassador program: steps, commissions, tools" },
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program explained" },
+      { to: "/real-estate-affiliate-program-uae", label: "UAE real estate affiliate program" },
+      { to: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
       { to: "/become-real-estate-agent-dubai", label: "Become a real estate agent in Dubai (licensed vs ambassador)" },
       { to: "/blog/ambassador-success-stories", label: "Ambassador success stories" },
       { to: "/blog/dubai-real-estate-ambassadors-network", label: "Inside the Dubai real estate ambassadors network" },
