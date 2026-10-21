@@ -81,7 +81,7 @@ When comparing Dubai to the world's other major property markets, the numbers sp
 
 | Metric | Dubai | London | New York | Singapore | Hong Kong |
 |--------|-------|--------|----------|-----------|-----------|
-| **Avg rental yield** | 8-15% | 3-4% | 2-3% | 2-3% | 1.5-2.5% |
+| **Avg rental yield** | 5-8% | 3-4% | 2-3% | 2-3% | 1.5-2.5% |
 | **Income tax** | 0% | Up to 45% | Up to 37% | Up to 22% | Up to 17% |
 | **Capital gains tax** | 0% | Up to 28% | Up to 20% | 0% | 0% |
 | **Price per sqft (USD)** | $550-1,100 | $1,800+ | $1,500+ | $2,000+ | $2,500+ |
@@ -165,7 +165,7 @@ ${internalLink("**→ Join the Sofara ambassador network (free)**", "/auth")} an
   {
     slug: "why-invest-dubai-property-2026",
     title: "9 Reasons Why Smart Investors Choose Dubai Property in 2026",
-    excerpt: "From 0% income tax to 8-15% rental yields and the Golden Visa, discover why Dubai is the #1 destination for global property investors in 2026.",
+    excerpt: "From 0% income tax to 5-8% gross rental yields and the Golden Visa, discover why Dubai is the #1 destination for global property investors in 2026.",
     category: "Dubai Market",
     tags: ["Dubai investment", "tax-free", "rental yield", "Golden Visa", "2026"],
     readTime: "10 min",
@@ -195,18 +195,18 @@ For a property generating AED 200,000/year in rental income, a Dubai investor ke
 
 ---
 
-## 2. Exceptional Rental Yields: 8-15%
+## 2. Strong Rental Yields: 5-8% Gross
 
-Average rental yields in Dubai range from **8% to 15%**, significantly outperforming every mature global market:
+Gross rental yields in Dubai commonly sit between **5% and 8%** depending on the area and the type of unit, among the highest of the major global cities:
 
-| City | Average Rental Yield | Dubai Premium |
-|------|---------------------|---------------|
-| **Dubai** | **8-15%** | — |
-| London | 3-4% | +5-11% |
-| Paris | 2-3% | +6-12% |
-| New York | 2-3% | +6-12% |
-| Singapore | 2-3% | +6-12% |
-| Hong Kong | 1.5-2.5% | +6.5-12.5% |
+| City | Typical Gross Rental Yield |
+|------|---------------------|
+| **Dubai** | **5-8%** |
+| London | 3-4% |
+| Paris | 2-3% |
+| New York | 2-3% |
+| Singapore | 2-3% |
+| Hong Kong | 1.5-2.5% |
 
 For a deep dive into yields by area and strategy, read our ${internalLink("Dubai Rental Yields 2026 guide", "/blog/dubai-rental-yields-explained")}.
 
@@ -988,7 +988,7 @@ Read ${internalLink("real success stories from Sofara ambassadors", "/blog/ambas
 ${internalLink("Sign up on Sofara", "/auth")} — completely free. No fees, no subscription, no credit card required. You'll start with **Sofara Lite**, which gives you full access to lead submission and commission tracking.
 
 ### Step 2: Get Your Unique Referral Link
-After signup, you receive a **unique, cryptographically secured referral link**. Every lead who clicks this link is permanently attributed to your account for **12 months** — even if they contact Sofara or Cevitas directly afterward.
+After signup, you receive a **unique, secure referral link**. Every lead who clicks this link is permanently attributed to your account for **12 months** — even if they contact Sofara or Cevitas directly afterward.
 
 ### Step 3: Share Your Link with Your Network
 Share naturally — no need for aggressive sales tactics:
@@ -1055,7 +1055,7 @@ Yes, 100% free. No registration fees, no subscription, no hidden costs. Sofara o
 Absolutely. Most of our ambassadors are based in Europe, North Africa, and Asia. The legal structure is designed for international activity.
 
 **How are my leads protected?**
-Each lead is cryptographically linked to your unique referral link for 12 months. Even if they contact us directly, the attribution remains tied to you.
+Each lead is linked to your unique referral link for 12 months. Even if they contact us directly, the attribution remains tied to you.
 
 **Is my identity visible to the buyer?**
 Never. Your identity is 100% confidential. Buyers never know that an ambassador referred them.
@@ -2326,8 +2326,8 @@ ${internalLink("**→ Join Sofara and present payment plan options to your netwo
   // ── CATEGORY: Market Insights ──
   {
     slug: "dubai-rental-yields-explained",
-    title: "Dubai Rental Yields 2026: Area-by-Area Breakdown with 8-15% ROI Data",
-    excerpt: "Dubai delivers 8-15% rental yields — 3-4x London, 4-5x Paris. Complete analysis by area, property type, and long-term vs short-term strategy with real 2026 data.",
+    title: "Dubai Rental Yields 2026: Area-by-Area Breakdown and Gross Yield Data",
+    excerpt: "Dubai gross rental yields commonly reach 5-8%, among the highest of major global cities. Complete analysis by area, property type, and long-term vs short-term strategy with real 2026 data.",
     category: "Market Insights",
     tags: ["rental yield", "ROI", "passive income", "Dubai", "short-term rental", "Airbnb Dubai"],
     readTime: "11 min",
@@ -2338,7 +2338,7 @@ ${internalLink("**→ Join Sofara and present payment plan options to your netwo
     content: `
 # Dubai Rental Yields 2026: The Definitive Area-by-Area Guide
 
-Dubai consistently delivers some of the **highest rental yields of any global city** — and the gap is widening. While London yields compress to 3%, Paris to 2.5%, and New York to 2.3%, Dubai maintains **8-15% yields** across most areas.
+Dubai consistently delivers some of the **highest rental yields of any global city** — and the gap is widening. While London yields compress to 3%, Paris to 2.5%, and New York to 2.3%, Dubai gross yields commonly sit between **5% and 8%** depending on the area.
 
 This guide breaks down exactly what you can expect by area, unit type, and rental strategy.
 
@@ -2346,13 +2346,13 @@ This guide breaks down exactly what you can expect by area, unit type, and renta
 
 ## Yield Overview: Dubai vs The World
 
-| City | Average Gross Yield | Net Yield (after tax) | Dubai Advantage |
-|------|--------------------|-----------------------|-----------------|
-| **Dubai** | **8-15%** | **8-15%** (0% tax) | — |
-| London | 3-4% | 1.6-2.2% (after 45% tax) | +6-13% |
-| New York | 2-3% | 1.3-1.9% (after 37% tax) | +6-13% |
-| Paris | 2-3% | 1-1.5% (after 50%+ tax) | +7-14% |
-| Singapore | 2-3% | 1.5-2.3% (after 22% tax) | +6-13% |
+| City | Typical Gross Yield |
+|------|--------------------|
+| **Dubai** | **5-8%** |
+| London | 3-4% |
+| New York | 2-3% |
+| Paris | 2-3% |
+| Singapore | 2-3% |
 
 > The difference is stark: a Dubai investor keeps **100% of rental income** (0% tax), while a UK investor keeps just **55%** after income tax. Over 10 years, this compounds dramatically.
 
@@ -2464,7 +2464,7 @@ ${simulatorLink("→ Model your rental yield with the Investment Simulator")}
 
 Rental yields are your **#1 selling point** with income-focused investors. Key talking points:
 
-- "Dubai delivers 8-15% yields — 3x London, with 0% tax"
+- "Dubai gross rental yields often reach 5-8%, with no income tax on rent for individuals"
 - "Rental income from a AED 2M property covers Golden Visa qualification" (${internalLink("Golden Visa guide", "/blog/dubai-golden-visa-real-estate")})
 - "Post-handover payment plans mean rental income covers your installments"
 - "${simulatorLink("Let me show you the exact numbers")}"
@@ -2925,7 +2925,7 @@ This playbook covers everything: from first message to closed deal.
 The golden rule: **never open with a sales pitch**. Instead, share value first.
 
 **Template 1 — Casual conversation opener:**
-> "Hey [Name], have you been following the Dubai real estate market lately? The numbers are insane — 8-15% rental yields with zero income tax. Made me think of you 🏙️"
+> "Hey [Name], have you been following the Dubai real estate market lately? Gross rental yields often reach 5-8%, with no income tax on rent. Made me think of you 🏙️"
 
 **Template 2 — Data-driven share:**
 > "[Name], just saw this stat: Dubai property transactions hit 210,000 in 2025, up 35% YoY. Thought you'd find it interesting given your interest in investment. Here's a quick read: [blog article link]"
@@ -3947,7 +3947,7 @@ C'est l'un des rares métiers au monde où un débutant motivé peut générer *
 | **B. Broker indépendant RERA** | 6–12 mois | 50 000–150 000 AED | Visa investisseur | 100 % (mais charges) |
 | **C. Ambassadeur Sofara** | 24 h | **0 AED** | **Aucun** | Jusqu'à 3 % via Cevitas |
 
-Les options A et B sont les voies "officielles". L'option C, lancée par Sofara, est **l'alternative légale 2026** : vous référez les acheteurs, Cevitas Real Estate (licenciée RERA) clôture la transaction sous sa licence, et vous touchez la commission. Plus de détails à la section 6.
+Les options A et B sont les voies "officielles". L'option C, lancée par Sofara, est **l'alternative légale 2026** : vous recommandez les acheteurs, Cevitas Real Estate (licenciée RERA) clôture la transaction sous sa licence, et vous touchez la commission. Plus de détails à la section 6.
 
 ---
 
@@ -4022,7 +4022,7 @@ C'est la voie que **80 % de nos nouveaux entrants choisissent en 2026**, et voic
 
 **Comment ça marche concrètement** :
 1. Vous créez votre compte gratuit sur ${internalLink("sofara.io", "/auth")}
-2. Vous référez un acheteur intéressé par un projet Emaar, DAMAC ou Sobha
+2. Vous recommandez un acheteur intéressé par un projet Emaar, DAMAC ou Sobha
 3. Le lead vous est protégé pendant **12 mois**
 4. Cevitas (broker licencié RERA) prend le relais : visite, négociation, closing
 5. Vous touchez **jusqu'à 3 %** dès que la transaction est enregistrée au DLD
