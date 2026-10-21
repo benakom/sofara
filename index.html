@@ -46,6 +46,65 @@
         <a href="/blog">the Sofara Blog</a> for more information.
       </p>
     </noscript>
+    <!-- Language by visitor country (time zone, no external call). French-speaking countries → /fr, former USSR → /ru,
+         elsewhere the English page stays. Arabic browsers get a suggestion. A language the visitor picks always wins;
+         bots and internal navigations are never redirected. -->
+    <script>
+      (function () {
+        try {
+          var KEY = "sofara-locale-pref";
+          var path = location.pathname;
+          var seg = path.split("/")[1];
+          var cur = seg === "fr" || seg === "es" || seg === "ru" || seg === "ar" ? seg : "en";
+          var LOCS = ["fr", "es", "ru", "ar"];
+          // Remember an explicit choice: any click on a link to another language.
+          document.addEventListener("click", function (e) {
+            var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+            if (!a || a.origin !== location.origin) return;
+            var s2 = a.pathname.split("/")[1];
+            var to = LOCS.indexOf(s2) >= 0 ? s2 : "en";
+            if (a.getAttribute("hreflang") || to !== cur) { try { localStorage.setItem(KEY, to); } catch (x) {} }
+          }, true);
+          if (/bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|facebookexternalhit|lighthouse|headless|preview/i.test(navigator.userAgent)) return;
+          var pref = null; try { pref = localStorage.getItem(KEY); } catch (x) {}
+          var internal = document.referrer && document.referrer.indexOf(location.origin) === 0;
+          var alt = function (l) { var el = document.querySelector('link[rel="alternate"][hreflang="' + l + '"]'); return el ? el.getAttribute("href") : null; };
+          var tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (x) {}
+          var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""]).map(function (l) { return String(l).toLowerCase(); });
+          var FR = /^(Europe\/(Paris|Brussels|Luxembourg|Monaco|Zurich|Geneva)|Africa\/(Casablanca|El_Aaiun|Algiers|Tunis|Dakar|Abidjan|Bamako|Ouagadougou|Niamey|Lome|Porto-Novo|Douala|Libreville|Kinshasa|Lubumbashi|Brazzaville|Bangui|Ndjamena|Conakry|Nouakchott|Djibouti|Bujumbura|Kigali)|Indian\/(Antananarivo|Comoro|Mayotte|Reunion)|America\/(Port-au-Prince|Guadeloupe|Martinique|Cayenne|Montreal|Miquelon|Marigot|St_Barthelemy)|Pacific\/(Noumea|Tahiti|Wallis|Marquesas|Gambier))$/;
+          var RU = /^(Europe\/(Moscow|Kaliningrad|Samara|Volgograd|Kirov|Astrakhan|Saratov|Ulyanovsk|Minsk|Kiev|Kyiv|Simferopol|Chisinau|Riga|Vilnius|Tallinn|Zaporozhye|Uzhgorod)|Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr|Tbilisi|Yerevan|Baku|Almaty|Qostanay|Qyzylorda|Aqtobe|Aqtau|Atyrau|Oral|Tashkent|Samarkand|Bishkek|Dushanbe|Ashgabat))$/;
+          var want = "en";
+          if (FR.test(tz)) want = "fr";
+          else if (RU.test(tz)) want = "ru";
+          if (langs[0] && langs[0].indexOf("fr") === 0) want = "fr";
+          else if (langs[0] && langs[0].indexOf("ru") === 0) want = "ru";
+          // Redirect only from English pages, on the first page of a visit, when no language was chosen.
+          if (cur === "en" && !pref && !internal && want !== "en") {
+            var target = alt(want);
+            if (target) { var u = new URL(target, location.origin); if (u.pathname !== path) { location.replace(u.pathname + location.search + location.hash); return; } }
+          }
+          // Arabic: suggest, never force.
+          var wantsAr = langs.some(function (l) { return l.indexOf("ar") === 0; });
+          var arUrl = alt("ar");
+          var dismissed = false; try { dismissed = sessionStorage.getItem("sofara-ar-dismissed") === "1"; } catch (x) {}
+          if (cur !== "ar" && wantsAr && arUrl && pref !== cur && !dismissed) {
+            var show = function () {
+              var b = document.createElement("div");
+              b.setAttribute("dir", "rtl"); b.setAttribute("lang", "ar"); b.setAttribute("role", "dialog"); b.setAttribute("aria-label", "اللغة العربية");
+              b.style.cssText = "position:fixed;z-index:2147483000;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 32px);display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;background:#0b0b0b;color:#fff;border:1px solid #2b2b2b;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);font:500 14px/1.4 system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif";
+              var t = document.createElement("span"); t.textContent = "هل تفضّل تصفّح الموقع بالعربية؟";
+              var go = document.createElement("a"); go.href = new URL(arUrl, location.origin).pathname; go.textContent = "العربية"; go.setAttribute("hreflang", "ar");
+              go.style.cssText = "background:#c6ff00;color:#000;text-decoration:none;font-weight:700;padding:6px 14px;border-radius:999px;white-space:nowrap";
+              var x = document.createElement("button"); x.type = "button"; x.setAttribute("aria-label", "إغلاق"); x.textContent = "×";
+              x.style.cssText = "background:transparent;border:0;color:#aaa;font-size:20px;line-height:1;cursor:pointer;padding:0 4px";
+              x.onclick = function () { try { sessionStorage.setItem("sofara-ar-dismissed", "1"); } catch (e) {} b.remove(); };
+              b.appendChild(t); b.appendChild(go); b.appendChild(x); document.body.appendChild(b);
+            };
+            setTimeout(show, 1500);
+          }
+        } catch (e) { /* never block the page */ }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
