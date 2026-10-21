@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { Switch } from "@/components/ui/switch";
 import { Eye, Loader2, Mail, Users, UserX, RefreshCw } from "lucide-react";
-import { NEWSLETTER_ISSUES, type NewsletterIssueMeta, type NewsletterLang } from "@/data/newsletterIssues";
+import { NEWSLETTER_ISSUES, NEWSLETTER_LANGS, type NewsletterIssueMeta, type NewsletterLang } from "@/data/newsletterIssues";
 
 interface Campaign {
   id: string;
@@ -175,11 +175,11 @@ const AdminNewsletters = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-[hsl(var(--dash-fg))]">Newsletters</h1>
-          <p className="text-xs text-[hsl(var(--dash-muted-fg))] mt-1">Ambassador series in English and French. Each ambassador gets the language of their profile or country.</p>
+          <p className="text-xs text-[hsl(var(--dash-muted-fg))] mt-1">Welcome journey (day 0 to 60 after validation) in English, French, Spanish, Russian and Arabic. Each ambassador receives the communication language chosen in the signup form (else their profile language or country). Monthly issues not yet translated go out in English.</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="inline-flex rounded-lg border border-[hsl(var(--dash-border))] overflow-hidden">
-            {(["en", "fr"] as NewsletterLang[]).map((l) => (
+            {NEWSLETTER_LANGS.map((l) => (
               <button key={l} onClick={() => setLang(l)} className={`px-3 py-1.5 text-xs font-semibold ${lang === l ? "bg-[hsl(var(--dash-accent))] text-black" : "text-[hsl(var(--dash-muted-fg))] hover:bg-[hsl(var(--dash-muted)/.5)]"}`}>{l.toUpperCase()}</button>
             ))}
           </div>

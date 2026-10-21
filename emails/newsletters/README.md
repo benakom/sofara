@@ -1,6 +1,6 @@
 # Sofara ambassador newsletter series
 
-Ready-to-send HTML emails for Sofara ambassadors, in English and French.
+Ready-to-send HTML emails for Sofara ambassadors, in English, French, Spanish, Russian and Arabic (monthly issues: English and French, other languages receive English).
 Every issue ends with the two standing calls to action: share your referral link
 with your network, and real estate agents abroad can hand Dubai-bound clients to
 Sofara for closing by Cevitas Real Estate LLC.
@@ -19,18 +19,29 @@ Sofara for closing by Cevitas Real Estate LLC.
 
 ## Sequences
 
-**Onboarding** (triggered when an ambassador account is approved, one email per step):
+**Welcome journey** (`sequence: "onboarding"`, day 0 = validation by a super admin in
+`/admin/ambassadors`; written in en, fr, es, ru and ar; tone: personal, one small step per email,
+a "tip of the week" box and encouragement; no AI wording, no business-size figures):
 
 | Day | Issue | Topic |
 |---|---|---|
-| 0 | 01-onboarding-welcome | Model, referral link, first message to send |
-| 2 | 02-onboarding-commissions | Up to 3 %, table by price and developer, payout in 7 days, 12-month attribution |
-| 5 | 03-onboarding-who-to-refer | Five buyer profiles and the question to ask each |
-| 8 | 04-onboarding-dubai-facts | Ten facts talk track (freehold, 0 % tax, 4 % DLD, escrow, Golden Visa AED 2M) |
-| 12 | 05-onboarding-payment-plans | 60/40, 70/30, 80/20, post-handover; project tips |
-| 16 | 06-onboarding-legal | Introducer role, five rules, escrow, Oqood, agreement summary |
-| 21 | 07-onboarding-ambassador-plus | Recruit ambassadors, 10 % bonus, agents abroad |
-| 30 | 08-onboarding-30-days | Checklist, Pro upgrade, hand-off to monthly |
+| 0 | `welcome-validated` (transactional) | Welcome, the model, three steps for the first week |
+| 1 | 01-journey-d1-setup | 10-minute setup: link, dashboard tour, list of ten names |
+| 3 | 02-journey-d3-first-message | Three ready-to-send messages (friend, professional, story) |
+| 6 | 03-journey-d6-who-to-think-of | Five profiles and the question that opens the conversation |
+| 9 | 04-journey-d9-five-questions | Five questions buyers ask, one-sentence answers, hand over |
+| 13 | 05-journey-d13-first-lead | What happens after adding a lead, 12-month protection |
+| 18 | 06-journey-d18-social-media | Four post ideas, three rules |
+| 24 | 07-journey-d24-weekly-routine | 15 minutes a week routine |
+| 30 | 08-journey-d30-one-month | One-month checklist |
+| 40 | 09-journey-d40-grow-network | Ambassador+ (10% bonus), who to invite, agents abroad |
+| 50 | 10-journey-d50-not-now | Handling "not now", three follow-ups |
+| 60 | 11-journey-d60-still-with-you | 7-day challenge, hand-off to the monthly briefing |
+
+Language: the communication language chosen in the signup form (auth metadata `email_lang`),
+else `profiles.language`, else the country (`supabase/functions/_shared/email-lang.ts`), else English.
+Steps more than 4 days overdue are skipped, so changing the journey never sends a burst of old emails.
+The previous EN/FR onboarding series is kept in `archive/` (not built).
 
 **Monthly** (all ambassadors, including dormant ones; rotate in this order, then repeat with fresh content):
 

@@ -67,6 +67,26 @@ const OCCUPATIONS = [
   { value: "other", labelAr: "Autre", labelEn: "Other" },
 ];
 
+// Language of the emails the ambassador will receive (welcome journey, newsletters).
+type EmailLang = "en" | "fr" | "es" | "ru" | "ar";
+const EMAIL_LANG_OPTIONS: { value: EmailLang; label: string }[] = [
+  { value: "en", label: "English" },
+  { value: "fr", label: "Français" },
+  { value: "es", label: "Español" },
+  { value: "ru", label: "Русский" },
+  { value: "ar", label: "العربية" },
+];
+// Site language -> default communication language ("ar" is the site's legacy French code, "arb" is Arabic).
+const defaultEmailLang = (lang: string): EmailLang =>
+  lang === "fr" || lang === "ar" ? "fr" : lang === "es" ? "es" : lang === "ru" ? "ru" : lang === "arb" ? "ar" : "en";
+const EMAIL_LANG_LABEL: Record<EmailLang, { label: string; hint: string }> = {
+  en: { label: "Preferred language for our emails", hint: "Your welcome guide and tips will be sent in this language." },
+  fr: { label: "Langue de communication préférée", hint: "Votre guide de bienvenue et nos conseils vous seront envoyés dans cette langue." },
+  es: { label: "Idioma preferido para nuestros emails", hint: "Tu guía de bienvenida y nuestros consejos llegarán en este idioma." },
+  ru: { label: "Предпочитаемый язык писем", hint: "Приветственный гид и советы будут приходить на этом языке." },
+  ar: { label: "لغة التواصل المفضّلة", hint: "سيصلك دليل الترحيب والنصائح بهذه اللغة." },
+};
+
 const Auth = () => {
   const { lang } = useLanguage();
   const { user, loading: authLoading } = useAuth();
@@ -91,6 +111,7 @@ const Auth = () => {
   const [phoneCode, setPhoneCode] = useState("+971");
   const [phone, setPhone] = useState("");
   const [occupation, setOccupation] = useState("");
+  const [emailLang, setEmailLang] = useState<EmailLang>(() => defaultEmailLang(lang));
   const [phoneError, setPhoneError] = useState("");
   const selectedPhoneEntry = PHONE_CODES.find(c => c.code === phoneCode);
 
@@ -178,7 +199,8 @@ const Auth = () => {
           full_name: `${firstName.trim()} ${lastName.trim()}`,
           phone: `${phoneCode}${digits}`,
           occupation,
-          lang: lang === "ar" ? "fr" : "en",
+          lang: emailLang === "fr" ? "fr" : emailLang === "en" ? "en" : lang === "ar" ? "fr" : "en",
+          email_lang: emailLang,
           ...(refCode ? { ref_code: refCode } : {}),
         },
       },
@@ -248,7 +270,7 @@ const Auth = () => {
           : "Your application is now being reviewed by our team.",
       });
       // "Application under review" email (idempotent server side).
-      supabase.functions.invoke("onboarding-emails", { body: { event: "verified", lang: lang === "ar" ? "fr" : "en" } }).catch(() => {});
+      supabase.functions.invoke("onboarding-emails", { body: { event: "verified", lang: emailLang } }).catch(() => {});
       const { data: isAdmin } = await supabase.rpc("is_superadmin");
       navigate(isAdmin ? "/admin" : "/dashboard");
     }
@@ -633,6 +655,25 @@ const Auth = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              )}
+
+              {mode === "signup" && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="emailLang" className="text-sm">{EMAIL_LANG_LABEL[defaultEmailLang(lang)].label} <span className="text-destructive">*</span></Label>
+                  <Select value={emailLang} onValueChange={(v) => setEmailLang(v as EmailLang)}>
+                    <SelectTrigger id="emailLang" className="bg-background/50 h-11 rounded-xl border-border/50 text-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover border-border">
+                      {EMAIL_LANG_OPTIONS.map((o) => (
+                        <SelectItem key={o.value} value={o.value} className="focus:bg-primary/10 focus:text-primary">
+                          <span dir={o.value === "ar" ? "rtl" : undefined}>{o.label}</span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-muted-foreground">{EMAIL_LANG_LABEL[defaultEmailLang(lang)].hint}</p>
                 </div>
               )}
 

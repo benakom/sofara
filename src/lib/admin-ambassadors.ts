@@ -36,13 +36,16 @@ async function setStatus(id: string, status: AmbassadorStatus) {
 }
 
 /** Validate an application: status -> approved, then send the welcome email (idempotent). */
-export async function validateAmbassador(id: string): Promise<{ emailSent: boolean; note?: string }> {
+const EMAIL_LANG_NAMES: Record<string, string> = { en: "English", fr: "French", es: "Spanish", ru: "Russian", ar: "Arabic" };
+
+export async function validateAmbassador(id: string): Promise<{ emailSent: boolean; note?: string; lang?: string }> {
   await setStatus(id, "approved");
   const { data, error } = await supabase.functions.invoke("onboarding-emails", { body: { event: "approved", user_id: id } });
   if (error) return { emailSent: false, note: error.message };
   if (data?.error) return { emailSent: false, note: String(data.error) };
   if (data?.skipped) return { emailSent: false, note: "Welcome email was already sent earlier." };
-  return { emailSent: true };
+  const lang = typeof data?.lang === "string" ? EMAIL_LANG_NAMES[data.lang] ?? data.lang : undefined;
+  return { emailSent: true, lang };
 }
 
 export async function rejectAmbassador(id: string) {

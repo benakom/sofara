@@ -1,0 +1,93 @@
+import { closing, TIP } from "../common.mjs";
+
+export default {
+  id: "10-journey-d50-not-now",
+  sequence: "onboarding",
+  day: 50,
+  subject: {
+    en: "When someone says \"not now\"",
+    fr: "Quand on vous répond « pas maintenant »",
+    es: "Cuando alguien te dice \"ahora no\"",
+    ru: "Когда вам отвечают «не сейчас»",
+    ar: "عندما يقول لك أحدهم «ليس الآن»",
+  },
+  preview: {
+    en: "\"Not now\" is not \"no\". Three gentle follow-ups for later.",
+    fr: "« Pas maintenant » n'est pas « non ». Trois relances douces pour plus tard.",
+    es: "\"Ahora no\" no es \"no\". Tres seguimientos amables para más adelante.",
+    ru: "«Не сейчас» — это не «нет». Три мягких напоминания на потом.",
+    ar: "«ليس الآن» لا تعني «لا». ثلاث متابعات لطيفة لاحقاً.",
+  },
+  blocks: {
+    en: [
+      ["h1", "\"Not now\" is not \"no\"."],
+      ["p", "{{first_name}}, buying property abroad is a big decision. Most people say \"not now\" the first time, and many come back months later. The ones who come back are those you stayed in touch with, kindly."],
+      ["h2", "Three follow-ups for later"],
+      ["ul", [
+        "**After a few weeks**: \"I thought of you, how is your project going?\"",
+        "**When there is news**: \"A new project has just been announced in the area you liked, do you want the team to send you the details?\"",
+        "**At a key moment** (new year, bonus, holidays): \"Is Dubai still on your plans for this year?\"",
+      ]],
+      ["p", "No pressure, no insistence. Just a sign that you are there when they are ready."],
+      ["callout", "**Remember:** anyone who registers through your link stays linked to you for 12 months. Patience pays."],
+      ["tip", { label: TIP.en, text: "Next to each \"not now\" in your list, write the month to come back. Your routine will do the rest." }],
+      ...closing("en"),
+    ],
+    fr: [
+      ["h1", "« Pas maintenant » n'est pas « non »."],
+      ["p", "{{first_name}}, acheter un bien à l'étranger est une grande décision. La plupart des gens disent « pas maintenant » la première fois, et beaucoup reviennent des mois plus tard. Ceux qui reviennent sont ceux avec qui vous êtes resté en contact, gentiment."],
+      ["h2", "Trois relances pour plus tard"],
+      ["ul", [
+        "**Après quelques semaines** : « J'ai pensé à toi, où en est ton projet ? »",
+        "**Quand il y a une nouveauté** : « Un nouveau projet vient d'être annoncé dans le quartier qui te plaisait, tu veux que l'équipe t'envoie les détails ? »",
+        "**À un moment clé** (nouvelle année, prime, vacances) : « Dubaï est toujours dans tes projets cette année ? »",
+      ]],
+      ["p", "Pas de pression, pas d'insistance. Juste un signe que vous êtes là quand ils seront prêts."],
+      ["callout", "**Rappelez-vous :** toute personne inscrite via votre lien vous reste rattachée pendant 12 mois. La patience paie."],
+      ["tip", { label: TIP.fr, text: "À côté de chaque « pas maintenant » de votre liste, notez le mois où revenir vers la personne. Votre routine fera le reste." }],
+      ...closing("fr"),
+    ],
+    es: [
+      ["h1", "\"Ahora no\" no es \"no\"."],
+      ["p", "{{first_name}}, comprar un inmueble en el extranjero es una gran decisión. La mayoría dice \"ahora no\" la primera vez, y muchos vuelven meses después. Los que vuelven son aquellos con quienes mantuviste el contacto, con amabilidad."],
+      ["h2", "Tres seguimientos para más adelante"],
+      ["ul", [
+        "**Al cabo de unas semanas**: \"Me acordé de ti, ¿cómo va tu proyecto?\"",
+        "**Cuando haya novedades**: \"Acaban de anunciar un proyecto nuevo en la zona que te gustaba, ¿quieres que el equipo te mande los detalles?\"",
+        "**En un momento clave** (año nuevo, bonus, vacaciones): \"¿Sigue Dubái en tus planes para este año?\"",
+      ]],
+      ["p", "Sin presión, sin insistir. Solo una señal de que estás ahí cuando estén listos."],
+      ["callout", "**Recuerda:** quien se registre con tu enlace sigue vinculado a ti durante 12 meses. La paciencia tiene premio."],
+      ["tip", { label: TIP.es, text: "Junto a cada \"ahora no\" de tu lista, apunta el mes en que volverás a escribir. Tu rutina hará el resto." }],
+      ...closing("es"),
+    ],
+    ru: [
+      ["h1", "«Не сейчас» — это не «нет»."],
+      ["p", "{{first_name}}, покупка недвижимости за рубежом — большое решение. Большинство в первый раз говорят «не сейчас», и многие возвращаются через несколько месяцев. Возвращаются те, с кем вы деликатно оставались на связи."],
+      ["h2", "Три напоминания на потом"],
+      ["ul", [
+        "**Через несколько недель**: «Вспомнил о тебе. Как продвигаются планы?»",
+        "**Когда есть новость**: «Только что объявили новый проект в районе, который тебе понравился. Попросить команду прислать подробности?»",
+        "**В важный момент** (новый год, премия, отпуск): «Дубай ещё в планах на этот год?»",
+      ]],
+      ["p", "Без давления и настойчивости. Просто знак, что вы рядом, когда человек будет готов."],
+      ["callout", "**Помните:** каждый, кто зарегистрировался по вашей ссылке, закреплён за вами на 12 месяцев. Терпение окупается."],
+      ["tip", { label: TIP.ru, text: "Рядом с каждым «не сейчас» в списке запишите месяц, когда стоит вернуться к разговору. Остальное сделает ваша рутина." }],
+      ...closing("ru"),
+    ],
+    ar: [
+      ["h1", "«ليس الآن» لا تعني «لا»."],
+      ["p", "{{first_name}}، شراء عقار في الخارج قرار كبير. معظم الناس يقولون «ليس الآن» في المرة الأولى، وكثير منهم يعودون بعد أشهر. ومن يعودون هم من بقيت على تواصل لطيف معهم."],
+      ["h2", "ثلاث متابعات لاحقة"],
+      ["ul", [
+        "**بعد بضعة أسابيع**: «تذكّرتك، كيف يسير مشروعك؟»",
+        "**عند وجود جديد**: «أُعلن للتو عن مشروع جديد في المنطقة التي أعجبتك، هل تريد أن يرسل لك الفريق التفاصيل؟»",
+        "**في لحظة مهمة** (سنة جديدة، مكافأة، عطلة): «هل ما زالت دبي ضمن خططك هذا العام؟»",
+      ]],
+      ["p", "دون ضغط ودون إلحاح. مجرد إشارة إلى أنك موجود حين يكونون مستعدين."],
+      ["callout", "**تذكّر:** كل من يسجّل عبر رابطك يبقى منسوباً إليك لمدة 12 شهراً. الصبر يؤتي ثماره."],
+      ["tip", { label: TIP.ar, text: "بجانب كل «ليس الآن» في قائمتك، اكتب الشهر الذي ستعود فيه إلى الشخص. وسيتكفّل روتينك بالباقي." }],
+      ...closing("ar"),
+    ],
+  },
+};

@@ -1,0 +1,93 @@
+import { closing, TIP } from "../common.mjs";
+
+export default {
+  id: "04-journey-d9-five-questions",
+  sequence: "onboarding",
+  day: 9,
+  subject: {
+    en: "The 5 questions you will hear, and simple answers",
+    fr: "Les 5 questions qu'on va vous poser, et des réponses simples",
+    es: "Las 5 preguntas que te harán, con respuestas sencillas",
+    ru: "5 вопросов, которые вам зададут, и простые ответы",
+    ar: "الأسئلة الخمسة التي ستسمعها، وإجابات بسيطة",
+  },
+  preview: {
+    en: "One sentence for each, then you hand over to the team.",
+    fr: "Une phrase pour chacune, puis vous passez le relais à l'équipe.",
+    es: "Una frase para cada una y luego pasas el relevo al equipo.",
+    ru: "По одной фразе на каждый, а дальше передаёте команде.",
+    ar: "جملة واحدة لكل سؤال، ثم تسلّم المهمة للفريق.",
+  },
+  blocks: {
+    en: [
+      ["h1", "You do not need to know everything. Just these five answers."],
+      ["p", "{{first_name}}, when you talk about Dubai, the same questions come back. One clear sentence is enough, then you let our advisors go into detail."],
+      ["ol", [
+        "**\"Is it safe?\"** Off-plan payments go to an escrow account controlled by the authorities, and every sale is registered with the Dubai Land Department.",
+        "**\"Is it a good investment?\"** Foreigners can own property outright in many areas, there is no annual property tax and no income tax on rent.",
+        "**\"Can I buy from abroad?\"** Yes. Many buyers complete the whole purchase remotely, with video viewings and digital signatures.",
+        "**\"I don't have the full amount.\"** Most new projects have payment plans spread over the construction period.",
+        "**\"Why go through you?\"** Because you are introducing them to a licensed team that answers in their language, and the introduction costs them nothing.",
+      ]],
+      ["p", "And then the most useful sentence of all: **\"I will ask the team to call you. What is the best time?\"**"],
+      ["tip", { label: TIP.en, text: "Never promise a return, a price or a date. If someone asks for figures, say: \"The advisors will show you real numbers for your budget.\" It protects you and builds trust." }],
+      ...closing("en"),
+    ],
+    fr: [
+      ["h1", "Pas besoin de tout savoir. Juste ces cinq réponses."],
+      ["p", "{{first_name}}, quand vous parlez de Dubaï, les mêmes questions reviennent. Une phrase claire suffit, ensuite vous laissez nos conseillers entrer dans le détail."],
+      ["ol", [
+        "**« C'est sûr ? »** En off-plan, les paiements vont sur un compte séquestre contrôlé par les autorités, et chaque vente est enregistrée au Dubai Land Department.",
+        "**« C'est un bon investissement ? »** Les étrangers peuvent être pleinement propriétaires dans de nombreux quartiers, sans taxe foncière annuelle ni impôt sur les loyers.",
+        "**« Je peux acheter depuis l'étranger ? »** Oui. Beaucoup d'acheteurs font tout à distance, avec des visites vidéo et des signatures électroniques.",
+        "**« Je n'ai pas toute la somme. »** La plupart des projets neufs ont des plans de paiement étalés sur la durée de construction.",
+        "**« Pourquoi passer par toi ? »** Parce que vous les présentez à une équipe licenciée qui parle leur langue, et que l'introduction ne leur coûte rien.",
+      ]],
+      ["p", "Et ensuite, la phrase la plus utile de toutes : **« Je demande à l'équipe de t'appeler. Quel moment t'arrange ? »**"],
+      ["tip", { label: TIP.fr, text: "Ne promettez jamais un rendement, un prix ou une date. Si on vous demande des chiffres, dites : « Les conseillers te montreront de vrais chiffres pour ton budget. » Cela vous protège et inspire confiance." }],
+      ...closing("fr"),
+    ],
+    es: [
+      ["h1", "No necesitas saberlo todo. Solo estas cinco respuestas."],
+      ["p", "{{first_name}}, cuando hablas de Dubái, vuelven siempre las mismas preguntas. Basta una frase clara; luego dejas que nuestros asesores entren en detalle."],
+      ["ol", [
+        "**\"¿Es seguro?\"** En obra nueva, los pagos van a una cuenta de garantía controlada por las autoridades, y cada venta se registra en el Dubai Land Department.",
+        "**\"¿Es una buena inversión?\"** Los extranjeros pueden ser plenamente propietarios en muchas zonas, sin impuesto anual sobre la propiedad ni impuesto sobre los alquileres.",
+        "**\"¿Puedo comprar desde el extranjero?\"** Sí. Muchos compradores hacen todo a distancia, con visitas por vídeo y firma digital.",
+        "**\"No tengo todo el importe.\"** La mayoría de los proyectos nuevos tienen planes de pago repartidos durante la construcción.",
+        "**\"¿Por qué a través de ti?\"** Porque les presentas a un equipo con licencia que habla su idioma, y la presentación no les cuesta nada.",
+      ]],
+      ["p", "Y después, la frase más útil de todas: **\"Le pido al equipo que te llame. ¿Qué hora te viene bien?\"**"],
+      ["tip", { label: TIP.es, text: "Nunca prometas una rentabilidad, un precio o una fecha. Si te piden cifras, di: \"Los asesores te enseñarán números reales para tu presupuesto.\" Te protege y genera confianza." }],
+      ...closing("es"),
+    ],
+    ru: [
+      ["h1", "Не нужно знать всё. Достаточно этих пяти ответов."],
+      ["p", "{{first_name}}, когда вы говорите о Дубае, вопросы повторяются. Хватает одной ясной фразы, а подробности расскажут наши консультанты."],
+      ["ol", [
+        "**«Это надёжно?»** При покупке на этапе строительства платежи идут на эскроу-счёт под контролем властей, а каждая сделка регистрируется в Земельном департаменте Дубая.",
+        "**«Это выгодно?»** Иностранцы могут владеть недвижимостью в полной собственности во многих районах, нет ежегодного налога на имущество и налога на доход от аренды.",
+        "**«Можно купить из-за границы?»** Да. Многие покупатели проходят всю сделку дистанционно: видеопоказы и электронная подпись.",
+        "**«У меня нет всей суммы.»** У большинства новых проектов есть рассрочка на период строительства.",
+        "**«Почему через тебя?»** Потому что вы знакомите их с лицензированной командой, которая говорит на их языке, а знакомство им ничего не стоит.",
+      ]],
+      ["p", "А затем самая полезная фраза: **«Попрошу команду тебе позвонить. Когда удобно?»**"],
+      ["tip", { label: TIP.ru, text: "Никогда не обещайте доходность, цену или сроки. Если просят цифры, скажите: «Консультанты покажут реальные цифры под твой бюджет». Это защищает вас и вызывает доверие." }],
+      ...closing("ru"),
+    ],
+    ar: [
+      ["h1", "لا تحتاج إلى معرفة كل شيء. فقط هذه الإجابات الخمس."],
+      ["p", "{{first_name}}، عندما تتحدث عن دبي تتكرر الأسئلة نفسها. تكفي جملة واضحة، ثم تترك التفاصيل لمستشارينا."],
+      ["ol", [
+        "**«هل الأمر آمن؟»** في المشاريع قيد الإنشاء تذهب الدفعات إلى حساب ضمان تراقبه الجهات الرسمية، وتُسجَّل كل عملية بيع لدى دائرة الأراضي والأملاك في دبي.",
+        "**«هل هو استثمار جيد؟»** يمكن للأجانب التملك الحر في مناطق كثيرة، ولا توجد ضريبة سنوية على العقار ولا ضريبة دخل على الإيجار.",
+        "**«هل أستطيع الشراء من الخارج؟»** نعم. كثير من المشترين يتممون الشراء عن بُعد، بمعاينات فيديو وتوقيع إلكتروني.",
+        "**«لا أملك المبلغ كاملاً.»** معظم المشاريع الجديدة لديها خطط دفع موزّعة على فترة البناء.",
+        "**«لماذا عن طريقك؟»** لأنك تعرّفهم على فريق مرخّص يتحدث لغتهم، والتعريف لا يكلّفهم شيئاً.",
+      ]],
+      ["p", "ثم الجملة الأكثر فائدة على الإطلاق: **«سأطلب من الفريق أن يتصل بك. ما الوقت المناسب لك؟»**"],
+      ["tip", { label: TIP.ar, text: "لا تعِد أبداً بعائد أو سعر أو موعد. إن طُلبت منك أرقام فقل: «سيعرض عليك المستشارون أرقاماً حقيقية تناسب ميزانيتك». هذا يحميك ويبني الثقة." }],
+      ...closing("ar"),
+    ],
+  },
+};

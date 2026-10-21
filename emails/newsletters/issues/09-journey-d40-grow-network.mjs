@@ -1,0 +1,106 @@
+import { closing, agentNudge, TIP, REFERRALS } from "../common.mjs";
+
+const cta = {
+  en: ["cta", { label: "Invite an ambassador", url: REFERRALS }],
+  fr: ["cta", { label: "Inviter un ambassadeur", url: REFERRALS }],
+  es: ["cta", { label: "Invitar a un embajador", url: REFERRALS }],
+  ru: ["cta", { label: "Пригласить амбассадора", url: REFERRALS }],
+  ar: ["cta", { label: "دعوة سفير", url: REFERRALS }],
+};
+
+export default {
+  id: "09-journey-d40-grow-network",
+  sequence: "onboarding",
+  day: 40,
+  subject: {
+    en: "Grow with others: become Ambassador+",
+    fr: "Grandir avec d'autres : devenez Ambassadeur+",
+    es: "Crece con otros: conviértete en Embajador+",
+    ru: "Растите вместе с другими: станьте Амбассадором+",
+    ar: "انمُ مع الآخرين: كن سفيراً+",
+  },
+  preview: {
+    en: "Invite people who have a network, and earn a 10% bonus on their closings.",
+    fr: "Invitez des personnes qui ont un réseau, et touchez 10 % de bonus sur leurs closings.",
+    es: "Invita a personas con red de contactos y gana un 10 % extra sobre sus cierres.",
+    ru: "Пригласите людей со своей сетью контактов и получайте бонус 10 % с их сделок.",
+    ar: "ادعُ أشخاصاً لديهم شبكة علاقات، واحصل على مكافأة 10% من صفقاتهم.",
+  },
+  blocks: {
+    en: [
+      ["h1", "You do not have to do it alone."],
+      ["p", "{{first_name}}, you probably know people who have an even bigger network than yours: a real estate agent abroad, a community leader, a content creator, a business coach. They could become ambassadors too."],
+      ["p", "When someone joins through your link and becomes an ambassador, you become **Ambassador+**. On every sale they close, you receive a **10% bonus** on top of their commission. Their commission stays the same."],
+      ["h2", "Who to invite"],
+      ["ul", [
+        "People who are often asked for advice: consultants, accountants, coaches.",
+        "People who lead a community: associations, alumni groups, clubs.",
+        "Real estate agents in your country who have clients interested in Dubai.",
+      ]],
+      ["tip", { label: TIP.en, text: "Invite one person at a time, personally. \"I joined a Dubai real estate network, I think it would suit you better than me\" works far better than a group message." }],
+      cta.en,
+      agentNudge.en,
+      ...closing("en"),
+    ],
+    fr: [
+      ["h1", "Vous n'êtes pas obligé de le faire seul."],
+      ["p", "{{first_name}}, vous connaissez sûrement des personnes au réseau encore plus large que le vôtre : un agent immobilier à l'étranger, un responsable associatif, un créateur de contenu, un coach d'entreprise. Elles pourraient devenir ambassadeurs elles aussi."],
+      ["p", "Quand quelqu'un s'inscrit via votre lien et devient ambassadeur, vous devenez **Ambassadeur+**. Sur chaque vente qu'il conclut, vous touchez un **bonus de 10 %** en plus de sa commission. La sienne ne change pas."],
+      ["h2", "Qui inviter"],
+      ["ul", [
+        "Les personnes à qui l'on demande souvent conseil : consultants, comptables, coachs.",
+        "Celles qui animent une communauté : associations, anciens élèves, clubs.",
+        "Les agents immobiliers de votre pays qui ont des clients intéressés par Dubaï.",
+      ]],
+      ["tip", { label: TIP.fr, text: "Invitez une personne à la fois, personnellement. « J'ai rejoint un réseau immobilier à Dubaï, je pense que ça te correspondrait encore mieux qu'à moi » fonctionne bien mieux qu'un message de groupe." }],
+      cta.fr,
+      agentNudge.fr,
+      ...closing("fr"),
+    ],
+    es: [
+      ["h1", "No tienes que hacerlo solo."],
+      ["p", "{{first_name}}, seguro que conoces a personas con una red aún mayor que la tuya: un agente inmobiliario en el extranjero, alguien que dirige una comunidad, un creador de contenido, un coach de empresa. También podrían ser embajadores."],
+      ["p", "Cuando alguien se registra con tu enlace y se convierte en embajador, tú pasas a ser **Embajador+**. En cada venta que cierre, recibes un **bonus del 10 %** además de su comisión. La suya no cambia."],
+      ["h2", "A quién invitar"],
+      ["ul", [
+        "Personas a las que a menudo se pide consejo: consultores, contables, coaches.",
+        "Quienes dinamizan una comunidad: asociaciones, antiguos alumnos, clubes.",
+        "Agentes inmobiliarios de tu país con clientes interesados en Dubái.",
+      ]],
+      ["tip", { label: TIP.es, text: "Invita a una persona cada vez, en persona. \"Me he unido a una red inmobiliaria en Dubái y creo que te encajaría aún mejor que a mí\" funciona mucho mejor que un mensaje de grupo." }],
+      cta.es,
+      agentNudge.es,
+      ...closing("es"),
+    ],
+    ru: [
+      ["h1", "Не обязательно делать всё одному."],
+      ["p", "{{first_name}}, наверняка вы знаете людей с ещё более широкой сетью контактов: агента по недвижимости за рубежом, лидера сообщества, автора контента, бизнес-коуча. Они тоже могут стать амбассадорами."],
+      ["p", "Когда человек регистрируется по вашей ссылке и становится амбассадором, вы становитесь **Амбассадором+**. С каждой его сделки вы получаете **бонус 10 %** сверх его комиссии. Его комиссия при этом не меняется."],
+      ["h2", "Кого пригласить"],
+      ["ul", [
+        "Тех, к кому часто обращаются за советом: консультантов, бухгалтеров, коучей.",
+        "Тех, кто ведёт сообщество: ассоциации, выпускники, клубы.",
+        "Агентов по недвижимости в вашей стране, у которых есть клиенты, интересующиеся Дубаем.",
+      ]],
+      ["tip", { label: TIP.ru, text: "Приглашайте по одному человеку и лично. «Я присоединился к сети по недвижимости в Дубае, думаю, тебе это подойдёт даже больше, чем мне» работает гораздо лучше, чем сообщение в общий чат." }],
+      cta.ru,
+      agentNudge.ru,
+      ...closing("ru"),
+    ],
+    ar: [
+      ["h1", "لست مضطراً لفعل ذلك وحدك."],
+      ["p", "{{first_name}}، أنت تعرف بالتأكيد أشخاصاً لديهم شبكة أوسع من شبكتك: وسيط عقاري في الخارج، أو قائد مجتمع، أو صانع محتوى، أو مدرّب أعمال. يمكنهم أن يصبحوا سفراء أيضاً."],
+      ["p", "عندما يسجّل شخص عبر رابطك ويصبح سفيراً، تصبح أنت **سفيراً+**. ومع كل عملية بيع يتمّها تحصل على **مكافأة 10%** إضافة إلى عمولته. وتبقى عمولته كما هي."],
+      ["h2", "من تدعو"],
+      ["ul", [
+        "من يُطلب منهم النصح كثيراً: مستشارون، محاسبون، مدرّبون.",
+        "من يقودون مجتمعاً: جمعيات، خرّيجون، نوادٍ.",
+        "وسطاء عقاريون في بلدك لديهم عملاء مهتمون بدبي.",
+      ]],
+      ["tip", { label: TIP.ar, text: "ادعُ شخصاً واحداً في كل مرة، وبشكل شخصي. عبارة «انضممت إلى شبكة عقارية في دبي، وأظنها تناسبك أكثر مني» تنجح أكثر بكثير من رسالة جماعية." }],
+      cta.ar,
+      agentNudge.ar,
+      ...closing("ar"),
+    ],
+  },
+};

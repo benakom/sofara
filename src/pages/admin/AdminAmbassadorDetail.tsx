@@ -39,7 +39,7 @@ const AdminAmbassadorDetail = () => {
   const fmt = (n: number) => new Intl.NumberFormat("en-AE").format(n);
   const run = async (key: string, fn: () => Promise<void>) => { setActing(key); try { await fn(); } catch (e) { toast({ title: "Error", description: (e as Error).message, variant: "destructive" }); } finally { setActing(null); } };
   const patch = (status: string) => setProfile((p: any) => ({ ...p, status, reviewed_at: new Date().toISOString() }));
-  const doValidate = () => run("validate", async () => { const res = await validateAmbassador(id!); patch("approved"); if (res.emailSent) setProfile((p: any) => ({ ...p, approved_email_at: new Date().toISOString() })); toast({ title: "Ambassador validated", description: res.emailSent ? "Welcome email sent." : res.note }); });
+  const doValidate = () => run("validate", async () => { const res = await validateAmbassador(id!); patch("approved"); if (res.emailSent) setProfile((p: any) => ({ ...p, approved_email_at: new Date().toISOString() })); toast({ title: "Ambassador validated", description: res.emailSent ? `Welcome email sent${res.lang ? ` in ${res.lang}` : ""}. The 60-day welcome journey starts today.` : res.note }); });
   const doReject = () => { if (!confirm("Reject this application?")) return; run("reject", async () => { await rejectAmbassador(id!); patch("rejected"); toast({ title: "Application rejected" }); }); };
   const doSuspend = () => run("suspend", async () => { await suspendAmbassador(id!); patch("suspended"); toast({ title: "Ambassador suspended" }); });
   const doReactivate = () => run("reactivate", async () => { await reactivateAmbassador(id!); patch("approved"); toast({ title: "Ambassador reactivated" }); });

@@ -1,0 +1,93 @@
+import { closing, ctaDashboard, TIP } from "../common.mjs";
+
+export default {
+  id: "07-journey-d24-weekly-routine",
+  sequence: "onboarding",
+  day: 24,
+  subject: {
+    en: "15 minutes a week: the routine that makes the difference",
+    fr: "15 minutes par semaine : la routine qui fait la différence",
+    es: "15 minutos a la semana: la rutina que marca la diferencia",
+    ru: "15 минут в неделю: привычка, которая всё меняет",
+    ar: "15 دقيقة أسبوعياً: الروتين الذي يصنع الفرق",
+  },
+  preview: {
+    en: "Not more effort. Just a little, every week.",
+    fr: "Pas plus d'efforts. Juste un peu, chaque semaine.",
+    es: "No más esfuerzo. Solo un poco, cada semana.",
+    ru: "Не больше усилий. Просто немного, но каждую неделю.",
+    ar: "ليس جهداً أكبر. فقط القليل، كل أسبوع.",
+  },
+  blocks: {
+    en: [
+      ["h1", "Consistency beats intensity."],
+      ["p", "{{first_name}}, the ambassadors who succeed are not the ones who do the most in one week. They are the ones who do a little, every week. Here is a 15-minute routine:"],
+      ["table", { head: ["When", "What (5 minutes)"], rows: [
+        ["Monday", "Send two messages to people on your list."],
+        ["Wednesday", "Follow up kindly with anyone who said \"maybe\"."],
+        ["Friday", "Post one thing about Dubai, or share one story."],
+      ] }],
+      ["p", "That is all. In a month, that makes about twenty conversations. And it only takes one to change everything."],
+      ["tip", { label: TIP.en, text: "Put three recurring reminders in your phone calendar right now: Monday, Wednesday, Friday, 5 minutes. What is scheduled gets done." }],
+      ["callout", "**Look at your dashboard once a week.** You will see where your contacts are, and you will know who to follow up with."],
+      ctaDashboard.en,
+      ...closing("en"),
+    ],
+    fr: [
+      ["h1", "La régularité bat l'intensité."],
+      ["p", "{{first_name}}, les ambassadeurs qui réussissent ne sont pas ceux qui en font le plus en une semaine. Ce sont ceux qui en font un peu, chaque semaine. Voici une routine de 15 minutes :"],
+      ["table", { head: ["Quand", "Quoi (5 minutes)"], rows: [
+        ["Lundi", "Envoyez deux messages à des personnes de votre liste."],
+        ["Mercredi", "Relancez gentiment ceux qui ont dit « peut-être »."],
+        ["Vendredi", "Publiez une chose sur Dubaï, ou partagez une story."],
+      ] }],
+      ["p", "C'est tout. En un mois, cela fait une vingtaine de conversations. Et il suffit d'une seule pour tout changer."],
+      ["tip", { label: TIP.fr, text: "Mettez dès maintenant trois rappels récurrents dans le calendrier de votre téléphone : lundi, mercredi, vendredi, 5 minutes. Ce qui est planifié est fait." }],
+      ["callout", "**Regardez votre tableau de bord une fois par semaine.** Vous verrez où en sont vos contacts, et vous saurez qui relancer."],
+      ctaDashboard.fr,
+      ...closing("fr"),
+    ],
+    es: [
+      ["h1", "La constancia gana a la intensidad."],
+      ["p", "{{first_name}}, los embajadores que triunfan no son los que más hacen en una semana. Son los que hacen un poco, cada semana. Aquí tienes una rutina de 15 minutos:"],
+      ["table", { head: ["Cuándo", "Qué (5 minutos)"], rows: [
+        ["Lunes", "Envía dos mensajes a personas de tu lista."],
+        ["Miércoles", "Haz un seguimiento amable a quien dijo \"quizás\"."],
+        ["Viernes", "Publica algo sobre Dubái o comparte una story."],
+      ] }],
+      ["p", "Eso es todo. En un mes son unas veinte conversaciones. Y basta con una para cambiarlo todo."],
+      ["tip", { label: TIP.es, text: "Pon ahora mismo tres recordatorios en el calendario del móvil: lunes, miércoles y viernes, 5 minutos. Lo que se agenda, se hace." }],
+      ["callout", "**Mira tu panel una vez por semana.** Verás en qué punto están tus contactos y sabrás a quién hacer seguimiento."],
+      ctaDashboard.es,
+      ...closing("es"),
+    ],
+    ru: [
+      ["h1", "Регулярность важнее интенсивности."],
+      ["p", "{{first_name}}, успеха добиваются не те амбассадоры, кто делает больше всех за одну неделю, а те, кто делает понемногу, но каждую неделю. Вот рутина на 15 минут:"],
+      ["table", { head: ["Когда", "Что (5 минут)"], rows: [
+        ["Понедельник", "Отправьте два сообщения людям из списка."],
+        ["Среда", "Мягко напомните о себе тем, кто сказал «может быть»."],
+        ["Пятница", "Опубликуйте пост о Дубае или сторис."],
+      ] }],
+      ["p", "Вот и всё. За месяц это около двадцати разговоров. А чтобы всё изменилось, достаточно одного."],
+      ["tip", { label: TIP.ru, text: "Прямо сейчас поставьте в календаре телефона три повторяющихся напоминания: понедельник, среда, пятница, 5 минут. Что запланировано, то сделано." }],
+      ["callout", "**Заглядывайте в личный кабинет раз в неделю.** Вы увидите, на каком этапе ваши контакты, и поймёте, кому напомнить о себе."],
+      ctaDashboard.ru,
+      ...closing("ru"),
+    ],
+    ar: [
+      ["h1", "الانتظام يتفوّق على الاندفاع."],
+      ["p", "{{first_name}}، السفراء الناجحون ليسوا من يفعلون الأكثر في أسبوع واحد، بل من يفعلون القليل كل أسبوع. إليك روتيناً من 15 دقيقة:"],
+      ["table", { head: ["متى", "ماذا (5 دقائق)"], rows: [
+        ["الاثنين", "أرسل رسالتين إلى أشخاص من قائمتك."],
+        ["الأربعاء", "تابع بلطف مع من قال «ربما»."],
+        ["الجمعة", "انشر شيئاً عن دبي أو شارك قصة."],
+      ] }],
+      ["p", "هذا كل شيء. في شهر واحد يصبح ذلك نحو عشرين محادثة. ويكفي واحد منها ليتغيّر كل شيء."],
+      ["tip", { label: TIP.ar, text: "ضع الآن ثلاثة تذكيرات متكررة في تقويم هاتفك: الاثنين والأربعاء والجمعة، 5 دقائق. ما يُجدوَل يُنجَز." }],
+      ["callout", "**ألقِ نظرة على لوحة التحكم مرة في الأسبوع.** سترى أين وصل معارفك، وستعرف مع من تتابع."],
+      ctaDashboard.ar,
+      ...closing("ar"),
+    ],
+  },
+};

@@ -120,7 +120,7 @@ const AdminAmbassadors = () => {
     try {
       const res = await validateAmbassador(a.id);
       patch(a.id, "approved");
-      toast({ title: `${a.full_name || a.email} validated`, description: res.emailSent ? "Welcome email sent." : res.note });
+      toast({ title: `${a.full_name || a.email} validated`, description: res.emailSent ? `Welcome email sent${res.lang ? ` in ${res.lang}` : ""}. The 60-day welcome journey starts today.` : res.note });
     } catch (e) { toast({ title: "Validation failed", description: (e as Error).message, variant: "destructive" }); }
     finally { setActing(null); }
   };

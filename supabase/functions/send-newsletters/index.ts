@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2'
 import { NEWSLETTER_ISSUES, type NewsletterIssue, type NewsletterLang } from '../_shared/newsletters.ts'
+import { pickEmailLang, parseEmailLang } from '../_shared/email-lang.ts'
 
 // Ambassador newsletter sender.
 //
@@ -30,16 +31,9 @@ const SITE_URL = 'https://sofara.io'
 const QUEUE = 'transactional_emails'
 const DAY_MS = 24 * 60 * 60 * 1000
 
-// Countries whose ambassadors get the French edition unless profiles.language says otherwise.
-const FRENCH_COUNTRIES = new Set([
-  'france', 'fr', 'belgium', 'belgique', 'be', 'switzerland', 'suisse', 'ch', 'luxembourg', 'lu',
-  'monaco', 'mc', 'morocco', 'maroc', 'ma', 'algeria', 'algérie', 'algerie', 'dz', 'tunisia', 'tunisie', 'tn',
-  'senegal', 'sénégal', 'sn', 'ivory coast', "côte d'ivoire", "cote d'ivoire", 'ci', 'cameroon', 'cameroun', 'cm',
-  'mali', 'ml', 'burkina faso', 'bf', 'niger', 'ne', 'benin', 'bénin', 'bj', 'togo', 'tg', 'gabon', 'ga',
-  'congo', 'cg', 'drc', 'rdc', 'cd', 'guinea', 'guinée', 'gn', 'madagascar', 'mg', 'mauritius', 'maurice', 'mu',
-  'haiti', 'haïti', 'ht', 'quebec', 'québec', 'lebanon', 'liban', 'lb', 'djibouti', 'dj', 'chad', 'tchad', 'td',
-  'mauritania', 'mauritanie', 'mr', 'comoros', 'comores', 'km', 'seychelles', 'sc', 'burundi', 'bi', 'rwanda', 'rw',
-])
+// Onboarding steps more than this many days overdue are skipped instead of sent late
+// (e.g. when the journey changes, nobody receives a burst of old steps).
+const ONBOARDING_GRACE_DAYS = 4
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
@@ -62,12 +56,6 @@ interface Recipient {
   referral_code: string | null
   lang: NewsletterLang
   approved_at: string
-}
-
-function pickLang(language: string | null, country: string | null): NewsletterLang {
-  if (language === 'fr' || language === 'en') return language
-  const c = (country ?? '').trim().toLowerCase()
-  return c && FRENCH_COUNTRIES.has(c) ? 'fr' : 'en'
 }
 
 function firstName(fullName: string | null, email: string): string {
@@ -101,11 +89,15 @@ function htmlToText(html: string): string {
 async function loadRecipients(admin: SupabaseClient): Promise<Recipient[]> {
   // Emails live in auth.users; everything else in profiles.
   const emails = new Map<string, string>()
+  const emailLangs = new Map<string, unknown>()
   let page = 1
   while (true) {
     const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 })
     if (error) throw new Error(`listUsers failed: ${error.message}`)
-    for (const u of data.users) if (u.email) emails.set(u.id, u.email)
+    for (const u of data.users) {
+      if (u.email) emails.set(u.id, u.email)
+      emailLangs.set(u.id, u.user_metadata?.email_lang)
+    }
     if (data.users.length < 1000) break
     page++
   }
@@ -128,7 +120,7 @@ async function loadRecipients(admin: SupabaseClient): Promise<Recipient[]> {
       email,
       first_name: firstName(p.full_name, email),
       referral_code: p.referral_code,
-      lang: pickLang(p.language, p.country),
+      lang: pickEmailLang({ emailLang: emailLangs.get(p.id), language: p.language, country: p.country }),
       approved_at: p.reviewed_at ?? p.created_at,
     })
   }
@@ -218,7 +210,9 @@ async function runOnboarding(admin: SupabaseClient, supabaseUrl: string, recipie
   const errors: string[] = []
   for (const r of eligible) {
     const daysIn = Math.floor((now - new Date(r.approved_at).getTime()) / DAY_MS)
-    const next = steps.find((s) => (s.day ?? 0) <= daysIn && !already.has(`${r.user_id}:${s.id}`))
+    const next = steps.find(
+      (s) => (s.day ?? 0) <= daysIn && daysIn - (s.day ?? 0) <= ONBOARDING_GRACE_DAYS && !already.has(`${r.user_id}:${s.id}`)
+    )
     if (!next) continue
     const res = await enqueue(admin, supabaseUrl, next, r, null)
     if (res.ok) sent++
@@ -326,7 +320,7 @@ Deno.serve(async (req) => {
   try {
     if (action === 'preview' || action === 'test') {
       const issue = NEWSLETTER_ISSUES.find((i) => i.id === body.issue_id)
-      const lang: NewsletterLang = body.lang === 'fr' ? 'fr' : 'en'
+      const lang: NewsletterLang = parseEmailLang(body.lang) ?? 'en'
       if (!issue) return json({ error: 'Unknown issue_id' }, 400)
 
       if (action === 'preview') {

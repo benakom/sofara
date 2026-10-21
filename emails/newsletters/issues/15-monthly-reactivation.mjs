@@ -10,8 +10,8 @@ export default {
     fr: "{{first_name}}, Sofara a changé depuis votre inscription. Voici les nouveautés.",
   },
   preview: {
-    en: "Ambassador+, Pro tools, SofarAI, simulators. Your link still works.",
-    fr: "Ambassadeur+, outils Pro, SofarAI, simulateurs. Votre lien fonctionne toujours.",
+    en: "Ambassador+, Pro tools, ready-to-send messages, simulators. Your link still works.",
+    fr: "Ambassadeur+, outils Pro, messages prêts à envoyer, simulateurs. Votre lien fonctionne toujours.",
   },
   blocks: {
     en: [
@@ -24,8 +24,8 @@ export default {
       ["ul", [
         "**Project library**: every developer, brochures, floor plans, payment schedules.",
         "**Simulators**: DLD fees and payment plans, to show a contact the exact numbers.",
-        "**SofarAI**: writes your WhatsApp and LinkedIn messages, scores your leads.",
-        "**Legal AI**: answers regulatory questions in plain language.",
+        "**Ready-to-send messages** for WhatsApp and LinkedIn, in your language.",
+        "**Legal corner**: Dubai property rules explained in plain language.",
         "**Community**: other ambassadors, events, what is working now.",
       ]],
       ["h2", "3. A transparent pipeline"],
@@ -46,8 +46,8 @@ export default {
       ["ul", [
         "**Bibliothèque de projets** : tous les promoteurs, brochures, plans, échéanciers.",
         "**Simulateurs** : frais DLD et plans de paiement, pour montrer à un contact les chiffres exacts.",
-        "**SofarAI** : rédige vos messages WhatsApp et LinkedIn, qualifie vos leads.",
-        "**Legal AI** : répond aux questions réglementaires en langage clair.",
+        "**Messages prêts à envoyer** pour WhatsApp et LinkedIn, dans votre langue.",
+        "**Coin juridique** : les règles de l'immobilier à Dubaï expliquées simplement.",
         "**Communauté** : les autres ambassadeurs, les événements, ce qui fonctionne en ce moment.",
       ]],
       ["h2", "3. Un pipeline transparent"],

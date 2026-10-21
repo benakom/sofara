@@ -29,7 +29,7 @@ export default {
       ["ul", [
         "**A new revenue line** with zero cost: no licence, no office, no staff in the UAE.",
         "**Client retention**: you stay the trusted advisor. We copy you on progress and never solicit your client for anything outside the deal.",
-        "**Larger tickets**: the average Dubai off-plan deal we close is above AED 1.5 million, and villas run to AED 10 million and beyond.",
+        "**Larger tickets**: Dubai property values are high, so a single closing can weigh more than many local sales.",
         "**Ambassador+**: recruit agents in your own network through your link and earn 10% on their closings too.",
       ]],
       ["h2", "What we ask of you"],
@@ -54,7 +54,7 @@ export default {
       ["ul", [
         "**Une nouvelle ligne de revenus** à coût nul : pas de licence, pas de bureau, pas de personnel aux Émirats.",
         "**Fidélisation du client** : vous restez le conseiller de confiance. Nous vous tenons informé de l'avancement et ne sollicitons jamais votre client en dehors du dossier.",
-        "**Des tickets plus élevés** : le dossier off-plan moyen que nous concluons à Dubaï dépasse AED 1,5 million, et les villas vont jusqu'à AED 10 millions et au-delà.",
+        "**Des tickets plus élevés** : les prix à Dubaï sont élevés, un seul closing peut peser plus que de nombreuses ventes locales.",
         "**Ambassadeur+** : recrutez des agents de votre propre réseau via votre lien et touchez aussi 10 % sur leurs closings.",
       ]],
       ["h2", "Ce que nous vous demandons"],

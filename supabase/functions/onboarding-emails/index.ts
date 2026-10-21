@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2'
 import { TRANSACTIONAL_EMAILS, type TxLang } from '../_shared/transactional-emails.ts'
+import { pickEmailLang, parseEmailLang } from '../_shared/email-lang.ts'
 
 // Onboarding transactional emails for ambassadors.
 //
@@ -19,23 +20,8 @@ const FROM = 'Sofara <noreply@sofara.io>'
 const SENDER_DOMAIN = 'notify.sofara.io'
 const SITE_URL = 'https://sofara.io'
 
-const FRENCH_COUNTRIES = new Set([
-  'france', 'fr', 'belgium', 'belgique', 'be', 'switzerland', 'suisse', 'ch', 'luxembourg', 'lu', 'monaco', 'mc',
-  'morocco', 'maroc', 'ma', 'algeria', 'algérie', 'algerie', 'dz', 'tunisia', 'tunisie', 'tn', 'senegal', 'sénégal', 'sn',
-  'ivory coast', "côte d'ivoire", "cote d'ivoire", 'ci', 'cameroon', 'cameroun', 'cm', 'mali', 'ml', 'burkina faso', 'bf',
-  'niger', 'ne', 'benin', 'bénin', 'bj', 'togo', 'tg', 'gabon', 'ga', 'congo', 'cg', 'drc', 'rdc', 'cd', 'guinea', 'guinée', 'gn',
-  'madagascar', 'mg', 'mauritius', 'maurice', 'mu', 'haiti', 'haïti', 'ht', 'quebec', 'québec', 'lebanon', 'liban', 'lb',
-  'djibouti', 'dj', 'chad', 'tchad', 'td', 'mauritania', 'mauritanie', 'mr', 'comoros', 'comores', 'km', 'burundi', 'bi', 'rwanda', 'rw',
-])
-
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
-
-function pickLang(language: string | null, country: string | null): TxLang {
-  if (language === 'fr' || language === 'en') return language
-  const c = (country ?? '').trim().toLowerCase()
-  return c && FRENCH_COUNTRIES.has(c) ? 'fr' : 'en'
-}
 
 function firstName(p: { first_name: string | null; full_name: string | null }, email: string): string {
   const fn = (p.first_name ?? (p.full_name ?? '').split(/\s+/)[0] ?? '').trim()
@@ -124,7 +110,7 @@ Deno.serve(async (req) => {
   let body: Record<string, unknown> = {}
   try { body = await req.json() } catch { body = {} }
   const event = body.event as string
-  const requestedLang = body.lang === 'fr' ? 'fr' : body.lang === 'en' ? 'en' : null
+  const requestedLang = parseEmailLang(body.lang)
 
   try {
     if (event === 'verified') {
@@ -138,10 +124,14 @@ Deno.serve(async (req) => {
       if (profile.status !== 'pending') return json({ skipped: 'not_pending', status: profile.status })
 
       // Remember the language the person used on the site, if we do not have one yet.
-      if (!profile.language && requestedLang) {
+      if (!profile.language && (requestedLang === 'en' || requestedLang === 'fr')) {
         await admin.from('profiles').update({ language: requestedLang }).eq('id', targetId)
       }
-      const lang = pickLang(profile.language ?? requestedLang, profile.country)
+      const lang: TxLang = pickEmailLang({
+        emailLang: target.user.user_metadata?.email_lang ?? requestedLang,
+        language: profile.language,
+        country: profile.country,
+      })
 
       const { data: claimed } = await admin
         .from('profiles')
@@ -178,7 +168,11 @@ Deno.serve(async (req) => {
         .select('id')
       if (!claimed?.length) return json({ skipped: 'already_sent' })
 
-      const lang = pickLang(profile.language, profile.country)
+      const lang: TxLang = pickEmailLang({
+        emailLang: target?.user?.user_metadata?.email_lang,
+        language: profile.language,
+        country: profile.country,
+      })
       const referral_link = profile.referral_code ? `${SITE_URL}/auth?ref=${profile.referral_code}` : `${SITE_URL}/dashboard/referrals`
       const message_id = await enqueue(admin, 'welcome-validated', email, lang, {
         first_name: firstName(profile, email),
