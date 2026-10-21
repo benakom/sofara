@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, ChevronDown, Search } from "lucide-react";
 import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Lang } from "@/i18n/translations";
-import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
 const avatarImg = "/favicon.png";
 
@@ -68,49 +67,110 @@ const COUNTRIES: { code: string; dial: string; name: string; flag: string }[] = 
   { code: "NG", dial: "+234", name: "Nigeria", flag: "🇳🇬" },
 ];
 
+// The chatbot's "ar" strings are Arabic; the site's Arabic interface language is "arb".
 type ChatLang = Exclude<Lang, "arb">;
-const i18n: Record<string, Record<ChatLang, string>> = {
-  formIntro: {
-    en: "Before we chat, please share a few details so our team can follow up.",
-    fr: "Avant de discuter, partagez quelques infos pour qu'on puisse vous recontacter.",
-    es: "Antes de chatear, comparte algunos datos para que podamos contactarte.",
-    ru: "Прежде чем начать, поделитесь данными, чтобы мы могли с вами связаться.",
-    ar: "قبل أن نبدأ، شاركنا بعض المعلومات ليتمكن فريقنا من متابعتك.",
+type T = Record<ChatLang, string>;
+const i18n: Record<string, T> = {
+  hello: {
+    en: "Hi 👋 I'm Sara, Sofara's virtual assistant. Ask me anything about the ambassador program.",
+    fr: "Bonjour 👋 Je suis Sara, l'assistante virtuelle de Sofara. Posez-moi votre question sur le programme ambassadeur.",
+    es: "Hola 👋 Soy Sara, la asistente virtual de Sofara. Pregúntame lo que quieras sobre el programa de embajadores.",
+    ru: "Здравствуйте 👋 Я Сара, виртуальный ассистент Sofara. Задайте вопрос о программе амбассадоров.",
+    ar: "مرحباً 👋 أنا سارة، المساعدة الافتراضية لدى Sofara. اسألني عن برنامج السفراء.",
   },
-  firstName: { en: "First name", fr: "Prénom", es: "Nombre", ru: "Имя", ar: "الاسم الأول" },
-  lastName: { en: "Last name", fr: "Nom", es: "Apellido", ru: "Фамилия", ar: "اسم العائلة" },
-  email: { en: "Email", fr: "Email", es: "Email", ru: "Email", ar: "البريد الإلكتروني" },
-  phone: { en: "Phone number", fr: "Téléphone", es: "Teléfono", ru: "Телефон", ar: "رقم الهاتف" },
-  startChat: { en: "Start chat", fr: "Démarrer le chat", es: "Iniciar chat", ru: "Начать чат", ar: "ابدأ المحادثة" },
-  searchCountry: { en: "Search country", fr: "Rechercher", es: "Buscar país", ru: "Поиск страны", ar: "ابحث عن الدولة" },
+  welcomeBack: {
+    en: "Welcome back {name} 👋 What would you like to know?",
+    fr: "Ravie de vous revoir {name} 👋 Que souhaitez-vous savoir ?",
+    es: "Hola de nuevo {name} 👋 ¿Qué te gustaría saber?",
+    ru: "Рада видеть вас снова, {name} 👋 Что вы хотите узнать?",
+    ar: "أهلاً بعودتك {name} 👋 ماذا تريد أن تعرف؟",
+  },
+  askName: {
+    en: "Good question, I'll answer it right away. So our team can follow up properly, may I have your first and last name?",
+    fr: "Bonne question, j'y réponds tout de suite. Pour que notre équipe puisse bien vous accompagner, puis-je avoir votre prénom et votre nom ?",
+    es: "Buena pregunta, te respondo enseguida. Para que nuestro equipo pueda acompañarte bien, ¿me dices tu nombre y apellido?",
+    ru: "Хороший вопрос, сейчас отвечу. Чтобы наша команда могла вам помочь, подскажите, пожалуйста, ваши имя и фамилию?",
+    ar: "سؤال جيد، سأجيبك فوراً. حتى يتمكن فريقنا من متابعتك بشكل صحيح، هل يمكنني معرفة اسمك الأول واسم العائلة؟",
+  },
+  askLastName: {
+    en: "Thanks {name}! And your last name?",
+    fr: "Merci {name} ! Et votre nom de famille ?",
+    es: "¡Gracias {name}! ¿Y tu apellido?",
+    ru: "Спасибо, {name}! А ваша фамилия?",
+    ar: "شكراً {name}! وما اسم العائلة؟",
+  },
+  askPhone: {
+    en: "Nice to meet you {name}. What's your WhatsApp number? We only use it to reply to you.",
+    fr: "Enchantée {name}. Quel est votre numéro WhatsApp ? Il sert uniquement à vous répondre.",
+    es: "Encantada, {name}. ¿Cuál es tu número de WhatsApp? Solo lo usamos para responderte.",
+    ru: "Приятно познакомиться, {name}. Ваш номер WhatsApp? Мы используем его только для ответа вам.",
+    ar: "تشرفنا {name}. ما رقم واتساب الخاص بك؟ نستخدمه فقط للرد عليك.",
+  },
+  askEmail: {
+    en: "Perfect. And your email, so we can send you the details?",
+    fr: "Parfait. Et votre e-mail, pour vous envoyer les détails ?",
+    es: "Perfecto. ¿Y tu email, para enviarte los detalles?",
+    ru: "Отлично. И ваш email, чтобы отправить подробности?",
+    ar: "ممتاز. وما بريدك الإلكتروني لنرسل لك التفاصيل؟",
+  },
+  askIntent: {
+    en: "Last one: what brings you to Sofara?",
+    fr: "Dernière question : qu'est-ce qui vous amène chez Sofara ?",
+    es: "Última pregunta: ¿qué te trae a Sofara?",
+    ru: "Последний вопрос: что привело вас в Sofara?",
+    ar: "سؤال أخير: ما الذي يهمك في Sofara؟",
+  },
+  intentAmbassador: { en: "Become an ambassador", fr: "Devenir ambassadeur", es: "Ser embajador", ru: "Стать амбассадором", ar: "أن أصبح سفيراً" },
+  intentBuy: { en: "Buy property in Dubai", fr: "Acheter à Dubaï", es: "Comprar en Dubái", ru: "Купить в Дубае", ar: "شراء عقار في دبي" },
+  intentBoth: { en: "Both", fr: "Les deux", es: "Ambos", ru: "И то и другое", ar: "الاثنان" },
+  thanks: {
+    en: "Thank you {name}, our team now has your details. Here's my answer:",
+    fr: "Merci {name}, notre équipe a bien vos coordonnées. Voici ma réponse :",
+    es: "Gracias {name}, nuestro equipo ya tiene tus datos. Esta es mi respuesta:",
+    ru: "Спасибо, {name}, наша команда получила ваши данные. Вот мой ответ:",
+    ar: "شكراً {name}، وصلت بياناتك إلى فريقنا. إليك إجابتي:",
+  },
+  badPhone: {
+    en: "That number looks incomplete. Could you check it? Digits only, without the country code.",
+    fr: "Ce numéro semble incomplet. Pouvez-vous le vérifier ? Uniquement les chiffres, sans l'indicatif.",
+    es: "Ese número parece incompleto. ¿Puedes revisarlo? Solo dígitos, sin el prefijo.",
+    ru: "Похоже, номер неполный. Проверьте, пожалуйста: только цифры, без кода страны.",
+    ar: "يبدو أن الرقم غير مكتمل. هل يمكنك التحقق منه؟ أرقام فقط دون رمز الدولة.",
+  },
+  badEmail: {
+    en: "This email doesn't look right. Could you check it?",
+    fr: "Cet e-mail ne semble pas correct. Pouvez-vous le vérifier ?",
+    es: "Este email no parece correcto. ¿Puedes revisarlo?",
+    ru: "Похоже, email указан с ошибкой. Проверьте, пожалуйста.",
+    ar: "يبدو أن البريد الإلكتروني غير صحيح. هل يمكنك التحقق منه؟",
+  },
+  saveError: {
+    en: "Sorry, I couldn't save your details. Please try again in a moment.",
+    fr: "Désolée, je n'ai pas pu enregistrer vos coordonnées. Réessayez dans un instant.",
+    es: "Lo siento, no pude guardar tus datos. Inténtalo de nuevo en un momento.",
+    ru: "Извините, не удалось сохранить данные. Попробуйте чуть позже.",
+    ar: "عذراً، لم أتمكن من حفظ بياناتك. حاول مرة أخرى بعد قليل.",
+  },
+  namePh: { en: "First and last name", fr: "Prénom et nom", es: "Nombre y apellido", ru: "Имя и фамилия", ar: "الاسم الأول واسم العائلة" },
+  lastNamePh: { en: "Last name", fr: "Nom", es: "Apellido", ru: "Фамилия", ar: "اسم العائلة" },
+  phonePh: { en: "WhatsApp number", fr: "Numéro WhatsApp", es: "Número de WhatsApp", ru: "Номер WhatsApp", ar: "رقم واتساب" },
+  emailPh: { en: "Email", fr: "E-mail", es: "Email", ru: "Email", ar: "البريد الإلكتروني" },
   privacy: {
-    en: "By continuing you accept our privacy policy.",
-    fr: "En continuant vous acceptez notre politique de confidentialité.",
-    es: "Al continuar aceptas nuestra política de privacidad.",
-    ru: "Продолжая, вы принимаете нашу политику конфиденциальности.",
-    ar: "بالمتابعة، أنت توافق على سياسة الخصوصية.",
+    en: "Your details stay confidential and are only used by the Sofara and Cevitas team.",
+    fr: "Vos coordonnées restent confidentielles et ne servent qu'à l'équipe Sofara et Cevitas.",
+    es: "Tus datos son confidenciales y solo los usa el equipo de Sofara y Cevitas.",
+    ru: "Ваши данные конфиденциальны и используются только командой Sofara и Cevitas.",
+    ar: "بياناتك سرية ويستخدمها فريق Sofara وCevitas فقط.",
   },
-  welcome: {
-    en: "Hi {name}! I'm Sara, Sofara's virtual assistant 💬 I can answer any question about Sofara, Dubai real estate or our ambassador program. Pick a topic below or ask me anything.",
-    fr: "Bonjour {name} ! Je suis Sara, l'assistante virtuelle de Sofara 💬 Je réponds à toutes vos questions sur Sofara, l'immobilier à Dubaï ou notre programme ambassadeur. Choisissez un sujet ou posez-moi votre question.",
-    es: "¡Hola {name}! Soy Sara, la asistente virtual de Sofara 💬 Respondo cualquier pregunta sobre Sofara, el inmobiliario de Dubái o el programa de embajadores. Elige un tema o hazme tu pregunta.",
-    ru: "Привет, {name}! Я Сара, виртуальный ассистент Sofara 💬 Отвечу на любой вопрос о Sofara, недвижимости Дубая и программе амбассадоров. Выберите тему ниже или задайте вопрос.",
-    ar: "مرحباً {name}! أنا سارة، المساعدة الافتراضية لـ Sofara 💬 أجيب عن أي سؤال حول Sofara والعقارات في دبي وبرنامج السفراء. اختر موضوعاً أو اطرح سؤالك.",
-  },
+  searchCountry: { en: "Search country", fr: "Rechercher", es: "Buscar país", ru: "Поиск страны", ar: "ابحث عن الدولة" },
   aiBadge: {
-    en: "Virtual assistant · answers all your questions",
-    fr: "Assistante virtuelle · répond à toutes vos questions",
-    es: "Asistente virtual · responde todas tus preguntas",
-    ru: "Виртуальный ассистент · ответит на любые вопросы",
-    ar: "مساعدة افتراضية · تجيب عن كل أسئلتك",
+    en: "Virtual assistant · replies in seconds",
+    fr: "Assistante virtuelle · répond en quelques secondes",
+    es: "Asistente virtual · responde en segundos",
+    ru: "Виртуальный ассистент · отвечает за секунды",
+    ar: "مساعدة افتراضية · ترد خلال ثوانٍ",
   },
-  faqTitle: {
-    en: "Frequently asked questions",
-    fr: "Questions fréquentes",
-    es: "Preguntas frecuentes",
-    ru: "Частые вопросы",
-    ar: "الأسئلة الشائعة",
-  },
+  faqTitle: { en: "Frequently asked questions", fr: "Questions fréquentes", es: "Preguntas frecuentes", ru: "Частые вопросы", ar: "الأسئلة الشائعة" },
   faqOrAsk: {
     en: "…or type your own question below",
     fr: "…ou tapez votre question ci-dessous",
@@ -118,31 +178,35 @@ const i18n: Record<string, Record<ChatLang, string>> = {
     ru: "…или задайте свой вопрос ниже",
     ar: "…أو اكتب سؤالك أدناه",
   },
-  placeholder: {
-    en: "Ask your question…",
-    fr: "Posez votre question…",
-    es: "Haz tu pregunta…",
-    ru: "Задайте ваш вопрос…",
-    ar: "اطرح سؤالك…",
-  },
+  placeholder: { en: "Ask your question…", fr: "Posez votre question…", es: "Haz tu pregunta…", ru: "Задайте ваш вопрос…", ar: "اطرح سؤالك…" },
   limitReached: {
-    en: "You've reached the question limit for this session. Contact us at hello@sofara.io to continue the conversation!",
-    fr: "Vous avez atteint la limite de questions pour cette session. Contactez-nous à hello@sofara.io pour continuer !",
-    es: "Has alcanzado el límite de preguntas de esta sesión. ¡Contáctanos en hello@sofara.io para continuar!",
-    ru: "Вы достигли лимита вопросов для этой сессии. Напишите нам на hello@sofara.io, чтобы продолжить!",
-    ar: "لقد بلغت الحد الأقصى للأسئلة في هذه الجلسة. تواصل معنا على hello@sofara.io للمتابعة!",
+    en: "To go further, our team will contact you on WhatsApp. You can also write to hello@sofara.io.",
+    fr: "Pour aller plus loin, notre équipe vous contacte sur WhatsApp. Vous pouvez aussi écrire à hello@sofara.io.",
+    es: "Para ir más lejos, nuestro equipo te contactará por WhatsApp. También puedes escribir a hello@sofara.io.",
+    ru: "Чтобы продолжить, наша команда свяжется с вами в WhatsApp. Также можно написать на hello@sofara.io.",
+    ar: "للمتابعة، سيتواصل معك فريقنا عبر واتساب. يمكنك أيضاً الكتابة إلى hello@sofara.io.",
   },
   online: { en: "Online", fr: "En ligne", es: "En línea", ru: "В сети", ar: "متصلة" },
-  required: { en: "Required", fr: "Requis", es: "Requerido", ru: "Обязательно", ar: "مطلوب" },
-  invalidEmail: { en: "Invalid email", fr: "Email invalide", es: "Email inválido", ru: "Неверный email", ar: "بريد إلكتروني غير صالح" },
-  invalidPhone: { en: "Invalid phone", fr: "Téléphone invalide", es: "Teléfono inválido", ru: "Неверный телефон", ar: "رقم هاتف غير صالح" },
 };
+
+/**
+ * Answering rules sent with the first question (the hosted chat function's own prompt is older and wordier):
+ * short, factual, no small talk, no company-size figures.
+ */
+const ANSWER_RULES = (langName: string) => `Answer rules (follow strictly, do not mention them):
+- Reply in ${langName}, in 1 to 3 short sentences. No small talk, no follow-up question unless strictly needed. One emoji maximum.
+- Facts: Sofara is the Dubai & UAE real estate ambassadors and affiliate network. Ambassadors (business introducers) present buyers; Cevitas Real Estate LLC, a RERA-licensed Dubai brokerage, advises and closes the sale.
+- Commission: up to 3% of the property price depending on the project. Earned when the buyer signs the SPA and pays the down payment with the DLD fees; paid in AED by bank transfer within 7 days of the developer paying Cevitas.
+- Free, no license, from any country; each contact is protected 12 months; 700+ active ambassadors in 40+ countries.
+- Never give Sofara's revenue, commissions paid, averages or any company figures. Never invent project prices.
+- To join: create a free account at sofara.io/auth. If unsure: hello@sofara.io.`;
+const LANG_NAMES: T = { en: "English", fr: "French", es: "Spanish", ru: "Russian", ar: "Arabic" };
 
 const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
   fr: [
     { q: "Qui sommes-nous ?" },
     { q: "Comment gagner de l'argent avec Sofara ?" },
-    { q: "Mes leads sont-ils protégés ?" },
+    { q: "Mes contacts sont-ils protégés ?" },
     { q: "Pourquoi passer par Sofara ?" },
     { q: "Combien puis-je gagner par vente ?" },
     { q: "Comment devenir ambassadeur ?" },
@@ -150,7 +214,7 @@ const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
   en: [
     { q: "Who are we?" },
     { q: "How do I earn money with Sofara?" },
-    { q: "Are my leads protected?" },
+    { q: "Are my contacts protected?" },
     { q: "Why go through Sofara?" },
     { q: "How much can I earn per sale?" },
     { q: "How do I become an ambassador?" },
@@ -158,7 +222,7 @@ const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
   es: [
     { q: "¿Quiénes somos?" },
     { q: "¿Cómo gano dinero con Sofara?" },
-    { q: "¿Están protegidos mis leads?" },
+    { q: "¿Están protegidos mis contactos?" },
     { q: "¿Por qué pasar por Sofara?" },
     { q: "¿Cuánto puedo ganar por venta?" },
     { q: "¿Cómo me hago embajador?" },
@@ -166,7 +230,7 @@ const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
   ru: [
     { q: "Кто мы?" },
     { q: "Как заработать с Sofara?" },
-    { q: "Защищены ли мои лиды?" },
+    { q: "Защищены ли мои контакты?" },
     { q: "Почему именно Sofara?" },
     { q: "Сколько я могу заработать с одной продажи?" },
     { q: "Как стать амбассадором?" },
@@ -182,59 +246,55 @@ const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
 };
 
 
-const leadSchema = z.object({
-  first_name: z.string().trim().min(1).max(100),
-  last_name: z.string().trim().min(1).max(100),
-  email: z.string().trim().email().max(255),
-  phone: z.string().trim().regex(/^\d{6,15}$/),
-});
+const emailSchema = z.string().trim().email().max(255);
 
 const STORAGE_KEY = "sofara-chatbot-lead";
 
+/** Lead capture happens inside the conversation, one short question at a time, before the first answer. */
+type Stage = "idle" | "name" | "lastName" | "phone" | "email" | "intent" | "saving" | "chat";
+
 export default function LandingChatbot() {
-  // The chatbot's "ar" strings are Arabic; the site's Arabic interface language is "arb".
   const { lang: uiLang } = useLanguage();
   const lang: ChatLang = uiLang === "arb" ? "ar" : uiLang;
+  const L = (k: string, name = "") => (i18n[k][lang] ?? i18n[k].en).replace("{name}", name);
   const [isOpen, setIsOpen] = useState(false);
-  const [hasLead, setHasLead] = useState<boolean>(() => !!localStorage.getItem(STORAGE_KEY));
+  const [hasLead, setHasLead] = useState<boolean>(() => {
+    try { return !!localStorage.getItem(STORAGE_KEY); } catch { return false; }
+  });
   const [leadName, setLeadName] = useState<string>(() => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}").first_name || ""; } catch { return ""; }
   });
 
-  // Form state
+  const [stage, setStage] = useState<Stage>(hasLead ? "chat" : "idle");
+  const [pendingQuestion, setPendingQuestion] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [country, setCountry] = useState(COUNTRIES[0]);
   const [countryOpen, setCountryOpen] = useState(false);
   const [countryQuery, setCountryQuery] = useState("");
-  const [formError, setFormError] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
-  // Anti-bot: honeypot field + minimum time-to-submit
-  const [honeypot, setHoneypot] = useState("");
-  const formMountedAt = useRef<number>(Date.now());
+  const openedAt = useRef<number>(Date.now());
 
-  // Chat state
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [streaming, setStreaming] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
   const [welcomed, setWelcomed] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, stage]);
 
-  // Welcome message after lead is captured
   useEffect(() => {
-    if (isOpen && hasLead && !welcomed) {
+    if (isOpen && !welcomed) {
       setWelcomed(true);
-      setTimeout(() => {
-        setMessages([{ role: "assistant", content: i18n.welcome[lang].replace("{name}", leadName || "") }]);
-      }, 300);
+      openedAt.current = Date.now();
+      setMessages([{ role: "assistant", content: hasLead ? L("welcomeBack", leadName) : L("hello") }]);
     }
-  }, [isOpen, hasLead, welcomed, lang, leadName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, welcomed]);
 
   // Click outside to close
   useEffect(() => {
@@ -255,71 +315,26 @@ export default function LandingChatbot() {
     return COUNTRIES.filter(c => c.name.toLowerCase().includes(q) || c.dial.includes(q) || c.code.toLowerCase().includes(q));
   }, [countryQuery]);
 
-  const submitLead = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormError(null);
-    // Anti-bot: silently drop if honeypot filled or form submitted too fast (< 1.5s)
-    if (honeypot.trim() !== "" || Date.now() - formMountedAt.current < 1500) {
-      setSubmitting(true);
-      setTimeout(() => { setSubmitting(false); setFormError(i18n.required[lang]); }, 800);
-      return;
-    }
-    const cleanPhone = phone.replace(/\D/g, "");
-    const parsed = leadSchema.safeParse({
-      first_name: firstName, last_name: lastName, email, phone: cleanPhone,
-    });
-    if (!parsed.success) {
-      const issue = parsed.error.issues[0];
-      if (issue.path[0] === "email") setFormError(i18n.invalidEmail[lang]);
-      else if (issue.path[0] === "phone") setFormError(i18n.invalidPhone[lang]);
-      else setFormError(i18n.required[lang]);
-      return;
-    }
-    setSubmitting(true);
-    try {
-      const { error } = await supabase.from("chatbot_leads").insert({
-        first_name: parsed.data.first_name,
-        last_name: parsed.data.last_name,
-        email: parsed.data.email,
-        country_code: country.dial,
-        phone: parsed.data.phone,
-        language: lang,
-        source_page: typeof window !== "undefined" ? window.location.pathname : null,
-      });
-      if (error) throw error;
-      const payload = { first_name: parsed.data.first_name, ts: Date.now() };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-      setLeadName(parsed.data.first_name);
-      setHasLead(true);
-    } catch {
-      setFormError("Could not save. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const say = (...msgs: Msg[]) => setMessages(prev => [...prev, ...msgs]);
 
-  const sendMessage = async (text: string) => {
-    if (!text.trim() || isLoading) return;
-    if (questionCount >= MAX_QUESTIONS) {
-      setMessages(prev => [...prev, { role: "user", content: text.trim() }, { role: "assistant", content: i18n.limitReached[lang] }]);
-      setInput("");
-      return;
-    }
-    const userMsg: Msg = { role: "user", content: text.trim() };
-    const updated = [...messages, userMsg];
-    setMessages(updated);
-    setInput("");
+  /** Real questions and answers only (no scripted messages): this is what the chat function receives. */
+  const qaRef = useRef<Msg[]>([]);
+
+  /** Streams Sara's answer to `question`; the answering rules ride on the first question of the session. */
+  const ask = async (question: string) => {
     setIsLoading(true);
     setQuestionCount(prev => prev + 1);
+    const isFirst = qaRef.current.length === 0;
+    const content = isFirst ? `${ANSWER_RULES(LANG_NAMES[lang] ?? "English")}\n\nQuestion: ${question}` : question;
+    const apiMessages = [...qaRef.current, { role: "user" as const, content }].slice(-12);
 
-    let assistantSoFar = "";
+    let answer = "";
+    let placed = false;
     const upsert = (chunk: string) => {
-      assistantSoFar += chunk;
+      answer += chunk;
       setMessages(prev => {
-        const last = prev[prev.length - 1];
-        if (last?.role === "assistant" && prev.length > 1 && prev[prev.length - 2]?.role === "user")
-          return prev.map((m, i) => i === prev.length - 1 ? { ...m, content: assistantSoFar } : m);
-        return [...prev, { role: "assistant", content: assistantSoFar }];
+        if (!placed) { placed = true; setStreaming(true); return [...prev, { role: "assistant", content: answer }]; }
+        return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: answer } : m));
       });
     };
 
@@ -327,7 +342,7 @@ export default function LandingChatbot() {
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}` },
-        body: JSON.stringify({ messages: updated, lang }),
+        body: JSON.stringify({ messages: apiMessages, lang }),
       });
       if (!resp.ok) { upsert("Sorry, something went wrong. Please try again."); setIsLoading(false); return; }
       const reader = resp.body!.getReader();
@@ -351,13 +366,101 @@ export default function LandingChatbot() {
           } catch { /* skip */ }
         }
       }
+      qaRef.current = [...apiMessages, { role: "assistant", content: answer }];
     } catch {
       upsert("Connection error. Please try again.");
     }
+    setStreaming(false);
     setIsLoading(false);
   };
 
-  const limitReached = questionCount >= MAX_QUESTIONS;
+  const saveLead = async (intent: string) => {
+    setStage("saving");
+    // Bots fill everything instantly; people take a few seconds.
+    if (Date.now() - openedAt.current < 4000) { setStage("intent"); return; }
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error } = await supabase.from("chatbot_leads").insert({
+        first_name: firstName.slice(0, 100),
+        last_name: (lastName || "-").slice(0, 100),
+        email: email.trim().slice(0, 255),
+        country_code: country.dial,
+        phone: phone.replace(/\D/g, ""),
+        language: lang,
+        // Qualification travels with the source page so the admin sees it next to the lead.
+        source_page: `${typeof window !== "undefined" ? window.location.pathname : ""} · ${intent}${pendingQuestion ? ` · Q: ${pendingQuestion.slice(0, 160)}` : ""}`.slice(0, 500),
+      });
+      if (error) throw error;
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ first_name: firstName, ts: Date.now() })); } catch { /* ignore */ }
+      setLeadName(firstName);
+      setHasLead(true);
+      setStage("chat");
+      say({ role: "user", content: intent }, { role: "assistant", content: L("thanks", firstName) });
+      if (pendingQuestion) await ask(pendingQuestion);
+    } catch {
+      say({ role: "assistant", content: L("saveError") });
+      setStage("intent");
+    }
+  };
+
+  const handleSend = async (raw: string) => {
+    const text = raw.trim();
+    if (!text || isLoading || stage === "saving") return;
+    setInput("");
+
+    if (stage === "chat") {
+      if (questionCount >= MAX_QUESTIONS) {
+        say({ role: "user", content: text }, { role: "assistant", content: L("limitReached") });
+        return;
+      }
+      say({ role: "user", content: text });
+      await ask(text);
+      return;
+    }
+    if (stage === "idle") {
+      setPendingQuestion(text);
+      say({ role: "user", content: text }, { role: "assistant", content: L("askName") });
+      setStage("name");
+      return;
+    }
+    if (stage === "name") {
+      const parts = text.replace(/\s+/g, " ").split(" ");
+      const first = parts[0].slice(0, 100);
+      const last = parts.slice(1).join(" ").slice(0, 100);
+      setFirstName(first);
+      setLastName(last);
+      say({ role: "user", content: text }, { role: "assistant", content: last ? L("askPhone", first) : L("askLastName", first) });
+      setStage(last ? "phone" : "lastName");
+      return;
+    }
+    if (stage === "lastName") {
+      setLastName(text.slice(0, 100));
+      say({ role: "user", content: text }, { role: "assistant", content: L("askPhone", firstName) });
+      setStage("phone");
+      return;
+    }
+    if (stage === "phone") {
+      const digits = text.replace(/\D/g, "").replace(/^0+/, "");
+      if (digits.length < 6 || digits.length > 15) {
+        say({ role: "user", content: text }, { role: "assistant", content: L("badPhone") });
+        return;
+      }
+      setPhone(digits);
+      say({ role: "user", content: `${country.dial} ${digits}` }, { role: "assistant", content: L("askEmail") });
+      setStage("email");
+      return;
+    }
+    if (stage === "email") {
+      if (!emailSchema.safeParse(text).success) {
+        say({ role: "user", content: text }, { role: "assistant", content: L("badEmail") });
+        return;
+      }
+      setEmail(text);
+      say({ role: "user", content: text }, { role: "assistant", content: L("askIntent") });
+      setStage("intent");
+    }
+  };
+
 
   /* ── Collapsed bubble ── */
   if (!isOpen) {
@@ -403,9 +506,9 @@ export default function LandingChatbot() {
               Sara
               <span className="text-[8.5px] font-semibold tracking-wide px-1.5 py-0.5 rounded" style={{ background: BRAND.accentFaint, color: BRAND.accent, border: `1px solid ${BRAND.borderAccent}` }}>24/7</span>
             </h3>
-            <p className="text-[10px] flex items-center gap-1 truncate" style={{ color: BRAND.textDim }} title={i18n.aiBadge[lang]}>
+            <p className="text-[10px] flex items-center gap-1 truncate" style={{ color: BRAND.textDim }} title={L("aiBadge")}>
               <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse shrink-0" style={{ background: BRAND.accent }} />
-              <span className="truncate">{i18n.aiBadge[lang]}</span>
+              <span className="truncate">{L("aiBadge")}</span>
             </p>
           </div>
           <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-lg transition-colors hover:bg-white/5" style={{ color: BRAND.textDim }} aria-label="Close">
@@ -413,218 +516,140 @@ export default function LandingChatbot() {
           </button>
         </div>
 
-        {/* ── Lead capture form (always shown first) ── */}
-        {!hasLead ? (
-          <form onSubmit={submitLead} className="flex-1 overflow-y-auto p-4 space-y-3" style={{ scrollbarWidth: "thin" }} autoComplete="off">
-            {/* Honeypot — hidden from humans, irresistible to bots */}
-            <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
-              <label htmlFor="website-url">Website</label>
-              <input
-                id="website-url" name="website" type="text" tabIndex={-1} autoComplete="off"
-                value={honeypot} onChange={e => setHoneypot(e.target.value)}
-              />
-            </div>
-            <div className="flex items-start gap-2 mb-1">
-              <img src={avatarImg} alt="" className="w-7 h-7 rounded-full object-cover shrink-0 mt-0.5" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
-              <div className="rounded-2xl rounded-bl-sm px-3 py-2 text-[12.5px] leading-snug" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}`, color: BRAND.text }}>
-                {i18n.formIntro[lang]}
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-3" style={{ scrollbarWidth: "thin" }}>
+          {messages.map((msg, i) => (
+            <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+              {msg.role === "assistant" && (
+                <img src={avatarImg} alt="Sara" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
+              )}
+              <div
+                className={`max-w-[85%] min-w-0 rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${msg.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"}`}
+                style={msg.role === "user"
+                  ? { background: BRAND.accent, color: BRAND.bg, fontWeight: 500 }
+                  : { background: BRAND.bgSoft, border: `1px solid ${BRAND.border}`, color: BRAND.text }}
+              >
+                {msg.role === "assistant" ? (
+                  <div className="prose prose-invert prose-xs max-w-none break-words [&_p]:text-[13px] [&_p]:my-0.5 [&_li]:text-[13px] [&_li]:my-0 [&_strong]:text-[#D3F34B] [&_a]:text-[#D3F34B] [&_a]:underline">
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <span className="whitespace-pre-wrap break-words">{msg.content}</span>
+                )}
               </div>
             </div>
+          ))}
 
-            <div className="grid grid-cols-2 gap-2">
-              <input
-                value={firstName} onChange={e => setFirstName(e.target.value)} required maxLength={100}
-                placeholder={i18n.firstName[lang]}
-                className="h-10 px-3 rounded-xl text-[13px] focus:outline-none focus:ring-2"
-                style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, ["--tw-ring-color" as any]: BRAND.accentFaint }}
-              />
-              <input
-                value={lastName} onChange={e => setLastName(e.target.value)} required maxLength={100}
-                placeholder={i18n.lastName[lang]}
-                className="h-10 px-3 rounded-xl text-[13px] focus:outline-none focus:ring-2"
-                style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, ["--tw-ring-color" as any]: BRAND.accentFaint }}
-              />
+          {(isLoading && !streaming) || stage === "saving" ? (
+            <div className="flex justify-start">
+              <img src={avatarImg} alt="Sara" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" />
+              <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}` }}>
+                <div className="flex gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accent, animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accentDim, animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accent, animationDelay: "300ms" }} />
+                </div>
+              </div>
             </div>
+          ) : null}
 
-            <input
-              value={email} onChange={e => setEmail(e.target.value)} required type="email" maxLength={255}
-              placeholder={i18n.email[lang]}
-              className="w-full h-10 px-3 rounded-xl text-[13px] focus:outline-none focus:ring-2"
-              style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, ["--tw-ring-color" as any]: BRAND.accentFaint }}
-            />
-
-            {/* Phone with country dial code */}
-            <div className="relative flex gap-2">
-              <button
-                type="button"
-                onClick={() => setCountryOpen(o => !o)}
-                className="h-10 px-2.5 rounded-xl flex items-center gap-1.5 text-[13px] shrink-0 hover:bg-white/5 transition-colors"
-                style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text }}
-                aria-haspopup="listbox" aria-expanded={countryOpen}
-              >
-                <span className="text-base leading-none">{country.flag}</span>
-                <span className="font-medium">{country.dial}</span>
-                <ChevronDown className="w-3 h-3 opacity-60" />
-              </button>
-              <input
-                value={phone}
-                onChange={e => setPhone(e.target.value.replace(/[^\d\s]/g, ""))}
-                required inputMode="tel" maxLength={20}
-                placeholder={i18n.phone[lang]}
-                className="flex-1 min-w-0 h-10 px-3 rounded-xl text-[13px] focus:outline-none focus:ring-2"
-                style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, ["--tw-ring-color" as any]: BRAND.accentFaint }}
-              />
-
-              {countryOpen && (
-                <div className="absolute top-11 left-0 z-10 w-64 max-h-60 rounded-xl shadow-2xl overflow-hidden flex flex-col" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}` }}>
-                  <div className="p-2 shrink-0 flex items-center gap-2" style={{ borderBottom: `1px solid ${BRAND.border}` }}>
-                    <Search className="w-3.5 h-3.5 shrink-0" style={{ color: BRAND.textDim }} />
-                    <input
-                      autoFocus
-                      value={countryQuery}
-                      onChange={e => setCountryQuery(e.target.value)}
-                      placeholder={i18n.searchCountry[lang]}
-                      className="flex-1 min-w-0 bg-transparent text-[12px] focus:outline-none"
-                      style={{ color: BRAND.text }}
-                    />
-                  </div>
-                  <div className="overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-                    {filteredCountries.map(c => (
-                      <button
-                        key={c.code} type="button"
-                        onClick={() => { setCountry(c); setCountryOpen(false); setCountryQuery(""); }}
-                        className="w-full px-3 py-2 flex items-center gap-2.5 text-left text-[12.5px] hover:bg-white/5 transition-colors"
-                        style={{ color: BRAND.text }}
-                      >
-                        <span className="text-base">{c.flag}</span>
-                        <span className="flex-1 truncate">{c.name}</span>
-                        <span style={{ color: BRAND.accent }}>{c.dial}</span>
-                      </button>
-                    ))}
-                    {filteredCountries.length === 0 && (
-                      <p className="px-3 py-3 text-[12px] text-center" style={{ color: BRAND.textDim }}>—</p>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {formError && (
-              <p className="text-[11.5px]" style={{ color: "#ff7676" }}>{formError}</p>
-            )}
-
-            <button
-              type="submit" disabled={submitting}
-              className="w-full h-10 rounded-xl font-semibold text-[13px] transition-opacity disabled:opacity-50 hover:opacity-90"
-              style={{ background: BRAND.accent, color: BRAND.bg }}
-            >
-              {submitting ? "…" : i18n.startChat[lang]}
-            </button>
-
-            <p className="text-[10px] text-center" style={{ color: BRAND.textDim }}>{i18n.privacy[lang]}</p>
-          </form>
-        ) : (
-          <>
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-3" style={{ scrollbarWidth: "thin" }}>
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                  {msg.role === "assistant" && (
-                    <img src={avatarImg} alt="Sara" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" style={{ border: `1px solid ${BRAND.borderAccent}` }} />
-                  )}
-                  <div
-                    className={`max-w-[85%] min-w-0 rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${msg.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"}`}
-                    style={msg.role === "user"
-                      ? { background: BRAND.accent, color: BRAND.bg, fontWeight: 500 }
-                      : { background: BRAND.bgSoft, border: `1px solid ${BRAND.border}`, color: BRAND.text }}
-                  >
-                    {msg.role === "assistant" ? (
-                      <div className="prose prose-invert prose-xs max-w-none break-words [&_p]:text-[13px] [&_p]:my-0.5 [&_li]:text-[13px] [&_li]:my-0 [&_strong]:text-[#D3F34B] [&_a]:text-[#D3F34B] [&_a]:underline">
-                        <ReactMarkdown>{msg.content}</ReactMarkdown>
-                      </div>
-                    ) : (
-                      <span className="whitespace-pre-wrap break-words">{msg.content}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-
-              {isLoading && messages[messages.length - 1]?.role === "user" && (
-                <div className="flex justify-start">
-                  <img src={avatarImg} alt="Sara" className="w-6 h-6 rounded-full object-cover mr-2 mt-1 shrink-0" />
-                  <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}` }}>
-                    <div className="flex gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accent, animationDelay: "0ms" }} />
-                      <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accentDim, animationDelay: "150ms" }} />
-                      <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: BRAND.accent, animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* FAQ quick-pick chips — shown only before first user question */}
-              {!isLoading && messages.length >= 1 && !messages.some(m => m.role === "user") && (
-                <div className="pt-1">
-                  <p className="text-[10.5px] uppercase tracking-wider mb-2 font-semibold" style={{ color: BRAND.accent }}>
-                    {i18n.faqTitle[lang]}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {(FAQ[lang] || FAQ.en).map((f, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => sendMessage(f.q)}
-                        className="text-[12px] px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity text-left"
-                        style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.borderAccent}`, color: BRAND.text }}
-                      >
-                        {f.q}
-                      </button>
-                    ))}
-                  </div>
-                  <p className="text-[10.5px] mt-2 italic" style={{ color: BRAND.textDim }}>
-                    {i18n.faqOrAsk[lang]}
-                  </p>
-                </div>
-              )}
-
-              <div ref={endRef} />
-            </div>
-
-            {/* Input */}
-            <form
-              onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
-              className="p-2.5 shrink-0"
-              style={{ borderTop: `1px solid ${BRAND.border}`, background: BRAND.bgSoft }}
-            >
-              {limitReached ? (
-                <p className="text-[11px] text-center py-1" style={{ color: BRAND.textDim }}>
-                  {i18n.limitReached[lang]}
-                </p>
-              ) : (
-                <div className="flex gap-2 items-center">
-                  <input
-                    value={input}
-                    onChange={e => setInput(e.target.value)}
-                    placeholder={i18n.placeholder[lang]}
-                    className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] focus:outline-none focus:ring-2"
-                    style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, ["--tw-ring-color" as any]: BRAND.accentFaint }}
-                    disabled={isLoading}
-                  />
-                  <button
-                    type="submit"
-                    disabled={isLoading || !input.trim()}
-                    className="w-9 h-9 rounded-xl flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity"
-                    style={{ background: BRAND.accent, color: BRAND.bg }}
-                    aria-label="Send"
-                  >
-                    <Send className="w-3.5 h-3.5" />
+          {/* FAQ quick picks, before the first question */}
+          {(stage === "idle" || (stage === "chat" && !messages.some(m => m.role === "user"))) && !isLoading && (
+            <div className="pt-1">
+              <p className="text-[10.5px] uppercase tracking-wider mb-2 font-semibold" style={{ color: BRAND.accent }}>{L("faqTitle")}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {(FAQ[lang] || FAQ.en).map((f, i) => (
+                  <button key={i} type="button" onClick={() => handleSend(f.q)}
+                    className="text-[12px] px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity text-left"
+                    style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.borderAccent}`, color: BRAND.text }}>
+                    {f.q}
                   </button>
-                </div>
+                ))}
+              </div>
+              <p className="text-[10.5px] mt-2 italic" style={{ color: BRAND.textDim }}>{L("faqOrAsk")}</p>
+            </div>
+          )}
+
+          {/* Visitor's goal, one tap */}
+          {stage === "intent" && (
+            <div className="flex flex-wrap gap-1.5 pl-8">
+              {(["intentAmbassador", "intentBuy", "intentBoth"] as const).map((k) => (
+                <button key={k} type="button" onClick={() => saveLead(L(k))}
+                  className="text-[12.5px] px-3.5 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity"
+                  style={{ background: BRAND.accentFaint, border: `1px solid ${BRAND.borderAccent}`, color: BRAND.accent }}>
+                  {L(k)}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div ref={endRef} />
+        </div>
+
+        {/* Input: adapts to the step (question, name, WhatsApp with country code, email) */}
+        <form
+          onSubmit={(e) => { e.preventDefault(); handleSend(input); }}
+          className="p-2.5 shrink-0 relative"
+          style={{ borderTop: `1px solid ${BRAND.border}`, background: BRAND.bgSoft }}
+        >
+          {stage === "chat" && questionCount >= MAX_QUESTIONS ? (
+            <p className="text-[11px] text-center py-1" style={{ color: BRAND.textDim }}>{L("limitReached")}</p>
+          ) : (
+            <div className="flex gap-2 items-center">
+              {stage === "phone" && (
+                <button type="button" onClick={() => setCountryOpen(o => !o)}
+                  className="h-9 px-2 rounded-xl flex items-center gap-1 text-[12.5px] shrink-0 hover:bg-white/5 transition-colors"
+                  style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text }}
+                  aria-haspopup="listbox" aria-expanded={countryOpen} aria-label={L("searchCountry")}>
+                  <span className="text-base leading-none">{country.flag}</span>
+                  <span className="font-medium">{country.dial}</span>
+                  <ChevronDown className="w-3 h-3 opacity-60" />
+                </button>
               )}
-              <p className="text-[9px] text-center mt-1.5" style={{ color: BRAND.textDim }}>Powered by Sofara</p>
-            </form>
-          </>
-        )}
+              <input
+                value={input}
+                onChange={e => setInput(stage === "phone" ? e.target.value.replace(/[^\d\s]/g, "") : e.target.value)}
+                placeholder={stage === "name" ? L("namePh") : stage === "lastName" ? L("lastNamePh") : stage === "phone" ? L("phonePh") : stage === "email" ? L("emailPh") : L("placeholder")}
+                type={stage === "email" ? "email" : "text"}
+                inputMode={stage === "phone" ? "tel" : stage === "email" ? "email" : "text"}
+                autoComplete={stage === "name" ? "name" : stage === "lastName" ? "family-name" : stage === "phone" ? "tel-national" : stage === "email" ? "email" : "off"}
+                maxLength={stage === "phone" ? 20 : 300}
+                className="flex-1 min-w-0 h-9 px-3.5 rounded-xl text-[13px] focus:outline-none focus:ring-2"
+                style={{ background: BRAND.bgInput, border: `1px solid ${BRAND.border}`, color: BRAND.text, "--tw-ring-color": BRAND.accentFaint } as CSSProperties}
+                disabled={isLoading || stage === "intent" || stage === "saving"}
+              />
+              <button type="submit" disabled={isLoading || !input.trim() || stage === "intent" || stage === "saving"}
+                className="w-9 h-9 rounded-xl flex items-center justify-center disabled:opacity-30 shrink-0 hover:opacity-90 transition-opacity"
+                style={{ background: BRAND.accent, color: BRAND.bg }} aria-label="Send">
+                <Send className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
+          {stage === "phone" && countryOpen && (
+            <div className="absolute bottom-14 left-2.5 z-10 w-64 max-h-60 rounded-xl shadow-2xl overflow-hidden flex flex-col" style={{ background: BRAND.bgSoft, border: `1px solid ${BRAND.border}` }}>
+              <div className="p-2 shrink-0 flex items-center gap-2" style={{ borderBottom: `1px solid ${BRAND.border}` }}>
+                <Search className="w-3.5 h-3.5 shrink-0" style={{ color: BRAND.textDim }} />
+                <input autoFocus value={countryQuery} onChange={e => setCountryQuery(e.target.value)} placeholder={L("searchCountry")}
+                  className="flex-1 min-w-0 bg-transparent text-[12px] focus:outline-none" style={{ color: BRAND.text }} />
+              </div>
+              <div className="overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+                {filteredCountries.map(c => (
+                  <button key={c.code} type="button" onClick={() => { setCountry(c); setCountryOpen(false); setCountryQuery(""); }}
+                    className="w-full px-3 py-2 flex items-center gap-2.5 text-left text-[12.5px] hover:bg-white/5 transition-colors" style={{ color: BRAND.text }}>
+                    <span className="text-base">{c.flag}</span>
+                    <span className="flex-1 truncate">{c.name}</span>
+                    <span style={{ color: BRAND.accent }}>{c.dial}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <p className="text-[9px] text-center mt-1.5" style={{ color: BRAND.textDim }}>
+            {stage === "chat" || stage === "idle" ? "Powered by Sofara" : L("privacy")}
+          </p>
+        </form>
       </motion.div>
     </AnimatePresence>
   );
