@@ -302,6 +302,10 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { p: "Vous connaissez des personnes qui veulent investir à Dubaï ? Recommandez-les à Sofara et touchez une commission : découvrez le [réseau d'ambassadeurs](/fr/ambassadeurs-immobilier-dubai) et l'[affiliation immobilière](/fr/affiliation-immobilier-dubai)." },
         ],
       },
+      {
+        h2: "Simuler votre investissement",
+        blocks: [{ p: "Testez l'opération avec vos propres chiffres grâce aux simulateurs gratuits d'OffPlanSimulator : [simulateur d'investissement immobilier à Dubaï](https://www.offplansimulator.com/fr), [simulateur de rentabilité locative](https://www.offplansimulator.com/fr/simulateur-rentabilite-locative-dubai), [calcul des frais d'achat](https://www.offplansimulator.com/fr/calcul-frais-achat-immobilier-dubai), [simulateur de crédit immobilier](https://www.offplansimulator.com/fr/simulateur-credit-immobilier-dubai)." }],
+      },
     ],
     faqs: [
       { q: "Un étranger peut-il acheter un bien à Dubaï ?", a: "Oui. Toute nationalité peut acheter en pleine propriété dans les zones freehold, sans résider aux Émirats." },

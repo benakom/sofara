@@ -303,6 +303,10 @@ export const AR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { p: "هل تعرف أشخاصاً يرغبون في الاستثمار في دبي؟ رشّحهم إلى Sofara واربح عمولة: تعرّف على [شبكة السفراء](/ar/sufara-aqarat-dubai) و[التسويق العقاري بالعمولة](/ar/altaswiq-alaqari-bialumula-dubai)." },
         ],
       },
+      {
+        h2: "احسب استثمارك",
+        blocks: [{ p: "اختبر الصفقة بأرقامك الخاصة عبر حاسبات OffPlanSimulator المجانية: [حاسبة الاستثمار العقاري في دبي](https://www.offplansimulator.com/ar/dubai-property-investment-calculator)، [حاسبة العائد على الاستثمار العقاري](https://www.offplansimulator.com/ar/dubai-property-roi-calculator)، [حاسبة التمويل العقاري](https://www.offplansimulator.com/ar/dubai-mortgage-calculator)، [حساب العائد الإيجاري](https://www.offplansimulator.com/ar/dubai-rental-yield-calculator)." }],
+      },
     ],
     faqs: [
       { q: "هل يمكن للأجنبي شراء عقار في دبي؟", a: "نعم. يحق لكل الجنسيات التملك الحر في المناطق المخصصة دون الحاجة إلى الإقامة في الإمارات." },
