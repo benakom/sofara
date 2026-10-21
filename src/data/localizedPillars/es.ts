@@ -52,7 +52,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
           { ul: [
             "Un **enlace de recomendación personal** y un formulario para registrar a un comprador en segundos.",
             "**Seguimiento de cada expediente**, desde el primer contacto hasta el pago de la entrada.",
-            "**Asistentes de IA** para cualificar a un cliente, preparar un mensaje de WhatsApp o practicar la presentación de un proyecto.",
+            "**Plantillas de WhatsApp** y argumentarios para presentar un proyecto a tus contactos.",
             "Una **biblioteca de proyectos** (Emaar, DAMAC, Sobha y otros promotores) con folletos, planes de pago y precios.",
             "Una **comunidad** de embajadores en más de 40 países y el acompañamiento del equipo de Sofara.",
           ] },
@@ -208,7 +208,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
           { p: "Si vives fuera de los Emiratos o quieres probar el mercado sin cambiar de vida, la vía de embajador elimina las barreras. Presentas compradores de tu red, la agencia autorizada Cevitas Real Estate se encarga de la asesoría, las visitas y la firma, y tú recibes hasta el 3 % del precio." },
           { ul: [
             "Registro gratuito en dos minutos, sin licencia ni cuotas.",
-            "Enlace de recomendación, asistentes de IA y seguimiento de cada expediente.",
+            "Enlace de recomendación, folletos de proyectos y seguimiento de cada expediente.",
             "Comisión generada con la firma del SPA y el pago de la entrada con las tasas DLD, abonada en AED en 7 días desde el pago del promotor.",
           ] },
           { p: "Más información: [la red de embajadores inmobiliarios en Dubái](/es/embajadores-inmobiliarios-dubai) y [el programa de afiliados](/es/programa-afiliados-inmobiliarios-dubai)." },

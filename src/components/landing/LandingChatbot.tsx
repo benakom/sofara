@@ -90,17 +90,17 @@ const i18n: Record<string, Record<Lang, string>> = {
     ar: "By continuing you accept our privacy policy.",
   },
   welcome: {
-    en: "Hi {name}! I'm Sara, the Sofara AI assistant 🤖 I can answer any question about Sofara, Dubai real estate or our ambassador program. Pick a topic below or ask me anything.",
-    fr: "Bonjour {name} ! Je suis Sara, l'assistante IA de Sofara 🤖 Je réponds à toutes vos questions sur Sofara, l'immobilier à Dubaï ou notre programme ambassadeur. Choisissez un sujet ou posez-moi votre question.",
-    es: "¡Hola {name}! Soy Sara, la asistente IA de Sofara 🤖 Respondo cualquier pregunta sobre Sofara, el inmobiliario de Dubái o el programa de embajadores. Elige un tema o hazme tu pregunta.",
-    ru: "Привет, {name}! Я Сара, ИИ-ассистент Sofara 🤖 Отвечу на любой вопрос о Sofara, недвижимости Дубая и программе амбассадоров. Выберите тему ниже или задайте вопрос.",
+    en: "Hi {name}! I'm Sara, Sofara's virtual assistant 💬 I can answer any question about Sofara, Dubai real estate or our ambassador program. Pick a topic below or ask me anything.",
+    fr: "Bonjour {name} ! Je suis Sara, l'assistante virtuelle de Sofara 💬 Je réponds à toutes vos questions sur Sofara, l'immobilier à Dubaï ou notre programme ambassadeur. Choisissez un sujet ou posez-moi votre question.",
+    es: "¡Hola {name}! Soy Sara, la asistente virtual de Sofara 💬 Respondo cualquier pregunta sobre Sofara, el inmobiliario de Dubái o el programa de embajadores. Elige un tema o hazme tu pregunta.",
+    ru: "Привет, {name}! Я Сара, виртуальный ассистент Sofara 💬 Отвечу на любой вопрос о Sofara, недвижимости Дубая и программе амбассадоров. Выберите тему ниже или задайте вопрос.",
     ar: "مرحباً {name}! أنا سارة، مساعدة Sofara بالذكاء الاصطناعي 🤖 أجيب عن أي سؤال حول Sofara والعقارات في دبي وبرنامج السفراء. اختر موضوعاً أو اطرح سؤالك.",
   },
   aiBadge: {
-    en: "AI assistant · answers all your questions",
-    fr: "Assistante IA · répond à toutes vos questions",
-    es: "Asistente IA · responde todas tus preguntas",
-    ru: "ИИ-ассистент · ответит на любые вопросы",
+    en: "Virtual assistant · answers all your questions",
+    fr: "Assistante virtuelle · répond à toutes vos questions",
+    es: "Asistente virtual · responde todas tus preguntas",
+    ru: "Виртуальный ассистент · ответит на любые вопросы",
     ar: "مساعدة ذكاء اصطناعي · تجيب عن كل أسئلتك",
   },
   faqTitle: {
@@ -131,7 +131,7 @@ const i18n: Record<string, Record<Lang, string>> = {
     ru: "Вы достигли лимита вопросов для этой сессии. Напишите нам на hello@sofara.io, чтобы продолжить!",
     ar: "لقد بلغت الحد الأقصى للأسئلة في هذه الجلسة. تواصل معنا على hello@sofara.io للمتابعة!",
   },
-  online: { en: "AI · Online", fr: "IA · En ligne", es: "IA · En línea", ru: "ИИ · В сети", ar: "ذكاء اصطناعي · متصلة" },
+  online: { en: "Online", fr: "En ligne", es: "En línea", ru: "В сети", ar: "متصلة" },
   required: { en: "Required", fr: "Requis", es: "Requerido", ru: "Обязательно", ar: "مطلوب" },
   invalidEmail: { en: "Invalid email", fr: "Email invalide", es: "Email inválido", ru: "Неверный email", ar: "بريد إلكتروني غير صالح" },
   invalidPhone: { en: "Invalid phone", fr: "Téléphone invalide", es: "Teléfono inválido", ru: "Неверный телефон", ar: "رقم هاتف غير صالح" },
@@ -398,7 +398,7 @@ export default function LandingChatbot() {
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ fontFamily: "var(--font-display, 'Poppins', sans-serif)", color: BRAND.accent }}>
               Sara
-              <span className="text-[8.5px] font-semibold tracking-wide px-1.5 py-0.5 rounded" style={{ background: BRAND.accentFaint, color: BRAND.accent, border: `1px solid ${BRAND.borderAccent}` }}>AI</span>
+              <span className="text-[8.5px] font-semibold tracking-wide px-1.5 py-0.5 rounded" style={{ background: BRAND.accentFaint, color: BRAND.accent, border: `1px solid ${BRAND.borderAccent}` }}>24/7</span>
             </h3>
             <p className="text-[10px] flex items-center gap-1 truncate" style={{ color: BRAND.textDim }} title={i18n.aiBadge[lang]}>
               <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse shrink-0" style={{ background: BRAND.accent }} />

@@ -116,11 +116,11 @@ Studios and 1BRs in emerging areas like Dubai South, ${internalLink("Expo City",
 
 ## The Role of Technology in Dubai Real Estate
 
-The integration of **AI-powered tools** is transforming how properties are bought, sold, and marketed. Platforms like ${internalLink("Sofara", "/")} leverage artificial intelligence to help ambassadors:
+Digital tools are transforming how properties are bought, sold, and marketed. Platforms like ${internalLink("Sofara", "/")} help ambassadors:
 
-- **${internalLink("Qualify leads automatically", "/blog/ai-lead-qualification-real-estate")}** using behavioral analysis and predictive scoring
-- **${internalLink("Practice pitches with AI roleplay", "/blog/ai-roleplay-sales-training")}** before engaging real prospects
-- **${internalLink("Generate personalized follow-up sequences", "/blog/ai-tools-real-estate-ambassadors")}** tailored to each investor's profile
+- **Track every lead** from first contact to signing in a single dashboard
+- **Share verified project material** (brochures, payment plans, prices) with their contacts
+- **Follow up consistently** with ready-to-use WhatsApp templates tailored to each investor's profile
 - **Analyze market data** with real-time insights from DLD and developer sources
 
 ${cevitasLink("Cevitas Real Estate LLC")}, a fully licensed Dubai brokerage (DED License, RERA certified), partners with Sofara to provide full legal backing, escrow management, and transaction support for every deal.
@@ -145,7 +145,7 @@ The explosive growth in Dubai real estate creates an unprecedented opportunity f
 - **More buyers** = more potential referrals
 - **Higher prices** = larger commissions (3% on every transaction)
 - **More nationalities** = your global network is your asset
-- **AI tools** = close deals faster with ${internalLink("Sofara Pro features", "/blog/sofara-pro-vs-lite")}
+- **Ready-to-use tools** = close deals faster with ${internalLink("Sofara Pro features", "/blog/sofara-pro-vs-lite")}
 
 A single referral on a AED 2,000,000 property earns you **AED 60,000** — and the ${internalLink("Ambassadeur+ program", "/blog/super-ambassador-program")} adds a 10% bonus on your referrals' commissions.
 
@@ -288,13 +288,13 @@ ${internalLink("→ Complete Payment Plans guide", "/blog/dubai-payment-plans-ex
 
 ---
 
-## 9. AI-Powered Investment Tools
+## 9. Digital Investment Tools
 
-Modern platforms like ${internalLink("Sofara", "/")} use AI to help investors and ambassadors:
+Modern platforms like ${internalLink("Sofara", "/")} help investors and ambassadors:
 
-- **${internalLink("Score leads automatically", "/blog/ai-lead-qualification-real-estate")}** with 85%+ accuracy
-- **${internalLink("Practice pitches with AI roleplay", "/blog/ai-roleplay-sales-training")}** against simulated investor profiles
-- **${internalLink("Access the full project library", "/blog/ai-tools-real-estate-ambassadors")}** with WhatsApp-ready summaries
+- **Track every lead** in real time, from first contact to signing
+- **Share project brochures and payment plans** in a few clicks
+- **Access the full project library** with WhatsApp-ready summaries
 - **Calculate returns instantly** with the ${simulatorLink("Off-Plan Investment Simulator")}
 
 ---
@@ -449,7 +449,7 @@ The ${simulatorLink("Off-Plan Investment Simulator")} lets you compare projected
 
 Understanding areas is your **#1 competitive advantage**. When a lead asks "where should I invest?", you need a data-backed answer — not a generic recommendation.
 
-${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} gives you access to the full project library, area analytics, and ${internalLink("AI-powered lead qualification", "/blog/ai-lead-qualification-real-estate")} to match each lead with the right area based on their budget and goals.
+${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} gives you access to the full project library, area analytics, and lead tracking tools to match each lead with the right area based on their budget and goals.
 
 All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — licensed, regulated, and escrow-protected.
 
@@ -587,7 +587,7 @@ The safest off-plan investments come from developers with proven delivery track 
 
 Understanding the off-plan vs ready distinction is crucial for advising your leads correctly. A first-time investor with limited capital should be guided toward off-plan with flexible payment plans. A retiree seeking income should consider ready properties.
 
-${internalLink("Sofara Pro's AI tools", "/blog/ai-tools-real-estate-ambassadors")} help you match each lead with the right strategy. All transactions processed through ${cevitasLink("Cevitas Real Estate LLC")} with full DLD compliance.
+${internalLink("Sofara Pro's tools", "/blog/sofara-pro-vs-lite")} help you match each lead with the right strategy. All transactions processed through ${cevitasLink("Cevitas Real Estate LLC")} with full DLD compliance.
 
 ${internalLink("**→ Join Sofara — earn 3% on every referral**", "/auth")}
 
@@ -698,7 +698,7 @@ ${cevitasLink("Cevitas Real Estate LLC")} is an authorized Emaar sales partner. 
 
 1. **Refer contacts** interested in Emaar projects
 2. **Earn 3% commission** on every successful transaction
-3. **Use ${internalLink("Sofara Pro AI tools", "/blog/ai-tools-real-estate-ambassadors")}** to present projects professionally
+3. **Use ${internalLink("Sofara Pro tools", "/blog/sofara-pro-vs-lite")}** to present projects professionally
 4. **Track everything** on your personal dashboard
 
 Calculate your potential returns with the ${simulatorLink("Off-Plan Investment Simulator")}.
@@ -805,7 +805,7 @@ ${cevitasLink("Cevitas Real Estate")} handles all Damac transactions with full D
 As a ${internalLink("Sofara ambassador", "/")}, you can:
 - Refer clients to Damac's branded residences
 - Earn **3% commission** on every transaction
-- Use ${internalLink("AI tools to qualify and present", "/blog/ai-tools-real-estate-ambassadors")}
+- Use ${internalLink("Sofara Pro tools to present projects", "/blog/sofara-pro-vs-lite")}
 - Track deals in real-time on your dashboard
 
 ${simulatorLink("→ Compare Damac projects with the Investment Simulator")}
@@ -940,7 +940,7 @@ ${internalLink("**→ Join the Sofara network — it's free**", "/auth")}
     date: "2026-03-01",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-    relatedSlugs: ["sofara-commission-structure-explained", "ambassador-success-stories", "ai-tools-real-estate-ambassadors"],
+    relatedSlugs: ["sofara-commission-structure-explained", "ambassador-success-stories", "what-is-sofara"],
     content: `
 # How to Become a Dubai Real Estate Ambassador in 2026
 
@@ -999,7 +999,7 @@ Share naturally — no need for aggressive sales tactics:
 
 ### Step 4: Sofara Handles Everything
 Once a lead registers through your link:
-1. **Lead qualification**: Sofara's team (and ${internalLink("AI tools", "/blog/ai-lead-qualification-real-estate")}) qualifies the prospect
+1. **Lead qualification**: Sofara's team qualifies the prospect
 2. **Project presentation**: ${cevitasLink("Cevitas Real Estate")} presents suitable projects
 3. **Site visits**: Virtual or in-person property tours arranged
 4. **Negotiation & closing**: Professional agents handle everything
@@ -1037,8 +1037,8 @@ Want to earn even more? The ${internalLink("Ambassadeur+ program", "/blog/super-
 
 For ambassadors who want to go further, ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} unlocks powerful tools — completely free:
 
-- **${internalLink("AI Lead Scoring", "/blog/ai-lead-qualification-real-estate")}** — Know which leads are ready to buy
-- **${internalLink("AI Roleplay Training", "/blog/ai-roleplay-sales-training")}** — Practice your pitch with simulated investors
+- **Lead tracking** — See where every contact stands, stage by stage
+- **Sales training** — Practice your pitch with scripts and masterclasses
 - **Project Library** — Access all developer projects with WhatsApp-ready summaries
 - **${simulatorLink("DLD & ROI Simulator")}** — Show prospects exact costs and returns
 - **Sequence Automation** — Automated follow-up messages
@@ -1071,7 +1071,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — takes 2 
 
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — DLD licensed, RERA certified, escrow protected.*
 
-*Read more: ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")} | ${internalLink("AI Tools for Ambassadors", "/blog/ai-tools-real-estate-ambassadors")}*
+*Read more: ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
 
 
 ---
@@ -1144,7 +1144,7 @@ Here's exactly how the process works, step by step:
 You share your unique referral link. A contact registers their interest. The lead is **immediately tracked** on your dashboard with real-time status updates.
 
 ### Stage 2: Qualification ⏱ Day 1-7
-Sofara's team (and ${internalLink("AI qualification tools", "/blog/ai-lead-qualification-real-estate")}) evaluates the lead:
+Sofara's team evaluates the lead:
 - Investment capacity
 - Timeline and motivation
 - Property preferences
@@ -1332,7 +1332,7 @@ ${internalLink("**→ Create your account now**", "/auth")}
     date: "2026-01-20",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80",
-    relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained", "ai-tools-real-estate-ambassadors"],
+    relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained", "what-is-sofara"],
     content: `
 # From Zero to AED 200,000+: Real Sofara Ambassador Stories
 
@@ -1376,7 +1376,7 @@ Sarah has since referred 3 more clients and earned over **AED 260,000** in total
 | **Commission** | AED 108,000 (AED 108,000) |
 | **Follow-up required** | Zero — Sofara handled everything |
 
-**Ahmed's insight:** *"The ${internalLink("AI qualification tool", "/blog/ai-lead-qualification-real-estate")} identified which of my contacts were serious buyers. I didn't waste time on people who were just curious."*
+**Ahmed's insight:** *"The Cevitas team quickly identified which of my contacts were serious buyers. I didn't waste time on people who were just curious."*
 
 ---
 
@@ -1384,7 +1384,7 @@ Sarah has since referred 3 more clients and earned over **AED 260,000** in total
 
 **Background:** Owner of a boutique luxury concierge service catering to UHNW families in Switzerland.
 
-> "My clients regularly ask about international property. Since joining Sofara, I systematically mention Dubai when the topic comes up. ${internalLink("Sofara Pro's AI tools", "/blog/ai-tools-real-estate-ambassadors")} help me present the right projects with professional summaries. I've earned **AED 208,000** this year."
+> "My clients regularly ask about international property. Since joining Sofara, I systematically mention Dubai when the topic comes up. ${internalLink("Sofara Pro's tools", "/blog/sofara-pro-vs-lite")} help me present the right projects with professional summaries. I've earned **AED 208,000** this year."
 
 | Detail | Value |
 |--------|-------|
@@ -1394,7 +1394,7 @@ Sarah has since referred 3 more clients and earned over **AED 260,000** in total
 | **Total commission** | AED 840,000 (AED 840,000) |
 | **Time span** | 10 months |
 
-**Maria's insight:** *"The ${internalLink("AI roleplay training", "/blog/ai-roleplay-sales-training")} was a game-changer. I practiced handling common objections before even my first conversation. Now I feel confident discussing Dubai real estate with any client."*
+**Maria's insight:** *"The sales training was a game-changer. I practiced handling common objections before even my first conversation. Now I feel confident discussing Dubai real estate with any client."*
 
 ---
 
@@ -1432,7 +1432,7 @@ Sarah has since referred 3 more clients and earned over **AED 260,000** in total
 ## Common Patterns Among Successful Ambassadors
 
 1. **They don't sell** — they share. Natural, trust-based conversations convert better than sales pitches.
-2. **They use the tools** — ${internalLink("Sofara Pro's AI features", "/blog/ai-tools-real-estate-ambassadors")} make them look professional without being experts.
+2. **They use the tools** — ${internalLink("Sofara Pro's features", "/blog/sofara-pro-vs-lite")} make them look professional without being experts.
 3. **They follow up once** — then let Sofara's team handle the rest.
 4. **They build networks** — ${internalLink("Ambassadeur+", "/blog/super-ambassador-program")} turns their connections into passive income.
 5. **They share data** — ${simulatorLink("Investment simulations")} and market stats convince prospects.
@@ -1445,7 +1445,7 @@ Every one of these ambassadors started with the same step: ${internalLink("**cre
 
 Your network is your asset. Start earning from it today.
 
-*Read more: ${internalLink("How to Join", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Details", "/blog/sofara-commission-structure-explained")} | ${internalLink("AI Tools", "/blog/ai-tools-real-estate-ambassadors")}*
+*Read more: ${internalLink("How to Join", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Details", "/blog/sofara-commission-structure-explained")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
 
 
 ---
@@ -1457,377 +1457,18 @@ Your network is your asset. Start earning from it today.
 - [The Sofara ambassador program](/ambassador-program)
 `
   },
-  // ── CATEGORY: AI & Technology ──
-  {
-    slug: "ai-tools-real-estate-ambassadors",
-    title: "AI Tools for Real Estate Ambassadors: How Sofara Uses AI to Help You Close More Deals",
-    excerpt: "From AI lead scoring to automated follow-ups and roleplay training, discover how Sofara Pro's AI-powered tools transform ordinary ambassadors into top performers.",
-    category: "AI & Technology",
-    tags: ["AI", "artificial intelligence", "lead scoring", "real estate tech", "Sofara Pro", "AI tools"],
-    readTime: "10 min",
-    date: "2026-03-05",
-    author: "Sofara Tech",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-    relatedSlugs: ["ai-lead-qualification-real-estate", "ai-roleplay-sales-training", "sofara-pro-vs-lite"],
-    content: `
-# AI Tools for Real Estate Ambassadors: Your Unfair Advantage
-
-What separates a Sofara ambassador who earns AED 20,000/year from one who earns AED 400,000+? It's not talent, luck, or experience — it's **tools**.
-
-${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} integrates cutting-edge AI technology to give ambassadors a systematic, data-driven advantage in converting leads to sales. Here's every AI tool at your disposal and how to use it effectively.
-
----
-
-## 1. AI Lead Scoring: Know Who's Ready to Buy
-
-### The Problem It Solves
-Without AI, you waste 80% of your time on leads who are "just browsing." You can't tell who's serious and who's window shopping — until you've invested hours in conversations that go nowhere.
-
-### How It Works
-Sofara's AI analyzes multiple data points to assign each lead a **qualification score from 0-100**:
-
-| Score Range | Classification | What It Means | Your Action |
-|-------------|---------------|---------------|-------------|
-| **80-100** | 🔥 Hot lead | High intent, likely to buy within 30 days | Prioritize — engage immediately |
-| **60-79** | 🟡 Warm lead | Interested, needs nurturing | Follow up with relevant content |
-| **40-59** | 🟠 Developing | Early stage, exploring options | Send market updates periodically |
-| **Below 40** | ❄️ Cold lead | Low intent or poor fit | Automated nurture only |
-
-### Signals the AI Tracks
-- Time spent viewing specific projects and areas
-- Number of ${simulatorLink("investment simulations")} run
-- Responsiveness to messages and emails
-- Profile data (investment capacity, location, nationality)
-- Behavioral patterns compared to previous successful conversions
-
-**Result:** 85%+ prediction accuracy on which leads will convert — so you invest your time where it matters most.
-
-${internalLink("→ Deep dive into AI Lead Qualification", "/blog/ai-lead-qualification-real-estate")}
-
----
-
-## 2. AI-Powered Conversation Assistant: Your Real Estate Expert on Demand
-
-### The Problem It Solves
-Not every ambassador is a Dubai real estate expert — and they don't need to be. But when a prospect asks "What's the DLD fee structure?" or "How does Emaar compare to Sobha?", you need a confident, accurate answer.
-
-### How It Works
-Sofara's AI assistant is trained on:
-- All active projects from ${internalLink("Emaar", "/blog/emaar-properties-guide")}, ${internalLink("Damac", "/blog/damac-properties-guide")}, ${internalLink("Sobha", "/blog/sobha-realty-quality-investment")}, and 15+ other developers
-- Current market prices, yields, and trends
-- ${internalLink("DLD fee structures", "/blog/dubai-dld-fees-explained")} and ${internalLink("payment plan options", "/blog/dubai-payment-plans-explained")}
-- ${internalLink("Golden Visa requirements", "/blog/dubai-golden-visa-real-estate")}
-- ${internalLink("Foreign buyer regulations", "/blog/foreigners-buying-dubai-property")}
-- Objection handling frameworks based on real investor conversations
-
-### What You Can Do
-- **Answer any investor question** instantly and accurately
-- **Compare projects** with data-backed analysis
-- **Generate WhatsApp-ready summaries** for specific properties (${internalLink("WhatsApp marketing guide", "/blog/whatsapp-marketing-real-estate-dubai")})
-- **Handle objections** with market data and evidence
-- **Create personalized investment presentations**
-
----
-
-## 3. AI Roleplay Training: Practice Before You Pitch
-
-### The Problem It Solves
-The #1 reason ambassadors lose deals: **lack of confidence during investor conversations**. You know the opportunity is great, but when a prospect pushes back, you freeze.
-
-### How It Works
-The AI roleplay tool simulates real investor conversations:
-
-1. **Select an investor profile** (French HNW, British expat, GCC businessman, etc.)
-2. **Choose a scenario** (first contact, follow-up, objection handling, closing)
-3. **Have the conversation** — the AI responds like a real prospect
-4. **Get scored and coached** — detailed feedback on your pitch
-
-${internalLink("→ Complete AI Roleplay guide", "/blog/ai-roleplay-sales-training")}
-
----
-
-## 4. Automated Follow-Up Sequences
-
-### The Problem It Solves
-Most leads don't convert on first contact. Studies show that **80% of sales require 5+ follow-ups** — but most ambassadors give up after 1-2.
-
-### How It Works
-Sofara's AI generates personalized follow-up sequences:
-- **Timing**: Optimized send times based on lead behavior
-- **Content**: Relevant project updates, market news, price changes
-- **Personalization**: Tailored to each lead's interests (area, budget, property type)
-- **Multi-channel**: Email, WhatsApp-ready messages, SMS drafts
-
----
-
-## 5. Project Library with AI-Generated Summaries
-
-Every active project from top Dubai developers is available with:
-- AI-generated investment thesis (why this project, for whom)
-- WhatsApp-ready one-paragraph summaries
-- Key selling points and USPs
-- Comparable analysis (vs similar projects in the area)
-- Payment plan details (${internalLink("guide", "/blog/dubai-payment-plans-explained")})
-- ${simulatorLink("Investment simulation links")}
-
----
-
-## 6. Market Intelligence Dashboard
-
-Real-time AI-curated briefings:
-- Latest project launches and pricing
-- Area-level price trend analysis
-- ${internalLink("Rental yield comparisons", "/blog/dubai-rental-yields-explained")}
-- Developer news and updates
-- Regulatory changes affecting foreign buyers
-
----
-
-## Sofara Lite vs Sofara Pro: Which AI Features Do You Need?
-
-| AI Feature | Sofara Lite | Sofara Pro |
-|-----------|-------------|------------|
-| Lead submission & tracking | ✅ | ✅ |
-| AI Lead Scoring | ❌ | ✅ |
-| AI Conversation Assistant | ❌ | ✅ |
-| AI Roleplay Training | ❌ | ✅ |
-| Automated Follow-ups | ❌ | ✅ |
-| Project Library | ❌ | ✅ |
-| Market Intelligence | ❌ | ✅ |
-
-${internalLink("→ Full Sofara Lite vs Pro comparison", "/blog/sofara-pro-vs-lite")}
-
-**Both are 100% free.** Sofara Pro simply requires approval for ambassadors with professional backgrounds.
-
----
-
-## Get Started
-
-${internalLink("**→ Create your free Sofara account**", "/auth")} and unlock the AI tools that top-performing ambassadors use to earn 5-10x more than average.
-
-*All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")}.*
-
-*Related: ${internalLink("AI Lead Qualification", "/blog/ai-lead-qualification-real-estate")} | ${internalLink("AI Roleplay Training", "/blog/ai-roleplay-sales-training")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
-`
-  },
-  {
-    slug: "ai-lead-qualification-real-estate",
-    title: "How AI Transforms Lead Qualification in Dubai Real Estate: From Guesswork to 85% Accuracy",
-    excerpt: "Stop wasting time on cold leads. Learn how AI-powered scoring helps Dubai real estate professionals focus on buyers who are genuinely ready to invest.",
-    category: "AI & Technology",
-    tags: ["AI", "lead qualification", "lead scoring", "conversion", "real estate tech", "predictive analytics"],
-    readTime: "9 min",
-    date: "2026-02-10",
-    author: "Sofara Tech",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-roleplay-sales-training", "how-to-become-dubai-real-estate-ambassador"],
-    content: `
-# How AI Transforms Lead Qualification in Dubai Real Estate
-
-The biggest challenge for any real estate professional or ambassador: **separating serious buyers from window shoppers**. Traditional methods rely on gut feeling and manual follow-up — wasting 80% of time on leads that never convert. AI changes the game entirely.
-
----
-
-## The Traditional Problem: Why Most Leads Go Nowhere
-
-Without AI-powered qualification:
-
-| Problem | Impact |
-|---------|--------|
-| Agents spend 80% of time on non-converting leads | Massive time waste |
-| Follow-up is manual and inconsistent | Hot leads go cold |
-| Scoring is subjective ("I think they're serious") | Missed opportunities |
-| No data on lead behavior | Flying blind |
-| One-size-fits-all approach | Poor personalization |
-
-Studies show that **only 3-5% of real estate leads convert** without intelligent scoring. With AI, that number jumps to **8-12%** — a 2-3x improvement.
-
----
-
-## How Sofara's AI Lead Scoring Works
-
-### Layer 1: Behavioral Analysis (Digital Body Language)
-
-The AI tracks how each lead interacts with Sofara's platform:
-
-| Signal | Weight | What It Indicates |
-|--------|--------|------------------|
-| Time spent viewing project pages | High | Genuine interest in specific properties |
-| Number of projects compared | Medium | Active research phase |
-| ${simulatorLink("Investment simulator")} usage | Very high | Serious financial evaluation |
-| Return visits within 7 days | High | Sustained interest |
-| Response time to messages | High | Engagement level |
-| Document downloads (brochures, floor plans) | High | Decision-making stage |
-| Referral source quality | Medium | Lead origin reliability |
-
-### Layer 2: Profile Enrichment
-
-AI cross-references lead data with external signals:
-- **Investment capacity indicators** — inferred from profession, location, and stated budget
-- **Geographic relevance** — nationality and ${internalLink("Golden Visa", "/blog/dubai-golden-visa-real-estate")} eligibility
-- **Market timing** — correlation with peak buying seasons
-- **Network effects** — connections to existing successful buyers
-
-### Layer 3: Predictive Scoring
-
-Machine learning models trained on **thousands of Dubai real estate transactions** predict conversion probability. The model learns from:
-- Historical conversion patterns by nationality, budget, and area preference
-- Seasonal buying behavior
-- Developer launch timing impact
-- Market sentiment indicators
-
-**Current accuracy: 85%+ on identifying leads that will convert within 90 days.**
-
----
-
-## The Impact: Before vs After AI Qualification
-
-| Metric | Without AI | With Sofara AI | Improvement |
-|--------|-----------|---------------|-------------|
-| Lead response time | 4-6 hours | Instant | 95% faster |
-| Qualification accuracy | ~35-40% | ~85% | 2x+ improvement |
-| Average time to close | 45 days | 28 days | 38% faster |
-| Conversion rate | 3-5% | 8-12% | 2-3x improvement |
-| Time spent on cold leads | 80% | 20% | 4x efficiency gain |
-| Follow-up consistency | ~40% | 95%+ (automated) | 2.5x improvement |
-
----
-
-## What This Means for Sofara Ambassadors
-
-As a ${internalLink("Sofara ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")}, AI qualification means:
-
-1. **Focus your energy**: Know immediately which of your referrals are hot leads
-2. **Faster commissions**: Shorter sales cycles = faster payments (${internalLink("see commission structure", "/blog/sofara-commission-structure-explained")})
-3. **Better conversion**: More of your leads close = more commission income
-4. **Less frustration**: No more chasing ghosts
-
----
-
-## Access AI Lead Qualification
-
-AI lead scoring is available on ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} — 100% free for approved ambassadors.
-
-${internalLink("**→ Sign up and upgrade to Pro**", "/auth")}
-
-All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} with full legal compliance.
-
-*Related: ${internalLink("All AI Tools for Ambassadors", "/blog/ai-tools-real-estate-ambassadors")} | ${internalLink("AI Roleplay Training", "/blog/ai-roleplay-sales-training")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
-`
-  },
-  {
-    slug: "ai-roleplay-sales-training",
-    title: "AI Roleplay for Real Estate: Train Your Sales Skills Without Risking Real Leads",
-    excerpt: "Practice pitching Dubai properties to AI-simulated investor profiles from 5 nationalities. Improve your confidence and closing rate before engaging real prospects.",
-    category: "AI & Technology",
-    tags: ["AI roleplay", "sales training", "pitch practice", "real estate", "Sofara Pro", "investor simulation"],
-    readTime: "8 min",
-    date: "2026-01-10",
-    author: "Sofara Tech",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
-    relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-lead-qualification-real-estate", "sofara-pro-vs-lite"],
-    content: `
-# AI Roleplay: Practice Your Real Estate Pitch Without Risk
-
-What if you could practice selling Dubai properties to a simulated investor — someone who pushes back, asks tough questions, raises objections, and then **grades your performance with actionable feedback**?
-
-That's exactly what Sofara Pro's AI Roleplay Training does. It's like a flight simulator for real estate conversations.
-
----
-
-## Why Roleplay Training Matters
-
-The #1 reason ambassadors lose potential deals isn't lack of opportunities — it's **lack of confidence** in investor conversations. Common failure points:
-
-- Freezing when asked about ${internalLink("DLD fees", "/blog/dubai-dld-fees-explained")} or ${internalLink("payment plan structures", "/blog/dubai-payment-plans-explained")}
-- Not knowing how to position ${internalLink("Emaar", "/blog/emaar-properties-guide")} vs ${internalLink("Damac", "/blog/damac-properties-guide")} vs ${internalLink("Sobha", "/blog/sobha-realty-quality-investment")}
-- Struggling with price objections ("Dubai is overpriced")
-- Not knowing how to discuss ${internalLink("Golden Visa benefits", "/blog/dubai-golden-visa-real-estate")}
-- Losing control of the conversation
-
-AI roleplay solves all of these by letting you **practice in a safe environment** with realistic investor simulations.
-
----
-
-## How It Works: 4-Step Process
-
-### Step 1: Choose an Investor Profile
-
-Select from 8 detailed investor archetypes, each with unique motivations, objections, and communication styles:
-
-| Profile | Nationality | Motivation | Common Objection |
-|---------|------------|------------|-----------------|
-| 🇫🇷 **French HNW** | France | Tax optimization, portfolio diversification | "Dubai is a bubble" |
-| 🇬🇧 **British Expat** | UK | Rental yield, retirement planning | "Brexit made international property risky" |
-| 🇸🇦 **GCC Investor** | Saudi/Emirati | Luxury lifestyle, second home | "I already own property in Dubai" |
-| 🇮🇳 **Indian Family Office** | India | Portfolio diversification, Golden Visa | "What about currency risk?" |
-| 🇷🇺 **Russian UHNW** | Russia | Capital preservation, sanctions protection | "Is my investment safe?" |
-| 🇲🇦 **North African Professional** | Morocco/Tunisia | First investment abroad, diaspora opportunity | "I don't have enough capital" |
-| 🇩🇪 **German Pension Investor** | Germany | Yield improvement over European markets | "Show me the data" |
-| 🇨🇳 **Chinese Family** | China | Education and emigration pathway | "How does the visa work?" |
-
-### Step 2: Set the Scenario
-- **First contact**: Opening conversation, building interest
-- **Follow-up**: Re-engaging after initial interest
-- **Objection handling**: Overcoming specific concerns
-- **Closing**: Moving from interest to commitment
-- **Project presentation**: Pitching a specific development
-
-### Step 3: Have the Conversation
-The AI responds like a real prospect — asking questions, raising objections, requesting data, and testing your knowledge. Conversations typically last 5-15 minutes.
-
-### Step 4: Get Scored & Coached
-After each session, receive detailed feedback:
-- **Overall performance score** (0-100)
-- **Strengths identified** (what you did well)
-- **Areas for improvement** (specific points to work on)
-- **Suggested responses** (for questions you struggled with)
-- **Knowledge gaps** (topics to study before real conversations)
-
----
-
-## What You'll Learn Through Practice
-
-After 5-10 roleplay sessions, most ambassadors report:
-
-| Skill | Before Roleplay | After 10 Sessions |
-|-------|-----------------|-------------------|
-| Confidence in investor calls | Low | High |
-| Objection handling success | ~30% | ~75% |
-| Knowledge of developer portfolios | Basic | Detailed |
-| Use of data in conversations | Rare | Systematic |
-| Conversion rate | 3-5% | 8-12% |
-
----
-
-## Real Ambassador Feedback
-
-> *"The roleplay with the 'skeptical French investor' profile was incredibly realistic. The AI pushed back harder than most real prospects — which made my actual conversations feel easy by comparison."* — Marie T., Sofara Ambassador, Lyon
-
-> *"I practiced the ${simulatorLink("investment simulator")} presentation in roleplay 4 times before my first real call. When the client asked about projected returns, I was totally prepared."* — Khalid A., Sofara Ambassador, Jeddah
-
----
-
-## Access AI Roleplay
-
-Available exclusively on ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} — 100% free for approved ambassadors.
-
-${internalLink("**→ Sign up free and upgrade to Pro**", "/auth")}
-
-*Related: ${internalLink("All AI Tools", "/blog/ai-tools-real-estate-ambassadors")} | ${internalLink("AI Lead Scoring", "/blog/ai-lead-qualification-real-estate")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
-`
-  },
+  // ── CATEGORY: Tools & Technology ──
   {
     slug: "sofara-pro-vs-lite",
     title: "Sofara Lite vs Sofara Pro: Which Plan Is Right for You? (Both Free)",
-    excerpt: "Both plans are 100% free. Lite is for casual referrers. Pro unlocks AI tools, project library, and community access for serious ambassadors. Full comparison inside.",
+    excerpt: "Both plans are 100% free. Lite is for casual referrers. Pro unlocks the project library, sales tools and community access for serious ambassadors. Full comparison inside.",
     category: "Ambassador Program",
     tags: ["Sofara Pro", "Sofara Lite", "comparison", "upgrade", "ambassador tiers", "free"],
     readTime: "7 min",
     date: "2026-01-01",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    relatedSlugs: ["ai-tools-real-estate-ambassadors", "how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained"],
+    relatedSlugs: ["what-is-sofara", "how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained"],
     content: `
 # Sofara Lite vs Sofara Pro: Full Comparison
 
@@ -1846,15 +1487,15 @@ Both plans are **100% free** — no subscription, no hidden fees, ever. The diff
 | 3% commission on all sales | ✅ | ✅ |
 | ${internalLink("Ambassadeur+ referral program", "/blog/super-ambassador-program")} | ✅ | ✅ |
 | 12-month lead protection | ✅ | ✅ |
-| **AI-Powered Tools** | | |
-| ${internalLink("AI Lead Scoring", "/blog/ai-lead-qualification-real-estate")} (0-100 qualification) | ❌ | ✅ |
-| AI Conversation Assistant | ❌ | ✅ |
-| ${internalLink("AI Roleplay Training", "/blog/ai-roleplay-sales-training")} | ❌ | ✅ |
+| **Sales Tools** | | |
+| Lead scoring (0-100 qualification) | ❌ | ✅ |
+| Conversation assistant | ❌ | ✅ |
+| Sales roleplay training | ❌ | ✅ |
 | Automated Follow-up Sequences | ❌ | ✅ |
 | **Knowledge & Tools** | | |
 | Full Project Library (all developers) | ❌ | ✅ |
 | ${simulatorLink("DLD & ROI Investment Simulator")} | ❌ | ✅ |
-| Legal AI Document Analysis | ❌ | ✅ |
+| Legal document analysis | ❌ | ✅ |
 | Market Intelligence Dashboard | ❌ | ✅ |
 | WhatsApp-ready Project Summaries | ❌ | ✅ |
 | **Community** | | |
@@ -1906,7 +1547,7 @@ The upgrade process is simple and **completely free**:
 
 - Professional background in finance, luxury, real estate, consulting, or similar
 - Active network of potential investors
-- Willingness to engage with the AI tools and training
+- Willingness to engage with the tools and training
 - No specific minimum sales requirement
 
 We want Pro ambassadors who will actively use the tools — not just unlock them and forget.
@@ -1924,7 +1565,7 @@ Based on platform data, Pro ambassadors convert **3-5x more leads** than Lite am
 | Avg deals/year | 1-2 | 4-8 | +300% |
 | Avg annual commission | AED 40,000-AED 80,000 | AED 160,000-AED 600,000+ | +400% |
 
-The difference? **AI tools and knowledge**. Pro ambassadors know which leads to prioritize, how to handle objections, and which projects to recommend for each investor profile.
+The difference? **Tools and knowledge**. Pro ambassadors know which leads to prioritize, how to handle objections, and which projects to recommend for each investor profile.
 
 ---
 
@@ -1945,7 +1586,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — start wi
 
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — whether you're Lite or Pro.*
 
-*Related: ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("AI Tools Guide", "/blog/ai-tools-real-estate-ambassadors")}*
+*Related: ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("What is Sofara", "/blog/what-is-sofara")}*
 
 
 ---
@@ -2479,7 +2120,7 @@ ${internalLink("**→ Join Sofara and present yield data to your network**", "/a
   {
     slug: "dubai-luxury-real-estate-trends",
     title: "Dubai Luxury Real Estate Trends 2026: What Ultra-Wealthy Buyers Want",
-    excerpt: "Branded residences, waterfront mega-mansions, AI-enabled smart homes, and crypto-friendly transactions — Dubai's luxury property market is evolving fast.",
+    excerpt: "Branded residences, waterfront mega-mansions, smart homes, and crypto-friendly transactions — Dubai's luxury property market is evolving fast.",
     category: "Market Insights",
     tags: ["luxury", "branded residences", "UHNW", "Dubai trends", "smart homes", "ultra-luxury"],
     readTime: "9 min",
@@ -2541,13 +2182,13 @@ The demand for waterfront living has driven several transformative projects:
 
 ---
 
-## Trend 3: AI-Enabled Smart Homes
+## Trend 3: Smart Homes
 
 New luxury developments feature cutting-edge technology:
-- **AI-controlled climate**: Learns your preferences, optimizes energy
+- **Smart climate control**: Learns your preferences, optimizes energy
 - **Voice + gesture control**: Full home automation without apps
-- **Predictive maintenance**: AI detects issues before they become problems
-- **Security AI**: Facial recognition, anomaly detection, autonomous monitoring
+- **Predictive maintenance**: sensors detect issues before they become problems
+- **Smart security**: Facial recognition, anomaly detection, autonomous monitoring
 - **Health monitoring**: Air quality, circadian lighting, wellness optimization
 
 ---
@@ -2579,8 +2220,8 @@ Dubai's forward-thinking regulatory framework now enables:
 ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} equips ambassadors with the tools to present luxury properties professionally:
 
 - Detailed project knowledge base covering all luxury developments
-- ${internalLink("AI conversation assistant", "/blog/ai-tools-real-estate-ambassadors")} trained on luxury investor profiles
-- ${internalLink("Roleplay training", "/blog/ai-roleplay-sales-training")} with UHNW investor simulations
+- Scripts and presentation material for luxury investor profiles
+- Sales training focused on high-net-worth investors
 - Professional presentation materials
 
 ${cevitasLink("Cevitas Real Estate")} provides **white-glove service** for high-value transactions — including private viewings, VIP developer access, and dedicated closing teams.
@@ -2737,165 +2378,16 @@ ${internalLink("**→ Join Sofara and earn 3% on every international referral**"
 `
   },
   {
-    slug: "ai-real-estate-future-dubai",
-    title: "The Future of AI in Dubai Real Estate: How PropTech Is Revolutionizing the Industry in 2026",
-    excerpt: "From AI valuations to virtual tours, blockchain registration, and predictive analytics — Dubai is leading the global PropTech revolution. Here's what's changing everything.",
-    category: "AI & Technology",
-    tags: ["AI", "PropTech", "virtual tours", "smart city", "Dubai innovation", "blockchain"],
-    readTime: "10 min",
-    date: "2026-01-22",
-    author: "Sofara Tech",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
-    relatedSlugs: ["ai-tools-real-estate-ambassadors", "ai-lead-qualification-real-estate", "dubai-luxury-real-estate-trends"],
-    content: `
-# The Future of AI in Dubai Real Estate: PropTech Revolution 2026
-
-Dubai's vision for a **smart city** extends deeply into real estate, and the emirate is leading the world in PropTech adoption. From AI-powered valuations to blockchain-based property registration, the technology transforming Dubai's property market is not futuristic — it's happening right now.
-
----
-
-## 1. AI-Powered Property Valuations
-
-Machine learning models now process vast datasets to deliver accurate valuations:
-
-- **Historical transaction data** from the Dubai Land Department (100,000+ annual transactions)
-- **Comparable sales analysis** across 200+ communities
-- **Infrastructure development mapping** (${internalLink("Metro extensions, airport expansion", "/blog/why-invest-dubai-property-2026")})
-- **Macro-economic indicators** (GDP, population growth, tourism data)
-- **Sentiment analysis** from social media and search trends
-
-**Result:** Property valuations with **95%+ accuracy** delivered in seconds — compared to days for traditional appraisals.
-
-### Impact on Investors
-- **Faster decisions**: Know if a property is fairly priced instantly
-- **Reduced risk**: Data-backed valuations eliminate guesswork
-- **Better negotiation**: Arm yourself with precise market data
-
----
-
-## 2. Virtual & AI-Enhanced Property Tours
-
-The pandemic accelerated virtual viewing adoption, but AI has taken it to another level:
-
-### 3D Virtual Walkthroughs
-- Tour any property from anywhere in the world
-- Interactive 3D models with measurement tools
-- Neighborhood and amenity visualization
-- Multiple time-of-day lighting simulations
-
-### AI Virtual Staging
-- See empty units **furnished with AI-generated interiors**
-- Choose from multiple design styles (modern, classic, minimalist)
-- Visualize renovation possibilities
-- Cost estimates for furnishing packages
-
-### Augmented Reality (AR) Overlays
-- Point your phone at an off-plan site and see the completed building
-- View floor plan overlays in real spaces
-- Compare unit views from different floors
-
----
-
-## 3. Blockchain-Based Property Registration
-
-Dubai is pioneering **blockchain-backed property registration**:
-
-### What's Already Live
-- **DLD blockchain platform** for title deed verification (launched 2023)
-- Instant title deed authenticity verification
-- Tamper-proof ownership records
-- Transparent transaction history
-
-### Coming Soon
-- **Smart contract escrow**: Automated fund release upon milestone completion
-- **Tokenized real estate**: Fractional property ownership via digital tokens
-- **Cross-border verification**: Instant verification accepted by international banks
-
----
-
-## 4. Predictive Market Analytics
-
-AI models trained on Dubai's rich transaction data predict:
-
-| Prediction Type | Accuracy | Timeframe |
-|----------------|---------|-----------|
-| Price movements | 82% | 6-12 months |
-| Optimal buy timing | 78% | 3-6 months |
-| Emerging neighborhoods | 85% | 12-24 months |
-| Rental demand shifts | 80% | Seasonal |
-
-### How This Helps Investors
-- Identify undervalued areas before institutional investors
-- Time purchases to capture maximum appreciation
-- Avoid overheated micro-markets
-- Optimize rental strategy by season
-
----
-
-## 5. AI in Real Estate Sales & Marketing
-
-For professionals and ambassadors, AI is transforming the sales process:
-
-### Lead Qualification
-${internalLink("AI-powered lead scoring", "/blog/ai-lead-qualification-real-estate")} predicts which prospects are ready to buy — with 85%+ accuracy.
-
-### Personalized Recommendations
-AI matches buyers with properties based on:
-- Budget and financing preferences
-- Lifestyle priorities (beach, golf, urban)
-- Investment goals (yield, appreciation, Golden Visa)
-- Risk tolerance and timeline
-
-### Automated Content Generation
-- **WhatsApp-ready summaries** for specific projects (${internalLink("WhatsApp marketing guide", "/blog/whatsapp-marketing-real-estate-dubai")})
-- Personalized investment reports
-- Market update newsletters
-- Social media content for lead generation
-
-### ${internalLink("AI Roleplay Training", "/blog/ai-roleplay-sales-training")}
-Practice sales conversations with AI-simulated investor profiles before engaging real prospects.
-
----
-
-## 6. Dubai's Smart City Infrastructure
-
-The UAE's broader smart city initiatives directly impact real estate:
-
-- **Dubai 10X**: Government initiative to be 10 years ahead of other cities
-- **Smart Dubai 2031**: Comprehensive digital transformation strategy
-- **Dubai Blockchain Strategy**: 100% paperless government by 2025
-- **AI Ethics Board**: Ensuring responsible AI deployment in real estate
-
----
-
-## How Sofara Leverages PropTech
-
-${internalLink("Sofara", "/")} integrates these technologies to give ambassadors an unfair advantage:
-
-- **${internalLink("AI Lead Scoring", "/blog/ai-lead-qualification-real-estate")}**: Know who's ready to buy
-- **${internalLink("AI Conversation Assistant", "/blog/ai-tools-real-estate-ambassadors")}**: Expert knowledge on demand
-- **${internalLink("AI Roleplay", "/blog/ai-roleplay-sales-training")}**: Practice before pitching
-- **${simulatorLink("Investment Simulator")}**: Data-driven ROI modeling
-- **Project Library**: Comprehensive developer database
-
-${internalLink("**→ Join Sofara and access the future of real estate technology**", "/auth")}
-
-*Backed by ${cevitasLink("Cevitas Real Estate LLC")} — combining technology with licensed Dubai brokerage expertise.*
-
-*Related: ${internalLink("AI Tools for Ambassadors", "/blog/ai-tools-real-estate-ambassadors")} | ${internalLink("AI Lead Qualification", "/blog/ai-lead-qualification-real-estate")} | ${internalLink("Luxury Trends 2026", "/blog/dubai-luxury-real-estate-trends")}*
-`
-  },
-  {
     slug: "whatsapp-marketing-real-estate-dubai",
     title: "WhatsApp Marketing for Dubai Real Estate: The Complete Ambassador Playbook for 2026",
     excerpt: "WhatsApp has a 98% open rate in the UAE. Learn the complete playbook for generating, nurturing, and converting real estate leads through WhatsApp — with templates and strategies.",
-    category: "AI & Technology",
+    category: "Marketing",
     tags: ["WhatsApp", "marketing", "lead generation", "communication", "Dubai", "MENA"],
     readTime: "10 min",
     date: "2026-01-08",
     author: "Sofara Team",
     image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
-    relatedSlugs: ["ai-tools-real-estate-ambassadors", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
+    relatedSlugs: ["what-is-sofara", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
     content: `
 # WhatsApp Marketing for Dubai Real Estate: The Complete Playbook
 
@@ -2948,7 +2440,7 @@ Once interest is expressed, share a relevant ${internalLink("blog article", "/bl
 When they're interested:
 > "If you want to explore specific projects, here's a platform I use that has everything — prices, payment plans, simulator. ${internalLink("Check it out", "/")} 📊"
 
-### Stage 4: AI-Generated Follow-Up
+### Stage 4: Personalised Follow-Up
 
 ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} generates personalized follow-up messages based on what the lead viewed:
 
@@ -2986,7 +2478,6 @@ Once the lead is warm, ${cevitasLink("Cevitas Real Estate")} takes over for prof
 | 5 | Golden Visa info | ${internalLink("Golden Visa Guide", "/blog/dubai-golden-visa-real-estate")} |
 | 6 | Yield comparison | ${internalLink("Rental Yields", "/blog/dubai-rental-yields-explained")} |
 | 7 | Payment plans | ${internalLink("Payment Plans", "/blog/dubai-payment-plans-explained")} |
-| 8 | AI & PropTech | ${internalLink("AI in Real Estate", "/blog/ai-real-estate-future-dubai")} |
 
 ---
 
@@ -3003,12 +2494,12 @@ Once the lead is warm, ${cevitasLink("Cevitas Real Estate")} takes over for prof
 ## Get Your WhatsApp Arsenal
 
 ${internalLink("**→ Sign up for Sofara**", "/auth")} to access:
-- AI-generated WhatsApp summaries for every project
+- WhatsApp-ready summaries for every project
 - Personalized follow-up message templates
 - Investment simulation shareable links
 - Your unique protected referral link
 
-*Related: ${internalLink("AI Tools for Ambassadors", "/blog/ai-tools-real-estate-ambassadors")} | ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")}*
+*Related: ${internalLink("What is Sofara", "/blog/what-is-sofara")} | ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")}*
 `
   },
   {
@@ -3163,7 +2654,7 @@ Sofara solves this by giving every ambassador:
 
 - A **personal referral link** with 12-month attribution
 - A **live pipeline** showing every lead's progress
-- **AI tools** to qualify, nurture, and follow up
+- **Sales tools** to qualify, nurture, and follow up
 - A **library** of pre-approved marketing assets (Emaar, DAMAC, Sobha, Aldar, Sobha, Binghatti)
 - **Commission tracking** with bank transfers within 7 days of closing
 
@@ -3180,7 +2671,7 @@ All transactions are legally closed under ${cevitasLink("Cevitas Real Estate LLC
 | Commission per deal | 1-2% | Up to 3% |
 | Payment delay | 30-90 days | 7 days |
 | Geographic reach | Local only | Worldwide |
-| AI sales tools | None | Built-in |
+| Sales tools | None | Built-in |
 
 Sofara Dubai is built **by operators, for operators**. The founder, Ahmed Benjas, has personally facilitated over AED 100M in Dubai property transactions — Sofara is the platform he wished existed when he started.
 
@@ -3265,7 +2756,7 @@ The word *Sofara* (سفراء) means **"ambassadors"** in Arabic. The brand was 
 
 Sofara Real Estate is the legal+tech wrapper that makes this possible:
 
-- The **technology** lives at ${internalLink("sofara.io", "/")} — pipeline, AI tools, commission tracking
+- The **technology** lives at ${internalLink("sofara.io", "/")} — pipeline, sales tools, commission tracking
 - The **license** lives at ${cevitasLink("Cevitas Real Estate LLC")} — a RERA-registered Dubai brokerage
 - The **ambassadors** live everywhere — 47+ countries and counting
 
@@ -3276,7 +2767,7 @@ Sofara Real Estate is the legal+tech wrapper that makes this possible:
 \`\`\`
 ┌─────────────────────────────────────────┐
 │  Sofara.io — Tech Platform              │
-│  CRM · AI · Pipeline · Commissions      │
+│  CRM · Pipeline · Commissions · Tools     │
 ├─────────────────────────────────────────┤
 │  Cevitas Real Estate — RERA Brokerage   │
 │  Contracts · DLD · Compliance · Closing │
@@ -3519,7 +3010,7 @@ All transactions close legally under ${cevitasLink("Cevitas Real Estate LLC")} �
 
 1. **Built by an operator** — Founder Ahmed Benjas has personally closed AED 100M+ in Dubai property. ${internalLink("Read his story", "/about")}.
 2. **Full developer coverage** — ${internalLink("Emaar", "/blog/emaar-properties-guide")}, ${internalLink("DAMAC", "/blog/damac-properties-guide")}, ${internalLink("Sobha", "/blog/sobha-realty-quality-investment")}, Aldar, Binghatti, Meraas + 40 more.
-3. **AI sales tools** — Lead scoring, AI roleplay, WhatsApp automation, voice agent.
+3. **Sales tools** — lead scoring, roleplay training, WhatsApp templates.
 4. **Fast payouts** — 7-day commission settlement, the fastest in the industry.
 5. **Worldwide community** — Active networks in Africa, Europe, Asia, North America.
 
@@ -3872,7 +3363,7 @@ ${internalLink("→ Read the full About page", "/about")}
 
 - **CRM & Pipeline** — track every referred lead
 - **Asset Library** — pre-approved marketing materials for 40+ developers
-- **AI Sales Tools** — lead scoring, roleplay, WhatsApp automation
+- **Sales Tools** — lead scoring, roleplay training, WhatsApp templates
 - **Commission Dashboard** — real-time payout tracking
 - **Academy** — onboarding courses and sales training
 
@@ -4018,7 +3509,7 @@ C'est la voie que **80 % de nos nouveaux entrants choisissent en 2026**, et voic
 ✅ **0 AED de frais** — inscription, formation et outils gratuits
 ✅ **Commission jusqu'à 3 %** — payée en AED, virée sous 7 jours après closing
 ✅ **Cevitas (RERA) clôture le deal** sous sa licence — 100 % légal
-✅ **CRM + IA + Académie inclus** — pour qualifier vos leads et closer plus vite
+✅ **CRM + outils + Académie inclus** — pour qualifier vos leads et closer plus vite
 
 **Comment ça marche concrètement** :
 1. Vous créez votre compte gratuit sur ${internalLink("sofara.io", "/auth")}
@@ -4181,7 +3672,7 @@ Aucun d'eux n'a de licence RERA. Aucun ne vit à Dubai. Tous opèrent légalemen
 2. **Activez votre profil** (5 min — pas de KYC à ce stade)
 3. Récupérez votre **lien de parrainage unique** et vos **fiches projets**
 4. Partagez à votre réseau via WhatsApp, LinkedIn, Instagram
-5. Sofara qualifie les leads avec **Sofar AI** et Cevitas clôture
+5. Sofara qualifie les leads et Cevitas conclut la vente
 6. Vous suivez tout sur votre **dashboard en temps réel**
 
 ---
@@ -4330,7 +3821,7 @@ This is the path **most new entrants now pick**, and the reasons are obvious:
 ✅ **AED 0 upfront** — signup, training and tools are free
 ✅ **Up to 3% commission** — paid in AED, wired within **7 days** of closing
 ✅ **Cevitas (RERA) closes the deal** under its license — fully legal
-✅ **AI + CRM + Academy included** — qualify leads and close faster
+✅ **CRM + tools + Academy included** — qualify leads and close faster
 
 **How it works:**
 1. Create your free account on ${internalLink("sofara.io", "/auth")}
@@ -4711,7 +4202,7 @@ Only viable if you've already proven you can close deals.
 | Item | Cost |
 |---|---|
 | Sofara account & onboarding | **AED 0** |
-| Tools (CRM, AI, project library) | **AED 0** |
+| Tools (CRM, project library) | **AED 0** |
 | Training | **AED 0** |
 | Visa / license / Ejari | **Not required** |
 | Renewals | **None** |

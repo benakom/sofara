@@ -28,7 +28,7 @@ const DubaiRealEstateAmbassadors = () => (
     <h2>What an ambassador actually does</h2>
     <ul>
       <li><strong>Spot interest.</strong> Someone in your network mentions Dubai, the Golden Visa, rental yields or a new launch. You share your referral link or submit their details in your dashboard.</li>
-      <li><strong>Let the team qualify.</strong> Sofara's AI-assisted qualification and the Cevitas sales team contact the lead, understand budget and goals, and shortlist projects.</li>
+      <li><strong>Let the team qualify.</strong> The Cevitas sales team contacts the lead, understand budget and goals, and shortlist projects.</li>
       <li><strong>Follow the progress.</strong> Your dashboard shows the lead moving through the stages: new, prequalified, qualified, offer sent, offer accepted, booking paid, down payment paid. Stages are updated by the Sofara team, so the information is always accurate.</li>
       <li><strong>Get paid.</strong> Once the sale closes, your commission is estimated, validated and paid within 7 days, in AED.</li>
     </ul>
@@ -50,7 +50,7 @@ const DubaiRealEstateAmbassadors = () => (
     <p>The best ambassadors are not salespeople. They are people others already trust on money and relocation decisions: expatriates in Europe, Africa, the Gulf and Asia; financial and wealth advisors; content creators with property-interested audiences; business owners in diaspora communities; and real estate professionals abroad who want a Dubai desk without opening an office. If you already get asked "is Dubai a good idea?", you have the raw material.</p>
 
     <h2>The tools ambassadors get</h2>
-    <p>Sofara is a software platform as much as a network. Every ambassador receives a personal referral link, a dashboard with lead tracking and commission follow-up, AI lead scoring, WhatsApp follow-up automation, sales scripts and role-play training, a project library with verified brochures and payment plans, and simulators for <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link> and <Link to="/blog/dubai-payment-plans-explained">payment plans</Link>. The <Link to="/blog/ai-tools-real-estate-ambassadors">AI tools</Link> are included for free.</p>
+    <p>Sofara is a software platform as much as a network. Every ambassador receives a personal referral link, a dashboard with lead tracking and commission follow-up, WhatsApp templates, sales scripts and training, a project library with verified brochures and payment plans, and simulators for <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link> and <Link to="/blog/dubai-payment-plans-explained">payment plans</Link>. All tools are included for free.</p>
 
     <h2>Ambassador vs licensed agent vs classic referral</h2>
     <p>A <Link to="/become-real-estate-agent-dubai">licensed agent</Link> needs a visa, the DREI course and the RERA exam, and works from Dubai. A classic developer <Link to="/real-estate-referral-program-dubai">referral program</Link> pays a one-off fee, often 0.5% to 1.5%, with little visibility on the deal. The ambassador model sits in between: no license, higher commission than a referral fee, full visibility on the lead, and a team that closes for you.</p>

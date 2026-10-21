@@ -303,14 +303,14 @@ const Auth = () => {
 
   const trustPoints = lang === "ar"
     ? [
-        "Processus 100% propulsé par l'IA",
+        "Une équipe dédiée à Dubaï, du contact à la signature",
         "Commission moyenne : AED 90 000+ par deal",
         "Transparence totale — suivi en temps réel",
         "Formation & accompagnement premium",
         "Aucune licence immobilière requise",
       ]
     : [
-        "Full AI powered process",
+        "Dedicated Dubai team from contact to signing",
         "Average commission: AED 90,000+ per deal",
         "Full transparency — real-time tracking",
         "Premium training & dedicated support",
@@ -441,7 +441,7 @@ const Auth = () => {
     <div className="min-h-[100svh] bg-background flex flex-col lg:flex-row overflow-hidden">
       <SEO
         title="Join Sofara — Become a Dubai Real Estate Ambassador | Earn Up to 3% Commission"
-        description="Sign up free to become a Dubai real estate ambassador. Earn up to 3% commission on every sale from Emaar, Damac, Sobha. No license needed. AI-powered platform."
+        description="Sign up free to become a Dubai real estate ambassador. Earn up to 3% commission on every sale from Emaar, Damac, Sobha. No license needed. Paid in AED."
         canonical="https://sofara.io/auth"
         noindex
       />
@@ -470,13 +470,13 @@ const Auth = () => {
 
             <h2 className="font-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-[1.15] mb-2 lg:mb-4">
               {lang === "ar"
-                ? "Le réseau ambassadeur immobilier #1 propulsé par l'IA"
-                : "The #1 AI Real Estate Ambassadors Network"}
+                ? "Le réseau des ambassadeurs de l'immobilier à Dubaï et aux Émirats"
+                : "The Dubai & UAE Real Estate Ambassadors Network"}
             </h2>
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 mb-4 lg:mb-6">
               <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-primary text-xs sm:text-sm font-semibold">Full AI powered process</span>
+              <span className="text-primary text-xs sm:text-sm font-semibold">{lang === "ar" ? "Équipe dédiée à Dubaï" : "Dedicated Dubai team"}</span>
             </div>
 
             <div className="hidden sm:flex items-center gap-3 lg:gap-4 mb-5 lg:mb-8">
@@ -522,7 +522,7 @@ const Auth = () => {
               <span className="text-xs text-white/40">
                 {lang === "ar"
                   ? "Basé à Dubai · RERA Compliant · Technologie propriétaire · Données temps réel"
-                  : "Dubai HQ · RERA Compliant · Proprietary AI · Real-time analytics"}
+                  : "Dubai HQ · RERA Compliant · Paid in AED · Real-time tracking"}
               </span>
             </motion.div>
           </motion.div>
@@ -667,7 +667,7 @@ const Auth = () => {
 
           <div className="flex items-center justify-center gap-2 mt-4 sm:hidden">
             <Sparkles className="w-3 h-3 text-primary" />
-            <span className="text-xs text-primary font-semibold">Full AI powered process</span>
+            <span className="text-xs text-primary font-semibold">{lang === "ar" ? "Équipe dédiée à Dubaï" : "Dedicated Dubai team"}</span>
           </div>
         </motion.div>
       </div>

@@ -39,7 +39,7 @@ const MidCTABanner = () => {
               {t("midcta.description")}
             </p>
 
-            {/* AI conversion badge */}
+            {/* Reassurance badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-7 sm:mb-9">
               <Brain className="w-4 h-4 text-primary" />
               <span className="text-primary text-sm font-semibold">{t("midcta.aiNote")}</span>

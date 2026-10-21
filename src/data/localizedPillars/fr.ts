@@ -3,10 +3,10 @@ import type { PillarContent } from "./types";
 
 export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   ambassadors: {
-    title: "Ambassadeurs immobiliers à Dubaï : le réseau Sofara",
+    title: "Réseau des ambassadeurs de l'immobilier Dubaï & Émirats",
     description:
       "Devenez ambassadeur immobilier à Dubaï avec Sofara : recommandez des acheteurs depuis votre pays, sans licence, et touchez jusqu'à 3 % de commission en AED.",
-    h1: "Ambassadeurs immobiliers à Dubaï : le réseau expliqué",
+    h1: "Réseau des ambassadeurs de l'immobilier à Dubaï et aux Émirats",
     eyebrow: "Réseau d'ambassadeurs · Dubaï et Émirats arabes unis",
     intro:
       "Un **ambassadeur immobilier à Dubaï** met en relation des personnes qui veulent acheter un bien aux Émirats avec une agence agréée. Il n'a besoin ni de licence ni de résider aux Émirats. Sofara, le réseau créé par Cevitas Real Estate LLC, réunit ces ambassadeurs sur une même plateforme, avec une même équipe de vente et une politique de commission publiée à l'avance.",
@@ -52,7 +52,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { ul: [
             "Un **lien de recommandation personnel** et un formulaire pour enregistrer un acheteur en quelques secondes.",
             "Un **suivi des dossiers** étape par étape, du premier contact au paiement de l'apport.",
-            "Des **assistants IA** pour qualifier un prospect, préparer un message WhatsApp ou s'entraîner à présenter un projet.",
+            "Des **modèles de messages WhatsApp** et des argumentaires pour présenter un projet à vos contacts.",
             "Une **bibliothèque de projets** (Emaar, DAMAC, Sobha et d'autres promoteurs) avec brochures, plans de paiement et prix.",
             "Une **communauté** d'ambassadeurs dans plus de 40 pays et un accompagnement par l'équipe Sofara.",
           ] },
@@ -82,10 +82,10 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   affiliate: {
-    title: "Affiliation immobilière à Dubaï : jusqu'à 3 % | Sofara",
+    title: "Affiliation immobilière Dubaï & Émirats : jusqu'à 3 %",
     description:
       "Programme d'affiliation immobilière à Dubaï et aux Émirats : devenez apporteur d'affaires, recommandez des acheteurs et touchez jusqu'à 3 % de commission en AED.",
-    h1: "Affiliation immobilière à Dubaï : devenir apporteur d'affaires",
+    h1: "Affiliation immobilière à Dubaï et aux Émirats : devenir affilié",
     eyebrow: "Programme d'affiliation · Dubaï, Abu Dhabi, Ras Al Khaimah",
     intro:
       "Sofara est un **programme d'affiliation immobilière** dédié à Dubaï et aux Émirats arabes unis. Vous devenez apporteur d'affaires : vous recommandez des acheteurs, l'agence agréée Cevitas Real Estate conseille et conclut la vente, et vous percevez jusqu'à 3 % du prix du bien.",
@@ -208,7 +208,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { p: "Si vous vivez hors des Émirats ou souhaitez tester le marché sans changer de vie, la voie ambassadeur supprime toutes les barrières. Vous présentez des acheteurs issus de votre réseau, l'agence agréée Cevitas Real Estate s'occupe du conseil, des visites et de la signature, et vous touchez jusqu'à 3 % du prix du bien." },
           { ul: [
             "Inscription gratuite en deux minutes, sans licence ni quota.",
-            "Lien de recommandation, assistants IA et suivi de chaque dossier.",
+            "Lien de recommandation, brochures projets et suivi de chaque dossier.",
             "Commission acquise à la signature du SPA et au paiement de l'apport avec les frais DLD, versée en AED sous 7 jours après le paiement du promoteur.",
           ] },
           { p: "Pour aller plus loin : [le réseau des ambassadeurs immobiliers à Dubaï](/fr/ambassadeurs-immobilier-dubai) et [l'affiliation immobilière à Dubaï](/fr/affiliation-immobilier-dubai)." },
@@ -319,13 +319,13 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   apporteur: {
-    title: "Apporteur d'affaires immobilier à Dubaï : 1 à 3 % | Sofara",
+    title: "Apporteur d'affaires et de clients immobilier Dubaï & EAU",
     description:
-      "Devenez apporteur d'affaires immobilier à Dubaï depuis la France, la Belgique, la Suisse ou le Canada : rémunération de 1 à 3 % du prix, sans carte professionnelle.",
-    h1: "Apporteur d'affaires immobilier à Dubaï : rémunération et fonctionnement",
+      "Devenez apporteur d'affaires ou apporteur de clients immobilier à Dubaï et aux Émirats, depuis la France, la Belgique, la Suisse ou le Canada : 1 à 3 % du prix.",
+    h1: "Apporteur d'affaires et apporteur de clients immobilier à Dubaï et aux Émirats",
     eyebrow: "Apporteur d'affaires · France, Belgique, Suisse, Canada, Maroc",
     intro:
-      "Un **apporteur d'affaires immobilier à Dubaï** met en relation un acheteur avec une agence agréée et touche une commission quand la vente se conclut. Avec Sofara, l'agence est Cevitas Real Estate LLC, agréée par la RERA à Dubaï, et votre rémunération va de **1 % à 3 % du prix du bien**. Vous n'avez besoin ni de carte professionnelle ni de vous installer aux Émirats.",
+      "Un **apporteur d'affaires** (ou **apporteur de clients**) **immobilier à Dubaï et aux Émirats** met en relation un acheteur avec une agence agréée et touche une commission quand la vente se conclut. Avec Sofara, l'agence est Cevitas Real Estate LLC, agréée par la RERA à Dubaï, et votre rémunération va de **1 % à 3 % du prix du bien**. Vous n'avez besoin ni de carte professionnelle ni de vous installer aux Émirats.",
     sections: [
       {
         h2: "Ce que fait un apporteur d'affaires, et ce qu'il ne fait pas",
@@ -392,6 +392,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       },
     ],
     faqs: [
+      { q: "Apporteur d'affaires ou apporteur de clients : quelle différence ?", a: "Aucune dans la pratique : les deux termes désignent la personne qui présente un acheteur à une agence agréée et qui est rémunérée si la vente se conclut. Chez Sofara, on parle aussi d'ambassadeur." },
       { q: "Combien touche un apporteur d'affaires immobilier à Dubaï ?", a: "De 1 % à 3 % du prix du bien selon le projet, par exemple 15 000 à 45 000 AED pour un appartement à 1,5 million d'AED." },
       { q: "Faut-il une carte professionnelle pour être apporteur d'affaires à Dubaï ?", a: "Non pour Sofara : la vente est réalisée par Cevitas, agence agréée RERA, et vous intervenez comme apporteur d'affaires. Si vous êtes déjà agent immobilier en France, faites valider votre situation par votre conseiller." },
       { q: "Quand la commission est-elle versée ?", a: "Elle est acquise à la signature du SPA et au paiement de l'apport avec les frais DLD, puis versée en AED sous 7 jours après le paiement du promoteur à Cevitas." },

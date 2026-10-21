@@ -11,7 +11,6 @@ const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
 const HowItWorksSection = lazy(() => import("@/components/ambassador/HowItWorksSection"));
 const CommissionSection = lazy(() => import("@/components/ambassador/CommissionSection"));
 const WhySofaraSection = lazy(() => import("@/components/ambassador/WhySofaraSection"));
-const AIAdvantageSection = lazy(() => import("@/components/ambassador/AIAdvantageSection"));
 const MarketDataSection = lazy(() => import("@/components/ambassador/MarketDataSection"));
 const MidCTABanner = lazy(() => import("@/components/ambassador/MidCTABanner"));
 const WhyDubaiSection = lazy(() => import("@/components/ambassador/WhyDubaiSection"));
@@ -68,7 +67,6 @@ const Index = ({ locale = "en" }: { locale?: Locale }) => {
           <section id="why-sofara" aria-label="Why choose Sofara">
             <WhySofaraSection />
           </section>
-          <AIAdvantageSection />
           <MidCTABanner />
         </Suspense>
 

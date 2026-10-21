@@ -49,7 +49,7 @@ const RealEstateReferralProgramDubai = () => (
     </ol>
 
     <h2>Why buyers convert better through Sofara</h2>
-    <p>Buyers introduced by someone they trust convert several times better than portal leads. Sofara amplifies that with AI lead qualification, WhatsApp follow-ups in the buyer's language, verified project brochures and simulators for <Link to="/blog/dubai-payment-plans-explained">payment plans</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link>. You bring the trust; the platform brings the precision.</p>
+    <p>Buyers introduced by someone they trust convert several times better than portal leads. Sofara amplifies that with fast qualification by a licensed team, WhatsApp follow-ups in the buyer's language, verified project brochures and simulators for <Link to="/blog/dubai-payment-plans-explained">payment plans</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link>. You bring the trust; the platform brings the precision.</p>
 
     <h2>Referral program vs becoming an agent</h2>
     <p>If you would rather sell yourself from Dubai, read our guide on <Link to="/become-real-estate-agent-dubai">how to become a real estate agent in Dubai</Link>. If you want income from Dubai property without a visa, a license or a change of career, the referral program is the fastest path, and you can start today from the <Link to="/ambassador-program">ambassador program</Link> page.</p>

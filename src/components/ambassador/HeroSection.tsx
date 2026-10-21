@@ -1,6 +1,6 @@
 import { useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Send, Handshake, Banknote } from "lucide-react";
+import { ArrowRight, ShieldCheck, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useState } from "react";
 
@@ -20,10 +20,10 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
 
 // Keyword-rich prefix read by screen readers and search engines in front of the visual headline.
 const H1_PREFIX: Record<string, string> = {
-  en: "Sofara, the Dubai & UAE real estate ambassadors network — ",
-  fr: "Sofara, le réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats — ",
-  ar: "Sofara, le réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats — ",
-  es: "Sofara, la red de embajadores inmobiliarios de Dubái y EAU — ",
+  en: "Sofara, the Dubai & UAE real estate ambassadors, affiliate and referral network — ",
+  fr: "Sofara, le réseau des ambassadeurs, apporteurs d'affaires et apporteurs de clients de l'immobilier à Dubaï et aux Émirats — ",
+  ar: "Sofara, le réseau des ambassadeurs, apporteurs d'affaires et apporteurs de clients de l'immobilier à Dubaï et aux Émirats — ",
+  es: "Sofara, la red de embajadores y afiliados inmobiliarios de Dubái y EAU — ",
   ru: "Sofara — сеть амбассадоров недвижимости Дубая и ОАЭ — ",
 };
 const UP_TO_3: Record<string, string> = { en: "Up to 3%", fr: "Jusqu'à 3 %", ar: "Jusqu'à 3 %", es: "Hasta 3 %", ru: "До 3%" };
@@ -136,13 +136,13 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* AI + Metrics strip */}
+          {/* License + metrics strip */}
           <div
             className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
-            {/* AI badge */}
+            {/* License badge */}
             <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/30 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-primary flex-shrink-0" />
               <div className="text-left">
                 <div className="text-base sm:text-base font-bold text-primary font-display">{t("hero.aiLabel")}</div>
                 <div className="text-xs sm:text-xs text-primary/70">{t("hero.aiSub")}</div>

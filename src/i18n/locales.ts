@@ -76,17 +76,17 @@ export const HOME_META: Record<Locale, { title: string; description: string }> =
   en: {
     title: "Sofara | Dubai & UAE Real Estate Ambassadors Network",
     description:
-      "Sofara is the Dubai and UAE real estate ambassadors and affiliate network. Refer property buyers from anywhere and earn up to 3% commission in AED.",
+      "Sofara is the Dubai & UAE real estate ambassadors and affiliate network. Refer property buyers as an introducer from anywhere and earn up to 3% in AED.",
   },
   fr: {
-    title: "Sofara | Réseau d'ambassadeurs immobiliers à Dubaï",
+    title: "Sofara | Ambassadeurs & apporteurs d'affaires immobilier Dubaï",
     description:
-      "Sofara, le réseau d'ambassadeurs et d'affiliation de l'immobilier à Dubaï et aux Émirats. Recommandez des acheteurs et gagnez jusqu'à 3 % de commission.",
+      "Sofara, réseau des ambassadeurs de l'immobilier à Dubaï et aux Émirats : affiliation, apporteurs d'affaires et apporteurs de clients. Jusqu'à 3 % de commission.",
   },
   es: {
-    title: "Sofara | Red de embajadores inmobiliarios en Dubái",
+    title: "Sofara | Red de embajadores inmobiliarios Dubái y EAU",
     description:
-      "Sofara es la red de embajadores y afiliados del sector inmobiliario de Dubái y EAU. Recomienda compradores desde cualquier país y gana hasta un 3 %.",
+      "Sofara, la red de embajadores y afiliados inmobiliarios de Dubái y EAU. Presenta compradores desde cualquier país y gana hasta un 3 % por cada venta.",
   },
   ru: {
     title: "Sofara | Амбассадоры недвижимости Дубая и ОАЭ",
@@ -137,7 +137,7 @@ export const GUIDES: Record<GuideKey, { locale: Locale; path: string; label: str
   partTime: { locale: "en", path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
   referralFee: { locale: "en", path: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
   sideIncome: { locale: "en", path: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
-  apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires immobilier à Dubaï" },
+  apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires et de clients immobilier" },
   travailDubai: { locale: "fr", path: "/fr/travailler-immobilier-dubai", label: "Travailler dans l'immobilier à Dubaï" },
   rabota: { locale: "ru", path: "/ru/rabota-rieltorom-v-dubae", label: "Работа риэлтором в Дубае" },
 };
@@ -152,7 +152,7 @@ export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
   home: { en: "Sofara", fr: "Sofara", es: "Sofara", ru: "Sofara" },
   ambassadors: {
     en: "Dubai real estate ambassadors",
-    fr: "Ambassadeurs immobiliers à Dubaï",
+    fr: "Réseau des ambassadeurs immobiliers",
     es: "Embajadores inmobiliarios en Dubái",
     ru: "Амбассадоры недвижимости Дубая",
   },

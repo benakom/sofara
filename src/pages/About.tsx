@@ -133,7 +133,7 @@ const About = () => {
             Why We Built Sofara
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            Dubai real estate is one of the world's most cross-border property markets, with buyers from 180+ nationalities each year. Yet referral economics in the industry are often opaque — slow payouts, unclear attribution, no operating tools. Sofara was built to solve that with operator-grade infrastructure: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, AI tools for ambassadors, and structured payouts after closing. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
+            Dubai real estate is one of the world's most cross-border property markets, with buyers from 180+ nationalities each year. Yet referral economics in the industry are often opaque — slow payouts, unclear attribution, no operating tools. Sofara was built to solve that with operator-grade infrastructure: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, ready-to-share project material, and structured payouts after closing. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
           </p>
         </section>
 
@@ -157,7 +157,7 @@ const About = () => {
               {
                 icon: Users,
                 t: "Operator-built, not marketer-built",
-                d: "The product roadmap is set by people who close transactions. CRM, AI, calendar, library and commission tooling reflect real broker workflows.",
+                d: "The product roadmap is set by people who close transactions. CRM, calendar, project library and commission tooling reflect real broker workflows.",
               },
               {
                 icon: Sparkles,

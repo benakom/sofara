@@ -36,8 +36,6 @@ const BLOG_GROUPS: { title: string; links: FooterLink[] }[] = [
       { label: "Cost of the license", to: "/blog/cost-become-real-estate-agent-dubai" },
       { label: "How much agents earn", to: "/blog/how-much-money-real-estate-agents-make-dubai" },
       { label: "WhatsApp marketing in Dubai", to: "/blog/whatsapp-marketing-real-estate-dubai" },
-      { label: "AI tools for ambassadors", to: "/blog/ai-tools-real-estate-ambassadors" },
-      { label: "AI lead qualification", to: "/blog/ai-lead-qualification-real-estate" },
     ],
   },
   {

@@ -59,7 +59,7 @@ const Blog = () => {
               <span className="text-gradient-gold">Insights</span>
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8">
-              Market analysis, investment guides, AI tools, and ambassador resources for Dubai's booming real estate market.
+              Market analysis, investment guides and ambassador resources for Dubai's booming real estate market.
             </p>
 
             {/* Search */}

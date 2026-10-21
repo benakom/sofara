@@ -7,7 +7,7 @@ import SEO from "@/components/SEO";
 
 const steps = [
   { n: "01", title: "Apply for free", desc: "No license needed, no fees, no quotas. 2-minute application." },
-  { n: "02", title: "Get your toolkit", desc: "Unique referral link + AI tools (WhatsApp, CRM, lead scoring, sales scripts)." },
+  { n: "02", title: "Get your toolkit", desc: "Unique referral link + tools (WhatsApp templates, CRM, project brochures, sales scripts)." },
   { n: "03", title: "Refer & get paid", desc: "Cevitas closes the deal under RERA license. You're paid within 7 days." },
 ];
 
@@ -29,7 +29,7 @@ const profiles = [
 const comparison = [
   { feature: "Payment speed", sofara: "7 days", typical: "30–60 days" },
   { feature: "Commission rate", sofara: "Up to 3%", typical: "0.5–1.5%" },
-  { feature: "AI tools included", sofara: "Yes (WhatsApp, CRM, scoring)", typical: "No" },
+  { feature: "Tools included", sofara: "Yes (WhatsApp, CRM, brochures)", typical: "No" },
   { feature: "Legal structure", sofara: "Cevitas RERA-licensed", typical: "Varies / unclear" },
   { feature: "Dedicated support", sofara: "1-on-1 success manager", typical: "Shared inbox" },
 ];
@@ -199,7 +199,7 @@ const AmbassadorProgram = () => {
             {[
               { icon: Zap, t: "Paid in 7 days", d: "Fastest payout in Dubai real estate" },
               { icon: Globe2, t: "Work from anywhere", d: "Remote-first, global ambassador network" },
-              { icon: TrendingUp, t: "AI-powered tools", d: "Lead scoring, WhatsApp automation, scripts" },
+              { icon: TrendingUp, t: "Ready-to-use tools", d: "Project brochures, WhatsApp templates, scripts" },
             ].map((b) => (
               <div key={b.t} className="p-6 rounded-2xl border border-border/50 bg-secondary/10 text-center">
                 <b.icon className="w-6 h-6 text-primary mx-auto mb-3" />

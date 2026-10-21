@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Eye, Headphones, Brain, Award, Clock, ArrowRight } from "lucide-react";
+import { Shield, Eye, Headphones, FileText, Building2, Award, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
 import dubaiPartnership from "@/assets/dubai-partnership.jpg";
@@ -11,7 +11,7 @@ const WhySofaraSection = () => {
     { icon: Award, title: t("whysofara.experience"), desc: t("whysofara.experienceDesc") },
     { icon: Eye, title: t("whysofara.transparency"), desc: t("whysofara.transparencyDesc") },
     { icon: Headphones, title: t("whysofara.support"), desc: t("whysofara.supportDesc") },
-    { icon: Brain, title: t("whysofara.ai"), desc: t("whysofara.aiDesc") },
+    { icon: FileText, title: t("whysofara.ai"), desc: t("whysofara.aiDesc") },
     { icon: Shield, title: t("whysofara.protection"), desc: t("whysofara.protectionDesc") },
     { icon: Clock, title: t("whysofara.speed"), desc: t("whysofara.speedDesc") },
   ];
@@ -32,7 +32,7 @@ const WhySofaraSection = () => {
             <div className="rounded-2xl overflow-hidden border border-border/30">
               <img src={dubaiPartnership} alt="Sofara partnership in Dubai" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" loading="lazy" />
             </div>
-            {/* Floating AI badge */}
+            {/* Floating license badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const WhySofaraSection = () => {
               className="absolute -bottom-4 sm:-bottom-6 right-4 sm:-right-6 rounded-xl bg-primary/10 backdrop-blur-xl border border-primary/30 p-4 sm:p-5 shadow-2xl"
             >
               <div className="flex items-center gap-2 mb-1">
-                <Brain className="w-5 h-5 text-primary" />
+                <Building2 className="w-5 h-5 text-primary" />
                 <span className="text-sm font-bold text-primary">{t("whysofara.aiBadge")}</span>
               </div>
               <div className="text-xs text-muted-foreground">{t("whysofara.aiBadgeSub")}</div>

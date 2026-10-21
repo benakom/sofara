@@ -63,7 +63,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "WebPage",
   },
   "/dubai-real-estate-ambassadors": {
-    title: "Dubai Real Estate Ambassadors: Network, Earnings & How to Join | Sofara",
+    title: "Dubai & UAE Real Estate Ambassadors Network | Sofara",
     description:
       "What a Dubai real estate ambassador does, how the ambassadors network works, how much ambassadors earn per referral (up to 3% commission) and how to join Sofara for free from anywhere in the world.",
     canonical: "https://sofara.io/dubai-real-estate-ambassadors",
@@ -209,12 +209,21 @@ export const ORGANIZATION_JSONLD = {
   "@type": "Organization",
   "@id": "https://sofara.io/#organization",
   name: "Sofara",
-  alternateName: ["Sofara Dubai", "Sofara Real Estate", "Sofara UAE", "Dubai Real Estate Ambassadors Network"],
+  alternateName: [
+    "Sofara Dubai",
+    "Sofara Real Estate",
+    "Sofara UAE",
+    "Dubai Real Estate Ambassadors Network",
+    "UAE Real Estate Affiliate Network",
+    "Réseau des ambassadeurs de l'immobilier Dubaï",
+    "Apporteur d'affaires immobilier Dubaï",
+    "Apporteur de clients immobilier Dubaï",
+  ],
   url: "https://sofara.io/",
   logo: "https://sofara.io/favicon-512x512.png",
   image: "https://sofara.io/og-sofara.png",
   description:
-    "Sofara is the Dubai and UAE real estate ambassadors and affiliate network. Ambassadors refer property buyers to projects by Emaar, DAMAC, Sobha and other developers and earn up to 3% commission per closed sale.",
+    "Sofara is the Dubai and UAE real estate ambassadors and affiliate network: ambassadors, business introducers and client referrers present property buyers to Cevitas Real Estate LLC (RERA-licensed) and earn up to 3% commission per closed sale.",
   areaServed: ["AE", "Worldwide"],
   knowsLanguage: ["en", "fr", "es", "ru"],
   parentOrganization: {

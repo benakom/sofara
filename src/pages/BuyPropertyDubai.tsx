@@ -140,7 +140,7 @@ const BuyPropertyDubaiPage = () => {
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Earn <strong>up to 3% commission</strong> by referring property buyers to our RERA-licensed team.
-              No license required. Free to join. AI-powered platform.
+              No license required. Free to join. Paid in AED.
             </p>
             <Link
               to="/auth"

@@ -80,7 +80,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       {
         h2: "Affiliate, referral or ambassador: what is the difference?",
         blocks: [
-          { p: "The terms are often used interchangeably. A **referral program** usually means a one-off reward for recommending someone. An **affiliate program** adds tracking, a dashboard and recurring earnings. Sofara calls its affiliates **ambassadors** because they also get training, AI tools and a community. You can compare the approaches on the [Dubai real estate referral program](/real-estate-referral-program-dubai) page and learn how the [ambassadors network](/dubai-real-estate-ambassadors) is organised." },
+          { p: "The terms are often used interchangeably. A **referral program** usually means a one-off reward for recommending someone. An **affiliate program** adds tracking, a dashboard and recurring earnings. Sofara calls its affiliates **ambassadors** because they also get training, project material and a community. You can compare the approaches on the [Dubai real estate referral program](/real-estate-referral-program-dubai) page and learn how the [ambassadors network](/dubai-real-estate-ambassadors) is organised." },
         ],
       },
     ],
@@ -359,7 +359,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
             "Start with people who already asked you about Dubai property.",
             "Share useful information, such as our guide to [investing in Dubai real estate](/invest-dubai-real-estate), rather than sales messages.",
             "Introduce early: buyers decide faster when they are advised from the start.",
-            "Use the AI tools in your dashboard to qualify a contact before you submit it.",
+            "Ask your contact about budget, timing and goals before you submit them: the team can advise faster.",
           ] },
         ],
       },

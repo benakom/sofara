@@ -55,7 +55,7 @@ const BecomeRealEstateAgentDubai = () => (
     <p>With Sofara, the process is fully transparent:</p>
     <ol>
       <li><strong>Apply for free in two minutes.</strong> No license, no fees, no monthly quota.</li>
-      <li><strong>Get your toolkit.</strong> A personal referral link, AI-assisted lead qualification, WhatsApp automations and a CRM to follow every lead.</li>
+      <li><strong>Get your toolkit.</strong> A personal referral link, project brochures, WhatsApp templates and a CRM to follow every lead.</li>
       <li><strong>Refer buyers and follow the deal.</strong> You see the progress of each lead stage by stage in your dashboard, and the Sofara team keeps you informed until closing.</li>
       <li><strong>Get paid in AED within 7 days of closing.</strong> Up to 3% of the property price, by international bank transfer.</li>
     </ol>
@@ -69,7 +69,7 @@ const BecomeRealEstateAgentDubai = () => (
     </ul>
 
     <h2>Skills that matter in both routes</h2>
-    <p>Whatever the route, the same skills drive income: understanding the buyer's goal (rental yield, capital growth, <Link to="/blog/dubai-golden-visa-real-estate">Golden Visa</Link> eligibility), knowing the areas and the developers, explaining <Link to="/blog/dubai-payment-plans-explained">payment plans</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link> clearly, and following up consistently. Sofara ambassadors get scripts, AI role-play training and a lead scoring assistant to shorten that learning curve.</p>
+    <p>Whatever the route, the same skills drive income: understanding the buyer's goal (rental yield, capital growth, <Link to="/blog/dubai-golden-visa-real-estate">Golden Visa</Link> eligibility), knowing the areas and the developers, explaining <Link to="/blog/dubai-payment-plans-explained">payment plans</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fees</Link> clearly, and following up consistently. Sofara ambassadors get scripts, training and project material to shorten that learning curve.</p>
   </PillarPage>
 );
 
