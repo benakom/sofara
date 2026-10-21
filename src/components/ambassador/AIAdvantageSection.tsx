@@ -32,7 +32,7 @@ const AIAdvantageSection = () => {
 
             <h2 className="font-display text-[2rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("ai.title")}{" "}
-              <span className="marker-fluo">{t("ai.titleHighlight")}</span>
+              <span className="text-gradient-primary">{t("ai.titleHighlight")}</span>
             </h2>
             <p className="text-muted-foreground text-lg sm:text-lg mb-8 sm:mb-10 leading-relaxed">
               {t("ai.description")}

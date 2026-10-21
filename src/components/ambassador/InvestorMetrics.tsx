@@ -3,24 +3,16 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const UNITS: Record<string, { months: string; days: string }> = {
-  en: { months: "12 months", days: "7 days" },
-  fr: { months: "12 mois", days: "7 jours" },
-  ar: { months: "12 mois", days: "7 jours" },
-  es: { months: "12 meses", days: "7 días" },
-  ru: { months: "12 мес.", days: "7 дней" },
-};
-
 const InvestorMetrics = () => {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
 
   const metrics = [
     { value: "AED 1M+", label: t("investor.paid"), trend: t("investor.paidTrend") },
     { value: "200+", label: t("investor.ambassadors"), trend: t("investor.ambassadorsTrend") },
-    { value: "40+", label: t("investor.countries"), trend: t("investor.countriesTrend") },
-    { value: "1–3%", label: t("investor.mrr"), trend: t("investor.mrrTrend") },
-    { value: UNITS[lang]?.months ?? UNITS.en.months, label: t("investor.ltv"), trend: t("investor.ltvTrend") },
-    { value: UNITS[lang]?.days ?? UNITS.en.days, label: t("investor.conversion"), trend: t("investor.conversionTrend") },
+    { value: "12", label: t("investor.countries"), trend: t("investor.countriesTrend") },
+    { value: "AED 90,000", label: t("investor.mrr"), trend: t("investor.mrrTrend") },
+    { value: "3.8x", label: t("investor.ltv"), trend: t("investor.ltvTrend") },
+    { value: "72h", label: t("investor.conversion"), trend: t("investor.conversionTrend") },
   ];
 
   return (
@@ -38,7 +30,7 @@ const InvestorMetrics = () => {
             </span>
             <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
               {t("investor.title")}{" "}
-              <span className="marker-fluo">{t("investor.titleHighlight")}</span>
+              <span className="text-gradient-primary">{t("investor.titleHighlight")}</span>
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t("investor.description")}

@@ -33,7 +33,7 @@ const FAQSection = () => {
           </span>
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("faq.title")}{" "}
-            <span className="marker-fluo">{t("faq.titleHighlight")}</span>
+            <span className="text-gradient-gold">{t("faq.titleHighlight")}</span>
           </h2>
         </motion.div>
 

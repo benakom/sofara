@@ -2,22 +2,14 @@ import { lazy, Suspense, useEffect, useState } from "react";
 
 const LandingChatbot = lazy(() => import("./LandingChatbot"));
 
-/** Mounts the landing chatbot after the first screen has been read, so its code and bubble never get in the way of the hero. */
+/** Mounts the landing chatbot once the page is idle, so its code (markdown, Supabase, zod) never delays first paint. */
 const DeferredChatbot = () => {
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    // The chat bubble appears once the visitor has read a bit (scrolled past the first screen) or after 20 s,
-    // so it never covers the hero and its button on phones.
     const start = () => setReady(true);
-    const onScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.9) start();
-    };
-    const timer = window.setTimeout(start, 20000);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-    };
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    const timer = window.setTimeout(() => (w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 4000 }) : start()), 2500);
+    return () => window.clearTimeout(timer);
   }, []);
   if (!ready) return null;
   return (

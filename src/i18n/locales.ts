@@ -99,31 +99,31 @@ export const HOME_META: Record<Locale, { title: string; description: string }> =
 export const UI: Record<Locale, {
   join: string; seeProgram: string; faq: string; related: string; createAccount: string;
   perks: [string, string, string]; ambassadors: string; guides: string; home: string; breadcrumbHome: string;
-  updated: string; footerTagline: string; commissions: string; projects: string;
+  updated: string; footerTagline: string;
 }> = {
   en: {
     join: "Join Sofara for free", seeProgram: "How it works", faq: "Frequently asked questions", related: "Related guides",
     createAccount: "Create my free ambassador account", perks: ["No license required", "Free to join, no fees", "Paid in AED within 7 days"],
     ambassadors: "Ambassadors", guides: "Guides", home: "Home", breadcrumbHome: "Home", updated: "Updated October 2026",
-    footerTagline: "Sofara · Dubai & UAE Real Estate Ambassadors Network", commissions: "Commissions", projects: "Projects",
+    footerTagline: "Sofara · Dubai & UAE Real Estate Ambassadors Network",
   },
   fr: {
     join: "Rejoindre Sofara gratuitement", seeProgram: "Comment ça marche", faq: "Questions fréquentes", related: "Guides associés",
     createAccount: "Créer mon compte ambassadeur gratuit", perks: ["Aucune licence requise", "Inscription gratuite, sans frais", "Payé en AED sous 7 jours"],
     ambassadors: "Ambassadeurs", guides: "Guides", home: "Accueil", breadcrumbHome: "Accueil", updated: "Mis à jour en octobre 2026",
-    footerTagline: "Sofara · Réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats", commissions: "Commissions", projects: "Projets",
+    footerTagline: "Sofara · Réseau d'ambassadeurs de l'immobilier à Dubaï et aux Émirats",
   },
   es: {
     join: "Únete gratis a Sofara", seeProgram: "Cómo funciona", faq: "Preguntas frecuentes", related: "Guías relacionadas",
     createAccount: "Crear mi cuenta de embajador gratis", perks: ["Sin licencia", "Registro gratuito, sin cuotas", "Pago en AED en 7 días"],
     ambassadors: "Embajadores", guides: "Guías", home: "Inicio", breadcrumbHome: "Inicio", updated: "Actualizado en octubre de 2026",
-    footerTagline: "Sofara · Red de embajadores inmobiliarios de Dubái y EAU", commissions: "Comisiones", projects: "Proyectos",
+    footerTagline: "Sofara · Red de embajadores inmobiliarios de Dubái y EAU",
   },
   ru: {
     join: "Присоединиться бесплатно", seeProgram: "Как это работает", faq: "Частые вопросы", related: "Полезные материалы",
     createAccount: "Создать бесплатный аккаунт амбассадора", perks: ["Лицензия не нужна", "Бесплатно, без взносов", "Выплата в AED за 7 дней"],
     ambassadors: "Амбассадоры", guides: "Гайды", home: "Главная", breadcrumbHome: "Главная", updated: "Обновлено в октябре 2026",
-    footerTagline: "Sofara · Сеть амбассадоров недвижимости Дубая и ОАЭ", commissions: "Комиссии", projects: "Проекты",
+    footerTagline: "Sofara · Сеть амбассадоров недвижимости Дубая и ОАЭ",
   },
 };
 

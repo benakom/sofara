@@ -21,7 +21,7 @@ const CommissionSection = () => {
           </span>
           <h2 className="font-display text-[2rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("commission.title")}{" "}
-            <span className="marker-fluo">{t("commission.titleHighlight")}</span>
+            <span className="text-gradient-primary">{t("commission.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("commission.description")}

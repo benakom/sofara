@@ -27,7 +27,7 @@ const HowItWorksSection = () => {
           </span>
           <h2 className="font-display text-[2rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("how.titleNew")}{" "}
-            <span className="marker-fluo">{t("how.titleHighlightNew")}</span>
+            <span className="text-gradient-primary">{t("how.titleHighlightNew")}</span>
           </h2>
           <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("how.subtitleNew")}

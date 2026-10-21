@@ -38,7 +38,7 @@ const BenefitsSection = () => {
           </span>
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
             {t("benefits.title")}{" "}
-            <span className="marker-fluo">{t("benefits.titleHighlight")}</span>
+            <span className="text-gradient-primary">{t("benefits.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("benefits.description")}

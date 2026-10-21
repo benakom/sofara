@@ -32,7 +32,7 @@ const MidCTABanner = () => {
 
             <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-5 text-foreground leading-tight">
               {t("midcta.title")}{" "}
-              <span className="marker-fluo">{t("midcta.titleHighlight")}</span>
+              <span className="text-gradient-primary">{t("midcta.titleHighlight")}</span>
             </h2>
             
             <p className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto mb-5 sm:mb-7 leading-relaxed">

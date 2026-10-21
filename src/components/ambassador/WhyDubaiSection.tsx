@@ -55,7 +55,7 @@ const WhyDubaiSection = () => {
               </span>
               <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
                 {t("dubai.title")}{" "}
-                <span className="marker-fluo">{t("dubai.titleHighlight")}</span>{" "}
+                <span className="text-gradient-primary">{t("dubai.titleHighlight")}</span>{" "}
                 {t("dubai.titleEnd")}
               </h2>
               <p className="text-muted-foreground text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">

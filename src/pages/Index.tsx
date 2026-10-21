@@ -18,6 +18,7 @@ const WhyDubaiSection = lazy(() => import("@/components/ambassador/WhyDubaiSecti
 const PlatformSection = lazy(() => import("@/components/ambassador/PlatformSection"));
 const StorytellingSection = lazy(() => import("@/components/ambassador/StorytellingSection"));
 const BenefitsSection = lazy(() => import("@/components/ambassador/BenefitsSection"));
+const TestimonialsSection = lazy(() => import("@/components/ambassador/TestimonialsSection"));
 const InvestorMetrics = lazy(() => import("@/components/ambassador/InvestorMetrics"));
 const FinalCTASection = lazy(() => import("@/components/ambassador/FinalCTASection"));
 const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
@@ -86,6 +87,7 @@ const Index = ({ locale = "en" }: { locale?: Locale }) => {
         <Suspense fallback={<Loader />}>
           <StorytellingSection />
           <BenefitsSection />
+          <TestimonialsSection />
           <InvestorMetrics />
         </Suspense>
 
