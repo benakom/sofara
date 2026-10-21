@@ -32,7 +32,7 @@ const beasties = new Beasties({
   publicPath: "/",
   preload: "swap",
   pruneSource: false,
-  inlineFonts: false,
+  inlineFonts: true,
   preloadFonts: false,
   keyframes: "critical",
   logLevel: "error",
