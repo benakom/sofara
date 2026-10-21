@@ -106,22 +106,22 @@ const FooterSection = () => {
   const h = HEADINGS[locale];
   const home = PAGE_PATHS.home[locale];
   const anchor = (id: string) => (pathname === home ? id : `${home}${id}`);
-  const page = (k: "ambassadors" | "affiliate" | "agent" | "invest"): FooterLink => ({ label: PAGE_LABELS[k][locale], to: PAGE_PATHS[k][locale] });
+  const page = (k: "ambassadors" | "affiliate" | "referral" | "agent" | "invest"): FooterLink => ({ label: PAGE_LABELS[k][locale], to: PAGE_PATHS[k][locale] });
 
   const program: FooterLink[] = [
     { label: t("nav.howItWorks"), to: anchor("#comment") },
     { label: t("nav.benefits"), to: anchor("#avantages") },
     { label: t("nav.whyDubai"), to: anchor("#dubai") },
-    ...(en ? [{ label: "Ambassador program", to: "/ambassador-program" }, { label: "About Sofara", to: "/about" }] : []),
+    ...(en ? [{ label: "Real estate ambassador program Dubai", to: "/ambassador-program" }, { label: "About Sofara", to: "/about" }] : []),
     { label: "Blog", to: "/blog" },
   ];
   const guide = (k: keyof typeof GUIDES): FooterLink => ({ label: GUIDES[k].label, to: GUIDES[k].path });
   const network: FooterLink[] = [
     page("ambassadors"),
+    page("referral"),
     page("affiliate"),
     ...(locale === "fr" ? [guide("apporteur")] : []),
     ...(en ? [
-      { label: "Real estate referral program", to: "/real-estate-referral-program-dubai" },
       { label: EN_GUIDES.referralFee.label, to: EN_GUIDES.referralFee.path },
     ] : []),
   ];

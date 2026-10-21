@@ -66,7 +66,7 @@ const LOCALIZED_ROUTES: { path: string; pageKey: AnyPageKey; locale: Locale }[] 
   { path: PAGE_PATHS.affiliate.en, pageKey: "affiliate", locale: "en" },
   ...(Object.keys(GUIDES) as GuideKey[]).map((pageKey) => ({ path: GUIDES[pageKey].path, pageKey, locale: GUIDES[pageKey].locale })),
   ...(["fr", "es", "ru", "ar"] as const).flatMap((locale) =>
-    (["ambassadors", "affiliate", "agent", "invest"] as const).map((pageKey) => ({ path: PAGE_PATHS[pageKey][locale], pageKey, locale })),
+    (["ambassadors", "affiliate", "referral", "agent", "invest"] as const).map((pageKey) => ({ path: PAGE_PATHS[pageKey][locale], pageKey, locale })),
   ),
 ];
 

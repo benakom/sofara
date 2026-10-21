@@ -3,10 +3,10 @@ import type { PillarContent } from "./types";
 
 export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   affiliate: {
-    title: "Real Estate Affiliate Program in Dubai & UAE | Sofara",
+    title: "Real Estate Affiliate Program UAE & Dubai | Sofara",
     description:
       "Join the Dubai and UAE real estate affiliate program from the USA, Canada, the UK, Europe or the GCC. Refer property buyers and earn 1% to 3% of the price in AED.",
-    h1: "The UAE Real Estate Affiliate Program for Dubai Property",
+    h1: "Real Estate Affiliate Program in the UAE and Dubai",
     eyebrow: "Affiliate program · Dubai, Abu Dhabi, Ras Al Khaimah",
     intro:
       "Sofara is a **real estate affiliate program** built for Dubai and the wider UAE. Affiliates, whom we call ambassadors, introduce people who want to buy property in the Emirates. A RERA-licensed brokerage, Cevitas Real Estate LLC, handles the advice, the viewings and the paperwork. When the sale goes through, the affiliate earns up to 3% of the property price, paid in AED.",
@@ -237,10 +237,10 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   referralFee: {
-    title: "Real Estate Referral Fees in Dubai: How Much & Who Pays",
+    title: "Real Estate Referral Fee Dubai: How Much & Who Pays",
     description:
       "How real estate referral fees work in Dubai: typical percentages, who pays them, referral agreements between agents, and how Sofara pays up to 3% of the price.",
-    h1: "Real Estate Referral Fees in Dubai: How Much and Who Pays",
+    h1: "Real Estate Referral Fee in Dubai: How Much and Who Pays",
     eyebrow: "Guide · Dubai & UAE",
     intro:
       "A **referral fee** rewards the person who introduces a buyer, a seller or a tenant to a real estate agency. In Dubai, the amounts can be significant because they are calculated on the agency commission or on the property price. This guide explains the usual rates, who pays them and how they are documented.",
@@ -271,6 +271,13 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
         ],
       },
       {
+        h2: "Property referral commission in Dubai",
+        blocks: [
+          { p: "The **property referral commission** is the amount paid to the person who introduced a buyer once the sale completes. On Dubai off-plan projects it is usually calculated on the property price rather than on the agency fee. With Sofara it ranges from 1% to 3% of the price depending on the project: AED 15,000 to 45,000 on an AED 1.5 million apartment, AED 40,000 to 120,000 on an AED 4 million villa." },
+          { p: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED within 7 days of the developer paying Cevitas. Join the [real estate referral program in Dubai](/real-estate-referral-program-dubai) to receive it." },
+        ],
+      },
+      {
         h2: "How referral fees are documented",
         blocks: [
           { p: "Between two licensed brokerages, co-operation is documented with the RERA agreement between agents (Form I), which sets how the commission is shared. For referral partners who are not brokers, the agency sets out the terms in its own referral agreement: the rate, when the fee is earned, how it is invoiced and how long the referral is protected." },
@@ -292,6 +299,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
     ],
     faqs: [
       { q: "What is a normal referral fee in Dubai real estate?", a: "Between agents, often 20% to 50% of the agency commission. Sofara ambassadors earn up to 3% of the property price on off-plan sales." },
+      { q: "What is the property referral commission in Dubai?", a: "With Sofara, 1% to 3% of the property price depending on the project, paid in AED within 7 days of the developer paying Cevitas." },
       { q: "Who pays the referral fee?", a: "The agency that receives the client pays it out of its own commission. The buyer does not pay anything extra." },
       { q: "Is there an official agreement for referrals between agents?", a: "Yes. Licensed brokerages use the RERA agreement between agents (Form I) to share a commission." },
       { q: "When does Sofara pay the referral commission?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED within 7 days of the developer paying Cevitas." },

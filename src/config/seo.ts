@@ -81,11 +81,11 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/real-estate-referral-program-dubai": {
-    title: "Dubai Real Estate Referral Program: Earn up to 3% per Deal | Sofara",
+    title: "Real Estate Referral Program Dubai & UAE | Sofara",
     description:
-      "Join the Dubai real estate referral program that pays up to 3% commission on Emaar, DAMAC and Sobha deals. No license, no fees, paid in AED within 7 days of closing. Free to join.",
+      "The real estate referral program for Dubai and the UAE: refer property buyers, earn up to 3% of the price in AED. No license, no fees, free to join.",
     canonical: "https://sofara.io/real-estate-referral-program-dubai",
-    h1: "Dubai Real Estate Referral Program: Refer Buyers, Earn up to 3%",
+    h1: "Real Estate Referral Program in Dubai & the UAE",
     keywords: [
       "real estate referral program Dubai",
       "Dubai property referral program",
@@ -153,11 +153,11 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "WebPage",
   },
   "/ambassador-program": {
-    title: "Dubai Real Estate Ambassadors | Sofara",
+    title: "Real Estate Ambassador Program Dubai | Sofara",
     description:
-      "Join Sofara, refer Dubai property buyers and earn up to 3% commission in AED through a licensed real estate partner.",
+      "The Sofara real estate ambassador program in Dubai: refer property buyers, earn up to 3% commission in AED through a RERA-licensed partner. Free, no license.",
     canonical: "https://sofara.io/ambassador-program",
-    h1: "The Sofara Dubai Real Estate Ambassadors Network",
+    h1: "The Real Estate Ambassador Program in Dubai",
     keywords: [
       "Dubai Real Estate Ambassadors",
       "Dubai Real Estate Ambassadors Network",

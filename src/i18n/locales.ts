@@ -24,7 +24,7 @@ export const langOfLocale = (l: Locale): Lang => (l === "ar" ? "arb" : l);
 /** URL locale of an interface language (the legacy "ar" alias is French). */
 export const localeOfLang = (l: Lang): Locale => (l === "arb" ? "ar" : l === "ar" ? "fr" : l);
 
-export type PageKey = "home" | "ambassadors" | "affiliate" | "agent" | "invest";
+export type PageKey = "home" | "ambassadors" | "affiliate" | "referral" | "agent" | "invest";
 
 export const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
   home: { en: "/", fr: "/fr", es: "/es", ru: "/ru", ar: "/ar" },
@@ -41,6 +41,13 @@ export const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
     es: "/es/programa-afiliados-inmobiliarios-dubai",
     ru: "/ru/partnerskaya-programma-nedvizhimost-dubai",
     ar: "/ar/altaswiq-alaqari-bialumula-dubai",
+  },
+  referral: {
+    en: "/real-estate-referral-program-dubai",
+    fr: "/fr/programme-recommandation-immobilier-dubai",
+    es: "/es/programa-referidos-inmobiliario-dubai",
+    ru: "/ru/referalnaya-programma-nedvizhimost-dubai",
+    ar: "/ar/barnamaj-alihala-alaqariya-dubai",
   },
   agent: {
     en: "/become-real-estate-agent-dubai",
@@ -163,9 +170,9 @@ export type GuideKey = "freelance" | "partTime" | "referralFee" | "sideIncome" |
 export const GUIDES: Record<GuideKey, { locale: Locale; path: string; label: string }> = {
   freelance: { locale: "en", path: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai" },
   partTime: { locale: "en", path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
-  referralFee: { locale: "en", path: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
+  referralFee: { locale: "en", path: "/real-estate-referral-fee-dubai", label: "Real estate referral fee Dubai" },
   sideIncome: { locale: "en", path: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
-  apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires et de clients immobilier" },
+  apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires immobilier Dubaï" },
   travailDubai: { locale: "fr", path: "/fr/travailler-immobilier-dubai", label: "Travailler dans l'immobilier à Dubaï" },
   rabota: { locale: "ru", path: "/ru/rabota-rieltorom-v-dubae", label: "Работа риэлтором в Дубае" },
 };
@@ -180,17 +187,24 @@ export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
   home: { en: "Sofara", fr: "Sofara", es: "Sofara", ru: "Sofara", ar: "Sofara" },
   ambassadors: {
     en: "Dubai real estate ambassadors",
-    fr: "Réseau des ambassadeurs immobiliers",
+    fr: "Ambassadeur immobilier Dubaï",
     es: "Embajadores inmobiliarios en Dubái",
     ru: "Амбассадоры недвижимости Дубая",
     ar: "سفراء العقارات في دبي",
   },
   affiliate: {
-    en: "UAE real estate affiliate program",
-    fr: "Affiliation immobilière à Dubaï",
+    en: "Real estate affiliate program UAE",
+    fr: "Programme d'affiliation immobilier Dubaï",
     es: "Programa de afiliados inmobiliarios",
     ru: "Партнёрская программа недвижимости",
     ar: "التسويق العقاري بالعمولة",
+  },
+  referral: {
+    en: "Real estate referral program Dubai",
+    fr: "Commission de recommandation immobilier",
+    es: "Programa de referidos inmobiliario",
+    ru: "Реферальная программа недвижимости",
+    ar: "برنامج الإحالة العقارية",
   },
   agent: {
     en: "Become a real estate agent in Dubai",

@@ -317,4 +317,68 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
     },
     related: ["ambassadors", "affiliate", "agent", "home"],
   },
+
+  referral: {
+    title: "Programa de referidos inmobiliario en Dubái: 1 % a 3 %",
+    description:
+      "Programa de referidos inmobiliario en Dubái y EAU: recomienda un comprador y cobra del 1 % al 3 % del precio, en AED, en 7 días desde el pago del promotor.",
+    h1: "Programa de referidos inmobiliario en Dubái y EAU",
+    eyebrow: "Programa de referidos · Dubái y Emiratos",
+    intro:
+      "¿Conoces a alguien que quiere comprar en Dubái? Con el **programa de referidos inmobiliario** de Sofara lo presentas a Cevitas Real Estate, agencia autorizada por la RERA, y cobras una **comisión del 1 % al 3 % del precio** cuando se cierra la venta. Gratis, sin licencia, desde cualquier país.",
+    sections: [
+      {
+        h2: "Cómo funciona la comisión por referido en Dubái",
+        blocks: [
+          { p: "En obra nueva, los promotores de Dubái pagan a la agencia que aporta al comprador. Sofara entrega una parte publicada de ese pago a quien recomendó al comprador. La tasa depende del proyecto, entre el 1 % y el 3 % del precio, y aparece en tu panel antes de recomendar." },
+          { table: {
+            head: ["Precio de la propiedad", "Comisión al 1 %", "Comisión al 3 %"],
+            rows: [
+              ["800.000 AED", "8.000 AED", "24.000 AED"],
+              ["1.500.000 AED", "15.000 AED", "45.000 AED"],
+              ["4.000.000 AED", "40.000 AED", "120.000 AED"],
+            ],
+          } },
+        ],
+      },
+      {
+        h2: "Cómo referir a un comprador",
+        blocks: [
+          { ol: [
+            "**Crea tu cuenta gratis** y obtén tu enlace personal.",
+            "**Recomienda**: comparte el enlace o registra el contacto desde tu panel.",
+            "**Cevitas acompaña al comprador**: cualificación, selección de proyectos, visitas presenciales o por vídeo, reserva y contrato (SPA).",
+            "**Sigue cada etapa** en tu panel.",
+            "**Cobra tu comisión** en AED por transferencia en 7 días desde el pago del promotor a Cevitas.",
+          ] },
+          { p: "La comisión se genera cuando el comprador firma el SPA y paga la entrada con las tasas del Dubai Land Department (DLD). Cada contacto queda vinculado a tu cuenta durante 12 meses." },
+        ],
+      },
+      {
+        h2: "Para quién es el programa",
+        blocks: [
+          { ul: [
+            "Expatriados y comunidades hispanohablantes interesadas en Dubái.",
+            "Asesores financieros, gestores patrimoniales y consultores de reubicación.",
+            "Agentes inmobiliarios en España y Latinoamérica.",
+            "Creadores de contenido y emprendedores con una red interesada en invertir.",
+          ] },
+          { p: "Consulta también el [programa de afiliados inmobiliarios](/es/programa-afiliados-inmobiliarios-dubai) y la [red de embajadores](/es/embajadores-inmobiliarios-dubai)." },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "¿Cuánto paga el programa de referidos inmobiliario en Dubái?", a: "Del 1 % al 3 % del precio según el proyecto, por ejemplo 15.000 a 45.000 AED por un apartamento de 1,5 millones de AED." },
+      { q: "¿Cuándo se paga la comisión?", a: "Se genera con la firma del SPA y el pago de la entrada con las tasas DLD, y se abona en AED en 7 días desde el pago del promotor a Cevitas." },
+      { q: "¿Necesito licencia para referir un comprador?", a: "No. Tú presentas al comprador; Cevitas Real Estate LLC, agencia autorizada por la RERA, realiza todas las etapas reguladas." },
+      { q: "¿Funciona en todos los Emiratos?", a: "Sí: Dubái en prioridad, y también Abu Dabi, Ras al Jaima y Sharjah a través de Cevitas." },
+      { q: "¿Mi contacto está protegido?", a: "Sí, durante 12 meses, aunque contacte directamente con Sofara o Cevitas." },
+      { q: "¿El registro tiene coste?", a: "No, es gratuito, sin suscripción ni mínimo de recomendaciones." },
+    ],
+    cta: {
+      title: "Refiere un comprador y cobra tu comisión",
+      text: "Registro gratuito. Presenta a tus contactos, el equipo autorizado de Cevitas se encarga del resto y tú cobras del 1 % al 3 % del precio.",
+    },
+    related: ["affiliate", "ambassadors", "agent", "home"],
+  },
 };

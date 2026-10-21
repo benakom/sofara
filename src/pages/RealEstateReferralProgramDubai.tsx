@@ -6,8 +6,8 @@ import PillarPage from "@/components/seo/PillarPage";
 const RealEstateReferralProgramDubai = () => (
   <PillarPage
     route="/real-estate-referral-program-dubai"
-    eyebrow="Referral program · up to 3% commission"
-    intro="Most Dubai referral programs pay a small one-off fee and leave you in the dark. Sofara's real estate referral program pays up to 3% of the property price on Emaar, DAMAC, Sobha and other developer projects, shows you every step of the deal, and pays in AED within 7 days of closing. Free to join, no license required."
+    eyebrow="Real estate referral program · Dubai & UAE"
+    intro="Sofara runs the real estate referral program for Dubai and the UAE. Where most property referral programs pay a small one-off fee and leave you in the dark, Sofara up to 3% of the property price on Emaar, DAMAC, Sobha and other developer projects, shows you every step of the deal, and pays in AED within 7 days of closing. Free to join, no license required."
     faqs={PILLAR_FAQS["/real-estate-referral-program-dubai"]}
     related={[
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: the network explained" },
@@ -35,6 +35,9 @@ const RealEstateReferralProgramDubai = () => (
       </tbody>
     </table>
     <p>Concretely, a AED 2 million apartment at Emaar Creek Harbour can earn the referrer up to AED 60,000. A AED 3.5 million Sobha villa, up to AED 105,000. Read the <Link to="/blog/sofara-commission-structure-explained">full commission structure</Link> for the rate per developer.</p>
+
+    <h2>A property referral program for the whole UAE</h2>
+    <p>Sofara is a property referral program for Dubai first, and for the rest of the UAE through Cevitas Real Estate: Abu Dhabi (Saadiyat, Yas, Al Reem), Ras Al Khaimah (Al Marjan Island) and Sharjah. The rules are the same everywhere: a published rate of up to 3% of the price, a contact protected for 12 months, and payment in AED within 7 days of the developer paying Cevitas. If you prefer the affiliate model with recurring tracking, see the <Link to="/real-estate-affiliate-program-uae">real estate affiliate program in the UAE</Link>; for the amounts and who pays them, read <Link to="/real-estate-referral-fee-dubai">real estate referral fees in Dubai</Link>.</p>
 
     <h2>Who can join</h2>
     <p>The program is open worldwide, with no license, no fee and no quota. It is built for expatriates and diaspora communities, financial advisors and wealth managers, real estate agents based outside the UAE, content creators and community leaders, and anyone who regularly hears "I'm thinking of buying in Dubai".</p>

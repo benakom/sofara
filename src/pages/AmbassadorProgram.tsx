@@ -54,10 +54,10 @@ const AmbassadorProgram = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <Shield className="w-3.5 h-3.5" /> RERA-Licensed · Trusted by 500+ Ambassadors
+              <Shield className="w-3.5 h-3.5" /> RERA-Licensed · Trusted by 700+ Ambassadors
             </span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              The Dubai Real Estate Ambassador Program
+              The Real Estate Ambassador Program in Dubai
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
               Refer Dubai property buyers. Earn up to <strong>3% commission</strong>. No license required.

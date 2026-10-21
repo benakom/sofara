@@ -3,10 +3,10 @@ import type { PillarContent } from "./types";
 
 export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   ambassadors: {
-    title: "Réseau des ambassadeurs de l'immobilier Dubaï & Émirats",
+    title: "Ambassadeur immobilier Dubaï : le réseau Sofara aux Émirats",
     description:
       "Devenez ambassadeur immobilier à Dubaï avec Sofara : recommandez des acheteurs depuis votre pays, sans licence, et touchez jusqu'à 3 % de commission en AED.",
-    h1: "Réseau des ambassadeurs de l'immobilier à Dubaï et aux Émirats",
+    h1: "Ambassadeur immobilier à Dubaï : le réseau des ambassadeurs aux Émirats",
     eyebrow: "Réseau d'ambassadeurs · Dubaï et Émirats arabes unis",
     intro:
       "Un **ambassadeur immobilier à Dubaï** met en relation des personnes qui veulent acheter un bien aux Émirats avec une agence agréée. Il n'a besoin ni de licence ni de résider aux Émirats. Sofara, le réseau créé par Cevitas Real Estate LLC, réunit ces ambassadeurs sur une même plateforme, avec une même équipe de vente et une politique de commission publiée à l'avance.",
@@ -82,10 +82,10 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   affiliate: {
-    title: "Affiliation immobilière Dubaï & Émirats : jusqu'à 3 %",
+    title: "Programme d'affiliation immobilier Dubaï : jusqu'à 3 %",
     description:
       "Programme d'affiliation immobilière à Dubaï et aux Émirats : devenez apporteur d'affaires, recommandez des acheteurs et touchez jusqu'à 3 % de commission en AED.",
-    h1: "Affiliation immobilière à Dubaï et aux Émirats : devenir affilié",
+    h1: "Programme d'affiliation immobilier à Dubaï et aux Émirats",
     eyebrow: "Programme d'affiliation · Dubaï, Abu Dhabi, Ras Al Khaimah",
     intro:
       "Sofara est un **programme d'affiliation immobilière** dédié à Dubaï et aux Émirats arabes unis. Vous devenez apporteur d'affaires : vous recommandez des acheteurs, l'agence agréée Cevitas Real Estate conseille et conclut la vente, et vous percevez jusqu'à 3 % du prix du bien.",
@@ -319,10 +319,10 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   apporteur: {
-    title: "Apporteur d'affaires et de clients immobilier Dubaï & EAU",
+    title: "Apporteur d'affaires immobilier Dubaï et apporteur de clients",
     description:
       "Devenez apporteur d'affaires ou apporteur de clients immobilier à Dubaï et aux Émirats, depuis la France, la Belgique, la Suisse ou le Canada : 1 à 3 % du prix.",
-    h1: "Apporteur d'affaires et apporteur de clients immobilier à Dubaï et aux Émirats",
+    h1: "Apporteur d'affaires immobilier Dubaï : devenir apporteur de clients aux Émirats",
     eyebrow: "Apporteur d'affaires · France, Belgique, Suisse, Canada, Maroc",
     intro:
       "Un **apporteur d'affaires** (ou **apporteur de clients**) **immobilier à Dubaï et aux Émirats** met en relation un acheteur avec une agence agréée et touche une commission quand la vente se conclut. Avec Sofara, l'agence est Cevitas Real Estate LLC, agréée par la RERA à Dubaï, et votre rémunération va de **1 % à 3 % du prix du bien**. Vous n'avez besoin ni de carte professionnelle ni de vous installer aux Émirats.",
@@ -477,5 +477,74 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       text: "Sans visa ni licence : devenez apporteur d'affaires avec Sofara, présentez vos contacts et touchez de 1 % à 3 % du prix du bien.",
     },
     related: ["apporteur", "agent", "ambassadors", "affiliate", "home"],
+  },
+
+  referral: {
+    title: "Commission de recommandation immobilier Dubaï : 1 à 3 %",
+    description:
+      "Programme de recommandation immobilier à Dubaï et aux Émirats : recommandez un acheteur, touchez une commission de 1 à 3 % du prix, versée en AED sous 7 jours.",
+    h1: "Commission de recommandation immobilier à Dubaï : le programme Sofara",
+    eyebrow: "Programme de recommandation · Dubaï et Émirats",
+    intro:
+      "Vous connaissez quelqu'un qui veut acheter à Dubaï ? Avec le **programme de recommandation immobilier** de Sofara, vous le présentez à Cevitas Real Estate, agence agréée RERA, et vous touchez une **commission de recommandation de 1 % à 3 % du prix du bien** quand la vente se conclut. Gratuit, sans licence, depuis n'importe quel pays.",
+    sections: [
+      {
+        h2: "Comment fonctionne la commission de recommandation à Dubaï",
+        blocks: [
+          { p: "Sur le neuf, les promoteurs de Dubaï rémunèrent l'agence qui apporte l'acheteur. Sofara reverse une part publiée de cette rémunération à la personne qui a recommandé l'acheteur : c'est la commission de recommandation. Son taux dépend du projet, entre 1 % et 3 % du prix, et il est affiché dans votre espace avant toute recommandation." },
+          { table: {
+            head: ["Prix du bien", "Commission à 1 %", "Commission à 3 %"],
+            rows: [
+              ["800 000 AED", "8 000 AED", "24 000 AED"],
+              ["1 500 000 AED", "15 000 AED", "45 000 AED"],
+              ["4 000 000 AED", "40 000 AED", "120 000 AED"],
+            ],
+          } },
+        ],
+      },
+      {
+        h2: "Recommander un acheteur, étape par étape",
+        blocks: [
+          { ol: [
+            "**Créez votre compte gratuit** et récupérez votre lien personnel.",
+            "**Recommandez** : partagez le lien ou enregistrez le contact depuis votre espace.",
+            "**Cevitas accompagne l'acheteur** : appel de qualification, sélection de projets, visites sur place ou en vidéo, réservation, contrat (SPA).",
+            "**Suivez chaque étape** dans votre espace, avec une notification à chaque avancée.",
+            "**Recevez votre commission** en AED par virement sous 7 jours après le paiement du promoteur à Cevitas.",
+          ] },
+          { p: "La commission est acquise lorsque l'acheteur signe le SPA et règle l'apport avec les frais du Dubai Land Department (DLD). Chaque contact reste rattaché à votre compte pendant 12 mois." },
+        ],
+      },
+      {
+        h2: "Recommandation, parrainage, apport d'affaires : quelles différences ?",
+        blocks: [
+          { p: "Le **parrainage** désigne souvent une prime ponctuelle versée par un promoteur à un propriétaire. L'**apporteur d'affaires** et le **programme de recommandation** reposent sur le même principe : présenter un acheteur et être rémunéré si la vente se fait. Chez Sofara, la recommandation est encadrée : taux publié, suivi en temps réel, protection du contact et paiement rapide. Voir aussi [apporteur d'affaires immobilier Dubaï](/fr/apporteur-affaires-immobilier-dubai) et le [programme d'affiliation](/fr/affiliation-immobilier-dubai)." },
+        ],
+      },
+      {
+        h2: "Qui peut recommander des acheteurs",
+        blocks: [
+          { ul: [
+            "Les expatriés et la diaspora souvent interrogés sur l'immobilier à Dubaï.",
+            "Les conseillers en patrimoine, experts-comptables et consultants en relocation.",
+            "Les agents immobiliers en France, en Belgique, en Suisse, au Canada ou au Maghreb.",
+            "Les créateurs de contenu et entrepreneurs dont l'audience s'intéresse à Dubaï.",
+          ] },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Quel est le montant de la commission de recommandation immobilier à Dubaï ?", a: "De 1 % à 3 % du prix du bien selon le projet, par exemple 15 000 à 45 000 AED pour un appartement à 1,5 million d'AED." },
+      { q: "Quand la commission de recommandation est-elle versée ?", a: "Elle est acquise à la signature du SPA et au paiement de l'apport avec les frais DLD, puis versée en AED sous 7 jours après le paiement du promoteur à Cevitas." },
+      { q: "Faut-il une licence pour recommander un acheteur ?", a: "Non. Vous présentez l'acheteur ; Cevitas Real Estate LLC, agence agréée RERA, réalise toutes les étapes réglementées." },
+      { q: "Le programme couvre-t-il tous les Émirats ?", a: "Oui : Dubaï en priorité, mais aussi Abu Dhabi, Ras Al Khaimah et Sharjah via Cevitas." },
+      { q: "Mon contact est-il protégé ?", a: "Oui, pendant 12 mois, même s'il contacte directement Sofara ou Cevitas." },
+      { q: "L'inscription est-elle payante ?", a: "Non, elle est gratuite, sans abonnement ni nombre minimum de recommandations." },
+    ],
+    cta: {
+      title: "Recommandez un acheteur et touchez votre commission",
+      text: "Inscription gratuite. Présentez vos contacts, l'équipe agréée de Cevitas s'occupe du reste, et vous touchez de 1 % à 3 % du prix du bien.",
+    },
+    related: ["apporteur", "affiliate", "ambassadors", "home"],
   },
 };

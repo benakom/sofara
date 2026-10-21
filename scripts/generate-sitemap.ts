@@ -22,6 +22,7 @@ const localized: { key: PageKey; priority: string }[] = [
   { key: "home", priority: "1.0" },
   { key: "ambassadors", priority: "0.95" },
   { key: "affiliate", priority: "0.95" },
+  { key: "referral", priority: "0.95" },
   { key: "agent", priority: "0.9" },
   { key: "invest", priority: "0.9" },
 ];
@@ -36,7 +37,6 @@ for (const { key, priority } of localized) {
 const englishOnly: Omit<Entry, "alternates">[] = [
   ...Object.values(EN_GUIDES).map((g) => ({ path: g.path, changefreq: "weekly" as const, priority: "0.9" })),
   { path: "/ambassador-program", changefreq: "weekly", priority: "0.95" },
-  { path: "/real-estate-referral-program-dubai", changefreq: "weekly", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.8" },
   { path: "/buy-property-dubai", changefreq: "weekly", priority: "0.8" },
   { path: "/dubai-off-plan-properties", changefreq: "weekly", priority: "0.8" },
