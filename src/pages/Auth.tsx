@@ -298,20 +298,20 @@ const Auth = () => {
 
   const metrics = [
     { icon: TrendingUp, value: "Up to 3%", label: lang === "ar" ? "Commission par vente" : "Commission per sale" },
-    { icon: Users, value: "200+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
+    { icon: Users, value: "700+", label: lang === "ar" ? "Ambassadeurs actifs" : "Active ambassadors" },
   ];
 
   const trustPoints = lang === "ar"
     ? [
         "Une équipe dédiée à Dubaï, du contact à la signature",
-        "Commission moyenne : AED 90 000+ par deal",
+        "Jusqu'à 3 % de commission par vente",
         "Transparence totale — suivi en temps réel",
         "Formation & accompagnement premium",
         "Aucune licence immobilière requise",
       ]
     : [
         "Dedicated Dubai team from contact to signing",
-        "Average commission: AED 90,000+ per deal",
+        "Up to 3% commission per sale",
         "Full transparency — real-time tracking",
         "Premium training & dedicated support",
         "No real estate license required",

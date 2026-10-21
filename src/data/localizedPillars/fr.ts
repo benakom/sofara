@@ -76,7 +76,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
     ],
     cta: {
       title: "Devenez ambassadeur immobilier à Dubaï",
-      text: "Rejoignez des centaines d'ambassadeurs dans plus de 40 pays. Recommandez des acheteurs, suivez chaque dossier et soyez payé en AED.",
+      text: "Rejoignez plus de 700 ambassadeurs dans plus de 40 pays. Recommandez des acheteurs, suivez chaque dossier et soyez payé en AED.",
     },
     related: ["affiliate", "agent", "invest", "home"],
   },

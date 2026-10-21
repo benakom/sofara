@@ -34,7 +34,7 @@ const RealEstateReferralProgramDubai = () => (
         <tr><td>Sofara referral program</td><td>Up to 3% of the price</td><td>Stage-by-stage dashboard</td><td>Within 7 days of closing</td></tr>
       </tbody>
     </table>
-    <p>Concretely, a AED 2 million apartment at Emaar Creek Harbour can earn the referrer up to AED 60,000. A AED 3.5 million Sobha villa, up to AED 105,000. Several ambassadors exceed AED 90,000 in a single month. Read the <Link to="/blog/sofara-commission-structure-explained">full commission structure</Link> for the rate per developer.</p>
+    <p>Concretely, a AED 2 million apartment at Emaar Creek Harbour can earn the referrer up to AED 60,000. A AED 3.5 million Sobha villa, up to AED 105,000. Read the <Link to="/blog/sofara-commission-structure-explained">full commission structure</Link> for the rate per developer.</p>
 
     <h2>Who can join</h2>
     <p>The program is open worldwide, with no license, no fee and no quota. It is built for expatriates and diaspora communities, financial advisors and wealth managers, real estate agents based outside the UAE, content creators and community leaders, and anyone who regularly hears "I'm thinking of buying in Dubai".</p>

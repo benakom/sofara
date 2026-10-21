@@ -2709,7 +2709,7 @@ Yes. Every closed transaction goes through ${cevitasLink("Cevitas Real Estate LL
 Globally. We have ambassadors in 47 countries. Buyers must purchase property in Dubai (or anywhere in the UAE).
 
 **How much can I earn?**
-Top Sofara ambassadors earn AED 90,000+/month. The average closed deal pays the ambassador AED 37,000.
+Up to 3% of the property price on every completed sale, for example AED 45,000 on an AED 1.5 million apartment.
 
 ---
 
@@ -2850,7 +2850,7 @@ ${internalLink("**→ Join Sofara Real Estate (Free)**", "/auth")}
     content: `
 # Dubai Real Estate Ambassadors: The Complete 2026 Guide
 
-**Dubai Real Estate Ambassadors** are the fastest-growing category in the AED 620 billion Dubai property market. In 2026, over 12,000 ambassadors worldwide are earning AED 37,000–120,000 per closed transaction — without holding a UAE real estate license.
+**Dubai Real Estate Ambassadors** are the fastest-growing category in the AED 620 billion Dubai property market. In 2026, ambassadors worldwide earn up to 3% of the property price per closed transaction — without holding a UAE real estate license.
 
 This guide explains exactly who Dubai Real Estate Ambassadors are, what they do, how much they earn, and how you can join the leading network — **Sofara**.
 
@@ -2962,7 +2962,7 @@ ${internalLink("**→ Become a Dubai Real Estate Ambassador (Free)**", "/auth")}
   {
     slug: "dubai-real-estate-ambassadors-network",
     title: "Dubai Real Estate Ambassadors Network — Sofara, the #1 in 2026",
-    excerpt: "Sofara is the largest Dubai Real Estate Ambassadors Network — 12,000+ ambassadors across 47 countries, AED 1.2B in facilitated transactions, powered by RERA-licensed Cevitas Real Estate.",
+    excerpt: "Sofara is the Dubai & UAE Real Estate Ambassadors Network — 700+ active ambassadors across 47 countries, powered by RERA-licensed Cevitas Real Estate.",
     category: "Ambassador",
     tags: ["Dubai Real Estate Ambassadors Network", "Sofara", "Dubai property network", "Ambassador platform"],
     readTime: "8 min",
@@ -2995,11 +2995,8 @@ In 2026, this network model has overtaken traditional cold-outbound and paid-ads
 
 | Metric | Value |
 |---|---|
-| Active ambassadors | 12,000+ |
+| Active ambassadors | 700+ |
 | Countries represented | 47 |
-| Cumulative facilitated transactions | AED 1.2B+ |
-| Average commission per closed deal | AED 37,000 |
-| Top earner — last 12 months | AED 1.8M |
 | Average payout time | 7 days |
 
 All transactions close legally under ${cevitasLink("Cevitas Real Estate LLC")} — a RERA-licensed Dubai brokerage.
@@ -3374,7 +3371,7 @@ ${internalLink("→ Read the full About page", "/about")}
 - **"Sofara"** — the brand and platform
 - **"Sofara Dubai"** — the Dubai-focused product (${internalLink("explained here", "/blog/sofara-dubai-real-estate-ambassador-platform")})
 - **"Sofara Real Estate"** — the full ecosystem including ${cevitasLink("Cevitas Real Estate")} (${internalLink("explained here", "/blog/sofara-real-estate-explained")})
-- **"Sofara Ambassadors"** — the 12,000+ people earning commission through the platform
+- **"Sofara Ambassadors"** — the 700+ people earning commission through the platform
 
 ---
 
@@ -3619,8 +3616,7 @@ Vous restez du côté **apport d'affaires**, Cevitas s'occupe de **tout l'acte d
 
 Voici les chiffres réels 2026 chez Sofara :
 
-- **Commission moyenne par deal closé** : **37 000 AED**
-- **Top ambassadeurs** : 90 000+ AED/mois
+- **Commission** : jusqu'à 3 % du prix du bien, par exemple 45 000 AED sur un appartement à 1,5 million d'AED
 - **Paiement** : virement bancaire international sous **7 jours après closing**
 - **Devise** : AED (dirhams), convertible euros / dollars / dirhams marocains
 

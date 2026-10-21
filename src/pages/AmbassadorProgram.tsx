@@ -35,7 +35,7 @@ const comparison = [
 ];
 
 const faqs = [
-  { q: "How much can I earn?", a: "Up to 3% commission per closed transaction — typically AED 37K to AED 120K per deal. Top ambassadors exceed AED 90,000 per month." },
+  { q: "How much can I earn?", a: "Up to 3% commission per closed transaction — typically AED 37K to AED 120K per deal." },
   { q: "Do I need a real estate license?", a: "No. You're a business introducer. All transactions close under Cevitas Real Estate LLC (RERA-licensed in Dubai)." },
   { q: "How fast am I paid?", a: "Within 7 days of transaction closing — via international bank transfer." },
   { q: "Is it really free?", a: "100% free. No signup fees, no subscription. Sofara only earns from closed deals." },

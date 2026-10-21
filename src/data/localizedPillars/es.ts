@@ -76,7 +76,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
     ],
     cta: {
       title: "Hazte embajador inmobiliario en Dubái",
-      text: "Únete a cientos de embajadores en más de 40 países. Recomienda compradores, sigue cada expediente y cobra en AED.",
+      text: "Únete a más de 700 embajadores en más de 40 países. Recomienda compradores, sigue cada expediente y cobra en AED.",
     },
     related: ["affiliate", "agent", "invest", "home"],
   },

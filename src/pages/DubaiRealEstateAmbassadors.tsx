@@ -19,7 +19,7 @@ const DubaiRealEstateAmbassadors = () => (
       { to: "/blog/dubai-real-estate-ambassadors-network", label: "Inside the Dubai real estate ambassadors network" },
       { to: "/blog/uae-real-estate-ambassadors-network", label: "The UAE ambassadors network beyond Dubai" },
     ]}
-    cta={{ title: "Become a Dubai real estate ambassador", text: "Join hundreds of ambassadors in more than 40 countries. Refer buyers to Emaar, DAMAC and Sobha projects, follow every lead in your dashboard, and get paid in AED." }}
+    cta={{ title: "Become a Dubai real estate ambassador", text: "Join 700+ ambassadors in more than 40 countries. Refer buyers to Emaar, DAMAC and Sobha projects, follow every lead in your dashboard, and get paid in AED." }}
   >
     <h2>Why Dubai created a new role in real estate</h2>
     <p>Dubai sells property to buyers from more than 180 nationalities. Most of those buyers do not start their search on a Dubai portal: they ask a friend, a relative, a financial advisor or a creator they trust in their own country. Traditional agencies, staffed with licensed agents sitting in Dubai, cannot reach those conversations. The <strong>real estate ambassador</strong> role fills that gap: a trusted person abroad introduces the buyer, and a licensed team in Dubai does the rest.</p>

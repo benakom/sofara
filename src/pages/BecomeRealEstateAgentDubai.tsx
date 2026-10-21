@@ -59,7 +59,7 @@ const BecomeRealEstateAgentDubai = () => (
       <li><strong>Refer buyers and follow the deal.</strong> You see the progress of each lead stage by stage in your dashboard, and the Sofara team keeps you informed until closing.</li>
       <li><strong>Get paid in AED within 7 days of closing.</strong> Up to 3% of the property price, by international bank transfer.</li>
     </ol>
-    <p>Ambassadors commonly earn between AED 37,000 and AED 120,000 on a single transaction, and several earn more than AED 90,000 in a month. You can read how the <Link to="/blog/sofara-commission-structure-explained">commission structure</Link> works in detail, and compare it with the <Link to="/real-estate-referral-program-dubai">classic referral programs</Link> offered by developers.</p>
+    <p>Ambassadors commonly earn between AED 37,000 and AED 120,000 on a single transaction. You can read how the <Link to="/blog/sofara-commission-structure-explained">commission structure</Link> works in detail, and compare it with the <Link to="/real-estate-referral-program-dubai">classic referral programs</Link> offered by developers.</p>
 
     <h2>Which route is right for you?</h2>
     <ul>
