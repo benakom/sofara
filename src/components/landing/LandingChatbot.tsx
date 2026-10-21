@@ -95,14 +95,14 @@ const i18n: Record<string, Record<ChatLang, string>> = {
     fr: "Bonjour {name} ! Je suis Sara, l'assistante virtuelle de Sofara 💬 Je réponds à toutes vos questions sur Sofara, l'immobilier à Dubaï ou notre programme ambassadeur. Choisissez un sujet ou posez-moi votre question.",
     es: "¡Hola {name}! Soy Sara, la asistente virtual de Sofara 💬 Respondo cualquier pregunta sobre Sofara, el inmobiliario de Dubái o el programa de embajadores. Elige un tema o hazme tu pregunta.",
     ru: "Привет, {name}! Я Сара, виртуальный ассистент Sofara 💬 Отвечу на любой вопрос о Sofara, недвижимости Дубая и программе амбассадоров. Выберите тему ниже или задайте вопрос.",
-    ar: "مرحباً {name}! أنا سارة، مساعدة Sofara بالذكاء الاصطناعي 🤖 أجيب عن أي سؤال حول Sofara والعقارات في دبي وبرنامج السفراء. اختر موضوعاً أو اطرح سؤالك.",
+    ar: "مرحباً {name}! أنا سارة، المساعدة الافتراضية لـ Sofara 💬 أجيب عن أي سؤال حول Sofara والعقارات في دبي وبرنامج السفراء. اختر موضوعاً أو اطرح سؤالك.",
   },
   aiBadge: {
     en: "Virtual assistant · answers all your questions",
     fr: "Assistante virtuelle · répond à toutes vos questions",
     es: "Asistente virtual · responde todas tus preguntas",
     ru: "Виртуальный ассистент · ответит на любые вопросы",
-    ar: "مساعدة ذكاء اصطناعي · تجيب عن كل أسئلتك",
+    ar: "مساعدة افتراضية · تجيب عن كل أسئلتك",
   },
   faqTitle: {
     en: "Frequently asked questions",
