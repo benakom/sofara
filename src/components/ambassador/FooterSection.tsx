@@ -1,7 +1,7 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Instagram } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { EN_GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS, type Locale } from "@/i18n/locales";
+import { EN_GUIDES, GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS, type Locale } from "@/i18n/locales";
 
 type FooterLink = { label: string; to: string; external?: boolean };
 
@@ -116,9 +116,11 @@ const FooterSection = () => {
     ...(en ? [{ label: "Ambassador program", to: "/ambassador-program" }, { label: "About Sofara", to: "/about" }] : []),
     { label: "Blog", to: "/blog" },
   ];
+  const guide = (k: keyof typeof GUIDES): FooterLink => ({ label: GUIDES[k].label, to: GUIDES[k].path });
   const network: FooterLink[] = [
     page("ambassadors"),
     page("affiliate"),
+    ...(locale === "fr" ? [guide("apporteur")] : []),
     ...(en ? [
       { label: "Real estate referral program", to: "/real-estate-referral-program-dubai" },
       { label: EN_GUIDES.referralFee.label, to: EN_GUIDES.referralFee.path },
@@ -131,6 +133,8 @@ const FooterSection = () => {
       { label: EN_GUIDES.partTime.label, to: EN_GUIDES.partTime.path },
       { label: EN_GUIDES.sideIncome.label, to: EN_GUIDES.sideIncome.path },
     ] : []),
+    ...(locale === "fr" ? [guide("travailDubai")] : []),
+    ...(locale === "ru" ? [guide("rabota")] : []),
     page("invest"),
   ];
 

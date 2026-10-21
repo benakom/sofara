@@ -127,16 +127,25 @@ export const UI: Record<Locale, {
   },
 };
 
-/** English-only guides aimed at people searching from the UAE (freelance, part-time, referral fees, side income). */
-export type GuideKey = "freelance" | "partTime" | "referralFee" | "sideIncome";
-export const EN_GUIDES: Record<GuideKey, { path: string; label: string }> = {
-  freelance: { path: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai" },
-  partTime: { path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
-  referralFee: { path: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
-  sideIncome: { path: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
+/**
+ * Single-language guides built on search demand in one market: English guides for people searching from the UAE,
+ * French guides for France/Belgium/Switzerland/Canada ("apporteur d'affaires"), Russian guide for Russian speakers.
+ */
+export type GuideKey = "freelance" | "partTime" | "referralFee" | "sideIncome" | "apporteur" | "travailDubai" | "rabota";
+export const GUIDES: Record<GuideKey, { locale: Locale; path: string; label: string }> = {
+  freelance: { locale: "en", path: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai" },
+  partTime: { locale: "en", path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
+  referralFee: { locale: "en", path: "/real-estate-referral-fee-dubai", label: "Real estate referral fees in Dubai" },
+  sideIncome: { locale: "en", path: "/side-income-dubai-real-estate", label: "Side income in Dubai from property referrals" },
+  apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires immobilier à Dubaï" },
+  travailDubai: { locale: "fr", path: "/fr/travailler-immobilier-dubai", label: "Travailler dans l'immobilier à Dubaï" },
+  rabota: { locale: "ru", path: "/ru/rabota-rieltorom-v-dubae", label: "Работа риэлтором в Дубае" },
 };
+/** English guides only (kept for the English footer and sitemap code). */
+export const EN_GUIDES = GUIDES;
+export const guidesFor = (l: Locale) => (Object.keys(GUIDES) as GuideKey[]).filter((k) => GUIDES[k].locale === l);
 export type AnyPageKey = PageKey | GuideKey;
-export const isGuideKey = (k: AnyPageKey): k is GuideKey => k in EN_GUIDES;
+export const isGuideKey = (k: AnyPageKey): k is GuideKey => k in GUIDES;
 
 /** Short link labels for each localized page, used in navigation and footers. */
 export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
@@ -168,6 +177,6 @@ export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
 };
 
 /** URL of any page key in a locale (English guides exist in English only). */
-export const pathOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? EN_GUIDES[k].path : PAGE_PATHS[k][l]);
+export const pathOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? GUIDES[k].path : PAGE_PATHS[k][l]);
 /** Link label of any page key in a locale. */
-export const labelOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? EN_GUIDES[k].label : PAGE_LABELS[k][l]);
+export const labelOf = (k: AnyPageKey, l: Locale) => (isGuideKey(k) ? GUIDES[k].label : PAGE_LABELS[k][l]);

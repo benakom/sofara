@@ -1,7 +1,7 @@
-import type { PageKey } from "@/i18n/locales";
+import type { AnyPageKey } from "@/i18n/locales";
 import type { PillarContent } from "./types";
 
-export const FR_PILLARS: Partial<Record<PageKey, PillarContent>> = {
+export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   ambassadors: {
     title: "Ambassadeurs immobiliers à Dubaï : le réseau Sofara",
     description:
@@ -316,5 +316,165 @@ export const FR_PILLARS: Partial<Record<PageKey, PillarContent>> = {
       text: "Recommandez-le à Sofara : une équipe agréée l'accompagne de A à Z, et vous touchez jusqu'à 3 % de commission sur la vente.",
     },
     related: ["ambassadors", "affiliate", "agent", "home"],
+  },
+
+  apporteur: {
+    title: "Apporteur d'affaires immobilier à Dubaï : 1 à 3 % | Sofara",
+    description:
+      "Devenez apporteur d'affaires immobilier à Dubaï depuis la France, la Belgique, la Suisse ou le Canada : rémunération de 1 à 3 % du prix, sans carte professionnelle.",
+    h1: "Apporteur d'affaires immobilier à Dubaï : rémunération et fonctionnement",
+    eyebrow: "Apporteur d'affaires · France, Belgique, Suisse, Canada, Maroc",
+    intro:
+      "Un **apporteur d'affaires immobilier à Dubaï** met en relation un acheteur avec une agence agréée et touche une commission quand la vente se conclut. Avec Sofara, l'agence est Cevitas Real Estate LLC, agréée par la RERA à Dubaï, et votre rémunération va de **1 % à 3 % du prix du bien**. Vous n'avez besoin ni de carte professionnelle ni de vous installer aux Émirats.",
+    sections: [
+      {
+        h2: "Ce que fait un apporteur d'affaires, et ce qu'il ne fait pas",
+        blocks: [
+          { p: "Le rôle de l'apporteur d'affaires est simple : il identifie une personne qui souhaite acheter à Dubaï et la présente à l'agence. Il ne fait pas de visites, ne négocie pas le prix, ne rédige aucun contrat et ne manipule jamais les fonds de l'acheteur. Tout le travail réglementé est réalisé par les agents agréés de Cevitas." },
+          { ul: [
+            "**Vous** : repérer l'intérêt, présenter Sofara, enregistrer le contact ou partager votre lien.",
+            "**Cevitas** : qualification, choix du projet, visites sur place ou en vidéo, réservation, contrat de vente (SPA), suivi jusqu'à la remise des clés.",
+            "**Sofara** : votre espace pour suivre chaque contact étape par étape et recevoir vos commissions.",
+          ] },
+        ],
+      },
+      {
+        h2: "Quelle rémunération pour un apporteur d'affaires à Dubaï ?",
+        blocks: [
+          { p: "Sur le neuf, les promoteurs de Dubaï rémunèrent les agences sur chaque vente. Sofara reverse à l'apporteur d'affaires entre 1 % et 3 % du prix du bien selon le projet. Le taux de chaque projet est affiché dans votre espace avant toute recommandation." },
+          { table: {
+            head: ["Prix du bien", "Commission à 1 %", "Commission à 3 %"],
+            rows: [
+              ["800 000 AED", "8 000 AED", "24 000 AED"],
+              ["1 500 000 AED", "15 000 AED", "45 000 AED"],
+              ["3 000 000 AED", "30 000 AED", "90 000 AED"],
+            ],
+          } },
+          { p: "La commission est acquise lorsque l'acheteur signe le SPA et règle l'apport avec les frais du Dubai Land Department (DLD). Elle est versée en AED par virement sous 7 jours après le paiement du promoteur à Cevitas, contre une facture émise depuis votre espace." },
+        ],
+      },
+      {
+        h2: "Faut-il une carte professionnelle ?",
+        blocks: [
+          { p: "En France, la loi Hoguet encadre l'activité d'intermédiaire pour les biens situés en France. Pour un bien situé à Dubaï, la transaction est réalisée par Cevitas, agence agréée par la RERA, et vous intervenez uniquement comme apporteur d'affaires. Si vous exercez déjà dans l'immobilier en France, en Belgique ou en Suisse, faites valider votre situation par votre conseiller." },
+        ],
+      },
+      {
+        h2: "Votre statut selon votre pays",
+        blocks: [
+          { p: "Les commissions d'apporteur d'affaires sont des revenus à déclarer dans votre pays de résidence. En France, beaucoup d'apporteurs les déclarent via une micro-entreprise ; en Belgique, en Suisse, au Canada ou au Maroc, les règles sont propres à chaque pays. Votre espace Sofara génère les factures nécessaires. Un expert-comptable vous indiquera le statut le plus adapté." },
+        ],
+      },
+      {
+        h2: "Pourquoi vos contacts veulent acheter à Dubaï",
+        blocks: [
+          { ul: [
+            "Pleine propriété ouverte aux étrangers dans les zones dédiées.",
+            "Pas d'impôt sur les loyers ni sur les plus-values pour les particuliers aux Émirats.",
+            "Rendements locatifs autour de 5 à 8 % brut selon le quartier.",
+            "Golden Visa de 10 ans à partir de 2 millions d'AED investis.",
+            "Plans de paiement échelonnés sur le neuf, fonds sur compte séquestre contrôlé par la RERA.",
+          ] },
+          { p: "Pour répondre à leurs questions, partagez notre guide [investir dans l'immobilier à Dubaï](/fr/investir-immobilier-dubai)." },
+        ],
+      },
+      {
+        h2: "Comment démarrer en 10 minutes",
+        blocks: [
+          { ol: [
+            "Créez votre compte gratuit sur Sofara.",
+            "Complétez votre profil et votre vérification d'identité.",
+            "Enregistrez votre premier contact ou partagez votre lien personnel.",
+            "Suivez l'avancement du dossier dans votre espace, de la qualification au closing.",
+          ] },
+          { p: "Comparez aussi avec le [réseau d'ambassadeurs immobiliers à Dubaï](/fr/ambassadeurs-immobilier-dubai) et notre page sur l'[affiliation immobilière](/fr/affiliation-immobilier-dubai)." },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Combien touche un apporteur d'affaires immobilier à Dubaï ?", a: "De 1 % à 3 % du prix du bien selon le projet, par exemple 15 000 à 45 000 AED pour un appartement à 1,5 million d'AED." },
+      { q: "Faut-il une carte professionnelle pour être apporteur d'affaires à Dubaï ?", a: "Non pour Sofara : la vente est réalisée par Cevitas, agence agréée RERA, et vous intervenez comme apporteur d'affaires. Si vous êtes déjà agent immobilier en France, faites valider votre situation par votre conseiller." },
+      { q: "Quand la commission est-elle versée ?", a: "Elle est acquise à la signature du SPA et au paiement de l'apport avec les frais DLD, puis versée en AED sous 7 jours après le paiement du promoteur à Cevitas." },
+      { q: "Peut-on être apporteur d'affaires depuis la France ou le Canada ?", a: "Oui. Vous travaillez depuis votre pays ; les visites se font sur place à Dubaï ou en vidéo avec l'équipe Cevitas." },
+      { q: "Comment déclarer ces commissions ?", a: "Selon les règles fiscales de votre pays de résidence. En France, beaucoup d'apporteurs utilisent une micro-entreprise. Votre espace génère les factures." },
+      { q: "Mon contact peut-il passer directement par l'agence ?", a: "Il reste rattaché à votre compte pendant 12 mois, même s'il contacte directement Sofara ou Cevitas." },
+    ],
+    cta: {
+      title: "Devenez apporteur d'affaires immobilier à Dubaï",
+      text: "Inscription gratuite, sans engagement. Présentez vos contacts, l'équipe agréée de Cevitas s'occupe du reste, et vous touchez de 1 % à 3 % du prix.",
+    },
+    related: ["affiliate", "ambassadors", "travailDubai", "invest", "home"],
+  },
+
+  travailDubai: {
+    title: "Travailler dans l'immobilier à Dubaï en 2026 : le guide",
+    description:
+      "Travailler dans l'immobilier à Dubaï : métiers, visa, licence RERA, rémunération à la commission, recherche d'agence, et la voie d'apporteur d'affaires depuis l'étranger.",
+    h1: "Travailler dans l'immobilier à Dubaï : métiers, conditions et revenus",
+    eyebrow: "Carrière · francophones à Dubaï",
+    intro:
+      "Dubaï attire chaque année des commerciaux francophones qui veulent **travailler dans l'immobilier**. Le marché est actif, les acheteurs viennent du monde entier et les francophones y sont recherchés. Voici les métiers, les conditions pour exercer, le mode de rémunération et la façon de démarrer, sur place ou depuis votre pays.",
+    sections: [
+      {
+        h2: "Les métiers de l'immobilier à Dubaï",
+        blocks: [
+          { ul: [
+            "**Agent immobilier (broker)** : il conseille les acheteurs et vendeurs, organise les visites et suit la vente. Il doit détenir une carte RERA.",
+            "**Commercial sur le neuf (off-plan)** : spécialisé dans les lancements des promoteurs, souvent dans une agence ou chez un promoteur.",
+            "**Gestionnaire locatif (property manager)** : gestion des locations pour le compte des propriétaires.",
+            "**Apporteur d'affaires / ambassadeur** : il présente des acheteurs à une agence agréée, sans licence, souvent depuis l'étranger.",
+          ] },
+        ],
+      },
+      {
+        h2: "Les conditions pour exercer comme agent",
+        blocks: [
+          { ol: [
+            "Un visa de résidence aux Émirats, le plus souvent parrainé par l'agence qui vous recrute.",
+            "La formation obligatoire du Dubai Real Estate Institute (environ quatre jours).",
+            "L'examen RERA, puis l'enregistrement auprès du Dubai Land Department.",
+            "Une carte de broker avec numéro BRN, renouvelée chaque année.",
+          ] },
+          { p: "Comptez en général entre 4 000 et 7 000 AED pour la formation, l'examen et la carte, hors visa. Le détail est dans notre guide [devenir agent immobilier à Dubaï](/fr/devenir-agent-immobilier-dubai)." },
+        ],
+      },
+      {
+        h2: "Comment on est payé dans l'immobilier à Dubaï",
+        blocks: [
+          { p: "La grande majorité des agents sont rémunérés à la commission. Sur une vente dans l'ancien, l'agence facture en général 2 % du prix ; l'agent en conserve une part qui dépend de l'agence. Sur le neuf, le promoteur rémunère l'agence. Les premiers mois servent souvent à constituer sa clientèle : prévoyez une épargne de départ." },
+          { p: "Les francophones ont un atout : une clientèle française, belge, suisse, canadienne et maghrébine qui préfère être conseillée dans sa langue." },
+        ],
+      },
+      {
+        h2: "Trouver une agence à Dubaï",
+        blocks: [
+          { ul: [
+            "Vérifiez que l'agence est enregistrée auprès de la RERA.",
+            "Demandez le partage de commission, l'accompagnement à la formation et le soutien marketing.",
+            "Privilégiez une agence qui a déjà une clientèle internationale et francophone.",
+          ] },
+        ],
+      },
+      {
+        h2: "Commencer depuis votre pays, avant de vous installer",
+        blocks: [
+          { p: "Beaucoup de francophones commencent comme **apporteurs d'affaires** depuis la France, la Belgique, la Suisse ou le Canada : ils présentent des acheteurs à Cevitas Real Estate via Sofara et touchent de 1 % à 3 % du prix du bien, sans visa ni licence. C'est un moyen concret de tester le marché avant de s'installer." },
+          { p: "Tout est expliqué sur la page [apporteur d'affaires immobilier à Dubaï](/fr/apporteur-affaires-immobilier-dubai)." },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Peut-on travailler dans l'immobilier à Dubaï sans parler anglais ?", a: "L'anglais est la langue de travail. Le français est un vrai atout pour servir la clientèle francophone, mais il ne remplace pas l'anglais pour exercer comme agent." },
+      { q: "Faut-il une licence pour travailler dans l'immobilier à Dubaï ?", a: "Oui pour exercer comme agent : il faut une carte RERA, obtenue après la formation DREI et l'examen. Comme apporteur d'affaires via Sofara, aucune licence n'est nécessaire." },
+      { q: "Combien gagne un agent immobilier à Dubaï ?", a: "Les revenus dépendent des ventes : les agents touchent une part de la commission de l'agence. Les premiers mois sont souvent plus faibles le temps de construire sa clientèle." },
+      { q: "Peut-on commencer depuis la France ?", a: "Oui, comme apporteur d'affaires : vous présentez des acheteurs à Cevitas via Sofara et touchez de 1 % à 3 % du prix du bien." },
+      { q: "Combien coûte la licence RERA ?", a: "Environ 4 000 à 7 000 AED pour la formation, l'examen et la carte, hors visa." },
+      { q: "Les agences recrutent-elles des francophones ?", a: "Oui, la clientèle francophone est importante à Dubaï et les agences cherchent des profils capables de la conseiller dans sa langue." },
+    ],
+    cta: {
+      title: "Commencez dans l'immobilier à Dubaï dès aujourd'hui",
+      text: "Sans visa ni licence : devenez apporteur d'affaires avec Sofara, présentez vos contacts et touchez de 1 % à 3 % du prix du bien.",
+    },
+    related: ["apporteur", "agent", "ambassadors", "affiliate", "home"],
   },
 };

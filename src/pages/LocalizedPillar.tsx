@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
-import { isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
+import { GUIDES, isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
 import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
 import type { Block } from "@/data/localizedPillars/types";
 
@@ -146,7 +146,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
         <section className="px-5 sm:px-6 max-w-4xl mx-auto pb-20">
           <h2 className="font-display text-xl font-bold mb-4">{ui.related}</h2>
           <ul className="grid sm:grid-cols-2 gap-3">
-            {c.related.filter((k) => locale === "en" || !isGuideKey(k)).map((k) => (
+            {c.related.filter((k) => !isGuideKey(k) || GUIDES[k].locale === locale).map((k) => (
               <li key={k}>
                 <Link to={pathOf(k, locale)} className="flex items-center justify-between rounded-xl border border-border px-4 py-3 text-sm font-medium hover:border-primary/50 hover:text-primary transition-colors">
                   {k === "home" ? ui.home : labelOf(k, locale)} <ArrowRight className="w-4 h-4 shrink-0" />

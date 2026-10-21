@@ -3,9 +3,9 @@ import type { PillarContent } from "./types";
 
 export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   affiliate: {
-    title: "UAE Real Estate Affiliate Program: Earn up to 3% | Sofara",
+    title: "Real Estate Affiliate Program in Dubai & UAE | Sofara",
     description:
-      "Join the Dubai and UAE real estate affiliate program run by Sofara and Cevitas. Refer property buyers, track every lead and earn up to 3% commission in AED.",
+      "Join the Dubai and UAE real estate affiliate program from the USA, Canada, the UK, Europe or the GCC. Refer property buyers and earn 1% to 3% of the price in AED.",
     h1: "The UAE Real Estate Affiliate Program for Dubai Property",
     eyebrow: "Affiliate program · Dubai, Abu Dhabi, Ras Al Khaimah",
     intro:
@@ -65,6 +65,19 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
         ],
       },
       {
+        h2: "Joining from the USA, Canada, the UK, Europe or the Gulf",
+        blocks: [
+          { p: "Affiliates join from wherever they live. The buyer can be anywhere too: viewings take place in Dubai or by video, contracts are signed electronically with the developer, and payments go to escrow accounts regulated by RERA." },
+          { ul: [
+            "**United States and Canada:** many affiliates are realtors, mortgage or wealth advisors whose clients ask about Dubai, the Golden Visa or dollar-pegged assets (the dirham is pegged to the US dollar). Commissions are paid in AED by bank transfer and declared under your local tax rules.",
+            "**United Kingdom and Europe:** expatriates and diaspora communities in London, Paris, Brussels, Geneva, Berlin or Madrid regularly refer friends and clients relocating or investing in the UAE.",
+            "**Gulf countries:** residents of Saudi Arabia, Qatar, Kuwait, Bahrain and Oman are among the most active buyers in Dubai; affiliates there introduce family offices, entrepreneurs and professionals.",
+            "**Everywhere else:** Sofara ambassadors refer buyers from more than 40 countries, with the same rules for everyone.",
+          ] },
+          { p: "French-speaking partners can read the guide for [apporteurs d'affaires immobiliers à Dubaï](/fr/apporteur-affaires-immobilier-dubai), and Russian speakers the [партнёрская программа](/ru/partnerskaya-programma-nedvizhimost-dubai)." },
+        ],
+      },
+      {
         h2: "Affiliate, referral or ambassador: what is the difference?",
         blocks: [
           { p: "The terms are often used interchangeably. A **referral program** usually means a one-off reward for recommending someone. An **affiliate program** adds tracking, a dashboard and recurring earnings. Sofara calls its affiliates **ambassadors** because they also get training, AI tools and a community. You can compare the approaches on the [Dubai real estate referral program](/real-estate-referral-program-dubai) page and learn how the [ambassadors network](/dubai-real-estate-ambassadors) is organised." },
@@ -75,6 +88,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       { q: "Do I need a real estate license to join the affiliate program?", a: "No. Affiliates introduce buyers; Cevitas Real Estate LLC, a RERA-licensed brokerage, carries out all regulated activity. You can join from any country." },
       { q: "How much can a real estate affiliate earn in the UAE?", a: "Up to 3% of the property price depending on the developer, for example AED 45,000 on a AED 1.5 million apartment sold by Emaar or Sobha." },
       { q: "When is the affiliate commission paid?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice issued from your dashboard." },
+      { q: "Can I join the affiliate program from the USA or Canada?", a: "Yes. Affiliates join from any country. You introduce buyers, Cevitas handles viewings and contracts, and your commission is paid in AED by bank transfer, to be declared under your local tax rules." },
       { q: "Does the program cover Abu Dhabi and other emirates?", a: "Yes. Sofara focuses on Dubai and also covers projects in Abu Dhabi, Ras Al Khaimah and Sharjah through Cevitas." },
       { q: "Is there a fee or a minimum number of referrals?", a: "No. Joining is free and there is no quota. You earn only when a sale you introduced is completed." },
       { q: "How are my leads protected?", a: "Every lead is linked to your account for 12 months, including when the buyer contacts Sofara or Cevitas directly." },
