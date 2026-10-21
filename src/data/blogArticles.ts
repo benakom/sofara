@@ -160,6 +160,8 @@ Whether you're an experienced investor looking to diversify internationally, or 
 ${internalLink("**→ Join the Sofara ambassador network (free)**", "/auth")} and start earning from the world's most dynamic real estate market.
 
 *All transactions are handled by ${cevitasLink("Cevitas Real Estate LLC")} — licensed and regulated by the Dubai Land Department and RERA.*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai property investment calculator](https://www.offplansimulator.com/). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -306,6 +308,8 @@ Whether you want to invest directly through ${cevitasLink("Cevitas Real Estate")
 ${internalLink("**→ Create your free Sofara account**", "/auth")} — no fees, no subscription, no license required.
 
 *Read more: ${internalLink("Dubai Market 2026 Overview", "/blog/dubai-real-estate-market-2026-overview")} | ${internalLink("Best Areas to Invest", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Sofara Commission Structure", "/blog/sofara-commission-structure-explained")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai property ROI calculator](https://www.offplansimulator.com/dubai-property-roi-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -456,6 +460,8 @@ All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — licens
 ${internalLink("**→ Join Sofara and earn 3% on every referral**", "/auth")}
 
 *Related reading: ${internalLink("Off-Plan vs Ready Properties", "/blog/dubai-off-plan-vs-ready-properties")} | ${internalLink("Rental Yields by Area", "/blog/dubai-rental-yields-explained")} | ${internalLink("Emaar Properties Guide", "/blog/emaar-properties-guide")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai rental yield calculator](https://www.offplansimulator.com/dubai-rental-yield-calculator), [Dubai property ROI calculator](https://www.offplansimulator.com/dubai-property-roi-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -592,6 +598,8 @@ ${internalLink("Sofara Pro's tools", "/blog/sofara-pro-vs-lite")} help you match
 ${internalLink("**→ Join Sofara — earn 3% on every referral**", "/auth")}
 
 *Related: ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Payment Plans Explained", "/blog/dubai-payment-plans-explained")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [off-plan payment plan calculator](https://www.offplansimulator.com/dubai-off-plan-payment-plan-calculator), [Dubai property ROI calculator](https://www.offplansimulator.com/dubai-property-roi-calculator). They only use the figures you enter and the official rules.
 `
   },
   // ── CATEGORY: Developers ──
@@ -1732,6 +1740,8 @@ ${internalLink("**→ Join Sofara and present Golden Visa opportunities to your 
 *All transactions and Golden Visa guidance provided by ${cevitasLink("Cevitas Real Estate LLC")}.*
 
 *Related: ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")} | ${internalLink("Foreign Buyers Guide", "/blog/foreigners-buying-dubai-property")} | ${internalLink("DLD Fees Explained", "/blog/dubai-dld-fees-explained")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai property buying costs calculator](https://www.offplansimulator.com/dubai-property-buying-costs-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -1844,6 +1854,8 @@ ${cevitasLink("Cevitas Real Estate")} handles all DLD paperwork, escrow manageme
 ${internalLink("**→ Join Sofara and start referring with confidence**", "/auth")}
 
 *Related: ${internalLink("Golden Visa Guide", "/blog/dubai-golden-visa-real-estate")} | ${internalLink("Payment Plans", "/blog/dubai-payment-plans-explained")} | ${internalLink("Foreign Buyers Guide", "/blog/foreigners-buying-dubai-property")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai DLD fees calculator](https://www.offplansimulator.com/dubai-dld-fees-calculator), [Dubai property buying costs calculator](https://www.offplansimulator.com/dubai-property-buying-costs-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -1962,6 +1974,8 @@ ${internalLink("**→ Join Sofara and present payment plan options to your netwo
 *All payment plans verified and structured through ${cevitasLink("Cevitas Real Estate LLC")}.*
 
 *Related: ${internalLink("Off-Plan vs Ready", "/blog/dubai-off-plan-vs-ready-properties")} | ${internalLink("DLD Fees", "/blog/dubai-dld-fees-explained")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai off-plan payment plan calculator](https://www.offplansimulator.com/dubai-off-plan-payment-plan-calculator). They only use the figures you enter and the official rules.
 `
   },
   // ── CATEGORY: Market Insights ──
@@ -2115,6 +2129,8 @@ All transactions and rental management referrals through ${cevitasLink("Cevitas 
 ${internalLink("**→ Join Sofara and present yield data to your network**", "/auth")}
 
 *Related: ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")} | ${internalLink("Market Overview 2026", "/blog/dubai-real-estate-market-2026-overview")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai rental yield calculator](https://www.offplansimulator.com/dubai-rental-yield-calculator), [Dubai property cash flow calculator](https://www.offplansimulator.com/dubai-property-cash-flow-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -2231,6 +2247,8 @@ ${cevitasLink("Cevitas Real Estate")} provides **white-glove service** for high-
 ${internalLink("**→ Join Sofara and connect your HNW contacts with Dubai's finest properties**", "/auth")}
 
 *Related: ${internalLink("Damac Guide", "/blog/damac-properties-guide")} | ${internalLink("Market Overview 2026", "/blog/dubai-real-estate-market-2026-overview")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Dubai Airbnb income calculator](https://www.offplansimulator.com/dubai-airbnb-income-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -2375,6 +2393,8 @@ Use these facts as your opening pitch. Then let ${cevitasLink("Cevitas Real Esta
 ${internalLink("**→ Join Sofara and earn 3% on every international referral**", "/auth")}
 
 *Related: ${internalLink("Golden Visa Guide", "/blog/dubai-golden-visa-real-estate")} | ${internalLink("DLD Fees", "/blog/dubai-dld-fees-explained")} | ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")}*
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [mortgage calculator for Dubai and the UAE](https://www.offplansimulator.com/mortgage), [Dubai property buying costs calculator](https://www.offplansimulator.com/dubai-property-buying-costs-calculator). They only use the figures you enter and the official rules.
 `
   },
   {
@@ -3166,6 +3186,8 @@ ${internalLink("**→ Join the Abu Dhabi Real Estate Ambassadors Network**", "/a
 - [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
 - [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 - [The Sofara ambassador program](/ambassador-program)
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [Abu Dhabi property investment calculator](https://www.offplansimulator.com/abu-dhabi-property-investment-calculator), [Abu Dhabi mortgage calculator](https://www.offplansimulator.com/abu-dhabi-mortgage-calculator). They only use the figures you enter and the official rules.
 `
   },
 
@@ -3271,6 +3293,8 @@ ${internalLink("**→ Join the UAE Real Estate Ambassadors Network (Free)**", "/
 - [Dubai real estate ambassadors: the network explained](/dubai-real-estate-ambassadors)
 - [Dubai real estate referral program: earn up to 3% per deal](/real-estate-referral-program-dubai)
 - [The Sofara ambassador program](/ambassador-program)
+
+**Run the numbers yourself:** free calculators on OffPlanSimulator — [UAE mortgage affordability calculator](https://www.offplansimulator.com/mortgage/affordability-calculator), [Sharjah mortgage calculator](https://www.offplansimulator.com/sharjah-mortgage-calculator), [Ras Al Khaimah property ROI calculator](https://www.offplansimulator.com/ras-al-khaimah-property-roi-calculator). They only use the figures you enter and the official rules.
 `
   },
 

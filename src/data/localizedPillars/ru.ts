@@ -302,6 +302,10 @@ export const RU_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { p: "Знаете людей, которые хотят инвестировать в Дубай? Порекомендуйте их Sofara и получите комиссию: узнайте о [сети амбассадоров](/ru/ambassadory-nedvizhimosti-dubai) и [партнёрской программе](/ru/partnerskaya-programma-nedvizhimost-dubai)." },
         ],
       },
+      {
+        h2: "Рассчитайте свою инвестицию",
+        blocks: [{ p: "Проверьте сделку на своих цифрах в бесплатных калькуляторах OffPlanSimulator: [калькулятор доходности недвижимости в Дубае](https://www.offplansimulator.com/ru/dubai-property-roi-calculator), [ипотечный калькулятор Дубай](https://www.offplansimulator.com/ru/dubai-mortgage-calculator), [калькулятор инвестиций в недвижимость ОАЭ](https://www.offplansimulator.com/ru/uae-property-investment-calculator)." }],
+      },
     ],
     faqs: [
       { q: "Может ли иностранец купить недвижимость в Дубае?", a: "Да. Граждане любой страны могут купить недвижимость в полную собственность в зонах freehold без резидентства в ОАЭ." },

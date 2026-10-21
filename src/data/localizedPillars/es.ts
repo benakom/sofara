@@ -302,6 +302,10 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
           { p: "¿Conoces a personas que quieren invertir en Dubái? Recomiéndalas a Sofara y cobra una comisión: descubre la [red de embajadores](/es/embajadores-inmobiliarios-dubai) y el [programa de afiliados](/es/programa-afiliados-inmobiliarios-dubai)." },
         ],
       },
+      {
+        h2: "Simule su inversión",
+        blocks: [{ p: "Pruebe la operación con sus propias cifras con la [calculadora de rentabilidad inmobiliaria en Dubái](https://www.offplansimulator.com/es/calculadora-rentabilidad-inmobiliaria-dubai) de OffPlanSimulator, gratuita." }],
+      },
     ],
     faqs: [
       { q: "¿Puede un extranjero comprar una propiedad en Dubái?", a: "Sí. Cualquier nacionalidad puede comprar en plena propiedad en las zonas freehold, sin residir en los Emiratos." },
