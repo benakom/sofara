@@ -30,7 +30,7 @@ let template = readFileSync(shellPath, "utf8");
 const beasties = new Beasties({
   path: dist,
   publicPath: "/",
-  preload: "media",
+  preload: "swap",
   pruneSource: false,
   inlineFonts: true,
   preloadFonts: false,
