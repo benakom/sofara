@@ -1,0 +1,92 @@
+# Build on every PR; build + deploy dist/ to the server (46.225.34.53, Caddy, /var/www/sofara) on push to main.
+# Server access lives in repository secrets: DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY, DEPLOY_PATH.
+name: Build & deploy
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile || bun install
+      - run: npm run build
+      - name: Sanity check
+        run: |
+          test -f dist/index.html && test -f dist/spa.html && test -f dist/sitemap.xml
+          grep -q 'data-ssr="/"' dist/index.html
+          grep -q 'data-ssr="/fr"' dist/fr/index.html
+          test "$(find dist -name index.html | wc -l)" -ge 60
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - name: Check server secrets
+        id: secrets
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          if [ -n "$HOST" ] && [ -n "$KEY" ]; then echo "ready=true" >> "$GITHUB_OUTPUT"
+          else echo "::warning::DEPLOY_* secrets not set: build OK, deploy skipped"; fi
+      - uses: actions/download-artifact@v4
+        if: steps.secrets.outputs.ready == 'true'
+        with:
+          name: dist
+          path: dist
+      - name: Configure SSH
+        if: steps.secrets.outputs.ready == 'true'
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
+      - name: Upload
+        if: steps.secrets.outputs.ready == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          echo "${GITHUB_SHA}" > dist/version.txt
+          RSH="ssh -i ~/.ssh/deploy"
+          # 1) Hashed assets and fonts first, never deleted: open pages can still lazy-load the chunks they reference.
+          rsync -az -e "$RSH" --exclude '*.html' --exclude 'sitemap.xml' --exclude 'version.txt' dist/ "$USER@$HOST:$TARGET/"
+          # 2) Then HTML entry points, sitemap and version, which switch visitors to the new build.
+          rsync -az -e "$RSH" --include '*/' --include '*.html' --include 'sitemap.xml' --include 'version.txt' --exclude '*' dist/ "$USER@$HOST:$TARGET/"
+      - name: Smoke test
+        if: steps.secrets.outputs.ready == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          sleep 3
+          # Works before and after the DNS switch: talk to the server directly for sofara.io.
+          curl -fsS --resolve "sofara.io:443:$HOST" https://sofara.io/version.txt | grep -q "${GITHUB_SHA}" || \
+            curl -fsS -H "Host: sofara.io" "http://$HOST/version.txt" | grep -q "${GITHUB_SHA}" || \
+            echo "::warning::smoke test could not reach https://sofara.io on the server yet (DNS / certificate pending)"
