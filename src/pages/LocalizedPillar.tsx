@@ -6,7 +6,6 @@ import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import { isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
 import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
-import { Headline } from "@/components/home/Headline";
 import type { Block } from "@/data/localizedPillars/types";
 
 /** Renders **bold** and [label](/path) inside content strings. */
@@ -84,28 +83,26 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
       <Navbar />
-      <main className="pt-14 sm:pt-16">
-        <div className="bg-[hsl(var(--paper))] text-[hsl(var(--sand-foreground))]">
+      <main className="pt-20 sm:pt-24">
         <header className="px-5 sm:px-6 max-w-4xl mx-auto py-12 sm:py-16">
-          <nav aria-label="Breadcrumb" className="text-xs text-[hsl(var(--sand-muted))] mb-5">
-            <Link to={PAGE_PATHS.home[locale]} className="hover:underline">{ui.breadcrumbHome}</Link>
+          <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-5">
+            <Link to={PAGE_PATHS.home[locale]} className="hover:text-foreground">{ui.breadcrumbHome}</Link>
             <span className="mx-2">/</span>
             <span>{labelOf(pageKey, locale)}</span>
           </nav>
-          <p className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-[hsl(var(--sand-muted))] mb-4">{c.eyebrow}</p>
-          <h1 className="font-display text-[2.1rem] sm:text-5xl font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 text-balance"><Headline text={c.h1} /></h1>
-          <p className="text-base sm:text-lg text-[hsl(var(--sand-muted))] leading-relaxed [&_strong]:text-[hsl(var(--sand-foreground))] [&_a]:underline">{inline(c.intro)}</p>
-          <p className="mt-4 text-xs text-[hsl(var(--sand-muted))]">{ui.updated} · Ahmed Benjas, Cevitas Real Estate LLC</p>
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">{c.eyebrow}</span>
+          <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight mb-5">{c.h1}</h1>
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{inline(c.intro)}</p>
+          <p className="mt-4 text-xs text-muted-foreground">{ui.updated} · Ahmed Benjas, Cevitas Real Estate LLC</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-[hsl(var(--background))] text-[hsl(var(--foreground))] px-5 py-3 text-sm font-semibold hover:opacity-90">
+            <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
               {ui.join} <ArrowRight className="w-4 h-4" />
             </a>
-            <a href={`${PAGE_PATHS.home[locale]}#comment`} className="inline-flex items-center gap-2 rounded-xl border border-[hsl(var(--sand-foreground)/0.25)] px-5 py-3 text-sm font-semibold hover:bg-[hsl(var(--sand-foreground)/0.06)]">
+            <a href={`${PAGE_PATHS.home[locale]}#comment`} className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold hover:bg-muted">
               {ui.seeProgram}
             </a>
           </div>
         </header>
-        </div>
 
         <article className="px-5 sm:px-6 max-w-4xl mx-auto pb-12 prose prose-invert prose-headings:font-display prose-headings:tracking-tight prose-h2:text-2xl sm:prose-h2:text-3xl prose-h3:text-xl prose-p:leading-relaxed prose-a:text-primary prose-strong:text-foreground max-w-none">
           {c.sections.map((s) => (

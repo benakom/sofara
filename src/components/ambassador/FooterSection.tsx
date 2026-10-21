@@ -2,7 +2,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Instagram } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import CevitasGuides from "@/components/CevitasGuides";
-import { EN_GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS, UI } from "@/i18n/locales";
+import { EN_GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS, PAGE_PATHS } from "@/i18n/locales";
 
 const linkCls = "block text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors";
 
@@ -32,9 +32,9 @@ const FooterSection = () => {
           <div>
             <h3 className="font-display text-base font-semibold text-foreground mb-3 sm:mb-4">{t("footer.platform")}</h3>
             <div className="space-y-2.5">
+              <a href={anchor("#avantages")} className={linkCls}>{t("nav.benefits")}</a>
+              <a href={anchor("#dubai")} className={linkCls}>{t("nav.whyDubai")}</a>
               <a href={anchor("#comment")} className={linkCls}>{t("nav.howItWorks")}</a>
-              <a href={anchor("#avantages")} className={linkCls}>{UI[locale].commissions}</a>
-              <a href={anchor("#projets")} className={linkCls}>{UI[locale].projects}</a>
               {(["ambassadors", "affiliate", "agent", "invest"] as const).map((k) => (
                 <Link key={k} to={PAGE_PATHS[k][locale]} className={linkCls}>{PAGE_LABELS[k][locale]}</Link>
               ))}

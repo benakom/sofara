@@ -96,58 +96,49 @@
 
 @layer base {
   :root {
-    /* Public site palette (2026-10-21 redesign): bottle green, lime, sand — same family as the ambassador app. */
-    --background: 158 52% 12%;
-    --foreground: 96 30% 95%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
 
-    --card: 158 42% 15%;
-    --card-foreground: 96 30% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 158 42% 15%;
-    --popover-foreground: 96 30% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 74 84% 59%;
-    --primary-foreground: 158 52% 12%;
+    --primary: 72 100% 50%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 158 36% 18%;
-    --secondary-foreground: 150 15% 85%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 80%;
 
-    --muted: 158 30% 19%;
-    --muted-foreground: 150 16% 72%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 74 84% 59%;
-    --accent-foreground: 158 52% 12%;
+    --accent: 80 70% 55%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 158 30% 23%;
-    --input: 158 30% 23%;
-    --ring: 74 84% 59%;
-
-    /* Light "sand" bands on the public pages */
-    --sand: 50 27% 93%;
-    --sand-foreground: 156 40% 11%;
-    --sand-muted: 150 8% 38%;
-    --sand-border: 80 12% 84%;
-    /* Off-white "paper" for the hero, same as the approved review page */
-    --paper: 90 18% 95%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 72 100% 50%;
 
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(74, 84%, 59%), hsl(90, 80%, 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(80, 70%, 55%), hsl(74, 84%, 59%));
-    --gradient-hero: linear-gradient(135deg, hsl(74, 84%, 59%, 0.12), hsl(90, 80%, 45%, 0.06), transparent);
-    --gradient-aurora: linear-gradient(135deg, hsl(74, 84%, 59%, 0.05), hsl(0, 0%, 10%, 0.04), hsl(90, 80%, 45%, 0.05));
-    --gradient-mesh: radial-gradient(ellipse at 20% 50%, hsl(74, 84%, 59%, 0.06) 0%, transparent 50%),
-                     radial-gradient(ellipse at 80% 20%, hsl(74, 84%, 59%, 0.03) 0%, transparent 50%),
+    --gradient-primary: linear-gradient(135deg, hsl(72, 100%, 50%), hsl(90, 80%, 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(80, 70%, 55%), hsl(72, 100%, 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(72, 100%, 50%, 0.12), hsl(90, 80%, 45%, 0.06), transparent);
+    --gradient-aurora: linear-gradient(135deg, hsl(72, 100%, 50%, 0.05), hsl(0, 0%, 10%, 0.04), hsl(90, 80%, 45%, 0.05));
+    --gradient-mesh: radial-gradient(ellipse at 20% 50%, hsl(72, 100%, 50%, 0.06) 0%, transparent 50%),
+                     radial-gradient(ellipse at 80% 20%, hsl(72, 100%, 50%, 0.03) 0%, transparent 50%),
                      radial-gradient(ellipse at 40% 80%, hsl(90, 80%, 45%, 0.04) 0%, transparent 50%);
 
     /* Shadows */
-    --shadow-primary: 0 0 60px -12px hsl(74, 84%, 59%, 0.25);
+    --shadow-primary: 0 0 60px -12px hsl(72, 100%, 50%, 0.25);
     --shadow-card: 0 1px 2px hsl(0, 0%, 0%, 0.5), 0 4px 16px hsl(0, 0%, 0%, 0.4);
-    --shadow-glow: 0 0 40px -8px hsl(74, 84%, 59%, 0.35);
+    --shadow-glow: 0 0 40px -8px hsl(72, 100%, 50%, 0.35);
 
     /* Fonts */
     --font-display: 'Poppins', 'Poppins Fallback', sans-serif;
@@ -313,13 +304,13 @@
     inset: -50%;
     background: conic-gradient(
       from 180deg at 50% 50%,
-      hsl(74, 84%, 59%, 0.04) 0deg,
-      hsl(74, 84%, 59%, 0.06) 60deg,
+      hsl(72, 100%, 50%, 0.04) 0deg,
+      hsl(72, 100%, 50%, 0.06) 60deg,
       hsl(90, 80%, 45%, 0.04) 120deg,
       transparent 180deg,
-      hsl(74, 84%, 59%, 0.03) 240deg,
-      hsl(74, 84%, 59%, 0.05) 300deg,
-      hsl(74, 84%, 59%, 0.04) 360deg
+      hsl(72, 100%, 50%, 0.03) 240deg,
+      hsl(72, 100%, 50%, 0.05) 300deg,
+      hsl(72, 100%, 50%, 0.04) 360deg
     );
     animation: aurora-rotate 20s linear infinite;
     filter: blur(80px);
@@ -705,10 +696,12 @@
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
-/* Fluo highlighter on key words (approved 2026-10-21): lime band under the lower part of the text, light backgrounds only. */
-.marker {
-  background-image: linear-gradient(transparent 60%, hsl(var(--primary)) 60%);
-  padding: 0 0.08em;
+/* Fluo highlighter on title key words (2026-10-21): lime band behind the word, dark ink on top. */
+.marker-fluo {
+  background-image: linear-gradient(transparent 14%, hsl(var(--primary)) 14%, hsl(var(--primary)) 90%, transparent 90%);
+  color: hsl(var(--primary-foreground));
+  padding: 0 0.14em;
+  margin: 0 -0.04em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }

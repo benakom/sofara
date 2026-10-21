@@ -90,8 +90,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-border/60 shadow-lg shadow-black/20"
-          : "bg-background border-b border-border/40"
+          ? "bg-background/80 backdrop-blur-2xl border-b border-border/40 shadow-lg shadow-background/50"
+          : "bg-transparent"
       }`}
     >
       <div className="mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between max-w-7xl">
@@ -101,9 +101,10 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-1 py-1">
           {[
+            { href: anchor("#platform"), label: t("nav.platform") },
+            { href: anchor("#dubai"), label: t("nav.whyDubai") },
+            { href: anchor("#avantages"), label: t("nav.benefits") },
             { href: anchor("#comment"), label: t("nav.howItWorks") },
-            { href: anchor("#avantages"), label: UI[locale].commissions },
-            { href: anchor("#projets"), label: UI[locale].projects },
             { href: PAGE_PATHS.ambassadors[locale], label: UI[locale].ambassadors, wide: true },
             { href: "/blog", label: "Blog", wide: true },
           ].map((link) => (
@@ -163,9 +164,10 @@ const Navbar = () => {
           >
             <div className="px-5 py-4 flex flex-col gap-0.5">
               {[
+                { href: anchor("#platform"), label: t("nav.platform") },
+                { href: anchor("#dubai"), label: t("nav.whyDubai") },
+                { href: anchor("#avantages"), label: t("nav.benefits") },
                 { href: anchor("#comment"), label: t("nav.howItWorks") },
-                { href: anchor("#avantages"), label: UI[locale].commissions },
-                { href: anchor("#projets"), label: UI[locale].projects },
                 { href: PAGE_PATHS.ambassadors[locale], label: UI[locale].ambassadors },
                 { href: "/blog", label: "Blog" },
               ].map((link) => (
