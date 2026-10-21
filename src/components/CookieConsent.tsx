@@ -13,11 +13,16 @@ const CookieConsent = () => {
   const lang = ctx?.lang ?? "en";
 
   useEffect(() => {
-    const consent = localStorage.getItem(COOKIE_KEY);
-    if (!consent) {
-      const timer = setTimeout(() => setVisible(true), 1500);
-      return () => clearTimeout(timer);
-    }
+    let consent: string | null = null;
+    try { consent = localStorage.getItem(COOKIE_KEY); } catch { /* storage blocked */ }
+    if (consent) return;
+    // Shown at the visitor's first interaction (or after 12 s), never on top of the first screen while it loads.
+    const events = ["scroll", "pointerdown", "keydown", "touchstart"] as const;
+    const show = () => { setVisible(true); cleanup(); };
+    const timer = window.setTimeout(show, 12000);
+    const cleanup = () => { window.clearTimeout(timer); events.forEach((e) => window.removeEventListener(e, show)); };
+    events.forEach((e) => window.addEventListener(e, show, { passive: true, once: true }));
+    return cleanup;
   }, []);
 
   const accept = () => {
