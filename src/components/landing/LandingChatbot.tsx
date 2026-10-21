@@ -68,26 +68,27 @@ const COUNTRIES: { code: string; dial: string; name: string; flag: string }[] = 
   { code: "NG", dial: "+234", name: "Nigeria", flag: "🇳🇬" },
 ];
 
-const i18n: Record<string, Record<Lang, string>> = {
+type ChatLang = Exclude<Lang, "arb">;
+const i18n: Record<string, Record<ChatLang, string>> = {
   formIntro: {
     en: "Before we chat, please share a few details so our team can follow up.",
     fr: "Avant de discuter, partagez quelques infos pour qu'on puisse vous recontacter.",
     es: "Antes de chatear, comparte algunos datos para que podamos contactarte.",
     ru: "Прежде чем начать, поделитесь данными, чтобы мы могли с вами связаться.",
-    ar: "Before we chat, please share a few details so our team can follow up.",
+    ar: "قبل أن نبدأ، شاركنا بعض المعلومات ليتمكن فريقنا من متابعتك.",
   },
-  firstName: { en: "First name", fr: "Prénom", es: "Nombre", ru: "Имя", ar: "First name" },
-  lastName: { en: "Last name", fr: "Nom", es: "Apellido", ru: "Фамилия", ar: "Last name" },
-  email: { en: "Email", fr: "Email", es: "Email", ru: "Email", ar: "Email" },
-  phone: { en: "Phone number", fr: "Téléphone", es: "Teléfono", ru: "Телефон", ar: "Phone number" },
-  startChat: { en: "Start chat", fr: "Démarrer le chat", es: "Iniciar chat", ru: "Начать чат", ar: "Start chat" },
-  searchCountry: { en: "Search country", fr: "Rechercher", es: "Buscar país", ru: "Поиск страны", ar: "Search country" },
+  firstName: { en: "First name", fr: "Prénom", es: "Nombre", ru: "Имя", ar: "الاسم الأول" },
+  lastName: { en: "Last name", fr: "Nom", es: "Apellido", ru: "Фамилия", ar: "اسم العائلة" },
+  email: { en: "Email", fr: "Email", es: "Email", ru: "Email", ar: "البريد الإلكتروني" },
+  phone: { en: "Phone number", fr: "Téléphone", es: "Teléfono", ru: "Телефон", ar: "رقم الهاتف" },
+  startChat: { en: "Start chat", fr: "Démarrer le chat", es: "Iniciar chat", ru: "Начать чат", ar: "ابدأ المحادثة" },
+  searchCountry: { en: "Search country", fr: "Rechercher", es: "Buscar país", ru: "Поиск страны", ar: "ابحث عن الدولة" },
   privacy: {
     en: "By continuing you accept our privacy policy.",
     fr: "En continuant vous acceptez notre politique de confidentialité.",
     es: "Al continuar aceptas nuestra política de privacidad.",
     ru: "Продолжая, вы принимаете нашу политику конфиденциальности.",
-    ar: "By continuing you accept our privacy policy.",
+    ar: "بالمتابعة، أنت توافق على سياسة الخصوصية.",
   },
   welcome: {
     en: "Hi {name}! I'm Sara, Sofara's virtual assistant 💬 I can answer any question about Sofara, Dubai real estate or our ambassador program. Pick a topic below or ask me anything.",
@@ -137,7 +138,7 @@ const i18n: Record<string, Record<Lang, string>> = {
   invalidPhone: { en: "Invalid phone", fr: "Téléphone invalide", es: "Teléfono inválido", ru: "Неверный телефон", ar: "رقم هاتف غير صالح" },
 };
 
-const FAQ: Record<Lang, { q: string; a?: string }[]> = {
+const FAQ: Record<ChatLang, { q: string; a?: string }[]> = {
   fr: [
     { q: "Qui sommes-nous ?" },
     { q: "Comment gagner de l'argent avec Sofara ?" },
@@ -191,7 +192,9 @@ const leadSchema = z.object({
 const STORAGE_KEY = "sofara-chatbot-lead";
 
 export default function LandingChatbot() {
-  const { lang } = useLanguage();
+  // The chatbot's "ar" strings are Arabic; the site's Arabic interface language is "arb".
+  const { lang: uiLang } = useLanguage();
+  const lang: ChatLang = uiLang === "arb" ? "ar" : uiLang;
   const [isOpen, setIsOpen] = useState(false);
   const [hasLead, setHasLead] = useState<boolean>(() => !!localStorage.getItem(STORAGE_KEY));
   const [leadName, setLeadName] = useState<string>(() => {

@@ -35,6 +35,7 @@ const CookieConsent = () => {
     en: { title: "We use cookies 🍪", body: "We use cookies to enhance your experience and analyze site traffic. You can accept or decline non-essential cookies.", accept: "Accept all", decline: "Decline", link: "Cookie policy", close: "Close" },
     fr: { title: "Nous utilisons des cookies 🍪", body: "Nous utilisons des cookies pour améliorer votre expérience et mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels.", accept: "Tout accepter", decline: "Refuser", link: "Politique cookies", close: "Fermer" },
     es: { title: "Usamos cookies 🍪", body: "Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Puedes aceptar o rechazar las cookies no esenciales.", accept: "Aceptar todo", decline: "Rechazar", link: "Política de cookies", close: "Cerrar" },
+    arb: { title: "نستخدم ملفات تعريف الارتباط 🍪", body: "نستخدم ملفات تعريف الارتباط لتحسين تجربتك وقياس زيارات الموقع. يمكنك قبول ملفات تعريف الارتباط غير الضرورية أو رفضها.", accept: "قبول الكل", decline: "رفض", link: "سياسة ملفات تعريف الارتباط", close: "إغلاق" },
     ru: { title: "Мы используем cookie 🍪", body: "Мы используем файлы cookie, чтобы улучшить работу сайта и анализировать трафик. Вы можете принять или отклонить необязательные cookie.", accept: "Принять все", decline: "Отклонить", link: "Политика cookie", close: "Закрыть" },
   };
   const text = COPY[lang === "ar" ? "fr" : lang] ?? COPY.en;
@@ -52,7 +53,7 @@ const CookieConsent = () => {
           <div className="relative bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl p-5 shadow-2xl">
             <button
               onClick={decline}
-              className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute top-3 right-3 rtl:right-auto rtl:left-3 text-muted-foreground hover:text-foreground transition-colors"
               aria-label={text.close}
             >
               <X size={16} />

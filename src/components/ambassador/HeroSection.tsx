@@ -25,8 +25,9 @@ const H1_PREFIX: Record<string, string> = {
   ar: "Sofara, le réseau des ambassadeurs, apporteurs d'affaires et apporteurs de clients de l'immobilier à Dubaï et aux Émirats — ",
   es: "Sofara, la red de embajadores y afiliados inmobiliarios de Dubái y EAU — ",
   ru: "Sofara — сеть амбассадоров недвижимости Дубая и ОАЭ — ",
+  arb: "Sofara، شبكة سفراء العقارات والتسويق العقاري بالعمولة في دبي والإمارات — ",
 };
-const UP_TO_3: Record<string, string> = { en: "Up to 3%", fr: "Jusqu'à 3 %", ar: "Jusqu'à 3 %", es: "Hasta 3 %", ru: "До 3%" };
+const UP_TO_3: Record<string, string> = { en: "Up to 3%", fr: "Jusqu'à 3 %", ar: "Jusqu'à 3 %", es: "Hasta 3 %", ru: "До 3%", arb: "حتى 3%" };
 
 const HeroSection = () => {
   const { t, lang } = useLanguage();
@@ -80,7 +81,7 @@ const HeroSection = () => {
             <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 sm:mb-10 leading-relaxed px-2">
               {(() => {
                 const sub = t("hero.slide1.sub");
-                const highlights = ["3%", "no license", "from anywhere", "sans licence", "depuis n'importe où dans le monde", "sin licencia", "desde cualquier parte del mundo", "без лицензии", "из любой точки мира"];
+                const highlights = ["3%", "no license", "from anywhere", "sans licence", "depuis n'importe où dans le monde", "sin licencia", "desde cualquier parte del mundo", "без лицензии", "из любой точки мира", "حتى 3%", "دون رخصة", "من أي مكان في العالم"];
                 // Build a regex matching any highlight, case-insensitive
                 const regex = new RegExp(`(${highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
                 const parts = sub.split(regex);

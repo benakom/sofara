@@ -1,7 +1,10 @@
 // "ar" is kept as a deprecated alias (mapped to "en") to avoid breaking
 // legacy dashboard/admin components that still inline-check `lang === "ar"`.
-// Public-facing surfaces use en | fr | es | ru.
-export type Lang = "en" | "fr" | "es" | "ru" | "ar";
+// Public-facing surfaces use en | fr | es | ru | arb. Real Arabic is "arb" (public /ar pages only,
+// see langOfLocale in ./locales); missing "arb" keys fall back to English.
+import { AR_TRANSLATIONS } from "./translations-ar";
+
+export type Lang = "en" | "fr" | "es" | "ru" | "ar" | "arb";
 
 export const translations: Record<Lang, Record<string, string>> = {
 
@@ -1665,6 +1668,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Sofara. Все права защищены.",
     "footer.regulated": "Sofara — платформа, принадлежащая Cevitas Real Estate LLC. Сделки с недвижимостью обрабатываются агентами, лицензированными RERA.",
   },
+  arb: AR_TRANSLATIONS,
   // Deprecated alias kept for legacy dashboard/admin code paths.
   get ar() { return this.en; },
 };

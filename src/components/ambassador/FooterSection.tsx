@@ -9,6 +9,7 @@ const HEADINGS: Record<Locale, { program: string; network: string; income: strin
   en: { program: "Program", network: "Ambassadors & affiliation", income: "Income & career", legal: "Legal", partners: "Partners", guides: "Guides" },
   fr: { program: "Programme", network: "Ambassadeurs & affiliation", income: "Revenus & carrière", legal: "Légal", partners: "Partenaires", guides: "Guides" },
   es: { program: "Programa", network: "Embajadores y afiliados", income: "Ingresos y carrera", legal: "Legal", partners: "Socios", guides: "Guías" },
+  ar: { program: "البرنامج", network: "السفراء والتسويق بالعمولة", income: "الدخل والمسار المهني", legal: "قانوني", partners: "الشركاء", guides: "الأدلة" },
   ru: { program: "Программа", network: "Амбассадоры и партнёрство", income: "Доход и карьера", legal: "Правовая информация", partners: "Партнёры", guides: "Гайды" },
 };
 
@@ -188,7 +189,7 @@ const FooterSection = () => {
               </a>
             ))}
           </nav>
-          <div className="grid gap-1 text-xs text-muted-foreground lg:text-right">
+          <div className="grid gap-1 text-xs text-muted-foreground lg:text-right lg:rtl:text-left">
             <p>{t("footer.regulated")}</p>
             <p>{t("footer.rights")}</p>
           </div>

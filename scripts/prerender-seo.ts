@@ -64,10 +64,15 @@ for (const route of routes) {
     const head = helmet
       ? [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString(), helmet.script.toString()].join("\n")
       : "";
-    const lang = (helmet?.htmlAttributes.toComponent() as { lang?: string })?.lang || "en";
+    const htmlAttrs = (helmet?.htmlAttributes.toComponent() ?? {}) as { lang?: string; dir?: string };
+    const lang = htmlAttrs.lang || "en";
+    const dir = htmlAttrs.dir === "rtl" ? ' dir="rtl"' : "";
     let html = stripDefaultSeo(template);
-    html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"`);
-    html = html.replace("</head>", `${head}\n</head>`);
+    html = html.replace(/<html lang="[^"]*"/, `<html lang="${lang}"${dir}`);
+    // Font preloads declared by the page (e.g. the Arabic font on /ar) go first, ahead of the inlined CSS.
+    const preloads = head.match(/<link[^>]*rel="preload"[^>]*>/g) ?? [];
+    html = html.replace("</head>", `${preloads.reduce((h, l) => h.replace(l, ""), head)}\n</head>`);
+    if (preloads.length) html = html.replace(/(<meta charset="[^"]*" \/>)/, `$1\n    ${preloads.join("\n    ")}`);
     html = html.replace('<div id="root"></div>', `<div id="root" data-ssr="${route}">${body}</div>${guard}`);
     const file = route === "/" ? indexPath : join(dist, route.replace(/^\//, ""), "index.html");
     mkdirSync(resolve(file, ".."), { recursive: true });

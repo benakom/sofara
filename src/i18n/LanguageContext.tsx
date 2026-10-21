@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 import { translations, Lang } from "./translations";
-import { isPublicPath, localeFromPath } from "./locales";
+import { isPublicPath, langOfLocale, localeFromPath } from "./locales";
 
 interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: (key: string) => string;
-  /** Language forced by the public URL (/fr, /es, /ru or English root pages), if any. */
+  /** Language forced by the public URL (/fr, /es, /ru, /ar or English root pages), if any. */
   urlLang?: Lang;
   setUrlLang: (lang: Lang | undefined) => void;
 }
@@ -32,16 +32,18 @@ export const LanguageProvider = ({ children, initialPath }: { children: ReactNod
   const startPath = initialPath ?? (typeof window !== "undefined" ? window.location.pathname : "/");
   const [saved, setSaved] = useState<Lang>(() => (typeof window === "undefined" ? "en" : readSaved()));
   const [urlLang, setUrlLang] = useState<Lang | undefined>(() =>
-    isPublicPath(startPath) ? localeFromPath(startPath) : undefined,
+    isPublicPath(startPath) ? langOfLocale(localeFromPath(startPath)) : undefined,
   );
   const lang = urlLang ?? saved;
 
   useEffect(() => {
-    document.documentElement.dir = "ltr";
-    document.documentElement.lang = lang === "ar" ? "fr" : lang;
+    document.documentElement.dir = lang === "arb" ? "rtl" : "ltr";
+    document.documentElement.lang = lang === "ar" ? "fr" : lang === "arb" ? "ar" : lang;
   }, [lang]);
 
   const changeLang = useCallback((l: Lang) => {
+    // Arabic exists on the public /ar pages only (its URL sets it); the app keeps the previous language.
+    if (l === "arb") return;
     setSaved(l);
     try {
       localStorage.setItem("sofara-lang", l);
@@ -50,7 +52,7 @@ export const LanguageProvider = ({ children, initialPath }: { children: ReactNod
     }
   }, []);
 
-  const t = useCallback((key: string) => translations[lang][key] || key, [lang]);
+  const t = useCallback((key: string) => translations[lang][key] || translations.en[key] || key, [lang]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang: changeLang, t, urlLang, setUrlLang }}>

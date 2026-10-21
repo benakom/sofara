@@ -1,52 +1,69 @@
+import type { Lang } from "./translations";
+
 // Public-site locales and localized URLs.
-// English lives at the root ("/", "/dubai-real-estate-ambassadors"…); French, Spanish and Russian live under
-// /fr, /es and /ru with localized slugs. Every localized page declares its equivalents so hreflang,
+// English lives at the root ("/", "/dubai-real-estate-ambassadors"…); French, Spanish, Russian and Arabic live under
+// /fr, /es, /ru and /ar with localized slugs. Every localized page declares its equivalents so hreflang,
 // the language switcher, the sitemap and the prerender all stay in sync from this single file.
 
-export const LOCALES = ["en", "fr", "es", "ru"] as const;
+export const LOCALES = ["en", "fr", "es", "ru", "ar"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const SITE_URL = "https://sofara.io";
 
-export const LOCALE_LABELS: Record<Locale, string> = { en: "English", fr: "Français", es: "Español", ru: "Русский" };
-export const OG_LOCALES: Record<Locale, string> = { en: "en_US", fr: "fr_FR", es: "es_ES", ru: "ru_RU" };
+export const LOCALE_LABELS: Record<Locale, string> = { en: "English", fr: "Français", es: "Español", ru: "Русский", ar: "العربية" };
+export const OG_LOCALES: Record<Locale, string> = { en: "en_US", fr: "fr_FR", es: "es_ES", ru: "ru_RU", ar: "ar_AE" };
+
+/** Right-to-left locales (rendered with <html dir="rtl">). */
+export const isRtl = (l: Locale) => l === "ar";
+
+/**
+ * Interface language (key of src/i18n/translations.ts) used for a URL locale.
+ * "ar" in translations is a LEGACY alias the dashboard uses for French, so real Arabic lives under "arb".
+ */
+export const langOfLocale = (l: Locale): Lang => (l === "ar" ? "arb" : l);
+/** URL locale of an interface language (the legacy "ar" alias is French). */
+export const localeOfLang = (l: Lang): Locale => (l === "arb" ? "ar" : l === "ar" ? "fr" : l);
 
 export type PageKey = "home" | "ambassadors" | "affiliate" | "agent" | "invest";
 
 export const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
-  home: { en: "/", fr: "/fr", es: "/es", ru: "/ru" },
+  home: { en: "/", fr: "/fr", es: "/es", ru: "/ru", ar: "/ar" },
   ambassadors: {
     en: "/dubai-real-estate-ambassadors",
     fr: "/fr/ambassadeurs-immobilier-dubai",
     es: "/es/embajadores-inmobiliarios-dubai",
     ru: "/ru/ambassadory-nedvizhimosti-dubai",
+    ar: "/ar/sufara-aqarat-dubai",
   },
   affiliate: {
     en: "/real-estate-affiliate-program-uae",
     fr: "/fr/affiliation-immobilier-dubai",
     es: "/es/programa-afiliados-inmobiliarios-dubai",
     ru: "/ru/partnerskaya-programma-nedvizhimost-dubai",
+    ar: "/ar/altaswiq-alaqari-bialumula-dubai",
   },
   agent: {
     en: "/become-real-estate-agent-dubai",
     fr: "/fr/devenir-agent-immobilier-dubai",
     es: "/es/como-ser-agente-inmobiliario-dubai",
     ru: "/ru/kak-stat-rieltorom-v-dubae",
+    ar: "/ar/kayf-tusbih-wasit-aqari-fi-dubai",
   },
   invest: {
     en: "/invest-dubai-real-estate",
     fr: "/fr/investir-immobilier-dubai",
     es: "/es/invertir-inmobiliario-dubai",
     ru: "/ru/investicii-v-nedvizhimost-dubaya",
+    ar: "/ar/alistithmar-alaqari-fi-dubai",
   },
 };
 
 const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
 
-/** Locale encoded in a public URL (/fr/…, /es/…, /ru/…); everything else is English. */
+/** Locale encoded in a public URL (/fr/…, /es/…, /ru/…, /ar/…); everything else is English. */
 export const localeFromPath = (pathname: string): Locale => {
   const seg = norm(pathname).split("/")[1];
-  return seg === "fr" || seg === "es" || seg === "ru" ? seg : "en";
+  return seg === "fr" || seg === "es" || seg === "ru" || seg === "ar" ? seg : "en";
 };
 
 /** Returns the page key and locale for a localized public URL, if it is one. */
@@ -93,6 +110,11 @@ export const HOME_META: Record<Locale, { title: string; description: string }> =
     description:
       "Sofara — сеть амбассадоров и партнёрская программа недвижимости Дубая и ОАЭ. Рекомендуйте покупателей из любой страны и получайте до 3% комиссии.",
   },
+  ar: {
+    title: "Sofara | شبكة سفراء العقارات في دبي والإمارات",
+    description:
+      "Sofara شبكة سفراء العقارات وبرنامج التسويق العقاري بالعمولة في دبي والإمارات. رشّح مشترين من أي بلد واربح حتى 3% من سعر العقار بالدرهم.",
+  },
 };
 
 /** Interface strings used by the localized templates (navbar, pillar pages, footer). */
@@ -125,6 +147,12 @@ export const UI: Record<Locale, {
     ambassadors: "Амбассадоры", guides: "Гайды", home: "Главная", breadcrumbHome: "Главная", updated: "Обновлено в октябре 2026",
     footerTagline: "Sofara · Сеть амбассадоров недвижимости Дубая и ОАЭ",
   },
+  ar: {
+    join: "انضم إلى Sofara مجاناً", seeProgram: "كيف يعمل البرنامج", faq: "الأسئلة الشائعة", related: "أدلة ذات صلة",
+    createAccount: "أنشئ حساب السفير المجاني", perks: ["بدون رخصة", "تسجيل مجاني بلا رسوم", "الدفع بالدرهم خلال 7 أيام"],
+    ambassadors: "السفراء", guides: "الأدلة", home: "الرئيسية", breadcrumbHome: "الرئيسية", updated: "آخر تحديث: أكتوبر 2026",
+    footerTagline: "Sofara · شبكة سفراء العقارات في دبي والإمارات",
+  },
 };
 
 /**
@@ -149,30 +177,34 @@ export const isGuideKey = (k: AnyPageKey): k is GuideKey => k in GUIDES;
 
 /** Short link labels for each localized page, used in navigation and footers. */
 export const PAGE_LABELS: Record<PageKey, Record<Locale, string>> = {
-  home: { en: "Sofara", fr: "Sofara", es: "Sofara", ru: "Sofara" },
+  home: { en: "Sofara", fr: "Sofara", es: "Sofara", ru: "Sofara", ar: "Sofara" },
   ambassadors: {
     en: "Dubai real estate ambassadors",
     fr: "Réseau des ambassadeurs immobiliers",
     es: "Embajadores inmobiliarios en Dubái",
     ru: "Амбассадоры недвижимости Дубая",
+    ar: "سفراء العقارات في دبي",
   },
   affiliate: {
     en: "UAE real estate affiliate program",
     fr: "Affiliation immobilière à Dubaï",
     es: "Programa de afiliados inmobiliarios",
     ru: "Партнёрская программа недвижимости",
+    ar: "التسويق العقاري بالعمولة",
   },
   agent: {
     en: "Become a real estate agent in Dubai",
     fr: "Devenir agent immobilier à Dubaï",
     es: "Cómo ser agente inmobiliario en Dubái",
     ru: "Как стать риэлтором в Дубае",
+    ar: "كيف تصبح وسيطاً عقارياً في دبي",
   },
   invest: {
     en: "Invest in Dubai real estate",
     fr: "Investir dans l'immobilier à Dubaï",
     es: "Invertir en inmobiliario en Dubái",
     ru: "Инвестиции в недвижимость Дубая",
+    ar: "الاستثمار العقاري في دبي",
   },
 };
 

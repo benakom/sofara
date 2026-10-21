@@ -17,7 +17,7 @@ interface Entry {
 const url = (p: string) => `${SITE_URL}${p}`;
 const entries: Entry[] = [];
 
-// Pages available in EN / FR / ES / RU
+// Pages available in EN / FR / ES / RU / AR
 const localized: { key: PageKey; priority: string }[] = [
   { key: "home", priority: "1.0" },
   { key: "ambassadors", priority: "0.95" },

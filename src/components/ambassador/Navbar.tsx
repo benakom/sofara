@@ -6,13 +6,14 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import { alternatesFor, isPublicPath, localeFromPath, PAGE_PATHS, SITE_URL, UI, type Locale } from "@/i18n/locales";
+import { alternatesFor, isPublicPath, localeFromPath, localeOfLang, PAGE_PATHS, SITE_URL, UI } from "@/i18n/locales";
 
 const languages: { code: Lang; label: string }[] = [
   { code: "en", label: "English" },
   { code: "fr", label: "Français" },
   { code: "es", label: "Español" },
   { code: "ru", label: "Русский" },
+  { code: "arb", label: "العربية" },
 ];
 
 const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) => {
@@ -27,7 +28,7 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
     setLang(code);
     setOpen(false);
     if (!isPublicPath(pathname)) return;
-    const target = code as Locale;
+    const target = localeOfLang(code);
     const alt = alternatesFor(pathname);
     const to = alt ? alt[target].replace(SITE_URL, "") || "/" : PAGE_PATHS.home[target];
     if (to !== pathname) navigate(to + (alt ? hash : ""));
@@ -48,12 +49,12 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-full mt-1 z-50 bg-background/95 backdrop-blur-xl border border-border/40 rounded-xl shadow-xl overflow-hidden min-w-[130px]">
+          <div className="absolute right-0 rtl:right-auto rtl:left-0 top-full mt-1 z-50 bg-background/95 backdrop-blur-xl border border-border/40 rounded-xl shadow-xl overflow-hidden min-w-[130px]">
             {languages.map(l => (
               <button
                 key={l.code}
                 onClick={() => choose(l.code)}
-                className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                className={`w-full text-start px-4 py-2.5 text-sm transition-colors ${
                   lang === l.code
                     ? "bg-primary/10 text-primary font-semibold"
                     : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"

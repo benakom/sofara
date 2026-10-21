@@ -11,7 +11,7 @@ import {
   buildBreadcrumbJsonLd,
   type SeoMeta,
 } from "@/config/seo";
-import { alternatesFor, localeFromPath, LOCALES, OG_LOCALES, PAGE_PATHS, UI, type Locale } from "@/i18n/locales";
+import { alternatesFor, isRtl, localeFromPath, LOCALES, OG_LOCALES, PAGE_PATHS, UI, type Locale } from "@/i18n/locales";
 
 interface SEOProps {
   /** Route key in SEO_CONFIG (e.g. "/", "/about"). Auto-fills meta. */
@@ -128,8 +128,9 @@ const SEO = ({
   const xDefault = alternates?.en ?? (locale === "en" ? finalCanonical : undefined);
 
   return (
-    <Helmet htmlAttributes={{ lang: locale }}>
+    <Helmet htmlAttributes={{ lang: locale, dir: isRtl(locale) ? "rtl" : "ltr" }}>
       <title>{finalTitle}</title>
+      {locale === "ar" && <link rel="preload" as="font" type="font/woff2" href="/fonts/cairo-arabic-var.woff2" crossOrigin="anonymous" />}
       <meta name="description" content={finalDesc} />
       <link rel="canonical" href={finalCanonical} />
       <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1"} />

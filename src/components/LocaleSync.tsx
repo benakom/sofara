@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { isPublicPath, localeFromPath, PAGE_PATHS } from "@/i18n/locales";
+import { isPublicPath, langOfLocale, localeFromPath, PAGE_PATHS } from "@/i18n/locales";
 
 /**
- * Keeps the interface language aligned with the URL on public pages (/fr → French, root pages → English).
+ * Keeps the interface language aligned with the URL on public pages (/fr → French, /ar → Arabic, root pages → English).
  * App pages (dashboard, admin, auth) keep the language the user picked.
  * A visitor who explicitly chose FR/ES/RU earlier and lands on the English homepage is sent to their
  * language's homepage (crawlers have no saved choice, so they always get the requested URL).
@@ -15,7 +15,7 @@ const LocaleSync = () => {
   const { setUrlLang } = useLanguage();
 
   useEffect(() => {
-    setUrlLang(isPublicPath(pathname) ? localeFromPath(pathname) : undefined);
+    setUrlLang(isPublicPath(pathname) ? langOfLocale(localeFromPath(pathname)) : undefined);
   }, [pathname, setUrlLang]);
 
   useEffect(() => {
