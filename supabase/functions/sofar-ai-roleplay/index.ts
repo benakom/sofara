@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { hasAIProvider, requestAI } from "../_shared/providers.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -91,8 +92,9 @@ serve(async (req) => {
     const safeScenario = VALID_SCENARIOS.includes(scenario) ? scenario : "skeptical";
     const safeLang = VALID_LANGS.includes(lang) ? lang : "fr";
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
+    // Lovable gateway when its key exists, our own Gemini key otherwise (see _shared/providers.ts).
+    const AI_READY = hasAIProvider();
+    if (!AI_READY) {
       return new Response(JSON.stringify({ error: "Service IA indisponible" }), {
         status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -132,21 +134,14 @@ RULES:
   • Areas to improve
   • Key advice`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const response = await requestAI({
         model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
           ...safeMsgs,
         ],
         stream: true,
-      }),
-    });
+      })
 
     if (!response.ok) {
       if (response.status === 429) {

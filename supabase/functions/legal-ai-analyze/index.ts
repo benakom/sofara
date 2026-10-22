@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { hasAIProvider, requestAI } from "../_shared/providers.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -58,8 +59,9 @@ serve(async (req) => {
     }
     // --- End authentication ---
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    // Lovable gateway when its key exists, our own Gemini key otherwise (see _shared/providers.ts).
+    const AI_READY = hasAIProvider();
+    if (!AI_READY) throw new Error("AI provider is not configured");
 
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
@@ -101,13 +103,7 @@ serve(async (req) => {
         ? "Analyse ce document immobilier en détail. Identifie les points de vigilance, les clauses négociables et donne un verdict global."
         : "Analyze this real estate document in detail. Identify red flags, negotiable clauses and give an overall verdict.";
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const response = await requestAI({
         model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
@@ -123,8 +119,7 @@ serve(async (req) => {
           }
         ],
         stream: true,
-      }),
-    });
+      })
 
     if (!response.ok) {
       if (response.status === 429) {
