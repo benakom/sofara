@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2'
+import { isServiceRoleToken } from '../_shared/providers.ts'
 import { enqueueTransactional, emailLang, escapeHtml, firstNameOf, SITE_URL } from '../_shared/transactional.ts'
 import { leadStageText, LOST_REASONS } from '../_shared/lead-stages.ts'
 
@@ -114,10 +115,10 @@ Deno.serve(async (req) => {
 
   const authHeader = req.headers.get('Authorization') ?? ''
   if (!authHeader.startsWith('Bearer ')) return json({ error: 'Unauthorized' }, 401)
-  const claims = parseJwtClaims(authHeader.slice(7).trim())
+  const isService = isServiceRoleToken(authHeader.slice(7).trim())
   const admin = createClient(supabaseUrl, serviceKey)
 
-  if (claims?.role !== 'service_role') {
+  if (!isService) {
     const userClient = createClient(supabaseUrl, anonKey, { global: { headers: { Authorization: authHeader } } })
     const { data: { user } } = await userClient.auth.getUser()
     if (!user) return json({ error: 'Unauthorized' }, 401)

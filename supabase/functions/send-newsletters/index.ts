@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2'
+import { isServiceRoleToken } from '../_shared/providers.ts'
 import { NEWSLETTER_ISSUES, type NewsletterIssue, type NewsletterLang } from '../_shared/newsletters.ts'
 import { pickEmailLang, parseEmailLang } from '../_shared/email-lang.ts'
 
@@ -294,11 +295,9 @@ Deno.serve(async (req) => {
   const authHeader = req.headers.get('Authorization') ?? ''
   if (!authHeader.startsWith('Bearer ')) return json({ error: 'Unauthorized' }, 401)
   const token = authHeader.slice(7).trim()
-  const claims = parseJwtClaims(token)
-
   const admin = createClient(supabaseUrl, serviceKey)
   let callerEmail: string | null = null
-  let isService = claims?.role === 'service_role'
+  let isService = isServiceRoleToken(token)
   if (!isService) {
     const userClient = createClient(supabaseUrl, anonKey, { global: { headers: { Authorization: authHeader } } })
     const { data: { user } } = await userClient.auth.getUser()
