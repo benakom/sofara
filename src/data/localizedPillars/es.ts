@@ -1,7 +1,7 @@
-import type { PageKey } from "@/i18n/locales";
+import type { AnyPageKey } from "@/i18n/locales";
 import type { PillarContent } from "./types";
 
-export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
+export const ES_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   ambassadors: {
     title: "Embajadores inmobiliarios en Dubái: la red Sofara",
     description:
@@ -78,7 +78,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
       title: "Hazte embajador inmobiliario en Dubái",
       text: "Únete a más de 700 embajadores en más de 40 países. Recomienda compradores, sigue cada expediente y cobra en AED.",
     },
-    related: ["affiliate", "agent", "invest", "home"],
+    related: ["affiliate", "agent", "invest", "trabajar", "home"],
   },
 
   affiliate: {
@@ -155,7 +155,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
       title: "Únete al programa de afiliados inmobiliarios",
       text: "Crea tu cuenta gratis, comparte tu enlace y deja que un equipo autorizado en Dubái convierta tus recomendaciones en comisiones.",
     },
-    related: ["ambassadors", "agent", "invest", "home"],
+    related: ["ambassadors", "agent", "invest", "trabajar", "home"],
   },
 
   agent: {
@@ -237,7 +237,7 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
       title: "Empieza a ganar con el inmobiliario de Dubái esta semana",
       text: "No necesitas esperar a un visado, un curso y un examen para cobrar tu primera comisión. Únete a la red Sofara y recomienda compradores de tu entorno.",
     },
-    related: ["ambassadors", "affiliate", "invest", "home"],
+    related: ["ambassadors", "affiliate", "invest", "trabajar", "home"],
   },
 
   invest: {
@@ -383,6 +383,78 @@ export const ES_PILLARS: Partial<Record<PageKey, PillarContent>> = {
       title: "Refiere un comprador y cobra tu comisión",
       text: "Registro gratuito. Presenta a tus contactos, el equipo autorizado de Cevitas se encarga del resto y tú cobras del 1 % al 3 % del precio.",
     },
-    related: ["affiliate", "ambassadors", "agent", "home"],
+    related: ["affiliate", "ambassadors", "agent", "trabajar", "home"],
+  },
+
+  trabajar: {
+    title: "Trabajar en el sector inmobiliario en Dubái: guía 2026",
+    description:
+      "Trabajar en el sector inmobiliario en Dubái: oficios, visado, licencia RERA, pago a comisión y cómo empezar como embajador desde España o Latinoamérica.",
+    h1: "Trabajar en el sector inmobiliario en Dubái: oficios, requisitos y cómo empezar",
+    eyebrow: "Carrera · hispanohablantes en Dubái",
+    intro:
+      "Cada año, muchos hispanohablantes se preguntan cómo **trabajar en el sector inmobiliario en Dubái**. Los compradores llegan de todo el mundo y un asesor que habla su idioma marca la diferencia. Esta guía explica los oficios, los requisitos para ejercer, cómo se cobra y cómo empezar, en Dubái o desde tu país.",
+    sections: [
+      {
+        h2: "Los oficios inmobiliarios en Dubái",
+        blocks: [
+          { ul: [
+            "**Agente inmobiliario (broker)**: asesora a compradores y vendedores, organiza visitas y acompaña la operación. Necesita una tarjeta de broker de la RERA.",
+            "**Comercial de obra nueva (off-plan)**: especializado en los lanzamientos de los promotores, en una agencia o en el equipo de ventas de un promotor.",
+            "**Gestor de alquileres (property manager)**: gestiona los alquileres por cuenta de los propietarios.",
+            "**Embajador o referidor**: presenta compradores a una agencia autorizada, sin licencia, a menudo desde el extranjero.",
+          ] },
+        ],
+      },
+      {
+        h2: "Requisitos para ejercer como agente",
+        blocks: [
+          { ol: [
+            "Un visado de residencia en los Emiratos, normalmente patrocinado por la agencia que te contrata.",
+            "La formación obligatoria del Dubai Real Estate Institute (DREI).",
+            "El examen de la RERA y el registro en el Dubai Land Department (DLD).",
+            "Una tarjeta de broker con número BRN, que se renueva cada año.",
+          ] },
+          { p: "Los importes y plazos oficiales se publican en el sitio del [Dubai Land Department](https://dubailand.gov.ae). El recorrido completo está en nuestra guía [cómo ser agente inmobiliario en Dubái](/es/como-ser-agente-inmobiliario-dubai)." },
+        ],
+      },
+      {
+        h2: "Cómo se cobra en el sector inmobiliario de Dubái",
+        blocks: [
+          { p: "La mayoría de los agentes cobran a comisión: la agencia factura su honorario y el agente recibe la parte pactada en su contrato. En obra nueva, el promotor paga a la agencia que aporta al comprador, y el comprador no paga honorarios de agencia. Los primeros meses sirven para construir una cartera de clientes." },
+          { p: "Los contratos entre las partes son formularios oficiales del DLD: el **Form A** entre vendedor y agencia, el **Form B** entre comprador y agencia y el **Form I** entre dos agencias que comparten una comisión." },
+        ],
+      },
+      {
+        h2: "Elegir una agencia en Dubái",
+        blocks: [
+          { ul: [
+            "Comprueba que la agencia está registrada en la RERA y que sus agentes tienen tarjeta vigente.",
+            "Pregunta por el reparto de comisión, el apoyo a la formación y el soporte de marketing.",
+            "Valora una agencia con clientela internacional que aprecie un perfil hispanohablante.",
+          ] },
+        ],
+      },
+      {
+        h2: "Empezar desde tu país, antes de mudarte",
+        blocks: [
+          { p: "Muchos hispanohablantes empiezan como **embajadores** desde España o Latinoamérica: presentan compradores a Cevitas Real Estate, agencia autorizada por la RERA, a través de Sofara, y cobran **del 1 % al 3 % del precio** cuando se cierra la venta, sin visado ni licencia. Es una forma concreta de conocer el mercado antes de instalarse." },
+          { p: "Más detalles en la [red de embajadores inmobiliarios en Dubái](/es/embajadores-inmobiliarios-dubai) y en el [programa de referidos](/es/programa-referidos-inmobiliario-dubai)." },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "¿Se puede trabajar en el sector inmobiliario en Dubái sin hablar inglés?", a: "El inglés es el idioma de trabajo. El español es una ventaja para atender a clientes hispanohablantes, pero no sustituye al inglés para ejercer como agente." },
+      { q: "¿Hace falta licencia para trabajar en el sector inmobiliario en Dubái?", a: "Sí, para ejercer como agente: tarjeta de broker de la RERA tras la formación DREI y el examen. Como embajador de Sofara no necesitas licencia." },
+      { q: "¿Cómo se paga a un agente inmobiliario en Dubái?", a: "Sobre todo a comisión: el agente recibe una parte del honorario de la agencia según su contrato." },
+      { q: "¿Puedo empezar desde España o Latinoamérica?", a: "Sí, como embajador: presentas compradores a Cevitas a través de Sofara y cobras del 1 % al 3 % del precio cuando se cierra la venta." },
+      { q: "¿Cuándo se cobra la comisión de embajador?", a: "Se genera con la firma del SPA y el pago de la entrada con las tasas DLD, y se paga en AED en 7 días desde el pago del promotor a Cevitas." },
+      { q: "¿Unirse a Sofara tiene coste?", a: "No. El registro es gratuito, sin cuotas ni mínimo de recomendaciones." },
+    ],
+    cta: {
+      title: "Empieza en el sector inmobiliario de Dubái hoy",
+      text: "Sin visado ni licencia: hazte embajador de Sofara, presenta a tus contactos y cobra del 1 % al 3 % del precio.",
+    },
+    related: ["ambassadors", "agent", "referral", "affiliate", "home"],
   },
 };

@@ -7,6 +7,8 @@ import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
+import { BLOG_SEO } from "@/data/blogSeo";
+import { localeFromPath } from "@/i18n/locales";
 import { useEffect } from "react";
 
 /** Responsive widths for Unsplash images (their CDN resizes on the fly); other URLs are left as is. */
@@ -25,13 +27,22 @@ const BlogPost = () => {
 
   if (!article) return <Navigate to="/blog" replace />;
 
-  const related = getRelatedArticles(article);
+  const seo = BLOG_SEO[article.slug];
+  // French articles get a French page (html lang, navbar, footer and the strings below) and only French related articles.
+  const fr = localeFromPath(`/blog/${article.slug}`) === "fr";
+  const related = getRelatedArticles(article).filter((a) => (localeFromPath(`/blog/${a.slug}`) === "fr") === fr);
+  const s = fr
+    ? { back: "Retour au blog", by: "Par", ctaTitle: "Prêt à gagner avec l'immobilier à Dubaï ?", ctaText: "Rejoignez le réseau d'ambassadeurs Sofara : gratuit, sans licence.", cta: "Devenir ambassadeur", related: "Articles associés", powered: "Avec", simulator: "Simulateur d'investissement sur plan" }
+    : { back: "Back to Blog", by: "By", ctaTitle: "Ready to earn from Dubai Real Estate?", ctaText: "Join Sofara's ambassador network — free, no license needed.", cta: "Become an Ambassador", related: "Related Articles", powered: "Powered by", simulator: "Off-Plan Investment Simulator" };
+  // The page header already renders the headline as the only <h1>: drop the duplicate at the top of the Markdown.
+  const body = article.content.replace(/^\s*# [^\n]*\n/, "");
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title={`${article.title} | Sofara`}
-        description={article.excerpt}
+        title={seo?.title ?? `${article.title} | Sofara`}
+        description={seo?.description ?? article.excerpt}
+        locale={fr ? "fr" : "en"}
         canonical={`https://sofara.io/blog/${article.slug}`}
         ogType="article"
         ogImage={article.image}
@@ -53,7 +64,7 @@ const BlogPost = () => {
             to="/blog"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
+            <ArrowLeft className="w-4 h-4" /> {s.back}
           </Link>
         </div>
 
@@ -76,7 +87,7 @@ const BlogPost = () => {
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {article.excerpt}
           </p>
-          <p className="text-xs text-muted-foreground mt-3">By {article.author}</p>
+          <p className="text-xs text-muted-foreground mt-3">{s.by} {article.author}</p>
         </header>
 
         {/* Hero image */}
@@ -104,6 +115,7 @@ const BlogPost = () => {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  h1: ({ children }) => <h2>{children}</h2>,
                   a: ({ href, children, ...props }) => {
                     const isExternal = href?.startsWith("http");
                     return (
@@ -120,7 +132,7 @@ const BlogPost = () => {
                   },
                 }}
               >
-                {article.content}
+                {body}
               </ReactMarkdown>
             </div>
           </div>
@@ -141,17 +153,17 @@ const BlogPost = () => {
           {/* CTA */}
           <div className="mt-10 p-6 sm:p-8 rounded-2xl border border-primary/20 bg-primary/5 text-center">
             <h3 className="font-display text-lg sm:text-xl font-bold mb-2">
-              Ready to earn from Dubai Real Estate?
+              {s.ctaTitle}
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
-              Join Sofara's ambassador network — free, no license needed.
+              {s.ctaText}
             </p>
             <Link
               to="/auth"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-primary-foreground"
               style={{ background: "var(--gradient-primary)" }}
             >
-              Become an Ambassador <ArrowLeft className="w-4 h-4 rotate-180" />
+              {s.cta} <ArrowLeft className="w-4 h-4 rotate-180" />
             </Link>
           </div>
         </article>
@@ -159,7 +171,7 @@ const BlogPost = () => {
         {/* Related articles */}
         {related.length > 0 && (
           <section className="px-5 sm:px-6 max-w-7xl mx-auto mt-16">
-            <h2 className="font-display text-xl sm:text-2xl font-bold mb-6">Related Articles</h2>
+            <h2 className="font-display text-xl sm:text-2xl font-bold mb-6">{s.related}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map(rel => (
                 <Link key={rel.slug} to={`/blog/${rel.slug}`} className="group block">
@@ -190,13 +202,13 @@ const BlogPost = () => {
         {/* External partners */}
         <section className="px-5 sm:px-6 max-w-4xl mx-auto mt-12">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
-            <span>Powered by</span>
+            <span>{s.powered}</span>
             <a href="https://www.cevitas.ae" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
               Cevitas Real Estate LLC
             </a>
             <span>•</span>
             <a href="https://www.offplansimulator.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">
-              Off-Plan Investment Simulator
+              {s.simulator}
             </a>
           </div>
         </section>

@@ -5,7 +5,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   affiliate: {
     title: "Real Estate Affiliate Program UAE & Dubai | Sofara",
     description:
-      "Join the Dubai and UAE real estate affiliate program from the USA, Canada, the UK, Europe or the GCC. Refer property buyers and earn 1% to 3% of the price in AED.",
+      "Join the Dubai and UAE real estate affiliate program from the USA, Canada, the UK, Europe or the GCC. Refer property buyers, earn 1% to 3% of the price in AED.",
     h1: "Real Estate Affiliate Program in the UAE and Dubai",
     eyebrow: "Affiliate program · Dubai, Abu Dhabi, Ras Al Khaimah",
     intro:

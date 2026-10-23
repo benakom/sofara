@@ -67,8 +67,12 @@ export const PAGE_PATHS: Record<PageKey, Record<Locale, string>> = {
 
 const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
 
+/** Blog articles written in French: their page (navbar, footer, html lang) is French although the URL has no /fr. */
+const FR_BLOG_PATHS = new Set(["/blog/comment-devenir-agent-immobilier-dubai", "/blog/devenir-agent-immobilier-dubai-sans-licence"]);
+
 /** Locale encoded in a public URL (/fr/…, /es/…, /ru/…, /ar/…); everything else is English. */
 export const localeFromPath = (pathname: string): Locale => {
+  if (FR_BLOG_PATHS.has(norm(pathname))) return "fr";
   const seg = norm(pathname).split("/")[1];
   return seg === "fr" || seg === "es" || seg === "ru" || seg === "ar" ? seg : "en";
 };
@@ -164,9 +168,11 @@ export const UI: Record<Locale, {
 
 /**
  * Single-language guides built on search demand in one market: English guides for people searching from the UAE,
- * French guides for France/Belgium/Switzerland/Canada ("apporteur d'affaires"), Russian guide for Russian speakers.
+ * French guides for France/Belgium/Switzerland/Canada ("apporteur d'affaires"), Spanish, Russian and Arabic guides for those speakers.
  */
-export type GuideKey = "freelance" | "partTime" | "referralFee" | "sideIncome" | "apporteur" | "travailDubai" | "rabota";
+export type GuideKey =
+  | "freelance" | "partTime" | "referralFee" | "sideIncome" | "apporteur" | "travailDubai" | "rabota"
+  | "trabajar" | "komissiya" | "umulaWasit";
 export const GUIDES: Record<GuideKey, { locale: Locale; path: string; label: string }> = {
   freelance: { locale: "en", path: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai" },
   partTime: { locale: "en", path: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
@@ -175,6 +181,9 @@ export const GUIDES: Record<GuideKey, { locale: Locale; path: string; label: str
   apporteur: { locale: "fr", path: "/fr/apporteur-affaires-immobilier-dubai", label: "Apporteur d'affaires immobilier Dubaï" },
   travailDubai: { locale: "fr", path: "/fr/travailler-immobilier-dubai", label: "Travailler dans l'immobilier à Dubaï" },
   rabota: { locale: "ru", path: "/ru/rabota-rieltorom-v-dubae", label: "Работа риэлтором в Дубае" },
+  trabajar: { locale: "es", path: "/es/trabajar-inmobiliario-dubai", label: "Trabajar en el sector inmobiliario en Dubái" },
+  komissiya: { locale: "ru", path: "/ru/komissiya-rieltora-v-dubae", label: "Комиссия риэлтора в Дубае" },
+  umulaWasit: { locale: "ar", path: "/ar/umulat-alwasit-alaqari-dubai", label: "عمولة الوسيط العقاري في دبي" },
 };
 /** English guides only (kept for the English footer and sitemap code). */
 export const EN_GUIDES = GUIDES;
