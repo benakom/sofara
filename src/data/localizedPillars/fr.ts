@@ -84,7 +84,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   affiliate: {
     title: "Programme d'affiliation immobilier Dubaï : jusqu'à 3 %",
     description:
-      "Programme d'affiliation immobilière à Dubaï et aux Émirats : devenez apporteur d'affaires, recommandez des acheteurs et touchez jusqu'à 3 % de commission en AED.",
+      "Programme d'affiliation immobilière à Dubaï et aux Émirats : devenez apporteur d'affaires, recommandez des acheteurs et touchez jusqu'à 3 % en AED.",
     h1: "Programme d'affiliation immobilier à Dubaï et aux Émirats",
     eyebrow: "Programme d'affiliation · Dubaï, Abu Dhabi, Ras Al Khaimah",
     intro:
@@ -414,7 +414,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   travailDubai: {
     title: "Travailler dans l'immobilier à Dubaï en 2026 : le guide",
     description:
-      "Travailler dans l'immobilier à Dubaï : métiers, visa, licence RERA, rémunération à la commission, recherche d'agence, et la voie d'apporteur d'affaires depuis l'étranger.",
+      "Travailler dans l'immobilier à Dubaï : métiers, visa, licence RERA, rémunération à la commission et la voie d'apporteur d'affaires depuis l'étranger.",
     h1: "Travailler dans l'immobilier à Dubaï : métiers, conditions et revenus",
     eyebrow: "Carrière · francophones à Dubaï",
     intro:

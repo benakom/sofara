@@ -44,9 +44,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/become-real-estate-agent-dubai": {
-    title: "How to Become a Real Estate Agent in Dubai (2026 Guide) | Sofara",
+    title: "Become a Real Estate Agent in Dubai: 2026 Guide | Sofara",
     description:
-      "Step-by-step guide to becoming a real estate agent in Dubai in 2026: RERA license, DREI course, costs, timeline, salary and commission, plus the no-license ambassador route that pays up to 3%.",
+      "Become a real estate agent in Dubai in 2026: RERA license, DREI course, costs, timeline and commission, plus the no-license ambassador route paying up to 3%.",
     canonical: "https://sofara.io/become-real-estate-agent-dubai",
     h1: "How to Become a Real Estate Agent in Dubai in 2026",
     keywords: [
@@ -65,7 +65,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/dubai-real-estate-ambassadors": {
     title: "Dubai & UAE Real Estate Ambassadors Network | Sofara",
     description:
-      "What a Dubai real estate ambassador does, how the ambassadors network works, how much ambassadors earn per referral (up to 3% commission) and how to join Sofara for free from anywhere in the world.",
+      "What a Dubai real estate ambassador does, how the network works, what you earn per referral (up to 3%) and how to join Sofara for free from anywhere.",
     canonical: "https://sofara.io/dubai-real-estate-ambassadors",
     h1: "Dubai Real Estate Ambassadors: the Network Explained",
     keywords: [
@@ -169,9 +169,9 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
     schemaType: "Service",
   },
   "/about": {
-    title: "About Sofara Dubai Real Estate",
+    title: "About Sofara | Dubai Real Estate Ambassadors Network",
     description:
-      "Learn about Sofara, the Dubai real estate ambassador platform operated with Cevitas Real Estate LLC.",
+      "About Sofara, the Dubai and UAE real estate ambassadors network operated with Cevitas Real Estate LLC, a RERA-licensed brokerage. Refer buyers, earn up to 3%.",
     canonical: "https://sofara.io/about",
     h1: "About Sofara — the Operator-Built Dubai Real Estate Ambassadors Network",
     keywords: [
