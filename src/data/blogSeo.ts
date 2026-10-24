@@ -25,7 +25,7 @@ export const BLOG_SEO: Record<string, { title: string; description: string }> = 
       "Off-plan or ready property in Dubai? Compare payment flexibility, risk, handover timing, rental income and exit options before you buy.",
   },
   "emaar-properties-guide": {
-    title: "Emaar Properties: Investor's Guide to Emaar in Dubai | Sofara",
+    title: "Emaar Properties: Investor's Guide to Emaar Dubai | Sofara",
     description:
       "Emaar Properties, the developer behind Burj Khalifa, Downtown Dubai and Dubai Hills Estate: its communities, payment plans and how to buy.",
   },

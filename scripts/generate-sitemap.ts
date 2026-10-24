@@ -41,9 +41,7 @@ const englishOnly: Omit<Entry, "alternates">[] = [
   { path: "/buy-property-dubai", changefreq: "weekly", priority: "0.8" },
   { path: "/dubai-off-plan-properties", changefreq: "weekly", priority: "0.8" },
   { path: "/blog", changefreq: "daily", priority: "0.8" },
-  { path: "/legal/privacy", changefreq: "yearly", priority: "0.2" },
-  { path: "/legal/terms", changefreq: "yearly", priority: "0.2" },
-  { path: "/legal/cookies", changefreq: "yearly", priority: "0.2" },
+  // /legal/* pages are noindex (src/pages/Legal.tsx) and stay out of the sitemap.
 ];
 entries.push(...englishOnly);
 for (const a of blogArticles as { slug: string }[]) entries.push({ path: `/blog/${a.slug}`, changefreq: "monthly", priority: "0.7" });
