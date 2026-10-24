@@ -323,7 +323,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   },
 
   apporteur: {
-    title: "Apporteur d'affaires immobilier Dubaï et apporteur de clients",
+    title: "Apporteur d'affaires immobilier Dubaï & apporteur de clients",
     description:
       "Devenez apporteur d'affaires ou apporteur de clients immobilier à Dubaï et aux Émirats, depuis la France, la Belgique, la Suisse ou le Canada : 1 à 3 % du prix.",
     h1: "Apporteur d'affaires immobilier Dubaï : devenir apporteur de clients aux Émirats",

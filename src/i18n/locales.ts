@@ -107,7 +107,7 @@ export const HOME_META: Record<Locale, { title: string; description: string }> =
       "Sofara is the Dubai & UAE real estate ambassadors and affiliate network. Refer property buyers as an introducer from anywhere and earn up to 3% in AED.",
   },
   fr: {
-    title: "Sofara | Ambassadeurs & apporteurs d'affaires immobilier Dubaï",
+    title: "Ambassadeurs & apporteurs d'affaires immobilier Dubaï",
     description:
       "Sofara, réseau des ambassadeurs de l'immobilier à Dubaï et aux Émirats : affiliation, apporteurs d'affaires et apporteurs de clients. Jusqu'à 3 % de commission.",
   },

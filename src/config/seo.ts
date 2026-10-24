@@ -101,7 +101,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/invest-dubai-real-estate": {
     title: "Invest in Dubai Real Estate 2026 | Sofara",
     description:
-      "Dubai real estate investment guide for 2026: ROI, rental yields, payment plans, Golden Visa and top developer insights.",
+      "Dubai real estate investment guide for 2026: ROI, rental yields, payment plans, Golden Visa routes and top developer insights.",
     canonical: "https://sofara.io/invest-dubai-real-estate",
     h1: "How to Invest in Dubai Real Estate in 2026 (Investor Guide)",
     keywords: [
@@ -122,7 +122,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/buy-property-dubai": {
     title: "Buy Property in Dubai 2026 | Sofara",
     description:
-      "How foreigners can buy property in Dubai in 2026: areas, developers, payment plans, DLD fees and Golden Visa options.",
+      "How foreigners can buy property in Dubai in 2026: best areas, developers, payment plans, DLD fees and Golden Visa options.",
     canonical: "https://sofara.io/buy-property-dubai",
     h1: "Buy Property in Dubai — The Complete 2026 Foreigner Guide",
     keywords: [
@@ -146,7 +146,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/dubai-off-plan-properties": {
     title: "Dubai Off-Plan Properties 2026 | Sofara",
     description:
-      "Explore Dubai off-plan properties for 2026: developers, payment plans, ROI, handover dates and broker-backed insights.",
+      "Explore Dubai off-plan properties for 2026: top developers, payment plans, ROI, handover dates and broker-backed insights.",
     canonical: "https://sofara.io/dubai-off-plan-properties",
     h1: "Dubai Off-Plan Properties — Top Investments for 2026",
     keywords: ["Dubai off-plan", "Emaar off-plan", "DAMAC off-plan", "Sofara Real Estate"],
@@ -194,7 +194,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/blog": {
     title: "Sofara Blog | Dubai Real Estate Guides",
     description:
-      "Dubai real estate guides from Sofara: ambassador strategy, off-plan analysis, payment plans and market insights.",
+      "Dubai real estate guides from Sofara: ambassador strategy, off-plan analysis, payment plans, Golden Visa and market insights.",
     canonical: "https://sofara.io/blog",
     h1: "Sofara Blog — Dubai Real Estate Ambassadors Insights",
     keywords: ["Sofara blog", "Dubai Real Estate Ambassadors", "Dubai property blog", "Sofara Dubai"],
