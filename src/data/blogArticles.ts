@@ -278,7 +278,7 @@ Dubai's population has grown from 3.1 million (2020) to **3.8 million (2026)**, 
 
 ## 8. Flexible Payment Plans & Accessible Entry Points
 
-Dubai developers offer some of the most investor-friendly payment structures globally:
+Dubai developers offer some of the most [investor-friendly payment structures](https://www.offplansimulator.com/off-plan-calculators) globally:
 
 - **60/40 plans**: 60% during construction, 40% on handover
 - **Post-handover plans**: Pay 50-70% over 2-5 years after receiving your property
@@ -540,7 +540,7 @@ Start earning from day one. No construction wait. Rental income begins the month
 Ready properties in established communities have historical rental data — you know exactly what tenants pay, occupancy rates, and maintenance costs.
 
 **4. Financing Available**
-UAE banks offer mortgages for ready properties:
+[UAE banks offer mortgages](https://www.offplansimulator.com/uae-mortgage-guide) for ready properties:
 - Up to **80% LTV** for UAE residents
 - Up to **50% LTV** for non-residents
 - Interest rates from 4.5-6% (2026)
@@ -558,7 +558,7 @@ UAE banks offer mortgages for ready properties:
 | Factor | Off-Plan | Ready |
 |--------|----------|-------|
 | **Entry price** | 15-30% below market | Full market price |
-| **Payment flexibility** | Very high (60/40, post-handover) | Cash or mortgage |
+| **Payment flexibility** | Very high (60/40, post-handover) | [Cash or mortgage](https://www.offplansimulator.com/blog/mortgage-vs-cash-purchase-dubai) |
 | **Capital appreciation** | 25-50% potential | Market-rate (5-15%/year) |
 | **Rental income** | Delayed (2-4 years) | Immediate |
 | **Risk level** | Moderate (developer-dependent) | Lower |
@@ -1651,7 +1651,7 @@ Launched in 2019 and expanded significantly in 2022-2023, the Golden Visa is a l
 - **AED 2,000,000** in residential property (approximately $545,000 / AED 2,000,000)
 - Can be a single property or multiple properties totaling AED 2M+
 - Off-plan properties qualify **only if completed and handed over**
-- Mortgaged properties qualify if equity (paid amount) exceeds AED 2M
+- [Mortgaged properties](https://www.offplansimulator.com/blog/mortgage-for-golden-visa-buyers) qualify if equity (paid amount) exceeds AED 2M
 
 ### Property Requirements
 - Must be in a **freehold zone** (${internalLink("see list of freehold areas", "/blog/foreigners-buying-dubai-property")})
@@ -1781,7 +1781,7 @@ A fixed administrative fee charged by the DLD for processing the transfer.
 ### 4. Mortgage Registration Fee (if applicable)
 If you're financing with a UAE mortgage:
 - **0.25% of the loan amount** + AED 290 admin fee
-- Paid to the DLD at mortgage registration
+- Paid to the DLD at [mortgage registration](https://www.offplansimulator.com/blog/mortgage-registration-dubai-land-department)
 
 ### 5. Real Estate Agency Commission
 - Typically **2% of property value** + 5% VAT
@@ -1836,7 +1836,7 @@ For off-plan purchases, the DLD charges an **Oqood (pre-registration) fee**:
 
 1. **Negotiate developer fee absorption**: Some developers cover 50% of the DLD fee during promotional periods
 2. **Buy off-plan at launch**: Lower prices = lower absolute DLD fees
-3. **Cash purchase**: Avoid mortgage-related fees (~AED 15,000-20,000 savings)
+3. **Cash purchase**: Avoid [mortgage-related fees](https://www.offplansimulator.com/blog/total-cost-of-buying-with-mortgage-dubai) (~AED 15,000-20,000 savings)
 4. **Use the ${simulatorLink("Investment Simulator")}**: Model exact total costs before committing
 
 ---
@@ -1885,7 +1885,7 @@ One of the most powerful advantages of Dubai's real estate market: developers of
 | During construction | Installments | 50% | AED 1,000,000 |
 | On handover | Completion | 40% | AED 800,000 |
 
-**Best for:** Balanced cash flow — good for investors who want moderate construction-phase exposure and a meaningful handover payment (which can sometimes be financed with a mortgage).
+**Best for:** Balanced cash flow — good for investors who want moderate construction-phase exposure and a meaningful handover payment (which can sometimes be [financed with a mortgage](https://www.offplansimulator.com/blog/mortgage-at-handover-off-plan-completion)).
 
 ### 70/30 Plan
 | Phase | When | % | On AED 2M |
@@ -1967,7 +1967,7 @@ ${simulatorLink("→ Model your own cash flow with the Payment Plan Simulator")}
 
 ## For Sofara Ambassadors
 
-Payment plan flexibility is one of your **strongest selling points**. Many international investors assume Dubai requires full cash — explaining the 40/60 or post-handover options often converts hesitant prospects into serious buyers.
+Payment plan flexibility is one of your **strongest selling points**. Many international investors assume Dubai requires full cash — explaining the 40/60 or [post-handover options](https://www.offplansimulator.com/blog/post-handover-payment-plan-vs-mortgage) often converts hesitant prospects into serious buyers.
 
 ${internalLink("**→ Join Sofara and present payment plan options to your network**", "/auth")}
 
@@ -2333,10 +2333,10 @@ The documentation requirements are remarkably simple:
 
 ### UAE Bank Mortgage
 - Available to **non-residents** from select banks
-- LTV: Up to **50% for non-residents** (50% LTV for properties under AED 5M)
+- [LTV](https://www.offplansimulator.com/blog/uae-mortgage-ltv-limits-explained): Up to **50% for non-residents** (50% LTV for properties under AED 5M)
 - Interest rates: 4.5-6% (2026)
 - Banks: Emirates NBD, ADCB, Mashreq, FAB, RAK Bank
-- Required: Proof of income, bank statements, passport
+- Required: [proof of income, bank statements, passport](https://www.offplansimulator.com/blog/documents-needed-mortgage-uae)
 
 ### Developer Payment Plans
 - No bank required — the developer is your lender
