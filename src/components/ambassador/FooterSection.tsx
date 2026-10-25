@@ -5,6 +5,15 @@ import { EN_GUIDES, GUIDES, LOCALES, LOCALE_LABELS, localeFromPath, PAGE_LABELS,
 
 type FooterLink = { label: string; to: string; external?: boolean };
 
+/** Official RERA numbers of the operating brokerage and its founder, in the page language. */
+const RERA_LINE: Record<Locale, string> = {
+  en: "Cevitas Real Estate — RERA ORN 49294 · Ahmed Benjas BRN 83239",
+  fr: "Cevitas Real Estate — RERA ORN 49294 · Ahmed Benjas BRN 83239",
+  es: "Cevitas Real Estate — RERA ORN 49294 · Ahmed Benjas BRN 83239",
+  ar: "Cevitas Real Estate — ريرا ORN 49294 · أحمد بنجاس BRN 83239",
+  ru: "Cevitas Real Estate — RERA ORN 49294 · Ахмед Бенджас BRN 83239",
+};
+
 const HEADINGS: Record<Locale, { program: string; network: string; income: string; legal: string; partners: string; guides: string }> = {
   en: { program: "Program", network: "Ambassadors & affiliation", income: "Income & career", legal: "Legal", partners: "Partners", guides: "Guides" },
   fr: { program: "Programme", network: "Ambassadeurs & affiliation", income: "Revenus & carrière", legal: "Légal", partners: "Partenaires", guides: "Guides" },
@@ -191,6 +200,7 @@ const FooterSection = () => {
           </nav>
           <div className="grid gap-1 text-xs text-muted-foreground lg:text-right lg:rtl:text-left">
             <p>{t("footer.regulated")}</p>
+            <p>{RERA_LINE[locale] ?? RERA_LINE.en}</p>
             <p>{t("footer.rights")}</p>
           </div>
         </div>

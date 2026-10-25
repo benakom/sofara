@@ -222,12 +222,13 @@ export const AHMED_BENJAS_PERSON = {
   url: AHMED_BENJAS_URL,
   image: "https://sofara.io/team/ahmed-benjas.png",
   jobTitle: "Founder & CEO",
+  identifier: { "@type": "PropertyValue", propertyID: "RERA BRN", value: "83239" },
   description:
     "Moroccan real estate entrepreneur based in Dubai. Founder of Cevitas Real Estate, a RERA-licensed brokerage in Dubai, and of Sofara, the Dubai real estate ambassadors network. Track record of AED 200M+ in property transactions. Advises buyers in French, Arabic, Darija and English.",
   nationality: { "@type": "Country", name: "Morocco" },
   homeLocation: { "@type": "Place", name: "Dubai, United Arab Emirates" },
   knowsLanguage: ["fr", "ar", "ary", "en"],
-  worksFor: { "@type": "RealEstateAgent", "@id": "https://www.cevitas.ae/#organization", name: "Cevitas Real Estate", url: "https://www.cevitas.ae/" },
+  worksFor: { "@type": "RealEstateAgent", "@id": "https://www.cevitas.ae/#organization", name: "Cevitas Real Estate", url: "https://www.cevitas.ae/", identifier: { "@type": "PropertyValue", propertyID: "RERA ORN", value: "49294" } },
   sameAs: AHMED_BENJAS_SAME_AS,
   knowsAbout: [
     "Dubai real estate",
@@ -271,6 +272,7 @@ export const ORGANIZATION_JSONLD = {
     "@id": "https://www.cevitas.ae/#organization",
     name: "Cevitas Real Estate LLC",
     url: "https://www.cevitas.ae/",
+    identifier: { "@type": "PropertyValue", propertyID: "RERA ORN", value: "49294" },
     founder: { "@id": AHMED_BENJAS_ID },
     address: {
       "@type": "PostalAddress",

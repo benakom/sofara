@@ -78,7 +78,7 @@ const About = () => {
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. He holds RERA broker card BRN 83239. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 He started Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
@@ -120,7 +120,7 @@ const About = () => {
           </h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE)" },
+              { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE) · RERA ORN 49294" },
               { icon: Award, t: "AED 200M+", d: "In property transactions" },
               { icon: Users, t: "700+ Ambassadors", d: "Active in the Sofara network" },
             ].map((c) => (
@@ -208,7 +208,7 @@ const About = () => {
           <div className="rounded-2xl border border-border/50 bg-secondary/10 p-8 text-center">
             <h2 className="font-display text-xl sm:text-2xl font-bold mb-3">Brand & Operator</h2>
             <p className="text-muted-foreground mb-2">
-              <strong>Sofara</strong> is a brand of <strong>Cevitas Real Estate LLC</strong>, a real estate brokerage based in Dubai, United Arab Emirates. All real estate brokerage activity associated with Sofara is performed by Cevitas Real Estate LLC under its UAE brokerage license. Learn more at{" "}
+              <strong>Sofara</strong> is a brand of <strong>Cevitas Real Estate LLC</strong>, a real estate brokerage based in Dubai, United Arab Emirates. All real estate brokerage activity associated with Sofara is performed by Cevitas Real Estate LLC under its UAE brokerage license (RERA ORN 49294). Learn more at{" "}
               <a href="https://www.cevitas.ae" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 www.cevitas.ae
               </a>
