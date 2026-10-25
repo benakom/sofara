@@ -242,7 +242,7 @@ export const ORGANIZATION_JSONLD = {
     "https://www.instagram.com/sofaradubai/",
     "https://www.cevitas.ae/",
   ],
-  founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about", sameAs: ["https://www.linkedin.com/in/ahmedbenjas", "https://www.instagram.com/ahmed.benjas"] },
+  founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about", sameAs: ["https://www.linkedin.com/in/ahmedbenjas", "https://www.instagram.com/ahmedbenjas"] },
 };
 
 export const WEBSITE_JSONLD = {
@@ -295,7 +295,7 @@ export function buildPersonJsonLd() {
     },
     sameAs: [
       "https://www.linkedin.com/in/ahmedbenjas",
-      "https://www.instagram.com/ahmed.benjas",
+      "https://www.instagram.com/ahmedbenjas",
     ],
     knowsAbout: [
       "Dubai Real Estate",
