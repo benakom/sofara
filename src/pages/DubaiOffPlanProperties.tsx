@@ -4,6 +4,8 @@ import { ArrowRight, TrendingUp, BarChart3, MapPin, Building, Home, Landmark, St
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import AuthorBox from "@/components/AuthorBox";
+import { AHMED_BENJAS_PERSON } from "@/config/seo";
 
 const DubaiOffPlanPage = () => {
   const advantages = [
@@ -40,7 +42,7 @@ const DubaiOffPlanPage = () => {
           "@type": "Article",
           headline: "Dubai Off-Plan Properties 2026 — Complete Guide for Investors & Ambassadors",
           description: "Comprehensive guide to Dubai off-plan real estate investment for 2026, with developer comparisons, payment plans, capital appreciation and ambassador opportunities.",
-          author: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
+          author: AHMED_BENJAS_PERSON,
           publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           datePublished: "2026-03-01",
           dateModified: "2026-05-22",
@@ -160,6 +162,9 @@ const DubaiOffPlanPage = () => {
             ))}
           </div>
         </section>
+        <div className="px-5 sm:px-6 max-w-4xl mx-auto pb-16">
+          <AuthorBox locale="en" />
+        </div>
       </main>
       <FooterSection />
     </div>

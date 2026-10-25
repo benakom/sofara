@@ -5,6 +5,8 @@ import { ArrowRight, TrendingUp, Shield, Globe, Building2, Users, DollarSign, Ch
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import AuthorBox from "@/components/AuthorBox";
+import { AHMED_BENJAS_PERSON } from "@/config/seo";
 
 const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
 
@@ -43,7 +45,7 @@ const InvestDubaiPage = () => {
           "@type": "Article",
           headline: "Invest in Dubai Real Estate 2026 — Complete Guide",
           description: "Guide to investing in Dubai real estate in 2026: how buying works, area profiles, payment plans and Golden Visa information.",
-          author: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
+          author: AHMED_BENJAS_PERSON,
           publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           datePublished: "2026-03-01",
           dateModified: "2026-10-25",
@@ -57,7 +59,7 @@ const InvestDubaiPage = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <TrendingUp className="w-3.5 h-3.5" /> Updated October 2026
+              <TrendingUp className="w-3.5 h-3.5" /> Updated October 2026 · By Ahmed Benjas, founder
             </span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
               Invest in Dubai Real Estate
@@ -218,6 +220,9 @@ const InvestDubaiPage = () => {
         <Suspense fallback={null}>
           <FAQSection />
         </Suspense>
+        <div className="px-5 sm:px-6 max-w-4xl mx-auto pb-16">
+          <AuthorBox locale="en" />
+        </div>
       </main>
       <FooterSection />
     </div>

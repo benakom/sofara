@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Linkedin,
-  GraduationCap,
   Building2,
   Award,
   Globe2,
@@ -79,7 +78,7 @@ const About = () => {
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. His background spans 20+ years in finance, an MBA, and Executive Education at <strong>Stanford Graduate School of Business</strong>. Recognized as a LinkedIn Top Voice, Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 He started Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
@@ -101,6 +100,14 @@ const About = () => {
                 >
                   <Building2 className="w-3.5 h-3.5" /> Cevitas Real Estate
                 </a>
+                <a
+                  href="https://www.ahmedbenjas.com/en/about/"
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors"
+                >
+                  <Globe2 className="w-3.5 h-3.5" /> ahmedbenjas.com
+                </a>
               </div>
             </div>
           </div>
@@ -114,7 +121,7 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE)" },
-              { icon: GraduationCap, t: "Stanford GSB", d: "Executive Education" },
+              { icon: Award, t: "AED 200M+", d: "In property transactions" },
               { icon: Award, t: "LinkedIn Top Voice", d: "Real Estate & Investing" },
               { icon: Users, t: "700+ Ambassadors", d: "Active in the Sofara network" },
             ].map((c) => (

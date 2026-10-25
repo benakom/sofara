@@ -204,6 +204,47 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   },
 };
 
+// ─── Ahmed Benjas: one canonical Person node ──────────────────
+// Same @id as on ahmedbenjas.com, so search engines merge every mention into one entity.
+export const AHMED_BENJAS_ID = "https://www.ahmedbenjas.com/#ahmed";
+export const AHMED_BENJAS_URL = "https://www.ahmedbenjas.com/";
+export const AHMED_BENJAS_SAME_AS = [
+  "https://www.ahmedbenjas.com/",
+  "https://www.linkedin.com/in/ahmedbenjas",
+  "https://www.instagram.com/ahmedbenjas/",
+  "https://www.youtube.com/@AhmedBenjas",
+];
+
+export const AHMED_BENJAS_PERSON = {
+  "@type": "Person",
+  "@id": AHMED_BENJAS_ID,
+  name: "Ahmed Benjas",
+  url: AHMED_BENJAS_URL,
+  image: "https://sofara.io/team/ahmed-benjas.png",
+  jobTitle: "Founder of Sofara and Cevitas Real Estate",
+  description:
+    "Moroccan real estate entrepreneur based in Dubai. Founder of Cevitas Real Estate, a RERA-licensed brokerage in Dubai, and of Sofara, the Dubai real estate ambassadors network. Track record of AED 200M+ in property transactions. Advises buyers in French, Arabic, Darija and English.",
+  nationality: { "@type": "Country", name: "Morocco" },
+  homeLocation: { "@type": "Place", name: "Dubai, United Arab Emirates" },
+  knowsLanguage: ["fr", "ar", "ary", "en"],
+  worksFor: [
+    { "@id": "https://sofara.io/#organization" },
+    { "@type": "RealEstateAgent", "@id": "https://www.cevitas.ae/#organization", name: "Cevitas Real Estate LLC", url: "https://www.cevitas.ae/" },
+  ],
+  sameAs: AHMED_BENJAS_SAME_AS,
+  knowsAbout: [
+    "Dubai real estate",
+    "UAE real estate",
+    "Morocco real estate",
+    "Dubai off-plan property",
+    "Real estate investment for Moroccans and French speakers",
+    "Real estate referral programs",
+  ],
+};
+
+/** Author for Article / BlogPosting JSON-LD: always the canonical Person node. */
+export const authorJsonLd = () => AHMED_BENJAS_PERSON;
+
 // ─── Sitewide JSON-LD templates ───────────────────────────────
 
 export const ORGANIZATION_JSONLD = {
@@ -230,8 +271,10 @@ export const ORGANIZATION_JSONLD = {
   knowsLanguage: ["en", "fr", "es", "ru"],
   parentOrganization: {
     "@type": "RealEstateAgent",
+    "@id": "https://www.cevitas.ae/#organization",
     name: "Cevitas Real Estate LLC",
     url: "https://www.cevitas.ae/",
+    founder: { "@id": AHMED_BENJAS_ID },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dubai",
@@ -242,7 +285,7 @@ export const ORGANIZATION_JSONLD = {
     "https://www.instagram.com/sofaradubai/",
     "https://www.cevitas.ae/",
   ],
-  founder: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about", sameAs: ["https://www.linkedin.com/in/ahmedbenjas", "https://www.instagram.com/ahmed.benjas"] },
+  founder: AHMED_BENJAS_PERSON,
 };
 
 export const WEBSITE_JSONLD = {
@@ -278,33 +321,7 @@ export function buildServiceJsonLd() {
 }
 
 export function buildPersonJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Ahmed Benjas",
-    url: "https://sofara.io/about",
-    image: "https://sofara.io/team/ahmed-benjas.png",
-    jobTitle: "Founder & CEO",
-    worksFor: [
-      { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
-      { "@type": "Organization", name: "Cevitas Real Estate LLC" },
-    ],
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "Stanford Graduate School of Business",
-    },
-    sameAs: [
-      "https://www.linkedin.com/in/ahmedbenjas",
-      "https://www.instagram.com/ahmed.benjas",
-    ],
-    knowsAbout: [
-      "Dubai Real Estate",
-      "PropTech",
-      "Real Estate Ambassador Programs",
-      "Dubai Off-Plan Investment",
-      "Diaspora Investing",
-    ],
-  };
+  return { "@context": "https://schema.org", ...AHMED_BENJAS_PERSON };
 }
 
 export function buildBreadcrumbJsonLd(pathname: string, title?: string, home?: { name: string; path: string }) {

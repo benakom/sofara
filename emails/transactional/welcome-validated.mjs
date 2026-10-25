@@ -22,7 +22,7 @@ export default {
     en: [
       ["h1", "Welcome to the family, {{first_name}}."],
       ["p", "We read your application and we are happy to have you. From today you are an official **Sofara ambassador**, part of a network of more than 700 people who connect their contacts with Dubai and UAE real estate."],
-      ["p", "The model fits in one line: **you introduce, our licensed team does the rest, you earn 1% to 3% of the property value** when the sale closes. No licence, no selling, no paperwork on your side."],
+      ["p", "The model fits in one line: **you introduce, our licensed team does the rest, you earn 1% to 3% of the property value**, paid within 7 days once the client signs the SPA. No licence, no selling, no paperwork on your side."],
       ["h2", "Your first week, in three small steps"],
       ["ol", [
         "**Open your dashboard** and copy your personal link: {{referral_link}}. Anyone who registers through it is linked to you for 12 months.",
@@ -41,7 +41,7 @@ export default {
     fr: [
       ["h1", "Bienvenue dans la famille, {{first_name}}."],
       ["p", "Nous avons lu votre candidature et nous sommes ravis de vous accueillir. Dès aujourd'hui, vous êtes officiellement **ambassadeur Sofara**, membre d'un réseau de plus de 700 personnes qui mettent leurs contacts en relation avec l'immobilier de Dubaï et des Émirats."],
-      ["p", "Le modèle tient en une ligne : **vous présentez, notre équipe licenciée fait le reste, vous touchez 1 % à 3 % de la valeur du bien** à la conclusion de la vente. Pas de licence, pas de vente, pas de paperasse de votre côté."],
+      ["p", "Le modèle tient en une ligne : **vous présentez, notre équipe licenciée fait le reste, vous touchez 1 % à 3 % de la valeur du bien**, versés sous 7 jours une fois que le client a signé son SPA. Pas de licence, pas de vente, pas de paperasse de votre côté."],
       ["h2", "Votre première semaine, en trois petites étapes"],
       ["ol", [
         "**Ouvrez votre tableau de bord** et copiez votre lien personnel : {{referral_link}}. Toute personne inscrite via ce lien vous est rattachée pendant 12 mois.",
@@ -60,7 +60,7 @@ export default {
     es: [
       ["h1", "Bienvenido a la familia, {{first_name}}."],
       ["p", "Hemos leído tu solicitud y nos alegra tenerte con nosotros. Desde hoy eres **embajador oficial de Sofara**, parte de una red de más de 700 personas que conectan a sus contactos con el sector inmobiliario de Dubái y los Emiratos."],
-      ["p", "El modelo cabe en una frase: **tú presentas, nuestro equipo con licencia hace el resto y tú ganas entre el 1 % y el 3 % del valor del inmueble** cuando se cierra la venta. Sin licencia, sin vender, sin papeleo por tu parte."],
+      ["p", "El modelo cabe en una frase: **tú presentas, nuestro equipo con licencia hace el resto y tú ganas entre el 1 % y el 3 % del valor del inmueble**, pagado en un plazo de 7 días una vez que el cliente firma su SPA. Sin licencia, sin vender, sin papeleo por tu parte."],
       ["h2", "Tu primera semana, en tres pasos sencillos"],
       ["ol", [
         "**Abre tu panel** y copia tu enlace personal: {{referral_link}}. Quien se registre a través de él queda vinculado a ti durante 12 meses.",
@@ -79,7 +79,7 @@ export default {
     ru: [
       ["h1", "Добро пожаловать в команду, {{first_name}}."],
       ["p", "Мы рассмотрели вашу заявку и рады, что вы с нами. С сегодняшнего дня вы официальный **амбассадор Sofara** и часть сети из более чем 700 человек, которые знакомят свои контакты с недвижимостью Дубая и ОАЭ."],
-      ["p", "Модель умещается в одну фразу: **вы рекомендуете, наша лицензированная команда делает всё остальное, вы получаете от 1 % до 3 % стоимости объекта** после закрытия сделки. Без лицензии, без продаж, без бумажной работы с вашей стороны."],
+      ["p", "Модель умещается в одну фразу: **вы рекомендуете, наша лицензированная команда делает всё остальное, вы получаете от 1 % до 3 % стоимости объекта**, которые выплачиваются в течение 7 дней после того, как клиент подписал SPA. Без лицензии, без продаж, без бумажной работы с вашей стороны."],
       ["h2", "Ваша первая неделя: три простых шага"],
       ["ol", [
         "**Откройте личный кабинет** и скопируйте свою ссылку: {{referral_link}}. Каждый, кто зарегистрируется по ней, закрепляется за вами на 12 месяцев.",
@@ -98,7 +98,7 @@ export default {
     ar: [
       ["h1", "أهلاً بك في العائلة يا {{first_name}}."],
       ["p", "اطّلعنا على طلبك ويسعدنا انضمامك. اعتباراً من اليوم أنت **سفير رسمي لسوفارا**، وجزء من شبكة تضم أكثر من 700 شخص يربطون معارفهم بعقارات دبي والإمارات."],
-      ["p", "النموذج في جملة واحدة: **أنت تعرّف، وفريقنا المرخّص يتولى الباقي، وتحصل على 1% إلى 3% من قيمة العقار** عند إتمام البيع. لا ترخيص، ولا بيع، ولا أوراق من جهتك."],
+      ["p", "النموذج في جملة واحدة: **أنت تعرّف، وفريقنا المرخّص يتولى الباقي، وتحصل على 1% إلى 3% من قيمة العقار**، تُدفع خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA). لا ترخيص، ولا بيع، ولا أوراق من جهتك."],
       ["h2", "أسبوعك الأول في ثلاث خطوات بسيطة"],
       ["ol", [
         "**افتح لوحة التحكم** وانسخ رابطك الشخصي: {{referral_link}}. كل من يسجّل عبره يُنسب إليك لمدة 12 شهراً.",

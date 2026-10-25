@@ -26,7 +26,7 @@ export const blogArticles: BlogArticle[] = [
     tags: ["Dubai real estate", "market analysis", "investment", "2026", "Dubai property market"],
     readTime: "12 min",
     date: "2026-03-15",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
     relatedSlugs: ["why-invest-dubai-property-2026", "dubai-off-plan-vs-ready-properties", "top-dubai-areas-investment-2026"],
     content: `
@@ -153,7 +153,7 @@ ${internalLink("**→ Join the Sofara ambassador network (free)**", "/auth")} an
     tags: ["Dubai investment", "tax-free", "rental yield", "Golden Visa", "2026"],
     readTime: "10 min",
     date: "2026-03-10",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-market-2026-overview", "dubai-golden-visa-real-estate", "dubai-rental-yields-explained"],
     content: `
@@ -290,7 +290,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — no fees,
     tags: ["Dubai areas", "investment zones", "Downtown Dubai", "Dubai Marina", "JVC", "Dubai Hills"],
     readTime: "14 min",
     date: "2026-02-20",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1546412414-e1885259563a?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-market-2026-overview", "dubai-off-plan-vs-ready-properties", "dubai-rental-yields-explained"],
     content: `
@@ -423,7 +423,7 @@ ${internalLink("**→ Join Sofara and earn up to 3% on every referral**", "/auth
     tags: ["off-plan", "ready properties", "investment strategy", "Dubai", "payment plans"],
     readTime: "11 min",
     date: "2026-02-05",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80",
     relatedSlugs: ["top-dubai-areas-investment-2026", "dubai-payment-plans-explained", "emaar-properties-guide"],
     content: `
@@ -557,7 +557,7 @@ ${internalLink("**→ Join Sofara — earn up to 3% on every referral**", "/auth
     tags: ["Emaar", "Emaar Properties", "Dubai developer", "Burj Khalifa", "Dubai Hills", "Downtown Dubai"],
     readTime: "10 min",
     date: "2026-01-25",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
     relatedSlugs: ["damac-properties-guide", "sobha-realty-quality-investment", "top-dubai-areas-investment-2026"],
     content: `
@@ -660,7 +660,7 @@ ${internalLink("**→ Become a Sofara ambassador today — it's free**", "/auth"
     tags: ["Damac", "Damac Properties", "luxury real estate", "branded residences", "Dubai", "Versace"],
     readTime: "9 min",
     date: "2026-01-15",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=800&q=80",
     relatedSlugs: ["emaar-properties-guide", "sobha-realty-quality-investment", "dubai-luxury-real-estate-trends"],
     content: `
@@ -759,7 +759,7 @@ ${internalLink("**→ Join Sofara — it's free**", "/auth")}
     tags: ["Sobha", "Sobha Realty", "quality construction", "Dubai developer", "Sobha Hartland", "backward integration"],
     readTime: "9 min",
     date: "2026-01-05",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
     relatedSlugs: ["emaar-properties-guide", "damac-properties-guide", "top-dubai-areas-investment-2026"],
     content: `
@@ -867,7 +867,7 @@ ${internalLink("**→ Join the Sofara network — it's free**", "/auth")}
     tags: ["ambassador program", "real estate commission", "referral", "Sofara", "earn money", "business introducer"],
     readTime: "11 min",
     date: "2026-03-01",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
     relatedSlugs: ["sofara-commission-structure-explained", "ambassador-success-stories", "what-is-sofara"],
     content: `
@@ -1021,7 +1021,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — it only 
     tags: ["commission", "earnings", "3%", "Sofara", "passive income", "ambassador earnings"],
     readTime: "8 min",
     date: "2026-02-15",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
     relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories", "super-ambassador-program"],
     content: `
@@ -1137,7 +1137,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")}
     tags: ["super ambassador", "Ambassadeur+", "referral bonus", "network", "passive income", "Sofara"],
     readTime: "7 min",
     date: "2026-02-01",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
     relatedSlugs: ["sofara-commission-structure-explained", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
     content: `
@@ -1240,7 +1240,7 @@ ${internalLink("**→ Create your account now**", "/auth")}
     tags: ["success stories", "testimonials", "earnings", "ambassador", "Sofara", "case studies"],
     readTime: "8 min",
     date: "2026-01-20",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80",
     relatedSlugs: ["how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained", "what-is-sofara"],
     content: `
@@ -1376,7 +1376,7 @@ Your network is your asset. Start sharing today.
     tags: ["Sofara Pro", "Sofara Lite", "comparison", "upgrade", "ambassador tiers", "free"],
     readTime: "7 min",
     date: "2026-01-01",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     relatedSlugs: ["what-is-sofara", "how-to-become-dubai-real-estate-ambassador", "sofara-commission-structure-explained"],
     content: `
@@ -1520,7 +1520,7 @@ ${internalLink("**→ Create your free Sofara account**", "/auth")} — start wi
     tags: ["Golden Visa", "Dubai residency", "real estate visa", "10-year visa", "UAE immigration"],
     readTime: "10 min",
     date: "2026-02-25",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
     relatedSlugs: ["why-invest-dubai-property-2026", "foreigners-buying-dubai-property", "dubai-dld-fees-explained"],
     content: `
@@ -1657,7 +1657,7 @@ ${internalLink("**→ Join Sofara and present Golden Visa opportunities to your 
     tags: ["DLD fees", "Dubai Land Department", "transaction costs", "property purchase", "transfer fee"],
     readTime: "8 min",
     date: "2026-02-08",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     relatedSlugs: ["dubai-golden-visa-real-estate", "dubai-payment-plans-explained", "foreigners-buying-dubai-property"],
     content: `
@@ -1765,7 +1765,7 @@ ${internalLink("**→ Join Sofara and start referring with confidence**", "/auth
     tags: ["payment plans", "off-plan", "installments", "Dubai", "investment", "developer plans"],
     readTime: "9 min",
     date: "2026-01-28",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
     relatedSlugs: ["dubai-off-plan-vs-ready-properties", "dubai-dld-fees-explained", "top-dubai-areas-investment-2026"],
     content: `
@@ -1886,7 +1886,7 @@ ${internalLink("**→ Join Sofara and present payment plan options to your netwo
     tags: ["rental yield", "ROI", "passive income", "Dubai", "short-term rental", "Airbnb Dubai"],
     readTime: "11 min",
     date: "2026-03-12",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
     relatedSlugs: ["top-dubai-areas-investment-2026", "why-invest-dubai-property-2026", "dubai-real-estate-market-2026-overview"],
     content: `
@@ -2031,7 +2031,7 @@ ${internalLink("**→ Join Sofara and share rental insights with your network**"
     tags: ["luxury", "branded residences", "UHNW", "Dubai trends", "smart homes", "ultra-luxury"],
     readTime: "9 min",
     date: "2026-02-18",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
     relatedSlugs: ["damac-properties-guide", "dubai-real-estate-market-2026-overview", "top-dubai-areas-investment-2026"],
     content: `
@@ -2151,7 +2151,7 @@ ${internalLink("**→ Join Sofara and connect your HNW contacts with Dubai's fin
     tags: ["foreign buyers", "international investors", "freehold", "Dubai property law", "ownership", "any nationality"],
     readTime: "9 min",
     date: "2026-01-18",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=800&q=80",
     relatedSlugs: ["dubai-golden-visa-real-estate", "dubai-dld-fees-explained", "why-invest-dubai-property-2026"],
     content: `
@@ -2298,7 +2298,7 @@ ${internalLink("**→ Join Sofara and earn up to 3% on international referrals**
     tags: ["WhatsApp", "marketing", "lead generation", "communication", "Dubai", "MENA"],
     readTime: "10 min",
     date: "2026-01-08",
-    author: "Sofara Team",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
     relatedSlugs: ["what-is-sofara", "how-to-become-dubai-real-estate-ambassador", "ambassador-success-stories"],
     content: `
@@ -2425,7 +2425,7 @@ ${internalLink("**→ Sign up for Sofara**", "/auth")} to access:
     tags: ["Expo City", "Expo 2020", "Dubai South", "real estate growth", "infrastructure", "affordable"],
     readTime: "8 min",
     date: "2026-01-12",
-    author: "Sofara Research",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-market-2026-overview", "top-dubai-areas-investment-2026", "why-invest-dubai-property-2026"],
     content: `
@@ -2547,7 +2547,7 @@ ${internalLink("**→ Join Sofara and present accessible Dubai investment option
     tags: ["Sofara Dubai", "Sofara", "Sofara Real Estate", "Dubai Real Estate Ambassadors", "ambassador platform"],
     readTime: "8 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
     relatedSlugs: ["sofara-real-estate-explained", "dubai-real-estate-ambassadors-guide", "how-to-become-dubai-real-estate-ambassador"],
     content: `
@@ -2651,7 +2651,7 @@ ${internalLink("**→ Join Sofara Dubai (Free)**", "/auth")}
     tags: ["Sofara Real Estate", "Sofara", "Sofara Dubai", "Cevitas", "real estate technology"],
     readTime: "7 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
     relatedSlugs: ["sofara-dubai-real-estate-ambassador-platform", "what-is-sofara", "uae-real-estate-ambassadors-network"],
     content: `
@@ -2752,7 +2752,7 @@ ${internalLink("**→ Join Sofara Real Estate (Free)**", "/auth")}
     tags: ["Dubai Real Estate Ambassadors", "Dubai ambassador", "Sofara", "real estate referrals"],
     readTime: "10 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-ambassadors-network", "uae-real-estate-ambassadors-network", "how-to-become-dubai-real-estate-ambassador"],
     content: `
@@ -2877,7 +2877,7 @@ ${internalLink("**→ Become a Dubai Real Estate Ambassador (Free)**", "/auth")}
     tags: ["Dubai Real Estate Ambassadors Network", "Sofara", "Dubai property network", "Ambassador platform"],
     readTime: "8 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1496347646636-ea47f7d6b37b?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-ambassadors-guide", "uae-real-estate-ambassadors-network", "abu-dhabi-real-estate-ambassadors-network"],
     content: `
@@ -2983,7 +2983,7 @@ ${internalLink("**→ Join the Dubai Real Estate Ambassadors Network**", "/auth"
     tags: ["Abu Dhabi Real Estate Ambassadors Network", "Abu Dhabi property", "Aldar", "Sofara", "UAE real estate"],
     readTime: "7 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1583416750470-965b2707b355?w=800&q=80",
     relatedSlugs: ["uae-real-estate-ambassadors-network", "dubai-real-estate-ambassadors-network", "dubai-real-estate-ambassadors-guide"],
     content: `
@@ -3085,7 +3085,7 @@ ${internalLink("**→ Join the Abu Dhabi Real Estate Ambassadors Network**", "/a
     tags: ["UAE Real Estate Ambassadors Network", "UAE property", "Sofara", "Emirates real estate"],
     readTime: "8 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1546412414-e1885259563a?w=800&q=80",
     relatedSlugs: ["dubai-real-estate-ambassadors-network", "abu-dhabi-real-estate-ambassadors-network", "sofara-real-estate-explained"],
     content: `
@@ -3197,7 +3197,7 @@ ${internalLink("**→ Join the UAE Real Estate Ambassadors Network (Free)**", "/
     tags: ["Sofara", "What is Sofara", "Sofara Dubai", "real estate platform"],
     readTime: "6 min",
     date: "2026-05-24",
-    author: "Sofara Editorial",
+    author: "Ahmed Benjas",
     image: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?w=800&q=80",
     relatedSlugs: ["sofara-dubai-real-estate-ambassador-platform", "sofara-real-estate-explained", "dubai-real-estate-ambassadors-network"],
     content: `

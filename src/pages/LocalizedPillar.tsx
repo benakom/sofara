@@ -4,6 +4,8 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import AuthorBox, { AUTHOR_TEXT } from "@/components/AuthorBox";
+import { AHMED_BENJAS_PERSON } from "@/config/seo";
 import { GUIDES, isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
 import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
 import type { Block } from "@/data/localizedPillars/types";
@@ -69,7 +71,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
     url: `${SITE_URL}${path}`,
     image: `${SITE_URL}/og-sofara.png`,
     dateModified: "2026-10-21",
-    author: { "@type": "Person", name: "Ahmed Benjas", url: `${SITE_URL}/about` },
+    author: AHMED_BENJAS_PERSON,
     publisher: { "@id": `${SITE_URL}/#organization` },
   };
   return (
@@ -93,7 +95,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-5">{c.eyebrow}</span>
           <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight mb-5">{c.h1}</h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{inline(c.intro)}</p>
-          <p className="mt-4 text-xs text-muted-foreground">{ui.updated} · Ahmed Benjas, Cevitas Real Estate LLC</p>
+          <p className="mt-4 text-xs text-muted-foreground">{ui.updated} · {AUTHOR_TEXT[locale].byline}</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
               {ui.join} <ArrowRight className="w-4 h-4" />
@@ -112,6 +114,10 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
             </section>
           ))}
         </article>
+
+        <div className="px-5 sm:px-6 max-w-4xl mx-auto pb-12">
+          <AuthorBox locale={locale} />
+        </div>
 
         <section className="px-5 sm:px-6 max-w-4xl mx-auto pb-14">
           <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6">{ui.faq}</h2>
