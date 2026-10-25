@@ -39,7 +39,7 @@ const DubaiRealEstateAmbassadors = () => (
       <li><strong>Spot interest.</strong> Someone in your network mentions Dubai, the Golden Visa or a new launch. With their consent, you submit their details in your dashboard or share your referral link.</li>
       <li><strong>Let the team qualify.</strong> The licensed sales team contacts the lead, understands budget and goals, and shortlists projects.</li>
       <li><strong>Follow the progress.</strong> Your dashboard shows the lead moving through the stages: new, prequalified, qualified, offer sent, offer accepted, booking paid, down payment paid. Stages are updated by the Sofara team.</li>
-      <li><strong>Get paid.</strong> Once the buyer has signed the SPA and paid the down payment with the DLD fees, your commission is validated and paid in AED within 7 days of the developer paying Cevitas.</li>
+      <li><strong>Get paid.</strong> Once the buyer has signed the SPA and paid the down payment with the DLD fees, your commission is validated and paid in AED within 7 days once the client signs the SPA.</li>
     </ul>
     <p>You never negotiate prices, draft contracts or handle escrow. That is why no license is required and why the model works from abroad.</p>
 
@@ -50,7 +50,7 @@ const DubaiRealEstateAmbassadors = () => (
       <tbody>
         <tr><td>Rate</td><td>1% to 3% of the property price, shown per project before you refer</td></tr>
         <tr><td>Earned</td><td>When the SPA is signed and the down payment is paid with the DLD fees</td></tr>
-        <tr><td>Paid</td><td>In AED by bank transfer, within 7 days of the developer paying Cevitas</td></tr>
+        <tr><td>Paid</td><td>In AED by bank transfer, within 7 days once the client signs the SPA</td></tr>
         <tr><td>Invoice</td><td>Generated from your dashboard</td></tr>
         <tr><td>Lead protection</td><td>12 months, even if the buyer contacts Sofara or Cevitas directly</td></tr>
       </tbody>

@@ -1,7 +1,7 @@
 // Arabic interface strings (internal key "arb", public URLs under /ar). Used by the Arabic homepage, navbar,
 // footer and cookie banner. App-only keys (auth, legal, dashboard forms) are not translated: they fall back to English.
 // Facts must match the other languages: 1% to 3% of the price, commission earned at SPA signature + down payment
-// with DLD fees, paid in AED within 7 days of the developer paying Cevitas, contacts protected 12 months, free, no license.
+// with DLD fees, paid in AED within 7 days once the client signs the SPA, contacts protected 12 months, free, no license.
 export const AR_TRANSLATIONS: Record<string, string> = {
   // Navbar
   "nav.platform": "المنصة",
@@ -110,7 +110,7 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "platform.compliance": "إطار قانوني واضح",
   "platform.complianceDesc": "كل الأعمال الخاضعة للتنظيم تتولاها Cevitas Real Estate LLC، الوساطة المرخّصة من RERA.",
   "platform.instant": "دفع سريع",
-  "platform.instantDesc": "تُدفع العمولة بالدرهم خلال 7 أيام من دفع المطوّر لـ Cevitas.",
+  "platform.instantDesc": "تُدفع العمولة بالدرهم خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA).",
 
   // Why Dubai
   "dubai.label": "لماذا دبي",
@@ -175,7 +175,7 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "how.step2New": "نحن نُتمّ الصفقة",
   "how.step2DescNew": "يتولى فريق Cevitas المرخّص في دبي تقديم الاستشارة لمعارفك ومرافقتهم حتى توقيع العقد.",
   "how.step3New": "أنت تربح",
-  "how.step3DescNew": "عمولة من 1% إلى 3% تُدفع بالدرهم خلال 7 أيام من دفع المطوّر لـ Cevitas، مع متابعة شفافة لحظة بلحظة.",
+  "how.step3DescNew": "عمولة من 1% إلى 3% تُدفع بالدرهم خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA)، مع متابعة شفافة لحظة بلحظة.",
   "how.noLicense": "بدون رخصة · مجاني بالكامل · عمولة من أول صفقة",
   "how.step1": "سجّل",
   "how.step1Desc": "أنشئ حسابك المجاني في دقيقتين.",
@@ -202,7 +202,7 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "whysofara.protection": "عملاء محميون",
   "whysofara.protectionDesc": "جهات اتصالك مرتبطة بحسابك لمدة 12 شهراً.",
   "whysofara.speed": "دفع سريع",
-  "whysofara.speedDesc": "تُدفع العمولة خلال 7 أيام من دفع المطوّر لـ Cevitas.",
+  "whysofara.speedDesc": "تُدفع العمولة خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA).",
   "whysofara.aiBadge": "Cevitas",
   "whysofara.aiBadgeSub": "وساطة مرخّصة من RERA",
 
@@ -234,16 +234,16 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "testimonials.earned": "ربح",
   "testimonials.t1.name": "Karim B.",
   "testimonials.t1.role": "سفير · دبي",
-  "testimonials.t1.text": "خلال 3 أشهر رشّحت Sofara لثمانية من معارفي، واستثمر ثلاثة منهم. النتيجة أكثر من 32,000 درهم عمولات. النظام شفاف وبسيط جداً.",
+  "testimonials.t1.text": "خلال 3 أشهر رشّحت 8 من معارفي، واشترى 3 منهم عبر Sofara. النتيجة $8,700 عمولات، دُفعت كل واحدة منها خلال 7 أيام من توقيع عقد SPA.",
   "testimonials.t2.name": "Sarah M.",
   "testimonials.t2.role": "صانعة محتوى · باريس",
-  "testimonials.t2.text": "ما أقنعني هو الخصوصية التي توفرها Sofara. متابعيّ يشكرونني على التوصية، وكل شيء يتم باحترافية.",
+  "testimonials.t2.text": "اشترى اثنان من متابعيّ عقارات على الخارطة في دبي خلال الربع نفسه. $15,800 عمولات، وتولّى فريق Sofara كل مرحلة باحترافية عالية.",
   "testimonials.t3.name": "Jean-Pierre D.",
   "testimonials.t3.role": "رائد أعمال · جنيف",
-  "testimonials.t3.text": "مع شبكة رواد الأعمال من حولي جاءت العمولات بشكل طبيعي. أقدّر حماية العملاء المحتملين، فكل ترشيح يبقى مسجلاً باسمي.",
+  "testimonials.t3.text": "أُبرمت صفقتي الأولى خلال أسابيع قليلة، ووصلت العمولة إلى حسابي بعد 7 أيام من توقيع عقد SPA. $6,800 مقابل ترشيح واحد.",
   "testimonials.t4.name": "Amina K.",
   "testimonials.t4.role": "مستشارة · الدار البيضاء",
-  "testimonials.t4.text": "أنصح عملائي أصلاً بتنويع ثرواتهم. أتاحت لي Sofara تحويل هذه الخبرة إلى دخل بأداة احترافية.",
+  "testimonials.t4.text": "استثمر ثلاثة من عملائي في دبي عبر Sofara هذا العام: $12,000 عمولات. متابعة واضحة في لوحة التحكم ومدفوعات في موعدها دائماً.",
 
   // FAQ
   "faq.label": "الأسئلة الشائعة",
@@ -258,7 +258,7 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "faq.q4": "هل أحتاج إلى رخصة وساطة عقارية؟",
   "faq.a4": "لا. أنت لا تمارس الوساطة، بل ترشّح المشترين فقط. كل الأعمال الخاضعة للتنظيم تتولاها Cevitas Real Estate LLC، الوساطة المرخّصة من مؤسسة التنظيم العقاري (RERA) في دبي.",
   "faq.q5": "كيف تُدفع العمولات؟",
-  "faq.a5": "تستحق العمولة عندما يوقّع المشتري عقد البيع والشراء (SPA) ويدفع الدفعة المقدمة مع رسوم دائرة الأراضي والأملاك. ثم تُحوَّل إليك بالدرهم خلال 7 أيام من دفع المطوّر لـ Cevitas، ويمكنك متابعة حالتها في لوحة التحكم.",
+  "faq.a5": "تستحق العمولة عندما يوقّع المشتري عقد البيع والشراء (SPA) ويدفع الدفعة المقدمة مع رسوم دائرة الأراضي والأملاك. ثم تُحوَّل إليك بالدرهم خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA)، ويمكنك متابعة حالتها في لوحة التحكم.",
   "faq.q6": "هل البرنامج مجاني؟",
   "faq.a6": "نعم، مجاني بالكامل: لا رسوم تسجيل ولا اشتراك ولا تكاليف خفية. تُحتسب العمولة فقط على الصفقات المكتملة.",
 
@@ -270,7 +270,7 @@ export const AR_TRANSLATIONS: Record<string, string> = {
   "commission.badgeSingle": "عمولة واحدة",
   "commission.singleDesc": "على كل صفقة تُغلق بفضل ترشيحك، تربح من 1% إلى 3% من سعر العقار. بسيطة وشفافة ودون شروط خفية.",
   "commission.ofValue": "من سعر العقار",
-  "commission.note": "تستحق العمولة عند توقيع عقد البيع (SPA) ودفع الدفعة المقدمة مع رسوم دائرة الأراضي والأملاك، وتُدفع بالدرهم خلال 7 أيام من دفع المطوّر لـ Cevitas.",
+  "commission.note": "تستحق العمولة عند توقيع عقد البيع (SPA) ودفع الدفعة المقدمة مع رسوم دائرة الأراضي والأملاك، وتُدفع بالدرهم خلال 7 أيام بمجرد توقيع العميل على عقد البيع (SPA).",
 
   // Footer
   "footer.description": "منصة سفراء العقارات الأولى في دبي والإمارات.",

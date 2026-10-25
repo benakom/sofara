@@ -935,7 +935,7 @@ Once a lead registers through your link:
 5. **DLD registration**: full legal compliance and escrow protection
 
 ### Step 5: Earn Your Commission
-When a lead completes a purchase, you earn **up to 3% of the property purchase price**. The commission is paid by bank transfer once the transaction has closed, as set out in the ambassador terms.
+When a lead completes a purchase, you earn **up to 3% of the property purchase price**. The commission is paid by bank transfer within 7 days once the client signs the SPA, as set out in the ambassador terms.
 
 ---
 
@@ -959,7 +959,7 @@ For the full commission model, see our ${internalLink("Commission Structure Expl
 
 ## Level Up: Become an Ambassadeur+
 
-Want to go further? The ${internalLink("Ambassadeur+ program", "/blog/super-ambassador-program")} lets you **invite other ambassadors** and earn a bonus linked to their activity — a way to grow your network over time.
+Want to go further? The ${internalLink("Ambassadeur+ program", "/blog/super-ambassador-program")} lets you **invite other ambassadors** and earn a **10% bonus on every commission they earn** — a way to grow your network over time.
 
 ---
 
@@ -991,7 +991,7 @@ Each lead is linked to your unique referral link for the attribution period set 
 Never. Your identity stays confidential. Buyers don't know that an ambassador referred them.
 
 **How are commissions paid?**
-By bank transfer once the transaction has closed, as set out in the ambassador terms. You can follow the status in real time on your dashboard.
+By bank transfer within 7 days once the client signs the SPA, as set out in the ambassador terms. You can follow the status in real time on your dashboard.
 
 ---
 
@@ -1043,7 +1043,7 @@ This is a **one-time commission** paid per transaction, calculated on the **prop
 |--------|-------------------------------|
 | **Property price** | The commission is a percentage of the sale price, so it follows the value of the property |
 | **Developer and project** | The applicable rate (between 1% and 3%) depends on the developer and the project |
-| **Transaction completion** | The commission is due once the sale is fully closed |
+| **SPA signature** | The commission is paid within 7 days once the client signs the SPA |
 | **Your tier** | Lite and Pro ambassadors receive the same commission rates |
 
 > For example, on a project paying 2% of the price, your commission is simply 2% of the final sale price — whatever the size of the property.
@@ -1077,7 +1077,7 @@ The prospect decides at their own pace and the deal closes:
 - Escrow payment confirmed
 
 ### Stage 5: Commission Payment
-Once the transaction is fully closed:
+Within 7 days once the client signs the SPA:
 - Commission calculated automatically
 - International bank transfer initiated
 - Confirmation and receipt sent to your email
@@ -1256,7 +1256,7 @@ Most Sofara ambassadors aren't real estate professionals. They're **people with 
 
 **Background:** Independent wealth manager whose clients are looking at international diversification.
 
-> "I mentioned Dubai real estate during a routine portfolio review. My client was already considering international diversification — I just pointed him to the right platform. A few months later, he purchased an apartment in Dubai Hills through ${cevitasLink("Cevitas")}, and my commission was paid once the sale closed."
+> "I mentioned Dubai real estate during a routine portfolio review. My client was already considering international diversification — I just pointed him to the right platform. A few months later, he purchased an apartment in Dubai Hills through ${cevitasLink("Cevitas")}, and my commission was paid within 7 days of him signing the SPA."
 
 | Detail | Value |
 |--------|-------|
@@ -1486,7 +1486,7 @@ Regardless of your tier, you always get:
 - A commission of 1% to 3% of the property price on every sale
 - ${internalLink("Ambassadeur+ bonus eligibility", "/blog/super-ambassador-program")}
 - Lead protection
-- International bank transfer payments once the sale closes
+- International bank transfer payments within 7 days once the client signs the SPA
 - Full transaction support from ${cevitasLink("Cevitas Real Estate LLC")}
 
 To see how these payouts fit market practice, read [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
@@ -2569,7 +2569,7 @@ Sofara gives every ambassador:
 - A **live pipeline** showing every lead's progress
 - **Sales tools** to qualify, nurture, and follow up
 - A **library** of approved marketing assets (Emaar, DAMAC, Sobha, Aldar, Binghatti and more)
-- **Commission tracking**, with payout once the sale has closed
+- **Commission tracking**, with payout within 7 days once the client signs the SPA
 
 All transactions are closed under ${cevitasLink("Cevitas Real Estate LLC")} — the licensed brokerage — so ambassadors stay compliant with UAE rules. This is the same model behind our [real estate affiliate program in the UAE](/real-estate-affiliate-program-uae).
 
@@ -2582,7 +2582,7 @@ All transactions are closed under ${cevitasLink("Cevitas Real Estate LLC")} — 
 | Real estate license required | No — the brokerage holds the license |
 | Upfront cost | Free to join |
 | Commission | 1% to 3% of the property price, up to 3% |
-| Payment | After closing, once the commission is received |
+| Payment | Within 7 days once the client signs the SPA |
 | Geographic reach | Refer from anywhere in the world |
 | Sales tools | Built in |
 
@@ -2596,7 +2596,7 @@ ${internalLink("→ Read the full story on our About page", "/about")}
 
 1. **Join free** at ${internalLink("sofara.io", "/")} — no fees, no subscription, no license required.
 2. **Refer Dubai property buyers** using your unique link, WhatsApp, or directly through the dashboard.
-3. **Get paid** up to 3% of the property price after the deal closes.
+3. **Get paid** up to 3% of the property price within 7 days once the client signs the SPA.
 
 That's it. Sofara's licensed team at ${cevitasLink("Cevitas Real Estate")} handles every viewing, contract, DLD registration, and follow-up.
 
@@ -2708,7 +2708,7 @@ This stack addresses a key need in international Dubai property sales: many buye
 
 Your commission is a percentage of the sale price: between 1% and 3% of the property price, up to 3%, depending on the property and the developer. For example, on a project paying 2%, you receive 2% of the price once the sale is completed.
 
-Payment is made after the sale closes and the commission has been received. ${internalLink("See the full commission structure", "/blog/sofara-commission-structure-explained")}, or read [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
+Payment is made within 7 days once the client signs the SPA. ${internalLink("See the full commission structure", "/blog/sofara-commission-structure-explained")}, or read [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
 
 ---
 
@@ -2771,7 +2771,7 @@ A **Dubai Real Estate Ambassador** is a business introducer who refers qualified
 - Does **not** need a UAE real estate license
 - Does **not** handle contracts, viewings, or DLD paperwork
 - Does **not** invest capital or pay subscription fees
-- **Does** earn up to 3% on every closed deal — paid after the sale closes
+- **Does** earn up to 3% on every closed deal — paid within 7 days once the client signs the SPA
 
 The structure is straightforward: the closing brokerage (${cevitasLink("Cevitas Real Estate LLC")} in Sofara's case) holds the RERA license and is responsible for all regulated activities. The ambassador acts purely as a referrer.
 
@@ -2783,7 +2783,7 @@ The structure is straightforward: the closing brokerage (${cevitasLink("Cevitas 
 |---|---|
 | Commission rate | 1% to 3% of the property price, up to 3% |
 | What it depends on | The property, the project and the developer |
-| When it is paid | After the sale closes and the commission is received |
+| When it is paid | Within 7 days once the client signs the SPA |
 | What drives results | The size and trust of your network, and consistent follow-up |
 
 There is no guaranteed income: what you earn depends on the buyers you introduce and the sales that close. To understand the mechanics in detail, read [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
@@ -2835,7 +2835,7 @@ Sofara's strength is bringing **leading Dubai developers** into a single dashboa
 2. Get your personal referral link and access the asset library
 3. Share Dubai property opportunities with your network
 4. Sofara's licensed team closes the deal
-5. Get paid after closing
+5. Get paid within 7 days once the client signs the SPA
 
 ${internalLink("→ Full step-by-step onboarding guide", "/blog/how-to-become-dubai-real-estate-ambassador")}
 
@@ -2908,7 +2908,7 @@ Referral networks complement other ways of finding buyers, and they bring three 
 | Active ambassadors | 700+ |
 | Coverage | Dubai and the wider UAE |
 | Commission | Up to 3% of the property price |
-| Payout | After closing |
+| Payout | Within 7 days once the client signs the SPA |
 
 All transactions close under ${cevitasLink("Cevitas Real Estate LLC")} — a RERA-licensed Dubai brokerage. To understand the payout side, see [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
 
@@ -2919,7 +2919,7 @@ All transactions close under ${cevitasLink("Cevitas Real Estate LLC")} — a RER
 1. **Built by an operator** — Founder Ahmed Benjas has hands-on experience of the Dubai property market. ${internalLink("Read his story", "/about")}.
 2. **Broad developer coverage** — ${internalLink("Emaar", "/blog/emaar-properties-guide")}, ${internalLink("DAMAC", "/blog/damac-properties-guide")}, ${internalLink("Sobha", "/blog/sobha-realty-quality-investment")}, Aldar, Binghatti, Meraas and many more.
 3. **Sales tools** — lead scoring, roleplay training, WhatsApp templates.
-4. **Clear payouts** — commission settled after closing, tracked in your dashboard.
+4. **Clear payouts** — commission settled within 7 days once the client signs the SPA, tracked in your dashboard.
 5. **International community** — ambassadors across Africa, Europe, Asia and North America.
 
 ---
@@ -2930,7 +2930,7 @@ All transactions close under ${cevitasLink("Cevitas Real Estate LLC")} — a RER
 2. Complete a quick identity check
 3. Get your personal referral link and dashboard access
 4. Start sharing Dubai property opportunities with your network
-5. Sofara's team at ${cevitasLink("Cevitas Real Estate")} closes the deal — you get paid after closing
+5. Sofara's team at ${cevitasLink("Cevitas Real Estate")} closes the deal — you get paid within 7 days once the client signs the SPA
 
 ---
 
@@ -3015,7 +3015,7 @@ Identical to ${internalLink("Sofara's Dubai network", "/blog/dubai-real-estate-a
 2. Select Abu Dhabi projects from the platform library
 3. Refer buyers via your personal link
 4. ${cevitasLink("Cevitas Real Estate")} coordinates the transaction with the developer through to closing
-5. You get paid after closing
+5. You get paid within 7 days once the client signs the SPA
 
 ---
 
@@ -3035,7 +3035,7 @@ All approved through Sofara's compliance team.
 
 Your commission is calculated as a percentage of the sale price: between 1% and 3% of the property price, up to 3%, depending on the project and the developer. For example, on a project paying 2%, you receive 2% of the price once the sale is completed.
 
-The payout process is the same as for the Dubai network: commission is paid after closing. For the full mechanics, read [how referral fees work in Dubai](/real-estate-referral-fee-dubai) — the same principles apply in the capital.
+The payout process is the same as for the Dubai network: commission is paid within 7 days once the client signs the SPA. For the full mechanics, read [how referral fees work in Dubai](/real-estate-referral-fee-dubai) — the same principles apply in the capital.
 
 ---
 
@@ -3131,7 +3131,7 @@ All under one license: ${cevitasLink("Cevitas Real Estate LLC")}, registered wit
 2. **Unified dashboard** showing leads, properties, and commissions across the UAE
 3. **One commission contract** valid for every emirate
 4. **One support team** in Dubai handling all legal/closing work
-5. **One payout process** — the same in every emirate, once the deal is completed
+5. **One payout process** — the same in every emirate, paid within 7 days once the client signs the SPA
 
 ---
 
@@ -3266,7 +3266,7 @@ ${internalLink("→ Read the full About page", "/about")}
 |---|---|
 | Do I need a license? | No |
 | Do I pay anything? | No |
-| When do I get paid? | After the deal closes and is registered |
+| When do I get paid? | Within 7 days once the client signs the SPA |
 | How much per deal? | Up to 3% of the property price, depending on the project |
 | Can I work part-time? | Yes — many ambassadors do |
 | Is it legal? | Yes — every deal closes under a RERA-licensed brokerage |
@@ -3426,7 +3426,7 @@ C'est la voie choisie par de nombreux nouveaux entrants, et voici pourquoi :
 ✅ **Aucune licence RERA requise** — vous n'êtes pas agent, vous êtes apporteur d'affaires
 ✅ **Aucun visa UAE nécessaire** — vous pouvez vivre à Paris, Casablanca, Montréal ou Abidjan
 ✅ **Aucun frais** — inscription, formation et outils gratuits
-✅ **Commission jusqu'à 3 %** — versée par virement après le closing
+✅ **Commission jusqu'à 3 %** — versée par virement sous 7 jours une fois que le client a signé son SPA
 ✅ **Cevitas (RERA) clôture le deal** sous sa licence — 100 % légal
 ✅ **CRM + outils + Académie inclus** — pour qualifier vos leads et avancer plus vite
 
@@ -3539,7 +3539,7 @@ Vous restez du côté **apport d'affaires**, Cevitas s'occupe de **tout l'acte d
 Voici le fonctionnement chez Sofara :
 
 - **Commission** : jusqu'à 3 % du prix du bien (de 1 % à 3 % selon le projet) — par exemple, 2 % du prix de vente sur un projet donné
-- **Paiement** : virement bancaire international après le closing
+- **Paiement** : virement bancaire international sous 7 jours une fois que le client a signé son SPA
 - **Fiscalité** : elle dépend ensuite de votre pays de résidence
 
 Votre revenu dépend donc du nombre d'acheteurs que vous présentez et du prix des biens achetés. Le détail est expliqué sur notre page [commission de recommandation immobilière](/fr/programme-recommandation-immobilier-dubai).
@@ -3741,7 +3741,7 @@ This is the path many new entrants now pick, and the reasons are simple:
 ✅ **No RERA license needed** — you are a referrer, not a broker
 ✅ **No UAE visa required** — live in London, New York, Lagos, Paris or Mumbai
 ✅ **No upfront fees** — signup, training and tools are free
-✅ **Up to 3% commission** — paid by bank transfer after closing
+✅ **Up to 3% commission** — paid by bank transfer within 7 days once the client signs the SPA
 ✅ **Cevitas (RERA) closes the deal** under its license — fully legal
 ✅ **CRM + tools + Academy included** — qualify leads and move faster
 
@@ -3947,7 +3947,7 @@ If you prefer to start right away, the [Sofara](/) ambassador route is built for
 | Get your unique referral link + project pack | Instant |
 | Refer your first lead | Same day |
 | Lead handed to Cevitas (RERA broker) | Quickly after your referral |
-| Commission paid | After DLD registration and closing |
+| Commission paid | Within 7 days once the client signs the SPA |
 
 **End-to-end: you can make your first referral on day one.** No visa, no exam, no broker card. The [Sofara ambassador program](/ambassador-program) explains each step.
 
@@ -4214,7 +4214,7 @@ Income usually grows as the agent's network and reputation develop. Some prefer 
 
 ## What Sofara Ambassadors Earn
 
-Sofara ambassadors receive **1% to 3% of the property price**, depending on the project, paid by bank transfer after the DLD closing. There is no base salary, but no costs either: [Cevitas](https://www.cevitas.ae) covers the license stack and handles the transaction.
+Sofara ambassadors receive **1% to 3% of the property price**, depending on the project, paid by bank transfer within 7 days once the client signs the SPA. There is no base salary, but no costs either: [Cevitas](https://www.cevitas.ae) covers the license stack and handles the transaction.
 
 Your earnings therefore depend on:
 - how many buyers you introduce,
