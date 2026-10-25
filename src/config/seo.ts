@@ -221,10 +221,10 @@ export const AHMED_BENJAS_PERSON = {
   name: "Ahmed Benjas",
   url: AHMED_BENJAS_URL,
   image: "https://sofara.io/team/ahmed-benjas.png",
-  jobTitle: "Founder & CEO",
+  jobTitle: "Co-founder of Sofara; Co-founder & CEO of Cevitas Real Estate",
   identifier: { "@type": "PropertyValue", propertyID: "RERA BRN", value: "83239" },
   description:
-    "Moroccan real estate entrepreneur based in Dubai. Founder of Cevitas Real Estate, a RERA-licensed brokerage in Dubai, and of Sofara, the Dubai real estate ambassadors network. Track record of AED 200M+ in property transactions. Advises buyers in French, Arabic, Darija and English.",
+    "Moroccan real estate entrepreneur based in Dubai. Co-founder & CEO of Cevitas Real Estate, a RERA-licensed brokerage in Dubai, and co-founder of Sofara, the Dubai real estate ambassadors network. Track record of AED 200M+ in property transactions. Advises buyers in French, Arabic, Darija and English.",
   nationality: { "@type": "Country", name: "Morocco" },
   homeLocation: { "@type": "Place", name: "Dubai, United Arab Emirates" },
   knowsLanguage: ["fr", "ar", "ary", "en"],

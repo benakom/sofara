@@ -65,23 +65,23 @@ const About = () => {
         {/* Founder */}
         <section className="px-5 sm:px-6 max-w-5xl mx-auto py-16">
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-center mb-12">
-            Founded by Ahmed Benjas
+            Co-founded by Ahmed Benjas
           </h2>
           <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start">
             <div className="rounded-2xl overflow-hidden aspect-square border border-border/50 bg-secondary/20">
               <img
                 src={ahmedPortrait}
-                alt="Ahmed Benjas, Founder and CEO of Sofara and Cevitas Real Estate LLC"
+                alt="Ahmed Benjas, co-founder of Sofara and co-founder & CEO of Cevitas Real Estate LLC"
                 className="w-full h-full object-cover object-top"
                 loading="eager"
               />
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. He holds RERA broker card BRN 83239. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the co-founder &amp; CEO of <strong>Cevitas Real Estate LLC</strong> and the co-founder of <strong>Sofara</strong>. He holds RERA broker card BRN 83239. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                He started Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
+                He co-founded Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
               </p>
               <div className="flex flex-wrap gap-3 pt-4">
                 <a

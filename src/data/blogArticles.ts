@@ -2586,7 +2586,7 @@ All transactions are closed under ${cevitasLink("Cevitas Real Estate LLC")} — 
 | Geographic reach | Refer from anywhere in the world |
 | Sales tools | Built in |
 
-Sofara Dubai is built **by operators, for operators**. The founder, Ahmed Benjas, has hands-on experience of the Dubai property market — Sofara is the platform he wished existed when he started.
+Sofara Dubai is built **by operators, for operators**. Co-founder Ahmed Benjas has hands-on experience of the Dubai property market — Sofara is the platform he wished existed when he started.
 
 ${internalLink("→ Read the full story on our About page", "/about")}
 
@@ -2916,7 +2916,7 @@ All transactions close under ${cevitasLink("Cevitas Real Estate LLC")} — a RER
 
 ## What Sofara Brings to the Dubai Real Estate Ambassadors Network
 
-1. **Built by an operator** — Founder Ahmed Benjas has hands-on experience of the Dubai property market. ${internalLink("Read his story", "/about")}.
+1. **Built by an operator** — Co-founder Ahmed Benjas has hands-on experience of the Dubai property market. ${internalLink("Read his story", "/about")}.
 2. **Broad developer coverage** — ${internalLink("Emaar", "/blog/emaar-properties-guide")}, ${internalLink("DAMAC", "/blog/damac-properties-guide")}, ${internalLink("Sobha", "/blog/sobha-realty-quality-investment")}, Aldar, Binghatti, Meraas and many more.
 3. **Sales tools** — lead scoring, roleplay training, WhatsApp templates.
 4. **Clear payouts** — commission settled within 7 days once the client signs the SPA, tracked in your dashboard.
@@ -3329,7 +3329,7 @@ ${internalLink("**→ Join Sofara (Free)**", "/auth")}
 
 Vous voulez **devenir agent immobilier à Dubai** ? Vous êtes au bon endroit. Dubai est l'un des marchés immobiliers les plus dynamiques et les plus internationaux au monde, avec une clientèle venue de tous les continents et un cadre fiscal attractif pour les particuliers résidents. Le parcours officiel pour devenir agent licencié demande toutefois de la préparation : visa, formation, examen et carte professionnelle.
 
-Ce guide, rédigé par **Ahmed Benjas**, fondateur de ${cevitasLink("Cevitas Real Estate LLC")} (agence licenciée RERA à Dubai) et de la plateforme ${internalLink("Sofara", "/")}, vous donne la vision du terrain : étapes officielles, composantes du budget, fonctionnement de la rémunération, et l'alternative légale qui permet d'être rémunéré **sans licence ni visa résident**.
+Ce guide, rédigé par **Ahmed Benjas**, cofondateur et CEO de ${cevitasLink("Cevitas Real Estate LLC")} (agence licenciée RERA à Dubai) et cofondateur de la plateforme ${internalLink("Sofara", "/")}, vous donne la vision du terrain : étapes officielles, composantes du budget, fonctionnement de la rémunération, et l'alternative légale qui permet d'être rémunéré **sans licence ni visa résident**.
 
 ---
 

@@ -59,7 +59,7 @@ const InvestDubaiPage = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <TrendingUp className="w-3.5 h-3.5" /> Updated October 2026 · By Ahmed Benjas, founder
+              <TrendingUp className="w-3.5 h-3.5" /> Updated October 2026 · By Ahmed Benjas, co-founder
             </span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
               Invest in Dubai Real Estate
