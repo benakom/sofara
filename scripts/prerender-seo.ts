@@ -58,7 +58,9 @@ const stripDefaultSeo = (html: string) =>
     .replace(/<meta name="robots"[^>]*>\s*/, "");
 
 // If this file is served for another URL (SPA fallback), drop the prerendered markup before first paint.
-const guard = `<script>(function(){var r=document.getElementById("root"),p=location.pathname.replace(/\\/+$/,"")||"/";if(r&&r.getAttribute("data-ssr")!==p){r.removeAttribute("data-ssr");r.innerHTML="";}})();</script>`;
+// The server (Caddy try_files … /index.html) serves the prerendered homepage for unknown URLs and app routes with a 200:
+// mark such responses noindex and drop their canonical/hreflang right away, so they are never seen as a homepage duplicate.
+const guard = `<script>(function(){var r=document.getElementById("root"),p=location.pathname.replace(/\\/+$/,"")||"/";if(r&&r.getAttribute("data-ssr")!==p){r.removeAttribute("data-ssr");r.innerHTML="";var m=document.querySelector('meta[name="robots"]');if(m)m.setAttribute("content","noindex, follow");document.querySelectorAll('link[rel="canonical"],link[rel="alternate"][hreflang]').forEach(function(l){l.parentNode.removeChild(l)});}})();</script>`;
 
 // Beasties drops the metric-matched "Poppins Fallback" face (local() source, no URL), so text first painted with the
 // inlined critical CSS used an unadjusted system font and re-wrapped when the full stylesheet arrived (CLS 0.1-0.25 on
