@@ -49,11 +49,11 @@ export const agentNudge = {
 };
 
 export const signature = {
-  en: ["sig", ["Ahmed Benjas", "Founder, Sofara · Dubai"]],
-  fr: ["sig", ["Ahmed Benjas", "Fondateur, Sofara · Dubaï"]],
-  es: ["sig", ["Ahmed Benjas", "Fundador, Sofara · Dubái"]],
-  ru: ["sig", ["Ахмед Бенжас", "Основатель Sofara · Дубай"]],
-  ar: ["sig", ["أحمد بنجاس", "المؤسس، سوفارا · دبي"]],
+  en: ["sig", ["Ahmed Benjas", "Co-founder, Sofara · Dubai"]],
+  fr: ["sig", ["Ahmed Benjas", "Cofondateur, Sofara · Dubaï"]],
+  es: ["sig", ["Ahmed Benjas", "Cofundador, Sofara · Dubái"]],
+  ru: ["sig", ["Ахмед Бенжас", "Сооснователь Sofara · Дубай"]],
+  ar: ["sig", ["أحمد بنجاس", "الشريك المؤسس، سوفارا · دبي"]],
 };
 
 // "I am here" line before the signature.
