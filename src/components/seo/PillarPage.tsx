@@ -71,7 +71,7 @@ const PillarPage = ({ route, eyebrow, intro, children, faqs, related, cta }: Pil
               <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3">{cta.title}</h2>
               <p className="text-primary-foreground/80 mb-6 max-w-2xl">{cta.text}</p>
               <ul className="grid sm:grid-cols-3 gap-3 mb-7 text-sm font-medium">
-                {["No license required", "Free to join, no fees", "Paid in AED within 7 days"].map((t) => (
+                {["No license required", "Free to join, no fees", "Paid within 7 days of SPA signing"].map((t) => (
                   <li key={t} className="inline-flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> {t}</li>
                 ))}
               </ul>

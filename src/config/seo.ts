@@ -272,7 +272,7 @@ export function buildServiceJsonLd() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      description: "Free to join. Commission paid per closed transaction.",
+      description: "Free to join. Commission paid within 7 days once the client signs the SPA.",
     },
   };
 }

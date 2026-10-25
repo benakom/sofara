@@ -44,14 +44,14 @@ const RealEstateReferralProgramDubai = () => (
         <tr><td>Rate</td><td>1% to 3%, shown per project in your dashboard before you refer</td></tr>
         <tr><td>Who pays</td><td>Sofara, out of the brokerage commission; nothing is added for the buyer</td></tr>
         <tr><td>When it is earned</td><td>SPA signed and down payment paid with the DLD fees</td></tr>
-        <tr><td>When it is paid</td><td>Within 7 days of the developer paying Cevitas, in AED, by bank transfer</td></tr>
+        <tr><td>When it is paid</td><td>Within 7 days once the client signs the SPA, in AED, by bank transfer</td></tr>
         <tr><td>Lead protection</td><td>12 months from the date you register the buyer</td></tr>
       </tbody>
     </table>
     <p>Read the <Link to="/blog/sofara-commission-structure-explained">full commission structure</Link>, or our guide to the <Link to="/real-estate-referral-fee-dubai">real estate referral fee in Dubai</Link> for how fees work across the market.</p>
 
     <h2>When and how the referral commission is paid</h2>
-    <p>The commission moves through three states in your dashboard: <strong>estimated</strong> while the deal progresses, <strong>validated</strong> once the buyer has signed the SPA and paid the down payment with the DLD fees, and <strong>paid</strong> when the transfer is made. Payment is made in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard. If you live outside the UAE, declare it under your local tax rules.</p>
+    <p>The commission moves through three states in your dashboard: <strong>estimated</strong> while the deal progresses, <strong>validated</strong> once the buyer has signed the SPA and paid the down payment with the DLD fees, and <strong>paid</strong> when the transfer is made. Payment is made in AED by bank transfer within 7 days once the client signs the SPA, against an invoice generated from your dashboard. If you live outside the UAE, declare it under your local tax rules.</p>
 
     <h2>Is there a referral agreement?</h2>
     <p>Yes. The referral terms are accepted when you create your account. They set the rate, the moment the commission is earned, how it is invoiced and how long your lead is protected. Nothing depends on a verbal promise: the rate for each project and the status of each lead are visible in writing in your dashboard.</p>
@@ -65,14 +65,14 @@ const RealEstateReferralProgramDubai = () => (
       <li><strong>Submit the buyer</strong> from your dashboard, with their consent, adding their budget and goal if you know them, or <strong>share your link</strong> so they sign up themselves.</li>
       <li><strong>The licensed team takes over:</strong> qualification call, project shortlist, viewings (on site or by video), offer, booking, down payment.</li>
       <li><strong>Follow every stage</strong> in your dashboard. You are notified when the offer is accepted and when the booking is paid.</li>
-      <li><strong>Receive your commission</strong> in AED within 7 days of the developer paying Cevitas.</li>
+      <li><strong>Receive your commission</strong> in AED within 7 days once the client signs the SPA.</li>
     </ol>
 
     <h2>Attribution and lead protection</h2>
     <p>A lead is attributed to you as soon as you submit it or the buyer signs up through your link. It stays yours for 12 months, including when the buyer later contacts Sofara or Cevitas directly. If the purchase completes within that window, the commission is yours, even if it happens months after the introduction.</p>
 
     <h2>A property referral program for the whole UAE</h2>
-    <p>Sofara is a property referral program for Dubai first, and for the rest of the UAE: Abu Dhabi, Ras Al Khaimah and Sharjah. The rules are the same everywhere: a published rate of 1% to 3% of the price, a contact protected for 12 months, and payment in AED within 7 days of the developer paying Cevitas. Buyers are supported with <Link to="/blog/dubai-payment-plans-explained">payment plan</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fee</Link> explanations in their language.</p>
+    <p>Sofara is a property referral program for Dubai first, and for the rest of the UAE: Abu Dhabi, Ras Al Khaimah and Sharjah. The rules are the same everywhere: a published rate of 1% to 3% of the price, a contact protected for 12 months, and payment in AED within 7 days once the client signs the SPA. Buyers are supported with <Link to="/blog/dubai-payment-plans-explained">payment plan</Link> and <Link to="/blog/dubai-dld-fees-explained">DLD fee</Link> explanations in their language.</p>
 
     <h2>Referral, affiliate, ambassador or agent?</h2>
     <ul>

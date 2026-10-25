@@ -158,7 +158,7 @@ const LeadDetailSheet = ({ lead, open, onOpenChange }: LeadDetailSheetProps) => 
                 <div className="rounded-xl border border-dashed border-[hsl(var(--dash-border))] p-4 flex gap-3">
                   <Info className="w-4 h-4 text-[hsl(var(--dash-muted-fg))] shrink-0 mt-0.5" />
                   <p className="text-[12px] text-[hsl(var(--dash-muted-fg))] leading-relaxed">
-                    {isFr ? "Votre commission est acquise une fois le SPA signé et l'apport payé avec les frais DLD. Elle apparaîtra ici en estimation, puis passera en validation et sera versée sous 7 jours après le paiement du promoteur à Cevitas." : "Your commission is earned once the SPA is signed and the down payment with DLD fees is paid. It will appear here as an estimate, then move to validation and be paid within 7 days of the developer's payment to Cevitas."}
+                    {isFr ? "Votre commission est acquise une fois le SPA signé et l'apport payé avec les frais DLD. Elle apparaîtra ici en estimation, puis passera en validation et sera versée sous 7 jours une fois que le client a signé son SPA." : "Your commission is earned once the SPA is signed and the down payment with DLD fees is paid. It will appear here as an estimate, then move to validation and be paid within 7 days once the client signs the SPA."}
                   </p>
                 </div>
               ) : commissions.map((c) => {

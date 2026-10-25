@@ -8,14 +8,14 @@ import SEO from "@/components/SEO";
 const steps = [
   { n: "01", title: "Apply for free", desc: "No license needed, no fees, no quotas. 2-minute application." },
   { n: "02", title: "Get your toolkit", desc: "Unique referral link + tools (WhatsApp templates, CRM, project brochures, sales scripts)." },
-  { n: "03", title: "Refer & get paid", desc: "Cevitas Real Estate LLC handles the sale under its RERA license. You're paid within 7 days of the developer paying Cevitas." },
+  { n: "03", title: "Refer & get paid", desc: "Cevitas Real Estate LLC handles the sale under its RERA license. You're paid within 7 days once the client signs the SPA." },
 ];
 
 const commissionFacts = [
   { label: "Commission rate", value: "1% to 3% of the property price, shown per project before you refer" },
   { label: "Who pays", value: "Sofara, out of the brokerage commission. The buyer pays nothing extra" },
   { label: "When it is earned", value: "SPA signed and down payment paid with the DLD fees" },
-  { label: "When it is paid", value: "In AED by bank transfer, within 7 days of the developer paying Cevitas" },
+  { label: "When it is paid", value: "In AED by bank transfer, within 7 days once the client signs the SPA" },
   { label: "Lead protection", value: "12 months, even if the buyer contacts Sofara or Cevitas directly" },
 ];
 
@@ -41,7 +41,7 @@ const faqs = [
   { q: "Who can become an ambassador?", a: "Anyone, from any country: UAE residents, non-residents, people who are not agents and licensed agents abroad. No license, visa or fee. A short identity check is completed before your first payout." },
   { q: "How much can I earn?", a: "1% to 3% of the property price on each completed sale you introduced, depending on the project. The rate is shown in your dashboard before you refer." },
   { q: "Do I need a real estate license?", a: "No. You only introduce buyers. Every regulated step is carried out by Cevitas Real Estate LLC under its RERA license in Dubai." },
-  { q: "When and how am I paid?", a: "The commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard." },
+  { q: "When and how am I paid?", a: "The commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days once the client signs the SPA, against an invoice generated from your dashboard." },
   { q: "Is there an ambassador agreement?", a: "Yes. The ambassador terms are accepted when you create your account: they set the rate, when the commission is earned, how it is invoiced and how long your leads are protected." },
   { q: "Are my leads protected?", a: "Yes. Each lead is tied to your account for 12 months, including when the buyer contacts Sofara or Cevitas directly." },
   { q: "Is this legal in my country?", a: "In Dubai, the regulated activity is carried out by the RERA-licensed brokerage, and you act only as an introducer. In your country, declare your commissions under your local tax rules and check any local rules on introducer income." },
@@ -212,7 +212,7 @@ const AmbassadorProgram = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12">
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { icon: Zap, t: "Paid in AED", d: "Within 7 days of the developer paying Cevitas" },
+              { icon: Zap, t: "Paid in AED", d: "Within 7 days once the client signs the SPA" },
               { icon: Globe2, t: "Work from anywhere", d: "Remote-first, global ambassador network" },
               { icon: TrendingUp, t: "Ready-to-use tools", d: "Project brochures, WhatsApp templates, scripts" },
             ].map((b) => (

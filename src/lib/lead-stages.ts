@@ -86,7 +86,7 @@ export const LEAD_STAGES: LeadStage[] = [
   },
   {
     key: "dp_paye", en: "Down payment paid", fr: "Apport payé", step: 14, kind: "won", phase: "closing",
-    msg: { en: "The down payment and DLD fees are paid and the SPA is signed: your commission is now earned. It moves to validation and is paid within 7 days of the developer's payment to Cevitas.", fr: "L'apport et les frais DLD sont payés et le SPA est signé : votre commission est désormais acquise. Elle passe en validation et est versée sous 7 jours après le paiement du promoteur à Cevitas." },
+    msg: { en: "The down payment and DLD fees are paid and the SPA is signed: your commission is now earned. It moves to validation and is paid within 7 days once the client signs the SPA.", fr: "L'apport et les frais DLD sont payés et le SPA est signé : votre commission est désormais acquise. Elle passe en validation et est versée sous 7 jours une fois que le client a signé son SPA." },
   },
   {
     key: "injoignable", en: "Unreachable", fr: "Injoignable", step: 0, kind: "paused", phase: "closed",

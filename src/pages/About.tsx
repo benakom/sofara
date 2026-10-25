@@ -133,7 +133,7 @@ const About = () => {
             Why We Built Sofara
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            Dubai real estate attracts buyers of many nationalities, and many of them are introduced by someone they trust. Sofara was built to give those introducers a clear, professional framework: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, ready-to-share project material, and structured payouts after closing. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
+            Dubai real estate attracts buyers of many nationalities, and many of them are introduced by someone they trust. Sofara was built to give those introducers a clear, professional framework: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, ready-to-share project material, and structured payouts within 7 days once the client signs the SPA. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
           </p>
         </section>
 
@@ -162,7 +162,7 @@ const About = () => {
               {
                 icon: Sparkles,
                 t: "Transparent commission tracking",
-                d: "Every lead is tied to your ambassador link, every stage is visible in your dashboard, and payouts are released after the developer confirms the transaction.",
+                d: "Every lead is tied to your ambassador link, every stage is visible in your dashboard, and payouts are released within 7 days once the client signs the SPA.",
               },
             ].map((f) => (
               <div key={f.t} className="p-6 rounded-2xl border border-border/50 bg-secondary/10">
