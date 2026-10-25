@@ -8,6 +8,7 @@ import {
   WEBSITE_JSONLD,
   buildServiceJsonLd,
   buildPersonJsonLd,
+  AHMED_BENJAS_PERSON,
   buildBreadcrumbJsonLd,
   type SeoMeta,
 } from "@/config/seo";
@@ -107,11 +108,7 @@ const SEO = ({
       datePublished: article.publishedTime,
       dateModified: article.modifiedTime || article.publishedTime,
       inLanguage: locale,
-      author: {
-        "@type": "Person",
-        name: article.author || "Ahmed Benjas",
-        url: "https://sofara.io/about",
-      },
+      author: AHMED_BENJAS_PERSON,
       publisher: { "@id": "https://sofara.io/#organization" },
       mainEntityOfPage: { "@type": "WebPage", "@id": finalCanonical },
     });

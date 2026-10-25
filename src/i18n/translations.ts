@@ -950,7 +950,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "platform.compliance": "Cumplimiento legal",
     "platform.complianceDesc": "Estructura jurídica sólida. Pagos conformes a las regulaciones internacionales.",
     "platform.instant": "Pago instantáneo",
-    "platform.instantDesc": "Comisiones pagadas automáticamente al cerrar la transacción.",
+    "platform.instantDesc": "Comisiones pagadas en un plazo de 7 días una vez que el cliente firma su SPA.",
 
     "dubai.label": "Por qué Dubái",
     "dubai.title": "El mercado inmobiliario",

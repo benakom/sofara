@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import AuthorBox, { AUTHOR_TEXT } from "@/components/AuthorBox";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
@@ -87,7 +88,7 @@ const BlogPost = () => {
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {article.excerpt}
           </p>
-          <p className="text-xs text-muted-foreground mt-3">{s.by} {article.author}</p>
+          <p className="text-xs text-muted-foreground mt-3">{AUTHOR_TEXT[fr ? "fr" : "en"].byline}</p>
         </header>
 
         {/* Hero image */}
@@ -136,6 +137,8 @@ const BlogPost = () => {
               </ReactMarkdown>
             </div>
           </div>
+
+          <AuthorBox locale={fr ? "fr" : "en"} className="mt-10" />
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-border/30">
