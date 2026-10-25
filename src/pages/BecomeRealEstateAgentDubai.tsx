@@ -6,14 +6,16 @@ import PillarPage from "@/components/seo/PillarPage";
 const BecomeRealEstateAgentDubai = () => (
   <PillarPage
     route="/become-real-estate-agent-dubai"
-    eyebrow="Career guide · updated for 2026"
-    intro="Dubai is one of the few property markets where a motivated newcomer can earn six figures in AED within a year. This guide explains the two ways in: the licensed real estate agent route through RERA, and the ambassador route that lets you earn commissions on Dubai property sales with no license, from anywhere in the world."
+    eyebrow="Career guide · updated October 2026"
+    intro="To become a real estate agent in Dubai you need a UAE residence visa, the DREI certification course, the RERA exam and a broker card issued through a licensed brokerage. If you would rather earn without a license, the ambassador route lets anyone, from any country, refer buyers to a RERA-licensed brokerage and earn 1% to 3% of the property price. This guide explains both routes."
     faqs={PILLAR_FAQS["/become-real-estate-agent-dubai"]}
     related={[
       { to: "/freelance-real-estate-agent-dubai", label: "Freelance real estate agent in Dubai: rules and options" },
       { to: "/part-time-real-estate-agent-dubai", label: "Part-time real estate agent in Dubai" },
       { to: "/dubai-real-estate-ambassadors", label: "Dubai real estate ambassadors: how the network works" },
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program: earn up to 3%" },
+      { to: "/real-estate-affiliate-program-uae", label: "Real estate affiliate program in the UAE" },
+      { to: "/real-estate-referral-fee-dubai", label: "Real estate referral fee in Dubai" },
       { to: "/blog/cost-become-real-estate-agent-dubai", label: "Detailed cost breakdown to become an agent in Dubai" },
       { to: "/blog/how-much-money-real-estate-agents-make-dubai", label: "How much do Dubai real estate agents make?" },
       { to: "/ambassador-program", label: "The Sofara ambassador program" },
@@ -23,18 +25,18 @@ const BecomeRealEstateAgentDubai = () => (
   >
     <h2>Two ways to earn from Dubai real estate</h2>
     <p>
-      There are two legitimate paths to make money from property sales in Dubai. The first is to become a <strong>licensed real estate agent</strong> (called a broker in UAE terminology) registered with the Real Estate Regulatory Agency (RERA), a division of the Dubai Land Department (DLD). The second is to become a <strong>real estate ambassador</strong>: you introduce buyers to a licensed brokerage, which handles viewings, paperwork and closing, and you receive a share of the commission. Sofara runs the largest ambassador network in Dubai, backed by Cevitas Real Estate LLC.
+      There are two legitimate paths to make money from property sales in Dubai. The first is to become a <strong>licensed real estate agent</strong> (called a broker in UAE terminology) registered with the Real Estate Regulatory Agency (RERA), a division of the Dubai Land Department (DLD). The second is to become a <strong>real estate ambassador</strong>: you introduce buyers to a licensed brokerage, which handles viewings, paperwork and closing, and you receive a share of the commission. With Sofara, more than 700 active ambassadors refer buyers, and the sale is handled by Cevitas Real Estate LLC, a RERA-licensed brokerage.
     </p>
     <table>
       <thead><tr><th>Criteria</th><th>Licensed agent (RERA broker)</th><th>Sofara ambassador</th></tr></thead>
       <tbody>
         <tr><td>License required</td><td>Yes, RERA broker card</td><td>No</td></tr>
         <tr><td>UAE residency visa</td><td>Required</td><td>Not required</td></tr>
-        <tr><td>Upfront cost</td><td>Approximately AED 4,000 to 7,000</td><td>Free</td></tr>
-        <tr><td>Time to start</td><td>4 to 8 weeks</td><td>Same day</td></tr>
+        <tr><td>Upfront cost</td><td>DREI course, RERA exam and broker card fees</td><td>Free</td></tr>
+        <tr><td>Time to start</td><td>Several weeks</td><td>Same day</td></tr>
         <tr><td>Where you can work from</td><td>Dubai</td><td>Anywhere in the world</td></tr>
-        <tr><td>Earnings per deal</td><td>Agent share of 2% to 5% agency commission</td><td>Up to 3% of the property price</td></tr>
-        <tr><td>Who closes the deal</td><td>You</td><td>Cevitas Real Estate LLC (RERA-licensed)</td></tr>
+        <tr><td>Earnings per deal</td><td>Agent share of the agency commission</td><td>1% to 3% of the property price</td></tr>
+        <tr><td>Who handles the sale</td><td>You</td><td>Cevitas Real Estate LLC (RERA-licensed)</td></tr>
       </tbody>
     </table>
 
@@ -42,13 +44,13 @@ const BecomeRealEstateAgentDubai = () => (
     <h3>Step 1: get a UAE residency visa</h3>
     <p>RERA only issues broker cards to UAE residents. Most newcomers join a brokerage that sponsors their employment visa. Freelance or investor visas are also accepted, and a company can be set up in a free zone, but the brokerage-sponsored route is by far the most common for a first job.</p>
     <h3>Step 2: complete the DREI certification course</h3>
-    <p>The Dubai Real Estate Institute (DREI) runs the mandatory <em>Certified Training for Real Estate Brokers</em>. It lasts about four days and covers Dubai property law, the roles of DLD and RERA, ethics, off-plan sales rules, escrow accounts and the Form A, B and F contracts you will use every day.</p>
+    <p>The Dubai Real Estate Institute (DREI) runs the mandatory <em>Certified Training for Real Estate Brokers</em>. It covers Dubai property law, the roles of DLD and RERA, ethics, off-plan sales rules, escrow accounts and the Form A, B and F contracts you will use every day.</p>
     <h3>Step 3: pass the RERA exam</h3>
-    <p>After the course you sit the RERA exam, a multiple-choice test on the course material. Results are usually issued within a few days. Candidates without a bachelor's degree pay a higher exam fee, so the total cost varies between roughly AED 4,000 and AED 7,000 including the course and the card.</p>
+    <p>After the course you sit the RERA exam, a multiple-choice test on the course material. Fees for the course, the exam and the card are set by DREI and the Dubai Land Department: confirm the current amounts with them before enrolling.</p>
     <h3>Step 4: obtain your broker card</h3>
     <p>With the exam passed, a police clearance certificate and your visa, the brokerage registers you with DLD and you receive a Broker Registration Number (BRN) and a RERA card, renewed every year with continuing education.</p>
     <h3>What licensed agents actually earn</h3>
-    <p>Dubai agents are almost always commission-only. On secondary market sales the standard agency fee is 2% of the price; the agent keeps between 40% and 70% depending on the brokerage. On off-plan launches, developers such as <Link to="/blog/emaar-properties-guide">Emaar</Link>, <Link to="/blog/damac-properties-guide">DAMAC</Link> or <Link to="/blog/sobha-realty-quality-investment">Sobha</Link> pay the brokerage 2% to 5%, split with the agent. Top performers earn well above AED 1 million a year, but the first six months are usually lean while you build a client base.</p>
+    <p>Dubai agents are almost always commission-only. On secondary market sales the agency fee is shared between the brokerage and the agent according to their agreement. On off-plan launches, developers pay the brokerage a commission, which is also split with the agent. Income depends on the deals you close, so the first months are usually spent building a client base. Read our <Link to="/blog/emaar-properties-guide">Emaar</Link>, <Link to="/blog/damac-properties-guide">DAMAC</Link> and <Link to="/blog/sobha-realty-quality-investment">Sobha</Link> guides to learn the main developers.</p>
 
     <h2>Route 2: earn commissions without a license as an ambassador</h2>
     <p>If you live outside the UAE, cannot commit to a visa, or simply want to test the market before changing careers, the ambassador route removes every barrier. A <Link to="/dubai-real-estate-ambassadors">Dubai real estate ambassador</Link> introduces potential buyers, usually from their own community, diaspora or professional network, to a licensed brokerage. The brokerage qualifies the lead, presents projects, organises viewings and signs the deal. The ambassador receives a commission once the sale completes.</p>
@@ -57,9 +59,9 @@ const BecomeRealEstateAgentDubai = () => (
       <li><strong>Apply for free in two minutes.</strong> No license, no fees, no monthly quota.</li>
       <li><strong>Get your toolkit.</strong> A personal referral link, project brochures, WhatsApp templates and a CRM to follow every lead.</li>
       <li><strong>Refer buyers and follow the deal.</strong> You see the progress of each lead stage by stage in your dashboard, and the Sofara team keeps you informed until closing.</li>
-      <li><strong>Get paid in AED within 7 days of closing.</strong> Up to 3% of the property price, by international bank transfer.</li>
+      <li><strong>Get paid in AED.</strong> 1% to 3% of the property price, earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid by bank transfer within 7 days of the developer paying Cevitas.</li>
     </ol>
-    <p>Ambassadors commonly earn between AED 37,000 and AED 120,000 on a single transaction. You can read how the <Link to="/blog/sofara-commission-structure-explained">commission structure</Link> works in detail, and compare it with the <Link to="/real-estate-referral-program-dubai">classic referral programs</Link> offered by developers.</p>
+    <p>You can read how the <Link to="/blog/sofara-commission-structure-explained">commission structure</Link> works in detail, how the <Link to="/real-estate-referral-fee-dubai">real estate referral fee in Dubai</Link> is calculated, and how the <Link to="/real-estate-referral-program-dubai">real estate referral program in Dubai</Link> and the <Link to="/real-estate-affiliate-program-uae">UAE affiliate program</Link> work. When you are ready, apply through the <Link to="/ambassador-program">ambassador program in Dubai</Link>.</p>
 
     <h2>Which route is right for you?</h2>
     <ul>

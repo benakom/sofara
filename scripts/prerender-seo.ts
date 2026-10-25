@@ -60,6 +60,14 @@ const stripDefaultSeo = (html: string) =>
 // If this file is served for another URL (SPA fallback), drop the prerendered markup before first paint.
 const guard = `<script>(function(){var r=document.getElementById("root"),p=location.pathname.replace(/\\/+$/,"")||"/";if(r&&r.getAttribute("data-ssr")!==p){r.removeAttribute("data-ssr");r.innerHTML="";}})();</script>`;
 
+// Beasties drops the metric-matched "Poppins Fallback" face (local() source, no URL), so text first painted with the
+// inlined critical CSS used an unadjusted system font and re-wrapped when the full stylesheet arrived (CLS 0.1-0.25 on
+// long FR/ES/RU headings). Declaring it inline on every page keeps the first paint and the final layout identical.
+const FALLBACK_FACE =
+  "<style>@font-face{font-family:'Poppins Fallback';src:local('Arial');size-adjust:112.1%;ascent-override:93.75%;descent-override:31.25%;line-gap-override:8.93%}</style>";
+const withFallbackFace = (html: string) =>
+  html.includes("font-family:'Poppins Fallback';src") ? html : html.replace(/(<meta charset="[^"]*" ?\/?>)/i, `$1\n    ${FALLBACK_FACE}`);
+
 const { render } = await import(pathToFileURL(serverEntry).href);
 
 let written = 0;
@@ -83,13 +91,31 @@ for (const route of routes) {
     html = html.replace('<div id="root"></div>', `<div id="root" data-ssr="${route}">${body}</div>${guard}`);
     const file = route === "/" ? indexPath : join(dist, route.replace(/^\//, ""), "index.html");
     mkdirSync(resolve(file, ".."), { recursive: true });
-    html = await beasties.process(html);
+    html = withFallbackFace(await beasties.process(html));
     writeFileSync(file, html);
     written++;
   } catch (err) {
     failed++;
     console.error(`[prerender] ${route} failed:`, (err as Error).message);
   }
+}
+// Soft-404 guard. The server falls back to dist/spa.html for every path without a file (app routes /dashboard, /admin,
+// /auth… and unknown URLs). Every indexable public page is prerendered above, so the shell itself is never indexable:
+// unknown URLs get noindex instead of a 200 duplicate of the homepage. dist/404.html is a real prerendered 404 page for
+// hosts that serve it with a 404 status.
+const noindexShell = (html: string) =>
+  withFallbackFace(html.replace(/<meta name="robots"[^>]*>/, '<meta name="robots" content="noindex, follow" />'));
+writeFileSync(shellPath, noindexShell(readFileSync(shellPath, "utf8")));
+try {
+  const { html: body, helmet } = await render("/404");
+  let html = stripDefaultSeo(template);
+  const head = helmet ? [helmet.title.toString(), helmet.meta.toString()].join("\n") : "";
+  html = html.replace("</head>", `${head}\n</head>`);
+  html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+  if (!html.includes('name="robots"')) html = html.replace("</head>", '<meta name="robots" content="noindex, follow" />\n</head>');
+  writeFileSync(join(dist, "404.html"), withFallbackFace(await beasties.process(html)));
+} catch (err) {
+  console.error("[prerender] 404.html failed:", (err as Error).message);
 }
 console.log(`[prerender] wrote ${written} prerendered pages${failed ? `, ${failed} failed` : ""}`);
 process.exit(0);

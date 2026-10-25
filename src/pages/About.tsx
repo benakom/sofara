@@ -79,7 +79,7 @@ const About = () => {
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. His background spans 20+ years in finance, an MBA, and Executive Education at <strong>Stanford Graduate School of Business</strong>. Recognized as a LinkedIn Top Voice, Ahmed has facilitated <strong>AED 100M+ in Dubai property transactions</strong> and built a community of 100,000+ followers around Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the Founder and CEO of <strong>Cevitas Real Estate LLC</strong> and of <strong>Sofara</strong>. His background spans 20+ years in finance, an MBA, and Executive Education at <strong>Stanford Graduate School of Business</strong>. Recognized as a LinkedIn Top Voice, Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 He started Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
@@ -116,7 +116,7 @@ const About = () => {
               { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE)" },
               { icon: GraduationCap, t: "Stanford GSB", d: "Executive Education" },
               { icon: Award, t: "LinkedIn Top Voice", d: "Real Estate & Investing" },
-              { icon: Building2, t: "AED 100M+", d: "Dubai transactions facilitated" },
+              { icon: Users, t: "700+ Ambassadors", d: "Active in the Sofara network" },
             ].map((c) => (
               <div key={c.t} className="p-5 rounded-2xl border border-border/50 bg-secondary/10 text-center">
                 <c.icon className="w-6 h-6 text-primary mx-auto mb-3" />
@@ -133,7 +133,7 @@ const About = () => {
             Why We Built Sofara
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            Dubai real estate is one of the world's most cross-border property markets, with buyers from 180+ nationalities each year. Yet referral economics in the industry are often opaque — slow payouts, unclear attribution, no operating tools. Sofara was built to solve that with operator-grade infrastructure: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, ready-to-share project material, and structured payouts after closing. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
+            Dubai real estate attracts buyers of many nationalities, and many of them are introduced by someone they trust. Sofara was built to give those introducers a clear, professional framework: a licensed back office through Cevitas Real Estate LLC, transparent commission tracking, ready-to-share project material, and structured payouts after closing. Every feature ships from the perspective of brokers who actually close Dubai off-plan deals.
           </p>
         </section>
 
@@ -221,7 +221,11 @@ const About = () => {
           </h2>
           <div className="grid sm:grid-cols-2 gap-3">
             {[
-              { to: "/ambassador-program", t: "The Sofara Ambassador Program", d: "Commissions, eligibility and how the network works." },
+              { to: "/ambassador-program", t: "Ambassador Program Dubai", d: "Commissions, eligibility and how to apply." },
+              { to: "/dubai-real-estate-ambassadors", t: "Dubai Real Estate Ambassadors Network", d: "Who the ambassadors are and how the network works." },
+              { to: "/real-estate-referral-program-dubai", t: "Real Estate Referral Program Dubai", d: "Refer buyers and earn 1% to 3% of the price." },
+              { to: "/real-estate-affiliate-program-uae", t: "Real Estate Affiliate Program UAE", d: "Link-based tracking for every buyer you introduce." },
+              { to: "/real-estate-referral-fee-dubai", t: "Real Estate Referral Fee Dubai", d: "How the fee is calculated, who pays it and when." },
               { to: "/invest-dubai-real-estate", t: "Invest in Dubai Real Estate", d: "2026 investor guide for foreign buyers." },
               { to: "/buy-property-dubai", t: "Buy Property in Dubai", d: "Step-by-step process for international buyers." },
               { to: "/dubai-off-plan-properties", t: "Dubai Off-Plan Properties", d: "Top developers and projects for 2026." },
@@ -246,7 +250,7 @@ const About = () => {
               Join the Sofara Dubai Real Estate Ambassadors Network
             </h2>
             <p className="text-muted-foreground mb-8">
-              Refer qualified buyers. Earn competitive commissions on closed deals. Operate alongside a licensed UAE brokerage.
+              Refer qualified buyers from any country. Earn 1% to 3% of the property price on completed sales. The sale is handled by Cevitas Real Estate LLC, a RERA-licensed brokerage.
             </p>
             <Link
               to="/auth?mode=signup&source=about"

@@ -10,28 +10,28 @@ const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
 
 const InvestDubaiPage = () => {
   const stats = [
-    { value: "210,000+", label: "Property transactions in 2026" },
-    { value: "AED 620B", label: "Total market value" },
-    { value: "6-9%", label: "Average rental yield" },
-    { value: "0%", label: "Income tax" },
+    { value: "Freehold", label: "Designated areas open to foreign buyers" },
+    { value: "DLD", label: "Every sale registered with the Dubai Land Department" },
+    { value: "Escrow", label: "Off-plan payments held in RERA-regulated accounts" },
+    { value: "Golden Visa", label: "Property route to UAE long-term residence" },
   ];
 
   const areas = [
-    { name: "Downtown Dubai", yield: "6.5%", growth: "+18%", price: "AED 2.8M avg" },
-    { name: "Dubai Marina", yield: "7.2%", growth: "+16%", price: "AED 2.1M avg" },
-    { name: "Business Bay", yield: "7.8%", growth: "+19%", price: "AED 1.5M avg" },
-    { name: "Palm Jumeirah", yield: "5.5%", growth: "+20%", price: "AED 5.2M avg" },
-    { name: "Dubai Hills Estate", yield: "6.8%", growth: "+22%", price: "AED 2.4M avg" },
-    { name: "JVC", yield: "8.5%", growth: "+25%", price: "AED 850K avg" },
+    { name: "Downtown Dubai", profile: "Central, high-rise living around the city's landmark district", buyer: "Buyers looking for an iconic address" },
+    { name: "Dubai Marina", profile: "Waterfront towers, promenade and beach access", buyer: "Buyers who value a lively waterfront lifestyle" },
+    { name: "Business Bay", profile: "Mixed business and residential district along the canal", buyer: "Professionals close to the business centre" },
+    { name: "Palm Jumeirah", profile: "Island community with beachfront apartments and villas", buyer: "Buyers seeking a prestige beachfront home" },
+    { name: "Dubai Hills Estate", profile: "Master-planned green community with villas and apartments", buyer: "Families looking for parks and schools" },
+    { name: "Jumeirah Village Circle (JVC)", profile: "Residential community with a wide choice of apartments", buyer: "First-time buyers and rental investors" },
   ];
 
   const reasons = [
-    { icon: Shield, title: "0% Tax on Property Income", desc: "No income tax, no capital gains tax, no inheritance tax. Keep 100% of your rental income and profits." },
-    { icon: Globe, title: "Golden Visa Through Real Estate", desc: "Invest AED 750,000+ in property and qualify for a 10-year UAE Golden Visa for you and your family." },
-    { icon: TrendingUp, title: "20-40% Capital Appreciation", desc: "Off-plan properties in prime areas have appreciated 20-40% during construction over the past 3 years." },
-    { icon: Building2, title: "World-Class Infrastructure", desc: "Dubai Metro expansion, Al Maktoum Airport, Dubai 2040 Master Plan — infrastructure driving sustained growth." },
-    { icon: Users, title: "Population Growth → Demand", desc: "Dubai's population surpassed 3.8M, projected to reach 5.8M by 2040, driving continuous housing demand." },
-    { icon: DollarSign, title: "Developer Payment Plans", desc: "Top developers offer 60/40, 70/30, and post-handover payment plans — making entry accessible globally." },
+    { icon: Shield, title: "No Personal Income Tax", desc: "The UAE does not levy personal income tax. Check how rental income and gains are treated in your own country of tax residence." },
+    { icon: Globe, title: "Golden Visa Through Real Estate", desc: "Property investment can open the way to a long-term UAE Golden Visa. Conditions are set by the UAE authorities and the Dubai Land Department." },
+    { icon: TrendingUp, title: "A Regulated Off-Plan Market", desc: "Off-plan payments go to escrow accounts regulated by RERA, and every sale is registered with the Dubai Land Department." },
+    { icon: Building2, title: "Long-Term Urban Planning", desc: "The Dubai 2040 Urban Master Plan sets out how new communities, transport and public spaces will develop." },
+    { icon: Users, title: "Open to Foreign Buyers", desc: "Foreign nationals can own freehold property in designated areas, and can buy remotely with video viewings and electronic signatures." },
+    { icon: DollarSign, title: "Developer Payment Plans", desc: "Many developers offer construction-linked and post-handover payment plans, which makes entry more accessible for international buyers." },
   ];
 
   return (
@@ -42,11 +42,11 @@ const InvestDubaiPage = () => {
           "@context": "https://schema.org",
           "@type": "Article",
           headline: "Invest in Dubai Real Estate 2026 — Complete Guide",
-          description: "Complete guide to investing in Dubai real estate in 2026 with ROI analysis, area comparisons, and Golden Visa information.",
+          description: "Guide to investing in Dubai real estate in 2026: how buying works, area profiles, payment plans and Golden Visa information.",
           author: { "@type": "Person", name: "Ahmed Benjas", url: "https://sofara.io/about" },
           publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           datePublished: "2026-03-01",
-          dateModified: "2026-05-22",
+          dateModified: "2026-10-25",
           mainEntityOfPage: "https://sofara.io/invest-dubai-real-estate",
         }}
       />
@@ -57,16 +57,16 @@ const InvestDubaiPage = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <TrendingUp className="w-3.5 h-3.5" /> Updated for 2026
+              <TrendingUp className="w-3.5 h-3.5" /> Updated October 2026
             </span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
               Invest in Dubai Real Estate
-              <span className="block text-gradient-gold mt-2">The World's #1 Property Market</span>
+              <span className="block text-gradient-gold mt-2">A Practical Guide for International Buyers</span>
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
-              Dubai recorded <strong>210,000+ property transactions</strong> worth <strong>AED 620 billion</strong> in 2026.
-              With <strong>0% income tax</strong>, <strong>6-9% rental yields</strong>, and a <strong>Golden Visa program</strong>,
-              Dubai is the world's most attractive real estate investment destination.
+              How to invest in Dubai real estate as a foreign buyer: <strong>freehold areas</strong>, <strong>off-plan and ready property</strong>,
+              <strong>payment plans</strong>, <strong>DLD registration</strong> and the <strong>Golden Visa</strong> route, explained with the official
+              framework set by the Dubai Land Department and RERA.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
@@ -104,7 +104,7 @@ const InvestDubaiPage = () => {
             Why Invest in Dubai Real Estate in 2026?
           </h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Dubai offers unmatched advantages for property investors worldwide. Here's why smart money is flowing into the UAE.
+            What international buyers look at when they consider Dubai property, based on the rules set by the UAE authorities.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {reasons.map((r) => (
@@ -122,19 +122,18 @@ const InvestDubaiPage = () => {
         {/* Areas Comparison */}
         <section id="areas" className="px-5 sm:px-6 max-w-6xl mx-auto py-16">
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-center mb-4">
-            Best Areas to Invest in Dubai — 2026 Comparison
+            Popular Areas to Invest in Dubai — 2026 Overview
           </h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Compare rental yields, price growth, and average prices across Dubai's top investment areas.
+            A short profile of communities international buyers often ask about. Prices and rents change: always check current Dubai Land Department data.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/50">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-secondary/30 border-b border-border/50">
                   <th className="text-left p-4 font-semibold">Area</th>
-                  <th className="text-center p-4 font-semibold">Rental Yield</th>
-                  <th className="text-center p-4 font-semibold">YoY Growth</th>
-                  <th className="text-center p-4 font-semibold">Avg Price</th>
+                  <th className="text-left p-4 font-semibold">Profile</th>
+                  <th className="text-left p-4 font-semibold">Often chosen by</th>
                 </tr>
               </thead>
               <tbody>
@@ -143,16 +142,15 @@ const InvestDubaiPage = () => {
                     <td className="p-4 font-medium flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" /> {a.name}
                     </td>
-                    <td className="p-4 text-center text-primary font-semibold">{a.yield}</td>
-                    <td className="p-4 text-center text-emerald-500 font-semibold">{a.growth}</td>
-                    <td className="p-4 text-center text-muted-foreground">{a.price}</td>
+                    <td className="p-4 text-muted-foreground">{a.profile}</td>
+                    <td className="p-4 text-muted-foreground">{a.buyer}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">
-            Source: DLD Transaction Data & CBRE Market Reports, Q1 2026
+            General descriptions for information only, not investment advice.
           </p>
         </section>
 
@@ -163,14 +161,17 @@ const InvestDubaiPage = () => {
               Earn From Dubai Real Estate — Without Buying Property
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              With Sofara, you don't need to invest money to profit from Dubai's real estate boom.
-              Simply refer buyers to our licensed team and earn <strong>up to 3% commission</strong> on every successful sale.
+              With Sofara, you don't need to buy property to earn from Dubai real estate. Anyone, from any country, can refer buyers:
+              the sale is handled by Cevitas Real Estate LLC (RERA-licensed) and you earn <strong>1% to 3% of the property price</strong> on every completed sale.
+              Learn how the <Link to="/real-estate-referral-program-dubai" className="text-primary hover:underline">real estate referral program in Dubai</Link>,
+              the <Link to="/real-estate-affiliate-program-uae" className="text-primary hover:underline">UAE affiliate program</Link> and
+              the <Link to="/dubai-real-estate-ambassadors" className="text-primary hover:underline">Dubai real estate ambassadors network</Link> work.
             </p>
             <div className="grid sm:grid-cols-3 gap-6 mb-8">
               {[
                 { step: "01", title: "You Refer", desc: "Share your unique link with potential Dubai property buyers" },
-                { step: "02", title: "We Close", desc: "Our RERA-licensed team handles everything from qualification to closing" },
-                { step: "03", title: "You Earn", desc: "Receive up to 3% commission automatically — tracked in real-time" },
+                { step: "02", title: "We Handle the Sale", desc: "Cevitas Real Estate LLC, RERA-licensed, handles everything from qualification to SPA" },
+                { step: "03", title: "You Earn", desc: "Receive 1% to 3% of the price in AED, tracked stage by stage in your dashboard" },
               ].map((s) => (
                 <div key={s.step} className="text-center">
                   <span className="text-3xl font-bold text-primary">{s.step}</span>

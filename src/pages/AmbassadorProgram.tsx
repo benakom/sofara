@@ -8,45 +8,56 @@ import SEO from "@/components/SEO";
 const steps = [
   { n: "01", title: "Apply for free", desc: "No license needed, no fees, no quotas. 2-minute application." },
   { n: "02", title: "Get your toolkit", desc: "Unique referral link + tools (WhatsApp templates, CRM, project brochures, sales scripts)." },
-  { n: "03", title: "Refer & get paid", desc: "Cevitas closes the deal under RERA license. You're paid within 7 days." },
+  { n: "03", title: "Refer & get paid", desc: "Cevitas Real Estate LLC handles the sale under its RERA license. You're paid within 7 days of the developer paying Cevitas." },
 ];
 
-const commissionTable = [
-  { dev: "Emaar Properties", rate: "3%", range: "AED 60K – 150K" },
-  { dev: "DAMAC Properties", rate: "2.5%", range: "AED 45K – 120K" },
-  { dev: "Sobha Realty", rate: "3%", range: "AED 60K – 130K" },
-  { dev: "Nakheel / Aldar / Binghatti", rate: "2.5–3%", range: "AED 40K – 140K" },
+const commissionFacts = [
+  { label: "Commission rate", value: "1% to 3% of the property price, shown per project before you refer" },
+  { label: "Who pays", value: "Sofara, out of the brokerage commission. The buyer pays nothing extra" },
+  { label: "When it is earned", value: "SPA signed and down payment paid with the DLD fees" },
+  { label: "When it is paid", value: "In AED by bank transfer, within 7 days of the developer paying Cevitas" },
+  { label: "Lead protection", value: "12 months, even if the buyer contacts Sofara or Cevitas directly" },
 ];
 
 const profiles = [
-  "Expats with strong diaspora networks",
-  "Real estate professionals operating abroad",
-  "Finance & wealth-management advisors",
+  "UAE residents whose colleagues, friends and clients ask about Dubai property",
+  "Non-residents and expats with strong diaspora networks",
+  "Non-agents: finance & wealth-management advisors, relocation consultants, entrepreneurs",
   "Content creators with property-interested audiences",
+  "Real estate professionals operating abroad",
   "Diaspora business owners & community leaders",
 ];
 
 const comparison = [
-  { feature: "Payment speed", sofara: "7 days", typical: "30–60 days" },
-  { feature: "Commission rate", sofara: "Up to 3%", typical: "0.5–1.5%" },
-  { feature: "Tools included", sofara: "Yes (WhatsApp, CRM, brochures)", typical: "No" },
-  { feature: "Legal structure", sofara: "Cevitas RERA-licensed", typical: "Varies / unclear" },
-  { feature: "Dedicated support", sofara: "1-on-1 success manager", typical: "Shared inbox" },
+  { feature: "Real estate license", sofara: "Not required", typical: "RERA broker card" },
+  { feature: "UAE residence visa", sofara: "Not required", typical: "Required" },
+  { feature: "Your role", sofara: "Introduce the buyer", typical: "Advise, show, negotiate, sign" },
+  { feature: "Earnings", sofara: "1% to 3% of the property price", typical: "Share of the agency commission" },
+  { feature: "Who handles the sale", sofara: "Cevitas Real Estate LLC (RERA-licensed)", typical: "You, under your brokerage" },
 ];
 
 const faqs = [
-  { q: "How much can I earn?", a: "Up to 3% commission per closed transaction — typically AED 37K to AED 120K per deal." },
-  { q: "Do I need a real estate license?", a: "No. You're a business introducer. All transactions close under Cevitas Real Estate LLC (RERA-licensed in Dubai)." },
-  { q: "How fast am I paid?", a: "Within 7 days of transaction closing — via international bank transfer." },
-  { q: "Is it really free?", a: "100% free. No signup fees, no subscription. Sofara only earns from closed deals." },
-  { q: "Are my leads protected?", a: "Yes. Each lead is securely tied to your referral link for 12 months." },
-  { q: "Is this legal in my country?", a: "Yes — you act as a business introducer, not as a real estate agent in your jurisdiction." },
+  { q: "What is the ambassador program in Dubai?", a: "It is a real estate referral program: you introduce property buyers, Cevitas Real Estate LLC (RERA-licensed) handles the sale, and you earn 1% to 3% of the property price on each completed purchase. It is free and open to anyone." },
+  { q: "Who can become an ambassador?", a: "Anyone, from any country: UAE residents, non-residents, people who are not agents and licensed agents abroad. No license, visa or fee. A short identity check is completed before your first payout." },
+  { q: "How much can I earn?", a: "1% to 3% of the property price on each completed sale you introduced, depending on the project. The rate is shown in your dashboard before you refer." },
+  { q: "Do I need a real estate license?", a: "No. You only introduce buyers. Every regulated step is carried out by Cevitas Real Estate LLC under its RERA license in Dubai." },
+  { q: "When and how am I paid?", a: "The commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard." },
+  { q: "Is there an ambassador agreement?", a: "Yes. The ambassador terms are accepted when you create your account: they set the rate, when the commission is earned, how it is invoiced and how long your leads are protected." },
+  { q: "Are my leads protected?", a: "Yes. Each lead is tied to your account for 12 months, including when the buyer contacts Sofara or Cevitas directly." },
+  { q: "Is this legal in my country?", a: "In Dubai, the regulated activity is carried out by the RERA-licensed brokerage, and you act only as an introducer. In your country, declare your commissions under your local tax rules and check any local rules on introducer income." },
+  { q: "Is it really free?", a: "Yes. No signup fee, no subscription, no quota. You earn only when a sale you introduced is completed." },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
 
 const AmbassadorProgram = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO route="/ambassador-program" />
+      <SEO route="/ambassador-program" jsonLd={faqJsonLd} />
       <Navbar />
 
       <main className="pt-20 sm:pt-24">
@@ -54,13 +65,13 @@ const AmbassadorProgram = () => {
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <Shield className="w-3.5 h-3.5" /> RERA-Licensed · Trusted by 700+ Ambassadors
+              <Shield className="w-3.5 h-3.5" /> RERA-licensed brokerage · 700+ active ambassadors · updated October 2026
             </span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              The Real Estate Ambassador Program in Dubai
+              Real Estate Ambassador Program Dubai
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
-              Refer Dubai property buyers. Earn up to <strong>3% commission</strong>. No license required.
+              The Sofara ambassador program in Dubai pays you for introducing property buyers: you refer, a RERA-licensed brokerage handles the sale, and you earn <strong>1% to 3% of the property price</strong>. Open to anyone, UAE resident or not, agent or not, from any country. No license, no fee.
             </p>
             <Link
               to="/auth?mode=signup&source=ambassador-program"
@@ -81,7 +92,7 @@ const AmbassadorProgram = () => {
             What is the Sofara Ambassador Program?
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed text-center">
-            Sofara is the Dubai real estate ambassador program built by RERA-licensed brokers at <strong>Cevitas Real Estate LLC</strong>. Any qualified person worldwide can refer buyers to Dubai off-plan property from Emaar, DAMAC, Sobha, Nakheel, Aldar and other top UAE developers — and earn up to <strong>3% commission per closed transaction</strong> without holding a real estate license themselves.
+            Sofara is the Dubai real estate ambassador program behind the <Link to="/dubai-real-estate-ambassadors" className="text-primary hover:underline">Dubai real estate ambassadors network</Link>. Anyone worldwide can refer buyers of Dubai and UAE property and earn <strong>1% to 3% of the property price per completed sale</strong>, without holding a real estate license. The sale is handled by <strong>Cevitas Real Estate LLC</strong>, a RERA-licensed brokerage, and more than 700 active ambassadors use the program today.
           </p>
         </section>
 
@@ -107,38 +118,39 @@ const AmbassadorProgram = () => {
             How Much Can You Earn as a Dubai Real Estate Ambassador?
           </h2>
           <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
-            Indicative ranges per closed transaction. Top ambassadors exceed AED 1M annually.
+            Your commission is a percentage of the property price, 1% to 3% depending on the project. Here is how it is calculated, earned and paid.
           </p>
           <div className="rounded-2xl border border-border/50 overflow-hidden">
             <table className="w-full text-sm">
               <thead className="bg-secondary/30">
                 <tr>
-                  <th className="text-left p-4 font-semibold">Developer</th>
-                  <th className="text-left p-4 font-semibold">Commission</th>
-                  <th className="text-left p-4 font-semibold">Typical earning</th>
+                  <th className="text-left p-4 font-semibold">Question</th>
+                  <th className="text-left p-4 font-semibold">How it works</th>
                 </tr>
               </thead>
               <tbody>
-                {commissionTable.map((r) => (
-                  <tr key={r.dev} className="border-t border-border/30">
-                    <td className="p-4">{r.dev}</td>
-                    <td className="p-4 text-primary font-semibold">{r.rate}</td>
-                    <td className="p-4">{r.range}</td>
+                {commissionFacts.map((r) => (
+                  <tr key={r.label} className="border-t border-border/30">
+                    <td className="p-4 font-medium">{r.label}</td>
+                    <td className="p-4">{r.value}</td>
                   </tr>
                 ))}
-                <tr className="border-t border-border/30 bg-primary/5">
-                  <td className="p-4 font-semibold">Average year-1 ambassador</td>
-                  <td className="p-4">4–6 deals</td>
-                  <td className="p-4 font-semibold">AED 250K – 700K</td>
-                </tr>
-                <tr className="border-t border-border/30 bg-primary/10">
-                  <td className="p-4 font-semibold">Top 10% ambassadors</td>
-                  <td className="p-4">20+ deals / yr</td>
-                  <td className="p-4 font-semibold">AED 1M – 3M+</td>
-                </tr>
               </tbody>
             </table>
           </div>
+          <p className="text-sm text-muted-foreground text-center mt-6">
+            Read the <Link to="/blog/sofara-commission-structure-explained" className="text-primary hover:underline">commission structure</Link> and our guide to the <Link to="/real-estate-referral-fee-dubai" className="text-primary hover:underline">real estate referral fee in Dubai</Link>.
+          </p>
+        </section>
+
+        {/* Submit a lead */}
+        <section className="px-5 sm:px-6 max-w-4xl mx-auto py-12">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-center mb-6">
+            How to Submit a Lead and Keep It Protected
+          </h2>
+          <p className="text-muted-foreground text-base leading-relaxed text-center">
+            With the buyer's consent, register them in your dashboard, adding their budget and goal if you know them, or share your personal referral link so they sign up themselves. The lead is attributed to you immediately and protected for <strong>12 months</strong>, including when the buyer later contacts Sofara or Cevitas directly. The ambassador terms, accepted when you join, set the rate, the moment the commission is earned, invoicing and lead protection.
+          </p>
         </section>
 
         {/* Who qualifies */}
@@ -162,22 +174,22 @@ const AmbassadorProgram = () => {
             Is the Dubai Real Estate Ambassador Program Legal in My Country?
           </h2>
           <p className="text-muted-foreground text-base leading-relaxed text-center">
-            Yes. As a Sofara ambassador you act as a <strong>business introducer</strong> — not a real estate agent. All transactions close under <strong>Cevitas Real Estate LLC</strong> (RERA-licensed in Dubai), removing the need for a local real estate license in your country.
+            In Dubai, brokerage work is regulated by <strong>RERA</strong>, the Real Estate Regulatory Agency of the Dubai Land Department. As a Sofara ambassador you act as a <strong>business introducer</strong>, not a real estate agent: every regulated step is carried out by <strong>Cevitas Real Estate LLC</strong> under its RERA license. In your own country, declare your commissions under your local tax rules and check any local rules on introducer income.
           </p>
         </section>
 
         {/* Comparison */}
         <section className="px-5 sm:px-6 max-w-5xl mx-auto py-16">
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-center mb-10">
-            Why Sofara Beats Other Dubai Property Referral Programs
+            Ambassador or Licensed Agent: What Is the Difference?
           </h2>
           <div className="rounded-2xl border border-border/50 overflow-hidden">
             <table className="w-full text-sm">
               <thead className="bg-secondary/30">
                 <tr>
                   <th className="text-left p-4 font-semibold">Feature</th>
-                  <th className="text-left p-4 font-semibold text-primary">Sofara</th>
-                  <th className="text-left p-4 font-semibold text-muted-foreground">Typical brokerage referral</th>
+                  <th className="text-left p-4 font-semibold text-primary">Sofara ambassador</th>
+                  <th className="text-left p-4 font-semibold text-muted-foreground">Licensed agent</th>
                 </tr>
               </thead>
               <tbody>
@@ -191,13 +203,16 @@ const AmbassadorProgram = () => {
               </tbody>
             </table>
           </div>
+          <p className="text-sm text-muted-foreground text-center mt-6">
+            Compare the models: <Link to="/real-estate-referral-program-dubai" className="text-primary hover:underline">real estate referral program in Dubai</Link>, <Link to="/real-estate-affiliate-program-uae" className="text-primary hover:underline">real estate affiliate program in the UAE</Link> and <Link to="/become-real-estate-agent-dubai" className="text-primary hover:underline">how to become a real estate agent in Dubai</Link>.
+          </p>
         </section>
 
         {/* Benefits icons */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12">
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { icon: Zap, t: "Paid in 7 days", d: "Fastest payout in Dubai real estate" },
+              { icon: Zap, t: "Paid in AED", d: "Within 7 days of the developer paying Cevitas" },
               { icon: Globe2, t: "Work from anywhere", d: "Remote-first, global ambassador network" },
               { icon: TrendingUp, t: "Ready-to-use tools", d: "Project brochures, WhatsApp templates, scripts" },
             ].map((b) => (

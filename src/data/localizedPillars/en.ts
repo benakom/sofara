@@ -3,19 +3,32 @@ import type { PillarContent } from "./types";
 
 export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   affiliate: {
-    title: "Real Estate Affiliate Program UAE & Dubai | Sofara",
+    title: "Real Estate Affiliate Program UAE: Earn 1% to 3% | Sofara",
     description:
-      "Join the Dubai and UAE real estate affiliate program from the USA, Canada, the UK, Europe or the GCC. Refer property buyers, earn 1% to 3% of the price in AED.",
+      "Real estate affiliate program in the UAE: refer property buyers from any country, no license needed, and earn 1% to 3% of the price. Free to join, paid in AED.",
     h1: "Real Estate Affiliate Program in the UAE and Dubai",
-    eyebrow: "Affiliate program · Dubai, Abu Dhabi, Ras Al Khaimah",
+    eyebrow: "Affiliate program · Dubai & UAE · updated October 2026",
     intro:
-      "Sofara is a **real estate affiliate program** built for Dubai and the wider UAE. Affiliates, whom we call ambassadors, introduce people who want to buy property in the Emirates. A RERA-licensed brokerage, Cevitas Real Estate LLC, handles the advice, the viewings and the paperwork. When the sale goes through, the affiliate earns up to 3% of the property price, paid in AED.",
+      "The Sofara **real estate affiliate program in the UAE** pays you for introducing property buyers in Dubai and the other emirates, and it is open to anyone, resident or non-resident, agent or not, with no license. You refer the buyer, a RERA-licensed brokerage handles the sale, and you earn **1% to 3% of the property price** on every completed purchase. The sale itself is handled by Cevitas Real Estate LLC, a RERA-licensed Dubai brokerage, and joining is free.",
     sections: [
       {
         h2: "What a real estate affiliate program is",
         blocks: [
-          { p: "An affiliate program rewards a person for introducing a customer. In e-commerce the reward is a few percent of a basket. In UAE real estate the same principle applies to transactions worth hundreds of thousands, sometimes millions of dirhams, which is why a single referral can be worth more than a month of salary." },
-          { p: "Developers in Dubai pay registered brokerages a commission on every off-plan sale, usually between 2% and 5% of the price. Sofara shares a large part of that commission with the affiliate who brought the buyer. The affiliate does not sell, negotiate or sign anything: the licensed team does, which keeps the activity simple and fully compliant." },
+          { p: "An affiliate program rewards a person for introducing a customer. In UAE real estate, the customer is a property buyer and the reward is a share of the commission that the licensed brokerage earns on the sale. The affiliate does not sell, negotiate or sign anything: the licensed team does, which keeps the role simple and compliant." },
+          { p: "Sofara calls its affiliates **ambassadors**. Each one gets a personal referral link, a dashboard that shows every lead stage by stage, project material and training. More than 700 active ambassadors use the platform today." },
+        ],
+      },
+      {
+        h2: "Who can join the UAE real estate affiliate program",
+        blocks: [
+          { p: "The program is open worldwide. You do not need to live in the UAE, hold a visa or have a real estate license. A short identity check is completed before your first payout." },
+          { ul: [
+            "**UAE residents** whose colleagues, friends and clients ask how to buy in Dubai or Abu Dhabi.",
+            "**Non-residents and diaspora communities** in Europe, Africa, Asia and the Americas.",
+            "**Non-agents:** financial advisors, accountants, relocation consultants, HR professionals and entrepreneurs.",
+            "**Content creators** in finance, travel and lifestyle who already talk about the UAE.",
+            "**Licensed agents abroad** who want to serve clients buying in Dubai without opening a UAE office.",
+          ] },
         ],
       },
       {
@@ -23,81 +36,89 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
         blocks: [
           { ol: [
             "**Create a free account.** Sign up in two minutes from any country. No license, no fee, no monthly target.",
-            "**Share your link or submit a lead.** Every affiliate gets a personal referral link and a form to register a buyer directly from the dashboard.",
-            "**Let the Cevitas team advise the buyer.** Qualification, project selection, video or on-site viewings, reservation and SPA are handled by licensed agents.",
+            "**Submit a lead or share your link.** Register a buyer from your dashboard, with their consent, or let them sign up through your personal referral link.",
+            "**Let the licensed team advise the buyer.** Qualification, project selection, video or on-site viewings, reservation and SPA are handled by Cevitas Real Estate LLC.",
             "**Follow each stage.** The dashboard shows where every lead stands, from first contact to down payment.",
-            "**Get paid in AED.** The commission is earned once the buyer signs the SPA and pays the down payment with the DLD fees. It is paid by bank transfer within 7 days of the developer paying Cevitas.",
+            "**Get paid in AED.** The commission is earned once the buyer signs the SPA and pays the down payment with the DLD fees, then paid by bank transfer within 7 days of the developer paying Cevitas.",
           ] },
         ],
       },
       {
-        h2: "Commission rates and examples",
+        h2: "How the affiliate commission is calculated",
         blocks: [
-          { p: "Rates depend on the developer and are visible before you refer anyone. A few typical examples:" },
+          { p: "Your commission is a **percentage of the property price**, from 1% to 3% depending on the project. It comes out of the commission the brokerage receives, so the buyer pays nothing extra. The rate for each project is shown in your dashboard before you refer anyone." },
           { table: {
-            head: ["Developer", "Affiliate rate", "On a AED 1.5M apartment", "On a AED 4M villa"],
+            head: ["Question", "How it works with Sofara"],
             rows: [
-              ["Emaar Properties", "3%", "AED 45,000", "AED 120,000"],
-              ["Sobha Realty", "3%", "AED 45,000", "AED 120,000"],
-              ["DAMAC Properties", "2.5%", "AED 37,500", "AED 100,000"],
+              ["Basis", "The property price of the completed sale"],
+              ["Rate", "1% to 3%, shown per project before you refer"],
+              ["Who pays", "Sofara, out of the brokerage commission. The buyer pays nothing extra"],
+              ["When it is earned", "SPA signed and down payment paid with the DLD fees"],
+              ["When it is paid", "Within 7 days of the developer paying Cevitas, in AED"],
+              ["Lead protection", "12 months from the date you register the buyer"],
             ],
           } },
-          { p: "Each lead stays attached to your account for 12 months, so a buyer who takes time to decide still counts as yours. You can read the full [commission structure](/blog/sofara-commission-structure-explained) on the blog." },
+          { p: "The detail of rates and stages is on the [commission structure](/blog/sofara-commission-structure-explained) page, and the wider question of fees is covered in our guide to the [real estate referral fee in Dubai](/real-estate-referral-fee-dubai)." },
         ],
       },
       {
-        h2: "Who joins a Dubai real estate affiliate program",
+        h2: "Agreement, attribution and lead protection",
         blocks: [
+          { p: "The affiliate terms are accepted when you create your account: they set the rate, when the commission is earned, how it is invoiced and how long your lead stays attached to you. Each payout is made against an invoice generated from your dashboard." },
           { ul: [
-            "**Diaspora communities** in Europe, Africa and Asia whose friends and family ask how to invest in Dubai.",
-            "**Content creators** in finance, travel and lifestyle who already talk about Dubai.",
-            "**Financial advisors, accountants and relocation consultants** whose clients move capital or residency to the UAE.",
-            "**Licensed agents abroad** who want to serve clients buying in Dubai without opening a UAE office.",
-            "**Entrepreneurs and professionals** with a strong network who want an income stream next to their main activity.",
+            "**Attribution:** a lead is linked to your account as soon as you submit it or the buyer signs up through your link.",
+            "**Protection:** the lead stays yours for 12 months, including when the buyer later contacts Sofara or Cevitas directly.",
+            "**Visibility:** every stage, from qualification to down payment, is updated by the team in your dashboard.",
           ] },
         ],
       },
       {
-        h2: "Why the UAE is a strong market for property affiliates",
+        h2: "Is a real estate affiliate program legal without a license?",
         blocks: [
-          { p: "The UAE combines high transaction volumes, buyers from more than 180 nationalities and a clear legal framework. Dubai Land Department records every sale, off-plan payments go into escrow accounts regulated by RERA, and freehold areas are open to foreign buyers. Abu Dhabi and Ras Al Khaimah add new master communities each year." },
-          { p: "For buyers, the attraction is well known: no annual property tax, rental yields that often sit between 5% and 8% gross, flexible payment plans on new projects and a 10-year Golden Visa for property investments of AED 2 million or more. For an affiliate, this means a steady flow of people who are genuinely interested and need a trusted introduction." },
+          { p: "In Dubai, brokerage work (advising, showing, negotiating and signing on behalf of a client) is regulated by RERA, the Real Estate Regulatory Agency of the Dubai Land Department, and must be carried out by a licensed brokerage. An affiliate only introduces the buyer. With Sofara, every regulated step is carried out by Cevitas Real Estate LLC, RERA-licensed, so the affiliate never acts as a broker." },
+          { p: "If you live outside the UAE, declare your commissions under your local tax rules and check any local rules on introducer income." },
         ],
       },
       {
         h2: "Joining from the USA, Canada, the UK, Europe or the Gulf",
         blocks: [
-          { p: "Affiliates join from wherever they live. The buyer can be anywhere too: viewings take place in Dubai or by video, contracts are signed electronically with the developer, and payments go to escrow accounts regulated by RERA." },
+          { p: "Affiliates join from wherever they live. The buyer can be anywhere too: viewings take place in Dubai or by video, contracts are signed electronically, and off-plan payments go to escrow accounts regulated by RERA. Every sale is registered with the Dubai Land Department." },
           { ul: [
-            "**United States and Canada:** many affiliates are realtors, mortgage or wealth advisors whose clients ask about Dubai, the Golden Visa or dollar-pegged assets (the dirham is pegged to the US dollar). Commissions are paid in AED by bank transfer and declared under your local tax rules.",
-            "**United Kingdom and Europe:** expatriates and diaspora communities in London, Paris, Brussels, Geneva, Berlin or Madrid regularly refer friends and clients relocating or investing in the UAE.",
-            "**Gulf countries:** residents of Saudi Arabia, Qatar, Kuwait, Bahrain and Oman are among the most active buyers in Dubai; affiliates there introduce family offices, entrepreneurs and professionals.",
-            "**Everywhere else:** Sofara ambassadors refer buyers from more than 40 countries, with the same rules for everyone.",
+            "**United States and Canada:** realtors, mortgage and wealth advisors whose clients ask about Dubai or the Golden Visa. Commissions are paid in AED by bank transfer.",
+            "**United Kingdom and Europe:** expatriates and diaspora communities regularly refer friends and clients relocating to or investing in the UAE.",
+            "**Gulf countries:** residents of Saudi Arabia, Qatar, Kuwait, Bahrain and Oman introduce family members, entrepreneurs and professionals.",
+            "**Everywhere else:** the same rules apply to every ambassador, whatever the country.",
           ] },
           { p: "French-speaking partners can read the guide for [apporteurs d'affaires immobiliers à Dubaï](/fr/apporteur-affaires-immobilier-dubai), and Russian speakers the [партнёрская программа](/ru/partnerskaya-programma-nedvizhimost-dubai)." },
         ],
       },
       {
-        h2: "Affiliate, referral or ambassador: what is the difference?",
+        h2: "Affiliate, referral, ambassador or agent: what is the difference?",
         blocks: [
-          { p: "The terms are often used interchangeably. A **referral program** usually means a one-off reward for recommending someone. An **affiliate program** adds tracking, a dashboard and recurring earnings. Sofara calls its affiliates **ambassadors** because they also get training, project material and a community. You can compare the approaches on the [Dubai real estate referral program](/real-estate-referral-program-dubai) page and learn how the [ambassadors network](/dubai-real-estate-ambassadors) is organised." },
+          { ul: [
+            "**Referral program:** you recommend a buyer and receive a referral fee when they buy. See the [real estate referral program in Dubai](/real-estate-referral-program-dubai).",
+            "**Affiliate program:** the same reward, with tracking, a personal link and a dashboard for every lead. This is the model described on this page.",
+            "**Ambassador:** Sofara's name for its affiliates, who also get training, project material and a community. Discover the [Dubai real estate ambassadors network](/dubai-real-estate-ambassadors) and the [ambassador program](/ambassador-program).",
+            "**Licensed agent:** a RERA-registered broker who advises, shows and closes sales. Read [how to become a real estate agent in Dubai](/become-real-estate-agent-dubai).",
+          ] },
         ],
       },
     ],
     faqs: [
-      { q: "Do I need a real estate license to join the affiliate program?", a: "No. Affiliates introduce buyers; Cevitas Real Estate LLC, a RERA-licensed brokerage, carries out all regulated activity. You can join from any country." },
-      { q: "How much can a real estate affiliate earn in the UAE?", a: "Up to 3% of the property price depending on the developer, for example AED 45,000 on a AED 1.5 million apartment sold by Emaar or Sobha." },
-      { q: "When is the affiliate commission paid?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice issued from your dashboard." },
-      { q: "Can I join the affiliate program from the USA or Canada?", a: "Yes. Affiliates join from any country. You introduce buyers, Cevitas handles viewings and contracts, and your commission is paid in AED by bank transfer, to be declared under your local tax rules." },
-      { q: "Does the program cover Abu Dhabi and other emirates?", a: "Yes. Sofara focuses on Dubai and also covers projects in Abu Dhabi, Ras Al Khaimah and Sharjah through Cevitas." },
-      { q: "Is there a fee or a minimum number of referrals?", a: "No. Joining is free and there is no quota. You earn only when a sale you introduced is completed." },
+      { q: "What is a real estate affiliate program in the UAE?", a: "It is a program that pays you a share of the brokerage commission when a buyer you introduced completes a property purchase. With Sofara you earn 1% to 3% of the property price, and Cevitas Real Estate LLC, a RERA-licensed brokerage, handles the sale." },
+      { q: "Who can join the affiliate program?", a: "Anyone, from any country: UAE residents, non-residents, people who are not agents and licensed agents abroad. No license, visa or fee is required. A short identity check is completed before your first payout." },
+      { q: "Do I need a real estate license to be an affiliate?", a: "No. Affiliates only introduce buyers. Every regulated step, from advice to contracts, is carried out by Cevitas Real Estate LLC under its RERA license." },
+      { q: "How is the affiliate commission calculated?", a: "As a percentage of the property price, from 1% to 3% depending on the project. The rate is shown in your dashboard before you refer, and the buyer pays nothing extra." },
+      { q: "When and how is the affiliate commission paid?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard." },
+      { q: "How do I submit a lead?", a: "Register the buyer in your dashboard with their consent, or share your personal referral link so they sign up themselves. Both are attributed to your account." },
       { q: "How are my leads protected?", a: "Every lead is linked to your account for 12 months, including when the buyer contacts Sofara or Cevitas directly." },
+      { q: "Is there a fee or a minimum number of referrals?", a: "No. Joining is free and there is no quota. You earn only when a sale you introduced is completed." },
     ],
     cta: {
       title: "Join the UAE real estate affiliate program",
-      text: "Create your free account, share your link and let a licensed Dubai team turn your introductions into commissions.",
+      text: "Create your free account, share your link and let a licensed Dubai team turn your introductions into commissions of 1% to 3% of the price.",
     },
-    related: ["ambassadors", "agent", "referralFee", "sideIncome", "invest", "home"],
+    related: ["referral", "ambassadors", "referralFee", "agent", "sideIncome", "home"],
   },
 
   freelance: {
@@ -122,10 +143,10 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { ol: [
             "**Hold a UAE residence visa.** A freelance permit, a Golden Visa, a family or investor visa can all work, depending on the brokerage.",
             "**Join a RERA-registered brokerage** that accepts commission-only agents.",
-            "**Complete the DREI certification course** (about four days) and **pass the RERA exam**.",
+            "**Complete the DREI certification course** run by the Dubai Real Estate Institute and **pass the RERA exam**.",
             "**Receive your Broker Registration Number (BRN)** and RERA card through the brokerage, renewed every year.",
           ] },
-          { p: "Expect a total of roughly AED 4,000 to AED 7,000 for the course, exam and card, on top of your visa costs. Commission-only agents usually keep a higher share of the agency commission than salaried agents, often 50% to 80% depending on the brokerage, but they carry their own marketing costs." },
+          { p: "The course, the exam and the broker card each carry fees set by DREI and the Dubai Land Department: check the current amounts with them before enrolling, on top of your visa costs. Commission-only agents agree their share of the agency commission with their brokerage and usually carry their own marketing costs." },
         ],
       },
       {
@@ -137,9 +158,9 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
             rows: [
               ["License", "RERA broker card", "None"],
               ["Visa", "UAE residence visa required", "Not required"],
-              ["Start-up cost", "About AED 4,000 to 7,000", "Free"],
+              ["Start-up cost", "DREI course, RERA exam and card fees", "Free"],
               ["Your role", "Viewings, negotiation, paperwork", "Introduce the buyer"],
-              ["Typical earnings per deal", "Share of the 2% to 5% agency commission", "Up to 3% of the price"],
+              ["Earnings per deal", "Share of the agency commission, agreed with the brokerage", "1% to 3% of the property price"],
             ],
           } },
           { p: "Many licensed agents use both: they close their own clients in Dubai and refer the ones they cannot serve. See how the [UAE real estate affiliate program](/real-estate-affiliate-program-uae) works." },
@@ -148,7 +169,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       {
         h2: "How much a freelance agent can earn",
         blocks: [
-          { p: "On a AED 1.5 million off-plan apartment where the developer pays the brokerage 4% to 5%, the agency commission is AED 60,000 to AED 75,000. A commission-only agent keeping 70% would receive about AED 42,000 to AED 52,500. A Sofara referral partner on an Emaar or Sobha project earns 3%, that is AED 45,000, without carrying out the brokerage work." },
+          { p: "A commission-only agent earns the share of the agency commission agreed with their brokerage, on the deals they close themselves. A Sofara referral partner earns 1% to 3% of the property price on each completed sale they introduced, without carrying out the brokerage work." },
           { p: "Earnings depend on the volume of deals, so the first months are usually spent building a client base. Read more in our guide on [how much real estate agents make in Dubai](/blog/how-much-money-real-estate-agents-make-dubai)." },
         ],
       },
@@ -156,9 +177,9 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
     faqs: [
       { q: "Can I be a freelance real estate agent in Dubai?", a: "Yes, as a commission-only agent registered under a RERA-licensed brokerage, with your own UAE visa, the DREI course and a RERA card. Without a license, you can earn as a referral partner through a licensed brokerage such as Cevitas via Sofara." },
       { q: "Is there a freelance real estate license in Dubai?", a: "Broker cards are always attached to a licensed brokerage. Freelance permits cover your residence and work status, but selling property still requires registration with RERA through a brokerage." },
-      { q: "How much does it cost to become a freelance agent in Dubai?", a: "Around AED 4,000 to AED 7,000 for the DREI course, RERA exam and broker card, plus your visa and marketing costs." },
+      { q: "How much does it cost to become a freelance agent in Dubai?", a: "You pay the fees set by DREI and the Dubai Land Department for the certification course, the RERA exam and the broker card, plus your visa and marketing costs. Check the current amounts with them before enrolling." },
       { q: "Can a freelance agent earn commission without a RERA card?", a: "Only licensed brokers carry out brokerage work. A referral partner introduces buyers to a licensed brokerage and is paid a share of the commission on completed sales, as Sofara ambassadors are." },
-      { q: "How much does a Sofara referral partner earn?", a: "Up to 3% of the property price depending on the developer, for example AED 45,000 on a AED 1.5 million apartment by Emaar or Sobha." },
+      { q: "How much does a Sofara referral partner earn?", a: "1% to 3% of the property price depending on the project, paid on each completed sale you introduced." },
       { q: "When is the referral commission paid?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED within 7 days of the developer paying Cevitas." },
     ],
     cta: {
@@ -199,14 +220,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
         h2: "The simplest part-time option: property referrals",
         blocks: [
           { p: "If you mainly want an extra income, referring buyers is the lightest option. You pass on the contact, and a licensed team handles the advice, viewings and paperwork. With Sofara, the team is Cevitas Real Estate LLC, and you follow every lead in your dashboard." },
-          { table: {
-            head: ["Property price", "Your commission at 2.5%", "Your commission at 3%"],
-            rows: [
-              ["AED 900,000", "AED 22,500", "AED 27,000"],
-              ["AED 1,500,000", "AED 37,500", "AED 45,000"],
-              ["AED 2,500,000", "AED 62,500", "AED 75,000"],
-            ],
-          } },
+          { p: "Your commission is 1% to 3% of the property price, depending on the project, and the rate is shown in your dashboard before you refer anyone." },
           { p: "The commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, then paid in AED within 7 days of the developer paying Cevitas. Learn more about [side income in Dubai from property referrals](/side-income-dubai-real-estate)." },
         ],
       },
@@ -224,7 +238,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
     faqs: [
       { q: "Can I work as a real estate agent in Dubai part-time?", a: "Yes, if you hold a RERA broker card through a licensed brokerage that accepts flexible hours. The license requirements are the same as for full-time agents." },
       { q: "Do I need a license to refer buyers in Dubai?", a: "Introducing buyers to a licensed brokerage is different from brokerage work. Sofara ambassadors refer buyers, and Cevitas Real Estate LLC, a RERA-licensed brokerage, carries out every regulated step." },
-      { q: "How much can I earn part-time?", a: "Referral partners earn up to 3% of the property price per completed sale, for example AED 45,000 on a AED 1.5 million apartment by Emaar or Sobha." },
+      { q: "How much can I earn part-time?", a: "Referral partners earn 1% to 3% of the property price per completed sale, depending on the project." },
       { q: "How many hours does referring take?", a: "Usually a few minutes per lead: you share your link or submit the contact, and the licensed team does the rest. You follow progress in your dashboard." },
       { q: "Can I do this next to my full-time job in the UAE?", a: "Check your employment contract and the UAE rules on secondary income before starting any additional activity." },
       { q: "Is joining Sofara free?", a: "Yes. There is no fee, no subscription and no minimum number of referrals." },
@@ -239,49 +253,66 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
   referralFee: {
     title: "Real Estate Referral Fee Dubai: How Much & Who Pays",
     description:
-      "How real estate referral fees work in Dubai: typical percentages, who pays them, referral agreements between agents, and how Sofara pays up to 3% of the price.",
+      "How the real estate referral fee works in Dubai: who can receive it, how it is calculated, who pays it and when. Sofara pays 1% to 3% of the property price.",
     h1: "Real Estate Referral Fee in Dubai: How Much and Who Pays",
-    eyebrow: "Guide · Dubai & UAE",
+    eyebrow: "Guide · Dubai & UAE · updated October 2026",
     intro:
-      "A **referral fee** rewards the person who introduces a buyer, a seller or a tenant to a real estate agency. In Dubai, the amounts can be significant because they are calculated on the agency commission or on the property price. This guide explains the usual rates, who pays them and how they are documented.",
+      "A **real estate referral fee in Dubai** is the share of the brokerage commission paid to the person who introduced a buyer, and anyone can receive it, resident or not, licensed or not. With Sofara it is **1% to 3% of the property price**, paid once the sale is completed through Cevitas Real Estate LLC, a RERA-licensed brokerage. This guide explains how the fee is calculated, who pays it, when it is paid and how it is documented.",
     sections: [
       {
-        h2: "Where the money comes from",
+        h2: "Where the referral fee comes from",
         blocks: [
           { ul: [
-            "**Off-plan sales:** the developer pays the brokerage a commission, commonly 2% to 5% of the price. The buyer pays no agency fee.",
-            "**Secondary (resale) market:** the agency fee is usually 2% of the price, commonly paid by the buyer.",
-            "**Rentals:** the agency fee is usually 5% of the annual rent, commonly paid by the tenant.",
+            "**Off-plan sales:** the developer pays the licensed brokerage a commission on the sale. The buyer pays no agency fee.",
+            "**Secondary (resale) market:** the agency fee is agreed between the agency and its client, and is commonly paid by the buyer.",
+            "**Rentals:** the agency fee is commonly paid by the tenant.",
           ] },
-          { p: "A referral fee is a share of that commission paid to the person who brought the client." },
+          { p: "A referral fee is a share of that commission, paid by the agency to the person who brought the client. It never adds anything to the price paid by the buyer." },
         ],
       },
       {
-        h2: "Typical referral fee rates in Dubai",
+        h2: "How the referral fee is calculated",
         blocks: [
+          { p: "There are two common bases. Between licensed brokerages, the fee is a share of the agency commission, agreed case by case. In programs open to the public, such as Sofara, it is a **percentage of the property price**, which is simpler to understand before you refer anyone." },
           { table: {
-            head: ["Situation", "Usual referral fee", "Example"],
+            head: ["Situation", "Basis of the fee", "Rate"],
             rows: [
-              ["Agent-to-agent referral", "Often 20% to 50% of the agency commission", "AED 6,000 to 15,000 on a AED 30,000 commission"],
-              ["Agency referral program (clients, partners)", "A share of the agency commission or a fixed amount", "Varies by agency"],
-              ["Sofara ambassador (off-plan)", "Up to 3% of the property price", "AED 45,000 on a AED 1.5M apartment"],
+              ["Agent-to-agent referral", "Share of the agency commission", "Agreed between the two brokerages"],
+              ["Sofara referral (off-plan and selected projects)", "Property price", "1% to 3%, shown per project"],
             ],
           } },
-          { p: "Sofara is built around off-plan sales, where developer commissions are highest, which is why the ambassador share is expressed as a percentage of the property price rather than of the agency fee." },
+          { p: "With Sofara, the rate for each project is visible in your dashboard before you introduce anyone. See the [commission structure](/blog/sofara-commission-structure-explained) for how rates and stages work." },
         ],
       },
       {
-        h2: "Property referral commission in Dubai",
+        h2: "Who can receive a referral fee in Dubai",
         blocks: [
-          { p: "The **property referral commission** is the amount paid to the person who introduced a buyer once the sale completes. On Dubai off-plan projects it is usually calculated on the property price rather than on the agency fee. With Sofara it ranges from 1% to 3% of the price depending on the project: AED 15,000 to 45,000 on an AED 1.5 million apartment, AED 40,000 to 120,000 on an AED 4 million villa." },
-          { p: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED within 7 days of the developer paying Cevitas. Join the [real estate referral program in Dubai](/real-estate-referral-program-dubai) to receive it." },
+          { p: "Anyone who introduces a buyer to a licensed brokerage can receive a referral fee, as long as they do not carry out brokerage work themselves. With Sofara, that includes UAE residents, non-residents, people who are not real estate agents and licensed agents based abroad. More than 700 active ambassadors refer buyers through the platform." },
+        ],
+      },
+      {
+        h2: "When the referral fee is paid",
+        blocks: [
+          { ol: [
+            "You register the buyer in your dashboard, with their consent, or they sign up through your personal link.",
+            "Cevitas Real Estate LLC advises the buyer, arranges viewings and handles the reservation and the SPA.",
+            "The fee is **earned** when the buyer signs the SPA and pays the down payment with the DLD fees.",
+            "It is **paid** in AED by bank transfer within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard.",
+          ] },
+          { p: "The full process is described on the [real estate referral program in Dubai](/real-estate-referral-program-dubai) page." },
         ],
       },
       {
         h2: "How referral fees are documented",
         blocks: [
           { p: "Between two licensed brokerages, co-operation is documented with the RERA agreement between agents (Form I), which sets how the commission is shared. For referral partners who are not brokers, the agency sets out the terms in its own referral agreement: the rate, when the fee is earned, how it is invoiced and how long the referral is protected." },
-          { p: "With Sofara, the terms are accepted when you join. Each lead is protected for 12 months, the commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and it is paid in AED within 7 days of the developer paying Cevitas, against an invoice generated from your dashboard." },
+          { p: "With Sofara, these terms are accepted when you join. Each lead is protected for 12 months, including when the buyer later contacts Sofara or Cevitas directly." },
+        ],
+      },
+      {
+        h2: "Is it legal to receive a referral fee without a license?",
+        blocks: [
+          { p: "In Dubai, brokerage work is regulated by RERA, the Real Estate Regulatory Agency of the Dubai Land Department, and must be carried out by a licensed brokerage. Introducing a buyer is a different role. With Sofara, every regulated step is carried out by Cevitas Real Estate LLC under its RERA license, and the referrer only makes the introduction. If you live abroad, declare the fee under your local tax rules." },
         ],
       },
       {
@@ -290,27 +321,28 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
           { ul: [
             "The agency is registered with RERA and its brokers hold valid cards.",
             "The rate and the trigger for payment are written down before you refer.",
-            "You can see the status of your lead, not just a promise of a call back.",
+            "You can see the status of your lead at each stage.",
             "How long your referral stays attached to you if the client takes time to decide.",
           ] },
-          { p: "Compare with the [Dubai real estate referral program](/real-estate-referral-program-dubai) and the [UAE affiliate program](/real-estate-affiliate-program-uae)." },
+          { p: "If you prefer a tracked, link-based model, read about the [UAE real estate affiliate program](/real-estate-affiliate-program-uae), or join the [Dubai real estate ambassadors network](/dubai-real-estate-ambassadors) through the [ambassador program](/ambassador-program)." },
         ],
       },
     ],
     faqs: [
-      { q: "What is a normal referral fee in Dubai real estate?", a: "Between agents, often 20% to 50% of the agency commission. Sofara ambassadors earn up to 3% of the property price on off-plan sales." },
-      { q: "What is the property referral commission in Dubai?", a: "With Sofara, 1% to 3% of the property price depending on the project, paid in AED within 7 days of the developer paying Cevitas." },
+      { q: "What is a real estate referral fee in Dubai?", a: "It is the share of the brokerage commission paid to the person who introduced a buyer. With Sofara it is 1% to 3% of the property price, paid once the sale is completed through Cevitas Real Estate LLC, a RERA-licensed brokerage." },
+      { q: "How is the referral fee calculated?", a: "Between brokerages it is a share of the agency commission agreed case by case. With Sofara it is a percentage of the property price, from 1% to 3% depending on the project, shown before you refer." },
       { q: "Who pays the referral fee?", a: "The agency that receives the client pays it out of its own commission. The buyer does not pay anything extra." },
-      { q: "Is there an official agreement for referrals between agents?", a: "Yes. Licensed brokerages use the RERA agreement between agents (Form I) to share a commission." },
-      { q: "When does Sofara pay the referral commission?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED within 7 days of the developer paying Cevitas." },
-      { q: "Can I refer clients from outside the UAE?", a: "Yes. Sofara ambassadors refer buyers from more than 40 countries." },
+      { q: "Can I receive a referral fee without a real estate license?", a: "Yes, as long as you only introduce the buyer and a licensed brokerage carries out the sale. With Sofara, Cevitas Real Estate LLC handles every regulated step under its RERA license." },
+      { q: "Is there an official agreement for referrals between agents?", a: "Yes. Licensed brokerages use the RERA agreement between agents (Form I) to share a commission. Referral partners who are not brokers accept the agency's own referral terms, which Sofara ambassadors do when they join." },
+      { q: "When does Sofara pay the referral fee?", a: "It is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED by bank transfer within 7 days of the developer paying Cevitas." },
+      { q: "Can I refer clients from outside the UAE?", a: "Yes. Ambassadors and buyers can be based in any country: viewings can take place by video and contracts are signed electronically." },
       { q: "How long is my referral protected?", a: "12 months, even if the client contacts Sofara or Cevitas directly." },
     ],
     cta: {
       title: "Get paid for the buyers you introduce",
-      text: "Join Sofara for free, register your contacts in seconds and earn up to 3% when they buy in Dubai.",
+      text: "Join Sofara for free, register your contacts in seconds and earn 1% to 3% of the price when they buy in Dubai.",
     },
-    related: ["affiliate", "ambassadors", "freelance", "sideIncome", "home"],
+    related: ["referral", "affiliate", "ambassadors", "freelance", "sideIncome", "home"],
   },
 
   sideIncome: {
@@ -320,20 +352,13 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
     h1: "Side Income in Dubai: Earn From Property Referrals",
     eyebrow: "Extra income · Dubai & UAE",
     intro:
-      "Dubai residents look for side income in many ways: freelancing, content, tutoring, reselling. **Property referrals** stand out because a single successful introduction can pay more than months of small gigs. Here is how it works and who it suits.",
+      "Dubai residents look for side income in many ways: freelancing, content, tutoring, reselling. **Property referrals** stand out because you are paid a percentage of the property price, 1% to 3%, on each completed sale you introduce. Here is how it works and who it suits.",
     sections: [
       {
         h2: "Why property referrals pay well",
         blocks: [
-          { p: "Dubai real estate transactions are large and developers pay brokerages a commission on every off-plan sale. Sofara shares up to 3% of the property price with the person who introduced the buyer." },
-          { table: {
-            head: ["Example deal", "Property price", "Your commission"],
-            rows: [
-              ["Studio in Jumeirah Village Circle", "AED 800,000", "Up to AED 24,000"],
-              ["1-bedroom in Dubai Creek Harbour", "AED 1,500,000", "Up to AED 45,000"],
-              ["Townhouse in Dubai South", "AED 2,500,000", "Up to AED 75,000"],
-            ],
-          } },
+          { p: "Developers pay licensed brokerages a commission on every off-plan sale. Sofara shares 1% to 3% of the property price with the person who introduced the buyer, depending on the project, and the buyer pays nothing extra." },
+          { p: "The rate for each project is shown in your dashboard before you refer, and you follow every lead stage by stage. Read the [real estate referral fee in Dubai](/real-estate-referral-fee-dubai) guide for how it is calculated." },
         ],
       },
       {
@@ -377,7 +402,7 @@ export const EN_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       { q: "Do I need to invest money to start?", a: "No. Joining Sofara is free, with no subscription and no minimum number of referrals." },
       { q: "How much time does it take?", a: "A few minutes per contact: you share your link or submit the details, and the licensed team does the rest." },
       { q: "When do I get paid?", a: "The commission is earned when the buyer signs the SPA and pays the down payment with the DLD fees, and paid in AED within 7 days of the developer paying Cevitas." },
-      { q: "Can my referrals be outside the UAE?", a: "Yes. Buyers from any country can purchase freehold property in Dubai, and Sofara ambassadors refer clients from more than 40 countries." },
+      { q: "Can my referrals be outside the UAE?", a: "Yes. Buyers from any country can purchase freehold property in Dubai, and Sofara ambassadors refer clients from all over the world." },
       { q: "Is this compatible with my job in the UAE?", a: "Check your employment contract and the UAE rules on secondary income before starting any additional activity." },
     ],
     cta: {
