@@ -118,11 +118,10 @@ const About = () => {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-10">
             Credentials & Track Record
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
             {[
               { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE)" },
               { icon: Award, t: "AED 200M+", d: "In property transactions" },
-              { icon: Award, t: "LinkedIn Top Voice", d: "Real Estate & Investing" },
               { icon: Users, t: "700+ Ambassadors", d: "Active in the Sofara network" },
             ].map((c) => (
               <div key={c.t} className="p-5 rounded-2xl border border-border/50 bg-secondary/10 text-center">
