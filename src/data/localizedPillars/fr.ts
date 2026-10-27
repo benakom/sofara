@@ -427,7 +427,7 @@ export const FR_PILLARS: Partial<Record<AnyPageKey, PillarContent>> = {
       {
         h2: "Depuis la France, la Belgique, la Suisse, le Canada ou le Maroc",
         blocks: [
-          { p: "L'activité se pratique depuis n'importe quel pays. Vos contacts sont accompagnés en français par l'équipe agréée, avec des visites sur place à Dubaï ou en vidéo. Vous suivez chaque dossier à distance depuis votre espace." },
+          { p: "L'activité se pratique depuis n'importe quel pays. Vos contacts sont accompagnés en français par l'équipe agréée, avec des visites sur place à Dubaï ou en vidéo. Vous suivez chaque dossier à distance depuis votre espace. Sofara est cofondée par [Ahmed Benjas, agent immobilier marocain à Dubaï](https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/), lui-même installé à Dubaï." },
           { p: "**Fiscalité** : les commissions sont des revenus à déclarer selon les règles de votre pays de résidence. Les règles diffèrent d'un pays à l'autre : renseignez-vous auprès d'un conseiller ou d'un expert-comptable dans votre pays. Votre espace Sofara génère les factures nécessaires." },
         ],
       },

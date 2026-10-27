@@ -3450,7 +3450,7 @@ Non. L'anglais est très largement utilisé dans l'immobilier à Dubai. L'arabe 
 Oui. Aucun diplôme universitaire n'est exigé par la RERA. Seuls comptent la formation DREI et l'examen.
 
 **Peut-on être agent immobilier à Dubai en étant français ou marocain ?**
-Oui, le métier est **ouvert à toutes les nationalités**.
+Oui, le métier est **ouvert à toutes les nationalités**. Le parcours d'[Ahmed Benjas, agent immobilier marocain à Dubaï](https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/), cofondateur de Sofara et cofondateur et CEO de Cevitas, en est un exemple.
 
 **Quel est le délai pour rentabiliser sa licence RERA ?**
 Cela dépend de votre réseau, de votre agence et du marché. Prévoyez une période d'intégration avant les premières commissions.
@@ -3583,6 +3583,8 @@ Sofara compte **700+ ambassadeurs actifs**, avec des profils très variés :
 - **Un consultant à Montréal** qui recommande des investisseurs de son entourage professionnel
 
 Aucun n'a besoin de licence RERA ni de vivre à Dubai : tous opèrent légalement sous la licence Cevitas. Découvrez le [réseau d'ambassadeurs immobilier à Dubaï](/fr/ambassadeurs-immobilier-dubai).
+
+Le réseau a été cofondé par [Ahmed Benjas, agent immobilier marocain à Dubaï](https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/), qui accompagne en français les acheteurs venus du Maroc et des pays francophones.
 
 ---
 
