@@ -2203,7 +2203,7 @@ For a cash purchase, the documentation is remarkably simple:
 ## The Purchase Process: Step by Step
 
 ### For Off-Plan Properties
-1. **Choose your property** — Browse developer projects through ${cevitasLink("Cevitas Real Estate")}
+1. **Choose your property** — Browse [off-plan projects with DLD sales data](https://www.cevitas.ae/en/projects) through ${cevitasLink("Cevitas Real Estate")}
 2. **Reserve** — Pay the booking deposit set by the developer
 3. **Sign the SPA** — Sales and Purchase Agreement with the developer
 4. **Oqood registration** — The Dubai Land Department registers the off-plan contract (${internalLink("see DLD fees explained", "/blog/dubai-dld-fees-explained")})
@@ -3579,7 +3579,7 @@ Les deux voies sont complémentaires : la licence convient à ceux qui veulent e
 Sofara compte **700+ ambassadeurs actifs**, avec des profils très variés :
 
 - **Un entrepreneur à Casablanca** qui présente des clients de son réseau intéressés par un projet off-plan à Dubai
-- **Une cadre à Paris** qui met en relation des familles françaises avec l'équipe Cevitas
+- **Une cadre à Paris** qui met en relation des familles françaises avec l'équipe de l'[agence immobilière francophone Cevitas à Dubaï](https://www.cevitas.ae/agence-immobiliere-dubai)
 - **Un consultant à Montréal** qui recommande des investisseurs de son entourage professionnel
 
 Aucun n'a besoin de licence RERA ni de vivre à Dubai : tous opèrent légalement sous la licence Cevitas. Découvrez le [réseau d'ambassadeurs immobilier à Dubaï](/fr/ambassadeurs-immobilier-dubai).
