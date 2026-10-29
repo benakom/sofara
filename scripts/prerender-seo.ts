@@ -3,13 +3,13 @@
 // 2. This script renders every public route with React on the server and writes dist/<route>/index.html
 //    with the real page content, <html lang>, title, meta, canonical, hreflang and JSON-LD.
 // 3. The client hydrates those pages (src/main.tsx). App routes keep using the SPA fallback.
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "fs";
 import { resolve, join } from "path";
 import { pathToFileURL } from "url";
 import Beasties from "beasties";
 import { SEO_CONFIG } from "../src/config/seo";
 import { blogArticles } from "../src/data/blogArticles";
-import { EN_GUIDES, PAGE_PATHS, LOCALES } from "../src/i18n/locales";
+import { EN_GUIDES, PAGE_PATHS, LOCALES, langOfLocale, localeFromPath } from "../src/i18n/locales";
 
 const dist = resolve(process.cwd(), "dist");
 const indexPath = join(dist, "index.html");
@@ -45,6 +45,16 @@ const beasties = new Beasties({
 template = template
   .replace(/<script type="module" crossorigin/g, '<script type="module" fetchpriority="low" crossorigin')
   .replace(/<link rel="modulepreload" crossorigin/g, '<link rel="modulepreload" fetchpriority="low" crossorigin');
+
+// Non-English pages need their language's strings before hydrating (src/main.tsx): preload that chunk with the entry
+// script instead of discovering it once the entry has run.
+const assets = readdirSync(join(dist, "assets"));
+const langChunk = (route: string) => {
+  const lang = langOfLocale(localeFromPath(route));
+  if (lang === "en") return "";
+  const file = assets.find((f) => f.startsWith(`translations-${lang === "arb" ? "ar" : lang}-`) && f.endsWith(".js"));
+  return file ? `<link rel="modulepreload" fetchpriority="low" crossorigin href="/assets/${file}">` : "";
+};
 
 const routes = new Set<string>();
 for (const p of Object.keys(SEO_CONFIG)) routes.add(p);
@@ -93,6 +103,8 @@ for (const route of routes) {
     const preloads = head.match(/<link[^>]*rel="preload"[^>]*>/g) ?? [];
     html = html.replace("</head>", `${preloads.reduce((h, l) => h.replace(l, ""), head)}\n</head>`);
     if (preloads.length) html = html.replace(/(<meta charset="[^"]*" \/>)/, `$1\n    ${preloads.join("\n    ")}`);
+    const preloadLang = langChunk(route);
+    if (preloadLang) html = html.replace("</head>", `${preloadLang}\n</head>`);
     html = html.replace('<div id="root"></div>', `<div id="root" data-ssr="${route}">${body}</div>${guard}`);
     const file = route === "/" ? indexPath : join(dist, route.replace(/^\//, ""), "index.html");
     mkdirSync(resolve(file, ".."), { recursive: true });

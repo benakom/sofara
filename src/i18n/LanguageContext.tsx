@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
-import { translations, Lang } from "./translations";
+import { createContext, useContext, useState, useCallback, useEffect, useRef, ReactNode } from "react";
+import { isLangLoaded, loadLang, readSavedLang, translate, Lang } from "./translations";
 import { isPublicPath, langOfLocale, localeFromPath } from "./locales";
 
 interface LanguageContextType {
@@ -13,28 +13,29 @@ interface LanguageContextType {
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const readSaved = (): Lang => {
-  try {
-    const saved = localStorage.getItem("sofara-lang");
-    // "ar" is the dashboard's code for French (legacy convention); keep it across reloads.
-    if (saved === "fr" || saved === "es" || saved === "ru" || saved === "en" || saved === "ar") return saved;
-  } catch {
-    /* storage unavailable (SSR, private mode) */
-  }
-  return "en";
-};
-
 /**
  * `initialPath` lets the server prerender and the first client render agree on the language:
  * on public pages the URL decides (so /fr is always French), elsewhere the saved choice applies.
  */
 export const LanguageProvider = ({ children, initialPath }: { children: ReactNode; initialPath?: string }) => {
   const startPath = initialPath ?? (typeof window !== "undefined" ? window.location.pathname : "/");
-  const [saved, setSaved] = useState<Lang>(() => (typeof window === "undefined" ? "en" : readSaved()));
-  const [urlLang, setUrlLang] = useState<Lang | undefined>(() =>
+  const [saved, setSaved] = useState<Lang>(() => (typeof window === "undefined" ? "en" : readSavedLang()));
+  const [urlLang, setUrlLangNow] = useState<Lang | undefined>(() =>
     isPublicPath(startPath) ? langOfLocale(localeFromPath(startPath)) : undefined,
   );
   const lang = urlLang ?? saved;
+
+  // A language is only switched to once its strings are loaded (src/main.tsx loads the first one before hydrating),
+  // so the page never shows a mix of languages. For each setting, the latest request wins if several are in flight.
+  const requests = useRef({ url: 0, saved: 0 });
+  const whenLoaded = useCallback((which: "url" | "saved", l: Lang | undefined, apply: () => void) => {
+    const id = ++requests.current[which];
+    if (!l || isLangLoaded(l)) return apply();
+    loadLang(l)
+      .catch(() => { /* offline: English strings fill in */ })
+      .then(() => { if (id === requests.current[which]) apply(); });
+  }, []);
+  const setUrlLang = useCallback((l: Lang | undefined) => whenLoaded("url", l, () => setUrlLangNow(l)), [whenLoaded]);
 
   useEffect(() => {
     document.documentElement.dir = lang === "arb" ? "rtl" : "ltr";
@@ -44,15 +45,15 @@ export const LanguageProvider = ({ children, initialPath }: { children: ReactNod
   const changeLang = useCallback((l: Lang) => {
     // Arabic exists on the public /ar pages only (its URL sets it); the app keeps the previous language.
     if (l === "arb") return;
-    setSaved(l);
     try {
       localStorage.setItem("sofara-lang", l);
     } catch {
       /* ignore */
     }
-  }, []);
+    whenLoaded("saved", l, () => setSaved(l));
+  }, [whenLoaded]);
 
-  const t = useCallback((key: string) => translations[lang][key] || translations.en[key] || key, [lang]);
+  const t = useCallback((key: string) => translate(lang, key), [lang]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang: changeLang, t, urlLang, setUrlLang }}>

@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { isPublicPath, langOfLocale, localeFromPath, PAGE_PATHS } from "@/i18n/locales";
+
+// Applied before the browser paints the new route, so a page never shows for a frame in the previous page's language.
+// (Layout effects do not run during the build-time prerender, where the initial language already matches the URL.)
+const useBeforePaint = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * Keeps the interface language aligned with the URL on public pages (/fr → French, /ar → Arabic, root pages → English).
@@ -14,7 +18,7 @@ const LocaleSync = () => {
   const navigate = useNavigate();
   const { setUrlLang } = useLanguage();
 
-  useEffect(() => {
+  useBeforePaint(() => {
     setUrlLang(isPublicPath(pathname) ? langOfLocale(localeFromPath(pathname)) : undefined);
   }, [pathname, setUrlLang]);
 

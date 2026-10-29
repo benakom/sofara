@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogIn, LayoutDashboard, Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Lang } from "@/i18n/translations";
+import { isLangLoaded, loadLang, type Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePresence } from "@/hooks/usePresence";
@@ -25,14 +25,19 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
 
   // On public pages the language lives in the URL: go to the same page in the chosen language
   // (or that language's homepage when the page exists in English only).
+  // The language's strings are loaded first, so the next page renders in that language right away.
   const choose = (code: Lang) => {
-    setLang(code);
     setOpen(false);
-    if (!isPublicPath(pathname)) return;
-    const target = localeOfLang(code);
-    const alt = alternatesFor(pathname);
-    const to = alt ? alt[target].replace(SITE_URL, "") || "/" : PAGE_PATHS.home[target];
-    if (to !== pathname) navigate(to + (alt ? hash : ""));
+    const go = () => {
+      setLang(code);
+      if (!isPublicPath(pathname)) return;
+      const target = localeOfLang(code);
+      const alt = alternatesFor(pathname);
+      const to = alt ? alt[target].replace(SITE_URL, "") || "/" : PAGE_PATHS.home[target];
+      if (to !== pathname) navigate(to + (alt ? hash : ""));
+    };
+    if (isLangLoaded(code)) go();
+    else loadLang(code).then(go, go);
   };
 
   return (

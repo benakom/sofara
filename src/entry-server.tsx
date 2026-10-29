@@ -4,6 +4,7 @@ import { Writable } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import type { HelmetServerState } from "react-helmet-async";
+import "./i18n/allTranslations";
 import { AppProviders, AppRoutes } from "./App";
 
 export interface RenderResult {
