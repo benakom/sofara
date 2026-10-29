@@ -1,19 +1,38 @@
-import { useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useState } from "react";
 
+// Same curve as framer-motion's "easeOut", cubic-bezier(0, 0, 0.58, 1): find t for progress x by bisection, return y(t).
+const easeOut = (x: number) => {
+  let lo = 0;
+  let hi = 1;
+  let t = x;
+  for (let i = 0; i < 20; i++) {
+    t = (lo + hi) / 2;
+    if (3 * (1 - t) * t * t * 0.58 + t * t * t < x) lo = t;
+    else hi = t;
+  }
+  return 3 * (1 - t) * t * t + t * t * t;
+};
+
+// Counts up from 0 with requestAnimationFrame (no animation library in the hero's critical code).
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, v => `${prefix}${Math.round(v).toLocaleString()}${suffix}`);
   const [display, setDisplay] = useState(`${prefix}0${suffix}`);
 
   useEffect(() => {
-    const controls = animate(count, target, { duration: 2.5, ease: "easeOut" });
-    const unsub = rounded.on("change", v => setDisplay(v));
-    return () => { controls.stop(); unsub(); };
-  }, [target, count, rounded, prefix, suffix]);
+    const duration = 2500;
+    let raf = 0;
+    let start: number | undefined;
+    const tick = (now: number) => {
+      if (start === undefined) start = now;
+      const p = Math.min(1, (now - start) / duration);
+      setDisplay(`${prefix}${Math.round(target * easeOut(p)).toLocaleString()}${suffix}`);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, prefix, suffix]);
 
   return <span>{display}</span>;
 };
