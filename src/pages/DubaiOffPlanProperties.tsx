@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, BarChart3, MapPin, Building, Home, Landmark, Star, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
@@ -54,7 +53,7 @@ const DubaiOffPlanPage = () => {
       <main className="pt-20 sm:pt-24">
         {/* Hero */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-in fade-in slide-in-from-bottom-5 duration-500 ease-out motion-reduce:animate-none">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
               <Building className="w-3.5 h-3.5" /> Off-Plan Guide 2026
             </span>
@@ -67,7 +66,7 @@ const DubaiOffPlanPage = () => {
               With <strong>20-40% capital appreciation</strong> during construction and <strong>flexible payment plans</strong>,
               it's the smartest way to enter Dubai's property market.
             </p>
-          </motion.div>
+          </div>
         </section>
 
         {/* Advantages */}

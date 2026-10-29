@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowLeft } from "lucide-react";
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 import SEO from "@/components/SEO";
 
@@ -83,12 +82,9 @@ const Legal = () => {
         </div>
 
         {/* Content */}
-        <motion.div
+        <div
           key={currentSection + lang}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="prose prose-sm max-w-none"
+          className="prose prose-sm max-w-none animate-in fade-in slide-in-from-bottom-2.5 duration-300 ease-out motion-reduce:animate-none"
         >
           <h1 className="font-display text-3xl font-bold text-foreground mb-8">
             {titles[currentSection]}
@@ -97,7 +93,7 @@ const Legal = () => {
             className="text-muted-foreground leading-relaxed space-y-6 [&_h2]:text-foreground [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-foreground [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_strong]:text-foreground"
             dangerouslySetInnerHTML={{ __html: t(`legal.${currentSection}.content`) }}
           />
-        </motion.div>
+        </div>
 
         {/* Footer note */}
         <div className="mt-16 pt-8 border-t border-border/30">
