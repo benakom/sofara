@@ -7,8 +7,7 @@ import SEO from "@/components/SEO";
 import AuthorBox, { AUTHOR_TEXT } from "@/components/AuthorBox";
 import { AHMED_BENJAS_PERSON } from "@/config/seo";
 import { GUIDES, isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
-import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
-import type { Block } from "@/data/localizedPillars/types";
+import type { Block, PillarContent } from "@/data/localizedPillars/types";
 
 /** Renders **bold** and [label](/path) inside content strings. */
 const inline = (text: string): ReactNode[] =>
@@ -50,9 +49,12 @@ const renderBlock = (b: Block, i: number) => {
   );
 };
 
-/** Long-form localized landing page (FR/ES/RU guides and the English affiliate page). */
-const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Locale }) => {
-  const c = LOCALIZED_PILLARS[locale]?.[pageKey];
+/**
+ * Long-form localized landing page (FR/ES/RU guides and the English affiliate page). `pillars` is the content of the
+ * page's locale only (loaded per locale by src/pages/LocalizedPillarRoute.tsx).
+ */
+const LocalizedPillar = ({ pageKey, locale, pillars }: { pageKey: AnyPageKey; locale: Locale; pillars: Partial<Record<AnyPageKey, PillarContent>> }) => {
+  const c = pillars[pageKey];
   if (!c) return null;
   const ui = UI[locale];
   const path = pathOf(pageKey, locale);

@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { ReactNode } from "react";
+import { ReactNode, type ComponentType } from "react";
 import LocaleSync from "@/components/LocaleSync";
 import { GUIDES, PAGE_PATHS, type AnyPageKey, type GuideKey, type Locale } from "@/i18n/locales";
+import type { PillarContent } from "@/data/localizedPillars/types";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
@@ -58,7 +59,32 @@ const About = lazy(() => import("./pages/About"));
 const BecomeRealEstateAgentDubai = lazy(() => import("./pages/BecomeRealEstateAgentDubai"));
 const DubaiRealEstateAmbassadors = lazy(() => import("./pages/DubaiRealEstateAmbassadors"));
 const RealEstateReferralProgramDubai = lazy(() => import("./pages/RealEstateReferralProgramDubai"));
-const LocalizedPillar = lazy(() => import("./pages/LocalizedPillar"));
+// Localized landing pages: the page code plus the content of its own locale only (one content chunk per locale).
+type PillarsOfLocale = Partial<Record<AnyPageKey, PillarContent>>;
+const PILLAR_CONTENT: Record<Locale, () => Promise<PillarsOfLocale>> = {
+  en: () => import("./data/localizedPillars/en").then((m) => m.EN_PILLARS),
+  fr: () => import("./data/localizedPillars/fr").then((m) => m.FR_PILLARS),
+  es: () => import("./data/localizedPillars/es").then((m) => m.ES_PILLARS),
+  ru: () => import("./data/localizedPillars/ru").then((m) => m.RU_PILLARS),
+  ar: () => import("./data/localizedPillars/ar").then((m) => m.AR_PILLARS),
+};
+const pillarPage = (locale: Locale) =>
+  lazy(() =>
+    Promise.all([import("./pages/LocalizedPillar"), PILLAR_CONTENT[locale]()]).then(([page, pillars]) => ({
+      default: ({ pageKey }: { pageKey: AnyPageKey }) => <page.default pageKey={pageKey} locale={locale} pillars={pillars} />,
+    })),
+  );
+const PILLAR_PAGES: Record<Locale, ComponentType<{ pageKey: AnyPageKey }>> = {
+  en: pillarPage("en"),
+  fr: pillarPage("fr"),
+  es: pillarPage("es"),
+  ru: pillarPage("ru"),
+  ar: pillarPage("ar"),
+};
+const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Locale }) => {
+  const Page = PILLAR_PAGES[locale];
+  return <Page pageKey={pageKey} />;
+};
 
 // Localized landing pages (FR/ES/RU/AR, plus the English affiliate page) rendered from src/data/localizedPillars.
 const LOCALIZED_ROUTES: { path: string; pageKey: AnyPageKey; locale: Locale }[] = [
