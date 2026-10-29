@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Star } from "lucide-react";
 
@@ -15,12 +15,7 @@ const TestimonialsSection = () => {
   return (
     <section className="section-mobile">
       <div className="mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
-        >
+        <Reveal y={20} className="text-center mb-10 sm:mb-16">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("testimonials.label")}
           </span>
@@ -29,16 +24,14 @@ const TestimonialsSection = () => {
             <span className="marker-fluo">{t("testimonials.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto">{t("testimonials.subtitle")}</p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {testimonials.map((te, i) => (
-            <motion.div
+            <Reveal
+              y={20}
+              delay={i * 0.08}
               key={te.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
               className="rounded-2xl p-5 sm:p-6 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 flex flex-col"
             >
               <div className="flex gap-0.5 mb-3 sm:mb-4">
@@ -61,7 +54,7 @@ const TestimonialsSection = () => {
                   {te.amount} {t("testimonials.earned")}
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

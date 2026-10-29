@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { Send, Handshake, Banknote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -16,12 +16,7 @@ const HowItWorksSection = () => {
     <section className="section-mobile relative">
       <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
       <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-20"
-        >
+        <Reveal y={20} className="text-center mb-12 sm:mb-20">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("how.label")}
           </span>
@@ -32,16 +27,14 @@ const HowItWorksSection = () => {
           <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("how.subtitleNew")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto mb-12 sm:mb-16">
           {steps.map((step, index) => (
-            <motion.div
+            <Reveal
+              y={20}
+              delay={index * 0.12}
               key={step.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.12 }}
               className="relative rounded-2xl p-6 sm:p-8 bg-secondary/20 border border-border/30 hover:border-primary/20 transition-all duration-500 group text-center"
             >
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/15 transition-colors">
@@ -54,16 +47,11 @@ const HowItWorksSection = () => {
               {index < steps.length - 1 && (
                 <div className="hidden sm:block absolute top-1/2 -right-3 w-6 h-px bg-primary/20" />
               )}
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <Reveal y={16} className="text-center">
           <a href="/auth">
             <Button variant="hero" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 rounded-full group">
               {t("hero.cta")}
@@ -71,7 +59,7 @@ const HowItWorksSection = () => {
             </Button>
           </a>
           <p className="text-xs text-muted-foreground/50 mt-4">{t("how.noLicense")}</p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

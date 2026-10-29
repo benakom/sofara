@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Shield, Eye, Lock, Fingerprint, BarChart3, Zap } from "lucide-react";
 
@@ -17,12 +17,7 @@ const PlatformSection = () => {
   return (
     <section className="section-mobile relative overflow-hidden">
       <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-20"
-        >
+        <Reveal y={20} className="text-center mb-12 sm:mb-20">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("platform.label")}
           </span>
@@ -33,16 +28,14 @@ const PlatformSection = () => {
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("platform.description")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {features.map((f, i) => (
-            <motion.div
+            <Reveal
+              y={16}
+              delay={i * 0.06}
               key={f.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
               className="group rounded-2xl p-5 sm:p-6 bg-secondary/20 border border-border/30 hover:border-primary/20 hover:bg-secondary/40 transition-all duration-500"
             >
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/15 transition-colors">
@@ -50,7 +43,7 @@ const PlatformSection = () => {
               </div>
               <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1.5 sm:mb-2">{f.title}</h3>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{f.desc}</p>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

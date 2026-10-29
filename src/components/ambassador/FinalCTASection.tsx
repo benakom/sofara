@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { ArrowRight, Clock, Users, CheckCircle2, Brain, Shield, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -12,12 +12,7 @@ const FinalCTASection = () => {
       <div className="absolute inset-0 bg-gradient-mesh" />
       
       <div className="relative mx-auto px-5 sm:px-6 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <Reveal y={20} className="text-center">
           <h2 className="font-display text-[1.75rem] sm:text-4xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 text-foreground leading-tight">
             {t("finalcta.title")}{" "}
             <span className="marker-fluo">{t("finalcta.titleHighlight")}</span>
@@ -37,17 +32,15 @@ const FinalCTASection = () => {
               { icon: Shield, text: t("finalcta.point5") },
               { icon: Headphones, text: t("finalcta.point6") },
             ].map((p, i) => (
-              <motion.div
+              <Reveal
+                y={10}
+                delay={i * 0.08}
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-2 text-sm text-muted-foreground"
               >
                 <p.icon className="w-4 h-4 text-primary" />
                 <span>{p.text}</span>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
 
@@ -59,7 +52,7 @@ const FinalCTASection = () => {
           </a>
 
           <p className="text-xs text-muted-foreground/40 mt-5">{t("finalcta.note")}</p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

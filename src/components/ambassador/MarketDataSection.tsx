@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { TrendingUp, Home, Users, DollarSign, Building2, Globe } from "lucide-react";
 
@@ -18,12 +18,7 @@ const MarketDataSection = () => {
     <section className="section-mobile relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-mesh" />
       <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
-        >
+        <Reveal y={20} className="text-center mb-10 sm:mb-16">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("market.label")}
           </span>
@@ -34,16 +29,14 @@ const MarketDataSection = () => {
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("market.description")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {stats.map((stat, i) => (
-            <motion.div
+            <Reveal
+              y={20}
+              delay={i * 0.08}
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
               className="group rounded-2xl p-5 sm:p-6 lg:p-8 bg-secondary/30 border border-border/30 hover:border-primary/20 transition-all duration-500"
             >
               <stat.icon className="w-5 h-5 text-primary mb-3 sm:mb-4 opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -52,7 +45,7 @@ const MarketDataSection = () => {
               </div>
               <div className="text-sm font-medium text-foreground mb-0.5 sm:mb-1">{stat.label}</div>
               <div className="text-xs sm:text-sm text-muted-foreground leading-snug">{stat.sub}</div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

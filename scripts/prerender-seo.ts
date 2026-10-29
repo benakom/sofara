@@ -35,6 +35,9 @@ const beasties = new Beasties({
   inlineFonts: true,
   preloadFonts: false,
   keyframes: "critical",
+  // The scroll-reveal rules match only once the inline script has set html.js-reveal (src/index.css): keep them in the
+  // critical CSS, or below-the-fold sections would show, then hide and fade in when the full stylesheet arrives.
+  allowRules: [/data-reveal/],
   logLevel: "error",
 });
 // Prerendered pages are readable before any JavaScript runs: hydration code is fetched at low priority

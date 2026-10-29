@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { Search, Clock, ArrowRight, Tag } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -136,13 +136,7 @@ const Blog = () => {
         <section className="px-5 sm:px-6 max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {(search || activeCategory ? filtered : filtered.slice(1)).map((article, i) => (
-              <motion.div
-                key={article.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
+              <Reveal y={20} delay={i * 0.05} key={article.slug}>
                 <Link to={`/blog/${article.slug}`} className="group block h-full">
                   <article className="h-full rounded-xl border border-border/50 bg-secondary/20 overflow-hidden hover:border-primary/30 transition-colors">
                     <div className="aspect-[16/10] overflow-hidden">
@@ -174,7 +168,7 @@ const Blog = () => {
                     </div>
                   </article>
                 </Link>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
 

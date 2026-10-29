@@ -749,3 +749,39 @@
   margin-left: 0;
   margin-right: 0.25rem;
 }
+
+/* Scroll reveal (src/components/Reveal.tsx, runtime: inline script in index.html).
+   Content is visible by default: without JavaScript, for crawlers, in print and for reduced-motion users nothing is
+   hidden. The inline script adds .js-reveal to <html> before first paint; only then do [data-reveal] elements wait
+   (invisible) until they enter the viewport, where data-revealed starts the fade/slide-in. A data-reveal="group"
+   element reveals its [data-reveal-item] children together (staggered by their own delays) when it enters the viewport. The motion matches the
+   former framer-motion defaults: opacity 0.3 s, x/y spring (stiffness 500, damping 25), or the given duration/ease. */
+:root {
+  --rv-spring: cubic-bezier(0.3, 1.4, 0.6, 1);
+}
+@supports (animation-timing-function: linear(0, 1)) {
+  :root {
+    --rv-spring: linear(0, 0.084, 0.277, 0.505, 0.721, 0.895, 1.016, 1.088, 1.117, 1.117, 1.099, 1.073, 1.045, 1.022, 1.004, 0.993, 0.987, 0.986, 0.987, 0.99, 1);
+  }
+}
+/* Both keyframe names must stay separate words in the minified CSS (first and last word) so the prerender's critical-CSS
+   step (Beasties, scripts/prerender-seo.ts) recognises and inlines them. */
+@keyframes rv-fade {
+  from { opacity: 0; }
+}
+@keyframes rv-move {
+  from { transform: translate3d(var(--rv-x, 0), var(--rv-y, 0), 0) scale(var(--rv-s, 1)); }
+}
+@media screen and (prefers-reduced-motion: no-preference) {
+  .js-reveal [data-reveal=""]:not([data-revealed]),
+  .js-reveal [data-reveal="group"]:not([data-revealed]) > [data-reveal-item] {
+    opacity: 0;
+  }
+  .js-reveal [data-reveal=""][data-revealed],
+  .js-reveal [data-reveal="group"][data-revealed] > [data-reveal-item] {
+    animation:
+      rv-fade var(--rv-dur, 0.3s) var(--rv-ease, cubic-bezier(0.25, 0.1, 0.35, 1)) var(--rv-delay, 0s) backwards,
+      var(--rv-dur, 0.4s) var(--rv-ease, var(--rv-spring)) var(--rv-delay, 0s) backwards rv-move;
+  }
+}
+

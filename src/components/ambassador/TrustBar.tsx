@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const TrustBar = () => {
@@ -22,16 +22,14 @@ const TrustBar = () => {
           </p>
           <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14 flex-wrap">
             {logos.map((logo, i) => (
-              <motion.span
+              <Reveal
+                as="span"
+                delay={i * 0.06}
                 key={logo.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
                 className={`font-display text-sm sm:text-base md:text-lg font-semibold text-muted-foreground/30 tracking-tight hover:text-muted-foreground/50 transition-colors duration-300`}
               >
                 {logo.name}
-              </motion.span>
+              </Reveal>
             ))}
           </div>
           

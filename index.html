@@ -4,6 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090909" />
+    <!-- Scroll reveal runtime (see the "Scroll reveal" block in src/index.css and src/components/Reveal.tsx). Runs before
+         first paint and before the app's JavaScript: without it (no JS, crawlers) every [data-reveal] element simply stays
+         visible. It watches the DOM, so sections rendered later by the app (client navigation) are handled too. -->
+    <script>
+      (function () {
+        try {
+          if (!("IntersectionObserver" in window) || !("MutationObserver" in window)) return;
+          var d = document.documentElement;
+          d.classList.add("js-reveal");
+          var io = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (entries[i].isIntersecting) { entries[i].target.setAttribute("data-revealed", ""); io.unobserve(entries[i].target); }
+            }
+          });
+          var scan = function (n) {
+            if (n.nodeType !== 1) return;
+            if (n.hasAttribute("data-reveal") && !n.hasAttribute("data-revealed")) io.observe(n);
+            var l = n.querySelectorAll("[data-reveal]:not([data-revealed])");
+            for (var i = 0; i < l.length; i++) io.observe(l[i]);
+          };
+          new MutationObserver(function (ms) {
+            for (var i = 0; i < ms.length; i++) for (var j = 0; j < ms[i].addedNodes.length; j++) scan(ms[i].addedNodes[j]);
+          }).observe(d, { childList: true, subtree: true });
+        } catch (e) { document.documentElement.classList.remove("js-reveal"); }
+      })();
+    </script>
     <meta name="author" content="Sofara by Cevitas Real Estate LLC" />
     <meta name="google-site-verification" content="G-w_EwDFpY3Dt5nhwTnTlwaASeM4cLEL9hJDGAYXIlE" />
     <meta name="robots" content="index, follow, max-image-preview:large" />

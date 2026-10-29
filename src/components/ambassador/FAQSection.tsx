@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import {
   Accordion,
@@ -22,12 +22,7 @@ const FAQSection = () => {
   return (
     <section className="section-mobile">
       <div className="mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
-        >
+        <Reveal y={20} className="text-center mb-10 sm:mb-16">
           <span className="text-primary text-sm font-semibold tracking-widest uppercase mb-3 block">
             {t("faq.label")}
           </span>
@@ -35,14 +30,9 @@ const FAQSection = () => {
             {t("faq.title")}{" "}
             <span className="marker-fluo">{t("faq.titleHighlight")}</span>
           </h2>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
+        <Reveal y={20} className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-2 sm:space-y-3">
             {faqs.map((faq, i) => (
               <AccordionItem
@@ -59,7 +49,7 @@ const FAQSection = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

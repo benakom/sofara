@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { ArrowRight, Sparkles, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -16,10 +16,8 @@ const MidCTABanner = () => {
       <div className="absolute inset-0 bg-background/70" />
       <div className="absolute inset-0 bg-gradient-mesh" />
       <div className="relative mx-auto px-5 sm:px-6 max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <Reveal
+          y={20}
           className="relative rounded-3xl p-8 sm:p-12 lg:p-16 border border-primary/20 bg-primary/5 text-center overflow-hidden"
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-primary/8 blur-[120px]" />
@@ -56,7 +54,7 @@ const MidCTABanner = () => {
 
             <p className="text-xs text-muted-foreground/50 mt-4">{t("midcta.noLicense")}</p>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

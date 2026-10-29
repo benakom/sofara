@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,7 @@ const CommissionSection = () => {
     <section className="section-mobile relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-aurora opacity-30" />
       <div className="relative mx-auto px-5 sm:px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        <Reveal y={20} className="text-center mb-12 sm:mb-16">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
             {t("commission.label")}
           </span>
@@ -26,15 +21,9 @@ const CommissionSection = () => {
           <p className="text-muted-foreground text-lg sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("commission.description")}
           </p>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl mx-auto"
-        >
+        <Reveal scale={0.95} duration={0.6} ease={[0.16, 1, 0.3, 1]} className="max-w-2xl mx-auto">
           <div className="relative rounded-3xl p-8 sm:p-12 bg-primary/5 border border-primary/20 shadow-2xl shadow-primary/5 text-center">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-semibold px-6 py-1.5 rounded-full">
               {t("commission.badgeSingle")}
@@ -59,16 +48,11 @@ const CommissionSection = () => {
               </Button>
             </a>
           </div>
-        </motion.div>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-sm text-muted-foreground mt-8 sm:mt-12 max-w-2xl mx-auto"
-        >
+        <Reveal as="p" className="text-center text-sm text-muted-foreground mt-8 sm:mt-12 max-w-2xl mx-auto">
           {t("commission.note")}
-        </motion.p>
+        </Reveal>
       </div>
     </section>
   );
