@@ -785,3 +785,19 @@
   }
 }
 
+/* Cookie banner enter/exit: spring (stiffness 300, damping 25) on its slide and fade. */
+.cookie-spring {
+  transition-property: transform, opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.3, 1.15, 0.6, 1);
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  .cookie-spring {
+    transition-timing-function: linear(0, 0.076, 0.243, 0.437, 0.618, 0.767, 0.879, 0.955, 1.002, 1.027, 1.037, 1.037, 1.032, 1.025, 1.018, 1.011, 1.006, 1.003, 1.001, 0.999, 1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cookie-spring {
+    transition: none;
+  }
+}

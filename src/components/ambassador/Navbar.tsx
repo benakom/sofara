@@ -1,17 +1,13 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogIn, LayoutDashboard, Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import { usePresence } from "@/hooks/usePresence";
 import { alternatesFor, isPublicPath, localeFromPath, localeOfLang, PAGE_PATHS, SITE_URL, UI } from "@/i18n/locales";
 
-// The animated panel (framer-motion) is fetched when the visitor reaches for the menu button (touch, hover, focus),
-// so the motion library is not part of the code every page needs to hydrate. Pages with animated sections already have it.
-const loadMobileMenuPanel = () => import("@/components/motion/MobileMenuPanel");
-const MobileMenuPanel = lazy(loadMobileMenuPanel);
-const prefetchMobileMenuPanel = () => { loadMobileMenuPanel().catch(() => {}); };
 
 const languages: { code: Lang; label: string }[] = [
   { code: "en", label: "English" },
@@ -84,7 +80,7 @@ const Navbar = () => {
   // Section anchors live on the homepage: prefix them when the navbar is shown on another page.
   const anchor = (id: string) => (pathname === home ? id : `${home}${id}`);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [menuMounted, setMenuMounted] = useState(false);
+  const menu = usePresence(mobileOpen, 300);
   const [scrolled, setScrolled] = useState(false);
 
 
@@ -152,9 +148,7 @@ const Navbar = () => {
         <div className="flex md:hidden items-center gap-2">
           <LangSwitcher lang={lang} setLang={setLang} />
           <button
-            onPointerDown={prefetchMobileMenuPanel}
-            onFocus={prefetchMobileMenuPanel}
-            onClick={() => { setMenuMounted(true); setMobileOpen(!mobileOpen); }}
+            onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close mobile menu" : "Open mobile menu"}
             aria-expanded={mobileOpen}
             className="text-foreground p-1"
@@ -164,9 +158,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {menuMounted && (
-        <Suspense fallback={null}>
-          <MobileMenuPanel open={mobileOpen} className="md:hidden border-t border-border/30 bg-background/98 backdrop-blur-2xl">
+      {/* Mobile menu: opens/closes by animating its height (0 <-> content height, via grid rows) and opacity. */}
+      {menu.mounted && (
+        <div
+          className={`md:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.25,0.1,0.35,1)] motion-reduce:transition-none border-t border-border/30 bg-background/98 backdrop-blur-2xl ${
+            menu.shown ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
             <div className="px-5 py-4 flex flex-col gap-0.5">
               {[
                 { href: anchor("#platform"), label: t("nav.platform") },
@@ -205,8 +204,8 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-          </MobileMenuPanel>
-        </Suspense>
+          </div>
+        </div>
       )}
     </nav>
   );
