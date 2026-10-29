@@ -1,6 +1,11 @@
 import type { Locale } from "@/i18n/locales";
 
 /** Visible author line and author box for articles and guides (one language per page). */
+/** Keyword-anchored link to Ahmed's person page on ahmedbenjas.com (FR page for French readers, EN page otherwise). */
+const AGENT_FR = { label: "Agent immobilier marocain à Dubaï", href: "https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/" };
+const AGENT_EN = { label: "Moroccan real estate agent in Dubai", href: "https://www.ahmedbenjas.com/en/insights/moroccan-real-estate-agent-dubai/" };
+export const AUTHOR_AGENT: Record<Locale, { label: string; href: string }> = { en: AGENT_EN, fr: AGENT_FR, es: AGENT_EN, ru: AGENT_EN, ar: AGENT_EN };
+
 export const AUTHOR_TEXT: Record<Locale, { name: string; byline: string; role: string; bio: string; more: string; href: string }> = {
   en: {
     name: "Ahmed Benjas",
@@ -71,6 +76,14 @@ const AuthorBox = ({ locale, className = "" }: { locale: Locale; className?: str
           className="inline-block mt-3 text-sm font-semibold text-primary hover:underline"
         >
           {t.more} {locale === "ar" ? "←" : "→"}
+        </a>
+        <a
+          href={AUTHOR_AGENT[locale].href}
+          target="_blank"
+          rel="noopener"
+          className="inline-block mt-3 ms-4 text-sm font-semibold text-primary hover:underline"
+        >
+          {AUTHOR_AGENT[locale].label}
         </a>
       </div>
     </aside>
