@@ -14,13 +14,16 @@ export interface RenderResult {
 export function render(url: string): Promise<RenderResult> {
   const helmetContext: { helmet?: HelmetServerState } = {};
   return new Promise((resolve, reject) => {
-    let html = "";
+    const chunks: Buffer[] = [];
     const sink = new Writable({
       write(chunk, _enc, cb) {
-        html += chunk.toString();
+        chunks.push(Buffer.from(chunk));
         cb();
       },
       final(cb) {
+        // Decode once (a multi-byte character can straddle two chunks) and drop the NUL padding React 18's stream
+        // writer leaves when a multi-byte character does not fit at the end of its 2 KB buffer.
+        const html = Buffer.concat(chunks).toString("utf8").replace(/\0/g, "");
         resolve({ html, helmet: helmetContext.helmet });
         cb();
       },
