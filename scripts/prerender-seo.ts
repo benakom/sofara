@@ -35,13 +35,38 @@ const beasties = new Beasties({
   inlineFonts: true,
   preloadFonts: false,
   keyframes: "critical",
+  // The <style> in index.html holds the @font-face rules (see there): leave inline styles untouched.
+  reduceInlineStyles: false,
+  // Beasties cannot match Tailwind's arbitrary-variant selectors (`[&_svg]:size-4` → `.\[\&_svg\]\:size-4 svg`), so
+  // they were missing from the critical CSS: icons inside buttons were painted at 20px and shrank to 16px when the
+  // full stylesheet arrived (layout shift on every CTA). Keep every such rule.
+  allowRules: [/\\&/],
   logLevel: "error",
 });
-// Prerendered pages are readable before any JavaScript runs: hydration code is fetched at low priority
-// so it never competes with the HTML, fonts and above-the-fold paint.
-template = template
-  .replace(/<script type="module" crossorigin/g, '<script type="module" fetchpriority="low" crossorigin')
-  .replace(/<link rel="modulepreload" crossorigin/g, '<link rel="modulepreload" fetchpriority="low" crossorigin');
+// Prerendered pages are readable before any JavaScript runs: the hydration bundle is requested only once the first
+// contentful paint has happened (PerformanceObserver "paint" entry, delivered right after that frame), so HTML, inline
+// critical CSS and preloaded fonts get the full bandwidth and the first paint is never delayed by script downloads.
+// A timer backstop covers browsers without the observer and background tabs. Low fetch priority keeps the bundle
+// behind any image or font still in flight. The SPA shell (dist/spa.html, app routes) keeps Vite's regular script tag.
+{
+  const scriptTags = template.match(/<script type="module" crossorigin src="[^"]+"><\/script>/g) ?? [];
+  const preloadTags = template.match(/<link rel="modulepreload" crossorigin href="[^"]+">/g) ?? [];
+  const srcs = scriptTags.map((t) => t.match(/src="([^"]+)"/)![1]);
+  const hrefs = preloadTags.map((t) => t.match(/href="([^"]+)"/)![1]);
+  if (srcs.length) {
+    const bootstrap =
+      `<script>(function(){var d=0;function h(){if(d)return;d=1;` +
+      `${JSON.stringify(hrefs)}.forEach(function(u){var l=document.createElement("link");l.rel="modulepreload";l.crossOrigin="anonymous";l.fetchPriority="low";l.href=u;document.head.appendChild(l)});` +
+      `${JSON.stringify(srcs)}.forEach(function(u){var s=document.createElement("script");s.type="module";s.crossOrigin="anonymous";s.fetchPriority="low";s.src=u;document.head.appendChild(s)})}` +
+      // No prerendered content (this file served as the SPA fallback for an app route or unknown URL, see `guard`):
+      // nothing to paint first, load right away.
+      `document.addEventListener("DOMContentLoaded",function(){var r=document.getElementById("root");if(!r||!r.getAttribute("data-ssr"))h()});` +
+      `try{new PerformanceObserver(function(l,o){l.getEntries().forEach(function(e){if(e.name==="first-contentful-paint"){o.disconnect();setTimeout(h,0)}})}).observe({type:"paint",buffered:true});setTimeout(h,2000)}catch(e){h()}})();</script>`;
+    template = template.replace(scriptTags[0], bootstrap);
+    for (const t of scriptTags.slice(1)) template = template.replace(t, "");
+    for (const t of preloadTags) template = template.replace(t, "");
+  }
+}
 
 const routes = new Set<string>();
 for (const p of Object.keys(SEO_CONFIG)) routes.add(p);
@@ -62,9 +87,10 @@ const stripDefaultSeo = (html: string) =>
 // mark such responses noindex and drop their canonical/hreflang right away, so they are never seen as a homepage duplicate.
 const guard = `<script>(function(){var r=document.getElementById("root"),p=location.pathname.replace(/\\/+$/,"")||"/";if(r&&r.getAttribute("data-ssr")!==p){r.removeAttribute("data-ssr");r.innerHTML="";var m=document.querySelector('meta[name="robots"]');if(m)m.setAttribute("content","noindex, follow");document.querySelectorAll('link[rel="canonical"],link[rel="alternate"][hreflang]').forEach(function(l){l.parentNode.removeChild(l)});}})();</script>`;
 
-// Beasties drops the metric-matched "Poppins Fallback" face (local() source, no URL), so text first painted with the
-// inlined critical CSS used an unadjusted system font and re-wrapped when the full stylesheet arrived (CLS 0.1-0.25 on
-// long FR/ES/RU headings). Declaring it inline on every page keeps the first paint and the final layout identical.
+// The @font-face rules (Poppins, "Poppins Fallback", Arabic) are declared inline in index.html, so every page carries
+// them and the full stylesheet does not re-declare them. Safety net kept from the time they lived in index.css:
+// Beasties drops the metric-matched "Poppins Fallback" face (local() source, no URL), and without it text first painted
+// with the critical CSS used an unadjusted system font and re-wrapped when the full stylesheet arrived (CLS 0.1-0.25).
 const FALLBACK_FACE =
   "<style>@font-face{font-family:'Poppins Fallback';src:local('Arial');size-adjust:112.1%;ascent-override:93.75%;descent-override:31.25%;line-gap-override:8.93%}</style>";
 const withFallbackFace = (html: string) =>

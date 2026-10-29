@@ -4,7 +4,7 @@ import { Send, Wifi, Battery, Signal } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
-import sofaraAvatar from "@/assets/sofara-ai-avatar.png";
+import sofaraAvatar from "@/assets/sofara-ai-avatar-256.webp";
 
 type Msg = { role: "user" | "assistant"; content: string };
 

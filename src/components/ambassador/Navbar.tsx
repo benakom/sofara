@@ -72,7 +72,8 @@ const LangSwitcher = ({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => voi
 
 const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
-  const { user, loading } = useAuth();
+  // "Sign in" is shown until a session is known (also in the prerendered HTML), so the navbar never reflows.
+  const { user } = useAuth();
   const { pathname } = useLocation();
   const locale = localeFromPath(pathname);
   const home = PAGE_PATHS.home[locale];
@@ -122,22 +123,20 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           <LangSwitcher lang={lang} setLang={setLang} />
 
-          {!loading && (
-            user ? (
-              <a href="/dashboard">
-                <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
-                  <LayoutDashboard className="w-4 h-4" />
-                  Dashboard
-                </Button>
-              </a>
-            ) : (
-              <a href="/auth">
-                <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
-                  <LogIn className="w-4 h-4" />
-                  {t("nav.signIn")}
-                </Button>
-              </a>
-            )
+          {user ? (
+            <a href="/dashboard">
+              <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </a>
+          ) : (
+            <a href="/auth">
+              <Button variant="hero" size="sm" className="rounded-full px-5 gap-2">
+                <LogIn className="w-4 h-4" />
+                {t("nav.signIn")}
+              </Button>
+            </a>
           )}
         </div>
 
@@ -182,22 +181,20 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-3 px-4">
-                {!loading && (
-                  user ? (
-                    <a href="/dashboard" onClick={() => setMobileOpen(false)} className="block">
-                      <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
-                        <LayoutDashboard className="w-4 h-4" />
-                        Dashboard
-                      </Button>
-                    </a>
-                  ) : (
-                    <a href="/auth" onClick={() => setMobileOpen(false)} className="block">
-                      <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
-                        <LogIn className="w-4 h-4" />
-                        {t("nav.signIn")}
-                      </Button>
-                    </a>
-                  )
+                {user ? (
+                  <a href="/dashboard" onClick={() => setMobileOpen(false)} className="block">
+                    <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
+                      <LayoutDashboard className="w-4 h-4" />
+                      Dashboard
+                    </Button>
+                  </a>
+                ) : (
+                  <a href="/auth" onClick={() => setMobileOpen(false)} className="block">
+                    <Button variant="hero" size="sm" className="rounded-full w-full text-[15px] py-5 gap-2">
+                      <LogIn className="w-4 h-4" />
+                      {t("nav.signIn")}
+                    </Button>
+                  </a>
                 )}
               </div>
             </div>

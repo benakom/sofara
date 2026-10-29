@@ -9,7 +9,7 @@ import AutoScoreTool from "@/components/ai-tools/AutoScoreTool";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
-import sofaraAvatar from "@/assets/sofara-ai-avatar.png";
+import sofaraAvatar from "@/assets/sofara-ai-avatar-256.webp";
 
 type Tool = "roleplay" | "sequences" | "voice" | "autoscore" | "legalai";
 type Msg = { role: "user" | "assistant"; content: string };

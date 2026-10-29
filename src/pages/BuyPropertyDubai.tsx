@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, Building2, CheckCircle2, TrendingUp, DollarSign, Clock, FileCheck2, Landmark } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
@@ -53,7 +52,7 @@ const BuyPropertyDubaiPage = () => {
       <main className="pt-20 sm:pt-24">
         {/* Hero */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
               <Building2 className="w-3.5 h-3.5" /> Complete Guide · updated October 2026
             </span>
@@ -65,7 +64,7 @@ const BuyPropertyDubaiPage = () => {
               Everything you need to know about buying property in Dubai as a foreigner:
               freehold zones, DLD fees, payment plans, Golden Visa eligibility, and step-by-step process.
             </p>
-          </motion.div>
+          </div>
         </section>
 
         {/* Steps */}

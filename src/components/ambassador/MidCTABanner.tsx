@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiMarina from "@/assets/dubai-marina-golden.jpg";
+import dubaiMarina from "@/assets/dubai-marina-golden-1280.webp";
+import dubaiMarina768 from "@/assets/dubai-marina-golden-768.webp";
 
 const MidCTABanner = () => {
   const { t } = useLanguage();
@@ -11,7 +12,17 @@ const MidCTABanner = () => {
     <section className="py-12 sm:py-16 relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={dubaiMarina} alt="Dubai Marina" className="w-full h-full object-cover opacity-15" loading="lazy" />
+        <img
+          src={dubaiMarina}
+          srcSet={`${dubaiMarina768} 768w, ${dubaiMarina} 1280w`}
+          sizes="100vw"
+          width={1280}
+          height={720}
+          alt="Dubai Marina"
+          className="w-full h-full object-cover opacity-15"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="absolute inset-0 bg-background/70" />
       <div className="absolute inset-0 bg-gradient-mesh" />

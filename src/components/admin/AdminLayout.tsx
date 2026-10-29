@@ -8,6 +8,7 @@ import {
   MessageCircle, TrendingUp, Mail, GitBranch, CreditCard, ChevronRight, ExternalLink, Shield, type LucideIcon,
 } from "lucide-react";
 import { initials } from "@/lib/dashboard-data";
+import { loadInterFont } from "@/lib/inter-font";
 import NotificationsBell from "@/components/dashboard/NotificationsBell";
 
 type NavItem = { path: string; icon: LucideIcon; label: string; exact?: boolean };
@@ -45,6 +46,7 @@ const AdminLayout = () => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  useEffect(loadInterFont, []);
   useEffect(() => {
     if (!authLoading && !adminLoading) {
       if (!user) navigate("/auth");

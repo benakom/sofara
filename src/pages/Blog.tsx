@@ -48,12 +48,7 @@ const Blog = () => {
       <main className="pt-24 sm:pt-28 pb-16">
         {/* Hero */}
         <section className="px-5 sm:px-6 max-w-7xl mx-auto mb-12 sm:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
+          <div className="text-center animate-fade-up">
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
               Dubai Real Estate{" "}
               <span className="text-gradient-gold">Insights</span>
@@ -99,7 +94,7 @@ const Blog = () => {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* Featured article */}

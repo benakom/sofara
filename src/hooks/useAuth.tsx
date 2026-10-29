@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext, useContext, ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
+import { onInteractionOrDelay } from "@/lib/defer";
 
 interface AuthContextType {
   session: Session | null;
@@ -17,13 +18,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // The Supabase client is loaded on demand so it stays out of the landing-page critical path:
-    // immediately on app routes, once the browser is idle on public pages.
+    // immediately on app routes; on public pages at the first interaction or a few seconds after load, whichever
+    // comes first (the public navbar shows "Sign in" until a session is known, see Navbar).
     let unsubscribe: (() => void) | undefined;
     let cancelled = false;
     const isAppRoute = /^\/(dashboard|admin|auth|reset-password)(\/|$)/.test(window.location.pathname);
-    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
-    const whenReady = (cb: () => void) =>
-      isAppRoute ? cb() : w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 2000 }) : window.setTimeout(cb, 1200);
+    let cancelDeferred: (() => void) | undefined;
+    const whenReady = (cb: () => void) => {
+      if (isAppRoute) cb();
+      else cancelDeferred = onInteractionOrDelay(cb, 4000);
+    };
     whenReady(() => import("@/integrations/supabase/client").then(({ supabase }) => {
       if (cancelled) return;
       const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -44,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return () => {
       cancelled = true;
+      cancelDeferred?.();
       unsubscribe?.();
     };
   }, []);

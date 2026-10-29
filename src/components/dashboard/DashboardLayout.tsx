@@ -15,6 +15,7 @@ import AccountStatusScreen from "./AccountStatusScreen";
 import NotificationsBell from "./NotificationsBell";
 import { supabase } from "@/integrations/supabase/client";
 import { fr, initials } from "@/lib/dashboard-data";
+import { loadInterFont } from "@/lib/inter-font";
 
 type NavItem = { path: string; icon: LucideIcon; labelFr: string; labelEn: string; exact?: boolean };
 type NavGroup = { labelFr: string; labelEn: string; items: NavItem[] };
@@ -68,6 +69,7 @@ const DashboardLayout = () => {
     if (user) supabase.from("profiles").update({ language: code === "ar" ? "fr" : "en" }).eq("id", user.id).then(() => {});
   };
 
+  useEffect(loadInterFont, []);
   useEffect(() => { if (!loading && !user) navigate("/auth"); }, [user, loading, navigate]);
   useEffect(() => { setSidebarOpen(false); }, [location.pathname]);
 
