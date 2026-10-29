@@ -9,6 +9,9 @@ import {
 } from "lucide-react";
 import { initials } from "@/lib/dashboard-data";
 import NotificationsBell from "@/components/dashboard/NotificationsBell";
+import { loadInterFont } from "@/lib/loadInterFont";
+
+loadInterFont();
 
 type NavItem = { path: string; icon: LucideIcon; label: string; exact?: boolean };
 type NavGroup = { label: string; items: NavItem[] };

@@ -1,6 +1,7 @@
 /* font-display: optional = no late swap, so no layout shift; preloaded weights are almost always ready in time.
    Poppins is self-hosted (public/fonts, latin + latin-ext) and preloaded in index.html; a metric-matched
-   local fallback keeps text from shifting while it loads. Inter (dashboard) still comes from Google Fonts. */
+   local fallback keeps text from shifting while it loads. Inter (dashboard) comes from Google Fonts, requested by
+   the dashboard and admin only (src/lib/loadInterFont.ts). */
 @font-face {
   font-family: 'Poppins';
   font-style: normal;

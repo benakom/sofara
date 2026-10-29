@@ -15,6 +15,9 @@ import AccountStatusScreen from "./AccountStatusScreen";
 import NotificationsBell from "./NotificationsBell";
 import { supabase } from "@/integrations/supabase/client";
 import { fr, initials } from "@/lib/dashboard-data";
+import { loadInterFont } from "@/lib/loadInterFont";
+
+loadInterFont();
 
 type NavItem = { path: string; icon: LucideIcon; labelFr: string; labelEn: string; exact?: boolean };
 type NavGroup = { labelFr: string; labelEn: string; items: NavItem[] };
