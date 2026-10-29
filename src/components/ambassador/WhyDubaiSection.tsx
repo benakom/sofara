@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { TrendingUp, ShieldCheck, Building2, Globe, Banknote, Sun } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiLifestyle from "@/assets/dubai-marina-golden.jpg";
+import dubaiLifestyle from "@/assets/dubai-marina-golden.webp";
 
 const WhyDubaiSection = () => {
   const { t } = useLanguage();

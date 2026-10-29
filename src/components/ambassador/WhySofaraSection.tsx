@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, Eye, Headphones, FileText, Building2, Award, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiPartnership from "@/assets/dubai-partnership.jpg";
+import dubaiPartnership from "@/assets/dubai-partnership.webp";
 
 const WhySofaraSection = () => {
   const { t } = useLanguage();

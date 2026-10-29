@@ -14,7 +14,7 @@ import {
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
-import ahmedPortrait from "@/assets/ahmed-portrait.png";
+import ahmedPortrait from "@/assets/ahmed-portrait.webp";
 
 const About = () => {
   return (

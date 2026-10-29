@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import dubaiNetwork from "@/assets/dubai-network.jpg";
+import dubaiNetwork from "@/assets/dubai-network.webp";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";

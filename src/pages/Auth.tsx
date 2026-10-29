@@ -13,7 +13,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { useAuth } from "@/hooks/useAuth";
 import { ArrowLeft, Loader2, CheckCircle2, Sparkles, TrendingUp, Users, Globe, ShieldCheck, Mail, RefreshCw, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import authHero from "@/assets/auth-hero.jpg";
+import authHero from "@/assets/auth-hero.webp";
 
 const PHONE_CODES = [
   { code: "+971", flag: "🇦🇪", name: "UAE", digits: 9 },

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiMarina from "@/assets/dubai-marina-golden.jpg";
+import dubaiMarina from "@/assets/dubai-marina-golden.webp";
 
 const MidCTABanner = () => {
   const { t } = useLanguage();
