@@ -8,15 +8,59 @@ import AuthorBox, { AUTHOR_TEXT } from "@/components/AuthorBox";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
+import { loadArticleContent } from "@/data/blogContent";
 import { BLOG_SEO } from "@/data/blogSeo";
 import { localeFromPath } from "@/i18n/locales";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect, type ComponentType } from "react";
 
 /** Responsive widths for Unsplash images (their CDN resizes on the fly); other URLs are left as is. */
 const unsplashSrcSet = (url: string) =>
   url.includes("images.unsplash.com")
     ? [480, 800, 1200].map((w) => `${url.replace(/([?&])w=\d+/, `$1w=${w}`)} ${w}w`).join(", ")
     : undefined;
+
+const ArticleMarkdown = ({ body }: { body: string }) => (
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    components={{
+      h1: ({ children }) => <h2>{children}</h2>,
+      a: ({ href, children, ...props }) => {
+        const isExternal = href?.startsWith("http");
+        return (
+          <a
+            href={href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            {...props}
+          >
+            {children}
+            {isExternal && <ExternalLink className="inline w-3 h-3 ml-1 -mt-0.5" />}
+          </a>
+        );
+      },
+    }}
+  >
+    {body}
+  </ReactMarkdown>
+);
+
+// Each article body is its own chunk (src/data/blogContent.ts). The prerender waits for it, and on a prerendered page
+// the server HTML stays in place until the chunk arrives, then hydrates.
+const bodies = new Map<string, ComponentType>();
+const articleBody = (slug: string) => {
+  let Body = bodies.get(slug);
+  if (!Body) {
+    Body = lazy(() =>
+      loadArticleContent(slug).then((content) => {
+        // The page header already renders the headline as the only <h1>: drop the duplicate at the top of the Markdown.
+        const body = content.replace(/^\s*# [^\n]*\n/, "");
+        return { default: () => <ArticleMarkdown body={body} /> };
+      }),
+    );
+    bodies.set(slug, Body);
+  }
+  return Body;
+};
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -35,8 +79,7 @@ const BlogPost = () => {
   const s = fr
     ? { back: "Retour au blog", by: "Par", ctaTitle: "Prêt à gagner avec l'immobilier à Dubaï ?", ctaText: "Rejoignez le réseau d'ambassadeurs Sofara : gratuit, sans licence.", cta: "Devenir ambassadeur", related: "Articles associés", powered: "Avec", simulator: "Simulateur d'investissement sur plan" }
     : { back: "Back to Blog", by: "By", ctaTitle: "Ready to earn from Dubai Real Estate?", ctaText: "Join Sofara's ambassador network — free, no license needed.", cta: "Become an Ambassador", related: "Related Articles", powered: "Powered by", simulator: "Off-Plan Investment Simulator" };
-  // The page header already renders the headline as the only <h1>: drop the duplicate at the top of the Markdown.
-  const body = article.content.replace(/^\s*# [^\n]*\n/, "");
+  const ArticleBody = articleBody(article.slug);
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,28 +156,9 @@ const BlogPost = () => {
         <article className="px-5 sm:px-6 max-w-5xl mx-auto">
           <div className="blog-reading-surface rounded-3xl p-6 sm:p-10 lg:p-14">
             <div className="blog-prose">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  h1: ({ children }) => <h2>{children}</h2>,
-                  a: ({ href, children, ...props }) => {
-                    const isExternal = href?.startsWith("http");
-                    return (
-                      <a
-                        href={href}
-                        target={isExternal ? "_blank" : undefined}
-                        rel={isExternal ? "noopener noreferrer" : undefined}
-                        {...props}
-                      >
-                        {children}
-                        {isExternal && <ExternalLink className="inline w-3 h-3 ml-1 -mt-0.5" />}
-                      </a>
-                    );
-                  },
-                }}
-              >
-                {body}
-              </ReactMarkdown>
+              <Suspense fallback={null}>
+                <ArticleBody />
+              </Suspense>
             </div>
           </div>
 
