@@ -1,6 +1,16 @@
 import type { Locale } from "@/i18n/locales";
 
 /** Visible author line and author box for articles and guides (one language per page). */
+/** Keyword-anchored link to Ahmed's person page on ahmedbenjas.com (FR page for French readers, EN page otherwise). */
+const AGENT_FR = { label: "Agent immobilier marocain à Dubaï", href: "https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/" };
+const AGENT_EN = { label: "Moroccan real estate agent in Dubai", href: "https://www.ahmedbenjas.com/en/insights/moroccan-real-estate-agent-dubai/" };
+export const AUTHOR_AGENT: Record<Locale, { label: string; href: string }> = { en: AGENT_EN, fr: AGENT_FR, es: AGENT_EN, ru: AGENT_EN, ar: AGENT_EN };
+
+/** Keyword-anchored link to Cevitas Real Estate, the Dubai agency Sofara supports in search (FR agency page, EN home). */
+const AGENCY_FR = { label: "Agence immobilière à Dubaï : Cevitas Real Estate", href: "https://www.cevitas.ae/agence-immobiliere-dubai" };
+const AGENCY_EN = { label: "Cevitas Real Estate, RERA-licensed Dubai agency", href: "https://www.cevitas.ae/" };
+export const AUTHOR_AGENCY: Record<Locale, { label: string; href: string }> = { en: AGENCY_EN, fr: AGENCY_FR, es: AGENCY_EN, ru: AGENCY_EN, ar: AGENCY_EN };
+
 export const AUTHOR_TEXT: Record<Locale, { name: string; byline: string; role: string; bio: string; more: string; href: string }> = {
   en: {
     name: "Ahmed Benjas",
@@ -71,6 +81,22 @@ const AuthorBox = ({ locale, className = "" }: { locale: Locale; className?: str
           className="inline-block mt-3 text-sm font-semibold text-primary hover:underline"
         >
           {t.more} {locale === "ar" ? "←" : "→"}
+        </a>
+        <a
+          href={AUTHOR_AGENT[locale].href}
+          target="_blank"
+          rel="noopener"
+          className="inline-block mt-3 ms-4 text-sm font-semibold text-primary hover:underline"
+        >
+          {AUTHOR_AGENT[locale].label}
+        </a>
+        <a
+          href={AUTHOR_AGENCY[locale].href}
+          target="_blank"
+          rel="noopener"
+          className="inline-block mt-3 ms-4 text-sm font-semibold text-primary hover:underline"
+        >
+          {AUTHOR_AGENCY[locale].label}
         </a>
       </div>
     </aside>

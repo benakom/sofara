@@ -171,6 +171,7 @@ const FooterSection = () => {
             <Column title={h.partners} links={[
               { label: "Cevitas Real Estate", to: "https://www.cevitas.ae", external: true },
               { label: "Off-Plan Simulator", to: "https://www.offplansimulator.com", external: true },
+              { label: locale === "fr" ? "Ahmed Benjas, cofondateur" : "Ahmed Benjas, co-founder", to: locale === "fr" ? "https://www.ahmedbenjas.com/" : "https://www.ahmedbenjas.com/en/", external: true },
             ]} />
           </div>
         </div>
