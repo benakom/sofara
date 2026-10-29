@@ -1,7 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
 import LocaleSync from "@/components/LocaleSync";
@@ -12,8 +8,11 @@ import { HelmetProvider } from "react-helmet-async";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import CookieConsent from "./components/CookieConsent";
+import DeferredToasters from "./components/DeferredToasters";
 
 // Lazy load all non-landing pages
+// Dashboard and admin routes bring their own React Query provider (not needed by the public pages).
+const QueryProvider = lazy(() => import("./components/QueryProvider"));
 const Legal = lazy(() => import("./pages/Legal"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -70,8 +69,6 @@ const LOCALIZED_ROUTES: { path: string; pageKey: AnyPageKey; locale: Locale }[] 
   ),
 ];
 
-const queryClient = new QueryClient();
-
 const RouteLoading = () => {
   const { pathname } = useLocation();
   const isBackendRoute = pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
@@ -93,17 +90,12 @@ const RouteLoading = () => {
 
 export const AppProviders = ({ children, initialPath, helmetContext }: { children: ReactNode; initialPath?: string; helmetContext?: object }) => (
   <HelmetProvider context={helmetContext}>
-  <QueryClientProvider client={queryClient}>
     <LanguageProvider initialPath={initialPath}>
       <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          {children}
-        </TooltipProvider>
+        <DeferredToasters />
+        {children}
       </AuthProvider>
     </LanguageProvider>
-  </QueryClientProvider>
   </HelmetProvider>
 );
 
@@ -134,7 +126,7 @@ export const AppRoutes = () => (
         <Route path="/become-real-estate-agent-dubai" element={<BecomeRealEstateAgentDubai />} />
         <Route path="/dubai-real-estate-ambassadors" element={<DubaiRealEstateAmbassadors />} />
         <Route path="/real-estate-referral-program-dubai" element={<RealEstateReferralProgramDubai />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<QueryProvider><DashboardLayout /></QueryProvider>}>
           <Route index element={<DashboardHome />} />
 
           <Route path="pipeline" element={<Pipeline />} />
@@ -150,7 +142,7 @@ export const AppRoutes = () => (
           <Route path="library" element={<Library />} />
           <Route path="referrals" element={<Referrals />} />
         </Route>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={<QueryProvider><AdminLayout /></QueryProvider>}>
           <Route index element={<AdminDashboard />} />
           <Route path="ambassadors" element={<AdminAmbassadors />} />
           <Route path="ambassadors/:id" element={<AdminAmbassadorDetail />} />
