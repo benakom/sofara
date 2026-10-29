@@ -1,5 +1,4 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import DeferredToasters from "@/components/DeferredToasters";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
@@ -97,8 +96,7 @@ export const AppProviders = ({ children, initialPath, helmetContext }: { childre
     <LanguageProvider initialPath={initialPath}>
       <AuthProvider>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
+          <DeferredToasters />
           {children}
         </TooltipProvider>
       </AuthProvider>

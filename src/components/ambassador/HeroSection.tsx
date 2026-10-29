@@ -1,21 +1,20 @@
-import { useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
+// The motion value is rendered directly by framer-motion (no React re-render per frame during the 2.5 s count-up).
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, v => `${prefix}${Math.round(v).toLocaleString()}${suffix}`);
-  const [display, setDisplay] = useState(`${prefix}0${suffix}`);
 
   useEffect(() => {
     const controls = animate(count, target, { duration: 2.5, ease: "easeOut" });
-    const unsub = rounded.on("change", v => setDisplay(v));
-    return () => { controls.stop(); unsub(); };
-  }, [target, count, rounded, prefix, suffix]);
+    return () => controls.stop();
+  }, [target, count]);
 
-  return <span>{display}</span>;
+  return <motion.span>{rounded}</motion.span>;
 };
 
 // Keyword-rich prefix read by screen readers and search engines in front of the visual headline.

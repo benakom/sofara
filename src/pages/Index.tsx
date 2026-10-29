@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import LazyFold from "@/components/landing/LazyFold";
+import { fold } from "@/lib/fold";
 import Navbar from "@/components/ambassador/Navbar";
 import HeroSection from "@/components/ambassador/HeroSection";
 import DeferredChatbot from "@/components/landing/DeferredChatbot";
@@ -6,22 +7,30 @@ import SEO from "@/components/SEO";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { HOME_META, PAGE_PATHS, SITE_URL, type Locale } from "@/i18n/locales";
 
-// Lazy load below-fold sections
-const TrustBar = lazy(() => import("@/components/ambassador/TrustBar"));
-const HowItWorksSection = lazy(() => import("@/components/ambassador/HowItWorksSection"));
-const CommissionSection = lazy(() => import("@/components/ambassador/CommissionSection"));
-const WhySofaraSection = lazy(() => import("@/components/ambassador/WhySofaraSection"));
-const MarketDataSection = lazy(() => import("@/components/ambassador/MarketDataSection"));
-const MidCTABanner = lazy(() => import("@/components/ambassador/MidCTABanner"));
-const WhyDubaiSection = lazy(() => import("@/components/ambassador/WhyDubaiSection"));
-const PlatformSection = lazy(() => import("@/components/ambassador/PlatformSection"));
-const StorytellingSection = lazy(() => import("@/components/ambassador/StorytellingSection"));
-const BenefitsSection = lazy(() => import("@/components/ambassador/BenefitsSection"));
-const TestimonialsSection = lazy(() => import("@/components/ambassador/TestimonialsSection"));
-const InvestorMetrics = lazy(() => import("@/components/ambassador/InvestorMetrics"));
-const FinalCTASection = lazy(() => import("@/components/ambassador/FinalCTASection"));
-const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
-const FooterSection = lazy(() => import("@/components/ambassador/FooterSection"));
+// Below-the-fold sections are prerendered; each fold's code loads (and the fold is rendered from it) when it comes
+// within a viewport of the screen, see src/components/landing/LazyFold.tsx.
+const FOLD_START = fold(
+  () => import("@/components/ambassador/TrustBar"),
+  () => import("@/components/ambassador/HowItWorksSection"),
+  () => import("@/components/ambassador/CommissionSection"),
+);
+const FOLD_WHY = fold(() => import("@/components/ambassador/WhySofaraSection"), () => import("@/components/ambassador/MidCTABanner"));
+const FOLD_DUBAI = fold(
+  () => import("@/components/ambassador/MarketDataSection"),
+  () => import("@/components/ambassador/WhyDubaiSection"),
+  () => import("@/components/ambassador/PlatformSection"),
+);
+const FOLD_STORY = fold(
+  () => import("@/components/ambassador/StorytellingSection"),
+  () => import("@/components/ambassador/BenefitsSection"),
+  () => import("@/components/ambassador/TestimonialsSection"),
+  () => import("@/components/ambassador/InvestorMetrics"),
+);
+const FOLD_FINAL = fold(
+  () => import("@/components/ambassador/FinalCTASection"),
+  () => import("@/components/ambassador/FAQSection"),
+  () => import("@/components/ambassador/FooterSection"),
+);
 
 const Loader = () => (
   <div className="py-16 flex justify-center">
@@ -52,49 +61,69 @@ const Index = ({ locale = "en" }: { locale?: Locale }) => {
         <HeroSection />
 
         {/* First fold — loads immediately after hero */}
-        <Suspense fallback={<Loader />}>
-          <TrustBar />
-          <section id="comment" aria-label="How Sofara works — 3 simple steps">
-            <HowItWorksSection />
-          </section>
-          <section id="avantages" aria-label="Ambassador Commissions">
-            <CommissionSection />
-          </section>
-        </Suspense>
+        <LazyFold id="fold-start" fold={FOLD_START} scope={locale} fallback={<Loader />}>
+          {([TrustBar, HowItWorksSection, CommissionSection]) => (
+            <>
+              <TrustBar />
+              <section id="comment" aria-label="How Sofara works — 3 simple steps">
+                <HowItWorksSection />
+              </section>
+              <section id="avantages" aria-label="Ambassador Commissions">
+                <CommissionSection />
+              </section>
+            </>
+          )}
+        </LazyFold>
 
         {/* Second fold */}
-        <Suspense fallback={<Loader />}>
-          <section id="why-sofara" aria-label="Why choose Sofara">
-            <WhySofaraSection />
-          </section>
-          <MidCTABanner />
-        </Suspense>
+        <LazyFold id="fold-why" fold={FOLD_WHY} scope={locale} fallback={<Loader />}>
+          {([WhySofaraSection, MidCTABanner]) => (
+            <>
+              <section id="why-sofara" aria-label="Why choose Sofara">
+                <WhySofaraSection />
+              </section>
+              <MidCTABanner />
+            </>
+          )}
+        </LazyFold>
 
         {/* Third fold */}
-        <Suspense fallback={<Loader />}>
-          <section id="dubai" aria-label="Dubai Real Estate Market Data">
-            <MarketDataSection />
-          </section>
-          <WhyDubaiSection />
-          <section id="platform" aria-label="Sofara Ambassador Platform">
-            <PlatformSection />
-          </section>
-        </Suspense>
+        <LazyFold id="fold-dubai" fold={FOLD_DUBAI} scope={locale} fallback={<Loader />}>
+          {([MarketDataSection, WhyDubaiSection, PlatformSection]) => (
+            <>
+              <section id="dubai" aria-label="Dubai Real Estate Market Data">
+                <MarketDataSection />
+              </section>
+              <WhyDubaiSection />
+              <section id="platform" aria-label="Sofara Ambassador Platform">
+                <PlatformSection />
+              </section>
+            </>
+          )}
+        </LazyFold>
 
         {/* Fourth fold */}
-        <Suspense fallback={<Loader />}>
-          <StorytellingSection />
-          <BenefitsSection />
-          <TestimonialsSection />
-          <InvestorMetrics />
-        </Suspense>
+        <LazyFold id="fold-story" fold={FOLD_STORY} scope={locale} fallback={<Loader />}>
+          {([StorytellingSection, BenefitsSection, TestimonialsSection, InvestorMetrics]) => (
+            <>
+              <StorytellingSection />
+              <BenefitsSection />
+              <TestimonialsSection />
+              <InvestorMetrics />
+            </>
+          )}
+        </LazyFold>
 
         {/* Final */}
-        <Suspense fallback={<Loader />}>
-          <FinalCTASection />
-          <FAQSection />
-          <FooterSection />
-        </Suspense>
+        <LazyFold id="fold-final" fold={FOLD_FINAL} scope={locale} fallback={<Loader />}>
+          {([FinalCTASection, FAQSection, FooterSection]) => (
+            <>
+              <FinalCTASection />
+              <FAQSection />
+              <FooterSection />
+            </>
+          )}
+        </LazyFold>
       </main>
       <DeferredChatbot />
     </div>

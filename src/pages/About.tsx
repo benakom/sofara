@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   Linkedin,
@@ -14,7 +13,8 @@ import {
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
-import ahmedPortrait from "@/assets/ahmed-portrait.png";
+import ahmedPortrait from "@/assets/ahmed-portrait-914.webp";
+import ahmedPortrait560 from "@/assets/ahmed-portrait-560.webp";
 
 const About = () => {
   return (
@@ -25,20 +25,12 @@ const About = () => {
       <main className="pt-20 sm:pt-24">
         {/* Hero */}
         <section className="px-5 sm:px-6 max-w-4xl mx-auto py-12 sm:py-20 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary mb-6"
-          >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary mb-6 animate-fade-up">
             <Sparkles className="w-3 h-3" /> About Sofara — Dubai Real Estate Ambassadors Network
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight"
-          >
+          </div>
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight animate-fade-up">
             About Sofara — the Operator-Built Dubai Real Estate Ambassadors Network
-          </motion.h1>
+          </h1>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             <strong>Sofara</strong> is a <strong>Dubai Real Estate Ambassadors Network</strong> built and operated by working brokers. Sofara is a brand of <strong>Cevitas Real Estate LLC</strong>, a brokerage based in Dubai. We extend a proven brokerage workflow to a global community of ambassadors who introduce buyers to Dubai and UAE off-plan property.
           </p>
@@ -71,9 +63,14 @@ const About = () => {
             <div className="rounded-2xl overflow-hidden aspect-square border border-border/50 bg-secondary/20">
               <img
                 src={ahmedPortrait}
+                srcSet={`${ahmedPortrait560} 560w, ${ahmedPortrait} 914w`}
+                sizes="(min-width: 768px) 280px, 100vw"
+                width={914}
+                height={968}
                 alt="Ahmed Benjas, co-founder of Sofara and co-founder & CEO of Cevitas Real Estate LLC"
                 className="w-full h-full object-cover object-top"
                 loading="eager"
+                decoding="async"
               />
             </div>
             <div className="space-y-4">

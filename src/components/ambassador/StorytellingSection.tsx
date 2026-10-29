@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import dubaiNetwork from "@/assets/dubai-network.jpg";
+import dubaiNetwork from "@/assets/dubai-network-1280.webp";
+import dubaiNetwork768 from "@/assets/dubai-network-768.webp";
+import dubaiNetwork1920 from "@/assets/dubai-network-1920.webp";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -67,7 +69,17 @@ const StorytellingSection = () => {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden border border-border/30">
-              <img src={dubaiNetwork} alt="Sofara network" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" loading="lazy" decoding="async" />
+              <img
+                src={dubaiNetwork}
+                srcSet={`${dubaiNetwork768} 768w, ${dubaiNetwork} 1280w, ${dubaiNetwork1920} 1920w`}
+                sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                width={1280}
+                height={720}
+                alt="Sofara network"
+                className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}

@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { Shield, Eye, Headphones, FileText, Building2, Award, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiPartnership from "@/assets/dubai-partnership.jpg";
+import dubaiPartnership from "@/assets/dubai-partnership-1024.webp";
+import dubaiPartnership640 from "@/assets/dubai-partnership-640.webp";
+import dubaiPartnership768 from "@/assets/dubai-partnership-768.webp";
 
 const WhySofaraSection = () => {
   const { t } = useLanguage();
@@ -30,7 +32,17 @@ const WhySofaraSection = () => {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden border border-border/30">
-              <img src={dubaiPartnership} alt="Sofara partnership in Dubai" className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover" loading="lazy" />
+              <img
+                src={dubaiPartnership}
+                srcSet={`${dubaiPartnership640} 640w, ${dubaiPartnership768} 768w, ${dubaiPartnership} 1024w`}
+                sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                width={1024}
+                height={1024}
+                alt="Sofara partnership in Dubai"
+                className="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             {/* Floating license badge */}
             <motion.div

@@ -37,8 +37,13 @@ export const LanguageProvider = ({ children, initialPath }: { children: ReactNod
   const lang = urlLang ?? saved;
 
   useEffect(() => {
-    document.documentElement.dir = lang === "arb" ? "rtl" : "ltr";
-    document.documentElement.lang = lang === "ar" ? "fr" : lang === "arb" ? "ar" : lang;
+    // Written only when they differ: the prerendered <html> already carries them, and rewriting dir/lang on the root
+    // element re-styles the whole document.
+    const html = document.documentElement;
+    const dir = lang === "arb" ? "rtl" : "ltr";
+    const code = lang === "ar" ? "fr" : lang === "arb" ? "ar" : lang;
+    if ((html.dir || "ltr") !== dir) html.dir = dir;
+    if (html.lang !== code) html.lang = code;
   }, [lang]);
 
   const changeLang = useCallback((l: Lang) => {

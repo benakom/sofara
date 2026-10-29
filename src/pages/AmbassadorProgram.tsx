@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Shield, Zap, Globe2, TrendingUp } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
@@ -63,7 +62,7 @@ const AmbassadorProgram = () => {
       <main className="pt-20 sm:pt-24">
         {/* Hero */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-12 sm:py-20 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
               <Shield className="w-3.5 h-3.5" /> RERA-licensed brokerage · 700+ active ambassadors · updated October 2026
             </span>
@@ -83,7 +82,7 @@ const AmbassadorProgram = () => {
             <p className="text-xs text-muted-foreground mt-4">
               Built by Cevitas Real Estate LLC · RERA-Licensed · Free to join
             </p>
-          </motion.div>
+          </div>
         </section>
 
         {/* What is it */}

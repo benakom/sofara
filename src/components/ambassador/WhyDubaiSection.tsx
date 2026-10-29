@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { TrendingUp, ShieldCheck, Building2, Globe, Banknote, Sun } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import dubaiLifestyle from "@/assets/dubai-marina-golden.jpg";
+import dubaiLifestyle from "@/assets/dubai-marina-golden-1280.webp";
+import dubaiLifestyle768 from "@/assets/dubai-marina-golden-768.webp";
 
 const WhyDubaiSection = () => {
   const { t } = useLanguage();
@@ -27,7 +28,17 @@ const WhyDubaiSection = () => {
             className="relative order-2 lg:order-1"
           >
             <div className="relative rounded-2xl overflow-hidden border border-border/30">
-              <img src={dubaiLifestyle} alt="Dubai Marina luxury lifestyle" className="w-full h-[280px] sm:h-[400px] lg:h-[480px] object-cover" loading="lazy" />
+              <img
+                src={dubaiLifestyle}
+                srcSet={`${dubaiLifestyle768} 768w, ${dubaiLifestyle} 1280w`}
+                sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                width={1280}
+                height={720}
+                alt="Dubai Marina luxury lifestyle"
+                className="w-full h-[280px] sm:h-[400px] lg:h-[480px] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                 <div className="rounded-xl bg-secondary/80 backdrop-blur-xl border border-border/40 p-4 sm:p-5">
