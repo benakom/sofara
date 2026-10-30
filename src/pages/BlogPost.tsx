@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
 import { BLOG_SEO } from "@/data/blogSeo";
 import { localeFromPath } from "@/i18n/locales";
+import { signupHref } from "@/lib/signup";
 import { useEffect } from "react";
 
 /** Responsive widths for Unsplash images (their CDN resizes on the fly); other URLs are left as is. */
@@ -162,7 +163,7 @@ const BlogPost = () => {
               {s.ctaText}
             </p>
             <Link
-              to="/auth"
+              to={signupHref(fr ? "fr" : "en")}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-primary-foreground"
               style={{ background: "var(--gradient-primary)" }}
             >

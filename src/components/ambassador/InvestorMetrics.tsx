@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSignupHref } from "@/lib/signup";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const InvestorMetrics = () => {
   const { t } = useLanguage();
+  const signup = useSignupHref();
 
   const metrics = [
     { value: "700+", label: t("investor.ambassadors"), trend: t("investor.ambassadorsTrend") },
@@ -33,7 +35,7 @@ const InvestorMetrics = () => {
             <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t("investor.description")}
             </p>
-            <a href="/auth">
+            <a href={signup}>
               <Button variant="hero" size="lg" className="text-base px-7 sm:px-8 py-5 sm:py-6 rounded-full group">
                 {t("investor.cta")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />

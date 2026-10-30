@@ -5,6 +5,7 @@ import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import { SEO_CONFIG } from "@/config/seo";
+import { signupHref } from "@/lib/signup";
 
 export interface Faq { q: string; a: string }
 export interface RelatedLink { to: string; label: string }
@@ -37,7 +38,7 @@ const PillarPage = ({ route, eyebrow, intro, children, faqs, related, cta }: Pil
           <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-tight mb-5">{cfg.h1}</h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{intro}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
+            <a href={signupHref("en")} className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
               Join Sofara for free <ArrowRight className="w-4 h-4" />
             </a>
             <Link to="/ambassador-program" className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold hover:bg-muted">
@@ -75,7 +76,7 @@ const PillarPage = ({ route, eyebrow, intro, children, faqs, related, cta }: Pil
                   <li key={t} className="inline-flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> {t}</li>
                 ))}
               </ul>
-              <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold hover:opacity-90">
+              <a href={signupHref("en")} className="inline-flex items-center gap-2 rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold hover:opacity-90">
                 Create my free ambassador account <ArrowRight className="w-4 h-4" />
               </a>
             </div>

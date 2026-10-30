@@ -8,6 +8,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/i18n/LanguageContext";
 import StatTile from "@/components/dashboard/StatTile";
 import FunnelBar from "@/components/dashboard/FunnelBar";
+import ShareActions from "@/components/dashboard/ShareActions";
+import ProfileCompletionCard from "@/components/dashboard/ProfileCompletionCard";
 import {
   fr, STAGES, stageByKey, stageLabel, STAGE_RAMP, dailySeries, weekDelta, isStale, relativeTime, daysAgo, aed, initials, greeting, type LeadLike,
 } from "@/lib/dashboard-data";
@@ -92,6 +94,11 @@ const DashboardHome = () => {
           <Send className="w-4 h-4" /> {isFr ? "Soumettre un lead" : "Submit a lead"}
         </button>
       </div>
+
+      <ProfileCompletionCard isFr={isFr} />
+
+      {/* Three separate actions: investor link, present a buyer, invite an ambassador */}
+      <ShareActions isFr={isFr} />
 
       {/* Onboarding for new ambassadors */}
       {isNew && (

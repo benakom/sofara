@@ -66,7 +66,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point2": "Onboarding in 24h",
     "finalcta.point3": "700+ active ambassadors",
     "finalcta.point4": "Contacts tracked in real time",
-    "finalcta.point5": "Leads protected for life",
+    "finalcta.point5": "Leads protected for 12 months",
     "finalcta.point6": "24/7 dedicated support",
     "finalcta.note": "Selective program · Applications open · Response within 48h",
 
@@ -115,7 +115,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "platform.dashboardDesc": "Track your leads, conversions and commissions in real-time from your space.",
     "platform.compliance": "Legal compliance",
     "platform.complianceDesc": "Solid legal structure. Payments compliant with international regulations.",
-    "platform.instant": "Instant payment",
+    "platform.instant": "Paid within 7 days",
     "platform.instantDesc": "Commissions paid within 7 days once the client signs the SPA.",
 
     // Why Dubai
@@ -495,7 +495,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point2": "Onboarding en 24h",
     "finalcta.point3": "700+ ambassadeurs actifs",
     "finalcta.point4": "Contacts suivis en temps réel",
-    "finalcta.point5": "Leads protégés à vie",
+    "finalcta.point5": "Leads protégés 12 mois",
     "finalcta.point6": "Support dédié 24/7",
     "finalcta.note": "Programme sélectif · Candidatures ouvertes · Réponse sous 48h",
 
@@ -540,7 +540,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "platform.dashboardDesc": "Suivez vos leads, conversions et commissions en temps réel depuis votre espace.",
     "platform.compliance": "Conformité légale",
     "platform.complianceDesc": "Structure juridique solide. Paiements conformes aux régulations internationales.",
-    "platform.instant": "Paiement instantané",
+    "platform.instant": "Payé sous 7 jours",
     "platform.instantDesc": "Commissions versées sous 7 jours une fois que le client a signé son SPA.",
 
     "dubai.label": "Pourquoi Dubaï",
@@ -904,7 +904,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point2": "Onboarding en 24h",
     "finalcta.point3": "Más de 700 embajadores activos",
     "finalcta.point4": "Contactos seguidos en tiempo real",
-    "finalcta.point5": "Leads protegidos de por vida",
+    "finalcta.point5": "Leads protegidos 12 meses",
     "finalcta.point6": "Soporte dedicado 24/7",
     "finalcta.note": "Programa selectivo · Postulaciones abiertas · Respuesta en 48h",
 
@@ -949,7 +949,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "platform.dashboardDesc": "Sigue tus leads, conversiones y comisiones en tiempo real desde tu espacio.",
     "platform.compliance": "Cumplimiento legal",
     "platform.complianceDesc": "Estructura jurídica sólida. Pagos conformes a las regulaciones internacionales.",
-    "platform.instant": "Pago instantáneo",
+    "platform.instant": "Pago en 7 días",
     "platform.instantDesc": "Comisiones pagadas en un plazo de 7 días una vez que el cliente firma su SPA.",
 
     "dubai.label": "Por qué Dubái",
@@ -1313,7 +1313,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "finalcta.point2": "Онбординг за 24 часа",
     "finalcta.point3": "700+ активных амбассадоров",
     "finalcta.point4": "Контакты отслеживаются в реальном времени",
-    "finalcta.point5": "Лиды защищены пожизненно",
+    "finalcta.point5": "Лиды закреплены за вами на 12 месяцев",
     "finalcta.point6": "Поддержка 24/7",
     "finalcta.note": "Селективная программа · Заявки открыты · Ответ в течение 48 часов",
 
@@ -1358,7 +1358,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "platform.dashboardDesc": "Отслеживайте лидов, конверсии и комиссии в реальном времени из вашего кабинета.",
     "platform.compliance": "Юридическое соответствие",
     "platform.complianceDesc": "Прочная юридическая структура. Платежи соответствуют международным регуляциям.",
-    "platform.instant": "Мгновенная оплата",
+    "platform.instant": "Выплата за 7 дней",
     "platform.instantDesc": "Комиссии выплачиваются в течение 7 дней после того, как клиент подписал SPA.",
 
     "dubai.label": "Почему Дубай",

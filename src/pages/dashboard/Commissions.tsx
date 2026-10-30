@@ -40,8 +40,8 @@ const Commissions = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "العمولات" : "Commissions"}</h1>
-      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "تتبع مفصل لعمولاتك." : "Detailed tracking of your commissions."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "Commissions" : "Commissions"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "Suivi détaillé de vos commissions. Chaque commission est versée sous 7 jours une fois que le client a signé son SPA." : "Detailed tracking of your commissions. Each commission is paid within 7 days once the client signs the SPA."}</p>
 
       {/* KPI row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">

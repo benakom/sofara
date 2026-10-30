@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { Send, Handshake, Banknote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSignupHref } from "@/lib/signup";
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
+  const signup = useSignupHref();
 
   const steps = [
     { icon: Send, number: "01", title: t("how.step1New"), description: t("how.step1DescNew"), color: "bg-primary/10" },
@@ -64,7 +66,7 @@ const HowItWorksSection = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <a href="/auth">
+          <a href={signup}>
             <Button variant="hero" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 rounded-full group">
               {t("hero.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />

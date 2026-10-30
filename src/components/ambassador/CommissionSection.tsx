@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSignupHref } from "@/lib/signup";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CommissionSection = () => {
   const { t } = useLanguage();
+  const signup = useSignupHref();
 
   return (
     <section className="section-mobile relative overflow-hidden">
@@ -52,7 +54,7 @@ const CommissionSection = () => {
               {t("commission.singleDesc")}
             </p>
 
-            <a href="/auth">
+            <a href={signup}>
               <Button variant="hero" size="lg" className="rounded-full group text-base px-8 py-5">
                 {t("hero.cta")}
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />

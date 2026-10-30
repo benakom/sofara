@@ -138,7 +138,7 @@ Dubai's real estate market in 2026 combines a clear regulatory framework, modern
 
 Whether you're an experienced investor looking to diversify internationally, or someone with a network of potential buyers, joining a [real estate referral program in Dubai](/real-estate-referral-program-dubai) is a simple way to take part.
 
-${internalLink("**→ Join the Sofara ambassador network (free)**", "/auth")} and start referring buyers to one of the world's most dynamic real estate markets.
+${internalLink("**→ Join the Sofara ambassador network (free)**", "/auth?mode=signup")} and start referring buyers to one of the world's most dynamic real estate markets.
 
 *All transactions are handled by ${cevitasLink("Cevitas Real Estate LLC")} — licensed and regulated by the Dubai Land Department and RERA.*
 
@@ -273,9 +273,9 @@ If you know people interested in Dubai, the [real estate affiliate program in th
 
 ## Ready to Act?
 
-Whether you want to invest directly through ${cevitasLink("Cevitas Real Estate")}, or ${internalLink("join the Sofara ambassador network", "/auth")} to earn up to 3% of the property price on every completed referral — Dubai offers plenty of reasons to take a closer look. The [Sofara ambassador program](/ambassador-program) explains how it works, and you can meet the wider [network of real estate ambassadors in Dubai](/dubai-real-estate-ambassadors) — 700+ active ambassadors.
+Whether you want to invest directly through ${cevitasLink("Cevitas Real Estate")}, or ${internalLink("join the Sofara ambassador network", "/auth?mode=signup")} to earn up to 3% of the property price on every completed referral — Dubai offers plenty of reasons to take a closer look. The [Sofara ambassador program](/ambassador-program) explains how it works, and you can meet the wider [network of real estate ambassadors in Dubai](/dubai-real-estate-ambassadors) — 700+ active ambassadors.
 
-${internalLink("**→ Create your free Sofara account**", "/auth")} — no fees, no subscription, no license required.
+${internalLink("**→ Create your free Sofara account**", "/auth?mode=signup")} — no fees, no subscription, no license required.
 
 *Read more: ${internalLink("Dubai Market 2026 Overview", "/blog/dubai-real-estate-market-2026-overview")} | ${internalLink("Best Areas to Invest", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Sofara Commission Structure", "/blog/sofara-commission-structure-explained")}*
 
@@ -408,7 +408,7 @@ ${internalLink("Sofara Pro", "/blog/sofara-pro-vs-lite")} gives you access to th
 
 All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — licensed, regulated, and escrow-protected.
 
-${internalLink("**→ Join Sofara and earn up to 3% on every referral**", "/auth")}
+${internalLink("**→ Join Sofara and earn up to 3% on every referral**", "/auth?mode=signup")}
 
 *Related reading: ${internalLink("Off-Plan vs Ready Properties", "/blog/dubai-off-plan-vs-ready-properties")} | ${internalLink("Rental Yields by Area", "/blog/dubai-rental-yields-explained")} | ${internalLink("Emaar Properties Guide", "/blog/emaar-properties-guide")}*
 
@@ -541,7 +541,7 @@ Understanding off-plan vs ready helps you have better conversations with your co
 
 ${internalLink("Sofara Pro's tools", "/blog/sofara-pro-vs-lite")} help you share the right material with each lead. All transactions processed through ${cevitasLink("Cevitas Real Estate LLC")} with full DLD compliance. If you are comparing options, see how our [UAE property affiliate program](/real-estate-affiliate-program-uae) and our [real estate referral program in Dubai](/real-estate-referral-program-dubai) work.
 
-${internalLink("**→ Join Sofara — earn up to 3% on every referral**", "/auth")}
+${internalLink("**→ Join Sofara — earn up to 3% on every referral**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Payment Plans Explained", "/blog/dubai-payment-plans-explained")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")}*
 
@@ -647,7 +647,7 @@ ${cevitasLink("Cevitas Real Estate LLC")} handles transactions on Emaar projects
 
 Emaar communities are among the projects most often discussed in our [network of real estate ambassadors in Dubai](/dubai-real-estate-ambassadors). To understand the full framework, read about the [Sofara ambassador program](/ambassador-program).
 
-${internalLink("**→ Become a Sofara ambassador today — it's free**", "/auth")}
+${internalLink("**→ Become a Sofara ambassador today — it's free**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Damac Properties Guide", "/blog/damac-properties-guide")} | ${internalLink("Sobha Realty Guide", "/blog/sobha-realty-quality-investment")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")}*
 `
@@ -746,7 +746,7 @@ Damac's lifestyle communities are easy to talk about with friends and clients, w
 
 ${simulatorLink("→ Compare Damac projects with the Investment Simulator")}
 
-${internalLink("**→ Join Sofara — it's free**", "/auth")}
+${internalLink("**→ Join Sofara — it's free**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Emaar Properties Guide", "/blog/emaar-properties-guide")} | ${internalLink("Sobha Realty Guide", "/blog/sobha-realty-quality-investment")} | ${internalLink("Luxury Trends 2026", "/blog/dubai-luxury-real-estate-trends")}*
 `
@@ -853,7 +853,7 @@ Sobha's reputation for quality makes it easy to introduce to friends or clients 
 
 ${simulatorLink("→ Model your Sobha investment returns")}
 
-${internalLink("**→ Join the Sofara network — it's free**", "/auth")}
+${internalLink("**→ Join the Sofara network — it's free**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Emaar Guide", "/blog/emaar-properties-guide")} | ${internalLink("Damac Guide", "/blog/damac-properties-guide")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")}*
 `
@@ -914,7 +914,7 @@ Read ${internalLink("stories from Sofara ambassadors", "/blog/ambassador-success
 ## Step-by-Step: Joining Sofara
 
 ### Step 1: Create Your Free Account
-${internalLink("Sign up on Sofara", "/auth")} — completely free. No fees, no subscription, no credit card required. You'll start with **Sofara Lite**, which gives you full access to lead submission and commission tracking.
+${internalLink("Sign up on Sofara", "/auth?mode=signup")} — completely free. No fees, no subscription, no credit card required. You'll start with **Sofara Lite**, which gives you full access to lead submission and commission tracking.
 
 ### Step 2: Get Your Unique Referral Link
 After signup, you receive a **unique, secure referral link**. Every lead who registers through this link is attributed to your account for the period set out in the ambassador terms — even if they contact Sofara or Cevitas directly afterwards.
@@ -997,7 +997,7 @@ By bank transfer within 7 days once the client signs the SPA, as set out in the 
 
 ## Get Started Now
 
-${internalLink("**→ Create your free Sofara account**", "/auth")} — it only takes a few minutes. Start referring buyers to Dubai's real estate market today.
+${internalLink("**→ Create your free Sofara account**", "/auth?mode=signup")} — it only takes a few minutes. Start referring buyers to Dubai's real estate market today.
 
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — DLD licensed, RERA certified, escrow protected.*
 
@@ -1113,7 +1113,7 @@ Sofara works much like a [UAE property affiliate program](/real-estate-affiliate
 
 ## Start Today
 
-${internalLink("**→ Create your free Sofara account**", "/auth")}
+${internalLink("**→ Create your free Sofara account**", "/auth?mode=signup")}
 
 *Read more: ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")} | ${internalLink("Sofara Pro vs Lite", "/blog/sofara-pro-vs-lite")}*
 
@@ -1213,12 +1213,12 @@ If you already run a community, the Ambassadeur+ tier turns Sofara into a true [
 
 Every Sofara ambassador receives a unique referral code automatically upon signup. There's nothing extra to apply for — just start sharing.
 
-1. ${internalLink("**Sign up for Sofara**", "/auth")} (free, instant)
+1. ${internalLink("**Sign up for Sofara**", "/auth?mode=signup")} (free, instant)
 2. Find your referral code in your dashboard
 3. Share it with potential ambassadors
 4. Watch your network grow
 
-${internalLink("**→ Create your account now**", "/auth")}
+${internalLink("**→ Create your account now**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")} | ${internalLink("How to Become an Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")} | ${internalLink("Success Stories", "/blog/ambassador-success-stories")}*
 
@@ -1351,7 +1351,7 @@ Curious about the mechanics behind the payouts? Read [how referral fees work in 
 
 ## Your Turn
 
-Every ambassador starts with the same step: ${internalLink("**creating a free Sofara account**", "/auth")}.
+Every ambassador starts with the same step: ${internalLink("**creating a free Sofara account**", "/auth?mode=signup")}.
 
 Your network is your asset. Start sharing today.
 
@@ -1447,7 +1447,7 @@ Sofara Pro is designed for:
 
 The upgrade process is simple and **completely free**:
 
-1. ${internalLink("Sign up for Sofara Lite", "/auth")} (instant approval)
+1. ${internalLink("Sign up for Sofara Lite", "/auth?mode=signup")} (instant approval)
 2. Click **"Upgrade to Pro"** in your dashboard
 3. Provide brief details about your professional background
 4. Get approved after a short review
@@ -1495,7 +1495,7 @@ To see how these payouts fit market practice, read [how referral fees work in Du
 
 ## Get Started
 
-${internalLink("**→ Create your free Sofara account**", "/auth")} — start with Lite and upgrade to Pro whenever you're ready.
+${internalLink("**→ Create your free Sofara account**", "/auth?mode=signup")} — start with Lite and upgrade to Pro whenever you're ready.
 
 *All transactions managed by ${cevitasLink("Cevitas Real Estate LLC")} — whether you're Lite or Pro.*
 
@@ -1640,7 +1640,7 @@ Key talking points:
 
 Every introduction you make goes through the [Sofara ambassador program](/ambassador-program), and the full process is handled by a licensed brokerage. If you want to start sharing these opportunities, our [real estate referral program in Dubai](/real-estate-referral-program-dubai) explains how it works.
 
-${internalLink("**→ Join Sofara and present Golden Visa opportunities to your network**", "/auth")}
+${internalLink("**→ Join Sofara and present Golden Visa opportunities to your network**", "/auth?mode=signup")}
 
 *All transactions and Golden Visa guidance provided by ${cevitasLink("Cevitas Real Estate LLC")}.*
 
@@ -1750,7 +1750,7 @@ Transparency about costs builds **trust and credibility** with prospects. It's a
 
 ${cevitasLink("Cevitas Real Estate")} handles all DLD paperwork, escrow management, and fee payments on behalf of buyers. If your audience is international, the [UAE property affiliate program](/real-estate-affiliate-program-uae) page explains how Sofara works across borders.
 
-${internalLink("**→ Join Sofara and start referring with confidence**", "/auth")}
+${internalLink("**→ Join Sofara and start referring with confidence**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Golden Visa Guide", "/blog/dubai-golden-visa-real-estate")} | ${internalLink("Payment Plans", "/blog/dubai-payment-plans-explained")} | ${internalLink("Foreign Buyers Guide", "/blog/foreigners-buying-dubai-property")}*
 
@@ -1868,7 +1868,7 @@ Payment plan flexibility is one of your **strongest talking points**. Many inter
 
 Through the [Sofara ambassador program](/ambassador-program), you can share these project schedules with your network, and our [property referral program](/real-estate-referral-program-dubai) rewards you when a sale closes.
 
-${internalLink("**→ Join Sofara and present payment plan options to your network**", "/auth")}
+${internalLink("**→ Join Sofara and present payment plan options to your network**", "/auth?mode=signup")}
 
 *All payment plans verified and structured through ${cevitasLink("Cevitas Real Estate LLC")}.*
 
@@ -2016,7 +2016,7 @@ Rental income is a **key talking point** with income-focused investors, and one 
 
 All transactions and rental management referrals go through ${cevitasLink("Cevitas Real Estate")}. You can share these insights through our [real estate affiliate program in the UAE](/real-estate-affiliate-program-uae) and, when a sale closes, be rewarded as explained in [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
 
-${internalLink("**→ Join Sofara and share rental insights with your network**", "/auth")}
+${internalLink("**→ Join Sofara and share rental insights with your network**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")} | ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")} | ${internalLink("Market Overview 2026", "/blog/dubai-real-estate-market-2026-overview")}*
 
@@ -2136,7 +2136,7 @@ ${cevitasLink("Cevitas Real Estate")} provides **white-glove service** for high-
 
 If you are new to the topic, start with [how referral fees work in Dubai](/real-estate-referral-fee-dubai) before you approach your first prime contact.
 
-${internalLink("**→ Join Sofara and connect your HNW contacts with Dubai's finest properties**", "/auth")}
+${internalLink("**→ Join Sofara and connect your HNW contacts with Dubai's finest properties**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Damac Guide", "/blog/damac-properties-guide")} | ${internalLink("Market Overview 2026", "/blog/dubai-real-estate-market-2026-overview")} | ${internalLink("Best Areas 2026", "/blog/top-dubai-areas-investment-2026")}*
 
@@ -2283,7 +2283,7 @@ Use these facts as your opening conversation, then let ${cevitasLink("Cevitas Re
 
 Living abroad? The [UAE property affiliate program](/real-estate-affiliate-program-uae) lets you refer buyers from any country, with the licensed brokerage handling every regulated step.
 
-${internalLink("**→ Join Sofara and earn up to 3% on international referrals**", "/auth")}
+${internalLink("**→ Join Sofara and earn up to 3% on international referrals**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Golden Visa Guide", "/blog/dubai-golden-visa-real-estate")} | ${internalLink("DLD Fees", "/blog/dubai-dld-fees-explained")} | ${internalLink("Why Invest in Dubai", "/blog/why-invest-dubai-property-2026")}*
 
@@ -2408,7 +2408,7 @@ Want to see how your WhatsApp work fits into the bigger picture? Discover the [D
 
 ## Get Your WhatsApp Toolkit
 
-${internalLink("**→ Sign up for Sofara**", "/auth")} to access:
+${internalLink("**→ Sign up for Sofara**", "/auth?mode=signup")} to access:
 - WhatsApp-ready summaries for every project
 - Personalised follow-up message templates
 - Shareable investment simulation links
@@ -2530,7 +2530,7 @@ ${simulatorLink("→ Model Expo City investment scenarios")}
 
 Joining the [network of real estate ambassadors in Dubai](/dubai-real-estate-ambassadors) gives you project materials and a licensed team to handle every buyer you introduce. Based outside the UAE? The [real estate affiliate program in the UAE](/real-estate-affiliate-program-uae) works from anywhere.
 
-${internalLink("**→ Join Sofara and present accessible Dubai investment options**", "/auth")}
+${internalLink("**→ Join Sofara and present accessible Dubai investment options**", "/auth?mode=signup")}
 
 *All transactions through ${cevitasLink("Cevitas Real Estate")}.*
 
@@ -2626,7 +2626,7 @@ Between 1% and 3% of the property price on every completed sale — for example,
 
 ---
 
-${internalLink("**→ Join Sofara Dubai (Free)**", "/auth")}
+${internalLink("**→ Join Sofara Dubai (Free)**", "/auth?mode=signup")}
 
 *Related reading: ${internalLink("What is Sofara?", "/blog/what-is-sofara")} | ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("How to Become a Dubai Ambassador", "/blog/how-to-become-dubai-real-estate-ambassador")}*
 
@@ -2727,7 +2727,7 @@ Sofara Real Estate was built by **Ahmed Benjas**, a Dubai-based operator with ha
 
 ---
 
-${internalLink("**→ Join Sofara Real Estate (Free)**", "/auth")}
+${internalLink("**→ Join Sofara Real Estate (Free)**", "/auth?mode=signup")}
 
 *Related reading: ${internalLink("Sofara Dubai Platform Explained", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("UAE Real Estate Ambassadors Network", "/blog/uae-real-estate-ambassadors-network")} | ${internalLink("Ambassador Success Stories", "/blog/ambassador-success-stories")}*
 
@@ -2831,7 +2831,7 @@ Sofara's strength is bringing **leading Dubai developers** into a single dashboa
 
 ## How to Start as a Dubai Real Estate Ambassador
 
-1. ${internalLink("Sign up free on Sofara", "/auth")} — quick identity check
+1. ${internalLink("Sign up free on Sofara", "/auth?mode=signup")} — quick identity check
 2. Get your personal referral link and access the asset library
 3. Share Dubai property opportunities with your network
 4. Sofara's licensed team closes the deal
@@ -2854,7 +2854,7 @@ There isn't one — Sofara only earns when ambassadors earn, on completed transa
 
 ---
 
-${internalLink("**→ Become a Dubai Real Estate Ambassador (Free)**", "/auth")}
+${internalLink("**→ Become a Dubai Real Estate Ambassador (Free)**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("Sofara Real Estate", "/blog/sofara-real-estate-explained")} | ${internalLink("Commission Structure", "/blog/sofara-commission-structure-explained")}*
 
@@ -2926,7 +2926,7 @@ All transactions close under ${cevitasLink("Cevitas Real Estate LLC")} — a RER
 
 ## How to Join the Dubai Real Estate Ambassadors Network
 
-1. Sign up at ${internalLink("sofara.io/auth", "/auth")} — free, no license required
+1. Sign up at ${internalLink("sofara.io/auth", "/auth?mode=signup")} — free, no license required
 2. Complete a quick identity check
 3. Get your personal referral link and dashboard access
 4. Start sharing Dubai property opportunities with your network
@@ -2958,7 +2958,7 @@ Yes, but each lead stays with the network that introduced it. Sofara's lead attr
 
 ---
 
-${internalLink("**→ Join the Dubai Real Estate Ambassadors Network**", "/auth")}
+${internalLink("**→ Join the Dubai Real Estate Ambassadors Network**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Dubai Real Estate Ambassadors Guide", "/blog/dubai-real-estate-ambassadors-guide")} | ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("Sofara Real Estate Overview", "/blog/sofara-real-estate-explained")}*
 
@@ -3056,7 +3056,7 @@ The Abu Dhabi Real Estate Ambassadors Network is at an **early stage**, which ma
 
 Existing Sofara ambassadors get **automatic access** to Abu Dhabi inventory. New ambassadors sign up the same way:
 
-${internalLink("**→ Join the Abu Dhabi Real Estate Ambassadors Network**", "/auth")}
+${internalLink("**→ Join the Abu Dhabi Real Estate Ambassadors Network**", "/auth?mode=signup")}
 
 ---
 
@@ -3148,7 +3148,7 @@ All under one license: ${cevitasLink("Cevitas Real Estate LLC")}, registered wit
 
 Existing Sofara members are **automatically enrolled** in the UAE-wide network. New ambassadors:
 
-1. Sign up at ${internalLink("sofara.io/auth", "/auth")}
+1. Sign up at ${internalLink("sofara.io/auth", "/auth?mode=signup")}
 2. Complete a short KYC
 3. Access UAE-wide inventory in the asset library
 4. Start referring buyers anywhere in the UAE
@@ -3170,7 +3170,7 @@ No problem. ${internalLink("Abu Dhabi Network details here", "/blog/abu-dhabi-re
 
 ---
 
-${internalLink("**→ Join the UAE Real Estate Ambassadors Network (Free)**", "/auth")}
+${internalLink("**→ Join the UAE Real Estate Ambassadors Network (Free)**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Dubai Network", "/blog/dubai-real-estate-ambassadors-network")} | ${internalLink("Abu Dhabi Network", "/blog/abu-dhabi-real-estate-ambassadors-network")} | ${internalLink("Sofara Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")}*
 
@@ -3296,7 +3296,7 @@ If you prefer to build your own independent activity instead, compare it with th
 
 ---
 
-${internalLink("**→ Join Sofara (Free)**", "/auth")}
+${internalLink("**→ Join Sofara (Free)**", "/auth?mode=signup")}
 
 *Related: ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")} | ${internalLink("Sofara Real Estate Explained", "/blog/sofara-real-estate-explained")} | ${internalLink("Dubai Real Estate Ambassadors Network", "/blog/dubai-real-estate-ambassadors-network")}*
 
@@ -3431,7 +3431,7 @@ C'est la voie choisie par de nombreux nouveaux entrants, et voici pourquoi :
 ✅ **CRM + outils + Académie inclus** — pour qualifier vos leads et avancer plus vite
 
 **Comment ça marche concrètement** :
-1. Vous créez votre compte gratuit sur ${internalLink("sofara.io", "/auth")}
+1. Vous créez votre compte gratuit sur ${internalLink("sofara.io", "/auth?mode=signup&lang=fr")}
 2. Vous recommandez un acheteur intéressé par un projet Emaar, DAMAC ou Sobha
 3. Le lead vous est attribué et protégé
 4. Cevitas (broker licencié RERA) prend le relais : visite, négociation, closing
@@ -3468,7 +3468,7 @@ Oui, c'est le cas de beaucoup de nos ambassadeurs. C'est une activité compatibl
 
 ---
 
-${internalLink("**→ Rejoindre Sofara gratuitement**", "/auth")}
+${internalLink("**→ Rejoindre Sofara gratuitement**", "/auth?mode=signup&lang=fr")}
 
 *À lire aussi : ${internalLink("Devenir agent immobilier à Dubai sans licence", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("How to become a Dubai real estate agent (EN)", "/blog/how-to-become-real-estate-agent-dubai")} | ${internalLink("Sofara Dubai Platform", "/blog/sofara-dubai-real-estate-ambassador-platform")}*
 
@@ -3590,7 +3590,7 @@ Le réseau a été cofondé par [Ahmed Benjas, agent immobilier marocain à Duba
 
 ## 7. Comment démarrer rapidement
 
-1. **Créez votre compte gratuit** sur ${internalLink("sofara.io", "/auth")}
+1. **Créez votre compte gratuit** sur ${internalLink("sofara.io", "/auth?mode=signup&lang=fr")}
 2. **Activez votre profil** (quelques minutes — pas de KYC à ce stade)
 3. Récupérez votre **lien de parrainage unique** et vos **fiches projets**
 4. Partagez à votre réseau via WhatsApp, LinkedIn, Instagram
@@ -3615,7 +3615,7 @@ Non. Inscription libre, validation KYC uniquement à la première commission.
 
 ---
 
-${internalLink("**→ Devenir ambassadeur Sofara (gratuit)**", "/auth")}
+${internalLink("**→ Devenir ambassadeur Sofara (gratuit)**", "/auth?mode=signup&lang=fr")}
 
 *À lire aussi : ${internalLink("Guide complet : comment devenir agent immobilier à Dubai", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Structure des commissions Sofara", "/blog/sofara-commission-structure-explained")} | ${internalLink("How to become a Dubai real estate agent (EN)", "/blog/how-to-become-real-estate-agent-dubai")}*
 
@@ -3748,7 +3748,7 @@ This is the path many new entrants now pick, and the reasons are simple:
 ✅ **CRM + tools + Academy included** — qualify leads and move faster
 
 **How it works:**
-1. Create your free account on ${internalLink("sofara.io", "/auth")}
+1. Create your free account on ${internalLink("sofara.io", "/auth?mode=signup")}
 2. Refer a buyer interested in an Emaar, DAMAC or Sobha project
 3. Your lead is **attributed to you and protected**
 4. Cevitas (licensed RERA broker) handles viewings, negotiation and Form F
@@ -3785,7 +3785,7 @@ Yes. Many of our ambassadors do — read more about [part-time real estate work 
 
 ---
 
-${internalLink("**→ Join Sofara for free**", "/auth")}
+${internalLink("**→ Join Sofara for free**", "/auth?mode=signup")}
 
 *Read next: ${internalLink("Comment devenir agent immobilier à Dubai (FR)", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Devenir agent immobilier à Dubai sans licence (FR)", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("Sofara commission structure explained", "/blog/sofara-commission-structure-explained")}*
 
@@ -3879,7 +3879,7 @@ To understand how your share is calculated, read [how referral fees work in Duba
 
 ---
 
-${internalLink("**→ Join Sofara for free**", "/auth")}
+${internalLink("**→ Join Sofara for free**", "/auth?mode=signup")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Run the numbers with the [Off-Plan Simulator](https://www.offplansimulator.com).*
 
@@ -3965,7 +3965,7 @@ If you prefer to start right away, the [Sofara](/) ambassador route is built for
 
 ---
 
-${internalLink("**→ Start today with Sofara (free)**", "/auth")}
+${internalLink("**→ Start today with Sofara (free)**", "/auth?mode=signup")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Model your first deal with the [Off-Plan Simulator](https://www.offplansimulator.com).*
 
@@ -4048,7 +4048,7 @@ That's it. No visa, no DREI, no RERA exam, no Broker Card. Your reward is a perc
 
 ---
 
-${internalLink("**→ Become a Sofara Ambassador (no license required)**", "/auth")}
+${internalLink("**→ Become a Sofara Ambassador (no license required)**", "/auth?mode=signup")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae). Run deal scenarios at [Off-Plan Simulator](https://www.offplansimulator.com).*
 
@@ -4144,7 +4144,7 @@ A new licensed agent recovers their start-up costs once their share of commissio
 
 ---
 
-${internalLink("**→ Start with zero upfront cost — join Sofara**", "/auth")}
+${internalLink("**→ Start with zero upfront cost — join Sofara**", "/auth?mode=signup")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae) — RERA-licensed Dubai brokerage.*
 
@@ -4235,7 +4235,7 @@ Sofara counts 700+ active ambassadors, many of them referring buyers alongside a
 
 ---
 
-${internalLink("**→ Start earning commissions today — join Sofara free**", "/auth")}
+${internalLink("**→ Start earning commissions today — join Sofara free**", "/auth?mode=signup")}
 
 *Powered by [Cevitas Real Estate LLC](https://www.cevitas.ae) — RERA-licensed. Run deal-by-deal math at [Off-Plan Simulator](https://www.offplansimulator.com).*
 

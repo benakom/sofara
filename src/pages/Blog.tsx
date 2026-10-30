@@ -8,6 +8,7 @@ import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
+import { signupHref } from "@/lib/signup";
 
 const Blog = () => {
   const [search, setSearch] = useState("");
@@ -219,7 +220,7 @@ const Blog = () => {
                 Off-Plan Investment Simulator →
               </a>
               <Link
-                to="/auth"
+                to={signupHref("en")}
                 className="px-6 py-3 rounded-xl text-sm font-medium text-primary-foreground"
                 style={{ background: "var(--gradient-primary)" }}
               >

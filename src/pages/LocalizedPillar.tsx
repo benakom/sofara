@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import AuthorBox, { AUTHOR_TEXT } from "@/components/AuthorBox";
 import { AHMED_BENJAS_PERSON } from "@/config/seo";
 import { GUIDES, isGuideKey, labelOf, pathOf, PAGE_PATHS, SITE_URL, UI, type AnyPageKey, type Locale } from "@/i18n/locales";
+import { signupHref } from "@/lib/signup";
 import { LOCALIZED_PILLARS } from "@/data/localizedPillars";
 import type { Block } from "@/data/localizedPillars/types";
 
@@ -97,7 +98,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{inline(c.intro)}</p>
           <p className="mt-4 text-xs text-muted-foreground">{ui.updated} · {AUTHOR_TEXT[locale].byline}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
+            <a href={signupHref(locale)} className="inline-flex items-center gap-2 rounded-xl bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:brightness-95">
               {ui.join} <ArrowRight className="w-4 h-4" />
             </a>
             <a href={`${PAGE_PATHS.home[locale]}#comment`} className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold hover:bg-muted">
@@ -143,7 +144,7 @@ const LocalizedPillar = ({ pageKey, locale }: { pageKey: AnyPageKey; locale: Loc
                 <li key={t} className="inline-flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> {t}</li>
               ))}
             </ul>
-            <a href="/auth" className="inline-flex items-center gap-2 rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold hover:opacity-90">
+            <a href={signupHref(locale)} className="inline-flex items-center gap-2 rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold hover:opacity-90">
               {ui.createAccount} <ArrowRight className="w-4 h-4" />
             </a>
           </div>
