@@ -7,6 +7,7 @@ import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import AuthorBox from "@/components/AuthorBox";
 import { AHMED_BENJAS_PERSON } from "@/config/seo";
+import { signupHref } from "@/lib/signup";
 
 const FAQSection = lazy(() => import("@/components/ambassador/FAQSection"));
 
@@ -72,7 +73,7 @@ const InvestDubaiPage = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/auth"
+                to={signupHref("en")}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-primary-foreground"
                 style={{ background: "var(--gradient-primary)" }}
               >
@@ -183,7 +184,7 @@ const InvestDubaiPage = () => {
               ))}
             </div>
             <Link
-              to="/auth"
+              to={signupHref("en")}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-primary-foreground"
               style={{ background: "var(--gradient-primary)" }}
             >

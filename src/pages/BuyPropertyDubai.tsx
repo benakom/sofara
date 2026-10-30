@@ -4,6 +4,7 @@ import { ArrowRight, Building2, CheckCircle2, TrendingUp, DollarSign, Clock, Fil
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
+import { signupHref } from "@/lib/signup";
 
 const BuyPropertyDubaiPage = () => {
   const steps = [
@@ -143,7 +144,7 @@ const BuyPropertyDubaiPage = () => {
               Open to anyone, from any country. No license required. Free to join. Paid in AED.
             </p>
             <Link
-              to="/auth"
+              to={signupHref("en")}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-primary-foreground"
               style={{ background: "var(--gradient-primary)" }}
             >

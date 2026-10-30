@@ -6,6 +6,7 @@ import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import AuthorBox from "@/components/AuthorBox";
 import { AHMED_BENJAS_PERSON } from "@/config/seo";
+import { signupHref } from "@/lib/signup";
 
 const DubaiOffPlanPage = () => {
   const advantages = [
@@ -136,7 +137,7 @@ const DubaiOffPlanPage = () => {
               You earn <strong>up to 3% commission</strong> — automatically.
             </p>
             <Link
-              to="/auth"
+              to={signupHref("en")}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-primary-foreground"
               style={{ background: "var(--gradient-primary)" }}
             >

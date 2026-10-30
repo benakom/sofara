@@ -6,6 +6,7 @@ import { useUserTier } from "@/hooks/useUserTier";
 import { Users, Copy, CheckCircle2, TrendingUp, Gift, Loader2, UserPlus, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { ambassadorInviteLink } from "@/lib/share-links";
 
 interface Godchild {
   id: string;
@@ -65,7 +66,7 @@ const Referrals = () => {
     fetchData();
   }, [user]);
 
-  const referralLink = `${window.location.origin}/auth?ref=${referralCode || ""}`;
+  const referralLink = ambassadorInviteLink(referralCode || "", lang === "ar");
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralLink);
@@ -87,7 +88,7 @@ const Referrals = () => {
       <div>
         <div className="flex items-center gap-2 mb-1">
           <h1 className="text-xl font-display font-extrabold dash-text tracking-tight">
-            {lang === "ar" ? "إحالاتي" : "My Referrals"}
+            {lang === "ar" ? "Mes parrainages" : "My Referrals"}
           </h1>
           {ambassadorTier === "ambassador_plus" && (
             <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[hsl(var(--dash-accent)/.15)] text-[hsl(var(--dash-accent-ink))]">
@@ -165,9 +166,9 @@ const Referrals = () => {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-[hsl(var(--dash-border))]">
-                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "الاسم العائلي" : "Name"}</th>
-                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "الحالة" : "Status"}</th>
-                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "العملاء" : "Leads"}</th>
+                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Nom" : "Name"}</th>
+                  <th className="text-left px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Statut" : "Status"}</th>
+                  <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Leads" : "Leads"}</th>
                   <th className="text-center px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Deals closés" : "Deals closed"}</th>
                   <th className="text-right px-4 py-3 text-xs dash-muted-text font-medium">{lang === "ar" ? "Inscrit le" : "Joined"}</th>
                 </tr>
@@ -186,7 +187,7 @@ const Referrals = () => {
                       }`}>
                         {g.status === "approved" ? (lang === "ar" ? "Actif" : "Active") :
                          g.status === "rejected" ? (lang === "ar" ? "Rejeté" : "Rejected") :
-                         (lang === "ar" ? "قيد الانتظار" : "Pending")}
+                         (lang === "ar" ? "En attente" : "Pending")}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center dash-text">{g.leads_count}</td>

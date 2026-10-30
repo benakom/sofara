@@ -26,8 +26,8 @@ const Payments = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "المدفوعات" : "Payments"}</h1>
-      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "تتبع مدفوعاتك." : "Track your payments."}</p>
+      <h1 className="text-2xl sm:text-xl font-display font-extrabold dash-text tracking-tight mb-0.5">{lang === "ar" ? "Paiements" : "Payments"}</h1>
+      <p className="dash-muted-text text-xs mt-0.5 mb-5">{lang === "ar" ? "Suivez vos paiements." : "Track your payments."}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -57,7 +57,7 @@ const Payments = () => {
         </div>
         <div className="flex gap-4 mt-2 text-sm sm:text-xs dash-muted-text">
           <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[hsl(var(--dash-accent))]" /> {lang === "ar" ? "Reçu" : "Received"}: AED {totalPaid.toLocaleString()}</span>
-          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[hsl(var(--dash-accent)/.4)]" /> {lang === "ar" ? "قيد الانتظار" : "Pending"}: AED {totalPending.toLocaleString()}</span>
+          <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[hsl(var(--dash-accent)/.4)]" /> {lang === "ar" ? "En attente" : "Pending"}: AED {totalPending.toLocaleString()}</span>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ const Payments = () => {
                 <div className="text-right">
                   <p className="text-base sm:text-sm font-bold dash-text">AED {Number(p.amount).toLocaleString()}</p>
                   <span className={`text-xs sm:text-[10px] px-1.5 py-0.5 rounded-full font-medium ${p.status === "paid" ? "bg-[hsl(var(--dash-accent))] text-black" : "bg-[hsl(var(--dash-muted))] dash-muted-text"}`}>
-                    {p.status === "paid" ? (lang === "ar" ? "Reçu" : "Received") : (lang === "ar" ? "قيد الانتظار" : "Pending")}
+                    {p.status === "paid" ? (lang === "ar" ? "Reçu" : "Received") : (lang === "ar" ? "En attente" : "Pending")}
                   </span>
                 </div>
               </div>

@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock, Users, CheckCircle2, Brain, Shield, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSignupHref } from "@/lib/signup";
 
 const FinalCTASection = () => {
   const { t } = useLanguage();
+  const signup = useSignupHref();
 
   return (
     <section className="py-16 sm:py-24 relative overflow-hidden">
@@ -51,7 +53,7 @@ const FinalCTASection = () => {
             ))}
           </div>
 
-          <a href="/auth">
+          <a href={signup}>
             <Button variant="hero" size="lg" className="text-base sm:text-lg px-10 sm:px-12 py-6 sm:py-7 rounded-full group">
               {t("hero.cta")}
               <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />

@@ -2,6 +2,7 @@ import { useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Send, Handshake, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSignupHref } from "@/lib/signup";
 import { useEffect, useState } from "react";
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
@@ -31,6 +32,7 @@ const UP_TO_3: Record<string, string> = { en: "Up to 3%", fr: "Jusqu'à 3 %", ar
 
 const HeroSection = () => {
   const { t, lang } = useLanguage();
+  const signup = useSignupHref();
 
   const steps = [
     { icon: Send, label: t("hero.step1"), num: "01" },
@@ -124,7 +126,7 @@ const HeroSection = () => {
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mb-5 sm:mb-14"
           >
-            <a href="/auth">
+            <a href={signup}>
               <Button variant="hero" size="lg" className="text-base sm:text-lg px-7 sm:px-10 py-5 sm:py-7 rounded-full group">
                 {t("hero.cta")}
                 <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1.5 transition-transform" />

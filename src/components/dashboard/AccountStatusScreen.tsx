@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Clock, XCircle, PauseCircle, LogOut, Mail } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import ProfileCompletionCard from "./ProfileCompletionCard";
 
 type Status = "pending" | "onboarding" | "rejected" | "suspended";
 
@@ -69,6 +70,7 @@ const AccountStatusScreen = ({ status, lang, firstName, underReviewEmailSent, on
         {c.hint && (
           <p className="mt-4 text-sm text-[hsl(var(--dash-fg))] bg-[hsl(var(--dash-muted)/.5)] rounded-xl px-4 py-3 leading-relaxed">{c.hint}</p>
         )}
+        {(status === "pending" || status === "onboarding") && <ProfileCompletionCard isFr={fr} variant="status" />}
         <div className="mt-6 flex flex-col sm:flex-row gap-2 justify-center">
           <a href="mailto:hello@sofara.io" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(var(--dash-accent))] text-black text-xs font-bold hover:brightness-95">
             <Mail className="w-3.5 h-3.5" /> hello@sofara.io
