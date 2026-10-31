@@ -78,7 +78,7 @@ const About = () => {
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Ahmed Benjas is the co-founder &amp; CEO of <strong>Cevitas Real Estate LLC</strong> and the co-founder of <strong>Sofara</strong>. He holds RERA broker card BRN 83239. Moroccan and based in Dubai, he has a track record of AED 200M+ in property transactions and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
+                Ahmed Benjas is the co-founder &amp; CEO of <strong>Cevitas Real Estate LLC</strong> and the co-founder of <strong>Sofara</strong>. He holds RERA broker card BRN 83239. Moroccan and based in Dubai, he has 20+ years of experience in finance and advises buyers in French, Arabic, Darija and English. Ahmed shares practical advice on Dubai real estate, off-plan investing and diaspora wealth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 He co-founded Sofara to address a clear gap: thousands of expats and diaspora professionals have the relationships and credibility to introduce buyers to Dubai property, but no compliant framework to monetize those introductions. Sofara provides that framework — an ambassador network operated under a licensed UAE brokerage.
@@ -121,7 +121,7 @@ const About = () => {
           <div className="grid sm:grid-cols-3 gap-4">
             {[
               { icon: Building2, t: "Licensed Brokerage", d: "Cevitas Real Estate LLC, Dubai (UAE) · RERA ORN 49294" },
-              { icon: Award, t: "AED 200M+", d: "In property transactions" },
+              { icon: Award, t: "RERA Broker Card", d: "Ahmed Benjas · BRN 83239" },
               { icon: Users, t: "700+ Ambassadors", d: "Active in the Sofara network" },
             ].map((c) => (
               <div key={c.t} className="p-5 rounded-2xl border border-border/50 bg-secondary/10 text-center">

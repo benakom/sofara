@@ -20,7 +20,7 @@ export default {
       ["h2", "How the handover works"],
       ["ol", [
         "**You register the client** in your Sofara pipeline: name, phone, email, budget range. Two minutes. Or send them your link and they register themselves.",
-        "**Cevitas Real Estate calls them within 24 hours**, in their language. We are RERA-licensed in Dubai and have facilitated more than AED 100 million in transactions.",
+        "**Cevitas Real Estate calls them within 24 hours**, in their language. We are RERA-licensed in Dubai (ORN 49294).",
         "**We run the whole process**: project shortlist, virtual or on-site viewings, negotiation with the developer, SPA review, DLD registration, payment follow-up, handover.",
         "**You follow every stage** in your dashboard, from prequalified to down payment paid. Your client is attributed to you for 12 months.",
         "**You are paid up to 3% of the property value** in AED, within 7 days once the client signs the SPA, against your invoice. The client pays nothing extra: developers pay the brokerage commission.",
@@ -45,7 +45,7 @@ export default {
       ["h2", "Comment fonctionne la passation"],
       ["ol", [
         "**Vous enregistrez le client** dans votre pipeline Sofara : nom, téléphone, email, fourchette de budget. Deux minutes. Ou vous lui envoyez votre lien et il s'inscrit lui-même.",
-        "**Cevitas Real Estate l'appelle sous 24 heures**, dans sa langue. Nous sommes licenciés RERA à Dubaï et avons facilité plus de AED 100 millions de transactions.",
+        "**Cevitas Real Estate l'appelle sous 24 heures**, dans sa langue. Nous sommes licenciés RERA à Dubaï (ORN 49294).",
         "**Nous gérons tout le processus** : sélection de projets, visites virtuelles ou sur place, négociation avec le promoteur, relecture du SPA, enregistrement DLD, suivi des paiements, livraison.",
         "**Vous suivez chaque étape** dans votre tableau de bord, de préqualifié à apport payé. Votre client vous est attribué pendant 12 mois.",
         "**Vous êtes payé jusqu'à 3 % de la valeur du bien** en AED, sous 7 jours une fois que le client a signé son SPA, contre votre facture. Le client ne paie rien de plus : ce sont les promoteurs qui versent la commission d'agence.",
