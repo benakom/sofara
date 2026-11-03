@@ -1,11 +1,21 @@
 // Runs before `vite dev` and `vite build` (predev/prebuild hooks); writes public/sitemap.xml.
 // Localized pages list every language version with xhtml:link hreflang alternates.
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { blogArticles } from "../src/data/blogArticles";
 import { EN_GUIDES, LOCALES, PAGE_PATHS, SITE_URL, type PageKey } from "../src/i18n/locales";
 
-const today = new Date().toISOString().slice(0, 10);
+// <lastmod> is the date the page's content last changed (src/data/contentDates.json, from git history via
+// scripts/content-dates.ts), never the build date: a lastmod that moves on every build is ignored by search engines.
+const dates = JSON.parse(readFileSync(resolve("src/data/contentDates.json"), "utf8")) as {
+  pages: Record<string, string>;
+  blog: Record<string, string>;
+};
+const lastmodOf = (path: string) => {
+  const slug = path.startsWith("/blog/") ? path.slice(6) : undefined;
+  const article = slug ? (blogArticles as { slug: string; date: string }[]).find((a) => a.slug === slug) : undefined;
+  return (slug ? dates.blog[slug] : dates.pages[path]) ?? article?.date;
+};
 
 interface Entry {
   path: string;
@@ -56,7 +66,7 @@ const xml = [
       ...(e.alternates
         ? Object.entries(e.alternates).map(([l, href]) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`)
         : []),
-      `    <lastmod>${today}</lastmod>`,
+      ...(lastmodOf(e.path) ? [`    <lastmod>${lastmodOf(e.path)}</lastmod>`] : []),
       `    <changefreq>${e.changefreq}</changefreq>`,
       `    <priority>${e.priority}</priority>`,
       `  </url>`,

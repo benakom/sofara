@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "bunx tsx scripts/generate-sitemap.ts || npx -y tsx scripts/generate-sitemap.ts || echo \"sitemap generation skipped (tsx unavailable), using committed public/sitemap.xml\"",
     "dev": "vite",
-    "prebuild": "bunx tsx scripts/generate-sitemap.ts || npx -y tsx scripts/generate-sitemap.ts || echo \"sitemap generation skipped (tsx unavailable), using committed public/sitemap.xml\"",
+    "prebuild": "(bunx tsx scripts/content-dates.ts || npx -y tsx scripts/content-dates.ts || true) && (bunx tsx scripts/generate-sitemap.ts || npx -y tsx scripts/generate-sitemap.ts) || echo \"sitemap generation skipped (tsx unavailable), using committed public/sitemap.xml\"",
     "build": "vite build",
     "postbuild": "vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir && (bunx tsx scripts/prerender-seo.ts || npx -y tsx scripts/prerender-seo.ts) || echo \"prerender skipped\"",
     "build:dev": "vite build --mode development",
