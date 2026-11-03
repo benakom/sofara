@@ -33,6 +33,8 @@ interface SEOProps {
   /** Breadcrumb label of the current page (defaults to the title before " | "). */
   breadcrumbName?: string;
   article?: {
+    /** Article headline (the visible H1); defaults to the page title without the site suffix. */
+    headline?: string;
     publishedTime?: string;
     author?: string;
     section?: string;
@@ -102,14 +104,18 @@ const SEO = ({
     jsonLdBlocks.push({
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: finalTitle,
+      headline: (article.headline ?? finalTitle.replace(/ \| Sofara$/, "")).slice(0, 110),
       description: finalDesc,
       image: article.image || finalOgImage,
       datePublished: article.publishedTime,
       dateModified: article.modifiedTime || article.publishedTime,
       inLanguage: locale,
+      ...(article.section ? { articleSection: article.section } : {}),
+      ...(article.tags?.length ? { keywords: article.tags.join(", ") } : {}),
       author: AHMED_BENJAS_PERSON,
-      publisher: { "@id": "https://sofara.io/#organization" },
+      // The Organization node is only emitted on the homepage: repeat name, url and logo so the publisher resolves here too.
+      publisher: { "@type": "Organization", "@id": "https://sofara.io/#organization", name: "Sofara", url: "https://sofara.io/", logo: { "@type": "ImageObject", url: "https://sofara.io/favicon-512x512.png" } },
+      isPartOf: { "@id": "https://sofara.io/#website" },
       mainEntityOfPage: { "@type": "WebPage", "@id": finalCanonical },
     });
   }

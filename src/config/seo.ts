@@ -266,7 +266,7 @@ export const ORGANIZATION_JSONLD = {
   description:
     "Sofara is the Dubai and UAE real estate ambassadors and affiliate network: ambassadors, business introducers and client referrers present property buyers to Cevitas Real Estate LLC (RERA-licensed) and earn up to 3% commission per closed sale.",
   areaServed: ["AE", "Worldwide"],
-  knowsLanguage: ["en", "fr", "es", "ru"],
+  knowsLanguage: ["en", "fr", "es", "ru", "ar"],
   parentOrganization: {
     "@type": "RealEstateAgent",
     "@id": "https://www.cevitas.ae/#organization",
@@ -296,7 +296,7 @@ export const WEBSITE_JSONLD = {
   url: "https://sofara.io/",
   description:
     "Dubai and UAE real estate ambassadors network: refer property buyers and earn up to 3% commission.",
-  inLanguage: ["en", "fr", "es", "ru"],
+  inLanguage: ["en", "fr", "es", "ru", "ar"],
   publisher: { "@id": "https://sofara.io/#organization" },
 };
 

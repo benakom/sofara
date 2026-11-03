@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleBySlug, getRelatedArticles } from "@/data/blogArticles";
 import { BLOG_SEO } from "@/data/blogSeo";
+import contentDates from "@/data/contentDates.json";
 import { localeFromPath } from "@/i18n/locales";
 import { signupHref } from "@/lib/signup";
 import { useEffect } from "react";
@@ -34,8 +35,8 @@ const BlogPost = () => {
   const fr = localeFromPath(`/blog/${article.slug}`) === "fr";
   const related = getRelatedArticles(article).filter((a) => (localeFromPath(`/blog/${a.slug}`) === "fr") === fr);
   const s = fr
-    ? { back: "Retour au blog", by: "Par", ctaTitle: "Prêt à gagner avec l'immobilier à Dubaï ?", ctaText: "Rejoignez le réseau d'ambassadeurs Sofara : gratuit, sans licence.", cta: "Devenir ambassadeur", related: "Articles associés", powered: "Avec", simulator: "Simulateur d'investissement sur plan" }
-    : { back: "Back to Blog", by: "By", ctaTitle: "Ready to earn from Dubai Real Estate?", ctaText: "Join Sofara's ambassador network — free, no license needed.", cta: "Become an Ambassador", related: "Related Articles", powered: "Powered by", simulator: "Off-Plan Investment Simulator" };
+    ? { back: "Retour au blog", by: "Par", ctaTitle: "Prêt à gagner avec l'immobilier à Dubaï ?", ctaText: "Rejoignez le réseau d'ambassadeurs Sofara : gratuit, sans licence.", cta: "Devenir ambassadeur", learn: "Comment fonctionne le", program: { to: "/fr/programme-recommandation-immobilier-dubai", label: "programme de recommandation immobilière à Dubaï" }, related: "Articles associés", powered: "Avec", simulator: "Simulateur d'investissement sur plan" }
+    : { back: "Back to Blog", by: "By", ctaTitle: "Ready to earn from Dubai Real Estate?", ctaText: "Join Sofara's ambassador network — free, no license needed.", cta: "Become an Ambassador", learn: "How the", program: { to: "/real-estate-referral-program-dubai", label: "real estate referral program in Dubai works" }, related: "Related Articles", powered: "Powered by", simulator: "Off-Plan Investment Simulator" };
   // The page header already renders the headline as the only <h1>: drop the duplicate at the top of the Markdown.
   const body = article.content.replace(/^\s*# [^\n]*\n/, "");
 
@@ -50,8 +51,10 @@ const BlogPost = () => {
         ogImage={article.image}
         schemaType="BlogPosting"
         article={{
+          headline: article.title,
           publishedTime: article.date,
-          modifiedTime: article.date,
+          // Last content change from git history (scripts/content-dates.ts), never earlier than publication.
+          modifiedTime: [article.date, (contentDates.blog as Record<string, string>)[article.slug]].filter(Boolean).sort().pop(),
           author: article.author,
           section: article.category,
           tags: article.tags,
@@ -169,6 +172,12 @@ const BlogPost = () => {
             >
               {s.cta} <ArrowLeft className="w-4 h-4 rotate-180" />
             </Link>
+            <p className="text-xs text-muted-foreground mt-4">
+              {s.learn}{" "}
+              <Link to={s.program.to} className="underline underline-offset-2 hover:text-foreground">
+                {s.program.label}
+              </Link>
+            </p>
           </div>
         </article>
 
