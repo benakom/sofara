@@ -32,7 +32,7 @@ export default {
       ]],
       ["h2", "Your agreement in brief"],
       ["p", "Your ambassador agreement is with Cevitas Real Estate LLC under Dubai law. It is non-exclusive, free, renews yearly, and either side can end it with 30 days' notice. Commission is due on transactions actually completed and paid by the developer, within 7 days of closing, in AED, against your invoice."],
-      ["callout", "**This framework is your selling point.** Your contacts are not dealing with an anonymous intermediary; they are being introduced to a RERA-licensed brokerage that has facilitated more than AED 100 million in transactions. Say so."],
+      ["callout", "**This framework is your selling point.** Your contacts are not dealing with an anonymous intermediary; they are being introduced to a RERA-licensed brokerage. Say so."],
       ...closing("en"),
     ],
     fr: [
@@ -54,7 +54,7 @@ export default {
       ]],
       ["h2", "Votre contrat en bref"],
       ["p", "Votre contrat d'ambassadeur est conclu avec Cevitas Real Estate LLC sous le droit de Dubaï. Il est non exclusif, gratuit, renouvelé chaque année, et chaque partie peut y mettre fin avec un préavis de 30 jours. La commission est due sur les transactions effectivement conclues et payées par le promoteur, sous 7 jours après le closing, en AED, contre votre facture."],
-      ["callout", "**Ce cadre est votre argument de vente.** Vos contacts ne traitent pas avec un intermédiaire anonyme ; ils sont présentés à une agence licenciée RERA qui a facilité plus de AED 100 millions de transactions. Dites-le."],
+      ["callout", "**Ce cadre est votre argument de vente.** Vos contacts ne traitent pas avec un intermédiaire anonyme ; ils sont présentés à une agence licenciée RERA. Dites-le."],
       ...closing("fr"),
     ],
   },
