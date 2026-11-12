@@ -79,6 +79,7 @@ const BLOG_GROUPS: { title: string; links: FooterLink[] }[] = [
 const FR_GUIDES: FooterLink[] = [
   { label: "Comment devenir agent immobilier à Dubaï", to: "/blog/comment-devenir-agent-immobilier-dubai" },
   { label: "Agent immobilier à Dubaï sans licence", to: "/blog/devenir-agent-immobilier-dubai-sans-licence" },
+  { label: "Investir à Dubaï avec Cevitas", to: "https://www.cevitas.ae/", external: true },
   { label: "Agence immobilière à Dubaï (Cevitas)", to: "https://www.cevitas.ae/agence-immobiliere-dubai", external: true },
   { label: "Acheter sur plan à Dubaï", to: "https://www.cevitas.ae/acheter-sur-plan-dubai", external: true },
   { label: "Immobilier aux Émirats", to: "https://www.cevitas.ae/immobilier-emirats-arabes-unis", external: true },
