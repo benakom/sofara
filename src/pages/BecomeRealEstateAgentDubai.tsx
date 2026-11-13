@@ -16,6 +16,7 @@ const BecomeRealEstateAgentDubai = () => (
       { to: "/real-estate-referral-program-dubai", label: "Dubai real estate referral program: earn up to 3%" },
       { to: "/real-estate-affiliate-program-uae", label: "Real estate affiliate program in the UAE" },
       { to: "/real-estate-referral-fee-dubai", label: "Real estate referral fee in Dubai" },
+      { to: "/blog/how-to-become-real-estate-agent-dubai", label: "Full guide: how to become a real estate agent in Dubai (2026)" },
       { to: "/blog/cost-become-real-estate-agent-dubai", label: "Detailed cost breakdown to become an agent in Dubai" },
       { to: "/blog/how-much-money-real-estate-agents-make-dubai", label: "How much do Dubai real estate agents make?" },
       { to: "/ambassador-program", label: "The Sofara ambassador program" },
