@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Clock, ArrowRight, Tag } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,14 @@ import { signupHref } from "@/lib/signup";
 const Blog = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
+  const searchParam = searchParams.get("search");
+
+  // Tag links on articles point to /blog?search=<tag>: apply the filter after mount, so the prerendered
+  // /blog HTML (always unfiltered) still hydrates cleanly.
+  useEffect(() => {
+    if (searchParam) setSearch(searchParam);
+  }, [searchParam]);
 
   const filtered = useMemo(() => {
     return blogArticles.filter(a => {

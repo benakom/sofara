@@ -50,6 +50,7 @@ const BlogPost = () => {
         ogImage={article.image}
         schemaType="BlogPosting"
         article={{
+          headline: article.title,
           publishedTime: article.date,
           modifiedTime: article.date,
           author: article.author,
@@ -147,6 +148,8 @@ const BlogPost = () => {
               <Link
                 key={tag}
                 to={`/blog?search=${encodeURIComponent(tag)}`}
+                // Filtered views of /blog are not separate pages for search engines (also disallowed in robots.txt).
+                rel="nofollow"
                 className="flex items-center gap-1 px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Tag className="w-2.5 h-2.5" />{tag}
