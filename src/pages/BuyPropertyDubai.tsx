@@ -5,6 +5,11 @@ import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import { signupHref } from "@/lib/signup";
+import AuthorBox from "@/components/AuthorBox";
+import GuideFaq, { buildFaqJsonLd } from "@/components/seo/GuideFaq";
+import { PILLAR_FAQS } from "@/data/pillarFaqs";
+
+const faqs = PILLAR_FAQS["/buy-property-dubai"];
 
 const BuyPropertyDubaiPage = () => {
   const steps = [
@@ -36,7 +41,7 @@ const BuyPropertyDubaiPage = () => {
     <div className="min-h-screen bg-background">
       <SEO
         route="/buy-property-dubai"
-        jsonLd={{
+        jsonLd={[{
           "@context": "https://schema.org",
           "@type": "HowTo",
           name: "How to Buy Property in Dubai",
@@ -47,7 +52,7 @@ const BuyPropertyDubaiPage = () => {
             name: s.title,
             text: s.desc,
           })),
-        }}
+        }, buildFaqJsonLd(faqs)]}
       />
       <Navbar />
 
@@ -111,7 +116,8 @@ const BuyPropertyDubaiPage = () => {
             Dubai Property Purchase Fees & Costs
           </h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            The main costs involved in buying property in Dubai. Official fees are set by the Dubai Land Department: check the current amounts in the <Link to="/blog/dubai-dld-fees-explained" className="text-primary hover:underline">DLD fees guide</Link> before you buy.
+            The main costs involved in buying property in Dubai. Official fees are set by the Dubai Land Department and published on{" "}
+            <a href="https://dubailand.gov.ae" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">dubailand.gov.ae</a>: check the current amounts in the <Link to="/blog/dubai-dld-fees-explained" className="text-primary hover:underline">DLD fees guide</Link> before you buy.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/50 max-w-2xl mx-auto">
             <table className="w-full text-sm">
@@ -132,6 +138,8 @@ const BuyPropertyDubaiPage = () => {
             </table>
           </div>
         </section>
+
+        <GuideFaq faqs={faqs} title="Buying Property in Dubai: FAQ" />
 
         {/* CTA */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-16">
@@ -158,6 +166,8 @@ const BuyPropertyDubaiPage = () => {
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { to: "/invest-dubai-real-estate", label: "Dubai Investment Guide" },
+              { to: "/dubai-off-plan-properties", label: "Dubai Off-Plan Properties" },
+              { to: "/blog/dubai-off-plan-vs-ready-properties", label: "Off-Plan vs Ready" },
               { to: "/blog/dubai-golden-visa-real-estate", label: "Golden Visa Guide" },
               { to: "/blog/dubai-dld-fees-explained", label: "DLD Fees Explained" },
               { to: "/blog/foreigners-buying-dubai-property", label: "Foreign Buyers Guide" },
@@ -171,6 +181,9 @@ const BuyPropertyDubaiPage = () => {
             ))}
           </div>
         </section>
+        <div className="px-5 sm:px-6 max-w-4xl mx-auto pb-16">
+          <AuthorBox locale="en" />
+        </div>
       </main>
       <FooterSection />
     </div>

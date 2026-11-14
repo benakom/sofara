@@ -146,7 +146,7 @@ export const SEO_CONFIG: Record<string, SeoMeta> = {
   "/dubai-off-plan-properties": {
     title: "Dubai Off-Plan Properties 2026 | Sofara",
     description:
-      "Explore Dubai off-plan properties for 2026: top developers, payment plans, ROI, handover dates and broker-backed insights.",
+      "Dubai off-plan properties in 2026: how off-plan works, payment plans, escrow protection, main developers and the checks to make before you buy.",
     canonical: "https://sofara.io/dubai-off-plan-properties",
     h1: "Dubai Off-Plan Properties — Top Investments for 2026",
     keywords: ["Dubai off-plan", "Emaar off-plan", "DAMAC off-plan", "Sofara Real Estate"],
