@@ -3787,7 +3787,7 @@ Yes. Many of our ambassadors do — read more about [part-time real estate work 
 
 ${internalLink("**→ Join Sofara for free**", "/auth?mode=signup")}
 
-*Read next: ${internalLink("Comment devenir agent immobilier à Dubai (FR)", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Devenir agent immobilier à Dubai sans licence (FR)", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("Sofara commission structure explained", "/blog/sofara-commission-structure-explained")}*
+*Read next: ${internalLink("How to become a real estate agent in Dubai: the full 2026 guide", "/blog/how-to-become-real-estate-agent-dubai")} | ${internalLink("Comment devenir agent immobilier à Dubai (FR)", "/blog/comment-devenir-agent-immobilier-dubai")} | ${internalLink("Devenir agent immobilier à Dubai sans licence (FR)", "/blog/devenir-agent-immobilier-dubai-sans-licence")} | ${internalLink("Sofara commission structure explained", "/blog/sofara-commission-structure-explained")}*
 
 *Powered by ${cevitasLink("Cevitas Real Estate LLC")} — RERA-licensed Dubai brokerage.*
 
@@ -3877,6 +3877,8 @@ To understand how your share is calculated, read [how referral fees work in Duba
 
 **How do I start as an ambassador?** Through the [Sofara ambassador program](/ambassador-program) — free sign-up, no license required.
 
+**Where can I see the whole process in one place?** In the ${internalLink("full guide to becoming a real estate agent in Dubai", "/blog/how-to-become-real-estate-agent-dubai")}.
+
 ---
 
 ${internalLink("**→ Join Sofara for free**", "/auth?mode=signup")}
@@ -3962,6 +3964,7 @@ If you prefer to start right away, the [Sofara](/) ambassador route is built for
 - **Already share recommendations online?** → It works like a [real estate affiliate program in the UAE](/real-estate-affiliate-program-uae).
 - **Need to know the budget first?** → ${internalLink("How much does it cost to become a real estate agent in Dubai", "/blog/cost-become-real-estate-agent-dubai")}.
 - **Need to know the income potential?** → ${internalLink("How much money do real estate agents make in Dubai", "/blog/how-much-money-real-estate-agents-make-dubai")}.
+- **Want the licensed route and the ambassador route side by side?** → ${internalLink("How to become a real estate agent in Dubai: the full guide", "/blog/how-to-become-real-estate-agent-dubai")}.
 
 ---
 
@@ -4044,7 +4047,7 @@ If you have the **soft skills** (network, communication, market knowledge) but n
 - A real network of potential buyers
 - A bank account that can receive international transfers
 
-That's it. No visa, no DREI, no RERA exam, no Broker Card. Your reward is a percentage of the property price — read [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
+That's it. No visa, no DREI, no RERA exam, no Broker Card. Your reward is a percentage of the property price — read [how referral fees work in Dubai](/real-estate-referral-fee-dubai). To compare this with the licensed route step by step, see ${internalLink("how to become a real estate agent in Dubai", "/blog/how-to-become-real-estate-agent-dubai")}.
 
 ---
 
@@ -4140,7 +4143,7 @@ For the income side, see ${internalLink("how much money real estate agents make 
 
 ## Break-Even Logic
 
-A new licensed agent recovers their start-up costs once their share of commissions (a percentage of each sale price, split with their brokerage) covers the fees and living costs above — how quickly depends on network, segment and brokerage. Model deal scenarios with the [Off-Plan Simulator](https://www.offplansimulator.com). A Sofara ambassador has no upfront cost to recover: the first closed referral is already a gain. See [how referral fees work in Dubai](/real-estate-referral-fee-dubai).
+A new licensed agent recovers their start-up costs once their share of commissions (a percentage of each sale price, split with their brokerage) covers the fees and living costs above — how quickly depends on network, segment and brokerage. Model deal scenarios with the [Off-Plan Simulator](https://www.offplansimulator.com). A Sofara ambassador has no upfront cost to recover: the first closed referral is already a gain. See [how referral fees work in Dubai](/real-estate-referral-fee-dubai), and the ${internalLink("complete guide to becoming a real estate agent in Dubai", "/blog/how-to-become-real-estate-agent-dubai")} for the licensing steps behind these costs.
 
 ---
 

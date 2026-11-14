@@ -33,6 +33,8 @@ interface SEOProps {
   /** Breadcrumb label of the current page (defaults to the title before " | "). */
   breadcrumbName?: string;
   article?: {
+    /** Article headline for JSON-LD, without the " | Sofara" suffix of the <title>. */
+    headline?: string;
     publishedTime?: string;
     author?: string;
     section?: string;
@@ -102,7 +104,7 @@ const SEO = ({
     jsonLdBlocks.push({
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: finalTitle,
+      headline: article.headline || finalTitle.replace(/ \| Sofara$/, ""),
       description: finalDesc,
       image: article.image || finalOgImage,
       datePublished: article.publishedTime,
