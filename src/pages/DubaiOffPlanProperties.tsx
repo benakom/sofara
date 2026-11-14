@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, TrendingUp, BarChart3, MapPin, Building, Home, Landmark, Star, CheckCircle2 } from "lucide-react";
+import { ArrowRight, TrendingUp, BarChart3, Building, Landmark, Star, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/ambassador/Navbar";
 import FooterSection from "@/components/ambassador/FooterSection";
 import SEO from "@/components/SEO";
 import AuthorBox from "@/components/AuthorBox";
 import { AHMED_BENJAS_PERSON } from "@/config/seo";
 import { signupHref } from "@/lib/signup";
+import GuideFaq, { buildFaqJsonLd } from "@/components/seo/GuideFaq";
+import { PILLAR_FAQS } from "@/data/pillarFaqs";
+
+const faqs = PILLAR_FAQS["/dubai-off-plan-properties"];
 
 const DubaiOffPlanPage = () => {
   const advantages = [
-    { icon: TrendingUp, title: "20-40% Capital Appreciation", desc: "Off-plan properties typically appreciate 20-40% between launch and handover, offering significant returns before you even receive the keys." },
-    { icon: BarChart3, title: "Lower Entry Price", desc: "Off-plan prices are 10-30% lower than equivalent ready properties, with developers competing for early buyers with attractive launch prices." },
-    { icon: Landmark, title: "Flexible Payment Plans", desc: "Most developers offer 60/40, 70/30, and even post-handover plans — spreading payments over 3-7 years without mortgage interest." },
-    { icon: Star, title: "First Pick of Best Units", desc: "Early buyers get access to the best floor plans, views, and prices. Premium units on higher floors sell out within days of launch." },
+    { icon: BarChart3, title: "Accessible Launch Prices", desc: "Developers often set launch prices to attract early buyers, which can make off-plan more accessible than a comparable ready unit. Whether the value grows by handover depends on the project and the market: it is never guaranteed." },
+    { icon: Landmark, title: "Flexible Payment Plans", desc: "The price is spread over the construction period, with construction-linked plans such as 60/40 or 70/30 and, on some projects, instalments that continue after handover." },
+    { icon: Star, title: "First Choice of Units", desc: "Early buyers choose among the widest range of floor plans, floors and views, before the project sells through." },
+    { icon: TrendingUp, title: "A Brand-New Home", desc: "You receive a new property built to current standards, with a developer warranty and new community amenities." },
   ];
 
   const developers = [
@@ -31,24 +35,24 @@ const DubaiOffPlanPage = () => {
     "Understand the escrow account protections (Law No. 8 of 2007)",
     "Review the Sales & Purchase Agreement (SPA) carefully",
     "Consider the location's infrastructure timeline",
-    "Factor in DLD fees (4%) and service charges",
+    "Factor in the Dubai Land Department registration fee and the annual service charges",
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
         route="/dubai-off-plan-properties"
-        jsonLd={{
+        jsonLd={[{
           "@context": "https://schema.org",
           "@type": "Article",
           headline: "Dubai Off-Plan Properties 2026 — Complete Guide for Investors & Ambassadors",
-          description: "Comprehensive guide to Dubai off-plan real estate investment for 2026, with developer comparisons, payment plans, capital appreciation and ambassador opportunities.",
+          description: "Guide to Dubai off-plan property in 2026: how off-plan works, payment plans, escrow protection, main developers and a buyer checklist.",
           author: AHMED_BENJAS_PERSON,
           publisher: { "@type": "Organization", name: "Sofara", url: "https://sofara.io" },
           datePublished: "2026-03-01",
-          dateModified: "2026-05-22",
+          dateModified: "2026-11-14",
           mainEntityOfPage: "https://sofara.io/dubai-off-plan-properties",
-        }}
+        }, buildFaqJsonLd(faqs)]}
       />
       <Navbar />
 
@@ -64,9 +68,9 @@ const DubaiOffPlanPage = () => {
               <span className="block text-gradient-gold mt-2">Buy Smart. Earn More.</span>
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
-              Off-plan properties account for <strong>65% of all Dubai transactions</strong> in 2026.
-              With <strong>20-40% capital appreciation</strong> during construction and <strong>flexible payment plans</strong>,
-              it's the smartest way to enter Dubai's property market.
+              Off-plan means buying a home <strong>before or during construction</strong>, directly from the developer.
+              Buyers choose it for <strong>launch pricing</strong> and <strong>payment plans spread over the build</strong>.
+              This guide covers how it works, the main developers, the checks to make before you sign and how to earn by referring a buyer.
             </p>
           </motion.div>
         </section>
@@ -95,7 +99,7 @@ const DubaiOffPlanPage = () => {
             Top Dubai Off-Plan Developers
           </h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Sofara partners with all major RERA-registered developers in Dubai.
+            Developers that buyers often look at for their history of delivered projects. A RERA-licensed advisor compares their current launches with you.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {developers.map((d) => (
@@ -124,17 +128,28 @@ const DubaiOffPlanPage = () => {
               </div>
             ))}
           </div>
+          <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto mt-8 leading-relaxed">
+            Official fees are published by the Dubai Land Department on{" "}
+            <a href="https://dubailand.gov.ae" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">dubailand.gov.ae</a>.
+            See the <Link to="/blog/dubai-dld-fees-explained" className="text-primary hover:underline">DLD fees guide</Link>,
+            the <Link to="/blog/dubai-payment-plans-explained" className="text-primary hover:underline">Dubai payment plans guide</Link> and
+            the step-by-step guide to <Link to="/buy-property-dubai" className="text-primary hover:underline">buying property in Dubai as a foreigner</Link>.
+          </p>
         </section>
+
+        <GuideFaq faqs={faqs} title="Dubai Off-Plan Properties: FAQ" />
 
         {/* CTA */}
         <section className="px-5 sm:px-6 max-w-6xl mx-auto py-16">
           <div className="rounded-3xl border border-primary/20 bg-primary/5 p-8 sm:p-12 text-center">
             <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">
-              Earn Up to 3% Commission on Every Off-Plan Sale
+              Earn 1% to 3% on Every Off-Plan Sale You Refer
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Refer buyers interested in Dubai off-plan properties. Our team handles qualification, viewings, and closing.
-              You earn <strong>up to 3% commission</strong> — automatically.
+              Refer buyers interested in Dubai off-plan properties. Cevitas Real Estate LLC, a RERA-licensed brokerage, handles qualification, viewings and closing.
+              You earn <strong>1% to 3% of the property price</strong> on each completed sale, through our{" "}
+              <Link to="/real-estate-referral-program-dubai" className="text-primary hover:underline">real estate referral program in Dubai</Link>.
+              No license required: see how the <Link to="/ambassador-program" className="text-primary hover:underline">Sofara ambassador program</Link> works.
             </p>
             <Link
               to={signupHref("en")}
@@ -156,6 +171,8 @@ const DubaiOffPlanPage = () => {
               { to: "/blog/damac-properties-guide", label: "Damac Guide" },
               { to: "/blog/sobha-realty-quality-investment", label: "Sobha Guide" },
               { to: "/blog/dubai-off-plan-vs-ready-properties", label: "Off-Plan vs Ready" },
+              { to: "/blog/dubai-payment-plans-explained", label: "Payment Plans" },
+              { to: "/dubai-real-estate-ambassadors", label: "Dubai Real Estate Ambassadors" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="px-4 py-2 rounded-full bg-secondary text-xs font-medium hover:bg-secondary/80 transition-colors">
                 {l.label} →
