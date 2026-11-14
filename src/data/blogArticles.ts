@@ -435,7 +435,7 @@ One of the most common — and most important — questions from Dubai real esta
 
 ## Understanding Off-Plan Properties
 
-Off-plan properties are purchased **before or during construction**, directly from the developer. You're buying based on architectural plans, 3D renders, and the developer's track record.
+Off-plan properties are purchased **before or during construction**, directly from the developer. You're buying based on architectural plans, 3D renders, and the developer's track record. Our ${internalLink("guide to Dubai off-plan properties", "/dubai-off-plan-properties")} covers the developers and the checks to make before you sign.
 
 ### Advantages of Off-Plan
 
@@ -473,7 +473,7 @@ You receive a brand-new property with:
 
 ## Understanding Ready Properties
 
-Ready properties are **completed, handed over, and available for immediate occupation or rental**.
+Ready properties are **completed, handed over, and available for immediate occupation or rental**. For the full purchase process, see ${internalLink("how to buy property in Dubai as a foreigner", "/buy-property-dubai")}.
 
 ### Advantages of Ready Properties
 
@@ -1575,7 +1575,7 @@ The Golden Visa is a long-term residency permit that allows foreign nationals to
 ## Step-by-Step Application Process
 
 ### Step 1: Purchase a Qualifying Property
-Buy a property that meets the official criteria through ${cevitasLink("Cevitas Real Estate LLC")}. The DLD title deed serves as your proof of investment.
+Buy a property that meets the official criteria through ${cevitasLink("Cevitas Real Estate LLC")}. The DLD title deed serves as your proof of investment. The purchase itself is explained in ${internalLink("how to buy property in Dubai as a foreigner", "/buy-property-dubai")}.
 
 ### Step 2: Obtain the Title Deed
 The DLD issues a title deed in your name — this is your primary qualifying document. ${internalLink("DLD fees and process", "/blog/dubai-dld-fees-explained")}.
@@ -1702,6 +1702,8 @@ For off-plan purchases, the DLD registers the sale contract through the **Oqood*
 - The DLD registration fee is paid when the off-plan contract is registered
 - You don't pay the registration fee twice at handover
 
+More on how buying before completion works in the ${internalLink("Dubai off-plan properties guide", "/dubai-off-plan-properties")}.
+
 ---
 
 ## Cost Checklist: Cash Purchase
@@ -1734,7 +1736,7 @@ Each bank sets its own processing and valuation fees — ask for a written break
 ## How to Manage Your Costs
 
 1. **Ask about developer promotions**: some developers occasionally cover part of the DLD fee
-2. **Compare off-plan and ready options**: the timing of fees differs between the two
+2. **Compare off-plan and ready options**: the timing of fees differs between the two, as the ${internalLink("step-by-step guide to buying property in Dubai", "/buy-property-dubai")} shows
 3. **Compare cash and mortgage scenarios**: see the [mortgage-related costs](https://www.offplansimulator.com/blog/total-cost-of-buying-with-mortgage-dubai) before choosing
 4. **Use the ${simulatorLink("Investment Simulator")}**: model your total costs with your own figures before committing
 
@@ -1771,7 +1773,7 @@ ${internalLink("**→ Join Sofara and start referring with confidence**", "/auth
     content: `
 # Dubai Off-Plan Payment Plans: Complete Guide
 
-One of the great advantages of Dubai's real estate market: developers offer **flexible payment plans** that make off-plan property accessible to a global audience. Instead of paying the full price upfront or relying only on a mortgage, buyers pay in installments linked to the project's timeline — often without interest.
+One of the great advantages of Dubai's real estate market: developers offer **flexible payment plans** that make off-plan property accessible to a global audience. Instead of paying the full price upfront or relying only on a mortgage, buyers pay in installments linked to the project's timeline — often without interest. For the wider picture, see the ${internalLink("Dubai off-plan properties guide", "/dubai-off-plan-properties")}.
 
 ---
 
@@ -2201,6 +2203,8 @@ For a cash purchase, the documentation is remarkably simple:
 ---
 
 ## The Purchase Process: Step by Step
+
+The short version is in our guide to ${internalLink("buying property in Dubai", "/buy-property-dubai")}; here is the detail for each route. New to buying before completion? Start with the ${internalLink("Dubai off-plan properties guide", "/dubai-off-plan-properties")}.
 
 ### For Off-Plan Properties
 1. **Choose your property** — Browse [off-plan projects with DLD sales data](https://www.cevitas.ae/en/projects) through ${cevitasLink("Cevitas Real Estate")}
