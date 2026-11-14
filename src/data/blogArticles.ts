@@ -3584,7 +3584,7 @@ Sofara compte **700+ ambassadeurs actifs**, avec des profils très variés :
 
 Aucun n'a besoin de licence RERA ni de vivre à Dubai : tous opèrent légalement sous la licence Cevitas. Découvrez le [réseau d'ambassadeurs immobilier à Dubaï](/fr/ambassadeurs-immobilier-dubai).
 
-Le réseau a été cofondé par [Ahmed Benjas, agent immobilier marocain à Dubaï](https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/), qui accompagne en français les acheteurs venus du Maroc et des pays francophones.
+Le réseau a été cofondé par [Ahmed Benjas, agent immobilier marocain à Dubaï](https://www.ahmedbenjas.com/analyses/agent-immobilier-marocain-dubai/), qui accompagne en français les acheteurs venus du Maroc et des pays francophones. Pour comprendre ce que vos contacts vivent côté acheteur, lisez le guide Cevitas pour [acheter un appartement à Dubaï quand on est Marocain](https://www.cevitas.ae/acheter-appartement-dubai-marocain) : étapes, pièces et enregistrement au Dubai Land Department.
 
 ---
 
