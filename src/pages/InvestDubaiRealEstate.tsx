@@ -198,6 +198,10 @@ const InvestDubaiPage = () => {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mb-8">
             Expert Guides on Dubai Real Estate
           </h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8 -mt-2">
+            Ready to go further? Read the step-by-step guide to <Link to="/buy-property-dubai" className="text-primary hover:underline">buying property in Dubai as a foreigner</Link> and
+            the guide to <Link to="/dubai-off-plan-properties" className="text-primary hover:underline">Dubai off-plan properties</Link>.
+          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { slug: "dubai-real-estate-market-2026-overview", title: "Dubai Real Estate Market 2026: Complete Guide", tag: "Market Analysis" },
